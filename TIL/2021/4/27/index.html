@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 27th
+					</h2>
+					<p>
+						Today I learned that some self-contained calculus can be done over the $p$-adics. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p \lt \infty$ prime like $\RR$ and doing the analysis.
+					</p>
+					<p>
+						We define the formal derivative of a power series instead of the normal derivative.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then we define the formal derivative by    \[f'(x):=\sum_{k=0}^\infty(k+1)a_{k+1}x^k.\]
+						</p>
+					</div>
+					<p>
+						We would like the formal derivative to be defined at least where $f(x)$ is defined. We can do this directly because $p$-adic analysis is so nice.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then, for fixed $x\in\QQ_p,$ if $f(x)$ converges, then $f'(x)$ converges as well.
+						</p>
+					</div>
+					<p>
+						The fact that $f(x)$ converges is equivalent to the fact that the terms of the sum approach $0,$ or\[\left|a_kx^k\right|_p\to0.\]To show that $f'(x)$ converges, it is again sufficient to show that the terms $\left|(k+1)a_{k+1}x^k\right|_p\to0.$ However, this is\[\left|(k+1)a_{k+1}x^k\right|_p\le\left|a_{k+1}x^k\right|=\frac1{|x|_p}\left|a_{k+1}x^{k+1}\right|,\]which goes to $0$ by hypothesis. So we are done here. $\blacksquare$
+					</p>
+					<p>
+						We also say that we can talk a little more generally about convergence of power series; namely, they have a radius of convergence just like power series in $\RR$ do.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then the radius of convergence of $f$ is    \[\rho:=\left(\limsup_{k\to\infty}\sqrt[k]{|a_k|_p}\right)^{-1}.\]    We note that $\rho=\infty$ is permitted.
+						</p>
+					</div>
+					<p>
+						This pretty much follows from the same fact that a series converges if and only if its terms vanish. Namely, fixing $x\in\QQ_p,$ we know $f(x)$ will converge if and only if\[\left|a_kx^k\right|_p=|a_k|_p\cdot|x|_p^k\to0.\]Now, if $|x|_p \lt \rho,$ then\[\limsup_{k\to\infty}\sqrt[k]{|a_k|_p}\cdot|x|_p \lt 1.\]
+					</p>
+					<p>
+						As an aside, we remark that $\limsup_{n\to\infty}\sqrt[n]{|n|_p}=1,$ so the extra linear factor in the coefficients of the formal derivative does not affect the radius of convergence, which is what we expected from the lemma. We can be more precise about the equality cases for the radius of convergence here, but we don't bother.
+					</p>
+					<p>
+						The main attraction is as follows: the formal derivative for power series behaves like theusual derivative.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $f\in\QQ_p[[x]].$ Then for any $x$ where $f(x)$ converges,    \[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h.\]
+						</p>
+					</div>
+					<p>
+						We remark that the limit is done with respect to $|\bullet|_p,$ as it should be. Anyways, this proof is roughly the same proof done for
+					</p>
+					<p>
+						http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf \todo{}
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

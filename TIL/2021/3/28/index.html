@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 28th
+					</h2>
+					<p>
+						Today I learned the proof of the global zeta functional equation. Fix a number field $K.$ We have the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $f:\mathbb A_K\to\CC$ to be Shwartz-Bruhat (finite $\CC$-linear combination of a restricted product of Shwartz-Bruhat functions on the local fields), and fix an idele-class character $\chi:\mathbb A_K^\times\to\CC^\times$ (multiplicative and trivial on $K^\times$). Now, we define the global $\zeta$-function by    \[\zeta(f,\chi)=\int_{\mathbb A^\times_K}f(x)\chi(x)\,d^\times x.\]
+						</p>
+					</div>
+					<p>
+						Note that this is intended to mimic Riemann's proof of the functional equation for $\zeta,$ for we can interpret\[\xi(\chi)=\int_{\AA^\times_K}\left(\prod_\nu G_\nu(x)\right)\chi(x)\,d^\times x,\]where $G_\nu$ is the Gaussian at the place $\nu.$
+					</p>
+					<p>
+						Anyways, we begin by showing that this thing converges absolutely for $\chi$ of exponent $\sigma \gt 1.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $f$ and $\chi$ to have a global zeta function $\zeta(f,\chi).$ If the exponent of $\chi$ is $\sigma \gt 1,$ then $\zeta(f,\chi)$ converges absolutely.
+						</p>
+					</div>
+					<p>
+						This is a matter of computation. Because $f$ is a finite $\CC$-linear combination of products of Shwartz-Bruhat functions on the local fields, we can let $f=\prod_\nu f_\nu.$ Throwing absolute values all over the place, we are interested in the convergence of\[\int_{\AA_K^\times}\left(\prod_\nu|f_\nu(x)|\right)|x|^\sigma\,d^\times x.\]By Fubini's theorem, it suffices to show the aboslute convergence of\[\prod_\nu\int_{K_\nu}|f_\nu(x)|\cdot|x|^\sigma_\nu\,d^\times x.\]The infinite places are integrals over Shwartz functions, so their integrals surely converge. Now, $f_\nu=1_{\mathcal O_\nu}$ for all but finitely many of the remaining finite places $\mf p,$ so we can just determine the convergence of\[\prod_\mf p\int_{\mathcal O_\mf p}|x|^\sigma_\mf p\,d^\times x.\]Now, we split up the integral over $\mathcal O_\mf p$ into an infinite sum by norm. Each of the $\mf p$ factors looks like\[\int_{\mathcal O_\mf p}|x|^\sigma_\mf p\,d^\times x=\sum_{n=0}^\infty\int_{\mf p^n\setminus\mf p^{n+1}}|x|^\sigma_\mf p\,d^\times x.\]By construction of $|\bullet|_\mf p,$ we get $|x|_\mf p^\sigma=\op N(\mf p)^{-n\sigma}$ is constant in the integral, and the multiplicative integral can be rescaled to $\mathcal O_\nu^\times,$ which has measure $1$ (for all but finitely many, specifically unramified, $\nu$) by construction of $d^\times x.$ So we see we are interested in\[\prod_\mf p\sum_{n=0}^\infty\op N(\mf p)^{-n\sigma}.\]But this is just $\zeta_K(\sigma)$! We can show the convergence of $\zeta_K$ because, fixing $d=[K:\QQ],$ each prime $p$ has at most $d$ primes above it, and those primes have norm at least $p,$ so\[\prod_\mf p\sum_{n=0}^\infty\op N(\mf p)^{-n\sigma}\le\prod_p\left(\sum_{n=0}^\infty p^{-n\sigma}\right)^d=\zeta(\sigma)^d,\]which converges absolutely for $\sigma \gt 1.$ (Note we have essentially said that the completely split primes are the most problematic, a statement we can refine to show that completely split primes have Dirichlet density $1/d$ in Galois extensions.) This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We now continue with the proof of the functional equation. In order to properly mimic Riemann's proof, we would like an equation like\[\xi(s)=\int_0^\infty\left(\frac{\Theta(s)-1}2\right)t^{s/2}\,\frac{dt}t,\]so we attempt to split up $\AA^\times_K$ in $\zeta(f,\chi)$ by a norm parameter $t.$ Well, we have an exact sequence of locally compact abelian groups\[0\longrightarrow\mathbb A^\times_{K,1}\longrightarrow\mathbb A_K^\times\longrightarrow\left|\mathbb A_K^\times\right|\longrightarrow0,\]and our measures will decompose properly. I do not concern myself too much with the details here; I think the measure on $\mathbb A^\times_{K,1}$ should be defined to work properly with the others, so there shouldn't be any big issue here.
+					</p>
+					<p>
+						Anyways, the point is that we can write\[\zeta(f,\chi)=\int_{\left|\AA_K^\times\right|}\underbrace{\int_{t\mathbb A^\times_{K,1}}f(x)\chi(x)\,d^\times x}_{=:\,\zeta_t(f,\chi)}\,\frac{dt}t.\]Here $\left|\AA_K^\times\right|$ plays the role of $[0,\infty)$ from Riemann's proof, and so we would like $\zeta_t(f,\chi)$ to have its own functional equation, like $\frac{\Theta(t)-1}2$ did. We have the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For given $f$ and $\chi$ as before, the quantity    \[\zeta_t(f,\chi)+f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)\,d^\times x\]    is unaffected by the transformation $(t,f,\chi)\mapsto(t^{-1},\hat f,\chi^\vee).$
+						</p>
+					</div>
+					<p>
+						Riemann's proof applies the Poisson summation formula to get the functional equation for $\Theta,$ so we want to apply the adelic Poisson summation formula here. In order to keep the domain of integration sane, we write\[\zeta_t(f,\chi)=\int_{\mathbb A^\times_{K,1}}f(tx)\chi(tx)\,d^\times x.\](Note the measure is multiplicative, so this is safe.) To apply the Poisson summation formula, we need to introduce a sum on $K.$ Well, $K^\times$ is a discrete and cocompact subset of $\mathbb A^\times_{K,1},$ a fact we don't show here, so we see\[\zeta_t(f,\chi)=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K^\times}f(ktx)\right)\chi(ktx)\,d^\times x.\]We recognize that $\mathbb A^\times_{K,1}/K^\times$ is the idele-class group, so there is number-theoretic information sneaking into this proof. Currently the sum is over $K^\times,$ so we add in the $0$ term to make the sum over $k.$ We get\[\zeta_t(f,\chi)+f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)d^\times x=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K}f(ktx)\right)\chi(ktx)\,d^\times x.\tag{$*$}\]Note $\chi(ktx)=\chi(tx)$ because $\chi$ is an idele-class character. For brevity, we let the left-hand side by $L$ for now.
+					</p>
+					<p>
+						To apply the Poisson summation formula to $k\mapsto f(ktx),$ we need to compute its Fourier transform. As in Riemann's proof, there is a scale factor to worry about here; define $g(k):=f(ktx),$ and we see\[\hat g(\xi)=\int_\AA g(a)\psi(\xi a)\,da=\int_\AA f(atx)\psi\left(atx\cdot\frac\xi{tx}\right)\,\frac{d(atx)}{|tx|},\]which is $\frac1{|tx|}\hat f\left(\frac\xi{tx}\right).$ It follows that\[L=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\frac1{|tx|}\sum_{k\in K}\hat f\left(\frac k{tx}\right)\right)\chi(tx)\,d^\times x.\]Sending $x\mapsto x^{-1}$ gives\[L=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K}\hat f\left(k\cdot\frac xt\right)\right)\left|\frac xt\right|\chi\left(\frac xt\right)^{-1}\,d^\times x.\]Note that this equation is exactly the equation for $(*)$ after sending $(t,f,\chi)\mapsto(t^{-1},\hat f,\chi^\vee),$ so we have gone over halfway through the functional equation and are now done. $\blacksquare$
+					</p>
+					<p>
+						To use the functional equation, we again mimic Riemann and split up our sliced integral for $\zeta(f,\chi)$ into\[\zeta(f,\chi)=\underbrace{\int_0^1\zeta_t(f,\chi)\,\frac{dt}t}_{=:\,J(f,\chi)}+\underbrace{\int_1^\infty\zeta_t(f,\chi)\,\frac{dt}t}_{=:\,I(f,\chi)}.\]I am mostly interested in number fields, where $\left|\AA_K^\times\right|=(0,\infty),$ but we remark that in function fields these integrals are actually infinite sums; the shared $1$ term is then of nonzero measure and needs to be dealt with some care. I am told that convention is to split it between both integrals, but it doesn't matter significantly.
+					</p>
+					<p>
+						As in Riemann's proof, the integral $I(f,\chi)$ converges absolutely for all exponents. Indeed,\[I(f,\chi)=\int_1^\infty\int_{t\mathbb A^\times_{K,1}}f(x)\chi(x)\,d^\times x\,\frac{dt}t.\]Throwing absolute values everywhere, we note that a smaller exponent $\sigma$ merely makes the integrand smaller because we're integrating over norms in $t\in[1,\infty),$ so absolute convergence of the full $\zeta(f,\chi)$ over $\sigma \gt 1$ implies absolute convergence for all $\sigma$ here.
+					</p>
+					<p>
+						Applying the finishing touches, we continue with Riemann and use the functional equation for $\zeta_t$ to rewrite $J(f,\chi).$ Still working over $\sigma \gt 1,$ it is\[J(f,\chi)=\int_0^1\zeta_{1/t}(\hat f,\chi^\vee)\,\frac{dt}t+\int_0^1\left[\hat f(0)\int_{t^{-1}\mathbb A^\times_{K,1}/K^\times}\chi^\vee(x)\,d^\times x-f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)\,d^\times x\right]\frac{dt}t.\]The first term, after taking $t\mapsto t^{-1}$ is $I(\hat f,\chi^\vee),$ so we see $\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)$ plus a whole bunch of error stuff, just like in Riemann's proof. Well, there's no time like the present to figure out those error terms.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\int_{\mathbb A^\times_{K,1}/K^\times}\chi(tx)\,d^\times x=\begin{cases}        t^s\op{Vol}(\mathbb A^\times_{K,1}/K^\times) & \chi=(x\mapsto|x|^s), \\        0 & \text{else}.    \end{cases}\]
+						</p>
+					</div>
+					<p>
+						If $\chi(x)=|x|^s$ is unramified, then the integral is $|xt|^s=t^s,$ which is constant over $d^\times x,$ so this comes out to $t^s\op{Vol}(\mathbb A^\times_{K,1}/K^\times).$ Otherwise we use orthogonality of characters. Removing the $\chi(t),$ we want to show that\[\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x=0.\]Because $\chi(x)$ does not take the form $|x|^s,$ we claim it is nonconstant on $\mathbb A_{K,1}^\times.$ This will finish because, then, if $\chi(a)\ne1$ ($\chi(1)=1$ is in the image), we see\[\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x=\int_{\AA_{K,1}^\times/K^\times}\chi(ax)\,d^\times(ax)=\chi(a)|a|\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x.\]This is justified because $\mathbb A^\times_{K,1}$ is a (topological) group so that $a\mathbb A^\times_{K,1}=\mathbb A^\times_{K,1},$ and the measure $d^\times(ax)$ is defined as $|a|d^\times x.$ However, $|a|=1$ and $\chi(a)\ne1,$ so the integral must vanish for the equation to be true.
+					</p>
+					<p>
+						Now we show that $\chi$ is constant on $\mathbb A^\times_{K,1}$ implies $\chi(x)=|x|^s$ on $\mathbb A^\times_K.$ Well, $1\in\mathbb A_{K,1}^\times,$ so $\chi$ being constant on $\mathbb A_{K,1}^\times$ implies $\chi\big(\mathbb A_{K,1}^\times\big)=\{1\}.$ But then for any $a\in\mathbb A^\times_K,$ we note $|a/|a||=1,$ so\[\chi(a)=\chi(|a|)\cdot\chi\left(\frac a{|a|}\right)=\chi(|a|).\]Thus $\chi$ is equal to its restriction to $|\mathbb A_K^\times|,$ so with $K$ a function field, $|\mathbb A_K^\times|=\RR^\times_{ \gt 0}$ by logarithms. However, we know from a couple weeks ago that all characters $\RR^\times_{ \gt 0}\to\CC^\times$ take the form $x\mapsto\op{sgn}(x)^b|x|^s$ for $b\in\{0,1\}$ and $s\in\CC.$ Because $\chi$ is an idele-class character, $\chi(-1)=1,$ so we have to take $b=0,$ which finishes this claim. $\blacksquare$
+					</p>
+					<p>
+						Thus, if $\chi$ is not of the form $x\mapsto|x|^s,$ then we see\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)\]because the integral will vanish. We note that $\zeta_t(\hat\hat f,\chi^{\vee\vee})=\zeta_t(x\mapsto f(-x),\chi),$ and then\[\zeta_t(-f,\chi)=\int_{t\mathbb A^\times_{K,1}}f(-x)\chi(x)\,d^\times x=\int_{t\mathbb A^\times_{K,1}}f(x)\chi(-x)\,d^\times x=\zeta_t(f,\chi)\]because $\chi(-1)=1.$ (Recall $\chi$ is trivial on $K^\times,$ so $\chi(-1)=-1$ is illegal.) In particular, this means we have an equation for $\zeta(f,\chi)$ closed under $(f,\chi)\mapsto(\hat f,\chi^\vee),$ so $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$ Additionally, $I(f,\chi)$ is entire, so $\zeta(f,\chi)$ is as well.
+					</p>
+					<p>
+						On the other hand, when $\chi(x)=|x|^s,$ then we fix $V:=\op{Vol}(\mathbb A^\times_{K,1}/K^\times)$ so that\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)+\int_0^1\left[\hat f(0)V(t^{-1})^{1-s}-f(0)Vt^s\right]\frac{dt}t.\]These integrals evaluate to\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)-\frac{\hat f(0)V}{1-s}-\frac{f(0)V}s.\]Again, we see that this is invariant under $(f,\chi,s)\mapsto(\hat f,\chi^\vee,1-s),$ so we have our functional equation $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$ Additionally, we see this expression is holomorphic with merely two poles at $s=0$ and $s=1,$ at which our residues are $-f(0)V$ and $\hat f(0)V$ respectively.
+					</p>
+					<p>
+						Thus, we have the following theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $f$ and $\chi$ so that $\zeta(f,\chi)$ is a global $\zeta$ integral. We have the following.
+						</p>
+						<ul>
+							<li>
+								<p>
+									We have $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$
+								</p>
+							</li>
+							<li>
+								<p>
+									If $\chi$ is not of the form $x\mapsto|x|^s,$ then $\zeta(f,\chi)$ has an entire expansion to all of $\CC.$
+								</p>
+							</li>
+							<li>
+								<p>
+									Else if $\chi(x)=|x|^s,$ then $\zeta(f,\chi)$ has a meromorphic extension to all of $\CC\setminus\{0,1\}.$ At $s=0,$ we have a simple pole with residue $-f(0)\op{Vol}(\mathbb A^\times_{K,1}/K^\times),$ and $s=1,$ we have a simple pole with residue $\hat f(0)\op{Vol}(\mathbb A^\times _{K,1}/K^\times).$
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						All of this follows from the discussion above. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

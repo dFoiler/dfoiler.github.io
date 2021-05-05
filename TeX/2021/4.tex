@@ -1,0 +1,1954 @@
+\subsection{April}
+
+\subsubsection{April 1st}
+Today I learned that the matrix exponential can be used to solve systems of linear differential equations, from 3Blue1Brown of course. To review, for $M\in\CC^{n\times n},$ we define
+\[e^M:=\sum_{k=0}^\infty\frac1{k!}M^k,\]
+using the Taylor series as our definition. We begin by showing this exists with the following lemma.
+\begin{lemma}
+    Suppose $m$ is the largest absolute value of any entry in $M.$ Then, for $k\ge1,$ the entries of $M^k$ are bounded in absolute value by $n^{k-1}m^k.$
+\end{lemma}
+We proceed by induction; for $k=1,$ there is nothing to prove. Now, for $k+1,$ we suppose that the entries of $M^k$ are bounded by $n^{k-1}m^k.$ Then the formula for matrix multiplication implies that
+\[\left(M^{k+1}\right)_{x,y}=\left(M^kM\right)_{x,y}=\sum_{z=1}^n\left(M^k\right)_{x,z}M_{z,y}.\]
+By the inductive hypothesis, we can bound this as
+\[\left|\left(M^{k+1}\right)_{x,y}\right|\le\sum_{z=1}^n\left|\left(M^k\right)_{x,z}\right|\cdot\left|M_{z,y}\right|\le n\cdot\left(n^{k-1}m^k\right)\cdot m.\]
+This bound rearranges to $n^{k+1-1}m^{k+1},$ which completes the inductive step. $\blacksquare$
+
+We know that equality holds in the equalities if all entries of $M$ are equal. Anywyas, the point is that we can write
+\[\left(e^M\right)_{x,y}=\sum_{k=0}^\infty\frac1{k!}\left(M^k\right)_{x,y}.\]
+This series converges (absolutely!) because we can set $m$ as $\max_{x,y}|M_{x,y}|,$ and bound with the lemma as
+\[\sum_{k=0}^\infty\frac1{k!}\left|\left(M^k\right)_{x,y}\right|\le\sum_{k=0}^\infty\frac1{k!}\left(n^{k-1}m^k\right)=\frac1ne^{mn}.\]
+So we see that this series converges (absolutely) pointwise in each of its components.
+
+As motivation for what follows, we review solving linear differential equations in one variable. That is, we want to solve
+\[\frac{dx}{dt}=mx,\]
+where $m\in\CC^{1\times1},$ with initial condition $x(0).$ If the function $x$ is to be differentiable, then it had better be analytic, so we wave our hands really hard and make it infinitely differentiable. We can show (say, by induction) that, for positive integers $k,$
+\[\frac{d^kx}{dt^k}x=\frac{d^{k-1}}{dt^{k-1}}\underbrace{\frac{dx}{dt}}_{mx}=m\frac{d^{k-2}}{dt^{k-2}}\underbrace{\frac{dx}{dt}}_{mx}=\cdots=m^kx.\]
+Thus, we see
+\[\frac{d^kx}{dt^k}\bigg|_{x=0}=m^kx_0,\]
+so expanding out a Taylor expansion tells us that
+\[x=\sum_{k=0}^\infty\frac{t^k}{k!}\left(\frac{d^kx}{dt^k}\bigg|_{x=0}\right)=\left(\sum_{k=0}^\infty\frac1{k!}(tm)^k\right)x_0.\]
+That is, our solutions are $e^{tm}x_0.$ What's remarkable is that the above proof has been written so that everything but the Taylor expansion will work for matrices! So it should not be terribly surprising that we have the following theorem.
+\begin{theorem}
+    Fix $M\in\CC{n\times n}.$ Then $x(t)=e^{tM}x_0$ is a solution of $\frac{dx}{dt}=Mx$ for any initial condition $x_0\in\CC^n.$
+\end{theorem}
+In particular, note that $e^{tM}x_0$ features a matrix-vector product (!). Anyways, this proof comes down to symbol-pushing. Observe that
+\[e^{tM}x_0=\left(\sum_{k=0}^\infty\frac1{k!}(tM)^k\right)x_0.\]
+We would like to bring in $x_0$ into the infinite sum; this is legal because the sum will absolutely converge, so we may multiply through the $x_0$ before or after. Indeed, for
+\[e^{tM}x_0\stackrel?=\sum_{k=0}^\infty\frac1{k!}(tM)^kx_0,\]
+we can create a similar bounding lemma to before, simply asserting that an entry of $(tM)^kx_0$ is bounded by $n$ times the largest entry of $(tM)^k$ times the largest entry of $x_0,$ which is still only exponential in $k.$ I'm too lazy to work out all the details here.
+
+Now, taking the derivative, we find
+\[\frac{dx}{dt}=\frac d{dt}\sum_{k=0}^\infty\frac1{k!}(tM)^kx_0=\sum_{k=0}^\infty\frac d{dt}\frac1{k!}(tM)^kx_0.\]
+Note that we are allowed to bring in the derivative here because both sides are converging properly, plus maybe some analytic property that someone else is paid to think about. Anyways, most of the expression $\frac1{k!}(tM)^kx_0$ is constant with respect to $t,$ so we find
+\[\frac{dx}{dt}=\sum_{k=0}^\infty\frac1{k!}\left(\frac d{dt}t^k\right)M^kx_0=\sum_{k=1}^\infty\frac k{k!}t^{k-1}M^kx_0.\]
+Yes, this series still converges pointwise because we can write it as
+\[\frac{dx}{dt}=\sum_{k=1}^\infty\frac1{(k-1)!}(tM)^{k-1}(Mx_0)=e^MMx_0.\]
+Alternatively, we can push out the $M$ to say that $\frac{dx}{dt}=Me^Mx_0=Mx,$ which is what we wanted. Note that we are not justifying this push of $M$ out super rigorously, but I think we can do this as $k\to\infty$ safely and $M^k/k!$'s entries vanish. $\blacksquare$
+
+As a brief addendum for computing $e^M,$ we note that if $A$ and $B$ are similar with $A=SBS^{-1},$ then
+\[e^A=\sum_{k=0}^\infty\frac1{k!}A^k=\sum_{k=0}^\infty\frac1{k!}SB^kS^{-1}=Se^BS^{-1}.\]
+Again, we are freely moving $S$ and $S^{-1}$ in and out of the sum because it's a mere linear transformation and will not affect the convergence. Anyways, the point is that if $M=SDS^{-1}$ is diagonalizable with $D$ diagaonl, then
+\[e^M=Se^DS^{-1},\]
+and now we note that diagonal matrices are very well-behaved, for an eigenvector $x$ with eigenvalue $\lambda$ has
+\[e^Mv=\sum_{k=0}^\infty\frac1{k!}M^kv=\sum_{k=0}^\infty\frac1{k!}\lambda^kv=e^\lambda v.\]
+Thus, employing an eigenbasis for $M,$ we see
+\[\exp\left(\begin{bmatrix}
+    \lambda_1 & & & 0 \\
+    & \lambda_2 \\
+    & & \ddots \\
+    0 & & & \lambda_n
+\end{bmatrix}\right)=\begin{bmatrix}
+    e^{\lambda_1} & & & 0 \\
+    & e^{\lambda_2} \\
+    & & \ddots \\
+    0 & & & e^{\lambda_n}
+\end{bmatrix}.\]
+So we can easily compute the matrix exponential of diagonal matrices, which means we can extend to diagonalizable matrices without too much fuss.
+
+As an example, we note that
+\[R:=\begin{bmatrix}
+    0 & -1 \\ 1 & 0
+\end{bmatrix}=\begin{bmatrix}
+    -i & i \\ 1 & 1
+\end{bmatrix}\begin{bmatrix}
+    -i & 0 \\ 0 & i
+\end{bmatrix}\begin{bmatrix}
+    i/2 & 1/2 \\ -i/2 & 1/2
+\end{bmatrix}.\]
+Here, multiplication by $R$ corresponds to a $90^\circ$ rotation in $\RR^2$ the way that multiplication by $i$ corresponds to a $90^\circ$ rotation in the complex plane. So we see
+\[e^{tR}=\begin{bmatrix}
+    -i & i \\ 1 & 1
+\end{bmatrix}\begin{bmatrix}
+    e^{-it} & 0 \\ 0 & e^{it}
+\end{bmatrix}\begin{bmatrix}
+    i/2 & 1/2 \\ -i/2 & 1/2
+\end{bmatrix}=\begin{bmatrix}
+    \cos t & -\sin t \\
+    \sin t & \cos t
+\end{bmatrix}.\]
+That is, the exponential is generating the rest of our rotations, just like in $\CC.$ Cute.
+
+\subsubsection{April 2nd}
+Today I learned how to show that $A\times B:\equiv\prod_{(x:2)}\op{rec}_2(\UU,A,B)(x)$ behaves the way that it should. This turns out to be significantly more involved than I first thought. Anyways, the main idea is that we can represent a pair $(a,b)$ as a function on $2$ taking $0$ to $a$ and $1$ to $b.$ This motivates the constructor
+\[\op{pair}_{A\times B}(a,b):\equiv\op{ind}\big(\op{rec}_2(\UU,A,B),a,b\big).\]
+For brevity, we define the notation $(a,b):\equiv\op{pair}_{A\times B}(a,b).$ Also from the function idea we take our projections somewhat for free as
+\[\begin{cases}
+    \op{pr}_1(p):\equiv p(0), \\
+    \op{pr}_2(p):\equiv p(1).
+\end{cases}\]
+In particular, $p:A\times B$ is actually a function on $2,$ returning our $A$ element on $0$ and $B$ on $1.$
+
+The end goal here is to create an induction, which is the following.
+\begin{proposition}
+    We can inhabit
+    \[\op{ind}_{A\times B}:\prod_{(C:A\times B\to\UU)}\left(\prod_{(a:A)}\prod_{(b:B)}C((a,b))\right)\to\left(\prod_{(p:A\times B)}C(p)\right)\]
+    satisfying
+    \[\op{ind}_{A\times B}(C,g)((a,b))=g(a)(b)\]
+    for each $a:A$ and $b:B.$ Note that this equality is propositional.
+\end{proposition}
+Defining projections is nice because they get us very close to induction by writing
+\[\lambda C.\lambda g.\lambda p.g(\op{pr}_1p)(\op{pr}_2p):\prod_{(C:A\times B\to\UU)}\left(\prod_{(a:A)}\prod_{(b:B)}C((a,b))\right)\to\left(\prod_{(p:A\times B)}C((\op{pr}_1p,\op{pr}_2p))\right).\]
+However, the induction we want should actually output a function $\prod_{(p:A\times B)}C(p),$ which is similar to but not the same as $(\op{pr}_1p,\op{pr}_2p).$
+
+In particular, we need a propositional uniqueness principle to continue.
+\begin{lemma}
+    We can inhabit
+    \[\op{uniq}_{A\times B}:\prod_{p:A\times B}(\op{pr}_1p,\op{pr}_2p)=p\]
+    satisfying
+    \[\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)}.\]
+    Again, note that this second equality is propositional.
+\end{lemma}
+Typically this statement is proven by induction on $p:A\times B,$ but of course we can't do that yet. Instead, we recall that $p$ is a function under the hood, so we use function extensionality. By function extensionality, it suffices to exhibit the homotopy
+\[\prod_{(x:2)}(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\]
+but this is true simply by definition of the projections. Being painfully explicit, we see
+\[\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)\]
+will exhibit the homotopy, and then we can set
+\[\op{uniq}_{A\times B}:\equiv\lambda p.\op{funext}\left(\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)\right).\]
+This finishes the first part of the lemma.
+
+To get the definitional equality for $\op{uniq}_{A\times B},$ we have to use a little more power from function extensionality. Namely, $\op{funext}$ is a quasi-inverse for
+\[\op{happly}:\prod_{(f,g:A\to B)}(f=g)\to\prod_{(a:A)}f(a)=g(a),\]
+which is defined by path induction with $\op{happly}(f,f,\op{refl}_f):\equiv\lambda a.\op{refl}_{f(a)}.$ We mention this because the fact $\op{happly}$ and $\op{funext}$ are quasi-inverses implies a path
+\[\op{funext}(f,f,\lambda a.\op{refl}_{f(a)})=\op{refl}_f.\]
+We can check by function extensionality (again) that, for fixed $p:A\times B,$
+\[\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)=\lambda a.\op{refl}_{p(a)},\]
+so pushing this path through $\op{ap}_{\op{funext}}$ tells us that
+\[\op{uniq}_{A\times B}(p)=\op{funext}\big((\op{pr}_1p,\op{pr}_2p),p,\lambda a.\op{refl}_{p(a)}\big).\]
+When $p\equiv(a,b),$ we see that this is $\op{funext}(p,p,\lambda a.\op{refl}_{p(a)}),$ so we get $\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)}$ after concatenating the paths. This completes the proof off the lemma. $\blacksquare$
+
+To finish, then, we take our almost-induction from $A\times B$ to $C((\op{pr}_1p,\op{pr}_2p))$ and then transport along $\op{uniq}_{A\times B}$ through the family $C$ to $C(p).$ For completeness, we re-prove transport so that we get its definitional equality.
+\begin{lemma}
+    Fix $A:\UU$ a type and $B:A\to\UU$ a family. Then for $x,y:A$ and $p:x=y,$ there is a function
+    \[\op{transport}^B(p):B(x)\to B(y)\]
+    satisfying $\op{transport}^B(\op{refl}_x)\equiv\op{id}_{B(x)}.$
+\end{lemma}
+As usual, this is proven by path induction on the path $p,$ for which it suffices to exhibit a function $\op{transport}^B(p)$ in the case where $p\equiv\op{refl}_x:x=x.$ In this case, we need a function $B(x)\to B(x),$ which we choose to be $\op{id}_{B(x)}\equiv\lambda b.b.$ If we wanted to be explicit, which we are notably not in the habit of given the above lemma, this looks like
+\[\op{transport}^B\equiv\op{ind}_{=A}\left(\prod_{(x,y:A)}\prod_{(p:x=y)}B(x)\to B(y),\prod_{(x:A)}\op{id}_{B(x)}\right).\]
+Anyways, this finishes the proof of the lemma. $\blacksquare$
+
+Now we can finally exhibit our induction. Given family $C:A\times B\to\UU$ and function $g:\prod_{(a:A)}\prod_{(b:B)}C((a,b))$ with input pair $p:A\times B,$ we can write
+\[\op{ind}_{A\times B}(C,g)(p):\equiv\op{transport}^C(\op{uniq}_{A\times B}p)\big(g(\op{pr}_1p,\op{pr}_2p)\big).\]
+Note that this is well-typed because $g(\op{pr}_1,\op{pr}_2p):C((\op{pr}_1p,\op{pr}_2)).$ We then transport along $\op{uniq}_{A\times B}p:(\op{pr}_1p,\op{pr}_2p)=p,$ which is giving a function $C((\op{pr}_1p,\op{pr}_2p))\to C(p).$ Thus, the composite of these is indeed outputting into $C(p).$
+
+It remains to check that induction behaves when we pass $(a,b)$ into it. Plugging in, we see that
+\[\op{ind}_{A\times B}(C,g)((a,b))\equiv\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)\big(g(a)(b)\big).\]
+Now, it roughly remains to show that $\op{transport}$ is well-behaved. Well, $\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)},$ so pushing this equality (via $\op{ap}$) through the restricted (!) function $\op{transport}^C:((a,b)=(a,b))\to C((a,b))\to C((a,b))$ tells us that
+\[\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)=\op{id}_{C((a,b))}.\]
+This is an equality of functions, so we can push it through $\op{happly}$ to say that
+\[\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)\big(g(a)(b)\big)=\op{id}_{C((a,b))}(g(a)(b))\equiv g(a)(b).\]
+This completes the proof of the theorem. $\blacksquare$
+
+What I find remarkable about the above proof is that I didn't just have to use the existence of $\op{funext},$ but I had to know that it was the quasi-inverse to $\op{happly}$ in order to get the definitional equality. There might be a way around this, but I am not aware of it.
+
+\subsubsection{April 3rd}
+Today I learned generalized Fourier series. Fix $G$ a locally compact abelian group. For $f\in L^1(G),$ we have a Fourier transform $\hat f.$ If we also have $\hat f\in L^1(\hat G),$ then we have an inverse Fourier transform satisfying
+\[f(g)=\int_{\hat G}\hat f(\chi)\chi(g)\,d\chi,\]
+which holds for all $g\in G$ if $f$ is continuous. In particular, for given Haar measure $dg$ of $G,$ there is a Haar measure $d\chi$ on $\hat G$ which makes the above true. I don't plan on showing any of this because I think it's quite involved; I will mention that $f\in L^1(G)\cap L^2(G)$ ensures that $\hat f\in L^1(G),$ so we can reduce this to a single condition on $f.$
+
+To continue, we take the following lemma.
+\begin{lemma}
+    Fix $G$ a compact abelian group. Then $\hat G$ is discrete.
+\end{lemma}
+This is not terribly hard. Indeed, using the compact-open topology,
+\[\left\{\chi\in\hat G:\chi(G)\subseteq B(1,1/2)\right\}=\{1_G\}\]
+because $\chi(G)\subseteq S^1$ needs to be a multiplicative group, but the only multiplicative group contained in $B(1,1/2)$ is $\{1\}.$ Thus, that any character sending $G$ to $B(1,1/2)$ must be the trivial character.
+
+It follows that $\{1_G\}$ is an open set in $\hat G,$ so by homogeneity, $\hat G$ is discrete. To be explicit, for any other character $\chi\in\hat G,$ multiplication by $\chi^{-1}$ induces a continuous function $\times_{\chi^{-1}}:\hat G\to\hat G.$ Then the preimage of $\{1_G\}$ under $\times_{\chi^{-1}}$ is $\{\chi\},$ so $\{\chi\}$ is also open. $\blacksquare$
+
+We do not actually need the converse of this statement for where we're going, and its details are annoying. Endow a now compact abelian group $G$ with a Haar measure $dg.$ Now, for any sufficiently nice $f$ (satisfying the conditions we gave earlier), we write
+\[f(g)=\int_{\hat G}\hat f(\chi)\chi(g)\,d\chi.\]
+At a high level, because $\hat G$ is discrete, we expect this to be a series, and it will turn into a Fourier series. However, we need to contend with $d\chi$ a bit.
+
+Note that the measure $d\chi$ on $\hat G$ needs to some multiple of the counting measure on $\hat G$ because, for any countable $S\subseteq\hat G,$
+\[\op{Vol}(S)=\sum_{\chi\in S}\op{Vol}(\{\chi\}).\]
+In particular, this is only legal because the $\{\chi\}$ are forming a disjoint open cover of $S,$ where $\{\chi\}$ is open because $\hat G$ is discrete by lemma. Because $d\chi$ is a Haar measure, the measure of $\{\chi\}$ needs to be equal to the measure of (say) $1_G,$ so
+\[\op{Vol}(S)=\sum_{\chi\in S}\op{Vol}(\{1_G\}).\]
+When $S$ is finite, this is $|S|\op{Vol}(\{1_G\}),$ and when $S$ is countably infinite, this is also infinite. Observe that when $S$ is uncountable, this is still infinite, so in fact our measure $d\chi$ is able to measure all subsets of $\hat G,$ albeit stupidly.
+
+Now, keeping in mind the definition of integration with respect to a measure, we see
+\[f(g)=\op{Vol}(\{1_G\})\sum_{\chi\in\hat G}\hat f(\chi)\chi(g).\]
+This is our Fourier series. We will elaborate on this shortly, but for right now, we talk about measures. We would like to make $\op{Vol}(\{1_G\})=1$ so that we don't have to worry about it, so we take the following lemma.
+\begin{lemma}
+    Fix $G$ a compact abelian group with Haar measure $dg.$ The measure of $G$ is $1$ if and only if the the dual measure $d\chi$ on $\hat G$ is the counting measure.
+\end{lemma}
+This sounds impressive, but given the machinery that we have, it suffices to just check our Fourier series at a single $f$ to find out when $\op{Vol}(\{1_G\})=1.$ Indeed, this will imply and is in fact equivalent to the fact that, for $S\subseteq\hat G,$
+\[\op{Vol}(S)=|S|\]
+by plugging in $\op{Vol}(\{1_G\})=1$ in the argument from earlier. So we show that $\op{Vol}(G)=1$ if and only if $\op{Vol}(\{1_G\})=1.$
+
+For this checking, we take $f=1_G.$ It is in $L^1(G)$ because the set $G$ is compact and so measurable. Computing Fourier transforms comes down to orthogonality of characters, for we have $\hat f:\hat G\to\CC$ by
+\[\hat f(\chi)=\int_Gf(g)\overline{\chi(g)}\,dg=\int_G\overline\chi(g)\,dg.\]
+If $\chi=1_G,$ then the integrand is trivial, and we get $\hat f(1_G)=\op{Vol}(G).$ Now, if $\chi\ne1_G,$ then $\overline\chi$ isn't either, so we can find some $g_0\in G$ for which $\overline\chi(g)\ne1,$ so
+\[\hat f(\chi)=\int_G\overline\chi(g)\,dg=\int_{g_0G}\overline\chi(g)\,dg=\int_G\overline\chi(gg_0)\,d(gg_0)=\overline\chi(g_0)\int_G\overline\chi(g)\,dg.\]
+But with $\chi(g_0)\ne1,$ this only way for this to be true is for $\hat f(\chi)=0.$ Thus, $\hat f=1_{1_G}\op{Vol}(G)$ is the $1_G$-indicator.
+
+To finish, we check the inverse Fourier transform. Because of the above discussion, we know
+\[f(g)=\op{Vol}(\{1_G\})\sum_{\chi\in\hat G}\hat f(\chi)\chi(g).\]
+We know most of this: $f(g)=1$ because $f=1_G$; and $\hat f(\chi)=\op{Vol}(G)1_{1_G},$ so the summands vanish except for $\chi=1_G\in\hat G,$ in which case the summand will be $\op{Vol}(G)\cdot1$ in this case. Plugging everything in, we see
+\[1=\op{Vol}(\{1_G\})\op{Vol}(G).\]
+So we see that $\op{Vol}(G)=1$ if and only if $\op{Vol}(\{1_G\})=1,$ and we are done here. $\blacksquare$
+
+This is nice, now, because the ``natural'' Haar measure on $G$ giving it measure $1$ is also exactly the measure which makes $\hat G$ have the counting measure. In this case, we do have our series expansion
+\[f(g)=\sum_{\chi\in\hat G}\hat f(\chi)\chi(g)\]
+for sufficiently nice $f.$ In particular, the $\hat f(\chi)$ are constants not dependent on $g.$ This is our generalized Fourier series.
+
+For effect, we derive standard Fourier series. Look at $\RR/\ZZ,$ whose dual is the discrete group $\ZZ.$ For a quick proof of this, we already know that $\RR\cong\widehat\RR,$ and surely we can extend any character on $\RR/\ZZ$ periodically. So all characters of $\RR/\ZZ$ look like
+\[x\mapsto e^{2\pi irx}\]
+for some $r\in\RR.$ Because we need to vanish on $\ZZ,$ it suffices for $e^{2\pi ir}=1,$ so $r\in\ZZ.$ Thus, all or characters actually look like $x\mapsto e^{2\pi inx}$ for $n\in\ZZ,$ which provides our correspondence between $\widehat{\RR/\ZZ}$ and $\ZZ.$
+
+We ran through that proof to say that the inverse Fourier transform in $\RR/\ZZ$ endowed with measure giving $\RR/\ZZ$ volume $1$ has
+\[f(x)=\sum_{\chi\in\widehat{\RR/\ZZ}}\hat f(\chi)\chi(g)=\sum_{n\in\ZZ}\hat f(n)e^{2\pi inx}\]
+for sufficiently nice $f.$ Note that we are abusing notation a bit by writing $\hat f(n)$ because we actually mean $\hat f(x\mapsto e^{2\pi inx}),$ but we can redefine
+\[\hat f(n):=\int_{\RR/\ZZ}f(x)e^{-2\pi inx}\,dx.\]
+So yes, we are getting standard Fourier series out of this abstraction.
+
+It is interesting that we can even carry this, practically verbatim, through to $\mathbb A_K/K,$ which has dual $K.$ Again, the correspondence here is that, for a standard $\psi:\mathbb A_K,$ we can associate $k\in K$ with $\psi_k(x):=\psi(kx).$ (We do not show this here.) Then our inverse Fourier transform (using the Haar measure which gives $\op{Vol}(\mathbb A_K/K)=1$) says
+\[f(a)=\sum_{\chi\in\widehat{\mathbb A_K/K}}\hat f(\chi)\chi(a)=\sum_{k\in K}\hat f(k)\psi(kx).\]
+Again we are abusing notation for a prettier statement (and emphasis) by writing $\hat f(k)$ for $\hat f(\psi_k).$ Anyways, the point is that this looks a lot like Fourier series with $\RR/\ZZ,$ entirely because we have a similarly nice classification of characters on $\mathbb A_K.$
+
+\subsubsection{April 4th}
+Today I learned (finally) why the norm-$1$ idele-class group $\AA^\times_{K,1}/K^\times$ is compact, from \href{https://web.archive.org/web/20210406035224/http://math.stanford.edu/~conrad/676Page/handouts/compactidele.pdf}{here}. This will turn out to imply the finiteness of the class group and Dirichlet's unit theorem, so it should not be surprising that this is somewhat difficult.
+
+In particular, it should also not be surprising that we begin with a Minkowski-type lemma.
+\begin{lemma}
+    For adele $a\in\AA_K,$ we define
+    \[X_a=\{x\in\AA_K:|x_\nu|_\nu\le|a_\nu|_\nu\text{ for each place }\nu\}.\]
+    Then there exists a constant $C_K$ only depending on $K$ such that $|a|>C_K$ implies $X_a\cap K^\times\ne\emp.$
+\end{lemma}
+We equip $\AA_K$ with the standard measure so that $\op{Vol}(\AA_K/K)=1.$ The structure of the proof of Minkowski's theorem for a general lattice $\Lambda\subseteq G$ is to fix a sufficiently large set, show that its translates onto $G/\Lambda$ must overlap somewhere, and then consider differences to extract a nonzero element in $\Lambda.$
+
+Well, because we would like to take differences later, we define the small
+\[S:=\prod_{\nu\mid\infty}\overline B(0,1/2)\times\prod_{\nu<\infty}\overline B(0,1).\]
+We note that $Z$ is closed because all of the factors are closed, and all but finitely many of the factors are $\overline B(0,1)=\mathcal O_\nu.$ Additionally, $Z$ contains some open set (replace all of the $\overline B$s with $B$s), so it has nonzero measure; in fact, I think we could compute it has $2^{-\#\{\nu\mid\infty\}}.$ And most importantly, $s_1,s_2\in S$ have
+\[|(s_1-s_2)_\nu|_\nu\le1\]
+for each place $\nu.$ (Over $\nu<\infty,$ the strong triangle inequality gives us this.) So $S$ is able to control the size of differences somewhat.
+
+Now, fix $a\in\AA_K$ with $|a|>C_K$ with $C_K:=\op{Vol}(S)^{-1}.$ The idea is that $\op{Vol}(aS)=|a|\op{Vol}(S)$ (by definition of $|a|$), which is bigger than $\op{Vol}(\AA_K/K)=1,$ so we are able to pick up a lattice point a la Minkowski.
+
+To be explicit, we write out the measure-theoretic pigeonhole principle. Forget our condition on $a$ and that $\op{Vol}(aS)>1$ for the time being; we show that if the projection mapping $\pi:aS\to\AA_K/K$ is injective, then $\op{Vol}(aS)\le1.$ We see that
+\[\op{Vol}(aS)=\int_{\AA_K}1_S(x)\,dx=\int_{\AA_K/K}\left(\sum_{k\in K}1_S(x+k)\right)dx\]
+We note have used Fubini's theorem here when moving the sum on $k\in K$ into the integral; this is fine because everything is positive and so should absolutely converge anyways. Continuing, this is
+\[\op{Vol}(aS)=\int_{\AA_K/K}\#\pi^{-1}(\{x\})\,dx.\]
+Now $\pi$ being injective implies that each $\#\pi^{-1}(\{x\})$ is no more than $1,$ so we conclude
+\[\op{Vol}(aS)\le\int_{\AA_K/K}dx=1.\]
+So considering the contrapositive, we see that $\op{Vol}(aS)>1$ implies that there are distinct $as_1,as_1\in aS$ with the same representative$\pmod K.$
+
+Looking at our conclusion, we can quickly finish. Because $as_1\equiv as_2\pmod K,$ we see $as_1-as_2\in K,$ so we define $x:=as_1-as_2\in K.$ It is nonzero because $as_1\ne as_2.$ Further, for any place $\nu,$ we see
+\[|x_\nu|_\nu=|a_\nu|_\nu\cdot|(s_1-s_2)_\nu|_\nu\le|a_\nu|_\nu\]
+by construction of $S.$ Thus, $x\in X_a\cap K^\times,$ so we are done here. $\blacksquare$
+
+Now we move towards the proof that $\mathbb A^\times_{K,1}/K^\times$ is compact. It turns out that $\mathbb A^\times_{K,1}$ inherits its topology from $\AA_K$ as well as from $\AA_K^\times,$ which we will show later. \todo{}
+
+\subsection{April 5th}
+Today I learned a relatively clean proof of the fact that
+\[\sum_{n\in\FF_p^\times}n^k\equiv0\pmod p\]
+provided that $p-1\nmid k,$ from \href{https://web.archive.org/web/20210406035125/https://math.berkeley.edu/sites/default/files/pages/F08_Final_Exam-C.P.Mok_.pdf}{here}. Quickly, we remark that $p-1\mid k$ implies that all terms are $1,$ so the sum comes out to $-1\pmod p.$ Anyways, we have the following.
+\begin{proposition}
+    Fix $p$ prime and $k$ a positive not divisible by $p-1.$ Then the sum
+    \[\sum_{n=1}^{p-1}n^k\equiv0\pmod p.\]
+\end{proposition}
+The key trick is taken from the classical proof of Fermat's little theorem. Fix $a\in\FF_p^\times$ to be determined later, and we note that $\times_a:\FF_p^\times\to\FF_p^\times$ is a bijection. (E.g., $ak\equiv a\ell$ implies $k\equiv\ell,$ so the map is injective and therefore bijective because the sets are finite.) It follows that
+\[S_k:=\sum_{n\in\FF_p^\times}n^k\equiv\sum_{n\in\FF_p^\times}(an)^k\equiv a^kS_k\pmod p.\]
+Rearranging, it follows that $\left(a^k-1\right)S_k\equiv0\pmod p.$
+
+Thus, it suffices to find some $a\in\FF_p^\times$ with $a^k-1\in\FF_p^\times$ so that we can multiply both sides of the equivalence by its inverse to conclude the needed $S_k\equiv0.$ To make this easy, we appeal to field structure. Quickly, note that it suffices to look at $k\pmod{p-1}$ by Fermat's little theorem, so it suffices to assume $k\in[1,p-1].$
+
+Now, if there is no such $a,$ then
+\[x^k-1\in\FF_p[x]\]
+has $p-1$ roots, so it needs to have degree at least $k\ge p-1.$ (Note we have forced $k>0,$ so the degree is well-defined.) But with $k\in[1,p-1],$ this can only happen provided that $k=p-1.$ So when $k\ne p-1,$ we see there must be some $a\in\FF_p^\times$ with $a^k-1\not\equiv0,$ and we're done. $\blacksquare$
+
+This proof is truly very clever. We attempt to motivate it but will mostly fail. The proof that I'm used to (and consider fairly motivated) is to fix a generator $g\in\FF_p^\times$ so that
+\[S_k:=\sum_{n\in\FF_p^\times}n^k\equiv\sum_{n=0}^{p-2}g^{nk}.\]
+So we see that this is a geometric series. If one is relatively mindless as I am, then we just note directly that, for $(p-1)\nmid k,$
+\[S_k\equiv\frac{g^{(p-1)k}-1}{g^k-1}\equiv0\]
+by using the geometric sum formula and then Fermat's little theorem. $\blacksquare$
+
+This direct approach is potentially problematic because we have to check that the geometric sum formula actually holds. Well, we just note that
+\[g^kS_k=\sum_{n=0}^{p-2}g^{(n+1)k}\equiv\sum_{n=0}^{p-2}g^{nk}\equiv S_k,\]
+and surely $g^k\not\equiv1\pmod p,$ so we must have $S_k\equiv0.$ (This is the same idea as in orthogonality of characters.) But looking at this line, there really is no reason to use $g$:  we could take any $a=g^\bullet\in\FF_p^\times$ and still have
+\[a^kS_k=\sum_{n=0}^{p-2}g^{(n+\bullet)k}\equiv\sum_{n=0}^{p-2}g^{nk}\equiv S_k.\]
+For that matter, we don't even need the generator at this point, for $\times_a$ is a permutation of $\FF_p^\times$ anyways, and we can throw out all of the machinery from earlier, as was done in the original proof.
+
+Of course, there is actually a legitimate reason to use the generator $g$ to do the multiplication $g^k.$ Namely, $g$ is guaranteed to have $g^k\not\equiv1$ for $(p-1)\nmid k,$ and not just any $a$ will do. I am under the impression that it is in general not trivial to find an $a$ for which $a^k\not\equiv1$; the details I provide appeal to Lagrange's theorem to say that some $a$ exists.
+
+We remark that we need some kind of appeal to $\FF_p$'s field structure because there are monsters lurking here: we can of course generate groups for which $x^k=e$ has many more than $k$ solutions, so we need to use something more than the multiplicative structure here.
+
+Even though we have removed generators, I don't actually think it's particularly easy to generalize this. Namely, we want to say $\left(a^k-1\right)S_k=0$ implies $a^k-1=0$ or $S_k=0$ at one point in the proof, so we need to be an integral domain. Additionally, we need some kind of finiteness condition in order to make the sum of units make sense, and finite plus integral domain already implies field.
+
+\subsubsection{April 6th}
+Today I learned the proof that $L(s,\chi)$ is non-vanishing along $\op{Re}s=1,$ for unitary Hecke characters $\chi.$ The starting observation is that, for $s=1+it,$ we have
+\[L(s,\chi)=L\left(1,\chi|\bullet|^{it}\right)\]
+by definition of $L(s,\chi).$ Additionally, $\chi|\bullet|^{it}$ is still unitary, so we see that it suffices to show $L(1,\chi)\ne0$ over unitary Hecke characters $\chi$ instead.
+
+The proof of this is mostly analytic, with appeal to a few facts about $\zeta_K.$ In particular, we need to know about its roots and poles.
+\begin{lemma}
+    Given number field $K,$ the function $\zeta_K(s)$ has a simple pole at $s=1$ and zeroes at negative even integers.
+\end{lemma}
+This follows from the functional equation of $\zeta_K,$ which we don't show here. $\blacksquare$
+
+The proof also requires some analytic facts about Dirichlet series. Typically I'd build these into the proof, but I think the proof has somewhat unavoidable contradiction, so I'm going to state and prove them outside of the proof.
+\begin{lemma}
+    Suppose $D(s)=\sum_{n=1}^\infty a_n/n^s$ is a Dirichlet series and absolutely convergent at $s=0.$ Then the series of $D(s)$ also converges normally over $\op{Re}s>0.$
+\end{lemma}
+Normal convergence means that we need, given any $s\in\CC$ with $\op{Re}s>0$ and error bound $\varepsilon>0,$ a single value of $N$ such that
+\[\left|D(s)-\sum_{n<N}\frac{a_n}{n^s}\right|=\left|\sum_{n\ge N}\frac{a_n}{n^s}\right|<\varepsilon.\]
+Using the triangle inequality, it suffices to get
+\[\sum_{n\ge N}\frac{|a_n|}{n^\sigma}<\varepsilon\]
+for real values of $\sigma>0.$ Of course, we don't know if this converges yet, so we would rather deal with a finite sum upper-bounded by $M$ and take $M\to\infty$ later. Anyways, the trick is to write
+\[\sum_{n=N}^M\frac{|a_n|}{n^\sigma}=\sum_{n=N}^{M-1}\left[\left(\sum_{k=N}^n|a_k|\right)\left(\frac1{n^\sigma}-\frac1{(n+1)^\sigma}\right)\right]+\left(\sum_{n=N}^M\frac{|a_n|}{M^\sigma}\right),\]
+which holds because the first sum telescopes off into terms like $\frac{|a_n|}{n^\sigma}-\frac{|a_n|}{M^\sigma},$ which the second sum deals with.
+
+But now the absolute convergence at $s=0$ tells us we can take $N$ sufficiently large so that
+\[\sum_{n\ge N}|a_n|<\varepsilon.\]
+In particular, we see that the previous equation gives
+\[\sum_{n=N}^M\frac{|a_n|}{n^\sigma}<\sum_{n=N}^{M-1}\varepsilon\left(\frac1{n^\sigma}-\frac1{n+1}^\sigma\right)+\frac\varepsilon{M^\sigma}.\]
+The sum now telescopes to $\frac{\varepsilon}{N^\sigma}.$ Safely sending $M\to\infty$ means that we have indeed bounded the error below $\varepsilon/N^\sigma<\varepsilon.$ This completes the proof. $\blacksquare$
+
+We use the above lemma also in the context in the following one.
+\begin{lemma}
+    Suppose $D(s)=\sum_{n=1}^\infty a_n/n^s$ is a Dirichlet series and now holomorphic at $s=0$ and normally convergent over $\op{Re}s>0.$ Then there exists an extension $\delta>0$ such that the series of $D(s)$ converges over $\op{Re}s>-\delta.$
+\end{lemma}
+The idea is that being holomorphic at $s=0$ gives us an open set around $0$ for which $D(s)$ converges; say that $D(s)$ converges in a small open ball of radius $r$ and choose $\delta<r.$ As usual, it suffices to consider absolute convergence of $D(s),$ so we fix $\sigma>0$
+
+\todo{}
+
+\subsubsection{April 7th}
+Today I learned about ``wild'' automorphisms of $\CC,$ from \href{https://web.archive.org/web/20190611111804/https://www.jstor.org/stable/2689301}{here}. These are elements of $\op{Aut}\CC$ which are neither $z\mapsto z$ nor $z\mapsto\overline z.$ Very quickly, we note that any automorphism $\sigma\in\op{Aut}\CC$ must at least fix $1$ by definition, and so it fixes $\ZZ$ by generation, and then it fixes $\QQ$ by division.
+
+Additionally, we recall the following statement we proved a while ago.
+\begin{lemma}
+    We have that $\op{Aut}\RR=\{\op{id}\}.$
+\end{lemma}
+We give this proof quickly. The identity is always an automorphism, so the substance is showing that it is the only one. Fix $\sigma\in\op{Aut}\RR.$ The key observation is that, if $x>0,$ then
+\[\sigma(x)=\sigma(\sqrt x\cdot\sqrt x)=\sigma(\sqrt x)^2>0.\]
+In particular, $\sigma$ sends $\RR_{>0}$ to $\RR_{>0}.$ So, for example, $x>y$ implies $x-y>0$ implies $\sigma(x-y)>0$ implies $\sigma(x)>\sigma(y),$ so $\sigma$ is strictly increasing.
+
+Now, we already know that $\sigma$ fixes $\QQ$ by carrying over the argument from before. Fixing any $\alpha\in\RR$ and any error $\varepsilon\in(0,\infty),$ we claim that
+\[\sigma(\alpha)\in(\alpha-\varepsilon,\alpha+\varepsilon).\]
+Taking $\varepsilon\to0$ will force $\sigma(\alpha)=\alpha,$ finishing. (If unequal, set $\varepsilon=|\sigma(\alpha)-\alpha|.$) To show the claim, we simply note that $\QQ\subseteq\RR$ is dense, so we can find some rationals $q_1\in(\alpha-\varepsilon,\alpha)$ and $q_2\in(\alpha,\alpha+\varepsilon),$ so the fact that $\sigma$ is increasing means
+\[\alpha-\varepsilon<q_1=\sigma(q_1)<\sigma(\alpha)<\sigma(q_2)=q_2<\alpha+\varepsilon.\]
+This completes the proof. $\blacksquare$
+
+We bring up this proof in order to say the following.
+\begin{proposition}
+    Fix $\sigma\in\op{Aut}\CC.$ If $\sigma(\RR)\subseteq\RR,$ then $\sigma$ is either $\op{id}$ or $z\mapsto\overline z.$
+\end{proposition}
+The point is that $\sigma(\RR)\subseteq\RR$ means that we can restrict the automorphism $\sigma\in\op{Aut}\CC$ to an automorphism of $\RR.$ (If we wanted to be formal, we could show the axioms go through, but we simply say that the axioms are inherited from holding in $\CC.$) But we know that automorphisms of $\RR$ are $\op{id},$ so we know that $\sigma$ fixes $\RR.$
+
+Because $\CC=\RR(i),$ it remains to figure out where $\sigma$ sends $i.$ Well, still need
+\[\sigma(i)^2=\sigma\left(i^2\right)=\sigma(-1)=-1,\]
+so $\sigma(i)\in\{\pm i\}.$ If $\sigma(i)=i,$ then for any $a+bi\in\CC,$ we see $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a+bi,$ so $\sigma=\op{id}.$ Alternatively, if $\sigma(i)=-i,$ we see $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a-bi,$ so $\sigma=(z\mapsto\overline z).$ This completes the proof. $\blacksquare$
+
+This might not directly seem like a strong condition on $\sigma,$ but it is. Indeed, $\CC$ needs to fix $\QQ,$ so if $\sigma$ is continuous, then $\sigma$ should fix $\RR$ as well. (Note the closure of $\QQ$ is $\RR.$) So all the wild automorphisms cannot be nice to the topology on $\CC.$ In fact, wild automorphisms are quite mean to the topology on $\CC.$
+\begin{proposition}
+    Suppose $\sigma\in\op{Aut}\CC$ is a wild automorphism. Then $\sigma(\RR)$ is dense in $\CC.$
+\end{proposition}
+We note that $\sigma(\RR)\cap\RR$ is at least dense in $\RR$ because $\sigma$ fixes $\QQ.$ So it remains to get imaginary parts.
+
+For this, we note that there needs to be some $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ Indeed, if for each $\alpha\in\RR,$ we have $\sigma(\alpha)\in\RR,$ then $\sigma(\RR)\subseteq\RR,$ implying $\sigma$ is one of the non-wild automorphisms. So we get to fix $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ This gives us imaginary parts.
+
+Now we show density. The visual is that we can more or less fill up $\RR$ (with $\QQ$) and another non-parallel line $\sigma(\alpha)\RR,$ so the linear combination of these will fill up $\CC.$ Fix $z\in\CC$ and distance $\delta>0$ so that we want to show $\sigma(\RR)\cap B(z,\delta)\ne\emp.$ Letting $\varepsilon:=\delta/\sqrt2$ so that
+\[S:=\{a+bi:|\op{Re}z-a|,|\op{Im}z-b|<\varepsilon\}\subseteq B(z,\delta).\]
+To see this, we note $|z-(a+bi)|=|\op{Re}z-a|^2+|\op{Im}z-b|^2,$ which is bounded by $2\varepsilon^2/2=\delta$ by construction.
+
+We finish by showing that $\sigma(\QQ(\alpha))\cap S\ne\emp.$ Because $\QQ$ is dense in $\RR,$ we can find some $q_i\in\QQ$ with
+\[\op{Im}\sigma(q_i\alpha)=q_i\op{Im}\sigma(\alpha)\in(\op{Im}z-\varepsilon,\op{Im}z+\varepsilon).\]
+Indeed, it suffices to find $q_i$ in
+\[\left(\frac{\op{Im}z}{\op{Im}\sigma(\alpha)}-\frac\varepsilon{\op{Im}\sigma(\alpha)},\frac{\op{Im}z}{\op{Im}\sigma(\alpha)}+\frac\varepsilon{\op{Im}\sigma(\alpha)}\right),\]
+for which the density of $\QQ$ in $\RR$ suffices. We also note that, for any $q_r\in\QQ,$ we have
+\[\op{Im}\sigma(q_r+q_i\alpha)=\op{Im}\sigma(q_r)+\op{Im}\sigma(q_i\alpha)=\op{Im}\sigma(q_i\alpha)\]
+is also in $(\op{Im}z-\varepsilon,\op{Im}z+\varepsilon).$
+
+So we can use the extra degree of parameter $q_r$ to approximate the real part of $z.$ That is, we now need
+\[\op{Re}\sigma(q_r+q_i\alpha)=\op{Re}\sigma(q_r)+\op{Re}\sigma(q_i\alpha)=q_r+q_i\op{Re}\sigma(\alpha)\]
+to live in $(\op{Re}z-\varepsilon,\op{Re}z+\varepsilon).$ We note that this is why we dealt with the imaginary part first: it's possible for $\op{Re}\sigma(\alpha)\ne0,$ so we would like to know $q_i$ in advance. Anyways, rearranging tell us we need to find $q_r$ in
+\[\left(\op{Re}z-q_i\op{Re}\sigma(\alpha)-\varepsilon,\op{Re}z-q_i\op{Re}\sigma(\alpha)+\varepsilon\right).\]
+But once again we can find such a $q_r$ by using the density of $\QQ$ in $\RR.$ This completes the proof. $\blacksquare$
+
+However, it turns that the axiom of choice can provide us with wild automorphisms. I know the proof uses Zorn's lemma, but I haven't worked through the details. I am also told that we can weaken the condition from continuous to measurable to know that $\sigma\in\op{Aut}\CC$ implies $\sigma=\op{id}$ or $\sigma=(z\mapsto\overline z).$
+
+This second statement is remarkable because it means that wild automorphisms will give ``lots'' of immeasurable sets. Though this is non-constructive (``here's an automorphism, and watch where it takes some measurable set we don't know about to a immeasurable set''), at least it avoids the typical Vitali set argument.
+
+Additionally, this perspective means that models of Zermelo-Fraenkel set theory which don't have immeasurable sets (which exist but reject choice) do not have wild automorphisms. So in essence, it's the axiom of choice that gives us these problems and is why we can't have nice things.
+
+\subsubsection{April 8th}
+Today I learned how to construct wild automorphisms of $\CC$ via Zorn's lemma. This is the proof I've actually worked through using Zorn's lemma (!), so maybe I should have chosen something less involved, but here we go.
+
+The intuition is similar to the compactness of $[0,1]$: we can extend any automorphism of some subfield $K$ of $\CC$ upwards some finite number of steps, so it feels like induction should be able to extend this to a full automorphism of $\CC.$ This is not really the case, but transfinite induction will do the trick, with some minor magic.
+
+We would like to say something like ``any automorphism of $K$ can be extended to an automorphism of $K(\alpha)$ for any $\alpha\in\CC\setminus K$,'' but this is problematic for finite extensions. In particular, for $\sigma\in\op{Aut}K,$ if $[K(\alpha):K]<\infty$ with minimal polynomial $f,$ then we need
+\[(\sigma f)(\sigma\alpha)=0.\]
+In particular, the coefficients here are being switched, so we need to take $\alpha$ to the root of a different polynomial. But if we take $\alpha$ to some $\beta,$ we need to figure out where $\beta$ goes and so on. This is annoying.
+
+So instead of considering automorphisms of $K,$ we generalize to isomorphisms $K\to L.$
+\begin{lemma}
+    Fix $K,L\subsetneq\CC$ subfields, and suppose we have some field isomorphism $\sigma:K\to L.$ Then for any $\alpha\in\CC\setminus K$ such that $[K(\alpha):K]<\infty,$ it is possible to extend $\sigma$ to an isomorphism on $K(\alpha)\to L'$ for some field $L'$ containing $L.$
+\end{lemma}
+We have already more or less outlined how to do this. Let $f$ be the minimal polynomial of $\alpha$ over $K.$ As stated above, we need $(\sigma f)(\sigma\alpha)=0,$ so we define $\beta:=\sigma(\alpha)$ to be any root of the irreducible polynomial $\sigma(f).$ (We note $\sigma(f)$ is irreducible because any factorization of $\sigma(f)$ can be tracked back to a factorization of $f.$) Now, we can extend
+\[\sigma:K(\alpha)\to L(\beta)\]
+by extending $\sigma$ linearly to all of $K(\alpha).$ To show that this is actually isomorphism, we have to show that $\sigma$ still satisfies the ring homomorphism axioms, and $\sigma$ is a bijection. We outline these.
+
+The ring homomorphism axioms come form the fact we extended $\sigma$ linearly, so this was defined to work. If we wanted formality, we'd have to manually check this, but I can't be bothered. Surjectivity of $\sigma$ comes from writing
+\[\underbrace{\sum_{\ell=-N}^Mb_\ell\beta^k}_{\in L(\beta)}=\sigma\left(\sum_{\ell=-N}^M\sigma^{-1}(b_\ell)\alpha^\ell\right)\in\sigma\left(K(\alpha)\right).\]
+Injectivity is the difficult part. It suffices to show that $\sigma$ has trivial kernel. Now, we see that
+\[0=\sigma\left(\sum_{k=-N}^Ma_k\alpha^k\right)=\sum_{k=-N}^M\sigma(a_k)\beta^k.\]
+We can multiply through by $\beta^N$ so that we see $\beta$ is a root of
+\[\sum_{k=0}^{N+M}\sigma(a_{k-N})x^k\in L[x].\]
+However, by definition of the minimal polynomial, we see that $\sigma(f)$ must divide this, so reversing $\sigma$s everywhere, we have that $f$ divides
+\[\sum_{k=0}^{N+M}a_{k-N}x^k\in K[x].\]
+In particular, plugging in $\alpha$ means that the original element was in fact $0$ in $K(\alpha).$ This completes the proof. $\blacksquare$
+
+At this point we are able to use Zorn's lemma to deal with all of our finite extensions simultaneously. For brevity, we let $\overline K$ be the algebraic closure of $K.$
+\begin{proposition}
+    Fix $K,L\subseteq\CC$ subfields, and suppose we have some field isomorphism $\sigma:K\to L.$ Then we can extend $\sigma$ to an isomorphism $\overline K\to\overline L.$
+\end{proposition}
+Again, the intuition is that we are always able to ``push'' $\sigma$ at least one step closer to $\overline K\to\overline L$ by taking out some element $\alpha\in\overline K$ and then using the previous lemma to append.
+
+To codify this, we use Zorn's lemma to use transfinite induction. Our partially ordered set $\mathcal P$ will be triples of $(\sigma',K',L')$ where $\sigma':K'\to L'$ is an isomorphism extending $\sigma,$ and we also require $K'\subseteq\overline K$ and $L'\subseteq\overline L.$ We order by writing
+\[(\sigma_1,K_1,L_1)\preceq(\sigma_2,K_2,L_2)\]
+if $\sigma_2$ is an extension of $\sigma_1$ with $K_1\subseteq K_2$ and $L_1\subseteq L_2.$ While we might want to only look at the fields, we keep track of the isomorphism in our partially ordered set so that chains have nice isomorphisms which restrict properly.
+
+In particular, we now show that $\mathcal P$ satisfies the chain condition. Suppose $\mathcal C\subseteq\mathcal P$ is a nonempty chain, and we need to exhibit a maximal isomorphism, say $\sigma_\mathcal C.$ Let $K_\mathcal C$ be the union of the $K$ coordinates of the elements of $\mathcal C,$ and we define $L_\mathcal C$ similarly. Now, we define
+\[\sigma_\mathcal C:K_\mathcal C\to L_\mathcal C\]
+by taking any $\alpha\in K'$ for $(\sigma',K',L')\in\mathcal C$ to $\sigma_\mathcal C(\alpha):=\sigma'(\alpha).$ Note that this makes sense because $\alpha\in K_1\cap K_2$ with $(\sigma_1,K_1,L_1),$ $(\sigma_2,K_2,L_2)\in\mathcal C$ must have (without loss of generality) $K_1\subseteq K_2$ with $\sigma_1$ the restriction of $\sigma_2.$ So $\sigma_1(\alpha)=\sigma_2(\alpha),$ so we are indeed allowed to choose any $K'$ containing $\alpha$ to define $\sigma_\mathcal C(\alpha).$
+
+Anyways, we claim that $(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C)$ is an upper bound of $\mathcal C.$ To show that $\sigma_\mathcal C$ is an isomorphism, we need to show that it is a ring isomorphism and bijective. For the ring isomorphism conditions, when we fix $\alpha,\beta\in K_\mathcal C,$ we can place $\alpha,\beta\in K'$ with 
+\[(\sigma',K',L')\in\mathcal C\]
+by taking the larger of the fields that $\alpha$ and $\beta$ live in. So $\sigma_\mathcal C$ inherits ring homomorphism from $\sigma'$ because $\sigma'$ is the restriction of $\sigma$ to $K'.$
+
+Continuing, surjectivity follows similarly because any $\alpha\in L_\mathcal C$ belongs to some $L'$ with $(\sigma',K',L'),$ so we can hit $\alpha$ from $\sigma'(K')=L'.$ And we get injectivity from trivial kernel: if $\sigma_\mathcal C(\alpha)=0,$ then we can place $\alpha\in K'$ in some $(\sigma',K',L'),$ and $\sigma'(\alpha)=0$ implies $\alpha=0.$
+
+So for any $(\sigma',K',L')\in\mathcal C,$ we see $(\sigma',K',L')\preceq(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C),$ so we have exhibited an upper bound. And because the $K_\mathcal C$ and $L_\mathcal C$ are merely unions of subfields of $\overline K$ and $\overline L,$ we do have $(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C)$ is in our partially ordered set.
+
+Now finally we get to use Zorn's lemma to extract $(\overline\sigma,K',L')$ a maximal element of the partially ordered set. Note that $\overline\sigma$ restricts to $\sigma:K\to L$ because it must bein the partially ordered set. So it remains to show that actually $\overline\sigma:\overline K\to\overline L.$
+
+If the domain of $\overline\sigma$ is not actually $\overline K,$ then we can find some $\alpha\in\overline K\setminus K'.$ Because $\alpha$ is finite degree over $K,$ it is also finite degree over $K',$ so we can use the previous lemma to extend $\overline\sigma$ to an isomorpism with domain over $K'(\alpha)\supsetneq K'.$ This violates the maximality of $(\overline\sigma,K',L').$
+
+Thus, the domain of $\overline\sigma$ is algebraically closed, so its codomain must also be algebraically closed. In particular, all polynomials over $\sigma(K)=L$ must have a root, so $\overline L$ is a subfield of the codomain of $\overline\sigma.$ But $\overline\sigma$ is in the partially ordered set, so the codomain must actually be $\overline L.$ This competes the proof. $\blacksquare$
+
+As a corollary of the above result, we can extend any automorphism $\sigma:K\to K$ to an automorphism $\overline K\to\overline K.$ So we moved through field isomorphisms to give us a little breathing room but did end up extending automorphisms to automorphisms, which is what we're interested in.
+
+Now it remains to extend by transcendental extensions. It turns out that it is now easier to extend only automorphisms instead of field isomorphisms, so we only do that. The exact difficulty is that, for $\alpha$ transcendental over $K,$ it's not clear where to take $\alpha$ when trying to extend $\sigma:K\to L.$
+
+Yes, we should have $\sigma(\alpha)$ transcendental over $L,$ but it's not clear how to extract a transcendental element. Even worse, there are isomorphisms $K\to\CC$ where $K$ is a proper subfield of $\CC,$ so there isn't an easy way to extend this because there are no transcendental elements for us to use. We'd have to modify the logic of $\sigma,$ which is annoying.
+\begin{lemma}
+    Fix $K\subsetneq\CC,$ and take any automorphism $\sigma\in\op{Aut}K.$ Then if $\alpha\in\CC\setminus K$ is transcendental, then we can extend $\sigma$ to an automorphism of $K(\alpha).$
+\end{lemma}
+The idea is that we should just be able to fix $\alpha.$ There are fancier ways of doing this, but we just set $\sigma(\alpha):=\alpha$ and then extend linearly. It remains to show that $\sigma$ is actually a field isomophism---we need to check that it is a ring homomorphism and bijective.
+    
+Satisfying the ring homomorphism conditions should follow from the fact we defined $\sigma$ by extending linearly. We get surjectivity by writing, for any $\sum_{k=-N}^Ma_k\alpha^k\in K(\alpha),$
+\[\sum_{k=-N}^Ma_k\alpha^k=\sigma\left(\sum_{k=-N}^M\sigma^{-1}(a_k)\alpha^k\right).\]
+Finally, injectivity follows from having trivial kernel---if $\sigma\left(\sum_{k=-N}^Ma_k\alpha^k\right)=0,$ then
+\[\sum_{k=-N}^M\sigma(a_k)\alpha^{k+N}=0\]
+provides a polynomial in $K$ for which $\alpha$ is a root, violating the fact that $\alpha$ is transcendental over $K.$ $\blacksquare$
+
+We are now ready for the main attraction.
+\begin{theorem}
+    Fix $K\subseteq\CC$ a subfield of $\CC.$ Any $\sigma\in\op{Aut}K$ can be extended to an automorphism of $\CC.$
+\end{theorem}
+We use Zorn's lemma again. Even though we are only dealing with automorphisms, we are going to make our partially ordered set still triples $(\sigma',K',K')$ where $\sigma':K'\to K'$ is an extension of $K$ to some $K'$ between $K$ and $\mathcal C.$ In particular, we can endow this set with the same ordering as in the previous proposition, allowing fields up to $\CC$ instead of $\overline K.$
+
+In particular, the proof that every chain has an upper bound carries through verbatim; of note is that nowhere in the proof did we use the fact that these were subfields of $\overline K$ up until analyzing the maximal automorphism. The reader is encouraged to verify this, but I won't do so manually out of laziness.
+
+So now we extract our maximal element $(\sigma',K',K')$ from Zorn's lemma. The automorphism $\sigma'$ restricts to $\sigma:K\to K$ by definition of the partially ordered set, so it remains to show that, in fact, $K'=\CC.$ Well, suppose we have some $\alpha\in\CC\setminus K',$ and we'll show that $\sigma'$ cannot be maximal. We have two cases.
+\begin{itemize}
+    \item If $\alpha$ has finite degree over $K',$ then we remark that we can extend $\sigma':K'\to K'$ to $\overline{\sigma'}:\overline{K'}\to\overline{K'}$ by the proposition, and now $\overline{K'}$ is strictly larger than $K.$ So $(\overline{\sigma'},\overline{K'},\overline{K'})\succeq(\sigma',K',K')$---note that $(\overline{\sigma'},\overline{K'},\overline{K'})$ is in the partially ordered set because $\sigma'$ still restricts to $\sigma$---so we have successfully shown $\sigma'$ isn't maximal.
+    \item If $\alpha$ has infinite degree over $K'$ and is trancendental, the previous lemma shows that we can extend $\sigma':K'\to K'$ to an automorphism $\sigma_\alpha':K'(\alpha)\to K'(\alpha).$ Again, now $(\sigma)\alpha',K'(\alpha),K'(\alpha))\succeq(\sigma',K',K'),$ so we have shown $\sigma'$ isn't maximal.
+\end{itemize}
+Thus, because $\sigma'$ is by construction maximal, we must have its domain (and codomain) are $\CC,$ so we have extended $\sigma\in\op{Aut}\CC$ to an element of $\op{Aut}\CC.$ $\blacksquare$
+
+In particular, this lets us construct ``lots'' of wild automorphisms. For example, we have an automorphism $\QQ(\sqrt2)\to\QQ(\sqrt2)$ taking $a+b\sqrt2\mapsto a-b\sqrt2$ and then extend this to an automorphism of $\CC.$ This cannot extend to either the identity map or conjugation because it doesn't fix $\RR,$ so this extension is a wild automorphism. What it looks like I haven't the faintest clue.
+
+What I find really annoying about this proof (result notwithstanding) is that it forces me to think really abstractly about subfields of $\CC.$ Most of the theory I know does carry through to the general case, but I have to keep track of the fact that, say, there do exist isomorphisms $K\to\CC$ where $K$ is a proper (!) subfield of $\CC.$ The axiom of choice is why we can't have nice things.
+
+\subsubsection{April 9th}
+Today I learned the proof of Chebotarev's theorem in the abelian case. \todo{}
+
+\subsubsection{April 10th}
+Today I learned a fun example of a telescoping product, from the Purple Comet. We evaluate
+\[P:=\prod_{k=2}^N\left(\frac1{k^3-1}+\frac12\right).\]
+Just looking at this, it is not obvious why it should telescope, but I promise it does.
+
+It turns out that the $\frac12$ is quite crucial to the structure here. For fixed $k,$ we note that
+\[\frac1{k^3-1}+\frac12=\frac12\cdot\frac{k^3+1}{k^3-1}.\]
+These factors of $\frac12$ we now ignore so that we want to evaluate
+\[2^{N-1}P=\prod_{k=2}^N\frac{k^3+1}{k^3-1}.\]
+As for the remaining fraction, it turns out to telescope in competing ways. We write
+\[\frac{k^3+1}{k^3-1}=\frac{k+1}{k-1}\cdot\frac{k^2-k+1}{k^2+k+1}.\]
+This first part telescopes, cancelling after skipping term, as
+\[\prod_{k=2}^N\frac{k+1}{k-1}=\frac31\cdot\frac42\cdot\frac53\cdot\frac64\cdot\ldots\cdot\frac N{N-2}\cdot\frac{N+1}{N-1}=\frac{N(N+1)}2.\]
+As for the other side, we note the complex roots of $k^2-k+1$ (the primitive sixth roots of unity) are shifted one to the right of the complex roots of $k^2+k+1$ (the primitive cubic roots of unity). Algebraically, this means that
+\[k^2+k+1=(k+1)^2-(k+1)+1.\]
+Thus, we do have telescoping, cancelling on the next term, as
+\[\prod_{k=2}^N\frac{k^2-k+1}{(k+1)^2-(k+1)+1}=\frac{2^2-2+1}1\cdot\frac1{N^2+N+1}.\]
+Putting this all together, we see that
+\[2^{N-1}P=\left(\prod_{k=2}^N\frac{k+1}{k-1}\right)\left(\prod_{k=2}^N\frac{k^2-k+1}{k^2+k+1}\right)=\frac{N(N+1)}2\cdot\frac3{N^2+N+1}.\]
+So we have the following.
+\begin{proposition}
+    We have that
+    \[\prod_{k=2}^N\left(\frac1{k^3-1}+\frac12\right)=\frac{3N(N+1)}{2^N\left(N^2+N+1\right)}.\]
+\end{proposition}
+This follows from rearranging the final expression in the above discussion. $\blacksquare$
+
+As an aside, we note that we can evaluate the infinite product $2^{N-1}P$ as
+\[\prod_{k=2}^\infty\frac{k^3+1}{k^3-1}=\lim_{N\to\infty}\frac{3N(N+1)}{2\left(N^2+N+1\right)}.\]
+As $N\to\infty,$ the quadratics are approximately equal, so the product approaches $\boxed{3/2}.$
+
+What amuses me most about this product is that it has managed to somewhat elegantly combine two kinds of telescoping. This is typically not too difficult when one has telescoping series, for we can just directly sum the desired telescoping behavior to get something perhaps contrived. For example,
+\[\sum_{k=1}^\infty\left(\frac1k-\frac1{k+2}+\frac1{k^3+1}-\frac1{(k+3)^3+1}\right)\]
+will telescope cleanly. A similar process can be done for products, but it's impressive that this product comes out so cleanly.
+
+\subsubsection{April 11th}
+Today I learned a fun application of Chebotarev's theorem, from \href{https://web.archive.org/web/20190429062416/http://websites.math.leidenuniv.nl/algebra/Lenstra-Chebotarev.pdf}{here}. Namely, we compute the density (Dirichlet or natural) of primes $p$ such that the fraction $\frac1p$ has period of odd length. 
+We will ignore $2$ and $5$ (and later lots of other primes) because they contribute nothing to the density. For other primes $p,$ the period length is the smallest positive integer $k$ such that we can write
+\[\frac1p=0.\overline{\text{some garbage of length }k}=\frac{\text{some garbage of length }k}{10^k-1}.\]
+Rearranging, this is the smallest positive integer $k$ such that $p\mid10^k-1,$ which is the multiplicative order of $10\pmod p,$ denoted $\op{ord}_p(10).$
+
+So we are computing the density of primes $p$ such that $\op{ord}_p(10)$ is odd. The intuition is that we ``probably'' need $10$ to be a quadratic residue. Namely, $\left(\frac{10}p\right)=1$ is equivalent
+\[10^{(p-1)/2}\equiv1\pmod p\]
+by the Euler criterion. This means that the order needs to divide $\frac{p-1}2,$ which is at least necessary for odd order. At least, when $p\equiv3\pmod4,$ we see $\left(\frac{10}p\right)=1$ is necessary and sufficient, but otherwise we have to push a little harder for necessity.
+
+For brevity, let $\nu:=\nu_2(p-1).$ Note that the order must divide $p-1,$ so odd order is equivalent to order dividing $\frac{p-1}{2^\nu},$ the least common multiple (maximal) of the odd divisors of $p-1.$ By multiplicative orders, we see that $10$ has odd order if and only if
+\[10^{(p-1)/2^\nu}\equiv1\pmod p.\]
+We would like to use Chebotarev later in life, so we use a kind-of reverse Euler criterion to turn this into a prime-splitting problem. We claim the following.
+\begin{lemma}
+    Fix a prime $p$ with $d\mid(p-1)$ and residue $k\in\FF_p^\times.$ Then $k$ is a $d$th power if and only if $k$ is a root of $x^{(p-1)/d}-1.$
+\end{lemma}
+This is a generalization of the Euler criterion. In one direction, if $k$ is a $d$th power, then $k\equiv\ell^d,$ so
+\[k^{(p-1)/d}\equiv\ell^{p-1}\equiv1\pmod p,\]
+so indeed $k$ is a root of $x^{(p-1)/d}-1.$
+
+In the other direction, we do a size argument. There are at most $\frac{p-1}d$ roots of $x^{(p-1)/d}-1$ in $\FF_p,$ and every $d$th power is a root, so it suffices to show that there are $\frac{p-1}d$ total $d$th powers. For this, we recall $\FF_p^\times\cong\ZZ/(p-1)\ZZ,$ so
+\[d\text{th power of}\FF_p^\times\iff\text{multiple of }d\text{ in }\ZZ/(p-1)\ZZ.\]
+And indeed we know that there are $\frac{p-1}d$ multiples of $d$ in $\ZZ/(p-1)\ZZ.$ $\blacksquare$
+
+The lemma is helpful because now we get say that $10^{(p-1)/2^\nu}$ is odd if and only if $10$ is a $2^\nu$th power in $\FF_p^\times.$ This second condition is closer to a Chebotarev application because it is equivalent to saying
+\[x^{2^\nu}-10\]
+has a linear factor$\pmod p,$ which Dedekind-Kummer can help with. Stringing everything together, we have the following.
+\begin{proposition}
+    For given $\nu$ and over primes $p$ with $\nu=\nu_2(p-1),$ the fraction $1/p$ has odd period length if and only if the splitting behavior of $p$ in $\QQ(\sqrt[2^\nu]{10})$ has a degree-$1$ factor, for all but finitely many $p.$
+\end{proposition}
+The above discussion says that it suffices to show $x^{2^\nu}-10$ has a linear factor if and only if $\QQ(\sqrt[2^\nu]{10})$ has $p$ split into a linear factor, for all but finitely many primes. We note that $x^{2^\nu}-10$ is $2$-Eisenstein, so we set $\alpha:=\sqrt[2^\nu]{10}$ a root.
+
+Then Dedekind-Kummer says that, for all but finitely many primes $p,$ the splitting behavior of $p$ in $\QQ(\alpha)$ matches with the factorization of $x^{2^\nu}-10\pmod p.$ In particular, the factorization has a linear factor if and only if $p$ splits into a degree-$1$ factor in $\QQ(\alpha).$ This completes the proof. $\blacksquare$
+
+This more or less finishes the set up for the density computation. We very quickly give a heuristic argument for the density we want. Note that $\nu_2(p-1)=\nu$ is equivalent to $p\equiv1+2^\nu\pmod{2^{\nu+1}}$ and so happens about
+\[\frac1{\varphi\left(2^\nu+1\right)}=\frac1{2^\nu}\]
+of the time. Additionally, it is reasonable to expect that we actually need the polynomial has a linear factor with probability $\frac1{2^\nu}$ (because it's degree is $2^\nu$), so we expect the total density to be
+\[\sum_{\nu=1}^\infty\frac1{2^\nu}\cdot\frac1{2^\nu}=\sum_{\nu=1}^\infty\frac1{4^\nu}=\frac13.\]
+This is indeed the density we find experimentally.
+
+However, this argument is far from rigorous. Note that the splitting field of $x^{2^\nu}-10$ must contain $\zeta_{2^\nu}\sqrt[2^\nu]{10}$ and $\sqrt[2^\nu]{10}$ and therefore $\zeta_{2^\nu}.$ But the elements $\zeta_{2^\nu}$ and $\sqrt[2^\nu]{10}$ already forces the field to contain all roots of $x^{2^\nu}-10$ (which look like $\zeta_{2^\nu}^\bullet\sqrt[2^\nu]{10}$), so $\QQ(\zeta_{2^\nu},\sqrt[2^\nu]{10})$ is our splitting field. We have the following field diagram.
+\begin{center}
+    \begin{tikzcd}
+        \mathbb Q(\zeta_{2^{\nu+1}}) \arrow[rd, no head] &                                              & {\mathbb Q(\zeta_{2^\nu},\sqrt[2^\nu]{10})} \arrow[ld, no head] \arrow[rd, no head] &                                                   \\
+                                                         & \mathbb Q(\zeta_{2^\nu}) \arrow[rd, no head] &                                                                                     & {\mathbb Q(\sqrt[2^\nu]{10})} \arrow[ld, no head] \\
+                                                         &                                              & \mathbb Q                                                                           &                                                  
+    \end{tikzcd}
+\end{center}
+Fix $p\in\ZZ$ a prime of interest---one with $p\equiv1+2^\nu\pmod{2^{\nu+1}}$ and a linear factor in $\QQ(\sqrt[2^\nu]{10}).$ We try to build a clean necessary condition, and then we'll show that it is actually sufficient.
+
+Let $\varphi$ be any Frobenius element associated to $p$ up in $\QQ(\zeta_{2^\nu},\sqrt[2^{\nu}]{10}).$ Because $p\equiv1\pmod{2^\nu},$ we know $p$ splits completely in $\QQ(\zeta_{2^\nu}),$ so the Frobenius of $p$ must be the identity there. Thus, $\varphi$ restricts to the identity on $\QQ(\zeta_{2^\nu}).$
+
+For brevity, let $G:=\op{Gal}(\QQ(\zeta_{2^{\nu}},\sqrt[2^\nu]{10}))$ and $H$ be the subgroup fixing $\QQ(\sqrt[2^\nu]{10}).$ If $p$ has a degree-$1$ factor in $\QQ(\sqrt[2^\nu]{10}),$ then we can track the Frobenius in the intermediate field to say that there is some $\sigma\in G$ so that
+\[H\sigma=H\sigma\varphi.\]
+This is equivalent to $\sigma\varphi\sigma^{-1}\in H.$ Because $H$ merely needs to fix $\QQ(\sqrt[2^\nu]{10}),$ so it suffices to fix $\sqrt[2^\nu]{10}$ alone. Rearranging, we see that
+\[\varphi\sigma^{-1}(\sqrt[2^\nu]{10})=\sigma^{-1}(\sqrt[2^\nu]{10}).\]
+However, $\sigma^{-1}$ needs to take $\sqrt[2^\nu]{10}$ to some other root of $x^{2^\nu}-10,$ so say $\sigma^{-1}(\sqrt[2^\nu]{10}):=\zeta_{2^\nu}^\bullet\sqrt[2^\nu]{10}.$ Plugging this all in, we see
+\[\zeta_{2^\nu}^\bullet\sqrt[2^\nu]{10}=\varphi\left(\zeta_{2^\nu}^\bullet\sqrt[2^\nu]{10}\right)=\varphi\left(\zeta_{2^\nu}^\bullet\right)\varphi\left(\sqrt[2^\nu]{10}\right).\]
+But $\varphi$ must already fix $\zeta_{2^\nu}$ from earlier, so cancelling this, $\varphi$ must actually fix $\sqrt[2^\nu]{10},$ so we see that $\varphi$ is actually the identity. Thus, $p$ actually splits completely in $\QQ(\zeta_{2^\nu},\sqrt[2^\nu]{10}).$
+
+So we have the following.
+\begin{proposition}
+    For given $\nu,$ over primes $p$ with $\nu=\nu_2(p-1),$ the fraction $1/p$ has odd period length if and only if we have that $p$ splits completely in $\QQ(\zeta_{2^\nu},\sqrt[2^\nu]{10})$ for all but finitely many $p.$
+\end{proposition}
+The above discussion gives the forwards direction. For the backwards direction, we see that if $p$ splits completely in $\QQ(\zeta_{2^\nu},\sqrt[2^\nu]{10}),$ then it splits completely in $\QQ(\sqrt[2^\nu]{10})$ as well, so all of its factors are degree-$1.$ $\blacksquare$
+
+It remains to fully incorporate the $\nu=\nu_2(p-1)$ condition into the prime-splitting. For this, we have to move up to $\QQ(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10}).$ This extension is Galois over $\QQ$ because it is the splitting field of $\left(x^{2^\nu}-10\right)\left(x^{2^{\nu+1}}-1\right).$ We have the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        & {\mathbb Q(\zeta_{2{\nu+1}},\sqrt[2^\nu]{10})} &  \\
+        \mathbb Q(\zeta_{2^{\nu+1}}) \arrow[rd, no head] \arrow[ru, no head] & & {\mathbb Q(\zeta_{2^\nu},\sqrt[2^\nu]{10})} \arrow[ld, no head] \arrow[lu, no head] \\
+        & \mathbb Q(\zeta_{2^\nu}) \arrow[d, no head]    &  \\
+        & \mathbb Q & 
+    \end{tikzcd}
+\end{center}
+Now, fix a prime $p$ of odd period length and (for all but finitely many $p$) consider the Frobenius
+\[\left(\frac{\mathbb Q(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10})/\QQ}p\right).\]
+By restriction, this has to fix $\mathbb Q(\zeta_{2^\nu},\sqrt[2^\nu]{10})$ because of the above proposition. However, $p\equiv1+2^\nu\pmod{2^{\nu+1}},$ so by classification of the Frobenius in cyclotomic fields, the Frobenius had better take $\zeta_{2^{\nu+1}}$ to $-\zeta_{2^{\nu+1}}$ as well.
+
+However, these completely determine an automorphism of $\mathbb Q(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10})/\QQ,$ so the Frobenius of $p$ now has only one option! And $p$ needs to have some Frobenius, so this must be a valid automorphism. Note further that this restriction on the Frobenius is necessary as well as sufficient, for if the Frobenius is as given, it fixes $\QQ(\zeta_{2^\nu},\sqrt[2^\nu]{10})$ and gives $p\equiv1+2^{\nu}\pmod{2^{\nu+1}},$ which we know to be sufficient.
+
+Finally applying Chebotarev's theorem, we see that for given $\nu:=\nu_2(p-1),$ the density (intentionally and legally ignoring a finite set of primes) of the primes of odd cycle length will be
+\[\frac1{\#\op{Gal}\left(\mathbb Q(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10})/\QQ\right)}=\frac1{\left[\mathbb Q(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10}):\QQ\right]}\]
+because we just showed that the odd cycle length is equivalent to prescribed Frobenius. To compute the required degree, we assert without proof that $\QQ(\zeta_{2^{\nu+1}})\cap\QQ(\sqrt[2^\nu]{10})=\QQ,$ which I am too lazy to think about very hard. Because $\QQ(\zeta_{2^{\nu+1}})/\QQ$ is a Galois extension, it follows that $\QQ(\zeta_{2^{\nu+1}})$ and $\QQ(\sqrt[2^\nu]{10})$ are linearly disjoint, so
+\[\left[\mathbb Q(\zeta_{2^{\nu+1}},\sqrt[2^\nu]{10}):\QQ\right]=\left[\mathbb Q(\zeta_{2^{\nu+1}}):\QQ\right]\left[\mathbb Q(\sqrt[2^\nu]{10}):\QQ\right].\]
+We can compute this as $\varphi\left(2^{\nu+1}\right)\cdot2^\nu=4^\nu.$
+
+Now, we would like to sum over all possible $\nu:=\nu_2(p-1)$---note that $\nu>0$ because all primes but $2$ are odd---to get a density of $\sum_{\nu=1}^\infty\frac1{4^\nu}=\frac13.$ This is numerically correct, but we have to be more careful in this evaluation because Dirichlet density doesn't respect countable unions; for example, union the density-$0$ sets $\{p\}$ over all primes $p.$
+
+To fix this, we note that the countable union we are trying to do has its later terms vanish in density very quickly, so we can increasingly ignore them when approximating the total density. We can make this intuition rigorous.
+\begin{theorem}
+    The density of primes $p$ such that the decimal expansion of $1/p$ has an odd cycle length is $\frac13.$
+\end{theorem}
+Instead of summing over all $\nu$ at once, we fix a large positive integer $N$ and sum $\nu\le N.$ Dirichlet density does let us union over finitely many sets, and we note that these sets are disjoint because they have disjoint $\nu_2$ in their primes. That is, the density of primes $p$ with $1/p$ of odd period length with $\nu_2(p-1)\le N$ is
+\[\sum_{\nu=1}^N\frac1{4^\nu}=\frac14\cdot\frac{1-1/4^N}{1-1/4}=\frac{1-1/4^N}3.\]
+Pretending we don't know anything about primes with $\nu_2(p-1)>N,$ we can bound the total Dirichlet density below by exactly the above quantity (adding no primes), and we can bound the total Dirichlet density above by adding in all primes with $\nu_2(p-1)>N.$ This second case is equivalent to $p\equiv1\pmod{2^{N+1}},$ which has density
+\[\frac1{\varphi\left(2^{N+1}\right)}=\frac1{2^N}.\]
+Thus, the total density lives lives in the interval
+\[\left(\frac13-\frac1{3\cdot4^N},\frac13-\frac1{3\cdot4^N}+\frac1{2^N}\right)=\left(\frac13-\frac1{3\cdot4^N},\frac13+\frac{3-1/2^N}{3\cdot2^N}\right).\]
+We note that $\frac13$ is certainly in there, and the errors vanish as we take $N\to\infty,$ so we conclude that the density must actually be equal to $\frac13.$ $\blacksquare$
+
+\subsubsection{April 12th}
+Today I learned the proof of the general case of Chebotarev's theorem, from \href{https://web.archive.org/web/20191104204155/https://math.mit.edu/classes/18.785/2016fa/LectureNotes26.pdf}{here}. Fix a Galois extension $M/K$ with $G:=\op{Gal}(M/K)$ and conjugacy class $C\subseteq G.$ We want to compute the density of (unramified) primes $\mf p\in\op{Spec}\mathcal O_K$ with Frobenius $C.$ So we let $S^1_K$ be this set of primes, with the added condition $\mf p$ has absolute degree $1$ (over $\QQ$); this restriction does not alter the density.
+
+In order to reduce to the abelian case, we let $H:=\langle\varphi\rangle\subseteq G$ and $L:=M^H$ its fixed field. This gives the following field tower diagram.
+\begin{center}
+    \begin{tikzcd}
+        M \arrow[d, no head] & \langle e\rangle \arrow[d, no head]      \\
+        L \arrow[d, no head] & \langle\varphi\rangle \arrow[d, no head] \\
+        K                    & G                                       
+    \end{tikzcd}
+\end{center}
+Now, the idea is to count the desired primes in $K$ by lifting them to $L,$ where we know the (Dirichlet) density of
+\[S_L:=\left\{\mf q\in\op{Spec}\mathcal O_L:\left(\frac{M/L}{\mf q}\right)=\varphi\right\}\]
+is $1/\#H$ because $\op{Gal}(M/L)=\langle\varphi\rangle$ makes an abelian extension, which we understand. We let $S^1_L$ be the unramified primes of $S_L$ with the added condition $\mf q$ has absolute degree $1$ (over $\QQ$), which has the same density as $S_L.$
+
+To justify this lifting, we quickly show the following.
+\begin{lemma}
+    For $\mf q\in S^1_L,$ we have that $\mf p:=\mf q\cap K\in S^1_K.$ In fact, any prime $\mf P\in\op{Spec}\mathcal O_M$ above $\mf q$ has $\left(\frac{M/K}{\mf P/\mf p}\right)=\varphi.$ 
+\end{lemma}
+This is perhaps surprising because we should have ``lots'' of primes $\mf p\in\op{Spec}\mathcal O_K$ lifting to a prime $\mf q\in\op{Spec}\mathcal O_L$ with Frobenius $\varphi$---after all, $\mf q$ needs to have some Frobenius, and that Frobenius is limited to $\langle\varphi\rangle.$
+
+The key is that $\mf q$ is limited to being absolute degree $1,$ so because $\mf q$ is above $\mf p,$ we see $\mf p$ must also have absolute degree $1,$ for inertial degree is multiplicative in towers. In particular,
+\[\op N(\mf q)=\op N(\mf p).\]
+Now we can show that the Frobenius of $\mf p$ lives in the same conjugacy class of $\varphi.$ Fix $\mf P\in\op{Spec}\mathcal O_M$ any prime above $\mf q,$ and we are given that, for any $\alpha\in M,$
+\[\varphi(\alpha)\equiv\alpha^{\op N(\mf q)}\pmod{\mf P}\]
+because $\mf q\in S^1_L.$ But $\op N(\mf q)=\op N(\mf p),$ so we also get $\varphi(\alpha)\equiv\alpha^{\op N(\mf p)}\pmod{\mf P}.$ So because the Frobenius element is unique, we see
+\[\left(\frac{M/K}{\mf P/\mf p}\right)=\varphi,\]
+so indeed we see $\mf p\in S^1_K.$ $\blacksquare$
+
+In order to relate primes in $S^1_K$ with primes in $S^1_L,$ it remains to count the number of primes $\mf q\in S^1_L$ above some fixed prime $\mf p\in S^1_K.$ One might think that this can be done by tracking the Frobenius through the intermediate extension by counting
+\[\#\{\langle\varphi\rangle\sigma:\langle\varphi\rangle\sigma\varphi=\langle\varphi\rangle\sigma\}\]
+as the setup suggests. However, it turns out to be a crucial condition that $\mf p$ have absolute degree $1$ while the above approach merely counts the number of $\mf q$ with $f(\mf q/\mf p)=1.$ For example, when we assert $\mf q$ has degree $1$ implies $\mf p$ has degree $1$ to get $\op N(\mf q)=\op N(\mf p)$ in the above lemma, we are using absolute degree crucially.
+
+So to do this counting, we let $T_L$ be the primes of $S^1_L$ above $\mf p$ and let $T_M$ be the primes of $M$ above $\mf p$ giving Frobenius $\varphi.$ Because $\mf p$ has Frobenius $C\ni\varphi,$ we expect its splitting behavior to be uninteresting from $L$ to $M,$ so we claim that we can biject $T_L$ and $T_M.$
+\begin{lemma}
+    Fixing $\mf p\in S^1_K,$ we can biject $T_L$ and $T_M.$
+\end{lemma}
+Fix $\mf P\in T_M,$ and we associate it to $\mf q:=\mf P\cap L,$ the only prime of $L$ below it. We already know $\mf q$ is above $\mf p,$ so it remains to show that $\mf q\in S^1_L$ to get $\mf q\in T_L.$ We note
+\[\left(\frac{M/K}{\mf P/\mf p}\right)=\varphi\]
+already, so $\varphi$ is the Frobenius automorphism of the residue field extension $\mathcal O_M/\mf P$ over $\mathcal O_K/\mf p.$ But $\varphi$ already fixes $L,$ so it fixes the intermediate residue field $\mathcal O_L/\mf q,$ so $\mathcal O_L/\mf q$ must equal the base field.
+
+It follows that $\varphi$ is also the Frobenius automorphism of the residue field extension $\mathcal O_M/\mf P$ over $\mathcal O_L/\mf q,$ so
+\[\left(\frac{M/L}{\mf P/\mf q}\right)=\varphi,\]
+implying $\mf q\in S_L.$ Additionally, $\mf q$ has absolute degree $1$ because
+\[f(\mf q/\mf p)=[\mathcal O_L/\mf q:\mathcal O_K/\mf p],\]
+but we've established that these are the same field, so $f(\mf q/\mf p)=1.$ It follows that $\mf q$ having absolute degree $1$ is implied by $\mf p$ having absolute degree $1.$ Putting everything together, $\mf q\in S^1_L,$ and we see our association $T_M\to T_L$ is well-defined.
+
+We note that this association is surjective. Indeed, every prime $\mf q\in T_L$ lies above $\mf p$ and has $\mf q\in S^1_L$ automatically, so, fixing $\mf P$ any prime above $\mf q,$ the above lemma tells us that
+\[\left(\frac{M/K}{\mf P/\mf p}\right)=\varphi.\]
+Thus, there is a $\mf P\in T_M$ above $\mf q.$
+
+It remains to show that this association is injective, meaning that we need to know there is only one prime above some $\mf q\in T_L.$ Well, picking up the prime $\mf P$ from earlier, we see that
+\[f(\mf P/\mf q)=[\mathcal O_M/\mf P:\mathcal O_L/\mf q]=\#\langle\varphi\rangle=[M:L],\]
+so there isn't space for any more primes (say, by the fundamental identity). $\blacksquare$
+
+It follows that to count the primes $\mf q$ of $S^1_L$ above some $\mf p\in S^1_K,$ we may count the number of primes $\mf P\in\op{Spec}\mathcal O_M$ giving the correct Frobenius $\varphi.$ There are a total of $\#G/f(\mf P/\mf p)$ primes of $\mathcal O_M$ above $\mf p$ ($\mf p$ is unramified, and the extension is Galois), but
+\[f(\mf P/\mf p)=\#\langle\varphi\rangle=\#H,\]
+so there are $\#G/\#H$ primes of $\mathcal O_M$ above $\mf p.$ Now, $G$ acts transitively on primes above $\mf p$ by
+\[\mf P'\mapsto\sigma\mf P'\quad\text{and}\quad\varphi'\mapsto\sigma\varphi'\sigma^{-1},\]
+meaning that the transitive action also acts transitively on the Frobenius, varying over $C.$ It follows that the number of primes giving the correct Frobenius should be evenly distributed, so there will be $\#G/(\#C\#H)$ of them.
+\begin{lemma}
+    Fixing $\mf p\in S^1_K,$ there are $\frac{\#G}{\#C\#H}$ primes $\mf q\in S^1_L$ above it.
+\end{lemma}
+This follows from the above discussion. $\blacksquare$
+
+We very quickly note that it is not terribly remarkable that $\frac{\#G}{\#C_\varphi\#\langle \varphi\rangle}$ is an integer, where $\varphi\in G$ and $C_\varphi$ is the conjugacy class of $\varphi.$ Indeed, $G$ acts transitively on $C_\varphi$ on conjugation, so for any $\sigma\in C_\varphi,$ we have that
+\[\#\{\tau\in G:\tau\varphi\tau^{-1}=\sigma\}\]
+is a constant. In particular, $\#G/\#C_\varphi$ is the stabilizer of $\varphi$ under conjugation, which is the set of elements $\tau$ such that $\tau\varphi\tau^{-1}=\varphi,$ which is the centralizer $Z(\varphi).$ But $\langle g\rangle\subseteq Z(\varphi)$ is a subgroup, so
+\[\frac{\#G}{\#C_\varphi\#\langle\varphi\rangle}=[Z(\varphi):\langle\varphi\rangle],\]
+which is indeed an integer.
+
+Anyways, back to number theory. We are now ready to finish.
+\begin{theorem}
+    For a finite Galois extension $M/K$ of number fields, fix $C$ a conjugacy class of $G:=\op{Gal}(M/K).$ Then the density of primes $\mf p\in\op{Spec}\mathcal O_K$ with Frobenius $C$ is $\#C/\#G.$
+\end{theorem}
+Because we are using Dirichlet density, we are interested in
+\[\delta(S^1_K)=\lim_{s\to1^+}\frac1{-\log(s-1)}\sum_{\mf p\in S^1_K}\op N(\mf p)^{-s}.\]
+Using the above lemma, we see that this is actually
+\[\delta(S^1_K)=\frac{\#C\#H}{\#G}\lim_{s\to1^+}\frac1{-\log(s-1)}\sum_{\substack{\mf q\in S^1_L\\\mf q\cap K\in S^1_K}}\op N(\mf q)^{-s}.\]
+However, we already know that $\mf q\in S^1_L$ implies $\mf q\cap K\in S^1_K,$ so this condition is extraneous. Thus,
+\[\delta(S^1_K)=\frac{\#C\#H}{\#G}\delta(S^1_L)=\frac{\#C}{\#G}.\]
+This completes the proof of the theorem. $\blacksquare$
+
+\subsubsection{April 13th}
+Today I learned about characters of finite fields, from \href{https://www.dropbox.com/s/tol357wd8wc7qi9/notes_chan.pdf}{here}. The surprise here is that the characters of finite fields behave a lot like the characters of local fields. We begin by exhibiting a ``standard'' character for each finite field $\FF_q,$ analogously to local fields.
+
+For our base fields, we fix a prime $p$ and let
+\[\psi_p(x):=e^{2\pi ix/p}\]
+be our ``standard'' character $\FF_p\to S^1.$ Indeed, this is a character because $x\mapsto e^{2\pi ix/p}$ is actually a character of $\ZZ$ (note $e^{2\pi i(x+y)/p}=e^{2\pi ix/p}e^{2\pi iy/p}$) with kernel when $e^{2\pi ix/p}=1,$ which is equivalent to $x/p\in\ZZ$ or $x\in p\ZZ.$ So $\psi$ induces a (nontrivial) character of $\ZZ/p\ZZ\cong\FF_p.$
+
+To continue as with local fields, we would like to build our characters of finite fields $\FF_q/\FF_p$ by defining a trace mapping $\op{Trace}:\FF_q\to\FF_p$ and then fixing
+\[\psi_q:=\psi_p\circ\op{Trace}.\]
+So we have to think about what the $\op{Trace}$ map should be. Well, in number fields, Galois extensions $L/K$ have
+\[\op{Trace}(\alpha)=\sum_{\sigma\in\op{Gal}(L/K)}\sigma(\alpha).\]
+We can imitate this with finite fields because $\FF_q/\FF_p$ is automatically Galois and in fact generated by $\op{Frob}_p:x\mapsto x^p.$ Fixing $q=p^n,$ we thus take
+\[\op{Trace}(\alpha):=\sum_{k=0}^{n-1}\op{Frob}_p^k(\alpha)=\sum_{k=0}^{n-1}\alpha^{p^k}.\]
+We can check that $\op{Trace}$ does indeed have image in $\FF_p$ because applying $\op{Frob}_p$ merely permutes the sum, so the image of $\op{Trace}$ lies in the fixed field of $\op{Frob}_p,$ which is $\FF_p.$
+
+So we take the following definition.
+\begin{definition}
+    Fix a finite field $\FF_q$ for $q=p^n$ with $p$ prime. We define the standard character of $\FF_q$ as
+    \[\psi_q(x):=e^{2\pi i\op{Trace}(x)/p}.\]
+\end{definition}
+I am under the impression that it is surprisingly annoying to prove that $\op{Trace}$ doesn't send everything to $0$; a proof in a more general case can be found in \href{https://web.archive.org/web/20210128000435/https://www.jmilne.org/math/CourseNotes/ANT.pdf}{Milne's notes} around Proposition 2.26. I will just say that, indeed, $\op{Trace}$ is non-degenerate, it can be proven, and it means that our $\psi_q$ is a nontrivial character.
+
+We will need there to exist a nontrivial character of $\FF_q,$ so we remark that we can exhibit one without appealing to non-degeneracy of the trace. Indeed, $\FF_q$ is an $\FF_p$-vector space, so
+\[\FF_q\cong\FF_p^n\]
+as additive groups. Thus, we can exhibit a character $\FF_q\to S^1$ by using $\psi_p$ on the first coordinate and ignoring the remaining coordinates.
+
+Now here is the big parallel between local fields and finite fields.
+\begin{lemma}
+    Fix $\FF_q$ a finite field and $\psi:\FF_q\to S^1$ a nontrivial character. Then all characters of $\FF_q$ take the form $x\mapsto\psi_q(ax),$ for fixed $a\in\FF_q.$
+\end{lemma}
+We imitate the argument with local fields. Fix $\Psi_\bullet:\FF_q\to\widehat{\FF_q}$ by $\Psi_a(x):=\psi(ax).$ This is well-defined because
+\[\psi(a(x+y))=\psi(ax+ay)=\psi(ax)\psi(ay).\]
+In fact, we claim that $\Psi_\bullet$ exhibits an isomorphism $\FF_q\cong\widehat{\FF_q},$ which will complete the proof. We split this into parts.
+\begin{itemize}
+    \item We see $\Psi_\bullet$ is a homomorphism because
+    \[\Psi_{a+b}=\big(x\mapsto\psi((a+b)x)\big)=\big(x\mapsto\psi(ax)\psi(bx)\big)=\Psi_a\Psi_b.\]
+    \item To show that $\Psi_\bullet$ is injective, we show it has trivial kernel, which follows from $\psi$ being nontrivial. In particular, we may fix some $x$ for which $\psi(x)\ne1.$ Then for any $a\in\FF_q\setminus\{0\},$ we actually have $a\in\FF_q^\times,$ so
+    \[\Psi_a\left(a^{-1}x\right)=\psi\left(aa^{-1}x\right)=\psi(x)\ne1.\]
+    Thus, $\Psi_a$ is also a nontrivial character.
+    \item Showing that $\Psi_\bullet$ is surjective can probably be done in the same way we did with local fields, but it's easier to abuse the finiteness of these objects. Because $\Psi_\bullet$ is already injective, it suffices to show
+    \[\#\widehat{\FF_q}=\#\FF_q=q.\]
+    Well, $\FF_q$ is being viewed as a finite group, so this holds automatically from some character theory. Alternatively, we could let $q=p^n$ with $p$ prime so that
+    \[\FF_q\cong\FF_p^n=(\ZZ/p\ZZ)^n.\]
+    We can now directly count the number of characters of $(\ZZ/p\ZZ)^n$ by noting each character is determined by where it sends each of the $n$ generators for the $\ZZ/p\ZZ,$ and the generators has $p$ options among the $p$th root of unity. So indeed $\#\widehat{\FF_q}=p^n=q.$
+\end{itemize}
+Thus, we have finished checking that $\Psi_\bullet$ is an isomorphism, which competes the proof. $\blacksquare$
+
+\subsubsection{April 14th}
+Today I learned about path-connectedness, from \href{https://web.archive.org/web/20210413174048/https://kconrad.math.uconn.edu/blurbs/topology/connnotpathconn.pdf}{Keith Conrad}. We have the following definition.
+\begin{definition}
+    We say that a space $X$ is path-connected if for any points $x,y\in X,$ there is a continuous function $p:[0,1]\to X$ with $p(0)=x$ and $p(1)=y.$
+\end{definition}
+We remark that homotopy type theory takes its motivation for defining equality types from homotopies, which come from paths. For example, I am told that one can define equalities by actually exhibiting an interval type and making the above rigorous in type theory. I am not familiar with this.
+
+We also remark with a nice image of path-connected components of space. Fix a point $a\in X,$ and then we can imagine all the paths emanating from $a$ as an endpoint to get the entire path-connected component.
+\begin{center}
+    \begin{asy}
+        unitsize(0.7cm);
+        import graph;
+        real r(real theta)
+        {
+            return 3 + 0.2*sin(10*theta) - 0.1*cos(13*theta) + 0.03*sin(20*theta);
+        }
+        real x(real t)
+        {
+            return r(t)*sin(t);
+        }
+        real y(real t)
+        {
+            return r(t)*cos(t);
+        }
+        draw(graph(x,y,0,2*3.141592653));
+        real noise(real t)
+        {
+            return sin(100*t) + cos(1.42132*t*sin(0.3*t)) + sin(3.1*t)*cos(-1.1*t);
+        }
+        int N = 7;
+        for(int k = 0; k < N; ++k)
+        {
+            pair pt = (noise(3.12312*k + 10), noise(-10.323*k - 5));
+            dot(pt);
+            draw((0,0) -- pt);
+        }
+        dot("$a$", (0,0), NW, red);
+    \end{asy}
+\end{center}
+
+Most of the time, path-connectedness and connectedness can be roughly thought of as the same thing. However, path-connectedness is in general stronger.
+\begin{proposition}
+    Fix $X$ a path-connected space. Then $X$ is also connected.
+\end{proposition}
+The idea is that if we divide $X$ into separate components, then a path $p:[0,1]\to X$ connecting the components could be pulled back to divide $p$ into separate components, which is a problem because $[0,1]$ is connected.
+
+Being disconnected is easier to deal with (topologically speaking), so we show the contrapositive: suppose $X=A\sqcup B$ is a disjoint union of open sets $A$ and $B,$ and we show that $X$ is not path-connected. Indeed, we hope there is no path $p:[0,1]\to X$ with $p(0)\in A$ and $p(1)\in B,$ which because $A$ and $B$ are nonempty will imply $X$ is not path-connected.
+
+Continuing to avoid stubbornly avoid contradiction, suppose (without loss of generality) we have a path $p(0)\in A,$ and we want to show $p(1)\not\in B.$ However, we see
+\[[0,1]=p^{-1}(X)=p^{-1}(A\sqcup B)=p^{-1}(A)\sqcup p^{-1}(B).\]
+This last union holds because $A\sqcup B$ covers the entire image, and $p^{-1}(A)\cap p^{-1}(B)=\emp$ because passing the intersection through $p$ would exhibit $A\cap B=\emp.$
+
+Anyways, the point is that $p$ is continuous, so $p^{-1}(A)\sqcup p^{-1}(B)$ provides a disjoint open cover of $[0,1].$ But $[0,1]$ is connected, so one needs to completely cover $[0,1]$---explicitly, we note that
+\[p^{-1}(A)=[0,1]\setminus p^{-1}(B)\]
+is both open and closed, and it is also inhabited, so $p^{-1}(A)=[0,1].$ In particular, $p(1)\not\in B,$ so we are done. $\blacksquare$
+
+To get a feeling that path-connectedness is stronger than typical connectedness, we take the following lemma.
+\begin{lemma}
+    Suppose $C\subseteq X$ is a connected subset. Then any $S\subseteq X$ with $C\subseteq S\subseteq\op{Cl}(C)$ is also connected.
+\end{lemma}
+Again, because disconnection is easier to talk about, we show the contrapositive: suppose $S$ is disconnected, we show $C$ is also disconnected. Well, $S$ disconnected lets us exhibit a disjoint nonempty cover $S\subseteq A\sqcup B$ with $S\cap A\ne\emp\ne S\cap B.$ But now $C\subseteq S,$ so
+\[C\subseteq A\sqcup B\]
+as well. And further, $S\subseteq\op{Cl}(C)$ only has limit points of $C,$ so $S\cap A\ne\emp$ requires $C\cap(S\cap A)=C\cap A\ne\emp.$ Similarly, $C\cap B\ne\emp,$ so we see that $A$ and $B$ witness $C$ being disconnected. $\blacksquare$
+
+The above property is notably not true for all path-connected connected subsets, even in reasonable spaces like $\RR^2.$ The idea to exhibit a counterexample is to create a path-connected subset and then adjoin a limit point which is has no path to the rest of the subset. Keith Conrad use
+\[S:=\{(0,1)\}\cup[0,1]\times\{0\}\cup\bigcup_{n\in\ZZ^+}\{1/n\}\times[0,1].\]
+This looks the following.
+\begin{center}
+    \begin{asy}
+        unitsize(4cm);
+        draw((0,0)--(1,0));
+        int N = 500;
+        for(int n = 1; n < N; ++n)
+        {
+            draw((1.0/n, 0)--(1.0/n, 1));
+        }
+        // I want a stronger dot
+        fill(circle((0,1),0.02), red);
+        label("$(0,1)$", (0,1), W, red);
+    \end{asy}
+\end{center}
+We begin by showing that $S$ is indeed connected.
+\begin{lemma}
+    The set $S$ is connected.
+\end{lemma}
+We show that
+\[C:=S\setminus\{(0,1)\}=[0,1]\times\{0\}\cup\bigcup_{n\in\ZZ^+}\{1/n\}\times[0,1]\]
+is path-connected, and then we will show $(0,1)$ is a limit point of $C.$ This will finish the proof because we will know that $C$ is connected (it's path-connected) and that $C\subseteq S\subseteq\op{Cl}(C),$ implying that $S$ is also connected.
+
+To show $C$ is path-connected, we note that we already know $[0,1]\times\{0\}\cong[0,1]$ is path-connected (the homeomorphism is to ignore the constant $0$ coordinate), and because path-connectedness is an equivalence relation, it suffices to show that all elements of $C$ have a path to $[0,1]\times\{0\}.$ We do casework.
+\begin{itemize}
+    \item If we pick up $(x,0)\in[0,1]\times\{0\}\subseteq C,$ then the constant path provides a path from $(x,0)$ to a point in $[0,1]\times\{0\}.$
+    \item Else if we pick up $(1/n,y)\in\{1/n\}\times[0,1]$ for some fixed $n\in\ZZ^+,$ then we can come straight up from $[0,1]\times\{0\}$ by
+    \[p(t)=(1/n,ty).\]
+    We won't show this is continuous (its component functions are continuous, which a $\delta$-$\varepsilon$ proof could show), but we check that $p(0)=(1/n,0)\in[0,1]\times\{0\}$ and $p(1)=(1/n,y),$ which is what we needed.
+\end{itemize}
+It follows that $C$ is indeed path-connected.
+
+It remains to show that $(0,1)$ is a limit point of $C.$ Well, let $U$ be any open neighborhood around $(0,1),$ and decomposing $U$ according to the ball basis of $\RR^2,$ we see $U$ contains some ball $B(p,r)$ containing $(0,1).$ We can refine this ball to
+\[B\big((0,1),r-d((0,1),p)\big)\subseteq B(p,r)\subseteq U.\]
+In particular, we can find some integer $n\in\ZZ^+$ with $1/n<r-d((0,1),p)$ (by finding one with $n>(r-d((0,1),p))^{-1}$). This means
+\[d((0,1),(1/n,1))=1/n<r-d((0,1),p),\]
+so indeed, $(1/n,1)$ provides an element of $U\cap C.$ Thus, every open neighborhood of $(0,1)$ contains a point of $C,$ so $(0,1)$ is a limit point of $C.$ This completes the proof. $\blacksquare$
+
+It remains to show that $S$ is not path-connected. The above proof shows that ``most'' of $S$---that is, $S\setminus\{(0,1)\}$---is actually path-connected, so we conclude that the $(0,1)$ must be the problem. This makes intuitive sense: $(0,1)$ is inherently separated from the rest of $S$ despite being arbitrarily close.
+\begin{lemma}
+    The set $S$ is not path-connected.
+\end{lemma}
+As discussed, the problem is $(0,1)$; we claim that its path-connected component is $\{(0,1)\}$ alone. Indeed, fix a path $p:[0,1]\to S$ with $p(0)=(0,1),$ and we show that $p(1)=(0,1)$---in fact, we show $p([0,1])=\{(0,1)\}.$ The intuition is that if $p(t)=(0,1),$ then $p(t+\varepsilon)$ needs to be ``close'' to $(0,1)$ by continuity, but $S\cap B((0,1),\delta)$ is disconnected for small $\delta,$ so there isn't a way for $p(t+\varepsilon)\ne(0,1).$
+
+In particular, this ``push a little further'' feels like the proof that $[0,1]$ is compact, so we imitate it, in its inefficient form. (One can make the following proof more efficient.) Let
+\[T=\big\{t\in[0,1]:p([0,t])=\{(0,1)\}\big\}.\]
+Now, $T$ has a least upper bound, say $t_0,$ such that $t<t_0$ implies $t\in T.$ Namely, $t\not\in T$ implies $p([0,t])$ is outside $\{(0,1)\},$ so $t$ is an upper bound for $T,$ so $t\ge t_0.$
+
+Further, we can show $p(t_0)=(0,1).$ Indeed, we know that $p^{-1}(\{(0,1)\})$ ought be closed because $p$ is continuous and $\{(0,1)\}$ is closed, and because $t<t_0$ implies $t\in T\subseteq p^{-1}(\{(0,1)\}),$ we conclude $t_0$ is a limit point of $p^{-1}(\{(0,1)\}).$ So we must have $t_0\in p^{-1}(\{(0,1)\}).$ We note that this effectively show $T$ is closed.
+
+Now, the key claim is the pushing we claimed as intuition, which we will use to ``push'' $t_0$ all the way up to $1.$ Forgetting the definition of $t_0$ for a moment, we show that if $t_0<1$ satisfies $t\le t_0$ implies $t\in T,$ then there is a $\delta>0$ such that $t<t_0+\delta$ also implies $t\in T.$ We note that this effectively show $T$ is open.
+
+Very quickly, we note that this claim is enough because it shows that our least upper bound $t_0$ cannot be less than $1$ lest it not actually be a least upper bound. So we have $t_0=1,$ which will finish the proof.
+
+As promised, this follows from the fact $[0,1]\times\{0\}$ is the only connector of the vertical strips. Fix $\varepsilon\in(0,1)$ (say, $1/2$), and the continuity of $p$ gives us some $\delta$ such that
+\[|t-t_0|<\delta\implies d\big(p(t),p(t_0)\big)<\varepsilon.\]
+In particular, $p(t_0)=(0,1)$ and $\varepsilon<1$ implies that $p(t)$ has nonzero $y$-coordinate in this region. Thus, $p$ has image in
+\[S':=\{(0,1)\}\cup\bigcup_{n\in\ZZ^+}\{1/n\}\times(0,1],\]
+which is horribly disconnected.
+
+In particular, we claim that $\{(0,1)\}$ is its own connected component. Indeed, fix any $x_0\in(0,1],$ and we show that
+\[\{(x,y)\in S:x<x_0\}\]
+is disconnected. Indeed, let $n>1/x_0$ so that $1/n<x_0$ be a positive integer, and then no element of $S$ has $x$-coordinate equal to $x'=\frac12\left(\frac1n+\frac1{n+1}\right).$ In particular, we may safely divide $\{(x,y)\in S:x<x_0\}$ into the open sets
+\[\{(x,y)\in S:x<x'\}\sqcup\{(x,y)\in S:x'<x<x_0\}.\]
+These are nonempty because the former contains $(0,1),$ and the latter contains $(1/n,1),$ so indeed $S'$ is disconnected. However, the connected component of $\{(0,1)\}$ is the smallest connected set containing $(0,1),$ and taking the arbitrary intersection over $x_0\in(0,1]$ forces us to conclude $\{(0,1)\}$ is the connected component.
+
+Now, the image of $p([0,t+\varepsilon))\subseteq S'$ is path-connected and therefore connected, so $p$ cannot go outside of $\{(0,1)\}$ because this is the largest set containing $(0,1)$ which is connected. This completes the proof. $\blacksquare$
+
+With this, we conclude that path-connectedness is indeed stronger than connectedness.
+\begin{theorem}
+    There are sets which are connected but not path-connected.
+\end{theorem}
+The set $S$ defined above does the trick. $\blacksquare$
+
+\subsubsection{April 15th}
+Today I learned Sierpinski's proof that all measurable solutions to Cauchy functional equation are linear, from \href{https://web.archive.org/web/20200717011210/http://www.artsci.kyushu-u.ac.jp/~ssaito/eng/maths/Cauchy.pdf}{here}. The key idea is the following proposition.
+\begin{proposition}
+    Fix $A$ and $B$ measurable sets of nonzero measure. Then there exist $a\in A$ and $b\in B$ such that $a-b\in\QQ.$
+\end{proposition}
+Intuitively, this makes some sense: if $A$ and $B$ have nonzero measure, then they should have some ``substance.'' In particular, $A-B$ should also have some substance and probably shouldn't be able to avoid $\QQ.$ This intuition is difficult to rigorize.
+
+Anyways, we, without loss of generality, bound $A$ and $B.$ Additionally, for sanity, we define a good interval as an interval that is bounded, closed, and nonempty. First we control $A$ by replacing it with an actually substantive set.
+\begin{lemma}
+    Fix measurable $A$ of nonzero, finite measure. Given (small) $\varepsilon,\ell>0,$ we can find a good interval $I$ such that $\mu(I)<\ell$ and
+    \[\mu(A\cap I)>\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]
+\end{lemma}
+Essentially, this is saying that we can place an interval around some part of $A$ that is almost entirely inside $A.$ The factor $\frac{\mu(A)}{\mu(A)+\varepsilon}$ should be thought of as $1-\delta$ for small $\delta,$ but $\frac{\mu(A)}{\mu(A)+\varepsilon}$ is what comes out of the proof. The bound $\mu(I)<\ell$ is something we will need later.
+
+By definition of the Lebesgue measure, we may find a collection of good intervals $\{I_k\}_{k\in\NN}$ covering $A$ which already well-approximate $\mu(A),$ say with
+\[\mu(A)+\varepsilon>\sum_{k\in\NN}\mu(I_k).\]
+In particular, $\mu(A)$ is defined as the $\liminf$ of the right-hand sum over all collections of intervals, so we can find a collection of intervals which gets with $\varepsilon$ of the real measure. Further, writing $I_k=[a_k,b_k]$ and then decomposing by fixing $N=\floor{(b_k-a_k)/\ell}$ with
+\[[a_k,b_k]=[a_k+N\ell,b_k]\cup\bigcup_{n+1<N}[a_k+n\ell,(n+1)\ell],\]
+we see we can refine the cover $\{I_k\}_{k\in\NN}$ so that each $\mu(I_k)<\ell.$
+
+Now, we expect each of the $I_k$ to cover $A$ reasonably well, so it is likely that one of them satisfies the needed conclusion. Indeed, suppose for the sake of contradiction not. Then we are given
+\[\sum_{k\in\NN}\mu(A\cap I_k)\le\sum_{k\in\NN}\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I_k)<\mu(A).\]
+However, this left-hand side is bounded below by $\mu(A)=\mu\left(\bigcup_{k\in\NN}A\cap I_k\right)$ because the $I_\bullet$ cover $A.$ So we have our contradiction and are now done. $\blacksquare$
+
+What is going to give our rational in the proposition is amending the above lemma to make the endpoints of $I$ rationals. This is not as impressive as it looks: we should be able to expand $I$ by just a little to make its endpoints rational. In particular, what we get is $\mu(I)$ rational.
+\begin{lemma}
+    Fix measurable $A$ of nonzero, finite measure. Given (small) $\varepsilon,\ell>0,$ we can find a good interval $I$ with rational endpoints such that $\mu(I)<\ell$ and
+    \[\mu(A\cap I)>\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]
+\end{lemma}
+Plug $\varepsilon/2$ and $\ell/2$ into the above lemma to get a good interval $I'=[a,b]$ with $\mu(I)<\ell/2$ satisfying
+\[\mu(A\cap I')>\frac{\mu(A)}{\mu(A)+\varepsilon/2}\mu(I').\]
+As promised, we expand $I'$ by a little to get rational endpoints. Take some sufficiently small $\delta>0,$ at least $\delta<\ell/2,$ to be fixed later. We can find rationals $p\in(a-\delta/2,a)$ and $q\in(b,b+\delta/2)$ because $\QQ$ is dense in $\RR,$ and we let $I:=[p,q].$ By construction $\mu(I)<\ell.$
+
+It remains to get the inequality bound by setting $\delta$ to something very small. Well, we already know $I'\subseteq I,$ so
+\[\mu(A\cap I)>\mu(A\cap I').\]
+On the other hand, $\mu(I)<\mu(I')+\delta$ by construction, so
+\[\frac{\mu(A)}{\mu(A)+\varepsilon/2}\mu(I')>\frac{\mu(A)}{\mu(A)+\varepsilon/2}(\mu(I)-\delta).\]
+We would like the right-hand side to exceed $\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I),$ an equality which rearranges to
+\[\frac{\mu(A)}{\nu(A)+\varepsilon/2}\mu(I)-\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I)>\frac{\mu(A)}{\mu(A)+\varepsilon/2}\delta.\]
+The left-hand side here is indeed greater than $0,$ so we get what we're safe if we take $\delta$ small enough. Stringing our inequalities together, we do indeed have $\mu(A\cap I)>\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I),$ which is what we wanted. $\blacksquare$
+
+We take a moment to remark that one can actually take the $\{I_k\}_{k\in\NN}$ in the proof of the first lemma to all of rational endpoints by small expansions. Though inefficient, we separated out the rational-endpoint condition to make the point that one process gives good intervals approximating $A$ and another process makes it have rational endpoints.
+
+Anyways, we now return to the proof of the proposition. We already have tools to talk about $A$---namely, we use $A\cap I$ instead of $I$ from here on---so for some $\varepsilon>0$ to be fixed later, we get a good interval $I$ such that
+\[\mu(A\cap I)>\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I)\]
+by lemma. Note we have not used the length condition on $I$; we'll make it small later. The idea, now, is to tile $B$ with $I$s and hope to hit an intersection with $A\cap I$ somewhere; after all, $I$ lives almost entirely inside of $A\cap I,$ so it is not unreasonable to hope to hit something.
+
+To be explicit, we fix some large interval $J$ around $B$ and then we can tile $J$ with the $I.$ In particular, we let
+\[S=\{s\in\ZZ:(s\mu(I)+I)\cap J\ne\emp\}.\]
+So we have the pair of inequalities $\#S\mu(I)\ge\mu(J)$ and $(\#S-2)\mu(I)<\mu(J).$
+
+Now, the following is where our tiling is going to have our rational.
+\begin{lemma}
+    Fix our objects as above. The set
+    \[B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I)).\]
+    is nonempty.
+\end{lemma}
+Indeed, this will be enough for the proposition because, fixing $b$ in the set, $b\in B$ and $b=s\mu(I)+a$ for $s\in S$ and $a\in A\cap I\subseteq A.$ In particular, $b-a\in\QQ,$ which is what we want. $\blacksquare$
+
+So it remains to show that the $B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I))$ is nonempty; we show that if it is empty, then $\mu(B)=0.$ Well, $A\cap I\subseteq I,$ so the tiles are disjoint, and we are really only worrying about $B$ not having intersection with any of the individual intervals. Well, given this union were disjoint, then
+\[\mu\left(B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I))\right)=\mu(B)+\sum_{s\in S}\mu(A\cap I)=\mu(B)+\#S\mu(A\cap I).\]
+The last equality holds because the measure is translation-invariant. This might not look terribly problematic yet, but we can bound the right-hand side above by $\mu(J),$ and then using the construction of $I$ gives
+\[\mu(J)>\mu(B)+\#S\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]
+Now this is more obviously a problem because $I$ was meant to tile $J,$ yet the above equality looks like it's saying this tiling will always leave enough space for $B$ to fit disjointly. In fact, using $\mu(J)<\#S\mu(I),$ we can rearrange this into
+\[\mu(B)<\#S\frac\varepsilon{\mu(A)+\varepsilon}\mu(I).\]
+We would like to send $\varepsilon\to0$ to get $\mu(B)=0,$ but we can't quite do that because $I$ depends on $\varepsilon.$ However, we can express this inequality in terms of $J,$ which doesn't depend on $\varepsilon.$
+
+In particular, if we make $I$ depend on $J$ with $\mu(I)<\mu(J)$ (here we have used the smallness of $I$!), then we know $\#S\mu(I)=(\#S-2)\mu(I)+2\mu(I)<3\mu(J).$ Thus,
+\[\mu(B)<\frac{\varepsilon}{\mu(A)+\varepsilon}3\mu(J).\]
+Now, $\varepsilon$ and $J$ don't depend on each other, so we may send $\varepsilon$ to $0,$ giving $\mu(B)=0.$ This finishes the proof of the proposition. $\blacksquare$
+
+We are now ready for the proof of the main theorem.
+\begin{theorem}
+    Suppose $f:\RR\to\RR$ is a measurable function satisfying $f(x+y)=f(x)+f(y).$ Then $f(x)=xf(1).$
+\end{theorem}
+To make the phrasing easier, we replace $f(x)$ with $f(x)-xf(1)$ so that $f(1)=0$; we want to show $f\equiv0.$ As usual, we can get $f(\QQ)=\{0\}.$
+
+The main claim here is that $f^{-1}(\RR\setminus\{0\})$ has $0$ measure; it has a measure because $f$ is measurable. For this, we let $S_+=f^{-1}(\RR_{>0})$ and $S_-=f^{-1}(\RR_{<0}).$ We note that any $s_+\in S_+$ and $s_-\in S_-$ needs to have
+\[f(s_+-s_-)=f(s_+)-f(s_-)>0,\]
+so in particular $s_+-s_-\not\in\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,
+\[\mu\big(f^{-1}(\RR\setminus\{0\})\big)=\mu(S_+)+\mu(S_-)=0.\]
+This finishes the claim.
+
+To finish the proof, we see $f^{-1}(\{0\})$ has positive (in fact infinite) measure. Supposing for the sake of contradiction we can find $x_0$ with $f(x_0)\ne0,$ we see
+\[f\left(x_0+f^{-1}(\{0\})\right)=f(x_0)\ne0,\]
+so $x_0+f^{-1}(\{0\})$ is a subset of $f^{-1}(\RR\setminus\{0\})$ of nonzero measure, which is a contradiction. This completes the proof. $\blacksquare$
+
+Anyways, we close by saying this means there are models of ZF (without choice) without pathological solutions to $f(x+y)=f(x)+f(y)$ because such functions require immeasurable sets. In fact, looking closer at the proof, we see that we only needed the measurability of
+\[f^{-1}(\{0\}),\quad f^{-1}(\RR\setminus\{0\}),\quad f^{-1}(\RR_{>0}),\quad\text{and}\quad f^{-1}(\RR_{<0})\]
+when $f(1)=0.$ Because measurable sets form a $\sigma$-algebra, one of the first two have measure if and only if the other does. And we can biject the latter two sets onto each other ($f$ is odd) and disjointly union to the second, so if any of these are immeasurable, then $f^{-1}(\RR_{>0})$ had better be immeasurable.
+
+This gives a means of generating immeasurable sets! Indeed, given a pathological (nonlinear) solution to $f(x+y)=f(x)+f(y),$ we have that
+\[\{x\in\RR:f(x)-xf(1)>0\}\]
+is immeasurable by the above discussion. And it is indeed possible to construct pathological solutions like this. Using the machinery we've already built, we note we can extend the automorphism $a+b\sqrt2\mapsto a-b\sqrt2$ of $\QQ(\sqrt2)$ to an automorphism $\sigma$ of $\CC.$ Then $f:\RR\to\RR$ defined by
+\[f(x):=\op{Re}\sigma(x)\]
+will satisfy $f(x+y)=f(x)+f(y)$ because $\sigma$ is an automorphism, and it is nonlinear because $f(0)=0$ and $f(1)=1$ while $f(\sqrt2)=-\sqrt2.$ As usual, we have no idea what the generated immeasurable set looks like (because we have no idea what $f$ looks like), but we know that it's out there.
+
+\subsubsection{April 16th}
+Today I learned about Kummer series acceleration, from \href{https://web.archive.org/web/20210117032227/https://kconrad.math.uconn.edu/blurbs/analysis/series_acceleration.pdf}{Keith Conrad} of course. This is the idea.
+\begin{definition}
+    Given $\{a_k\}_{k=1}^\infty$ whose sum absolutely converges, if we are given a sequence $\{b_k\}_{k=1}^\infty$ such that $\frac{a_k}{b_k}\to\lambda$ and we know $B=\sum b_k,$ then we note
+    \[\sum_{k=1}^\infty a_k=\lambda B+\sum_{k=1}^\infty(a_k-\lambda b_k)=\lambda B+\sum_{k=1}^\infty\left(1-\frac{b_k}{a_k}\right)a_k,\]
+    which has good chances of converging faster.
+\end{definition}
+We note that the absolutely convergent condition on $\{a_k\}_{k=1}^\infty$ is really there to let us extract out $\lambda B$ in the rudest way possible. In practice, I think this method of series acceleration is done when the terms are positive mostly.
+
+It may seem like a significant roadblock to find the sequence $\{b_k\}_{k=1}^\infty,$ but we can actually cover all polynomial growth pretty well.
+\begin{lemma}
+    Given some positive integer $d,$ we have that
+    \[\sum_{k=1}^\infty\frac1{k(k+1)\cdots(k+d)}=\frac1{d\cdot d!}.\]
+\end{lemma}
+We observe that
+\[\frac{1/d}{k(k+1)\cdots(k+d)}-\frac{1/d}{(k+1)(k+2)\cdots(k+d+1)}=\frac{(k+d)/d-k/d}{k(k+1)\cdots(k+d+1)},\]
+and the right-hand side is the desired summand $\frac1{k(k+1)\cdots(k+d)}.$ It follows that
+\[S_d:=\sum_{k=1}^\infty\frac1{k(k+1)\cdots(k+d+1)}=\frac1d\sum_{k=1}^\infty\left(\frac1{k(k+1)\cdots(k+d)}-\frac1{(k+1)\cdots(k+d+1)}\right).\]
+Shifting (not rearranging) the sum, this gives
+\[S_d=\frac1d\cdot\frac1{1\cdot2\cdots d}+\sum_{k=2}^\infty\left(-\frac1{(k+1)\cdots(k+d+1)}+\frac1{(k+1)\cdots(k+d)}\right).\]
+As promised, this does evaluate to $\frac1{d\cdot d!},$ so we are done. $\blacksquare$
+
+As an example, we accelerate $\zeta(3)\approx1.20205690315.$ The standard sum is
+\[\zeta(3)=\sum_{k=1}^\infty\frac1{k^3},\]
+but we can accelerate the convergence of this. After computing $N$ terms, we can bound the error as
+\[\zeta(3)-\sum_{k=1}^N=\sum_{k=N+1}^\infty\frac1{k^3}<\int_N^\infty\frac1{x^3}\,dx=\frac1{2N^2}\]
+by viewing the sum as a Riemann sum. So, for example, $10$ terms gives $\zeta(3)\approx1.19753198567.$
+
+Now, from the above lemma, we use $\frac1{k(k+1)(k+2)}$ with $\frac{k(k+1)(k+2)}{k^3}\to1.$ The lemma tells us that the auxiliary sum is $\frac14,$ and the leftover term is
+\[\frac1{k^3}-\frac1{k(k+1)(k+2)}=\frac{3k+2}{k^3(k+1)(k+2)},\]
+which we can see decays about a degree faster. Anyways, our new sum is
+\[\zeta(3)=\frac14+\sum_{k=1}^\infty\frac{3k+2}{k^3(k+1)(k+2)}.\]
+Again, after computing $N$ terms, we can bound the error as
+\[\sum_{k=N+1}^\infty\frac{3k+2}{k^3(k+1)(k+2)}<\sum_{k=N+1}^\infty\frac{3(k+1)}{k^3(k+1)k}<\int_N^\infty\frac3{k^4}\,dx=\frac1{N^3}.\]
+Explicitly, we can see this with $\zeta(3)\approx1.20131986446$ after merely $10$ terms, which is much better.
+
+The real point of series acceleration is that we can do this multiple times. Our current sequence grows $\Theta\left(3/k^4\right),$ so we can choose $\frac3{k(k+1)(k+2)(k+3)}$ as our auxiliary sequence, which has sum $\frac16.$ The term now looks like
+\[\frac{3k+2}{k^3(k+1)(k+2)}-\frac3{k(k+1)(k+2)(k+3)}=\frac{(3k+2)(k+3)-3k^2}{k^3(k+1)(k+2)(k+3)}.\]
+So our sum is now
+\[\zeta(3)=\frac14+\frac16+\sum_{k=1}^\infty\frac{11k+6}{k^3(k+1)(k+2)(k+3)}.\]
+And after computing $N$ terms, the error is bounded by
+\[\sum_{k=N+1}^\infty\frac{11k+6}{k^3(k+1)(k+2)(k+3)}<\sum_{k=N+1}^\infty\frac{11(k+1)}{k^3(k+1)k^2}<\int_N^\infty\frac{11}{x^5}\,dx=\frac{11}{4N^4}.\]
+So for example, we get $\zeta(3)\approx1.20190261504$ after $10$ terms, which is pretty close to the next decimal place.
+
+\subsubsection{April 17th}
+Today I learned the proof of the functional equation for the Dedekind zeta function $\zeta_K,$ mostly from \href{https://web.archive.org/web/20210418222054/https://math.mit.edu/research/undergraduate/urop-plus/documents/2018/Zeff.pdf}{here}. The main idea is to use a global zeta integral $\zeta\left(g,|\bullet|^s\right)$ with a ``mostly'' self-dual Gaussian $g.$ The exact specifics of our Gaussian comes down to local $\zeta$ computations, but we have to be careful about our measures.
+
+To be explicit, we define $g_\nu(x_\nu):=e^{-\pi x_\nu^2}$ for real archimedean $\nu$ and $g_\nu:=e^{-2\pi z\overline z}$ for complex archimedean $\nu.$ Additionally, we take inspiration from our proof that the global zeta integrals converge for exponent greater than $1$ and set $g_\mf p=1_{\mathcal O_\mf p}$ for nonarchimedean $\mf p.$
+
+Combining these local factors into $g=\prod_\nu g_\nu:\AA_K\to\CC$ gives a Shwartz-Bruhat function, practically by definition. (For the archimedean places, we don't prove that those Gaussians are Shwartz, but they are.) Now, the main claim is the following.
+\begin{proposition}
+    With $g:\AA_K\to\CC$ defined as above, we have for $\op{Re}s>1$ that
+    \[\zeta\left(g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{-1/2}\zeta_K(s),\]
+    where $K$ has (absolute) signature $(r_1,r_2).$ Here, $\Gamma_\RR(s):=\pi^{-s/2}\Gamma(s/2)$ and $\Gamma_\CC(s)=2(2\pi)^{-s}\Gamma(s).$
+\end{proposition}
+Expanding this out, we are simplifying
+\[\zeta\left(g,|\bullet|^s\right)=\int_{\AA_K^\times}g(x)|x|^s\,d^\times x=\prod_\nu\underbrace{\int_{K_\nu^\times}g_\nu(x_\nu)|x_\nu|_\nu^s\,d^\times x_\nu}_{\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)}.\]
+Note that while $\AA_K^\times\not\cong\prod_\nu K_\nu^\times,$ this decomposition is legal because, after the projections, we are hitting all of those elements. In particular, all but finitely many (all the nonarchimedean places) of the $g_\nu$ are $1_{\mathcal O_\nu},$ so we are far from asserting that $\AA_K^\times$ is the product of the $K_\nu^\times.$
+
+It remains to evaluate these integrals, but we need to discuss our measures first. We do this from the ground up because they introduce subtle factors. We are using the self-dual measure with respect to our standard character $\psi.$ What this means is that we have defined, for local fields $K_\nu$ with standard character $\psi_\nu,$
+\[\hat f(x):=\int_{K_\nu}f(x)\psi_\nu(xy)\,dx,\]
+which is legal because $\widehat{K_\nu}\cong K_\nu.$ However, this is a specific measure $d\chi$ on $\widehat{K_\nu}$ that makes the inverse Fourier transform well-behaved given a measure $dx$ on $K_\nu,$ and $d\chi$ might not match $\psi_\nu(xy)\,dx.$ Regardless, it is at least scaled by some $c$ (Haar measure is unique), so
+\[\hat{\hat f}(y)=\int_{K_\nu}f(y)\psi_\nu(xy)\,dy\]
+will be off from correctly inverting the Fourier transform by $c^2.$ Shifting $dy$ on $K_\nu$ to accommodate this $c^2,$ we can make $\hat{\hat f}(x)=f(-x)$ for all Shwartz-Bruhat $f:K_\nu\to\CC.$ In particular, it suffices to check a single function satisfies $\hat{\hat f}(x)=f(-x)$ to make sure we are using the self-dual measure.
+
+We deal with our places in cases: real archimedean, complex archimedean, or nonarchimedean.
+\begin{lemma}
+    The self-dual measure $dx$ on $K_\nu$ for real $\nu$ is the standard Lebesgue measure.
+\end{lemma}
+We check this with the Gaussian $g_\RR(x)=e^{-\pi x^2}.$ Our standard character is $\psi_\RR(x)=e^{-2\pi ix}.$ Now, we are evaluating
+\[\widehat{g_\RR}(y)=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\,dx.\]
+I steal the evaluation of this from \href{https://math.stackexchange.com/a/270580/869257}{this post}: take the derivative under the integral sign so that
+\[\frac{\widehat{g_\RR}(y)}{dy}=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi ix)\,dx.\]
+Now, $\frac d{dx}e^{-\pi x^2}=-2\pi xe^{-\pi x^2},$ so we may integrate by parts to get
+\[\frac{\widehat{g_\RR}(y)}{dy}=\underbrace{ie^{-\pi x^2}e^{-2\pi ixy}\bigg|_{-\infty}^\infty}_0-\underbrace{\int_\RR ie^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi iy)\,dx}_{2\pi g_\RR(y)}.\]
+So we have an ordinary differential equation $\frac{\widehat{g_\RR}(y)}{dy}=-2\pi g_\RR(y),$ which we can solve to get solutions $\widehat{g_\RR}(y)=ce^{-\pi y^2}.$ We can evaluate $\widehat{g_\RR}(0)$ directly as $\int_\RR e^{-\pi x^2}\,dx=1,$ so we conclude $\widehat{g_{\RR}}=g_\RR.$ It follows that $g_\RR$ gives $\hat{\hat f}(x)=f(-x)$ because $g_\RR$ is also even. This finishes. $\blacksquare$
+
+\begin{lemma}
+    The self-dual measure $dz$ on $K_\nu$ for complex $\nu$ is twice the standard Lebesgue measure.
+\end{lemma}
+Intuitively, we are doubling the Lebesgue measure here because there are two embeddings associated with $\nu$ because conjugation gives the same place. However, we can't lose this size, so we have to double to accommodate.
+
+We check this with the Gaussian $g_\CC(z)=e^{-2\pi z\overline z}.$ Our standard character is $\psi_\CC(z)=\psi_\RR(\op{Trace}_{\CC/\RR}z),$ which is $e^{-4\pi i\op{Re}z}.$ (This extra factor of $2$ from $\op{Trace}_{\CC/\RR}$ is the rigorization of the above intuition.) Our Fourier transform is
+\[\widehat{g_\CC}(y)=\int_\CC e^{-2\pi z\overline z}e^{-4\pi i\op{Re}(zy)}\,dz.\]
+Writing $\CC\cong\RR^2$ with $y=c+di$ and $dz=2da\,db$ (recall we are using twice the Lebesgue measure) gives
+\[\widehat{g_\CC}(c+di)=\iint_{\RR^2}e^{-2\pi\left(a^2+b^2\right)}e^{-4\pi i(ac-bd)}\,2da\,db.\]
+Now, this integral can be separated into
+\[\widehat{g_\CC}(c+di)=\left(\int_\RR e^{-2\pi a^2}e^{-4\pi iac}\,\sqrt2da\right)\left(\int_\RR e^{-2\pi b^2}e^{4\pi ibd}\,\sqrt2db\right).\]
+Taking $a\sqrt2\mapsto a$ and $b\sqrt2\mapsto-b$ gives
+\[\widehat{g_\CC}(c+di)=\left(\int_\RR e^{-\pi a^2}e^{-2\pi ia(c\sqrt2)}\,da\right)\left(\int_\RR e^{-\pi b^2}e^{-2\pi ib(d\sqrt2)}\,db\right),\]
+which are themselves Fourier transforms of $g_\RR(x)=e^{-\pi x^2},$ which we know how to do. In particular, this collapses to $\widehat{g_\RR}(c\sqrt2)\widehat{g_\RR}(d\sqrt2)=e^{-2\pi\left(c^2+d^2\right)}.$ In other words, we see $\widehat{g_\CC}(y)=g_\CC(y),$ so it follows $g_\CC$ witnesses a $\hat{\hat f}(x)=f(-x)$ because $g_\CC$ is also even. This finishes. $\blacksquare$
+
+\begin{lemma}
+    The self-dual measure $dx$ on $K_\mf p$ for nonarchimedean $\mf p$ is the measure assigning $\mathcal O_\mf p$ a measure of $\op N(\mathcal D_\mf p)^{-1/2},$ where $\mathcal D_\mf p$ is the different ideal.
+\end{lemma}
+The different becomes involved because our standard character is $\psi_\mf p(x):=\psi_p(\op{Trace}_{K_\mf p/\QQ_p}x),$ where $p$ is the rational prime below $\mf p.$ Anyways, we check this with (surprise!) the Gaussian $g_\mf p=1_{\mathcal O_\mf p}.$ We have that
+\[\widehat{g_\mf p}(y)=\int_{K_\mf p}g_\mf p(x)\psi_\mf p(xy)\,dx=\int_{\mathcal O_\mf p}\psi_\mf p(xy)\,dx.\]
+If $\op{Trace}_{K_\mf p/\QQ_p}(y\mathcal O_\mf p)\in\ZZ_p$---i.e., if $y$ is in the dual lattice $\mathcal O_\mf p^\vee$---then $x\mapsto\psi_\mf p(xy)$ takes all $x$ to $1,$ and we get out $\op{Vol}(\mathcal O_\mf p).$ Otherwise, we note $\psi_\mf p(1y)$ doesn't go to $1,$ so $x\mapsto\psi_\mf p(xy)$ gives a nontrivial character over the compact group $\mathcal O_\mf p,$ so this integral is $0$ by orthogonality of characters. Thus, $\widehat{g_\mf p}(y)=\op{Vol}(\mathcal O_\mf p)\cdot1_{\mathcal O_\mf p^\vee}.$
+
+It will be worth our time to briefly talk about $\mathcal O_\mf p^\vee.$ We note that $\mathcal O_\mf p^\vee$ is closed under addition (the trace is additive) and $y\in\mathcal O_\mf p^\vee$ means that $y\mathcal O_\mf p\subseteq\mathcal O_\mf p^\vee,$ so $\mathcal O_\mf p^\vee$ is an $\mathcal O_\mf p$-ideal. Because $\mathcal O_\mf p$ is also a discrete valuation ring, we can then assert, for some positive integer $d,$
+\[\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,\]
+where $\varpi$ is the uniformizer of $K_\mf p.$ In particular, we get the following properties.
+\begin{itemize}
+    \item We have that $\mathcal O_\mf p^{\vee\vee}$ is the set of elements $y\in K_\mf p$ such that $\op{Trace}_{K_\mf p/\QQ_p}(y\mathcal O^\vee)\in\ZZ_p,$ which really means $y$ needs to have a nonnegative number of factors of $\varpi,$ or $y\in\mathcal O_\mf p.$
+    \item We have that $\op{Vol}(\mathcal O_\mf p^\vee)=p^{-d}\op{Vol}(\mathcal O_\mf p)$ because $\mathcal O_\mf p/\varpi^d\mathcal O_\mf p$ has $p^d$ elements.
+    \item This also implies $\mathcal D_\mf p:=(\mathcal O_\mf p^\vee)^{-1}=\varpi^{-d}\mathcal O_\mf p$ has norm $p^{-d}.$
+\end{itemize}
+
+Now, taking the next Fourier transform, we see
+\[\widehat{\widehat{g_\mf p}}(y)=\int_{K_\mf p}g_\mf p(x)\overline{\psi_\mf p(xy)}\,dx=\op{Vol}(\mathcal O_\mf p)\int_{\mathcal O_\mf p^\vee}\overline{\psi_\mf p(xy)}\,dx.\]
+Again, if $y\in\mathcal O_\mf p^{\vee\vee}=\mathcal O_\mf p,$ then $x\mapsto\overline{\psi_\mf p(xy)}$ is the trivial character, so we get out $\op{Vol}(\mathcal O_\mf p)\op{Vol}(\mathcal O_\mf p^\vee).$ Otherwise, $x\mapsto\overline{\psi_\mf p(xy)}$ is a nontrivial character of the compact subgroup $\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,$ so this evaluates to $0$ by orthogonality of characters. Thus,
+\[\widehat{\widehat{g_\mf p}}=\op{Vol}(\mathcal O_\mf p)\op{Vol}(\mathcal O_\mf p^\vee)1_{\mathcal O_\mf p}=\op{Vol}(\mathcal O_\mf p)^2\op N(\mathcal D_\mf p)1_{\mathcal O_\mf p}.\]
+We would like this to be $g_\mf p,$ so we set $\op{Vol}(\mathcal O_\mf p)=\op N(\mathcal D_\mf p)^{-1/2}$ (as prescribed in the lemma) so that this term cancels out properly. It follows that $g_\mf p$ again witnesses an $f$ with $\hat{\hat f}(x)=f(-x)$ because $g_\mf p$ is even. $\blacksquare$
+
+Having properly established all of our measures, it remains to actually compute the integrals of interest. We begin have three cases: $\nu$ is real archimedean, complex archimedean, or nonarchimedean. We do these one at a time.
+\begin{lemma}
+    We have that $\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\Gamma_\RR(s)$ for real archimedean $\nu.$
+\end{lemma}
+If $\nu$ is real archimedean, then $K_\nu^\times\cong\RR^\times,$ so we are evaluating
+\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_{\RR^\times}e^{-\pi x^2}|x|^s\,d^\times x=2\int_0^\infty e^{-\pi x^2}x^s\,d^\times x.\]
+We want this to become a $\Gamma_\RR(s)$ factor, so we want to coerce this to look like $\Gamma(s)=\int_0^\infty e^{-x}x^s\,d^\times x.$ We let $y:=\pi x^2$ so that $d^\times y=2d^\times x.$ Our integral now looks like
+\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_0^\infty e^{-y}\pi^{-s/2}y^{s/2} d^\times y.\]
+This is $\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2),$ which is what we wanted. $\blacksquare$
+
+\begin{lemma}
+    We have that $\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\pi\Gamma_\CC(s)$ for complex archimedean $\nu.$
+\end{lemma}
+If $\nu$ is complex archimedean, then $K_\nu^\times\cong\CC^\times,$ so we are evaluating
+\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_{\CC^\times}e^{-2\pi|z|^2}|z|_\CC^s\,d^\times z,\]
+where $d^\times z/|z|_\CC$ with $dz$ twice the Lebesgue measure and $|\bullet|_\CC$ is the square of the typical magnitude. (We square so that multiplication corresponds to an actual scaling of space.) Transforming to polar coordinates, we get $dz=2dx\,dy=2rdr\,d\theta,$ and $d^\times z=(2/r)dr\,d\theta=2d^\times r\,d\theta,$ so
+\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_0^{2\pi}\int_0^\infty e^{-2\pi r^2}r^{2s}\,2d^\times r\,d\theta.\]
+Note that we can remove the $d\theta$ intergral to get a $2\pi$ out. Again, we would like $\Gamma$ to appear somewhere here, so we integrate over $x:=2\pi r^2$ so that $d^\times x=2d^\times r,$ which gives
+\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=2\pi\int_0^\infty e^{-x}x^s(2\pi)^{-s}\,d^\times x.\]
+The integral is now cleanly $(2\pi)^{-s}\Gamma(s),$ so indeed we see everything collapses to $\pi\cdot2(2\pi)^{-s}\Gamma(s)=\pi\Gamma_\CC(s)<$ as desired. $\blacksquare$
+
+\begin{lemma}
+    We have that $\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\cdot\left(1-\op N(\mf p)^{-s}\right)^{-1}$ for nonarchimedean $\mf p.$
+\end{lemma}
+We are evaluating
+\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\int_{K_\mf p}g_\mf p(x)|x|_\mf p^s\,d^\times x=\int_{\mathcal O_\mf p}|x|_\mf p^s\,d^\times x\]
+because $g_\mf p=1_{\mathcal O_\mf p}.$ Because $\mathcal O_\mf p$ is defined by $|x|_\mf p\le1,$ we can evaluate this as a geometric series by writing
+\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\sum_{k=0}^\infty\int_{|x|_\mf p=\op N(\mf p)^{-k}}\op N(\mf p)^{-ks}\,d^\times x.\]
+Because we are dealing with a multiplicative measure, we can transform the integral from $|x|_\mf p=\op N(\mf p)^{-k}$ to $|x|_\mf p=1$ (say, by multiplying by an appropriate power of the inverse uniformizer $\varpi^{-1}$). This means
+\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\left(\sum_{k=0}^\infty\op N(\mf p)^{-ks}\right)\int_{\mathcal O_\mf p^\times}d^\times x.\]
+The infinite sum collapses to $\left(1-\op N(\mf p)^{-s}\right)^{-1},$ so the integral is where the $\op N(\mathcal D_\mf p)^{-1/2}$ will come from.
+
+The measure $d^\times x$ can technically be defined in lots of ways, but we need $\mathcal O_\mf p^\times$ needs to have measure $1$ have all but finitely many $\mf p$ so that open sets of $\mathcal A_K^\times$ (where all but finitely many of the components are $\mathcal O_\mf p^\times$) can actually have measure. To do this naturally, our definition is $d^\times x=\frac1{1-\op N(\mf p)^{-1}}\cdot\frac{dx}{|x|_\mf p}$ so that
+\[\int_{\mathcal O_\mf p^\times}d^\times x=\frac1{1-\op N(\mf p)^{-1}}\int_{\mathcal O_\mf p\setminus\mf p}dx=\op N(\mathcal D_\mf p)^{-1/2}.\]
+In particular, the last inequality holds because $\mf p$ is one of $\op N(\mf p)$ cosets of $\mathcal O_\mf p.$ Anyways, we see this is $1$ for unramified primes $\mf p,$ so our wish is granted.
+
+Combining these, we see
+\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\frac1{1-\op N(\mf p)^{-s}}\cdot\op N(\mathcal D_\mf p)^{-1/2},\]
+which is what we wanted. $\blacksquare$
+
+We are finally ready to complete the proof of the proposition. We recall
+\[\zeta\left(g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right).\]
+Because $K$ has signature $(r_1,r_2),$ we know there are $r_1$ real archimedean places and $r_2$ complex archimedean places. We've evaluated these $\zeta_\nu$ elements, so our archimedean places contribute a total of $\Gamma_\RR(s)^{r_1}\cdot(\pi\Gamma_\CC(s))^{r_2}.$
+
+As for our archimedean places, our evaluation of the $\zeta_\mf p$ tells us we have
+\[\prod_\mf p\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{-1/2}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]
+It happens that the individual $\mathcal D_\mf p$ multiply together to give the full different $\mathcal D_K,$ which has norm $|\op{disc}\mathcal O_K|,$ so the first factor contributes $|\op{disc}\mathcal O_K|.$ The second factor is the Euler product for $\zeta_K(s).$
+
+Bringing this all together, we see that
+\[\prod_\mf p\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\Gamma_\RR(s)^{r_1}\cdot(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{-1/2}\zeta_K(s).\]
+This completes the proof of the proposition. $\blacksquare$
+
+We remark that the proposition provides an meromorphic continuation of $\zeta_K(s)$ because $\zeta\left(g,|\bullet|^s\right)$ and the $\Gamma$ factors all have meromorphic continuations. We do not talk in detail about what this looks like here; we're moving towards a real functional equation of $\zeta_K$ anyways.
+
+There is also a sister of the proposition we need to establish before we can actually apply the global $\zeta$ functional equation.
+\begin{proposition}
+    With $g:\AA_K\to\CC$ defined as above, we have for $\op{Re}s>1$ that
+    \[\zeta\left(\hat g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s-1}\zeta_K(s),\]
+    where $K$ has (absolute) signature $(r_1,r_2).$
+\end{proposition}
+We have actually done most of the work for this already. Starting the same way, we are evaluating
+\[\zeta\left(\hat g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(\widehat{g_\nu},|\bullet|_\nu^s\right).\]
+All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is archimedean, which is easier the second time.
+\begin{lemma}
+    We have that $\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{s-1}\cdot\left(1-\op N(\mf p)^{-s}\right)^{-1}$ for nonarchimedean $\mf p.$
+\end{lemma}
+Observe that when trying to establish our self-dual archimedean measures, we found $\widehat{g_\mf p}=\op N(\mathcal D_\mf p)^{-1/2}1_{\mathcal O_\mf p^\vee}.$ Fixing $d$ so that $\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,$ we see we want
+\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\int_{K_\mf p}\widehat{g_\mf p}(x)|x|_\mf p^s\,d^\times x=\op N(\mathcal D_\mf p)^{-1/2}\int_{\varpi^d\mathcal O_\mf p}|x|_\mf p^s\,d^\times x.\]
+As before, we turn this into an infinite geometric series, but this time we are integrating over $|x|_\mf p\le\op N(\mf p)^{-d},$ so
+\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\sum_{k=d}^\infty\int_{|x|_\mf p=\op N(\mf p)^{-k}}\op N(\mf p)^{-ks}\,d^\times x.\]
+Rescaling multiplicatively the integral over $|x|_\mf p=\op N(\mf p)^{-k}$ to $\mathcal O_\mf p^\times,$ we see
+\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\left(\sum_{k=d}^\infty\op N(\mf p)^{-ks}\right)\int_{\mathcal O_\mf p^\times}d^\times x.\]
+Recalling that the measure of $\mathcal O_\mf p^\times$ is $\op N(\mf p)^{-1/2},$ we see this is
+\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1}\sum_{k=d}^\infty\op N(\mf p)^{-ks}.\]
+Finally, the infinite series collapses to $\op N(\mf p)^{-ds}\cdot\frac1{1-\op N(\mf p)^{-s}}.$ After noting that $\op N(\mf p)^{-d}=\op N(\mathcal D_\mf p),$ we see that the above rearranges into the desired. $\blacksquare$
+
+In light of the above lemma, we see that the archimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute
+\[\prod_\mf p\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{s-1}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]
+As discussed, the product of $\op N(\mathcal D_\mf p)$ multiply out to $\op N(\mathcal D_K)=|\op{disc}\mathcal O_K|,$ so the left product is $|\op{disc}\mathcal O_K|^{s-1}.$ And again, the right-hand product is the Euler product of $\zeta_K(s).$
+
+Combining the archimedean factors with the nonarchimedean ones, we see
+\[\zeta\left(\hat g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s-1}\zeta_K(s),\]
+which is what we wanted. $\blacksquare$
+
+We are finally able to apply the global $\zeta$ functional equation. Namely, we know that
+\[\zeta\left(g,|\bullet|^s\right)=\zeta\left(\hat g,|\bullet|^{1-s}\right).\]
+Almost everything in the two propositions is symmetric except that $\zeta\left(g,|\bullet|^s\right)$ has a factor of $|\op{disc}\mathcal O_K|^{-1/2}$ where $\zeta\left(\widehat g,|\bullet|^{1-s}\right)$ has a factor of $|\op{disc}\mathcal O_K|^{-s}.$ To deal with this, we define
+\[\xi_K(s):=|\op{disc}\mathcal O_K|^{(s+1)/2}\zeta\left(g,|\bullet|^s\right)\]
+so that
+\[\xi_K(s)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s),\]
+and
+\[\xi_K(1-s)=\Gamma_\RR(1-s)^{r_1}(\pi\Gamma_\CC(1-s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{(1-s)/2}\zeta_K(1-s),\]
+which was configured to be $|\op{disc}\mathcal O_K|^{(s+1)/2}\zeta\left(\widehat g,|\bullet|^s\right).$ In particular, we know $\xi_K(s)=\xi_K(1-s).$ This gives the following.
+\begin{theorem}
+    Let $K$ be a number field and $\zeta_K$ the Dedekind zeta function. Then fixing
+    \[\Lambda_K(s)=\left(\frac{|\op{disc}\mathcal O_K|}{4^{r_2}\pi^n}\right)^{s/2}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\zeta_K(s),\]
+    we have the functional equation $\Lambda_K(s)=\Lambda_K(1-s).$
+\end{theorem}
+This follows from the above discussion after expanding out our definition of $\xi_K.$ Namely, we know that
+\[\xi_K(s)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s)\]
+satisfies $\xi_K(s)=\xi_K(1-s),$ so it remains to show that this equation for $\xi_K$ implies the one in the theorem. Plugging into the definitions $\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2)$ and $\Gamma_\CC(s)=2(2\pi)^{-s}\Gamma(s),$ this is
+\[\xi_K(s)=\pi^{-r_1s/2+r_2-r_2s}\cdot2^{r_2-r_2s}\cdot\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s).\]
+The factors $\pi^{r_2}$ and $2^{r_2}$ we may safely ignore because they do not depend on $s.$ Noting that $r_1+2r_2=n,$ we can simplify this a bit into
+\[\frac{\xi_K(s)}{2^{r_2}\pi^{r_2}}=\left(\frac{|\op{disc}\mathcal O_K|}{4^{r_2}\pi^n}\right)^{s/2}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\zeta_K(s).\]
+The right-hand side is $\Lambda_K,$ so we conclude $\Lambda_K(s)=\Lambda_K(1-s).$ This finishes the proof of the theorem. $\blacksquare$
+
+\subsubsection{April 18th}
+Today I learned about adjoints in category theory, from \href{https://web.archive.org/web/20210414151805/http://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf}{Vakil}. We have the following definition.
+\begin{definition}
+    Given categories $\mathcal A$ and $\mathcal B$ with functors $F:\mathcal A\to\mathcal B$ and $G:\mathcal B\to\mathcal A,$ then the pair $(F,G)$ is an adjuction if we have the ``natural'' bijection
+    \[\tau_{A,B}:\big(F(A)\to B\big)\to\big(A\to G(B)\big)\]
+    for any $A\in\mathcal A$ and $B\in\mathcal B.$ We might say that $F$ is a left adjoint or that $G$ is a right adjoint.
+\end{definition}
+We very quickly say that ``bijection'' means that there is another map $\tau_{A,B}^{-1}$ which composes to give the identity.
+
+The word ``natural'' in the above definition is something of a weasel word. To be explicit, we need the following diagram to commute for any $f:A\to A'.$
+\begin{center}
+    \begin{tikzcd}
+        \big(F(A')\to B\big) \arrow[d, "{\tau_{A',B}}"'] \arrow[rr, "(\bullet)\circ Ff"] &  & \big(F(A)\to B\big) \arrow[d, "{\tau_{A,B}}"] \\
+        \big(A'\to G(B)\big) \arrow[rr, "(\bullet)\circ f"]                              &  & \big(A\to G(B)\big)
+    \end{tikzcd}
+\end{center}
+Additionally, for $g:B\to B',$ we also need the following diagram to commute, in order to make $\tau_{A,B}^{-1}$ also natural.
+\begin{center}
+    \begin{tikzcd}
+        \big(A\to G(B)\big) \arrow[rr, "Gg\circ(\bullet)"]                          &  & \big(A\to G(B')\big) \\
+        \big(F(A)\to B\big) \arrow[u, "{\tau_{A,B}}"] \arrow[rr, "g\circ(\bullet)"] &  & \big(F(A)\to B'\big) \arrow[u, "{\tau_{A,B'}}"']
+    \end{tikzcd}
+\end{center}
+Roughly speaking, $\tau_{A,B}$ is roughly declaring the behavior $F$ and $G$ the same, over their individual categories. Being a bit crass, we can think about $F$ and $G$ as quasi-inverses in the homotopy type theory sense.
+
+For example, while we cannot show that $FG:\mathcal B\to\mathcal B$ is literally the identity, we can exhibit a map $\varepsilon_B:B\to FG(B)$ which behaves a lot like the identity with respect the adjunction.
+\begin{lemma}
+    There is a map $\varepsilon_B:B\to FG(B)$ which satisfies, for any $A\in\mathcal A$ and $B\in\mathcal B,$ we have $f:A\to G(B)$ has
+    \[F(A)\stackrel{\tau_{A,B}^{-1}(f)}\longrightarrow B=F(A)\stackrel{Ff}\longrightarrow FG(B)\stackrel{\varepsilon_B}\longrightarrow B.\]
+\end{lemma}
+Use the first commutative diagram with $A'=G(B)$ so that we can use $f:A\to G(B).$ This looks like the following.
+\begin{center}
+    \begin{tikzcd}
+        \big(FG(B)\to B\big) \arrow[d, "{\tau_{FG(B),B}}"'] \arrow[rr, "(\bullet)\circ Ff"] &  & \big(F(A)\to B\big) \arrow[d, "{\tau_{A,B}}"] \\
+        \big(G(B)\to G(B)\big) \arrow[rr, "(\bullet)\circ f"]                              &  & \big(A\to G(B)\big)
+    \end{tikzcd}
+\end{center}
+To use this diagram, we need to inhabit the lower-left corner with some map, but the only map we have access to is $\op{id}_{G(B)}.$ So we pull this back up to $\varepsilon_B:=\tau_{FG(B),B}^{-1}(\op{id}_{G(B)}).$ Now the diagram looks like the following.
+\begin{center}
+    \begin{tikzcd}
+        \varepsilon_B \arrow[d, "{\tau_{FG(B),B}}"', maps to] \arrow[rr, "(\bullet)\circ Ff", maps to] &  & \varepsilon_B\circ Ff \arrow[d, "{\tau_{A,B}}", maps to] \\
+        \op{id}_{G(B)} \arrow[rr, "(\bullet)\circ f", maps to]                              &  & f
+    \end{tikzcd}
+\end{center}
+It follows that $\tau_{A,B}^{-1}(f)=\varepsilon_B\circ Ff,$ which is what we wanted. $\blacksquare$
+
+We can also construct a mirror $\eta_A$ using the other commutative diagram.
+\begin{lemma}
+    There is a map $\eta_A:A\to GF(A)$ which satisfies, for any $A\in\mathcal A$ and $B\in\mathcal B,$ we have $g:F(A)\to B$ has
+    \[A\stackrel{\tau_{A,B}(g)}\longrightarrow G(B)=A\stackrel{\eta_A}\longrightarrow GF(A)\stackrel{Gg}\longrightarrow G(B).\]
+\end{lemma}
+Use the second commutative diagram with $B=F(A)$ and $B'=B.$ This looks like the following.
+\begin{center}
+    \begin{tikzcd}
+        \big(A\to GF(A)\big) \arrow[rr, "Gg\circ(\bullet)"]                            &  & \big(A\to G(B)\big)                             \\
+        \big(F(A)\to F(A)\big) \arrow[u, "{\tau_{A,F(A)}}"] \arrow[rr, "g\circ(\bullet)"] &  & \big(F(A)\to B\big) \arrow[u, "{\tau_{A,B}}"']
+    \end{tikzcd}
+\end{center}
+Again, without much to do, we push $\op{id}_{F(A)}$ into the bottom-left to set $\eta_A:=\tau_{A,F(A)}(\op{id}_{F(A)}).$ Following the rest of the diagram through, we have the following.
+\begin{center}
+    \begin{tikzcd}
+        \eta_A \arrow[rr, "Gg\circ(\bullet)", maps to]                                            &  & Gg\circ\eta_A                 \\
+        \operatorname{id}_{F(A)} \arrow[u, "{\tau_{A,F(A)}}", maps to] \arrow[rr, "g\circ(\bullet)", maps to] &  & g \arrow[u, "{\tau_{A,B}}"', maps to]
+    \end{tikzcd}
+\end{center}
+It follows that $\tau_{A,B}(g)=Gg\circ\eta_A,$ which is what we wanted. $\blacksquare$
+
+In my head, I'm thinking about $\eta_A$ and $\varepsilon_B$ as more or less identity maps in the most natural way with these functors. They entirely determine the adjoint, as shown in the lemmas, and I am under the impression we can actually define the adjoint backwards from the $\eta_A$ and $\varepsilon_B$ maps.
+
+\subsubsection{April 19th}
+Today I learned (finally) the proof of the fundamental correspondence in Galois theory, from Marcus (say). We assume that a finite extension $L/K$ has $[L:K]$ embeddings into $\CC,$ and we take the primitive element theorem (for separable extensions) on faith. The main theorem is the following.
+\begin{theorem}
+    Suppose $M/K$ is a finite, separable, normal extension with Galois group $G:=\op{Gal}(M/K).$ Then we can biject from intermediate subgroups $H\subseteq G$ to intermediate fields by taking the fixed field $M^H.$
+\end{theorem}
+We can by showing the map is well-defined. The set of elements of $M$ fixed by a particular subgroup does indeed make a field: at least $\alpha,\beta\in M^H$ implies
+\[\begin{cases}
+    \sigma(\alpha+\beta)=\sigma(\alpha)+\sigma(\beta)=\alpha+\beta, \\
+    \sigma(\alpha\cdot\beta)=\sigma(\alpha)\cdot\sigma(\beta)=\alpha\cdot\beta,
+\end{cases}\]
+and a subring of a field (say, containing $1$) is a subfield.
+
+To show surjectivity, pick up any intermediate field $L,$ and we would like to take it to $\op{Gal}(M/L)\subseteq\op{Gal}(M/K).$ Note that any embedding of $M$ fixing $L$ is also an embedding of $M$ fixing $K$ and therefore lives in $\op{Gal}(M/K).$ Further, this subset of $\op{Gal}(M/K)$ is closed under composition and inversion (which we won't show explicitly), so it is a subgroup. We let this subgroup be $H:=\op{Gal}(M/L)\subseteq\op{Gal}(M/K).$
+
+It remains to show that $L$ is actually the fixed field of $H.$ This is a size problem. Focusing on $M/L,$ we see that it is a finite, separable (inherited from $M/K$), normal (above) extension, so we have
+\[[M:L]=\#\op{Gal}(M/L)\]
+total embeddings of $M$ into $\CC$ fixing $L.$ However, we must also have $\op{Gal}(M/L)\subseteq\op{Gal}(M/M^H),$ implying $[M:L]\le[M:M^H],$ and certainly $L\subseteq M^H,$ so we conclude $L=M^H.$
+
+For injectivity, we have to show that two subgroups $H_1$ and $H_2$ cannot have the same fixed field $L\subseteq M.$ For this, we claim that, actually,
+\[\op{Gal}(M/M^H)=H,\]
+implying that we can read the subgroup off of the fixed field. (The Galois group is defined because $M^H$ is an intermediate field of the Galois extension $M/K$; see above.) In particular, this will be enough because, if $M^{H_1}=M^{H_2},$ then $\op{Gal}(M/M^{H_1})=\op{Gal}(M/M^{H_2}),$ so $H_1=H_2$ as we need.
+
+Showing that $\op{Gal}(M/M^H)=H$ comes down to a size condition. Certainly all automorphisms in $H$ belong in $\op{Gal}(M/M^H),$ but the issue is that we might have more automorphisms. To control this, we let $L=M^H,$ and we're showing that $L$ is not the fixed field of any proper subgroup of $\op{Gal}(M/L)$ (which $H$ would be if there were extra automorphisms).
+
+This, again, comes down to a size condition. Fix $H\subseteq\op{Gal}(M/L)$ whose fixed field is $L.$ Using the primitive element theorem, we can fix $M=L[\alpha],$ and then we focus on the polynomial
+\[f(x):=\prod_{\sigma\in H}(x-\sigma\alpha).\]
+The coefficients of $f(x)$ are fixed by $H$---they are symmetric sums of products of $\sigma_\bullet$s, so applying anything in $H$ merely permutes the symmetric sum---meaning that the coefficients live in $L,$ or $f\in L[x].$ Expanding $M$ as $L$ with a power basis $\alpha^\bullet,$ we see that we are forced to have
+\[\deg f=[M:L]=\#\op{Gal}(M/L).\]
+In particular, $\#H=\#\op{Gal}(M/L),$ so we had better have $H=\op{Gal}(M/L).$ This completes the proof. $\blacksquare$
+
+We remark that the proof also gives the inclusion reversing cleanly. In particular, subgroups $A,B\subseteq\op{Gal}(M/K)$ correspond (one-to-one) with their fixed fields $M^A$ and $M^B.$ But $A\subseteq B$ if and only if $M^B\subseteq M^A$ (``the set of elements fixed by $B$ is also fixed by $A$''), which is the inclusion-reversing property.
+
+We also prove the following refinement in the context of the previous theorem.
+\begin{theorem}
+    The Galois correspondence takes normal subgroups to fields normal over $K$ (and vice versa).
+\end{theorem}
+The main idea is that, for an intermediate field extension $L$ between $M/K$ and $\sigma\in\op{Gal}(M/K),$ we have
+\[\op{Gal}(M/\sigma L)=\sigma\op{Gal}(M/L)\sigma^{-1}.\]
+Indeed, $\tau\in\op{Gal}(M/\sigma L)$ if and only if $\tau$ fixes $\sigma L$ if and only if $\sigma^{-1}\tau\sigma$ fixes $L$ if and only if $\tau\in\sigma\op{Gal}(M/L)\sigma^{-1}.$
+
+Now, the statement that $L$ is normal over $K$ is that all embeddings of $L/K$ are in fact automorphisms. Well, any of the embeddings of $L/K$ can be extended to embeddings (and therefore automorphisms) of $M/K,$ so we only have to check restrictions of $\op{Gal}(M/K).$ In particular, $L$ is normal over $K$ if and only if
+\[\sigma L=L\]
+for each $\sigma\in\op{Gal}(M/K).$ Well, the subgroup fixing $\sigma L$ is $\sigma\op{Gal}(M/L)\sigma^{-1},$ so the Galois correspondence asserts that this holds if and only if
+\[\sigma\op{Gal}(M/L)\sigma^{-1}=\op{Gal}(M/K)\]
+for each $\sigma\in\op{Gal}(M/K).$ In particular, $L$ is normal over $K$ if and only if $\op{Gal}(M/L)$ is a normal subgroup, which is what we wanted. $\blacksquare$
+
+\subsubsection{April 20th}
+Today I learned a little about the relationship between localizing a global field and localizing a ring. For concreteness, we fix $K$ a number field and $\mf p$ a (finite) prime. In order to differentiate notation, we let $\mathcal O_\mf p$ be the $\mf p$-adic integers, and we let
+\[\mathcal O_{\mathcal O\setminus\mf p}=\left\{\frac ab\in K:b\not\in\mf p\right\}\]
+be the localization of the ring.
+
+To begin with, we remark that these are definitely not equivalent objects. For example, $\mathcal O_{\mathcal O\setminus\mf p}\subseteq K$ is countable, but thinking about
+\[\mathcal O_\mf p=\varprojlim\mathcal O_K/\mf p^\bullet\mathcal O_K\]
+as coherent sequences, this set bijects into $(\mathcal O_K/\mf p)^\NN$---each next term in the coherent sequence has $|\mathcal O_K/\mf p|$ possibilities because $(\mathcal O_K/\mf p^{n+1})/(\mathcal O_K/\mf p^n)\cong\mathcal O_K/\mf p).$ And we know that
+\[|\RR|=\left|\{0,1\}^\NN\right|=\left|(\ZZ/2\ZZ)^\NN\right|\le\left|(\mathcal O_K/\mf p)^\NN\right|\le\left|(\ZZ/2^{\op N(\mf p)}\ZZ)^\NN\right|=|\RR|.\]
+In particular, $\mathcal O_\mf p$ is uncountable.
+
+However, we do have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p$ which inherits a lot of its properties from the embedding $K\to K_\mf p.$
+\begin{proposition}
+    We have a dense embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
+\end{proposition}
+The idea is to take the dense embedding $K\to K_\mf p$ and restrict the input to $\mathcal O_{\mathcal O\setminus\mf p}.$ In particular, for any $\frac ab\in\mathcal O_{\mathcal O\setminus\mf p}$ with $b\not\in\mf p,$ we have that
+\[\left|\frac ab\right|_\mf p=\frac{|a|_\mf p}{|b|_\mf p}\le\frac11=1,\]
+so this restriction does go into $\mathcal O_\mf p\subseteq K_\mf p.$ So we have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
+
+However, we know stronger. In particular, if we pick up $k\in K\cap\mathcal O_\mf p,$ then we claim $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ We may write $k=\frac ab$ with $a,b\in\mathcal O_K,$ and because $a,b\in\mathcal O_\mf p$ (via the above embedding), we can write $a=a_0\varpi^\alpha$ and $b=b_0\varpi^\beta,$ where $\varpi\in\mf p^2\setminus\mf p$ and $a_0,b_0\not\in\mf p.$ In particular, $a/b\in\mathcal O_\mf p$ requires
+\[0\le\nu_\mf p(a/b)=\nu_\mf p(a_0)-\nu_\mf p(b_0)+\alpha-\beta=\alpha-\beta.\]
+This lets us write
+\[\frac ab=\frac{a_0\varpi^\alpha}{b_0\varpi^\beta}=\frac{a_0\varpi^{\alpha-\beta}}{b_0}\in\mathcal O_{\mathcal O\setminus\mf p}.\]
+Thus, the elements that go into $\mathcal O_\mf p$ in the embedding are ones that start in $\mathcal O_{\mathcal O\setminus\mf p}.$
+
+This tells us our embedding is dense pretty quickly. Fixing any open ball $B(a,r)\subseteq\mathcal O_\mf p\subseteq K_\mf p,$ we know that $K\subseteq K_\mf p$ is dense, so we can find $k\in K\cap B(a,r).$ But then $k\in\mathcal K\cap O_\mf p,$ so the above argument requires $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ So $k$ provides our element of $\mathcal O_{\mathcal O\setminus\mf p}\cap B(a,r).$ $\blacksquare$
+
+From the point of view of number theory, the above lemma basically is telling me to think about $\mathcal O_{\mathcal O\setminus\mf p}$ as the $\mf p$-adic integers in $K.$ I don't personally use them much, but they do have some of the usual properties associated with the $\mf p$-adic integers. For example, we have the following.
+\begin{proposition}
+    We have that $\mathcal O_{\mathcal O\setminus\mf p}$ is a discrete valuation ring with $\mf p\mathcal O_{\mathcal O\setminus\mf p}$ its only maximal ideal.
+\end{proposition}
+We classify the ideals of $\mathcal O_{\mathcal O\setminus\mf p}.$ Let $I$ be any ideal of $\mathcal O_{\mathcal O\setminus\mf p}.$ All elements of $\mathcal O_{\mathcal O\setminus\mf p}$ have $\nu_\mf p$ bounded below by $0$ because the denominator cannot have elements divisible by $\mf p.$ So we can find $a\in I$ such that
+\[\nu_\mf p(\alpha)=\inf_{\beta\in I}\nu_\mf p(\beta)\]
+by the well-order of $\NN.$ Now we claim that $I=\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p}.$ Indeed, $I\subseteq\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p}$ because the numerator of any element of $I$ must have at least $\nu_\mf p(\alpha)$ powers of $\mf p.$
+
+On the other hand, we can write any element of $\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p},$ as
+\[\underbrace{p_1\cdot\ldots\cdot p_{\nu_\mf p(\alpha)}}_{\in\mf p}\cdot\frac xy=\alpha\cdot\underbrace{\frac{p_1}{\alpha}}_{\in\mathcal O_{\mathcal O\setminus\mf p}}\cdot p_2\cdot\ldots\cdot p_{\nu_\mf p(\alpha)}\cdot\frac xy\in\alpha\mathcal O_{\mathcal O\setminus\mf p}.\]
+In particular, this element lives in $I,$ which completes the proof. $\blacksquare$
+
+\subsubsection{April 21st}
+Today I learned about the different in the monogenic case.\todo{}
+
+\subsubsection{April 22nd}
+Today I learned an example of contour integration, to build towards the Prime Number Theorem. For the time being, fix $x>1,$ and we are interested in evaluating
+\[\frac1{2\pi i}\int_{c-iR}^{c+iR}\frac{x^s}s\,ds\]
+for $c>0$ and $R\to\infty.$ As motivation, this will turn into $1$ as $R\to\infty,$ and we remark that the Cauchy integral formula says
+\[\frac1{2\pi i}\oint_\gamma\frac{x^s}s\,ds=x^0=1\]
+for any loop $\gamma$ around the origin. Thus, we can hope to make a contour with the desired integral as one edge and the other sides of vanishing impact.
+
+Here's the contour: fix $-a\in\RR$ very negative, and we move in a rectangle containing the points $c\pm iR$ and $-a\pm iR.$ We call this contour $\Gamma_a,$ and it looks like the following.
+\begin{center}
+    \begin{asy}
+        unitsize(0.7cm);
+        real c=0.5, R=3, a=7;
+        draw((c,R)--(c,-R), BeginArrow);
+        draw((c,-R)--(-a,-R), BeginArrow);
+        draw((-a,-R)--(-a,R), BeginArrow);
+        draw((-a,R)--(c,R), BeginArrow);
+        draw((0,R+1)--(0,-R-1));
+        draw((c+1,0)--(-a-1,0));
+        dot("$c+iR$", (c,R), NE);
+        dot("$c-iR$", (c,-R), SE);
+        dot("$-a+iR$", (-a,R), NW);
+        dot("$-a-iR$", (-a,-R), SW);
+    \end{asy}
+\end{center}
+The integral around the entire contour should evaluate to $1.$ The right side is the one we are interested in, so we have to show that the remaining sides vanish as $a\to\infty$ and $R\to\infty.$
+
+The top and bottom sides are
+\[\left|\int_{\text{top or bot.}}\frac{x^s}s\,ds\right|=\left|\pm\int_{-a\pm iR}^{c\pm iR}\frac{x^s}s\,ds\right|\le\int_{-a\pm iR}^{c\pm iR}\frac{\left|x^s\right|}{|s|}\,ds.\]
+(The $\pm$ at the front is due to the direction of integration.) We can bound $|s|$ by $R$ because that it is the imaginary part. The numerator we write as $\left|x\right|^s=x^{\op{Re}s}=e^{(\log x)\op{Re}s}.$ Because we now only care about the real part, we might as well integrate from $-a$ ro $c,$ so this we are bounding by
+\[\left|\int_{\text{top or bot.}}\frac{x^s}s\,ds\right|\le\int_{-a}^{c}\frac{e^{(\log x)\sigma}}R\,d\sigma.\]
+This integral evaluates to $\frac1R\left(x^c-x^{-a}\right),$ which is $O(1/R)$ as $a\to\infty.$
+
+As for the left side, we bound it similarly by
+\[\left|\int_{\text{left}}\frac{x^s}s\,ds\right|=\left|\int_{-a+iR}^{-a-iR}\frac{x^s}s\,ds\right|\le\int_{-a+iR}^{-a-iR}\frac{\left|x^s\right|}{|s|}\,ds.\]
+For sufficiently large $a$ (more precisely, $a>R$), we can bound $|s|$ by $R.$ Combining this with $\left|x^s\right|=x^{\op{Re}s}=x^{-a},$ this evaluates to
+\[\left|\int_{\text{left}}\frac{x^s}s\,ds\right|\le\int_{-a+iR}^{-a-iR}\frac{x^{-a}}R\,ds=2ax^{-a}.\]
+As $a\to\infty,$ this will vanish.
+
+In total, we have that
+\[2\pi i=\int_{\Gamma_a}\frac{x^s}s\,ds=\int_{\text{right}}\frac{x^s}s\,ds+\int_{\text{top}}\frac{x^s}s\,ds+\int_{\text{left}}\frac{x^s}s\,ds+\int_{\text{bot.}}\frac{x^s}s\,ds.\]
+As we send $a\to\infty,$ the right integral vanishes, and the top and bottom integrals are $O(1/R).$ So we have that
+\[\int_{\text{right}}\frac{x^s}s\,ds=2\pi i+O(1/R).\]
+In particular, we have proven the following.
+\begin{proposition}
+    For $x>1,$ we have that
+    \[\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{x^s}s\,ds=1,\]
+    where the integral is the Cauchy principal value.
+\end{proposition}
+This follows from the above discussion, by noting that taking $R\to\infty$ in
+\[\frac1{2\pi i}\int_{c-iR}^{c+iR}\frac{x^s}s\,ds=1+O(1/R)\]
+gives the needed result. $\blacksquare$
+
+We will not show this in detail here, but we will write down the other side of this claim.
+\begin{proposition}
+    For $0<x<1,$ we have that
+    \[\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{x^s}s\,ds=1,\]
+    where the integral is again the Cauchy principal value.
+\end{proposition}
+This is done by pretty much repeating the above estimates with $\Gamma_a$ defined by the rectangle with corners $c\pm iR$ and $a\pm iR$ for very positive $a.$ In particular, the integral picks up no roots, so the entire integral vanishes over the contour. The added sides of the rectangle vanish as $a,R\to\infty.$ $\blacksquare$
+
+Of course, we've left a whole at $x=1,$ which doesn't fall to contour integration tricks very easily. For example, using the $\Gamma_a$ rectangle from the $x>1$ argument will find that the left side doesn't actually vanish as $a\to\infty.$
+
+However, it turns out that we can just evaluate directly. For large $R\in\RR,$ we are interested in
+\[\int_{c-iR}^{c+iR}\frac{ds}s=\int_{-R}^R\frac{db}{c+bi}.\]
+To avoid having to deal with the complex logarithm, we complete the square to make this integral
+\[\int_{c-iR}^{c+iR}\frac{ds}s=\int_{-R}^R\frac{c-bi}{c^2+b^2}\,db=\int_{-R}^R\frac c{c^2+b^2}\,db-i\int_{-R}^R\frac b{c^2+b^2}\,ds.\]
+The second integral is of an odd function, so it vanishes. The first integral simplifies to
+\[\int_{-R}^R\frac1{1+(b/c)^2}\,\frac{db}c=\int_{-R/c}^{R/c}\frac1{1+u^2}\,du=\arctan(u)\bigg|_{-R/c}^{R/c}.\]
+As $R\to\infty,$ this looks like $\frac\pi2--\frac\pi2=\pi.$ Putting this all together, we get the following.
+\begin{proposition}
+    We have that
+    \[\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{ds}s=\frac12.\]
+\end{proposition}
+The above discussion shows that
+\[\int_{c-iR}^{c+iR}\frac{ds}s=2i\arctan\left(\frac Rc\right).\]
+Taking $R\to\infty$ tells us that the integral is $\pi i,$ and then dividing by $2\pi i$ gives the result. $\blacksquare$
+
+\subsubsection{April 23rd}
+Today I learned how to extract the Dirichlet series coefficients from a Dirichlet series function, from \href{https://mathoverflow.net/q/30975}{here}. The intuition is that, given a Dirichlet series $f(s)=\sum_{n=1}^\infty a_nn^{-s},$ we can write this like
+\[f(s)=\sum_{n=1}^\infty a_ne^{(-\log n)s}.\]
+Now, we can hope that these exponentials are somewhat orthogonal, so we should try an inner product with $e^{(\log m)s}$ to extract the $a_m$ term of this series, as with Fourier series. Something like this works.
+\begin{proposition}
+    Fix $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ a Dirichlet series. Given that $f(s)$ absolutely converges at $\sigma\in\RR,$ then we can write
+    \[a_m=\lim_{T\to0}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt\]
+    for positive integers $m.$
+\end{proposition}
+The absolute convergence condition is a bit annoying, but in my experience most series I come across absolutely converge at some $\sigma\in\RR.$ For example, as long as $a_n$ is polynomial, we're safe.
+
+Anyways, fix $T$ for now to be made large later. Treating this like a Fourier series, we expand out the integral as
+\[\int_{-T}^T\left(\sum_{n=1}^\infty\frac{a_n}{n^{\sigma+it}}\right)m^{\sigma+it}\,dt.\]
+We can put absolute values everywhere, and this will converge fine---$|a_n/n^{\sigma+it}|=|a_n|/n^\sigma,$ and the sum converges absolutely at $\sigma,$ but the integral is finite and so safe. So Fubini's theorem lets us interchange these so that the integral is
+\[\sum_{n=1}^\infty\int_{-T}^T\frac{a_n}{n^{\sigma+it}}\cdot m^{\sigma+it}\,dt=m^\sigma\sum_{n=1}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]
+Now, when $m=n,$ this integral collapses to $\int_{-T}^Tdt=2T,$ so we remove this term from the sum to get
+\[2Ta_m+m^\sigma\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]
+We have to show that the sum is $o(T).$ Note $(m/n)^{-it}$ behaves like a nontrivial complex exponential, so we expect lots of cancellation. (This is like how a geometric series can detect when the common ratio is $1.$) Namely, when $m\ne n,$ let $\alpha=\log(m/n)\ne0$ so that $(m/n)^{-it}=e^{\alpha it}.$ Thus,
+\[\int_{-T}^T(m/n)^{it}\,dt=\int_{-T}^Te^{\alpha it}\,dt=\frac{e^{\alpha iT}-e^{-\alpha iT}}{\alpha i}.\]
+We can bound the absolute value of this below $\alpha_m:=2/|\log((m+1/m))|$; in particular, $|\alpha|$ is strictly decreasing and concave up, so the $n$ with the smallest absolute value is at $n=m+1.$ Anyways, the point is that the integral is $O(1)$ with respect to $n,$ so we can write
+\[\Bigg|\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right)\Bigg|\le\alpha_m\sum_{\substack{n=1\\n\ne m}}^\infty\frac{|a_n|}{n^\sigma},\]
+which is finite because $f(s)$ absolutely converges at $\sigma.$
+
+Bringing this together, we see that
+\[\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=a_m+\frac{m^\sigma}{2T}\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]
+We just showed that the sum is bounded in absolute value by a constant (not dependent on $T$), so as we take $T\to\infty,$ that term is $O(1/T)$ and vanishes. So in total we get that
+\[\lim_{T\to\infty}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=a_m.\]
+This is what we wanted. $\blacksquare$
+
+It is perhaps surprising that we are integrating over a line from $\sigma-iT$ to $\sigma+iT$ instead of a more sane contour as is common with, say, power series. However, I think the moral of the story with these types of Dirichlet series is that where power series use circular contours, Dirichlet series use vertical lines. As for why, I think
+\[\left|n^s\right|=n^{\op{Re}s}\]
+is the reason why. Namely, growth properties at $s$ translate reasonably well to anything on $\op{Re}s.$
+
+Anyways, because the function behavior can extract the Dirichlet series coefficients now, we can show that the function determines its Dirichlet series. To begin with, we note that two Dirichlet series $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ and $g(s)=\sum_{n=1}^\infty b_nn^{-s}$ which absolutely converge somewhere must both converge at some real $\sigma\in\RR.$
+
+Indeed, given that $f(s)$ and $g(s)$ converge absolutely at some $s_a$ and $s_b$ respectively, then for any $\sigma\in\RR$ greater than $\op{Re}s_a,$ we have that
+\[|f(\sigma)|\le\sum_{n=1}^\infty\frac{|a_n|}{n^\sigma}\le\sum_{n=1}^\infty\frac{|a_n|}{\left|n^{s_a}\right|}<\infty\]
+because of the absolute convergence. It follows we can fix some $\sigma>\max\{\op{Re}s_a,\op{Re}s_b\}$ so that both $f(s)$ and $g(s)$ converge absolutely at $\sigma.$
+\begin{proposition}
+    Suppose we have $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ and $g(s)=\sum_{n=1}^\infty b_nn^{-s}$ both converge absolutely at $\op{Re}s=\sigma$ and that $f(s)=g(s)$ along this line. Then $a_n=b_n$ for each positive integer $n.$
+\end{proposition}
+We can use the previous proposition to note that, given positive integer $m,$
+\[\lim_{T\to0}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=\lim_{T\to0}\frac1{2T}\int_{-T}^Tg(\sigma+it)m^{\sigma+it}\,dt\]
+implies that $a_m=b_m.$ In particular, we have used the full strength of $f(s)=g(s)$ along $\op{Re}(s)=\sigma$ in the integral. This completes the proof. $\blacksquare$
+
+The above feels somewhat surprising to me, or at least it did for a while. Namely, the exponentials $n^s$ over positive integers $n$ are pretty ``slow,'' so it feels like we could finagle two series to be equal at a couple of values but not equal over the entire plane. Of course, this is also true for power series: $\sin(z)$ and $\cos(z)$ intersect infinitely often.
+
+However, as soon as we require the two series to be equal over some part of $\CC$ of geometric substance---a circle for power series and a vertical line for Dirichlet series---then we get full equality wherever the series converge.
+
+\subsubsection{April 24th}
+Today I learned about line bundles. Like every bad definition, we begin by defining the more abstract term ``vector bundle.'' Intuitively, this is associating a vector space to each point of a topological space.
+\begin{definition}
+    A vector bundle consists of a topological space $X$ and total space $E$ with base field $K$ along with a continuous projection map $\pi$ such that $\pi^{-1}(\{x\})$ is a vector space for each $x\in X.$
+    
+    Further, we require a coherence law in that, for each point $x\in X,$ there is an open set $U_x$ such that we can exhibit a dimension $d_x\in\NN$ and homeomorphism
+    \[\varphi_x:U_x\times k^d\to\pi^{-1}(U).\]
+    To make this a coherence law, we also ask that $\pi\circ\varphi_x:U_x\times k^d\to U$ to be the projection map, and for fixed $x'\in U_x,$ we want $v\mapsto\varphi_x(x',v)$ to be an isomorphism of vector spaces.
+\end{definition}
+We have a couple quick remarks about this definition because there is a lot to unpack.
+\begin{itemize}
+    \item To make the intuition concrete, the vector bundle roughly sends $x\in X$ to $\pi^{-1}(\{x\}),$ associating the point to a vector space. The way we codified this intuition is to place everything in a huge space $E$ that localizes into vector spaces a points.
+    \item The coherence law is essentially supposed to make sure that the vector bundle outputs vector spaces that communicate with each other along the topology.
+    \item The homeomorphism $\varphi_x:U\times k^d\to\pi^{-1}(U)$ equips $k^d$ with a metric topology. Our base field should be $\RR$ or $\CC$ so that we actually have a topology to use here.
+    \item The linear map $\varphi_x(x')$ at the end is outputting into the vector space $\pi^{-1}(x').$ In particular, this follows from the fact $\pi\circ\varphi$ is supposed to project onto the $x'$ coordinate.
+    \item As long as $X$ is connected, the dimensions should all be the same.
+    
+    In particular, find points $x_1$ and $x_2$ with open neighborhoods $U_1$ and $U_2$ with homeomorphisms $\varphi_1$ and $\varphi_2$ and dimensions $d_1$ and $d_2.$ If $x\in U_1\cap U_2,$ then
+    \[k^{d_1}\stackrel{\varphi_1(x)}\cong\pi^{-1}(\{x\})\stackrel{\varphi_2(x)}\cong k^{d_2}.\]
+    Thus, points with different corresponding dimensions have different neighborhoods, so the set of all points with dimension $d_\bullet$ is open and disjoint with the set of points with a different dimension; this divides $X$ into at least as many components as dimensions.
+    \item The above point is an example of the intuition that the coherence law roughly means that the vector bundle is ``locally trivial'': at each individual neighborhood $U_x,$ the vector bundle very roughly acts like a constant isomorphism of vector spaces.
+\end{itemize}
+As an toy example, we can let $E=X\times k^d$ and then have $\pi$ be a literal projection. For each $x\in X,$ we can just choose $U_x=E,$ and $\varphi_x$ should be $\op{id}.$ Indeed, $\pi\circ\varphi_x:E\times k^d\to E$ is the projection mapping, and $v\mapsto\varphi_x(x',v)$ for some other $x'\in U_x$ is the constant isomorphism $k^d\cong k^d.$
+
+With all of that talk about dimension earlier, the reader will be justifiably annoyed by the definition of a line bundle.
+\begin{definition}
+    A line bundle over a topological space $X$ is a vector bundle with constant dimension $1.$
+\end{definition}
+Again, we are intuitively associating a ``line'' (i.e., a one-dimensional vector space) at each point of the topological space $X.$ So our line bundle needs to have all of the previous data, with the constraint that $d_x=1$ for each $x\in X.$
+
+Here's a nontrivial example of a line bundle: the M\"obius strip.
+\begin{center}
+    \begin{asy}
+        unitsize(2cm);
+        draw(ellipse((0,0),2,1));
+        int N = 60;
+        real h = 0.2;
+        pair pt(real theta)
+        {
+            return (2*cos(theta), sin(theta));
+        }
+        pair[] pts = new pair[60];
+        for(int i = 0; i < N; ++i)
+        {
+            pts[i] = pt(2*3.1415926535 * i/N);
+        }
+        for(int i = 0; i < N; ++i)
+        {
+            draw(pts[i] - h*dir(180*i/N) -- pts[i] + h*dir(180*i/N), red);
+            draw(pts[i] - h*dir(180*i/N) -- pts[(i+1) % N] - h*dir(180*(i+1)/N), dotted);
+            draw(pts[i] + h*dir(180*i/N) -- pts[(i+1) % N] + h*dir(180*(i+1)/N), dotted);
+            dot(pts[i]);
+        }
+    \end{asy}
+\end{center}
+Namely, we associate each point on the ``axis'' of $S^1$ with its perpendicular line (in red) living in the M\"obius strip. To be explicit, we want to associate $(\cos\theta,\sin\theta)\in S^1$ with the line spanned by $(\cos\theta/2,\sin\theta/2),$ so we do this in the rudest way possible: set
+\[E=\bigcup_{\theta\in[0,2\pi)}\{\theta\}\times(\cos\theta/2,\sin\theta/2)\RR.\]
+Now the projection map $\pi$ simply collapses onto the first coordinate. In order to make this work out properly later, we make our topology on $E$ the roughest topology such that the mapping $\varphi:S^1\times\RR\to E$ by
+\[\varphi\big((\cos\theta,\sin\theta),r\big):=\big(\theta,(r\cos\theta/2,r\sin\theta/2)\big)\]
+is continuous. (Intuitively, spin a line around like a corkscrew.) Namely, $U\subseteq E$ is open if and only if $\varphi^{-1}(U)$ is open in $S^1\times\RR.$ We note that $\varphi$ is in fact a bijection: the inverse mapping is to read $\theta$ off the first coordinate and $r$ off the magnitude of the second coordinate.
+
+Now, we note that for any $(\cos\theta,\sin\theta)\in S^1$ can take $\theta\in[0,2\pi)$ so that
+\[\pi^{-1}((\cos\theta,\sin\theta))=\{\theta\}\times(\cos\theta/2,\sin\theta/2)\RR,\]
+which inherits a vector space over $\RR$ from its second coordinate. Further, $\pi$ is continuous because, for $U$ open, $\pi^{-1}(U)$ consists of points found in the first coordinate of points in $\varphi^{-1}(U),$ so the openness of $\pi^{-1}(U)$ follows from the continuity of $\varphi$ (and the openness of $\varphi$'s projection map).
+
+It remains to talk about the coherence law. We're not going to be terribly rigorous with this. Being as direct as possible, we make the necessary open cover $\{U_x\}_{x\in X}$ just consist of $S^1$ so that we have to define a single $\varphi:S^1\times\RR\to E$; we use the $\varphi$ from earlier.
+
+Because $\varphi$ was used to define the topology on $E,$ I'm pretty sure we get that $\varphi$ is a homeomorphism for free after knowing it's bijective. Namely, it's continuous by construction, and while technically the sets $\varphi^{-1}(U)$ for $U\subseteq S^1\times\RR$ open merely form a subbasis, it is true that $\varphi^{-1}$ distributes over arbitrary union and finite intersection, so we should be fine.
+
+Now we check the equations of the coherence law. We need $\pi\circ\varphi:S^1\times\RR\to S^1$ to be the projection, and indeed this follows by our definition of $\varphi$ and construction of total space $E.$ And lastly we require that, for fixed $x:=(\cos\theta,\sin\theta)\in S^1,$ the mapping
+\[r\mapsto\varphi(x,r)=\big(\theta,(r_0\cos\theta/2,r_0\sin\theta/2)\big)\]
+is an isomorphism of vector spaces. Indeed, these are both lines over $\RR.$
+
+\subsubsection{April 25th}
+Today I learned about Pratt primality certificates. The idea here is that primes are the only integers with $\varphi(n)=n-1,$ and primes are one of the comparatively few integers with a generator. Thus, we can prove that $p$ is prime primality by exhibiting a generator with order $p-1.$ We codify this as follows.
+\begin{proposition}
+    Suppose we are given a positive integer $p$ and a witness $g$ such that $g^{p-1}\equiv1\pmod p$ but $g^{(p-1)/q}\not\equiv1\pmod p$ for each prime $q\mid p-1.$ Then $g$ has multiplicative order $p-1,$ and $p$ is prime.
+\end{proposition}
+So that we don't have to worry about it, we note that $p=1$ fails the test because $g^k\equiv1\pmod1$ for any integers $a$ or $k,$ so it's impossible to satisfy the second hypothesis on $g.$
+
+The fact that $g^{p-1}\equiv1\pmod p$ guarantees that $\gcd(g,p)\le\gcd(g^{p-1},p)=\gcd(1,p)=1,$ so $g\in(\ZZ/p\ZZ)^\times.$ Now, we can ask you what the multiplicative order of $g\pmod p$ is; let the order be $N.$ We claim that $N=p-1,$ which is where we will use the other hypothesis on $g.$
+
+Well, $g^{p-1}\equiv1$ means that $N\mid p-1.$ Further, we are given that, fixing any prime $q\mid p-1,$ we have
+\[g^{(p-1)/q}\not\equiv1\pmod p.\]
+In particular, the order $N$ cannot divide any of these $(p-1)/q.$ Because for other primes $q'\mid p-1,$ we do have $\nu_{q'}(N)\le\nu_{q'}((p-1/q))=\nu_{q'}(p-1),$ the place where divisibility breaks must be at $q$: we must have $\nu_q(N)>\nu_q((p-1)/q).$ This implies that
+\[\nu_q(N)\ge\nu_q(p-1),\]
+for each $q\mid p-1.$ Thus, $p-1\mid N$ as well, so $N=p-1$ because $N$ and $p-1$ are both positive integers.
+
+It remains to actually show that $p$ is prime. Well, the order $N=p-1$ must divide $\varphi(p)$ by the Euler totient theorem, so $\varphi(p)\ge p-1.$ However, $\varphi(p),$ defined as the number of positive integers less than or equal to $p$ coprime to $p,$ is no more than $p-1$ by dropping $p$ (because we are looking at $p>1$). It follows
+\[\varphi(p)=p-1.\]
+This quickly implies that $p$ is prime: because we hit equality on $\varphi(p)\le p-1,$ every positive integer less than $p$ is coprime to $p.$ In particular, $p$ has no smaller prime factors (which would not be coprime), meaning that $p$ is its own prime factorization. So $p$ is prime. $\blacksquare$
+
+We now actually have to turn the above statement into a primality certificate. It might seem problematic that proving the primality of $p$ requires knowing the primality of primes $q\mid p-1,$ and this is right. However, the primes $q\mid p-1$ are strictly smaller, so we can just induct downwards in our certificate, providing the prime factorization of $p-1$ and proving the primalities of the primes $q\mid p-1$ all at once. Our base is that $2$ is prime.
+\begin{definition}
+    Given a prime $p,$ we define the Pratt primality certificate recursively as follows.
+    \begin{itemize}
+        \item If $p=2,$ then we don't provide a certificate.
+        \item An integer $g$ with multiplicative order $p-1.$
+        \item The primes in the prime factorization of $p-1.$
+        \item The Pratt primality certificate proving that each of the primes in the prime factorization of $p-1$ are prime.
+    \end{itemize}
+\end{definition}
+As stated above, the certificate is finite in length because the recursive step deals with primes strictly smaller than $p,$ so eventually we will get down to $2,$ which has no needed certificate.
+
+However, we can be more effective in how many extra certificates we will have to generate.
+\begin{lemma}
+    For each prime $p,$ there at most $4\log_2p-4$ primes that need certificates.
+\end{lemma}
+We do this by induction; for $p=2,$ there are indeed no primes that need certificates. For the inductive step, write $p=\prod_{k=1}^np_k$ its prime factorization. Then each $p_k$ needs at most $4\log_2p_k-4$ certificates, implying that we need at most
+\[\underbrace1_p+\sum_{k=1}^n\underbrace{(4\log_2p_k-4)}_{p_k}<4\log_2\left(\prod_{k=1}^np_k\right)-4k\le4\log_2p-4\]
+certificates in the entire tree. This completes the proof. $\blacksquare$
+
+Each prime and generator that we need to write down in the Pratt certificate of $p$ has at most $\log_2p$ bits, and each prime needs a generator which also has at most $\log_2p$ bits, so in total we need to write down $O((\log p)^2)$ bits because there are $O(\log p)$ primes to certify.
+
+As for verification, we basically need to check that each of the prime factorizations check out and that the generator $g$ really does generate. Checking the prime factorizations has each prime multiply at most once, so that's $O(\log p)$ multiplications of primes of the size $O(\log p).$ Even doing basic $O((\log n)^2)$ multiplication, this step is $O((\log p)^3).$
+
+It remains to check that the $g$ really do generate, which is what we use the proposition for. We have to check that $g^{p-1}\equiv1$ while $g^{(p-1)/q}\not\equiv1$ for each prime $q\mid p-1.$ Well, modular exponentiation by repeated squaring says that one of these checks needs $O(\log p)$ multiplications.
+
+Further, because there are $O(\log p)$ total primes which need certificates, this also doubles as an upper bound for the number of exponentiations: each exponentiation aside from the $g^{p-1}\equiv1$ corresponds to a prime that needs a certificate below, aside from $2.$ In particular, adding in the single $g^{p-1}\equiv1$ and at most $\log_2p$ total $2$s keeps us at $O(\log p)$ exponentiations. This totals to
+\[O\big(\underbrace{\log p}_{\text{exps}}\cdot\underbrace{\log p}_{\text{mults.}}\cdot\underbrace{(\log p)^2}_{\text{a mult.}}\big)=O\left((\log p)^4\right)\]
+to do the entire verification. This is a reasonble run-time.
+
+However, the issue with Pratt certificates is, of course, that we need to factor $p-1$ and then one less than each of $p-1$'s prime factors, and so on. There is not currently an efficient way to do this factorization, so generating Pratt certificates is hard, even though their length is relatively small, and checking is relatively fast.
+
+\subsubsection{April 26th}
+Today I learned the proof of function extensionality from the existence of the interval type. There is an approach from cubical type theory where we use the interval type in order to define path types, but it involves some careful matching of different inductors of the interval type.
+
+Instead, we define the interval type as a higher inductive type.
+\begin{definition}
+    The interval type $I$ is defined with constructors $0:I$ and $1:I$ as well as $\op{seg}:0=1.$ Given a target type $A:\UU,$ our recursion principle is
+    \[\op{rec}_I(A):\prod_{(a_1,a_2:A)}\prod_{(p:a_1=a_2)}(I\to A)\]
+    satisfying the definitional equalities $\op{rec}_I(A)(0)\equiv a_1,$ $\op{rec}_I(A)(1)\equiv a_2,$ and $\op{rec}_I(A)(\op{seg})=p.$
+\end{definition}
+There is a corresponding inductive principle for $I,$ but we don't need it where we're going. Also, it turns out to be somewhat difficult (but possible) to derive recursion from induction, so we don't do it here.
+
+Anyways, let's prove function extensionality.
+\begin{proposition}
+    Assume that we have a type $I.$ Then we can exhibit
+    \[\op{funext}:\prod_{(A:\UU)}\prod_{(B:A\to\UU)}\prod_{\left(f,g:\prod_{(a:A)}B(a)\right)}(f\sim g)\to(f=g).\]
+\end{proposition}
+The idea here is that
+\[f\sim g\equiv\prod_{(a:A)}f(a)=_{B(a)}g(a)\]
+is more or less (by heavy abuse of notation) of type $A\to I\to B$ if we think about paths being images of $I.$ However, $f=g$ is then more or less of type $I\to A\to B,$ so function extensionality should be like swapping.
+
+To make this rigorous, we begin by fixing $A:\UU,$ $B:A\to\UU,$ and $f,g:\prod_{(a:A)}B(a)$ with homotopy $h:f\sim g.$ Now we actually define a function $\prod_{(a:A)}I\to B(a)$ to ready the swapping by
+\[h_\bullet:\equiv\op{rec}(B(a))(f(a),g(a),h(a)).\]
+In particular, we are using the path $h(a):f(a)=_{B(a)}g(a)$ to complete telling the recursion where it should send the path $\op{seg}:I.$
+
+Now we swap this into a function $I\to\prod_{(a:A)}B(a).$ In particular, the function
+\[p:\lambda(i:I).\lambda(a:A).h_a(i)\]
+has the desired type. To finish, we see that
+\[\begin{cases}
+    p(0)\equiv\lambda(a:A).f(a)\equiv f, \\
+    p(1)\equiv\lambda(a:A).g(a)\equiv g.
+\end{cases}\]
+In particular, we know $f\equiv\lambda(a:A).f(a)$ by how $\lambda$-calculus works; I think this is $\beta$-reduction. Anyways, it follows
+\[\op{ap}_p(\op{seg}):\big(p(0)=p(1)\big)\equiv(f=g),\]
+which is what we wanted. $\blacksquare$
+
+What I like about the above proof is how much of it can be read as trying to rigorize that swapping intuition. In cubical type theory, the swapping intuition is pretty much an actual proof, which I suppose is an argument for using cubical type theory, but I haven't studied cubical type theory, so this presentation is more familiar to me.
+
+We remark that one can show $\op{funext}$ is indeed a quasi-inverse of $\op{happly}.$ In fact, the following stronger statement is true.
+\begin{proposition}
+    Suppose we can witness
+    \[\op{funext}:\prod_{(A:\UU)}\prod_{(B:A\to\UU)}\prod_{\left(f,g:\prod_{(a:A)}B(a)\right)}(f\sim g)\to(f=g).\]
+    Then $\op{happly}$ has a quasi-inverse; in particular, full function extensionality is true.
+\end{proposition}
+This is a very remarkable statement: we are told nothing about how $\op{funext}$ behaves under the hood, yet somehow the existence of $\op{funext}$ is able to provide us our computation rules. Alas, I do not know the proof of this statement as of now.
+
+The point of stating the above is that it does mean that being able to witness as in the proposition something behaving like function extensionality implies its computation rules. So we can rest assured that it is possible to prove full function extensionality from the existence of an interval type.
+
+\subsubsection{April 27th}
+Today I learned that some self-contained calculus can be done over the $p$-adics. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p<\infty$ prime like $\RR$ and doing the analysis.
+
+We define the formal derivative of a power series instead of the normal derivative.
+\begin{definition}
+    Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then we define the formal derivative by
+    \[f'(x):=\sum_{k=0}^\infty(k+1)a_{k+1}x^k.\]
+\end{definition}
+We would like the formal derivative to be defined at least where $f(x)$ is defined. We can do this directly because $p$-adic analysis is so nice.
+\begin{lemma}
+    Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then, for fixed $x\in\QQ_p,$ if $f(x)$ converges, then $f'(x)$ converges as well.
+\end{lemma}
+The fact that $f(x)$ converges is equivalent to the fact that the terms of the sum approach $0,$ or
+\[\left|a_kx^k\right|_p\to0.\]
+To show that $f'(x)$ converges, it is again sufficient to show that the terms $\left|(k+1)a_{k+1}x^k\right|_p\to0.$ However, this is
+\[\left|(k+1)a_{k+1}x^k\right|_p\le\left|a_{k+1}x^k\right|=\frac1{|x|_p}\left|a_{k+1}x^{k+1}\right|,\]
+which goes to $0$ by hypothesis. So we are done here. $\blacksquare$
+
+We also say that we can talk a little more generally about convergence of power series; namely, they have a radius of convergence just like power series in $\RR$ do.
+\begin{proposition}
+    Suppose $f\in\QQ_p[[x]]$ takes the form $f(x)=\sum_{k=0}^\infty a_kx^k$ for $\{a_k\}_{k\in\NN}\subseteq\QQ_p.$ Then the radius of convergence of $f$ is
+    \[\rho:=\left(\limsup_{k\to\infty}\sqrt[k]{|a_k|_p}\right)^{-1}.\]
+    We note that $\rho=\infty$ is permitted.
+\end{proposition}
+This pretty much follows from the same fact that a series converges if and only if its terms vanish. Namely, fixing $x\in\QQ_p,$ we know $f(x)$ will converge if and only if
+\[\left|a_kx^k\right|_p=|a_k|_p\cdot|x|_p^k\to0.\]
+Now, if $|x|_p<\rho,$ then
+\[\limsup_{k\to\infty}\sqrt[k]{|a_k|_p}\cdot|x|_p<1.\]
+
+As an aside, we remark that $\limsup_{n\to\infty}\sqrt[n]{|n|_p}=1,$ so the extra linear factor in the coefficients of the formal derivative does not affect the radius of convergence, which is what we expected from the lemma. We can be more precise about the equality cases for the radius of convergence here, but we don't bother.
+
+The main attraction is as follows: the formal derivative for power series behaves like the
+usual derivative.
+\begin{proposition}
+    Fix $f\in\QQ_p[[x]].$ Then for any $x$ where $f(x)$ converges,
+    \[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h.\]
+\end{proposition}
+We remark that the limit is done with respect to $|\bullet|_p,$ as it should be. Anyways, this proof is roughly the same proof done for 
+
+http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf \todo{}
+
+\subsubsection{April 28th}
+Today I learned that the Fourier transform for finite fields behaves as it does in local fields. \href{https://drive.google.com/file/d/1LliHibNgmndXoYlq_gxC-bP-10KWM--Z/view}{hi} \todo{}
+
+\subsubsection{April 29th}
+Today I learned the definition of the wedge product, from the \href{https://web.archive.org/web/20210218161419/https://venhance.github.io/napkin/Napkin.pdf}{Napkin}. The idea is to take two topological spaces and then ``attach'' them at a point. Here's the formal definition.
+\begin{definition}
+    Fix topological spaces $X_1$ and $X_2$ with fixed points $x_1\in X_1$ and $x_2\in X_2.$ Then we define the ``wedge product'' $X_1\vee X_2$ by
+    \[X_1\vee X_2:=(X_1\sqcup X_2)/(x_1=x_2).\]
+\end{definition}
+Here, $X_1\sqcup X_2$ is the disjoint union of the spaces, meaning that $U\subseteq X_1\sqcup X_2$ is open if and only if its intersections with $X_1$ and $X_2$ are themselves open. Additionally, modding out by the (abuse-of-notation) equivalence relation $x_1=x_2$ means that a set $U\subseteq X$ is open if and only if the union of the equivalence classes of $U$ is open in $X.$
+
+Anyways, the point here is that we use $\sqcup$ to place the two topological spaces (disjointly) and then use the equivalence relation to attach them. As an example, here is a picture of $S^1\sqcup S^1.$
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        draw(circle((0,0),1)); draw(circle((3,0),1));
+        label("$S^1$", (-1,0), W);
+        label("$S^1$", (4,0), E);
+    \end{asy}
+\end{center}
+And here is the wedge product $S^1\vee S^1.$
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        draw(circle((0,0),1)); draw(circle((2,0),1));
+        dot((1,0));
+        label("$S^1$", (-1,0), W);
+        label("$S^1$", (3,0), E);
+    \end{asy}
+\end{center}
+Indeed, we are essentially identifying two points of the two copies of $S^1$ in order to ``attach'' them.
+
+It turns out that we can also define the wedge product by universal property. However, we shouldn't define it by universal property in the category of topological spaces $\text{Top}$ because we need to provide a choice of point for our wedge product. So we work in $\text{Top}_*,$ the category of pointed topological spaces, in order to have the choice made for us.
+\begin{proposition}
+    The wedge product $\vee:\text{Top}_*\times\text{Top}_*\to\text{Top}_*$ is the coproduct in the category of pointed topological spaces.
+\end{proposition}
+For clarity, we say that the morphisms between two pointed spaces $(X_1,x_1)$ and $(X_2,x_2)$ are given by continuous maps $X_1\to X_2$ which send $x_1\mapsto x_2.$
+
+Now, fix two pointed topological spaces $(X_1,x_1)$ and $(X_2,x_2).$ We want to show that $(X_1\vee X_2,[x_1])$ is the coproduct of these pointed spaces. (We are writing $[x_1]$ to mean the equivalence class of $x_1$ under the equivalence relation $x_1=x_2$ used to define $\vee.$) This means that we need to exhibit morphisms
+\[\begin{cases}
+    \iota_1:(X_1,x_1)\to(X_1\vee X_2,[x_1]), \\
+    \iota_2:(X_2,x_2)\to(X_1\vee X_2,[x_1]), \\
+\end{cases}\]
+such that for any other space pointed space $(Y,y)$ with morphisms $\iota_1'$ from $(X_1,x_1)$ and $\iota_2'$ from $(X_2,x_2),$ these factor uniquely through $\iota_1$ and $\iota_2$ (respectively). That is, the induced arrow $\varphi$ in the following diagram is unique.
+\begin{center}
+    \begin{tikzcd}
+         & {(Y,y)}  & \\
+        {(X_1,x_1)} \arrow[r, "\iota_1"'] \arrow[ru, "\iota_1'"] & {(X_1\vee X_2,[x_1])} \arrow[u, "\varphi", dashed] & {(X_2,x_2)} \arrow[l, "\iota_2"] \arrow[lu, "\iota_2'"']
+    \end{tikzcd}
+\end{center}
+
+For the inclusion morphisms, we essentially do the most natural thing possible: take $x\in X_\bullet$ to its element in $X_1\sqcup X_2$ (the exact way $\sqcup$ is defined doesn't matter as long it is the coproduct in $\text{Set}$) and then take $x$ to its equivalence class in $X_1\vee X_2.$ This embedding is the identity is pretty much the identity, so it is continuous, and it sends
+\[(x_\bullet\in X_\bullet)\longmapsto(x_\bullet\in X_1\sqcup X_2)\longmapsto([x_\bullet]\in X_1\vee X_2),\]
+so indeed we are sending the basepoints around correctly. Namely, $x_1,x_2\mapsto[x_1]=[x_2].$
+
+It remains to show the universal property. We begin by showing that the induced arrow $\varphi:(X_1\vee X_2,[x_1])$ is unique by describing what its behavior must do on each point of $X_1\vee X_2,$ and then we show that it exists by showing that the behavior actually gives a well-defined morphism.
+
+Indeed, fix any $[x]\in X_1\vee X_2,$ and select some representative $x\in[x].$ This $x$ lives in $X_1\sqcup X_2,$ so it lives in (exactly) one of $X_1$ or $X_2,$ say $X_\bullet.$ But we know that $x\in X_\bullet$ should go to $\iota_\bullet'(x)\in Y,$ so we have to send
+\[\varphi:[x]\mapsto\iota_\bullet'(x).\]
+Thus, the behavior of $\varphi$ is forced. We note that $\varphi$ is a well-defined function because, as long as $[x]\ne[x_1],$ there is only one element in that equivalence class, so there is no danger of assigning multiple elements. On the other hand, if $[x]=[x_1],$ then we may have $x_1,x_2\in[x_1],$ but
+\[\iota_1'(x_1)=\iota_2'(x_2)=y\]
+because the $\iota_\bullet'$ are morphisms of pointed spaces. This also shows that $\varphi$ behaves nicely with the basepoints.
+
+It remains to show that $\varphi$ is continuous. Fix $U\subseteq Y$ open. Then $\varphi^{-1}(U)$ is the union of a whole bunch of equivalence classes, more specifically
+\[\varphi^{-1}(U)=\{[x]:\varphi([x])\in U\}.\]
+Unravelling the definition $\varphi,$ we see this is
+\[\varphi^{-1}(U)=\{[x]:x\in X_1\text{ and }\iota_1'(x)\in U\}\cup\{[x]:x\in X_2\text{ and }\iota_2'(x)\in U\}.\]
+Note the only equivalence class with more than one element is $[x_1],$ and if we have one of $x_1$ in $\iota_1^{-1}(U)$ or $\iota_2^{-1}(U),$ then we have both because $x_1,x_2\mapsto y.$ In particular,
+\[\varphi^{-1}(U)=\{[x]:x\in\iota_1^{-1}(U)\sqcup\iota_2^{-1}(U)\}\]
+is indeed open because it contains all elements it represents in equivalence classes, which is enough because then $\iota^{-1}(U)\sqcup\iota_2^{-1}(U)\subseteq X_1\sqcup X_2$ is open because $\iota_\bullet^{-1}(U)$ is open because these inclusions are themselves continuous. This finishes. $\blacksquare$
+
+\subsubsection{April 30th}
+Today I learned the Kuratowski closure-complement theorem, from \href{https://web.archive.org/web/20210302053008/http://nzjm.math.auckland.ac.nz/images/6/63/The_Kuratowski_Closure-Complement_Theorem.pdf}{here}. Here is the statement.
+\begin{theorem}
+    Suppose $X$ is a topological space, and fix $S\subseteq X.$ The set of sets that can be produced by taking successive complements or closures of $S$ has size at most $14.$
+\end{theorem}
+For brevity, we let $o$ denote the closure (for ``overline'') and $c$ denote the complement (as in ``complement''). We note that $c^2=\op{id}$ (``taking the complement of the complement does nothing''), and we state but do not prove that $o^2=o$ (``the closure of a set is closed''); in fact, the second follows quickly from the definition
+\[oS=\bigcap_{\substack{C\supseteq S\\C\text{ closed}}}C.\]
+Anyways, the point is that we only have to consider alternating sequences of $c$s and $o$s because having two consecutive $c$s or $o$s could be compressed into a smaller sequence.
+
+Here's the main lemma.
+\begin{lemma}
+    For any $S\subseteq X,$ the sets $ocoS$ and $ocococoS$ are the same.
+\end{lemma}
+We remark that $S\mapsto cocS$ gives the interior of $S$: indeed, it suffices to show that the closure of the complement of $S$ is the complement of the interior of $S,$ which is the statement that
+\[\bigcap_{\substack{C\supseteq X\setminus S\\\text{C closed}}}C\stackrel?=X\setminus\bigcup_{\substack{U\subseteq S\\U\text{ open}}}U\]
+after expanding out the definitions. Distributing the $X\setminus$ over the right-hand side means that we are taking the arbitrary intersection of $X\setminus U$s, but these parameterize the closed sets containing $X\setminus S,$ which is the left-hand side.
+
+Anyways, the point is that $coc(ocoS)$ is the interior of (and therefore contained in) $ocoS.$ Thus,
+\[ocoS=o(ocoS)\supseteq o(coc(ocoS))=ocococoS.\]
+To get the other direction, we need $ocoS\subseteq ocococoS.$ Hoping that we live in a good world, it suffices to show that $coS\subseteq cococoS$ (closure preserves inclusion) which is equivalent to $oS\supseteq ococoS$ (complement reverses inclusion). But certainly $coc(oS)\subseteq oS$ (it's the interior), so we are done. $\blacksquare$
+
+It remains to enumerate the possible alternating strings of $o$s and $c$s. Starting with $o,$ we can have
+\[oS,\,coS,\,ocoS,\,cocoS,\,ococoS,\,cococoS,\]
+but going any further would add redundancies by lemma. So we have $6$ elements in this case. Alternatively, we may start with $c$ to get
+\[cS,\,ocS,\,cocS,\,ococS,\,cococS,\,ocococS,\,cococoS,\]
+but going any further would add redundancies by lemma (using $cS$ for $S$). This gives $7$ elements in this case. Combining cases with the original set $S,$ we do indeed have at most $6+7+1=\boxed{14}$ sets. $\blacksquare$
+
+I am obligated to say that $14$ is in fact an achievable maximum, even for well-behaved topological spaces like $\RR.$ The main idea in the construction is to throw a bunch of parts that behave differently with respect to closures and interiors. One example is
+\[S=(0,1)\cup(1,2)\cup\{3\}\cup([4,5]\cap\QQ).\]
+This looks like the following.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        void drawS(real y)
+        {
+            draw((-1,y)--(6,y), Arrows);
+            draw((0,y)--(2,y), linewidth(2));
+            dot((3,y));
+            for(int d = 2; d < 7; ++d)
+            {
+                for(int n = 0; n <= d; ++n)
+                {
+                    dot((4+n/d,y));
+                }
+            }
+        }
+        drawS(1);
+        fill(circle((1,1), 0.07), rgb(100,100,100));
+        draw(circle((1,1), 0.07));
+        label("$($", (0,1)); label("$)$", (2,1));
+    \end{asy}
+\end{center}
+Here are the six sets starting from the closure.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        // oS
+        real y = 0;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), linewidth(2));
+        draw((4,y)--(5,y), linewidth(2));
+        dot((3,y)); label("$oS$", (-1.5,y), W);
+        label("$[$", (0,y)); label("$]$", (2,y));
+        label("$[$", (4,y)); label("$]$", (5,y));
+        // coS
+        y = -1;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), p=linewidth(2));
+        draw((2,y)--(4,y), linewidth(2));
+        draw((5,y)--(5.7,y), linewidth(2));
+        fill(circle((3,y), 0.07), rgb(100,100,100));
+        draw(circle((3,y), 0.07));
+        label("$coS$", (-1.5,y), W);
+        label("$)$", (0,y));
+        label("$($", (2,y)); label("$)$", (4,y));
+        label("$($", (5,y));
+        // ocoS
+        y = -2;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), p=linewidth(2));
+        draw((2,y)--(4,y), linewidth(2));
+        draw((5,y)--(5.7,y), linewidth(2));
+        label("$ocoS$", (-1.5,y), W);
+        label("$]$", (0,y));
+        label("$[$", (2,y)); label("$]$", (4,y));
+        label("$[$", (5,y));
+        // cocoS
+        y = -3;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), p=linewidth(2));
+        draw((4,y)--(5,y), linewidth(2));
+        label("$cocoS$", (-1.5,y), W);
+        label("$($", (0,y)); label("$)$", (2,y));
+        label("$($", (4,y)); label("$)$", (5,y));
+        // ococoS
+        y = -4;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), p=linewidth(2));
+        draw((4,y)--(5,y), linewidth(2));
+        label("$ococoS$", (-1.5,y), W);
+        label("$[$", (0,y)); label("$]$", (2,y));
+        label("$[$", (4,y)); label("$]$", (5,y));
+        // cococoS
+        y = -5;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), p=linewidth(2));
+        draw((2,y)--(4,y), linewidth(2));
+        draw((5,y)--(5.7,y), linewidth(2));
+        label("$cococoS$", (-1.5,y), W);
+        label("$)$", (0,y));
+        label("$($", (2,y)); label("$)$", (4,y));
+        label("$($", (5,y));
+    \end{asy}
+\end{center}
+Of particular note here is that $oS$ and $coc(oS)$ are different because of the isolated point. Otherwise we are mostly just chugging through the transformations. Anyways, we can indeed check that if we tried to take another complement, we would only get $ocoS.$
+
+And here are the seven sets starting from the complement.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        // cS
+        real y = 0;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), linewidth(2));
+        dot((1,y));
+        draw((2,y)--(5.7,y), linewidth(2));
+        for(int d = 2; d < 7; ++d)
+        {
+            for(int n = 0; n <= d; ++n)
+            {
+                fill(circle((4+n/d,y),0.07), rgb(100,100,100));
+                draw(circle((4+n/d,y),0.07));
+            }
+        }
+        label("$cS$", (-1.5,y), W);
+        label("$]$", (0,y)); label("$[$", (2,y));
+        // ocS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), linewidth(2));
+        dot((1,y));
+        draw((2,y)--(5.7,y), linewidth(2));
+        label("$ocS$", (-1.5,y), W);
+        label("$]$", (0,y)); label("$[$", (2,y));
+        // cocS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), linewidth(2));
+        fill(circle((1,y), 0.07), rgb(100,100,100));
+        draw(circle((1,y), 0.07));
+        label("$cocS$", (-1.5,y), W);
+        label("$($", (0,y)); label("$)$", (2,y));
+        // ococS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), linewidth(2));
+        label("$ococS$", (-1.5,y), W);
+        label("$[$", (0,y)); label("$]$", (2,y));
+        // cococS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), linewidth(2));
+        draw((2,y)--(5.7,y), linewidth(2));
+        label("$cococS$", (-1.5,y), W);
+        label("$)$", (0,y)); label("$($", (2,y));
+        // ocococS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((-0.7,y)--(0,y), linewidth(2));
+        draw((2,y)--(5.7,y), linewidth(2));
+        label("$ocococS$", (-1.5,y), W);
+        label("$]$", (0,y)); label("$[$", (2,y));
+        // cocococS
+        --y;
+        draw((-1,y)--(6,y), Arrows);
+        draw((0,y)--(2,y), linewidth(2));
+        label("$cocococS$", (-1.5,y), W);
+        label("$($", (0,y)); label("$)$", (2,y));
+    \end{asy}
+\end{center}
+Of note here is that the interior $cocS$ is effectively erasing all the $[4,5]\cap\QQ$ stuff to give us new sets. Also, we do note that we're doing $(0,1)\cup(1,2)$ to give us an isolated point in the complement, which we use for fun and profit. Anyways, we can check that adding another closure gets back $ococS,$ as we expected from the proof. So we do total to $14$ sets, after checking everything is distinct.

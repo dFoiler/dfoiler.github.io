@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 13th
+					</h2>
+					<p>
+						Today I learned the definition of a sheaf. The idea here is to generalize functions on a space in a purely algebraic way. In order to get our bearings, we first define a presheaf.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $X$ a topological space (or more generally, a scheme). Then a presheaf consists of the data of a map $\mathcal O:X\to\op{Set}$ and restriction mappings $\op{res}_{U_1,U_2}:\mathcal O(U_1)\to\mathcal O(U_2)$ whenever $U_1\supseteq U_2.$ Additionally, we require the restriction mappings to satisfy    \[\begin{cases}        \op{res}_{U,U}=\op{id}_{\mathcal O(U)}, \\        \op{res}_{U_1,U_3}=\op{res}_{U_2,U_3}\circ\op{res}_{U_1,U_2}.    \end{cases}\]
+						</p>
+					</div>
+					<p>
+						The coherence laws that we're requiring $\op{res}$ to behave essentially say that restricting $\mathcal O(U)$ to itself shouldn't change anything, and the order of restriction shouldn't matter.
+					</p>
+					<p>
+						We quickly remark that the data of a presheaf is pretty much what we need for a functor. This is nice later because it gives us some categorical grounding to how we think about presheaves; for example, maps between presheaves are pretty much natural transformations.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Define the category of a topological space $X$ to have morphisms drawn for containment: open subsets $U_1$ and $U_2$ have an arrow $U_1\to U_2$ if and only if $U_1\subseteq U_2.$ Then a presheaf $\mathcal O$ on $X$ is exactly what we need to be a contravariant functor to $\op{Set}.$
+						</p>
+					</div>
+					<p>
+						The full functor sends open sets $U$ to $\mathcal O(U)\in\op{Set}$ and morphisms $U_1\to U_2$ to $\op{res}_{U_2,U_1}$; note that $\op{res}_{U_2,U_1}$ exists because $U_1\to U_2$ exists if and only if $U_1\subseteq U_2.$
+					</p>
+					<p>
+						Call this mapping $F.$ We have shown how $F$ sends objects to objects and morphisms to morphisms, so it remains to show our coherence laws. Well, we need\[\begin{cases}    F(\op{id}_U)=\op{id}_{F(U)} & U\text{ open},\\    F(g\circ f)=F(f)\circ F(g) & f,g\text{ morhpisms}.\end{cases}\]The first identity is asserting that $\op{res}_{U,U}=\op{id}_{\mathcal O(U)},$ which is a required coherence law. Secondly, the second is saying that, for open sets $U_1\subseteq U_2\subseteq U_3,$ we have $\op{res}_{U_3,U_1}=\op{res}_{U_2,U_1}\circ\op{res}_{U_3,U_2},$ which is the other required coherence law.
+					</p>
+					<p>
+						We remark that if we have any functor $F$ from the category of $X$ to $\op{Set},$ then we can name $\mathcal O(U):=F(U)$ and $\op{res}_{U_2,U_1}:=F(f)$ for $f:U_1\to U_2$ to get back out our presheaf. In particular, we showed above that the coherence laws correspond to each other; we're not going to be formal about this. $\blacksquare$
+					</p>
+					<p>
+						Now, a sheaf is a presheaf satisfying two more coherence laws.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $X$ a topological space. A sheaf consists of the same data $\mathcal O$ and $\op{res}$ along with the following two more coherence laws.
+						</p>
+						<ul>
+							<li>
+								<p>
+									Identity: Fix $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of open $U\subseteq X.$ Then, given $f,g\in\mathcal (U),$        \[\op{res}_{U,U_\alpha}(f)=\op{res}_{U,U_\alpha}(g)\text{ for all }\alpha\implies f=g.\]
+								</p>
+							</li>
+							<li>
+								<p>
+									Gluability: Fix $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of open $U\subseteq X.$ If we can find $f_\alpha\in\mathcal O(U_\alpha)$ for each $\alpha,$ that cohere in that        \[\op{res}_{U_\alpha,U_\alpha\cap U_\beta}(f_\alpha)=\op{res}_{U_\beta,U_\alpha\cap U_\beta}(f_\beta)\]        for each $\alpha$ and $\beta,$ then we can construct a single $f\in\mathcal O(U)$ such that $\op{res}_{U,U_\alpha}(f)=f_\alpha$ for each $\alpha.$
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						The identity law says that the data of $f\in\mathcal O(U)$ is uniquely determined by its restrictions. Reading these as functions, it makes sense that being told locally what the function does communicates global information. The gluability law says that we can glue cohering local data into more global data. Again, reading as functions, this makes sense.
+					</p>
+					<p>
+						To solidify the intuition that sheaves should thought of as generalizing functions, we take the following proposition.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $X$ and $Y$ topological spaces. The set of continuous maps from $X\to Y$ induces a sheaf: for $U\subseteq X,$ we send $\mathcal O(U)$ to continuous maps $U\to Y,$ and the restriction map is restriction $\op{res}_{U_1,U_2}:f\mapsto f|_{U_2}.$
+						</p>
+					</div>
+					<p>
+						We begin by checking that this actually well-defined. Certainly $\mathcal O$ is well-defined as presented, but with the residue maps, it's not immediately obvious that continuous functions restrict to continuous functions. Well, for $f\in\mathcal O(U_1),$ then we have to show $f|_{U_2}$ is also continuous. Fixing $V\subseteq Y$ open, this means we need\[\left(f|_{U_2}\right)^{-1}(V)=\{x\in U_2:f|_{U_2}(x)\in V\}.\]Well, by nature of restriction, this set is $f^{-1}(V)\cap U_2,$ which is open because $f^{-1}(V)$ is open by continuity of $f.$
+					</p>
+					<p>
+						Next we check that this is a presheaf, which we do separately.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The described data make a presheaf.
+						</p>
+					</div>
+					<p>
+						We have already defined our $\mathcal O$ and our residue maps, so we have to check the coherence laws. Fixing $U\subseteq X$ open, the statement that\[\op{res}_{U,U}\stackrel?=\op{id}_{\mathcal O(U)}\]is saying that the restriction of a function $f\in\mathcal O(U)$ to $U$ is equal to $f.$ Well, for any $x\in U,$ we know $f|_U(x)=f(x),$ so these functions are equal on all inputs and therefore equal as functions.
+					</p>
+					<p>
+						We now show that restriction behaves in sequence. Fix $U_1\supseteq U_2\supseteq U_3$ open and $f\in\mathcal O(U_1).$ Plugging into the definition of our restriction maps, we need to show that\[f|_{U_3}\stackrel?=f|_{U_2}|_{U_3}.\]Well, these are both functions on $U_3,$ and for any $x\in U_3,$ we have that $f|_{U_3}(x)=f(x),$ and $f|_{U_2}|_{U_3}(x)=f|_{U_2}(x)=f(x),$ so these functions are equal on all inputs and therefore equal as functions. This finishes. $\blacksquare$
+					</p>
+					<p>
+						It remains to check the last two coherence laws to be a sheaf. The identity law roughly comes from the fact these are functions. Suppose $f,g\in\mathcal O(U)$ are continuous functions $f,g:U\to Y.$ Then given an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $U,$ we can say that any $x\in U$ lives in some $U_\alpha,$ so given $f$ and $g$ have\[f|_{U_\alpha}=g|_{U_\alpha},\]then $f(x)=g(x).$ In particular, if $f$ and $g$ agree on their restrictions to the open cover, then they agree on all inputs, so $f=g$ as functions.
+					</p>
+					<p>
+						Checking gluability comes from the fact that "continuity'' is inherently a local phenomenon. (For example, "boundedness'' is a global phenomenon, and so bounded functions $X\to\RR$ do not have to form a sheaf.) So suppose we are given $U\subseteq X$ as well as an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $U$ with functions $f_\alpha\in\mathcal O(U_\alpha)$ which satisfy\[f_\alpha|_{U_\alpha\cap U_\beta}=f_\beta|_{U\alpha\cap U_\beta}\]for any $\alpha$ or $\beta.$ We want to construct some $f\in\mathcal O(U)$ which restricts to the $f_\alpha.$ Well, for any $x\in U,$ we know $x\in U_\alpha$ for some $\alpha,$ so we can define\[f(x):=f_\alpha(x).\]This is well-defined because if $x\in U_\alpha$ and $U_\beta$ for two $\alpha,\beta\in\lambda,$ then $f_\alpha(x)=f_\beta(x)$ by their coherence law. Additionally, we see that $f$ restricts properly because $x\in U_\alpha$ gives $f=f_\alpha$ by definition.
+					</p>
+					<p>
+						So we have constructed our $f,$ and now we need to show that it is continuous. Well, fix some open set $V\subseteq Y,$ and we want to show that $f^{-1}(V)$ is open. This is\[f^{-1}(V)=\{x\in U:f(x)\in V\}.\]Decomposing this into the open cover, we can loop through $x\in U$ by looping through individual $U_\alpha$s like\[f^{-1}(V)=\bigcup_{\alpha\in\lambda}\{x\in U_\alpha:f(x)\in V\}.\]But $f$ on $U_\alpha$ behaves like the already continuous function $f_\alpha,$ so the inner set $f_\alpha^{-1}(V)$ is open already (in $U_\alpha$ and in $U$ by intersection). Thus, $f^{-1}(V)$ is open, and we are done here. $\blacksquare$
+					</p>
+					<p>
+						Observed that the continuity condition only mattered at the end when checking gluability. So functions of lots of types can inherit at least most of this proof, and we really only have check that gluability produces a function of the desired type.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

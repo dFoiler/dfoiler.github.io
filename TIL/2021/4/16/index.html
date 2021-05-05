@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 16th
+					</h2>
+					<p>
+						Today I learned about Kummer series acceleration, from
+						<a href="https://web.archive.org/web/20210117032227/https://kconrad.math.uconn.edu/blurbs/analysis/series_acceleration.pdf">
+							Keith Conrad
+						</a>
+						of course. This is the idea.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given $\{a_k\}_{k=1}^\infty$ whose sum absolutely converges, if we are given a sequence $\{b_k\}_{k=1}^\infty$ such that $\frac{a_k}{b_k}\to\lambda$ and we know $B=\sum b_k,$ then we note    \[\sum_{k=1}^\infty a_k=\lambda B+\sum_{k=1}^\infty(a_k-\lambda b_k)=\lambda B+\sum_{k=1}^\infty\left(1-\frac{b_k}{a_k}\right)a_k,\]    which has good chances of converging faster.
+						</p>
+					</div>
+					<p>
+						We note that the absolutely convergent condition on $\{a_k\}_{k=1}^\infty$ is really there to let us extract out $\lambda B$ in the rudest way possible. In practice, I think this method of series acceleration is done when the terms are positive mostly.
+					</p>
+					<p>
+						It may seem like a significant roadblock to find the sequence $\{b_k\}_{k=1}^\infty,$ but we can actually cover all polynomial growth pretty well.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given some positive integer $d,$ we have that    \[\sum_{k=1}^\infty\frac1{k(k+1)\cdots(k+d)}=\frac1{d\cdot d!}.\]
+						</p>
+					</div>
+					<p>
+						We observe that\[\frac{1/d}{k(k+1)\cdots(k+d)}-\frac{1/d}{(k+1)(k+2)\cdots(k+d+1)}=\frac{(k+d)/d-k/d}{k(k+1)\cdots(k+d+1)},\]and the right-hand side is the desired summand $\frac1{k(k+1)\cdots(k+d)}.$ It follows that\[S_d:=\sum_{k=1}^\infty\frac1{k(k+1)\cdots(k+d+1)}=\frac1d\sum_{k=1}^\infty\left(\frac1{k(k+1)\cdots(k+d)}-\frac1{(k+1)\cdots(k+d+1)}\right).\]Shifting (not rearranging) the sum, this gives\[S_d=\frac1d\cdot\frac1{1\cdot2\cdots d}+\sum_{k=2}^\infty\left(-\frac1{(k+1)\cdots(k+d+1)}+\frac1{(k+1)\cdots(k+d)}\right).\]As promised, this does evaluate to $\frac1{d\cdot d!},$ so we are done. $\blacksquare$
+					</p>
+					<p>
+						As an example, we accelerate $\zeta(3)\approx1.20205690315.$ The standard sum is\[\zeta(3)=\sum_{k=1}^\infty\frac1{k^3},\]but we can accelerate the convergence of this. After computing $N$ terms, we can bound the error as\[\zeta(3)-\sum_{k=1}^N=\sum_{k=N+1}^\infty\frac1{k^3} \lt \int_N^\infty\frac1{x^3}\,dx=\frac1{2N^2}\]by viewing the sum as a Riemann sum. So, for example, $10$ terms gives $\zeta(3)\approx1.19753198567.$
+					</p>
+					<p>
+						Now, from the above lemma, we use $\frac1{k(k+1)(k+2)}$ with $\frac{k(k+1)(k+2)}{k^3}\to1.$ The lemma tells us that the auxiliary sum is $\frac14,$ and the leftover term is\[\frac1{k^3}-\frac1{k(k+1)(k+2)}=\frac{3k+2}{k^3(k+1)(k+2)},\]which we can see decays about a degree faster. Anyways, our new sum is\[\zeta(3)=\frac14+\sum_{k=1}^\infty\frac{3k+2}{k^3(k+1)(k+2)}.\]Again, after computing $N$ terms, we can bound the error as\[\sum_{k=N+1}^\infty\frac{3k+2}{k^3(k+1)(k+2)} \lt \sum_{k=N+1}^\infty\frac{3(k+1)}{k^3(k+1)k} \lt \int_N^\infty\frac3{k^4}\,dx=\frac1{N^3}.\]Explicitly, we can see this with $\zeta(3)\approx1.20131986446$ after merely $10$ terms, which is much better.
+					</p>
+					<p>
+						The real point of series acceleration is that we can do this multiple times. Our current sequence grows $\Theta\left(3/k^4\right),$ so we can choose $\frac3{k(k+1)(k+2)(k+3)}$ as our auxiliary sequence, which has sum $\frac16.$ The term now looks like\[\frac{3k+2}{k^3(k+1)(k+2)}-\frac3{k(k+1)(k+2)(k+3)}=\frac{(3k+2)(k+3)-3k^2}{k^3(k+1)(k+2)(k+3)}.\]So our sum is now\[\zeta(3)=\frac14+\frac16+\sum_{k=1}^\infty\frac{11k+6}{k^3(k+1)(k+2)(k+3)}.\]And after computing $N$ terms, the error is bounded by\[\sum_{k=N+1}^\infty\frac{11k+6}{k^3(k+1)(k+2)(k+3)} \lt \sum_{k=N+1}^\infty\frac{11(k+1)}{k^3(k+1)k^2} \lt \int_N^\infty\frac{11}{x^5}\,dx=\frac{11}{4N^4}.\]So for example, we get $\zeta(3)\approx1.20190261504$ after $10$ terms, which is pretty close to the next decimal place.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 18th
+					</h2>
+					<p>
+						Today I learned about adjoints in category theory, from
+						<a href="https://web.archive.org/web/20210414151805/http://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf">
+							Vakil
+						</a>
+						. We have the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given categories $\mathcal A$ and $\mathcal B$ with functors $F:\mathcal A\to\mathcal B$ and $G:\mathcal B\to\mathcal A,$ then the pair $(F,G)$ is an adjuction if we have the "natural'' bijection    \[\tau_{A,B}:\big(F(A)\to B\big)\to\big(A\to G(B)\big)\]    for any $A\in\mathcal A$ and $B\in\mathcal B.$ We might say that $F$ is a left adjoint or that $G$ is a right adjoint.
+						</p>
+					</div>
+					<p>
+						We very quickly say that "bijection'' means that there is another map $\tau_{A,B}^{-1}$ which composes to give the identity.
+					</p>
+					<p>
+						The word "natural'' in the above definition is something of a weasel word. To be explicit, we need the following diagram to commute for any $f:A\to A'.$
+					</p>
+					<img src="img1.png">
+					<p>
+						Additionally, for $g:B\to B',$ we also need the following diagram to commute, in order to make $\tau_{A,B}^{-1}$ also natural.
+					</p>
+					<img src="img2.png">
+					<p>
+						Roughly speaking, $\tau_{A,B}$ is roughly declaring the behavior $F$ and $G$ the same, over their individual categories. Being a bit crass, we can think about $F$ and $G$ as quasi-inverses in the homotopy type theory sense.
+					</p>
+					<p>
+						For example, while we cannot show that $FG:\mathcal B\to\mathcal B$ is literally the identity, we can exhibit a map $\varepsilon_B:B\to FG(B)$ which behaves a lot like the identity with respect the adjunction.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							There is a map $\varepsilon_B:B\to FG(B)$ which satisfies, for any $A\in\mathcal A$ and $B\in\mathcal B,$ we have $f:A\to G(B)$ has    \[F(A)\stackrel{\tau_{A,B}^{-1}(f)}\longrightarrow B=F(A)\stackrel{Ff}\longrightarrow FG(B)\stackrel{\varepsilon_B}\longrightarrow B.\]
+						</p>
+					</div>
+					<p>
+						Use the first commutative diagram with $A'=G(B)$ so that we can use $f:A\to G(B).$ This looks like the following.
+					</p>
+					<img src="img3.png">
+					<p>
+						To use this diagram, we need to inhabit the lower-left corner with some map, but the only map we have access to is $\op{id}_{G(B)}.$ So we pull this back up to $\varepsilon_B:=\tau_{FG(B),B}^{-1}(\op{id}_{G(B)}).$ Now the diagram looks like the following.
+					</p>
+					<img src="img4.png">
+					<p>
+						It follows that $\tau_{A,B}^{-1}(f)=\varepsilon_B\circ Ff,$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We can also construct a mirror $\eta_A$ using the other commutative diagram.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							There is a map $\eta_A:A\to GF(A)$ which satisfies, for any $A\in\mathcal A$ and $B\in\mathcal B,$ we have $g:F(A)\to B$ has    \[A\stackrel{\tau_{A,B}(g)}\longrightarrow G(B)=A\stackrel{\eta_A}\longrightarrow GF(A)\stackrel{Gg}\longrightarrow G(B).\]
+						</p>
+					</div>
+					<p>
+						Use the second commutative diagram with $B=F(A)$ and $B'=B.$ This looks like the following.
+					</p>
+					<img src="img5.png">
+					<p>
+						Again, without much to do, we push $\op{id}_{F(A)}$ into the bottom-left to set $\eta_A:=\tau_{A,F(A)}(\op{id}_{F(A)}).$ Following the rest of the diagram through, we have the following.
+					</p>
+					<img src="img6.png">
+					<p>
+						It follows that $\tau_{A,B}(g)=Gg\circ\eta_A,$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						In my head, I'm thinking about $\eta_A$ and $\varepsilon_B$ as more or less identity maps in the most natural way with these functors. They entirely determine the adjoint, as shown in the lemmas, and I am under the impression we can actually define the adjoint backwards from the $\eta_A$ and $\varepsilon_B$ maps.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

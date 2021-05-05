@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 4th
+					</h2>
+					<p>
+						Today I learned (finally) why the norm-$1$ idele-class group $\AA^\times_{K,1}/K^\times$ is compact, from
+						<a href="https://web.archive.org/web/20210406035224/http://math.stanford.edu/~conrad/676Page/handouts/compactidele.pdf">
+							here
+						</a>
+						. This will turn out to imply the finiteness of the class group and Dirichlet's unit theorem, so it should not be surprising that this is somewhat difficult.
+					</p>
+					<p>
+						In particular, it should also not be surprising that we begin with a Minkowski-type lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For adele $a\in\AA_K,$ we define    \[X_a=\{x\in\AA_K:|x_\nu|_\nu\le|a_\nu|_\nu\text{ for each place }\nu\}.\]    Then there exists a constant $C_K$ only depending on $K$ such that $|a| \gt C_K$ implies $X_a\cap K^\times\ne\emp.$
+						</p>
+					</div>
+					<p>
+						We equip $\AA_K$ with the standard measure so that $\op{Vol}(\AA_K/K)=1.$ The structure of the proof of Minkowski's theorem for a general lattice $\Lambda\subseteq G$ is to fix a sufficiently large set, show that its translates onto $G/\Lambda$ must overlap somewhere, and then consider differences to extract a nonzero element in $\Lambda.$
+					</p>
+					<p>
+						Well, because we would like to take differences later, we define the small\[S:=\prod_{\nu\mid\infty}\overline B(0,1/2)\times\prod_{\nu \lt \infty}\overline B(0,1).\]We note that $Z$ is closed because all of the factors are closed, and all but finitely many of the factors are $\overline B(0,1)=\mathcal O_\nu.$ Additionally, $Z$ contains some open set (replace all of the $\overline B$s with $B$s), so it has nonzero measure; in fact, I think we could compute it has $2^{-\#\{\nu\mid\infty\}}.$ And most importantly, $s_1,s_2\in S$ have\[|(s_1-s_2)_\nu|_\nu\le1\]for each place $\nu.$ (Over $\nu \lt \infty,$ the strong triangle inequality gives us this.) So $S$ is able to control the size of differences somewhat.
+					</p>
+					<p>
+						Now, fix $a\in\AA_K$ with $|a| \gt C_K$ with $C_K:=\op{Vol}(S)^{-1}.$ The idea is that $\op{Vol}(aS)=|a|\op{Vol}(S)$ (by definition of $|a|$), which is bigger than $\op{Vol}(\AA_K/K)=1,$ so we are able to pick up a lattice point a la Minkowski.
+					</p>
+					<p>
+						To be explicit, we write out the measure-theoretic pigeonhole principle. Forget our condition on $a$ and that $\op{Vol}(aS) \gt 1$ for the time being; we show that if the projection mapping $\pi:aS\to\AA_K/K$ is injective, then $\op{Vol}(aS)\le1.$ We see that\[\op{Vol}(aS)=\int_{\AA_K}1_S(x)\,dx=\int_{\AA_K/K}\left(\sum_{k\in K}1_S(x+k)\right)dx\]We note have used Fubini's theorem here when moving the sum on $k\in K$ into the integral; this is fine because everything is positive and so should absolutely converge anyways. Continuing, this is\[\op{Vol}(aS)=\int_{\AA_K/K}\#\pi^{-1}(\{x\})\,dx.\]Now $\pi$ being injective implies that each $\#\pi^{-1}(\{x\})$ is no more than $1,$ so we conclude\[\op{Vol}(aS)\le\int_{\AA_K/K}dx=1.\]So considering the contrapositive, we see that $\op{Vol}(aS) \gt 1$ implies that there are distinct $as_1,as_1\in aS$ with the same representative$\pmod K.$
+					</p>
+					<p>
+						Looking at our conclusion, we can quickly finish. Because $as_1\equiv as_2\pmod K,$ we see $as_1-as_2\in K,$ so we define $x:=as_1-as_2\in K.$ It is nonzero because $as_1\ne as_2.$ Further, for any place $\nu,$ we see\[|x_\nu|_\nu=|a_\nu|_\nu\cdot|(s_1-s_2)_\nu|_\nu\le|a_\nu|_\nu\]by construction of $S.$ Thus, $x\in X_a\cap K^\times,$ so we are done here. $\blacksquare$
+					</p>
+					<p>
+						Now we move towards the proof that $\mathbb A^\times_{K,1}/K^\times$ is compact. It turns out that $\mathbb A^\times_{K,1}$ inherits its topology from $\AA_K$ as well as from $\AA_K^\times,$ which we will show later. \todo{}
+					</p>
+					<p>
+						\subsection{April 5th}Today I learned a relatively clean proof of the fact that\[\sum_{n\in\FF_p^\times}n^k\equiv0\pmod p\]provided that $p-1\nmid k,$ from
+						<a href="https://web.archive.org/web/20210406035125/https://math.berkeley.edu/sites/default/files/pages/F08_Final_Exam-C.P.Mok_.pdf">
+							here
+						</a>
+						. Quickly, we remark that $p-1\mid k$ implies that all terms are $1,$ so the sum comes out to $-1\pmod p.$ Anyways, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $p$ prime and $k$ a positive not divisible by $p-1.$ Then the sum    \[\sum_{n=1}^{p-1}n^k\equiv0\pmod p.\]
+						</p>
+					</div>
+					<p>
+						The key trick is taken from the classical proof of Fermat's little theorem. Fix $a\in\FF_p^\times$ to be determined later, and we note that $\times_a:\FF_p^\times\to\FF_p^\times$ is a bijection. (E.g., $ak\equiv a\ell$ implies $k\equiv\ell,$ so the map is injective and therefore bijective because the sets are finite.) It follows that\[S_k:=\sum_{n\in\FF_p^\times}n^k\equiv\sum_{n\in\FF_p^\times}(an)^k\equiv a^kS_k\pmod p.\]Rearranging, it follows that $\left(a^k-1\right)S_k\equiv0\pmod p.$
+					</p>
+					<p>
+						Thus, it suffices to find some $a\in\FF_p^\times$ with $a^k-1\in\FF_p^\times$ so that we can multiply both sides of the equivalence by its inverse to conclude the needed $S_k\equiv0.$ To make this easy, we appeal to field structure. Quickly, note that it suffices to look at $k\pmod{p-1}$ by Fermat's little theorem, so it suffices to assume $k\in[1,p-1].$
+					</p>
+					<p>
+						Now, if there is no such $a,$ then\[x^k-1\in\FF_p[x]\]has $p-1$ roots, so it needs to have degree at least $k\ge p-1.$ (Note we have forced $k \gt 0,$ so the degree is well-defined.) But with $k\in[1,p-1],$ this can only happen provided that $k=p-1.$ So when $k\ne p-1,$ we see there must be some $a\in\FF_p^\times$ with $a^k-1\not\equiv0,$ and we're done. $\blacksquare$
+					</p>
+					<p>
+						This proof is truly very clever. We attempt to motivate it but will mostly fail. The proof that I'm used to (and consider fairly motivated) is to fix a generator $g\in\FF_p^\times$ so that\[S_k:=\sum_{n\in\FF_p^\times}n^k\equiv\sum_{n=0}^{p-2}g^{nk}.\]So we see that this is a geometric series. If one is relatively mindless as I am, then we just note directly that, for $(p-1)\nmid k,$\[S_k\equiv\frac{g^{(p-1)k}-1}{g^k-1}\equiv0\]by using the geometric sum formula and then Fermat's little theorem. $\blacksquare$
+					</p>
+					<p>
+						This direct approach is potentially problematic because we have to check that the geometric sum formula actually holds. Well, we just note that\[g^kS_k=\sum_{n=0}^{p-2}g^{(n+1)k}\equiv\sum_{n=0}^{p-2}g^{nk}\equiv S_k,\]and surely $g^k\not\equiv1\pmod p,$ so we must have $S_k\equiv0.$ (This is the same idea as in orthogonality of characters.) But looking at this line, there really is no reason to use $g$:  we could take any $a=g^\bullet\in\FF_p^\times$ and still have\[a^kS_k=\sum_{n=0}^{p-2}g^{(n+\bullet)k}\equiv\sum_{n=0}^{p-2}g^{nk}\equiv S_k.\]For that matter, we don't even need the generator at this point, for $\times_a$ is a permutation of $\FF_p^\times$ anyways, and we can throw out all of the machinery from earlier, as was done in the original proof.
+					</p>
+					<p>
+						Of course, there is actually a legitimate reason to use the generator $g$ to do the multiplication $g^k.$ Namely, $g$ is guaranteed to have $g^k\not\equiv1$ for $(p-1)\nmid k,$ and not just any $a$ will do. I am under the impression that it is in general not trivial to find an $a$ for which $a^k\not\equiv1$; the details I provide appeal to Lagrange's theorem to say that some $a$ exists.
+					</p>
+					<p>
+						We remark that we need some kind of appeal to $\FF_p$'s field structure because there are monsters lurking here: we can of course generate groups for which $x^k=e$ has many more than $k$ solutions, so we need to use something more than the multiplicative structure here.
+					</p>
+					<p>
+						Even though we have removed generators, I don't actually think it's particularly easy to generalize this. Namely, we want to say $\left(a^k-1\right)S_k=0$ implies $a^k-1=0$ or $S_k=0$ at one point in the proof, so we need to be an integral domain. Additionally, we need some kind of finiteness condition in order to make the sum of units make sense, and finite plus integral domain already implies field.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

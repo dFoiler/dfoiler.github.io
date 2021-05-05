@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 6th
+					</h2>
+					<p>
+						Today I learned the proof that $L(s,\chi)$ is non-vanishing along $\op{Re}s=1,$ for unitary Hecke characters $\chi.$ The starting observation is that, for $s=1+it,$ we have\[L(s,\chi)=L\left(1,\chi|\bullet|^{it}\right)\]by definition of $L(s,\chi).$ Additionally, $\chi|\bullet|^{it}$ is still unitary, so we see that it suffices to show $L(1,\chi)\ne0$ over unitary Hecke characters $\chi$ instead.
+					</p>
+					<p>
+						The proof of this is mostly analytic, with appeal to a few facts about $\zeta_K.$ In particular, we need to know about its roots and poles.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given number field $K,$ the function $\zeta_K(s)$ has a simple pole at $s=1$ and zeroes at negative even integers.
+						</p>
+					</div>
+					<p>
+						This follows from the functional equation of $\zeta_K,$ which we don't show here. $\blacksquare$
+					</p>
+					<p>
+						The proof also requires some analytic facts about Dirichlet series. Typically I'd build these into the proof, but I think the proof has somewhat unavoidable contradiction, so I'm going to state and prove them outside of the proof.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $D(s)=\sum_{n=1}^\infty a_n/n^s$ is a Dirichlet series and absolutely convergent at $s=0.$ Then the series of $D(s)$ also converges normally over $\op{Re}s \gt 0.$
+						</p>
+					</div>
+					<p>
+						Normal convergence means that we need, given any $s\in\CC$ with $\op{Re}s \gt 0$ and error bound $\varepsilon \gt 0,$ a single value of $N$ such that\[\left|D(s)-\sum_{n \lt N}\frac{a_n}{n^s}\right|=\left|\sum_{n\ge N}\frac{a_n}{n^s}\right| \lt \varepsilon.\]Using the triangle inequality, it suffices to get\[\sum_{n\ge N}\frac{|a_n|}{n^\sigma} \lt \varepsilon\]for real values of $\sigma \gt 0.$ Of course, we don't know if this converges yet, so we would rather deal with a finite sum upper-bounded by $M$ and take $M\to\infty$ later. Anyways, the trick is to write\[\sum_{n=N}^M\frac{|a_n|}{n^\sigma}=\sum_{n=N}^{M-1}\left[\left(\sum_{k=N}^n|a_k|\right)\left(\frac1{n^\sigma}-\frac1{(n+1)^\sigma}\right)\right]+\left(\sum_{n=N}^M\frac{|a_n|}{M^\sigma}\right),\]which holds because the first sum telescopes off into terms like $\frac{|a_n|}{n^\sigma}-\frac{|a_n|}{M^\sigma},$ which the second sum deals with.
+					</p>
+					<p>
+						But now the absolute convergence at $s=0$ tells us we can take $N$ sufficiently large so that\[\sum_{n\ge N}|a_n| \lt \varepsilon.\]In particular, we see that the previous equation gives\[\sum_{n=N}^M\frac{|a_n|}{n^\sigma} \lt \sum_{n=N}^{M-1}\varepsilon\left(\frac1{n^\sigma}-\frac1{n+1}^\sigma\right)+\frac\varepsilon{M^\sigma}.\]The sum now telescopes to $\frac{\varepsilon}{N^\sigma}.$ Safely sending $M\to\infty$ means that we have indeed bounded the error below $\varepsilon/N^\sigma \lt \varepsilon.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We use the above lemma also in the context in the following one.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $D(s)=\sum_{n=1}^\infty a_n/n^s$ is a Dirichlet series and now holomorphic at $s=0$ and normally convergent over $\op{Re}s \gt 0.$ Then there exists an extension $\delta \gt 0$ such that the series of $D(s)$ converges over $\op{Re}s \gt -\delta.$
+						</p>
+					</div>
+					<p>
+						The idea is that being holomorphic at $s=0$ gives us an open set around $0$ for which $D(s)$ converges; say that $D(s)$ converges in a small open ball of radius $r$ and choose $\delta \lt r.$ As usual, it suffices to consider absolute convergence of $D(s),$ so we fix $\sigma \gt 0$
+					</p>
+					<p>
+						\todo{}
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

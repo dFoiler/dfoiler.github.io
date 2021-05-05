@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 26th
+					</h2>
+					<p>
+						Today I learned a small extension of Euclidean proofs of Dirichlet's theorem, from
+						<a href="https://projecteuclid.org/euclid.facm/1229442627">
+							this paper
+						</a>
+						. Say that a prime $p$ divides a polynomial $f\in\ZZ[x]$ if $p$ divides $f(k)$ for some $k\in\ZZ.$ The main theorem driving the discussion here is the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For any two nonconstant polynomials $f,g\in\ZZ[x]$ share infinitely many prime divisors. In fact, they share a positive density of primes.
+						</p>
+					</div>
+					<p>
+						It suffices to take $f$ and $g$ irreducible by taking some irreducible factor. The idea is to relate prime divisors to prime-splitting via Dedekind-Kummer and then control factorization by going up to some large field. In particular, we can let $\theta$ be an algebraic integer generating the Galois closure of the splitting fields of $f$ and $g.$
+					</p>
+					<p>
+						We are guaranteed that infinitely many primes split completely in $\QQ(\theta),$ and their density is $1/[\QQ(\theta):\QQ].$ We showed this a while ago by analyzing the residue of $\zeta_K$ at $s=1,$ but there are also Euclidean proofs of this statement without the density via Dedekind-Kummer.
+					</p>
+					<p>
+						Anyways, the reason we care is that we claim all but finitely of the infinitely many primes $p$ which split completely in $\QQ(\theta)$ is a divisor of $f$ and $g.$ Let $\alpha$ and $\beta$ be some root of $f$ and $g$ respectively so that we have the following tower.
+					</p>
+					<img src="img1.png">
+					<p>
+						In particular, $p$ splits completely in both $\QQ(\alpha)$ and $\QQ(\beta).$ Now, by Dedekind-Kummer, the splitting behavior of $p$ corresponds to the factorization of $f$ and $g$ in $\FF_p[x],$ so for all but finitely many $p,$ we know $f$ and $g$ split completely into linear factors.
+					</p>
+					<p>
+						Thus, for all but finitely many of our $p,$ we know $f$ and $g$ have a root in $\FF_p,$ implying that $p$ is a prime divisor of both $f$ and $g.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						Now, this is interesting because it provides a bit of a comic perspective to the usual Euclidean proofs of Dirichlet's theorem for $1\pmod n$ primes, for fixed positive integer $n.$ Namely, typically a lot of effort is put into showing that, for integer $a$ and prime $p,$\[p\mid\Phi_n(a)\implies p\mid n\text{ or }p\equiv1\pmod n.\]This can be done quickly by looking at $\QQ(\zeta_n),$ for unramified $p\nmid n$ will give $\Phi_n$ a linear factor if and only if $p$ splits completely in $\QQ(\zeta_n)$ if and only if $p\equiv1\pmod n.$ Alternatively, one can show more manually that the multiplicative order of $a\pmod p$ is $n,$ implying $p\equiv1\pmod n.$
+					</p>
+					<p>
+						This is nice because then the polynomial $\Phi_n(nx)\in\ZZ[x]$ satisfies the property that, for some integer $a$ and prime $p,$\[p\mid\Phi_n(na)\implies p\equiv1\pmod n.\]This can be used to show that there are infinitely many $1\pmod n$ primes in the usual way, for nonconstant polynomials have infinitely many prime divisors (use Dedekind-Kummer, or even directly apply the theorem with $g(x)=x$).
+					</p>
+					<p>
+						However, once we have constructed $\Phi_n(nx)$ with only $1\pmod n$ prime divisors, the theorem gives the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix a positive integer $n.$ Then any nonconstant polynomial $f\in\ZZ[x]$ has infinitely many $1\pmod n$ prime divisors.
+						</p>
+					</div>
+					<p>
+						This is proven by using the theorem with our $f$ and $g(x):=\Phi_n(nx).$ Any of the infinitely many shared prime divisors will surely divide $f$ and be $1\pmod n.$ $\blacksquare$
+					</p>
+					<p>
+						So in fact, any old polynomial could be used to witness a Euclidean proof of Dirichlet's theorem for $1\pmod n$ primes! However, I am not aware of any proof of this fact which does not go through all this machinery, so our discussion of cyclotomics is probably still necessary exposition.
+					</p>
+					<p>
+						Also, this suggests a difficulty to extending Euclidean proofs of Dirichlet's theorem for general $k\pmod n$ with $\gcd(k,n)=1.$ Namely, if we wanted to continue the polynomial approach, all of the polynomials we use will have (infinitely many) $1\pmod n$ prime factors, so we literally cannot always construct some $f\in\ZZ[x]$ such that\[p\mid f(a)\implies p\equiv k\pmod n,\]where $a$ is an integer and $p$ is prime. I know it is possible to work around this somewhat (though I haven't gone through the full argument), but it some sense to me why we probably can't go all the way to Dirichlet's theorem.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 30th
+					</h2>
+					<p>
+						Today I learned the Kuratowski closure-complement theorem, from
+						<a href="https://web.archive.org/web/20210302053008/http://nzjm.math.auckland.ac.nz/images/6/63/The_Kuratowski_Closure-Complement_Theorem.pdf">
+							here
+						</a>
+						. Here is the statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $X$ is a topological space, and fix $S\subseteq X.$ The set of sets that can be produced by taking successive complements or closures of $S$ has size at most $14.$
+						</p>
+					</div>
+					<p>
+						For brevity, we let $o$ denote the closure (for "overline'') and $c$ denote the complement (as in "complement''). We note that $c^2=\op{id}$ ("taking the complement of the complement does nothing''), and we state but do not prove that $o^2=o$ ("the closure of a set is closed''); in fact, the second follows quickly from the definition\[oS=\bigcap_{\substack{C\supseteq S\\C\text{ closed}}}C.\]Anyways, the point is that we only have to consider alternating sequences of $c$s and $o$s because having two consecutive $c$s or $o$s could be compressed into a smaller sequence.
+					</p>
+					<p>
+						Here's the main lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For any $S\subseteq X,$ the sets $ocoS$ and $ocococoS$ are the same.
+						</p>
+					</div>
+					<p>
+						We remark that $S\mapsto cocS$ gives the interior of $S$: indeed, it suffices to show that the closure of the complement of $S$ is the complement of the interior of $S,$ which is the statement that\[\bigcap_{\substack{C\supseteq X\setminus S\\\text{C closed}}}C\stackrel?=X\setminus\bigcup_{\substack{U\subseteq S\\U\text{ open}}}U\]after expanding out the definitions. Distributing the $X\setminus$ over the right-hand side means that we are taking the arbitrary intersection of $X\setminus U$s, but these parameterize the closed sets containing $X\setminus S,$ which is the left-hand side.
+					</p>
+					<p>
+						Anyways, the point is that $coc(ocoS)$ is the interior of (and therefore contained in) $ocoS.$ Thus,\[ocoS=o(ocoS)\supseteq o(coc(ocoS))=ocococoS.\]To get the other direction, we need $ocoS\subseteq ocococoS.$ Hoping that we live in a good world, it suffices to show that $coS\subseteq cococoS$ (closure preserves inclusion) which is equivalent to $oS\supseteq ococoS$ (complement reverses inclusion). But certainly $coc(oS)\subseteq oS$ (it's the interior), so we are done. $\blacksquare$
+					</p>
+					<p>
+						It remains to enumerate the possible alternating strings of $o$s and $c$s. Starting with $o,$ we can have\[oS,\,coS,\,ocoS,\,cocoS,\,ococoS,\,cococoS,\]but going any further would add redundancies by lemma. So we have $6$ elements in this case. Alternatively, we may start with $c$ to get\[cS,\,ocS,\,cocS,\,ococS,\,cococS,\,ocococS,\,cococoS,\]but going any further would add redundancies by lemma (using $cS$ for $S$). This gives $7$ elements in this case. Combining cases with the original set $S,$ we do indeed have at most $6+7+1=\boxed{14}$ sets. $\blacksquare$
+					</p>
+					<p>
+						I am obligated to say that $14$ is in fact an achievable maximum, even for well-behaved topological spaces like $\RR.$ The main idea in the construction is to throw a bunch of parts that behave differently with respect to closures and interiors. One example is\[S=(0,1)\cup(1,2)\cup\{3\}\cup([4,5]\cap\QQ).\]This looks like the following.
+					</p>
+					<img src="img1.png">
+					<p>
+						Here are the six sets starting from the closure.
+					</p>
+					<img src="img2.png">
+					<p>
+						Of particular note here is that $oS$ and $coc(oS)$ are different because of the isolated point. Otherwise we are mostly just chugging through the transformations. Anyways, we can indeed check that if we tried to take another complement, we would only get $ocoS.$
+					</p>
+					<p>
+						And here are the seven sets starting from the complement.
+					</p>
+					<img src="img3.png">
+					<p>
+						Of note here is that the interior $cocS$ is effectively erasing all the $[4,5]\cap\QQ$ stuff to give us new sets. Also, we do note that we're doing $(0,1)\cup(1,2)$ to give us an isolated point in the complement, which we use for fun and profit. Anyways, we can check that adding another closure gets back $ococS,$ as we expected from the proof. So we do total to $14$ sets, after checking everything is distinct.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 30th
+					</h2>
+					<p>
+						Today I learned the proof that meromorphic functions are conformal (i.e., angle-perserving) almost everywhere. Fix $f:\CC\to\CC$ analytic and, abusing notation, we will label $(u,v):=f:\RR^2\to\RR^2$ by the composition\[(x,y)\mapsto x+yi\mapsto f(x+yi)=(\op{Re}f(x+yi),\op{Im}f(x+yi)).\]Then the Cauchy-Riemann equations say that\[\frac{\del u}{\del x}=\frac{\del v}{\del y}\quad\text{and}\quad\frac{\del u}{\del y}=-\frac{\del v}{\del x}.\]At a high level, this means that the Jacobian of $f$ looks like\[\begin{bmatrix}    \del u/\del x & \del u/\del y \\    \del v/\del x & \del v/\del y\end{bmatrix}=\begin{bmatrix}    \del v/\del y & -\del v/\del x \\    \del v/\del x & \del v/\del y\end{bmatrix}\]is a rotation matrix when nonzero, so provided that $f'$ is nonzero, $f$ is conformal.
+					</p>
+					<p>
+						For formality reasons, we will stay in $\RR^2$ and just assume that our $f=(u,v):\RR^2\to\RR^2$ satisfy the Cauchy-Riemann equations as our way of using the fact $f$ is meromorphic. To show all angles are preserved, it suffices to show that angles with one side horizontal are preserved because we can just subtract to get all angles.
+					</p>
+					<p>
+						Let $\arg:\RR^2\to(\RR/2\pi\ZZ)$ be the function sending a point to its angle. Fixing a point $x$ and direction vector $v,$ we want to know that\[\arg\big(f(x+v)-f(x)\big)=\arg v\]as $v\to0.$ Note that we have to be a bit precise with $v\to0$ because we want to maintain direction, so we really want\[\arg\big(f(x+vdx)-f(x)\big)=\arg v\]as $dx\to0$ in $\RR.$
+					</p>
+					<p>
+						To use the derivative of $f,$ we would like to use the total derivative (equal to the Jacobian from earlier!), which by definition satisfies\[\lim_{dx\to0}\frac{\lVert f(x+vdx)-f(x)-(Df)(x)(vdx)\rVert}{\lVert vdx\rVert}=0.\]\todo{}
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 19th
+					</h2>
+					<p>
+						Today I learned (finally) the proof of the fundamental correspondence in Galois theory, from Marcus (say). We assume that a finite extension $L/K$ has $[L:K]$ embeddings into $\CC,$ and we take the primitive element theorem (for separable extensions) on faith. The main theorem is the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $M/K$ is a finite, separable, normal extension with Galois group $G:=\op{Gal}(M/K).$ Then we can biject from intermediate subgroups $H\subseteq G$ to intermediate fields by taking the fixed field $M^H.$
+						</p>
+					</div>
+					<p>
+						We can by showing the map is well-defined. The set of elements of $M$ fixed by a particular subgroup does indeed make a field: at least $\alpha,\beta\in M^H$ implies\[\begin{cases}    \sigma(\alpha+\beta)=\sigma(\alpha)+\sigma(\beta)=\alpha+\beta, \\    \sigma(\alpha\cdot\beta)=\sigma(\alpha)\cdot\sigma(\beta)=\alpha\cdot\beta,\end{cases}\]and a subring of a field (say, containing $1$) is a subfield.
+					</p>
+					<p>
+						To show surjectivity, pick up any intermediate field $L,$ and we would like to take it to $\op{Gal}(M/L)\subseteq\op{Gal}(M/K).$ Note that any embedding of $M$ fixing $L$ is also an embedding of $M$ fixing $K$ and therefore lives in $\op{Gal}(M/K).$ Further, this subset of $\op{Gal}(M/K)$ is closed under composition and inversion (which we won't show explicitly), so it is a subgroup. We let this subgroup be $H:=\op{Gal}(M/L)\subseteq\op{Gal}(M/K).$
+					</p>
+					<p>
+						It remains to show that $L$ is actually the fixed field of $H.$ This is a size problem. Focusing on $M/L,$ we see that it is a finite, separable (inherited from $M/K$), normal (above) extension, so we have\[[M:L]=\#\op{Gal}(M/L)\]total embeddings of $M$ into $\CC$ fixing $L.$ However, we must also have $\op{Gal}(M/L)\subseteq\op{Gal}(M/M^H),$ implying $[M:L]\le[M:M^H],$ and certainly $L\subseteq M^H,$ so we conclude $L=M^H.$
+					</p>
+					<p>
+						For injectivity, we have to show that two subgroups $H_1$ and $H_2$ cannot have the same fixed field $L\subseteq M.$ For this, we claim that, actually,\[\op{Gal}(M/M^H)=H,\]implying that we can read the subgroup off of the fixed field. (The Galois group is defined because $M^H$ is an intermediate field of the Galois extension $M/K$; see above.) In particular, this will be enough because, if $M^{H_1}=M^{H_2},$ then $\op{Gal}(M/M^{H_1})=\op{Gal}(M/M^{H_2}),$ so $H_1=H_2$ as we need.
+					</p>
+					<p>
+						Showing that $\op{Gal}(M/M^H)=H$ comes down to a size condition. Certainly all automorphisms in $H$ belong in $\op{Gal}(M/M^H),$ but the issue is that we might have more automorphisms. To control this, we let $L=M^H,$ and we're showing that $L$ is not the fixed field of any proper subgroup of $\op{Gal}(M/L)$ (which $H$ would be if there were extra automorphisms).
+					</p>
+					<p>
+						This, again, comes down to a size condition. Fix $H\subseteq\op{Gal}(M/L)$ whose fixed field is $L.$ Using the primitive element theorem, we can fix $M=L[\alpha],$ and then we focus on the polynomial\[f(x):=\prod_{\sigma\in H}(x-\sigma\alpha).\]The coefficients of $f(x)$ are fixed by $H$&mdash;they are symmetric sums of products of $\sigma_\bullet$s, so applying anything in $H$ merely permutes the symmetric sum&mdash;meaning that the coefficients live in $L,$ or $f\in L[x].$ Expanding $M$ as $L$ with a power basis $\alpha^\bullet,$ we see that we are forced to have\[\deg f=[M:L]=\#\op{Gal}(M/L).\]In particular, $\#H=\#\op{Gal}(M/L),$ so we had better have $H=\op{Gal}(M/L).$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We remark that the proof also gives the inclusion reversing cleanly. In particular, subgroups $A,B\subseteq\op{Gal}(M/K)$ correspond (one-to-one) with their fixed fields $M^A$ and $M^B.$ But $A\subseteq B$ if and only if $M^B\subseteq M^A$ ("the set of elements fixed by $B$ is also fixed by $A$''), which is the inclusion-reversing property.
+					</p>
+					<p>
+						We also prove the following refinement in the context of the previous theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							The Galois correspondence takes normal subgroups to fields normal over $K$ (and vice versa).
+						</p>
+					</div>
+					<p>
+						The main idea is that, for an intermediate field extension $L$ between $M/K$ and $\sigma\in\op{Gal}(M/K),$ we have\[\op{Gal}(M/\sigma L)=\sigma\op{Gal}(M/L)\sigma^{-1}.\]Indeed, $\tau\in\op{Gal}(M/\sigma L)$ if and only if $\tau$ fixes $\sigma L$ if and only if $\sigma^{-1}\tau\sigma$ fixes $L$ if and only if $\tau\in\sigma\op{Gal}(M/L)\sigma^{-1}.$
+					</p>
+					<p>
+						Now, the statement that $L$ is normal over $K$ is that all embeddings of $L/K$ are in fact automorphisms. Well, any of the embeddings of $L/K$ can be extended to embeddings (and therefore automorphisms) of $M/K,$ so we only have to check restrictions of $\op{Gal}(M/K).$ In particular, $L$ is normal over $K$ if and only if\[\sigma L=L\]for each $\sigma\in\op{Gal}(M/K).$ Well, the subgroup fixing $\sigma L$ is $\sigma\op{Gal}(M/L)\sigma^{-1},$ so the Galois correspondence asserts that this holds if and only if\[\sigma\op{Gal}(M/L)\sigma^{-1}=\op{Gal}(M/K)\]for each $\sigma\in\op{Gal}(M/K).$ In particular, $L$ is normal over $K$ if and only if $\op{Gal}(M/L)$ is a normal subgroup, which is what we wanted. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 25th
+					</h2>
+					<p>
+						Today I learned that the expected number of cycles in the cycle decomposition of a random permutation on $n$ letters is $H_n.$ We present two proofs of this, one combinatorial and clever, the other via generating functions and more immediately generalizable.
+					</p>
+					<p>
+						We begin with the combinatorial approach.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For random $\sigma\in S_n,$ the expected number of cycles of $\sigma$ is $H_n.$
+						</p>
+					</div>
+					<p>
+						The key trick is to set indicator variables $X_k$ for each $k\in\{1,\ldots,n\}$ equal to the reciprocal of the size of the cycle containing $k.$ Then we want\[\mathbb E\left[\sum_{k=1}^nX_k\right].\]Indeed, $\sum_{k=1}^nX_k$ counts each cycle of length $\ell$ a total of $\ell$ times, incrementing $\frac1\ell$ each time, so we total to incrementing $\frac\ell\ell=1$ time for each cycle. So by linearity of expectation, we are computing\[\mathbb E\left[\sum_{k=1}^nX_k\right]=\sum_{k=1}^n\mathbb E[X_k].\]Of course, there is nothing special about $k$ in our sum, so we want $n\mathbb E[X_1].$
+					</p>
+					<p>
+						So it remains to compute $n\mathbb E[X_1].$ For this, we note that the number of permutations for which $1$ is in a cycle of length $\ell$ is\[\underbrace{(n-1)(n-2)\cdots(n-\ell+1)}_{1\text{'s cycle}}\cdot\underbrace{(n-\ell)!}_{\text{else}}=(n-1)!.\]This means that the cycle length $\ell$ of $1$ is evenly distributed across all permutations (!). Thus, remembering that $X_1$ weights $\ell$ by $\frac1\ell,$ we see that \[n\mathbb E[X_1]=n\cdot\frac1{n!}\sum_{\ell=1}^n\frac{(n-1)!}\ell=H_n.\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Really, the key observation in the above proof is that the cycle of length of a particular element is evenly distributed over all permutations. This is remarkable fact, but I don't know a more combinatorial proof than the algebraic proof I gave.
+					</p>
+					<p>
+						Anyways, we now do this with generating functions. To set up the work we do, we define a weighting function $b:\NN\to\CC$ and define, for $\sigma\in S_n,$\[b(\sigma)=\sum_{c\in\sigma}b(\#c)\]to be the sum over the cycles $c$ of $\sigma.$ Most of our work is done by the following lemma.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that, as formal power series in $x$ and $u,$    \[1+\sum_{n=1}^\infty\left(\sum_{\sigma\in S_n}u^{b(\sigma)}\right)\frac{z^n}{n!}=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right).\]
+						</p>
+					</div>
+					<p>
+						We show this by brute force. To begin, name the right-hand side $g(x,u),$ and we note that it is\[g(x,u)=\prod_{k=1}^\infty\exp\left(u^{b(k)}\frac{z^k}k\right)=\prod_{k=1}^\infty\sum_{m_k=0}^\infty\frac{\left(u^{b(k)}z^k/k\right)^{m_k}}{m_k!}.\]We can rearrange the sum and the product with some force by writing\[g(x,u)=\sum_{\{m_k\}_k\in\NN^\NN}\prod_{k=1}^\infty\frac{\left(u^{b(k)}z^k/k\right)^{m_k}}{m_k!}.\]We want to group terms by $z^n/n!,$ so we rearrange the sum (legal because the sum is formal) to\[g(x,u)=\sum_{n=0}^\infty\left(\sum_{\sum_kkm_k=n}u^{\sum_km_kb(k)}n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}\right)\frac{z^n}{n!}.\]Now, looking to the left-hand side of the desired expression, it suffices to show that, for $n \gt 0,$\[\sum_{\sigma\in S_n}u^{b(\sigma)}=\sum_{\sum_kkm_k=n}u^{\sum_km_kb(k)}n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}.\]We note that $n=0$ gives both sides constant term $1,$ so we don't have to check it.
+					</p>
+					<p>
+						To derive the bijection between these, we note that it suffices to show that the number of $\sigma\in S_n$ with cycle decomposition cycle-lengths given by $m_k$ cycles of length $k$ is $n!\prod_k\frac1{k^{m_k}m_k!}.$ Indeed, the right-hand side then features power of $u$ as $u^{b(\sigma)},$ and we're summing over all possible cycle decompositions, so they'll match.
+					</p>
+					<p>
+						So what remains is combinatorics. The following lemma will finish.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix a positive integer $n$ and $\{m_k\}_{k=1}^\infty\subseteq\NN$ satisfying $n=\sum_{k=1}^\infty km_k.$ Then the number of permutations with $m_k$ cycles with of length $k$ is    \[n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}.\]
+						</p>
+					</div>
+					<p>
+						For concreteness, fix $N$ the largest index $m_k$ that is nonzero. To make the proof easier, we begin by choosing the $m_1$ elements that will belong to cycles of length $1,$ then the $2m_2$ elements that will belong to cycles of length $2,$ and so on. There are\[\binom n{m_1}\binom{n-m_1}{2m_2}\binom{n-m_1-2m_2}{3m_3}\cdots\binom{Nm_N}{Nm_N}\]ways to do this. Expanding the binomial coefficients and then cancelling redundant factorials gives\[\frac{n!}{m_1!(2m_2)!(3m_3)!\cdots(Nm_N)!}.\]
+					</p>
+					<p>
+						Now, we have to count the number of ways to split $km_k$ elements into $m_k$ cycles of length $k.$ The number of ways to divide up the elements into cycles is\[\frac{\displaystyle\binom{km_k}k\binom{km_k-k}k\cdots\binom kk}{m_k!}.\]After expanding the binomial coefficients and cancelling redundant factorials (again), this is\[\frac{(km_k)!}{k!^km_k!}\]Finally, the number of ways to arrange each of the $k$ elements into a cycle is $(k-1)!,$ so the number of permutations on $km_k$ which are $m_k$ cycles of length $k$ is\[\frac{(km_k)!}{k^km_k!}.\]Bringing this all together, the number we want is\[\frac{n!}{m_1!(2m_2)!(3m_3)!\cdots(Nm_N)!}\prod_{k=1}^N\frac{(km_k)!}{k^km_k!}.\]This rearranges to the desired. $\blacksquare$
+					</p>
+					<p>
+						We now kill the theorem. Set our weighting function $b(k)=1$ for all $k$ so that $b(\sigma)$ is the number of cycles in $\sigma\in S_n.$ For concreteness, we let\[g(z,u)=1+\sum_{n=1}^\infty\left(\sum_{\sigma\in S_n}u^{b(\sigma)}\right)\frac{z^n}{n!}=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right)\]by proposition. In order to average $b(\sigma),$ we look at\[\frac{\del g}{\del u}\bigg|_{u=1}=\sum_{n=1}^\infty b(\sigma)\frac{z^n}{n!}\]so that the $z^n$ coefficient here exactly measures the average we want. On the other hand, we see\[g(z,u)=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right)=\left(\frac1{1-z}\right)^u\]by fiddling around with the Taylor series of $\log(1-z),$ so\[\frac{\del g}{\del u}\bigg|_{u=1}=\frac1{1-z}\log\left(\frac1{1-z}\right)=\left(\sum_{k=0}^\infty z^k\right)\left(\sum_{\ell=1}^\infty\frac{z^\ell}\ell\right).\]In particular, the $z^n$ coefficient comes out to\[\sum_{k=0}^nz^k\cdot\frac{z^{n-k}}{n-k}=z^nH_n.\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						The context that this came up in is in analog to the statement that the average number of prime factors of an integer $n$ is $\log\log n.$ Comparing this to the statement we just proved, we roughly showed that the "factorization'' of a random permutation $\sigma\in S_n$ has $\log n$ "prime factors.'' The extra $\log$ factor here comes from there being lots more permutations than integer or something.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

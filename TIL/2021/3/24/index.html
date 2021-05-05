@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 24th
+					</h2>
+					<p>
+						Today I learned the Zeckendorf decomposition of positive integers into nonconsecutive Fibonacci numbers. For concretness, we define our Fibonacci numbers by $F_1=1,$ $F_2=2,$ and $F_{n+2}=F_{n+1}+F_n$ so that we don't have the usual repeated $1$ in the sequence. As advertised, the main theorem is as follows.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Every positive integer can be decomposed uniquely (!) into a sum of nonconsecutive Fibonacci numbers.
+						</p>
+					</div>
+					<p>
+						The main motivating idea behind the theorem is the following lemma, which is more or less a bounding result.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[1+\sum_{k=1}^nF_{2k-1}=F_{2n},\quad\text{and}\quad1+\sum_{k=1}^nF_{2k}=F_{2n+1}.\]    Equivalently,    \[\sum_{\substack{0 \lt k \lt N\\k\not\equiv N\pmod2}}F_k=F_N-1.\]
+						</p>
+					</div>
+					<p>
+						The idea here is that we can write\begin{align*}    F_n &= F_{n-1}+F_{n-2} \\    &= F_{n-1}+F_{n-3}+F_{n-4} \\    &= F_{n-1}+F_{n-3}+F_{n-5}+F_{n-6} \\    &= \cdots.\end{align*}However, we can provide quick proofs of the identities via induction. Their bases cases are $n=0,$ where they read $1+1=2$ and $1+2=3$ respectively, which are true. Then the inductive step of the left-hand expression is\[1+\sum_{k=1}^{n+1}F_{2k-1}=\left(1+\sum_{k=1}^nF_{2k-1}\right)+F_{2n+1}=F_{2n}+F_{2n+1}=F_{2n+2}.\]Similarly, the inductive step of the right-hand expression is\[1+\sum_{k=1}^{n+1}F_{2k}=\left(1+\sum_{k=1}^nF_{2k}\right)+F_{2n+2}=F_{2n+1}+F_{2n+2}=F_{2n+3}.\]This completes the proof of the lemma. $\blacksquare$
+					</p>
+					<p>
+						We now proceed with the proof of theorem, which we split up by lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Every positive integer can be decomposed into a sum of nonconsecutive Fibonacci numbers.
+						</p>
+					</div>
+					<p>
+						Note we don't care about uniqueness yet. Anyways, the idea here is that the greedily choosing the largest Fibonacci number repeatedly works, and in fact it must work if the statement is to be true. Indeed, if we skip the largest Fibonacci number $F_N,$ then the sum of the largest nonconsecutive Fibonacci sum is merely\[\sum_{\substack{0 \lt k \lt N\\k\not\equiv N\pmod2}}F_k=F_N-1 \lt F_N,\]so our task would be impossible for bounding reasons. We mention this because it is important in the uniqueness proof.
+					</p>
+					<p>
+						Of course, showing that the greedy algorithm works is a matter of applying strong induction. Certainly the statement is true for $1,$ which provides its own decomposition. Else, suppose that we can represent all positive integers less $n$ by a sum of nonconsecutive Fibonacci numbers. Because Fibonacci numbers grow arbitrarily large, we may extract $N$ so that\[F_N\le n \lt F_{N+1}.\]To apply the greedy algorithm to our induction, we would like to choose $F_N$ and then append it to the decomposition of $n-F_N$ into nonconsecutive Fibonacci numbers. However, there is a slight issue because we don't yet know that the decomposition of $F_N$ does not contain $F_{N-1},$ which would disallow $F_N.$
+					</p>
+					<p>
+						To fix this, we see that\[n-F_N \lt F_{N+1}-F_N=F_{N-1},\]so the decomposition of $n-F_N$ simply cannot contain $F_{N-1}$ for bounding reasons. So we use our induction to write\[n-F_N=\sum_{k\in S}F_k\]for some set of indices $S\subseteq\ZZ^+$ not containing consecutive integers. Because of the bounding, all indices in $S$ are less than $N-1,$ so $S\subseteq\{N\}$ still does not have consecutive integers. Thus, $S\cup\{N\}$ summing to $(n-F_N)+F_N=n$ will provide the required decomposition of $n.$ $\blacksquare$
+					</p>
+					<p>
+						It remains to show uniqueness.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If $S,T\subseteq\ZZ^+$ do not contain consecutive integers, then $S\ne T$ implies    \[\sum_{k\in S}F_k\ne\sum_{\ell\in T}F_\ell.\]
+						</p>
+					</div>
+					<p>
+						Note that certainly $S\cap T\subseteq S,T,$ so we can subtract these indices from the sums to have sets $S\setminus(S\cap T)$ and $T\setminus(S\cap T)$ are still unequal subsets, and we still want to show the equivalent statement\[\sum_{k\in S\setminus(S\cap T)}F_k\stackrel?=\sum_{\ell\in T\setminus(S\cap T)}F_\ell.\]To be explicit, this implies what we want by adding back in the indices in $S\cap T$ back to both sides. Anyways, we can reset $S$ and $T$ to not have any intersection.
+					</p>
+					<p>
+						The punchline in what follows is that the fact that $S$ or $T$ has a largest element the other does not have implies bounding says that their Fibonacci sums must be unequal. That is, we  order $S=\{s_k\}_{k=1}^N$ and $T=\{t_\ell\}_{\ell=1}^M$ with $s_1 \lt s_2 \lt \cdots \lt s_N$ and $t_1 \lt t_2 \lt \cdots \lt t_M.$ Without loss of generality, we fix $s_N\ge t_M$ (otherwise switch), so $s_N \gt t_M$ because $S\cap T=\emp.$
+					</p>
+					<p>
+						Now, this index $s_N$ is massive in compared to anything in $T.$ In particular, because $T$ does not consecutive integers, we see $t_\ell\le t_M-2(M-\ell)\le s_N-(2(M-\ell)+1).$ So by lemma,\[\sum_{\ell\in T}F_\ell=\sum_{\ell=1}^MF_{t_\ell}\le\sum_{\substack{0 \lt t \lt s_N\\t\not\equiv s_N\pmod2}}F_t \lt F_{s_N}.\]In particular,\[\sum_{k\in S}F_k \gt \sum_{\ell\in T}F_\ell,\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						To finish the proof of uniqueness, we suppose that some positive integer has multiple decompositions with indices $S$ and $T$ not containing consecutive integers. Then the contrapositive of the above lemma implies that\[\sum_{k\in S}F_k=n=\sum_{\ell\in T}F_\ell\]gives $S=T.$ Thus, our decompositions are unique, and we're done. $\blacksquare$
+					</p>
+					<p>
+						I was pretty impressed by the theorem when I first read it but was a bit disappointed by the fact that it more or less amounts to a bounding result, as shown in the first lemma. I suppose it is remarkable that this is true at all and that no clever machinery was necessary.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

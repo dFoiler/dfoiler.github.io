@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 15th
+					</h2>
+					<p>
+						Today I learned how to fix the law of the excluded middle in homotopy type theory, from
+						<a href="https://homotopytypetheory.org/book/">
+							the homotopy type theory book
+						</a>
+						as usual. The main issue with univalence is that it allows distinction between proofs/witnesses for a particular type, so we take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Call a type $A:\UU$ a mere proposition if and only if the type    \[\op{isProp}(A):\equiv\prod_{(a,b:P)}(a=b)\]    is inhabited. In other words, all witnesses are equal.
+						</p>
+					</div>
+					<p>
+						So, in essence, types with a witness to $\op{isProp}(A)$ are either true or false, and being true doesn't give us any more information than that $A$ is true, for all proofs are the same here. Of course, requiring $\op{isProp}(A)$ weakens our logic, and I think homotopy type theory likes dealing with types more than mere propositions.
+					</p>
+					<p>
+						Anyways, we can formalize the idea that mere propositions are either true or false with no extra information. Certainly we hope that if mere proposition captures the idea of purely true or false, then the types $0$ and $1$ should mere propositions, so we start with these.
+					</p>
+					<div class="example">
+						<p>
+							<b>
+								Example.
+							</b>
+							The type $0$ is a mere proposition because any inhabitants $a,b:0$ let us inhabit any type, of which $a=b$ is an example, using the induction of $0.$
+						</p>
+					</div>
+					<div class="example">
+						<p>
+							<b>
+								Example.
+							</b>
+							The type $1$ is a mere proposition because we using the induction of $1$ on    \[\prod_{(a:1)}\prod_{(b:1)}(a=b)\]    means that we have to witness $\prod_{(b:1)}(\star=1),$ for which induction on $1$ (again) means we have to witness $\star=\star.$ Now, $\op{refl}_\star$ works here, so we're safe.
+						</p>
+					</div>
+					<p>
+						Thus, true and false are mere propositions, so we formalize the idea that mere propositions are either true or false with equivalences.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $A$ is a mere proposition. If $A,$ then $A=1.$ If $\lnot A,$ then $A=0.$
+						</p>
+					</div>
+					<p>
+						The easiest way to show this is to take the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If $A$ and $B$ are mere propositions for which $A\to B$ and $B\to A$ are inhabited, then $A=B.$
+						</p>
+					</div>
+					<p>
+						We note that univalence means that we merely have to witness the equivalence $A\simeq B.$ Well, pick up any $f:A\to B$ and $g:B\to A,$ and we claim that $f$ and $g$ are quasi-inverses, which will be enough. Indeed, for any $a:A,$ we have that $(g\circ f)(a):A,$ but $A$ is a mere proposition, so\[(g\circ f)(a)=a,\]so $g\circ f\sim\op{id}.$ Similarly, any $b:B$ gives $(f\circ g)(b):B,$ which implies $(g\circ f)(b)=b$ because $B$ is a mere proposition, so $f\circ g\sim\op{id}$ as well. This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						In lieu of the above lemma, we merely have to exhibit maps to show the desired equalities. From here, we split this into cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								We note that we always have $\lambda(a:A).\star:A\to1,$ so it remains to exhibit $1\to A.$ Well, given $A,$ we can fix $a:A$ and then use induction to give a map $1\to A$ sending $\star\mapsto a.$ So given $A,$ we do have $A=1$ by lemma.
+							</p>
+						</li>
+						<li>
+							<p>
+								We note that we always have $0\to A$ by inducting on $0,$ so it remains to exhibit $A\to 0:\equiv\lnot A.$ So given $\lnot A,$ we do have $A=0$ by lemma.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having proved both parts of the proposition, we are done here. $\blacksquare$
+					</p>
+					<p>
+						Having established that mere propositions are well-behaved in terms of their truthiness, we introduce the law of the excluded middle in homotopy type theory. Having eliminated all possibly problematic $\infty$-groupoid structure for mere propositions, our law of the excluded middle is\[\op{LEM}:\prod_{(A:\UU)}\big(\op{isProp}(A)\to(A+\lnot A)\big).\]That is, all mere propositions are (constructively) either true or false. Note that this has not been stated as a theorem because it is an axiom. I am told that one can construct of models of homotopy type theory where even this law of the excluded middle breaks, which means it cannot be proven. But at least nothing breaks (immediately).
+					</p>
+					<p>
+						It will turn out that being a mere proposition is not a "serious'' block to proving types are inhabited. In particular, there is a way (I have not learned) to take a type $A$ and get a mere proposition $\lVert A\rVert$ that is inhabited if and only if $A$ is.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

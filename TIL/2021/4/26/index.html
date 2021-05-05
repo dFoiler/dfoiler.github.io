@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 26th
+					</h2>
+					<p>
+						Today I learned the proof of function extensionality from the existence of the interval type. There is an approach from cubical type theory where we use the interval type in order to define path types, but it involves some careful matching of different inductors of the interval type.
+					</p>
+					<p>
+						Instead, we define the interval type as a higher inductive type.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							The interval type $I$ is defined with constructors $0:I$ and $1:I$ as well as $\op{seg}:0=1.$ Given a target type $A:\UU,$ our recursion principle is    \[\op{rec}_I(A):\prod_{(a_1,a_2:A)}\prod_{(p:a_1=a_2)}(I\to A)\]    satisfying the definitional equalities $\op{rec}_I(A)(0)\equiv a_1,$ $\op{rec}_I(A)(1)\equiv a_2,$ and $\op{rec}_I(A)(\op{seg})=p.$
+						</p>
+					</div>
+					<p>
+						There is a corresponding inductive principle for $I,$ but we don't need it where we're going. Also, it turns out to be somewhat difficult (but possible) to derive recursion from induction, so we don't do it here.
+					</p>
+					<p>
+						Anyways, let's prove function extensionality.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Assume that we have a type $I.$ Then we can exhibit    \[\op{funext}:\prod_{(A:\UU)}\prod_{(B:A\to\UU)}\prod_{\left(f,g:\prod_{(a:A)}B(a)\right)}(f\sim g)\to(f=g).\]
+						</p>
+					</div>
+					<p>
+						The idea here is that\[f\sim g\equiv\prod_{(a:A)}f(a)=_{B(a)}g(a)\]is more or less (by heavy abuse of notation) of type $A\to I\to B$ if we think about paths being images of $I.$ However, $f=g$ is then more or less of type $I\to A\to B,$ so function extensionality should be like swapping.
+					</p>
+					<p>
+						To make this rigorous, we begin by fixing $A:\UU,$ $B:A\to\UU,$ and $f,g:\prod_{(a:A)}B(a)$ with homotopy $h:f\sim g.$ Now we actually define a function $\prod_{(a:A)}I\to B(a)$ to ready the swapping by\[h_\bullet:\equiv\op{rec}(B(a))(f(a),g(a),h(a)).\]In particular, we are using the path $h(a):f(a)=_{B(a)}g(a)$ to complete telling the recursion where it should send the path $\op{seg}:I.$
+					</p>
+					<p>
+						Now we swap this into a function $I\to\prod_{(a:A)}B(a).$ In particular, the function\[p:\lambda(i:I).\lambda(a:A).h_a(i)\]has the desired type. To finish, we see that\[\begin{cases}    p(0)\equiv\lambda(a:A).f(a)\equiv f, \\    p(1)\equiv\lambda(a:A).g(a)\equiv g.\end{cases}\]In particular, we know $f\equiv\lambda(a:A).f(a)$ by how $\lambda$-calculus works; I think this is $\beta$-reduction. Anyways, it follows\[\op{ap}_p(\op{seg}):\big(p(0)=p(1)\big)\equiv(f=g),\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						What I like about the above proof is how much of it can be read as trying to rigorize that swapping intuition. In cubical type theory, the swapping intuition is pretty much an actual proof, which I suppose is an argument for using cubical type theory, but I haven't studied cubical type theory, so this presentation is more familiar to me.
+					</p>
+					<p>
+						We remark that one can show $\op{funext}$ is indeed a quasi-inverse of $\op{happly}.$ In fact, the following stronger statement is true.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose we can witness    \[\op{funext}:\prod_{(A:\UU)}\prod_{(B:A\to\UU)}\prod_{\left(f,g:\prod_{(a:A)}B(a)\right)}(f\sim g)\to(f=g).\]    Then $\op{happly}$ has a quasi-inverse; in particular, full function extensionality is true.
+						</p>
+					</div>
+					<p>
+						This is a very remarkable statement: we are told nothing about how $\op{funext}$ behaves under the hood, yet somehow the existence of $\op{funext}$ is able to provide us our computation rules. Alas, I do not know the proof of this statement as of now.
+					</p>
+					<p>
+						The point of stating the above is that it does mean that being able to witness as in the proposition something behaving like function extensionality implies its computation rules. So we can rest assured that it is possible to prove full function extensionality from the existence of an interval type.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

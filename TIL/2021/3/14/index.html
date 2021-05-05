@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 14th
+					</h2>
+					<p>
+						Today I learned about one-point compactification, from
+						<a href="https://ncatlab.org/nlab/show/one-point+compactification">
+							the nlab page
+						</a>
+						for example. Roughly speaking, the idea is to take topological space $X$ and add a point $\infty$ (along with lots of open sets) to make $X\cup\{\infty\}$ feel smaller and, in particular, compact. Anyways, we take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given a topological space $X,$ the one-point compactification of $X$ is a topological space $X^*$ with underlying set $X\cup\{\infty\}$ for an added point $\infty\not\in X.$ Its open sets are
+						</p>
+						<ul>
+							<li>
+								<p>
+									open sets of $X,$
+								</p>
+							</li>
+							<li>
+								<p>
+									$(X\setminus C)\cup\{\infty\}$ for some closed and compact subset $C\subseteq X.$
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						We note that this topology is somewhat "natural'' because $X\setminus C$ is basically a large open set, so we're essentially endowing $X^*$ with the open sets endowed to it by $X,$ with some restriction on neighborhoods of $\infty.$
+					</p>
+					<p>
+						Already we can see that $X^*$ should be compact, for covering $\infty$ only leaves a compact subset $C$ of $X$ to cover, so covers of $X^*$ we can reduce to covers of $C,$ of which there exists a finite subcover. This is more or less our motivation; the fact that this makes a well-defined topology is remarkable.
+					</p>
+					<p>
+						Anyways, we should probably the claimed open sets actually a topology. In particular, we're not taking these open sets as a subbasis.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The claimed topology on $X^*$ is actually a topology.
+						</p>
+					</div>
+					<p>
+						Because $C=\emp$ is compact, $X\cup\{\infty\}$ is open. Because $\emp$ is open in $X,$ $\emp$ is open in $X^*.$ It remains to deal with finite intersections and arbitrary unions.
+					</p>
+					<p>
+						We start with finite intersections. This is fairly quick and comes down to casework because our open sets only have two types.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If our intersection looks like $U_1\cap U_2$ for open $U_1,U_2\subseteq X,$ then this is open because $X$ is a topological space.
+							</p>
+						</li>
+						<li>
+							<p>
+								If our intersection looks like $U\cap[(X\setminus C)\cup\{\infty\}]$ for open $U\subseteq X$ and closed and compact $C\subseteq X,$ then we note that this is    \[[U\cap(X\setminus C)]\cup[U\cap\{\infty\}]\]    by distributing. The former set is open in $X$ because $X\setminus C$ is open in $X$; the latter set is open in $X$ because it is empty. So the union of these two is open.
+							</p>
+						</li>
+						<li>
+							<p>
+								If our intersection looks like $[(X\setminus C_1)\cup\{\infty\}]\cap[(X\setminus C_2)\cup\{\infty\}]$ for closed and compact $C_1,C_2\subseteq X,$ then we note that this is    \[[(X\setminus C_1)\cap(X\setminus C_2)]\cup\{\infty\}=[X\setminus(C_1\cup C_2)]\cup\{\infty\}\]    by distributing and de Morgan's law. Thus, it remains to show that $C_1\cup C_2$ is closed and compact in $X.$ Well, it's closed in $X$ because $X$ is a topological space. It's compact because an open cover of $C_1\cup C_2$ can be restricted to covers of $C_1$ and $C_2$; extracting the finite subcovers of $C_1$ and $C_2$ and then joining the subcovers together gives a finite subcover of $C_1\cup C_2.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						This finishes the casework for finite intersections.
+					</p>
+					<p>
+						It remains to deal with arbitrary unions, which we do in a linear order for clarity. We begin by dealing with the an arbitrary union of (more than zero) open sets like $(X\setminus C)\cup\{\infty\}.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix a nonempty collection of open sets $(X\setminus C_\alpha)\cup\{\infty\}$ for closed and compact $\{C_\alpha\}_{\alpha\in\lambda}.$ Then we have    \[\bigcup_{\alpha\in\lambda}\big((X\setminus C_\alpha)\cup\{\infty\}\big)=(X\setminus C)\cup\{\infty\}\]    for some closed and compact $C\subseteq X.$
+						</p>
+					</div>
+					<p>
+						We note that the arbitrary union has to contain $\infty,$ so it had better have this form. Now, we write\[\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\cup\{\infty\}=\left(\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\right)\cup\{\infty\}.\]Applying de Morgan's law, this is\[\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\cup\{\infty\}=\left(X\setminus\bigcap_{\alpha\in\lambda}C_\alpha\right)\cup\{\infty\}.\]So it suffices to show that $C:=\bigcap_{\alpha\in\lambda}C_\alpha$ is closed and compact. Closed sets are closed under arbitrary intersection, so it is certainly closed.
+					</p>
+					<p>
+						As for compact, fixing any $C_\bullet\in\{C_\alpha\}_{\alpha\in\lambda},$ we note that an open cover of $C$ can be turned into an open cover of $C_\bullet$ by appending the open $X\setminus C.$ Then extracting our finite subcover from $C_\bullet,$ we can afterwards remove $X\setminus C$ from the finite subcover (if it is in the subcover) to get a finite subcover for $C$&mdash;$X\setminus C$ doesn't help cover $C.$ $\blacksquare$
+					</p>
+					<p>
+						Now take any open sets in $X^*,$ and we'll do the general-case arbitrary union. Our open sets can be sorted into being $\{U_\alpha\}_{\alpha\in\lambda}$ for $U_\alpha\subseteq X$ open or $(X\setminus C_\beta)\cup\{\infty\}$ for closed compact $\{C_\beta\}_{\beta\in\mu}.$ If the $(X\setminus C_\bullet)\cup\{\infty\}$ collection is empty, the union of the $U_\alpha$ is open because $X$ is a topological space. Otherwise, we are considering\[\left(\bigcup_{\alpha\in\lambda}U_\alpha\right)\cup\left(\bigcup_{\beta\in\mu}(X\setminus C_\beta)\cup\{\infty\}\right),\]where the right collection is nonempty. The left set here is some open $U\subseteq X$ again because $X$ is a topological space. The right set here takes the form $(X\setminus C)\cup\{\infty\}$ for some closed and compact $C$ because of lemma. So we have to show\[U\cup(X\setminus C)\cup\{\infty\}\]is open. This should contain $\infty,$ so we don't have many options. By de Moragn's law, this is $[X\setminus(C\cap(X\setminus U))]\cup\{\infty\},$ so we have to show that $C\cap(X\setminus U)$ is closed and compact in $X.$ Well, it is closed because both $C$ and $X\setminus U$ are.
+					</p>
+					<p>
+						As for compact, we repeat the trick from the lemma. Fix any cover of $C\cap(X\setminus U).$ If we add the set $U$ to this cover, we cover\[C\cap(X\setminus U)\cup U\supseteq C,\]so we get a finite subcover covering $C.$ We can turn this into a finite subcover of $C\cap(X\setminus U)$ by removing the open set $U$ (which is possibly in the finite subcover of $C$), which is legal because $U$ can't possibly help us cover $C\cap(X\setminus U).$ This completes the proof that we actually have a topology on $X^*.$ $\blacksquare$
+					</p>
+					<p>
+						While we're here, I guess I should actually show that $X^*$ is compact, justifying the name "compactification.''
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							For topological space $X,$ its one-point compactification $X^*$ is compact.
+						</p>
+					</div>
+					<p>
+						This is done as outlined at the beginning. Fix any open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $X^*.$ One of these open sets needs to cover $\infty,$ but our only open sets covering $\infty$ take the form $(X\setminus C)\cup\{\infty\},$ so pick up some\[(X\setminus C)\cup\{\infty\}\in\{U_\alpha\}_{\alpha\in\lambda}.\]It more or less suffices to deal with open covers of $X$ now. Indeed, each $U_\bullet\in\{U_\alpha\}_{\alpha\in\lambda}$ is defined so that $U_\bullet\setminus\{\infty\}$ is open in $X$ (either it is $U_\bullet$ or $X\setminus C_\bullet$ for some closed $C_\bullet\subseteq X$), so we can view the collection\[\{U_\alpha\setminus\{\infty\}\}_{\alpha\in\lambda}\]as an open cover of $X.$ In particular, it is an open cover of $C,$ so we get to extract a finite subcover $\{U_k\setminus\{\infty\}\}_{k=1}^N$ from the $U_\bullet,$ and then $\{U_k\}_{k=1}^N$ is a finite subcover of $C$ directly from the $U_\bullet.$ So taking\[\{(X\setminus C)\cup\{\infty\}\}\cup\{U_k\}_{k=1}^N\]makes a finite subcover of $C\cup(X\setminus C)\cup\{\infty\}=X^*,$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						In other news, happy $\pi$ day, I guess.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

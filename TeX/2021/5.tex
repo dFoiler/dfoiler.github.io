@@ -1,0 +1,220 @@
+\subsection{May}
+
+
+
+
+
+
+
+\subsubsection{May 1st}
+Today I learned that there are no global differential forms on (say) the Riemann sphere. \todo{}
+
+\subsubsection{May 2nd}
+Today I learned the proof that Berstein polynomials uniformly approximate continuous functions on $[0,1],$ from \href{https://web.archive.org/web/20210421224053/https://en.wikipedia.org/wiki/Bernstein_polynomial}{the Wikipedia page}. Here is the statement that we are building towards.
+\begin{theorem}
+    Fix $f:[0,1]\to\RR$ a continuous function. Then there is a sequence of polynomials $p_1,p_2,\ldots\in\RR[x]$ that uniformly converge to $f.$ In other words, for any $\varepsilon,$ we may write
+\end{theorem}
+We present an elementary presentation of this because I'm not very familiar with probability theory. (For example, I don't know a proof of the weak law of large numbers.) The main character in the proof is the following class of polynomials.
+\begin{definition}
+    Given positive integer $n$ and another positive integer $k\le n,$ we can define the corresponding Berstein polynomial as
+    \[\binom nkx^k(1-x)^{n-k}.\]
+\end{definition}
+In terms of probability theory, the given polynomial is taking a coin weighted to turn heads with probability $x$ and then asking for the probability that $k$ of $n$ flips will turn heads.
+
+With this in mind, our central construction is to take a large positive integer $n$ and then define the polynomial
+\[f_n(x):=\sum_{k=0}^nf\left(\frac kn\right)\left[\binom nkx^k(1-x)^{n-k}\right].\]
+The idea here is that, for $x\approx\ell/n$ for some $\ell,$ then the probability of giving too many more or too many fewer than $\ell$ of the first $n$ of our flips to turn up heads has pretty small probability. In particular, $f_n(x)$ will approximately by the average of the values of $f$ around $x.$ This intuition can be rigorized.
+
+To make this work, we need to say that the average value of $f$ around $x$ is approximately $f(x),$ or even sharper, that $f$ close to $x$ is approximately $f(x),$ which is true because $f$ is continuous. However, because we are aiming for uniform convergence of our $f_\bullet,$ however, we need this approximation to be uniform as well: in other words, we need $f$ to be uniformly continuous.
+\begin{lemma}
+    Fix $f:[0,1]\to\RR$ a continuous function. Then $f$ is in fact uniformly continuous.
+\end{lemma}
+This comes from the fact $[0,1]$ is compact; for example, this is not true on the open interval $(0,1)$ because of $f(x)=1/x.$ The point is that for fixed $\varepsilon>0,$ we can exhibit a $\delta_x>0$ for any $x\in[0,1]$ such that
+\[|x'-x|<\delta_x\implies|f(x')-f(x)|<\varepsilon.\]
+But the intervals $(x-\delta_x/2,x+\delta_x/2)$ form an open cover of $[0,1]$ (note $x\in(x-\delta_x/2,x+\delta_x/2)$), so we may extract a finite subcover. (This division by $2$ will be important shortly.) That is, we have a set of points $\{x_k\}_{k=1}^n\subseteq[0,1]$ together with $\{\delta_k\}_{k=1}^n\subseteq\RR_{>0}$ such that
+\[[0,1]\subseteq\bigcup_{k=1}^n(x_k-\delta_k/2,x_k+\delta_k/2)\quad\text{and}\quad|x-x_\bullet|<\delta_\bullet\implies|f(x)-f(x_\bullet)|<\varepsilon.\]
+Now let $\delta:=\frac12\min_k\{\delta_k\}.$ The point of this $\frac12$ is that, for any $x,y\in[0,1]$ satisfying $|x-y|<\delta,$ we may find some $x_\bullet$ and $\delta_\bullet$ from our open cover with $x\in(x_k-\delta_k/2,x_k+\delta_k/2),$ implying
+\[|y-x_\bullet|\le|y-x|+|x-x_\bullet|<\delta+\delta_\bullet/2<\delta_\bullet.\]
+Here is where the division by $2$ from earlier mattered as well. In particular, $|x-y|<\delta$ is implying that
+\[|f(x)-f(y)|\le|f(x)-f(x_\bullet)|+|f(y)-f(x_\bullet)|<\varepsilon+\varepsilon=2\varepsilon.\]
+Sending $\varepsilon\mapsto\varepsilon/2$ in the above proof gives us uniform continuity. $\blacksquare$
+
+Let's begin to attack the theorem directly. Fixing $x\in[0,1]$ and error $\varepsilon>0,$ we need to be able to take $n$ large enough so that
+\[|f_n(x)-f(x)|<\varepsilon.\]
+Expanding this out using the triangle inequality, we can bound by
+\[|f_n(x)-f(x)|\le\sum_{k=0}^n\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right].\]
+As explained above, we expect most of the contribution of $f_n(x)$ to come from terms where $x\approx k/n.$ How close? Well, we would like to be close enough so that $f(k/n)$ is about $\varepsilon$-close to $f(x),$ so we use the uniform continuity of $f$ to give us $\delta$ so that
+\[\sum_{|x-k/n|<\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]<\varepsilon\sum_{|x-k/n|<\delta}\binom nkx^k(1-x)^{n-k}.\]
+This is less than $\varepsilon$ because $\sum_{k=0}^n\binom nkx^k(1-x)^k=1$ by the binomial theorem. (This application of the binomial theorem effectively says the sum of these probabilities is $1.$) This is our main term.
+
+It remains to bound the hopefully negligible
+\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right].\]
+Note that we have not made $n$ large yet, so that should show up here. In particular, we expect this to be small because the ``probability terms'' $\binom nkx^k(1-x)^{n-k}$ should total to something quite small because the probability of hitting too many heads outside of the expected value ought be small.
+
+However, rigorizing this argument means that we would like to not care about $\left|f\left(\frac kn\right)-f(x)\right|,$ which means we would like $f$ to be bounded.
+\begin{lemma}
+    Fix $f:[0,1]\to\RR$ a continuous function. Then $f$ is bounded.
+\end{lemma}
+Again, this comes from the fact $[0,1]$ is compact. In particular, the collection
+\[\bigcup_{R=0}^\infty(-R,R)\]
+is an open cover of $\RR,$ so continuity of $f$ guarantees that
+\[\bigcup_{R=0}^\infty f^{-1}\big((-R,R)\big)\]
+is an open cover of $[0,1].$ Extracting a finite subcover, we may select a largest $R$ among the finite subcover, implying that $[0,1]\subseteq f^{-1}\big((-R,R)\big).$ In particular, $f$ is bounded by $R.$ $\blacksquare$
+
+So we fix $R$ to bound $f$ so that $\left|f\left(\frac kn\right)-f(x)\right|<2R,$ implying that
+\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]\le2R\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}.\]
+Now we have to do probability theory to bound that sum. Because we are trying to show that living outside of $|x-k/n|<\delta$ occurs with low probability, we study the variance and prove a version of Chebychev's inequality to finish. To introduce the variance, we write
+\[\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}\le\delta^{-2}\sum_{k=0}^n\left(x-\frac kn\right)^2\cdot\binom nkx^k(1-x)^{n-k},\]
+where the sum now features the variance. We can compute this sum directly via generating functions' techniques.
+\begin{lemma}
+    We have, for $x\in[0,1],$
+    \[\sum_{k=0}^n\left(x-\frac kn\right)^2\cdot\binom nkx^k(1-x)^{n-k}=\frac{x(x-1)}n.\]
+\end{lemma}
+To make this prettier, we fix $t:=\frac x{x-1}$ so that $x=\frac t{t+1}$ and $1-x=\frac1{t+1}.$ (The risk of $x=1$ can be patched by continuity.) We are left to prove that
+\[\sum_{k=0}^n\left(\frac t{t+1}-\frac kn\right)^2\cdot\binom nkt^k\left(\frac1{t+1}\right)^n\stackrel?=\frac t{n(t+1)^2},\]
+which rearranges to
+\[\sum_{k=0}^n\big(nt-k(t+1)\big)^2\cdot\binom nkt^k\stackrel?=nt(t+1)^n\]
+after multiplying both sides by $n^2(t+1)^{n+2}.$
+
+Now we go into full bash. Note that $(1+t)^n=\sum_{k=0}^n\binom nkt^k$ by binomial theorem, so taking the derivative gives
+\[n(t+1)^{n-1}=\sum_{k=0}^n\binom nkkt^{k-1}.\]
+Taking the derivative again gives
+\[n(n-1)(t+1)^{n-2}=\sum_{k=0}^n\binom nk\left(k^2-k\right)t^{k-1}.\]
+Checking our sum, we see that it expands into
+\[\sum_{k=0}^{n}\left(\left(\left(k^{2}-k\right)\left(t+1\right)^{2}+k\left(\left(t+1\right)^{2}-2nt\left(t+1\right)\right)+n^{2}t^{2}\right)\cdot\binom nkt^{k}\right),\]
+which is
+\[\left(t+1\right)^{2}t^2\left(\sum_{k=0}^{n}\binom nk\left(k^{2}-k\right)t^k\right)+\left(\left(t+1\right)^{2}-2nt\left(t+1\right)\right)t\left(\sum_{k=0}^n\binom nkkt^k\right)+n^{2}t^{2}\left(\sum_{k=0}^n\binom nkt^{k}\right),\]
+which collapses to
+\[n(n-1)\left(t+1\right)^nt^2+n(t+1)^n\left(\left(t+1\right)-2nt\right)t+n^{2}t^2(t+1)^n.\]
+Factoring out the desired $nt(t+1)^n,$ we are left with
+\[nt(t+1)^n\left(nt+\left(\left(t+1\right)-2nt\right)+nt\right),\]
+and the inner sum does indeed cancel out to just $1.$ This completes the proof. $\blacksquare$
+
+It follows that
+\[\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}\le\delta^{-2}\frac{x(x-1)}n\le\frac{\delta^{-2}}n.\]
+Sending $n\to\infty$ now means that we can make this as small as we please. In particular, we can also make
+\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]\le\frac{2R\delta^{-2}}n\]
+as small as we please. Thus, we can make it less than, say, $\varepsilon,$ so we can bring everything together to get
+\[|f_n(x)-f(x)|\le\sum_{k=0}^n\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]<2\varepsilon,\]
+were the other $\varepsilon$ came from the main term. Now sending $\varepsilon\mapsto\varepsilon/2$ in the above proof recovers uniform convergence. This finishes the proof. $\blacksquare$
+
+I like a couple of things about the above proof. First off, this is entirely elementary, minus maybe the fact we didn't prove that $[0,1]$ is compact, but this could in theory be done. But secondly, we are using ideas from probability theory to motivate parts of the proof, even if we don't actually use the main theorems. I am under the impression it is possible to state this entire proof with probability theory in half the space (or less).
+
+\subsubsection{May 3rd}
+Today I learned (finally) the proof that all mere propositions are sets. Very quickly, we recall the following definitions.
+\begin{definition}
+    We say that a type $A:\UU$ is a mere proposition if and only if
+    \[\op{isProp}(A):\equiv\prod_{(a,b:A)}(a=_Ab)\]
+    is inhabited. In other words, $A$ has one connected component.
+\end{definition}
+We also define a set.
+\begin{definition}
+    We say that a type $A:\UU$ is a set if and only if
+    \[\op{isSet}(A):\equiv\prod_{(a,b:A)}\prod_{(p,q:a=_Ab)}(p=_{a=b}q)\]
+    is inhabited. In other words, all paths between points are homotopically equivalent.
+\end{definition}
+The statement we're building towards is the following.
+\begin{proposition}
+    If a type $A:\UU$ is a mere proposition, then $A$ is a set. In other words, we can inhabit
+    \[\prod_{(A:\UU)}\op{isProp}(A)\to\op{isSet}(A).\]
+\end{proposition}
+This is harder than it appears. Fix our type $A:\UU$ and witness $\op{eq}:\op{isProp}(A)$ so that $f(a,b):a=b$ for any $a,b:A.$ Now it remains to witness
+\[\op{isSet}(A):\equiv\prod_{(a,b:A)}\prod_{(p,q:a=b)}(p=q).\]
+As motivation, we describe what we would like to do, but it isn't completely rigorous. We would like to fix a basepoint $a_0:A$ (this is illegal) and then show that each $p$ is equal to a chosen witness $\op{eq}(a_0,a)^{-1}\cdot\op{eq}(a_0,b).$ However, we cannot guarantee that anything other than $a$ and $b$ actually live in $A,$ so we make $a$ (say) act as our basepoint.
+
+With this in mind, we define
+\[\op{eq}_a(c):\equiv f(a,a'):a=_Ac.\]
+This function is rigorizing our desire to use $a$ as a basepoint of $a.$ Now, we want to compare $p$ with $\op{eq}(a,a)^{-1}\cdot\op{eq}(a,b)\equiv\op{eq}_a(a)^{-1}\cdot\op{eq}_a(b),$ so we just brute-force apply $\op{eq}_a$ to $p:a=b$ and hope for the best. This tells us
+\[\op{transport}^{c\mapsto(a=c)}(p)\left(\op{eq}_a(a)\right)=_{a=b}\op{eq}_a(b).\]
+We say explicitly that this type-checks: $\op{eq}_a(a):a=a$ is transported into $a=b$ by the type family. However, we actually know things about how transport behaves on paths.
+\begin{lemma}
+    We have that
+    \[\prod_{(a,b:A)}\prod_{(p:a=b)}\prod_{(q:a=a)}\op{transport}^{c\mapsto(a=c)}(p)(q)=_{a=b}=q\cdot p.\]
+\end{lemma}
+This follows from path induction on $p$: taking $p\equiv\op{refl}_a,$ it suffices to show that
+\[\prod_{(a:A)}\prod_{(q:a=a)}\op{transport}^{c\mapsto(a=c)}(\op{refl}_a)(q)=_{a=b}q\cdot\op{refl}_a.\]
+But $\op{transport}^\bullet$ on $\op{refl}$ is the identity function, so this is trying to prove $q=q\cdot\op{refl}_a,$ which is a unit law. $\blacksquare$
+
+Using the above lemma, we now know that
+\[\op{eq}_a(a)\cdot p=_{a=b}\op{eq}_a(b).\]
+From this it follows $p=\op{eq}_a(a)^{-1}\cdot\op{eq}_a(b),$ which was our dream to begin with. In particular, any two $p,q:a=b$ are both equal to $\op{eq}_a(a)^{-1}\cdot\op{eq}_a(b),$ which is exactly the statement that $A$ is a set. $\blacksquare$
+
+We remark that this fact is somewhat surprising. Translating everything here in topology, we have said that a path-connected space has all paths (between fixed endpoints) homotopically equivalent. However, something as simple as the torus breaks this: low homotopy information does not determine higher homotopy information. Yet it does in type theory.
+
+We can use this fact to get some other annoying lemmas.
+\begin{lemma}
+    Given type $A:\UU,$ we have that $\op{isProp}(A)$ is a mere proposition.
+\end{lemma}
+Given witnesses $f,g:\op{isProp}(A),$ we need to show that $f=g.$ Well, these are functions, so by function extensionality, it suffices to show that
+\[\prod_{(a:A)}f(a)=g(a).\]
+However, $f(a)$ and $g(a)$ are still functions, so we use function extensionality again so that it suffices for
+\[\prod_{(a,b:A)}f(a,b)=_{a=b}g(a,b).\]
+But $A$ is a set because it is a mere proposition, so any two paths inhabiting $a=b$ are equal, so we are done. $\blacksquare$
+
+\subsubsection{May 4th}
+Today I learned another application of Cheboratev's theorem: irreducible polynomials have on average one root modulo primes. Here's the statement we'll build towards.
+\begin{theorem}
+    Fix $f\in\QQ[x]$ irreducible and define $n_p(f)$ to be the number of roots of $f(x)\pmod p$ for primes $p.$ Then
+    \[\lim_{N\to\infty}\frac1{\pi(N)}\sum_{p\le N}n_p(f)=1.\]
+\end{theorem}
+This statement will require the natural density version of Chebotarev, but we can state the result using only Dirichlet density. We will do this after the proof.
+
+Anyways, let's begin attacking this directly. We want to talk about the factorization of an irreducible polynomial modulo primes via Chebotarev, so we use Dedekind-Kummer to connect the two. For all but finitely many primes (which we may ignore because we will be summing over all primes), we can associate the factorizations
+\[f(x)\pmod p\quad\longleftrightarrow\quad p\mathcal O_{\QQ(\alpha)},\]
+where $\alpha$ is some root of $f(x).$ In particular, $f(x)$ has a linear factor where $\mf p\mid p\mathcal O_{\QQ(\alpha)}$ has $f(\mf p/p)=1.$ To connect this with Frobenius elements, we need to move into the Galois closure of $\QQ(\alpha),$ so we construct the following tower.
+\begin{center}
+    \begin{tikzcd}
+        L & \langle e\rangle     &  & \mathfrak P                    \\
+        K=\QQ(\alpha) \arrow[u, no head] & H \arrow[u, no head] &  & \mathfrak p \arrow[u, no head] \\
+        \QQ \arrow[u, no head]           & G \arrow[u, no head] &  & (p) \arrow[u, no head]        
+    \end{tikzcd}
+\end{center}
+Namely, we let $L/\QQ$ be a normal field extension containing $K,$ and define $G:=\op{Gal}(L/\QQ)$ and $H:=\op{Gal}(L/K).$ Then for primes $p$ of $\QQ,$ we study primes $\mf p\subseteq\mathcal O_K$ above them by picking a random prime $\mf P\subseteq\mathcal O_L$ with Frobenius $\varphi_p$ and then tracking its action downwards.
+
+As an aside, we remark it makes the argument somewhat easier if the prime $\mf P$ is chosen randomly so that Chebotarev says we are basically choosing a random element of $G$ as our Frobenius. Alternatively, we could sequence the conjugacy class and choose the prime $\mf P$ in sequence down the conjugacy class to get the same equidistribution. We won't be formal about this.
+
+Anyways the point is that we can study the splitting behavior of unramified primes $p$ by studying $H\backslash G/\langle\varphi_p\rangle$; this is tracking the Frobenius in an intermediate field. Namely, we can correspond primes $\mf p\subseteq\mathcal O_L$ above $p$ with $f(\mf p/p)=1$ with a coset $H\sigma\in H\backslash G$ such that 
+\[H\sigma=H\sigma\varphi_p.\]
+Now, this turns the question into a purely algebraic one.
+
+We quickly track everything back through. Then, for all but finitely many primes, $f(x)\pmod p$ has $n_p(f)$ roots if and only if $p\mathcal O_K$ has $n_p(f)$ degree-$1$ primes (ignoring ramification and Dedekind-Kummer bad primes) if and only if
+\[n_p(f)=\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi_p\}.\]
+Checking what we want, we note that, for fixed $N$ large,
+\[\lim_{N\to\infty}\frac1{\pi(N)}\sum_{p\le N}n_p(f)=\lim_{N\to\infty}\frac1{\pi(N)}\sum_{p\le N}\sum_{\varphi\in G}1_{\varphi_p}(\varphi)n_p(f).\]
+Note that we don't have to worry too much about convergence issues because all terms are positive. Using the above, this rearranges into
+\[\lim_{N\to\infty}\frac1{\pi(N)}\sum_{p\le N}n_p(f)=\lim_{N\to\infty}\sum_{\varphi\in G}\left(\frac1{\pi(N)}\sum_{p\le N}1_{\varphi_p}(\varphi)\right)\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi\},\]
+ignoring as many finitely many primes as necessary. By Chebotarev with natural density, the inner sum has limit $1/|G|,$ and the remaining terms don't care about $N.$ In particular, we are left to compute
+\[\frac1{\#G}\sum_{\varphi\in G}\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi\}.\]
+This is now an algebra problem. We do this with the lemma that is not Burnside's, which we prove.
+\begin{lemma}
+    Suppose a group $G$ acts on (the right of) a set $S.$ Then the number of orbits of $S$ under the action of $G$ is equal to
+    \[\frac1{\#G}\sum_{g\in G}\#\{s\in S:s=sg\}.\]
+\end{lemma}
+In order to be able to change the order of summation, we introduce a second sum and write this as
+\[\sum_{(g,s)\in G\times S}1_{s=sg}=\sum_{s\in S}\#\{g\in G:s=sg\}.\]
+Now, fixing $s\in S,$ $\{g\in G:s=sg\}$ is the stabilizer of $s,$ a subgroup of $G.$ We can talk intelligently about its index in $G$ because $sg=sh$ if and only if $s=shg^{-1}$ if and only if $hg^{-1}$ is in the stabilizer if and only if $h$ and $g$ are in the same coset. Namely, its index is the size of the orbit of $s.$ Thus,
+\[\frac1{\#G}\sum_{g\in G}\#\{s\in S:s=sg\}=\sum_{s\in S}\frac1{[G:\{g\in G:s=sg\}]}=\sum_{s\in S}\frac1{\#sG}.\]
+To finish, each orbit of $S$ named $\mathcal O$ is repeated $\#\mathcal O$ times in the sum, and each of these times contributes $1/\#\mathcal O,$ so each orbit contributes $1$ to the sum. Thus, the sum is the number of orbits of $S$ under the action of $G.$ $\blacksquare$
+
+To complete the proof, we note that $G$ acts on $H\backslash G$ by right multiplication, and this action is transitive because $H\backslash G$ is the orbit of $H$ under this action. Thus, the lemma that is not Burnside's says
+\[\frac1{\#G}\sum_{\varphi\in G}\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi\}=1\]
+because we just established there is only one orbit. This completes the proof. $\blacksquare$
+
+Because natural density is hard, we provide an analogous statement using Dirichlet density. We can borrow from the proof the evaluation of
+\[\frac1{\#G}\sum_{\varphi\in G}\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi\}=1,\]
+but now this $1/\#G$ represents the Dirichlet density of a particular Frobenius (chosen randomly from the conjugacy class). That is, what we know is that
+\[1=\sum_{\varphi\in G}\left(\lim_{s\to1^+}\frac{\sum_{p,\varphi_p=\varphi}1/p^s}{\sum_p1/p^s}\right)\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi\}.\]
+Rearranging the sum back outwards (all terms are positive still), what we know is
+\[1=\lim_{s\to1^+}\sum_p\frac{\#\{H\sigma\in H\backslash G:H\sigma=H\sigma\varphi_p\}}{p^s}\bigg/\sum_p\frac1{p^s},\]
+which is
+\[1=\lim_{s\to1^+}\sum_p\frac{n_p(f)}{p^s}\bigg/\sum_p\frac1{p^s},\]
+using the other work established in the proof. This statement is not as pretty as the one we proved, but at least it makes some intuitive sense (we are ``weighting'' primes by $n_p(f)$), and it doesn't use natural density.
+\begin{theorem}
+    Fix $f\in\QQ[x]$ irreducible and define $n_p(f)$ to be the number of roots of $f(x)\pmod p$ for primes $p.$ Then
+    \[\lim_{s\to1^+}\sum_p\frac{n_p(f)}{p^s}\bigg/\sum_p\frac1{p^s}=1.\]
+\end{theorem}
+This statement follows from the above discussion. $\blacksquare$
+
+As some commentary, I am a bit amused by the path we took this final statement. The original theorem is more or less the statement that we want to prove: it is a very natural interpretation of ``average.'' Running through the proof, there was a point where we needed natural density, and swapping out the natural density with Dirichlet density gave the above. Namely, it is not immediately obvious why the above is the correct Dirichlet form of ``average,'' but after having seen it, it makes sense.
+
+In other news, may the 4th be with you.

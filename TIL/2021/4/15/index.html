@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 15th
+					</h2>
+					<p>
+						Today I learned Sierpinski's proof that all measurable solutions to Cauchy functional equation are linear, from
+						<a href="https://web.archive.org/web/20200717011210/http://www.artsci.kyushu-u.ac.jp/~ssaito/eng/maths/Cauchy.pdf">
+							here
+						</a>
+						. The key idea is the following proposition.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $A$ and $B$ measurable sets of nonzero measure. Then there exist $a\in A$ and $b\in B$ such that $a-b\in\QQ.$
+						</p>
+					</div>
+					<p>
+						Intuitively, this makes some sense: if $A$ and $B$ have nonzero measure, then they should have some "substance.'' In particular, $A-B$ should also have some substance and probably shouldn't be able to avoid $\QQ.$ This intuition is difficult to rigorize.
+					</p>
+					<p>
+						Anyways, we, without loss of generality, bound $A$ and $B.$ Additionally, for sanity, we define a good interval as an interval that is bounded, closed, and nonempty. First we control $A$ by replacing it with an actually substantive set.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix measurable $A$ of nonzero, finite measure. Given (small) $\varepsilon,\ell \gt 0,$ we can find a good interval $I$ such that $\mu(I) \lt \ell$ and    \[\mu(A\cap I) \gt \frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]
+						</p>
+					</div>
+					<p>
+						Essentially, this is saying that we can place an interval around some part of $A$ that is almost entirely inside $A.$ The factor $\frac{\mu(A)}{\mu(A)+\varepsilon}$ should be thought of as $1-\delta$ for small $\delta,$ but $\frac{\mu(A)}{\mu(A)+\varepsilon}$ is what comes out of the proof. The bound $\mu(I) \lt \ell$ is something we will need later.
+					</p>
+					<p>
+						By definition of the Lebesgue measure, we may find a collection of good intervals $\{I_k\}_{k\in\NN}$ covering $A$ which already well-approximate $\mu(A),$ say with\[\mu(A)+\varepsilon \gt \sum_{k\in\NN}\mu(I_k).\]In particular, $\mu(A)$ is defined as the $\liminf$ of the right-hand sum over all collections of intervals, so we can find a collection of intervals which gets with $\varepsilon$ of the real measure. Further, writing $I_k=[a_k,b_k]$ and then decomposing by fixing $N=\floor{(b_k-a_k)/\ell}$ with\[[a_k,b_k]=[a_k+N\ell,b_k]\cup\bigcup_{n+1 \lt N}[a_k+n\ell,(n+1)\ell],\]we see we can refine the cover $\{I_k\}_{k\in\NN}$ so that each $\mu(I_k) \lt \ell.$
+					</p>
+					<p>
+						Now, we expect each of the $I_k$ to cover $A$ reasonably well, so it is likely that one of them satisfies the needed conclusion. Indeed, suppose for the sake of contradiction not. Then we are given\[\sum_{k\in\NN}\mu(A\cap I_k)\le\sum_{k\in\NN}\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I_k) \lt \mu(A).\]However, this left-hand side is bounded below by $\mu(A)=\mu\left(\bigcup_{k\in\NN}A\cap I_k\right)$ because the $I_\bullet$ cover $A.$ So we have our contradiction and are now done. $\blacksquare$
+					</p>
+					<p>
+						What is going to give our rational in the proposition is amending the above lemma to make the endpoints of $I$ rationals. This is not as impressive as it looks: we should be able to expand $I$ by just a little to make its endpoints rational. In particular, what we get is $\mu(I)$ rational.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix measurable $A$ of nonzero, finite measure. Given (small) $\varepsilon,\ell \gt 0,$ we can find a good interval $I$ with rational endpoints such that $\mu(I) \lt \ell$ and    \[\mu(A\cap I) \gt \frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]
+						</p>
+					</div>
+					<p>
+						Plug $\varepsilon/2$ and $\ell/2$ into the above lemma to get a good interval $I'=[a,b]$ with $\mu(I) \lt \ell/2$ satisfying\[\mu(A\cap I') \gt \frac{\mu(A)}{\mu(A)+\varepsilon/2}\mu(I').\]As promised, we expand $I'$ by a little to get rational endpoints. Take some sufficiently small $\delta \gt 0,$ at least $\delta \lt \ell/2,$ to be fixed later. We can find rationals $p\in(a-\delta/2,a)$ and $q\in(b,b+\delta/2)$ because $\QQ$ is dense in $\RR,$ and we let $I:=[p,q].$ By construction $\mu(I) \lt \ell.$
+					</p>
+					<p>
+						It remains to get the inequality bound by setting $\delta$ to something very small. Well, we already know $I'\subseteq I,$ so\[\mu(A\cap I) \gt \mu(A\cap I').\]On the other hand, $\mu(I) \lt \mu(I')+\delta$ by construction, so\[\frac{\mu(A)}{\mu(A)+\varepsilon/2}\mu(I') \gt \frac{\mu(A)}{\mu(A)+\varepsilon/2}(\mu(I)-\delta).\]We would like the right-hand side to exceed $\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I),$ an equality which rearranges to\[\frac{\mu(A)}{\nu(A)+\varepsilon/2}\mu(I)-\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I) \gt \frac{\mu(A)}{\mu(A)+\varepsilon/2}\delta.\]The left-hand side here is indeed greater than $0,$ so we get what we're safe if we take $\delta$ small enough. Stringing our inequalities together, we do indeed have $\mu(A\cap I) \gt \frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I),$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We take a moment to remark that one can actually take the $\{I_k\}_{k\in\NN}$ in the proof of the first lemma to all of rational endpoints by small expansions. Though inefficient, we separated out the rational-endpoint condition to make the point that one process gives good intervals approximating $A$ and another process makes it have rational endpoints.
+					</p>
+					<p>
+						Anyways, we now return to the proof of the proposition. We already have tools to talk about $A$&mdash;namely, we use $A\cap I$ instead of $I$ from here on&mdash;so for some $\varepsilon \gt 0$ to be fixed later, we get a good interval $I$ such that\[\mu(A\cap I) \gt \frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I)\]by lemma. Note we have not used the length condition on $I$; we'll make it small later. The idea, now, is to tile $B$ with $I$s and hope to hit an intersection with $A\cap I$ somewhere; after all, $I$ lives almost entirely inside of $A\cap I,$ so it is not unreasonable to hope to hit something.
+					</p>
+					<p>
+						To be explicit, we fix some large interval $J$ around $B$ and then we can tile $J$ with the $I.$ In particular, we let\[S=\{s\in\ZZ:(s\mu(I)+I)\cap J\ne\emp\}.\]So we have the pair of inequalities $\#S\mu(I)\ge\mu(J)$ and $(\#S-2)\mu(I) \lt \mu(J).$
+					</p>
+					<p>
+						Now, the following is where our tiling is going to have our rational.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix our objects as above. The set    \[B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I)).\]    is nonempty.
+						</p>
+					</div>
+					<p>
+						Indeed, this will be enough for the proposition because, fixing $b$ in the set, $b\in B$ and $b=s\mu(I)+a$ for $s\in S$ and $a\in A\cap I\subseteq A.$ In particular, $b-a\in\QQ,$ which is what we want. $\blacksquare$
+					</p>
+					<p>
+						So it remains to show that the $B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I))$ is nonempty; we show that if it is empty, then $\mu(B)=0.$ Well, $A\cap I\subseteq I,$ so the tiles are disjoint, and we are really only worrying about $B$ not having intersection with any of the individual intervals. Well, given this union were disjoint, then\[\mu\left(B\cup\bigcup_{s\in S}(s\mu(I)+(A\cap I))\right)=\mu(B)+\sum_{s\in S}\mu(A\cap I)=\mu(B)+\#S\mu(A\cap I).\]The last equality holds because the measure is translation-invariant. This might not look terribly problematic yet, but we can bound the right-hand side above by $\mu(J),$ and then using the construction of $I$ gives\[\mu(J) \gt \mu(B)+\#S\frac{\mu(A)}{\mu(A)+\varepsilon}\mu(I).\]Now this is more obviously a problem because $I$ was meant to tile $J,$ yet the above equality looks like it's saying this tiling will always leave enough space for $B$ to fit disjointly. In fact, using $\mu(J) \lt \#S\mu(I),$ we can rearrange this into\[\mu(B) \lt \#S\frac\varepsilon{\mu(A)+\varepsilon}\mu(I).\]We would like to send $\varepsilon\to0$ to get $\mu(B)=0,$ but we can't quite do that because $I$ depends on $\varepsilon.$ However, we can express this inequality in terms of $J,$ which doesn't depend on $\varepsilon.$
+					</p>
+					<p>
+						In particular, if we make $I$ depend on $J$ with $\mu(I) \lt \mu(J)$ (here we have used the smallness of $I$!), then we know $\#S\mu(I)=(\#S-2)\mu(I)+2\mu(I) \lt 3\mu(J).$ Thus,\[\mu(B) \lt \frac{\varepsilon}{\mu(A)+\varepsilon}3\mu(J).\]Now, $\varepsilon$ and $J$ don't depend on each other, so we may send $\varepsilon$ to $0,$ giving $\mu(B)=0.$ This finishes the proof of the proposition. $\blacksquare$
+					</p>
+					<p>
+						We are now ready for the proof of the main theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $f:\RR\to\RR$ is a measurable function satisfying $f(x+y)=f(x)+f(y).$ Then $f(x)=xf(1).$
+						</p>
+					</div>
+					<p>
+						To make the phrasing easier, we replace $f(x)$ with $f(x)-xf(1)$ so that $f(1)=0$; we want to show $f\equiv0.$ As usual, we can get $f(\QQ)=\{0\}.$
+					</p>
+					<p>
+						The main claim here is that $f^{-1}(\RR\setminus\{0\})$ has $0$ measure; it has a measure because $f$ is measurable. For this, we let $S_+=f^{-1}(\RR_{ \gt 0})$ and $S_-=f^{-1}(\RR_{ \lt 0}).$ We note that any $s_+\in S_+$ and $s_-\in S_-$ needs to have\[f(s_+-s_-)=f(s_+)-f(s_-) \gt 0,\]so in particular $s_+-s_-\not\in\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,\[\mu\big(f^{-1}(\RR\setminus\{0\})\big)=\mu(S_+)+\mu(S_-)=0.\]This finishes the claim.
+					</p>
+					<p>
+						To finish the proof, we see $f^{-1}(\{0\})$ has positive (in fact infinite) measure. Supposing for the sake of contradiction we can find $x_0$ with $f(x_0)\ne0,$ we see\[f\left(x_0+f^{-1}(\{0\})\right)=f(x_0)\ne0,\]so $x_0+f^{-1}(\{0\})$ is a subset of $f^{-1}(\RR\setminus\{0\})$ of nonzero measure, which is a contradiction. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						Anyways, we close by saying this means there are models of ZF (without choice) without pathological solutions to $f(x+y)=f(x)+f(y)$ because such functions require immeasurable sets. In fact, looking closer at the proof, we see that we only needed the measurability of\[f^{-1}(\{0\}),\quad f^{-1}(\RR\setminus\{0\}),\quad f^{-1}(\RR_{ \gt 0}),\quad\text{and}\quad f^{-1}(\RR_{ \lt 0})\]when $f(1)=0.$ Because measurable sets form a $\sigma$-algebra, one of the first two have measure if and only if the other does. And we can biject the latter two sets onto each other ($f$ is odd) and disjointly union to the second, so if any of these are immeasurable, then $f^{-1}(\RR_{ \gt 0})$ had better be immeasurable.
+					</p>
+					<p>
+						This gives a means of generating immeasurable sets! Indeed, given a pathological (nonlinear) solution to $f(x+y)=f(x)+f(y),$ we have that\[\{x\in\RR:f(x)-xf(1) \gt 0\}\]is immeasurable by the above discussion. And it is indeed possible to construct pathological solutions like this. Using the machinery we've already built, we note we can extend the automorphism $a+b\sqrt2\mapsto a-b\sqrt2$ of $\QQ(\sqrt2)$ to an automorphism $\sigma$ of $\CC.$ Then $f:\RR\to\RR$ defined by\[f(x):=\op{Re}\sigma(x)\]will satisfy $f(x+y)=f(x)+f(y)$ because $\sigma$ is an automorphism, and it is nonlinear because $f(0)=0$ and $f(1)=1$ while $f(\sqrt2)=-\sqrt2.$ As usual, we have no idea what the generated immeasurable set looks like (because we have no idea what $f$ looks like), but we know that it's out there.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

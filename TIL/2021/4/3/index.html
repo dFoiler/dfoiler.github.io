@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 3rd
+					</h2>
+					<p>
+						Today I learned generalized Fourier series. Fix $G$ a locally compact abelian group. For $f\in L^1(G),$ we have a Fourier transform $\hat f.$ If we also have $\hat f\in L^1(\hat G),$ then we have an inverse Fourier transform satisfying\[f(g)=\int_{\hat G}\hat f(\chi)\chi(g)\,d\chi,\]which holds for all $g\in G$ if $f$ is continuous. In particular, for given Haar measure $dg$ of $G,$ there is a Haar measure $d\chi$ on $\hat G$ which makes the above true. I don't plan on showing any of this because I think it's quite involved; I will mention that $f\in L^1(G)\cap L^2(G)$ ensures that $\hat f\in L^1(G),$ so we can reduce this to a single condition on $f.$
+					</p>
+					<p>
+						To continue, we take the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a compact abelian group. Then $\hat G$ is discrete.
+						</p>
+					</div>
+					<p>
+						This is not terribly hard. Indeed, using the compact-open topology,\[\left\{\chi\in\hat G:\chi(G)\subseteq B(1,1/2)\right\}=\{1_G\}\]because $\chi(G)\subseteq S^1$ needs to be a multiplicative group, but the only multiplicative group contained in $B(1,1/2)$ is $\{1\}.$ Thus, that any character sending $G$ to $B(1,1/2)$ must be the trivial character.
+					</p>
+					<p>
+						It follows that $\{1_G\}$ is an open set in $\hat G,$ so by homogeneity, $\hat G$ is discrete. To be explicit, for any other character $\chi\in\hat G,$ multiplication by $\chi^{-1}$ induces a continuous function $\times_{\chi^{-1}}:\hat G\to\hat G.$ Then the preimage of $\{1_G\}$ under $\times_{\chi^{-1}}$ is $\{\chi\},$ so $\{\chi\}$ is also open. $\blacksquare$
+					</p>
+					<p>
+						We do not actually need the converse of this statement for where we're going, and its details are annoying. Endow a now compact abelian group $G$ with a Haar measure $dg.$ Now, for any sufficiently nice $f$ (satisfying the conditions we gave earlier), we write\[f(g)=\int_{\hat G}\hat f(\chi)\chi(g)\,d\chi.\]At a high level, because $\hat G$ is discrete, we expect this to be a series, and it will turn into a Fourier series. However, we need to contend with $d\chi$ a bit.
+					</p>
+					<p>
+						Note that the measure $d\chi$ on $\hat G$ needs to some multiple of the counting measure on $\hat G$ because, for any countable $S\subseteq\hat G,$\[\op{Vol}(S)=\sum_{\chi\in S}\op{Vol}(\{\chi\}).\]In particular, this is only legal because the $\{\chi\}$ are forming a disjoint open cover of $S,$ where $\{\chi\}$ is open because $\hat G$ is discrete by lemma. Because $d\chi$ is a Haar measure, the measure of $\{\chi\}$ needs to be equal to the measure of (say) $1_G,$ so\[\op{Vol}(S)=\sum_{\chi\in S}\op{Vol}(\{1_G\}).\]When $S$ is finite, this is $|S|\op{Vol}(\{1_G\}),$ and when $S$ is countably infinite, this is also infinite. Observe that when $S$ is uncountable, this is still infinite, so in fact our measure $d\chi$ is able to measure all subsets of $\hat G,$ albeit stupidly.
+					</p>
+					<p>
+						Now, keeping in mind the definition of integration with respect to a measure, we see\[f(g)=\op{Vol}(\{1_G\})\sum_{\chi\in\hat G}\hat f(\chi)\chi(g).\]This is our Fourier series. We will elaborate on this shortly, but for right now, we talk about measures. We would like to make $\op{Vol}(\{1_G\})=1$ so that we don't have to worry about it, so we take the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a compact abelian group with Haar measure $dg.$ The measure of $G$ is $1$ if and only if the the dual measure $d\chi$ on $\hat G$ is the counting measure.
+						</p>
+					</div>
+					<p>
+						This sounds impressive, but given the machinery that we have, it suffices to just check our Fourier series at a single $f$ to find out when $\op{Vol}(\{1_G\})=1.$ Indeed, this will imply and is in fact equivalent to the fact that, for $S\subseteq\hat G,$\[\op{Vol}(S)=|S|\]by plugging in $\op{Vol}(\{1_G\})=1$ in the argument from earlier. So we show that $\op{Vol}(G)=1$ if and only if $\op{Vol}(\{1_G\})=1.$
+					</p>
+					<p>
+						For this checking, we take $f=1_G.$ It is in $L^1(G)$ because the set $G$ is compact and so measurable. Computing Fourier transforms comes down to orthogonality of characters, for we have $\hat f:\hat G\to\CC$ by\[\hat f(\chi)=\int_Gf(g)\overline{\chi(g)}\,dg=\int_G\overline\chi(g)\,dg.\]If $\chi=1_G,$ then the integrand is trivial, and we get $\hat f(1_G)=\op{Vol}(G).$ Now, if $\chi\ne1_G,$ then $\overline\chi$ isn't either, so we can find some $g_0\in G$ for which $\overline\chi(g)\ne1,$ so\[\hat f(\chi)=\int_G\overline\chi(g)\,dg=\int_{g_0G}\overline\chi(g)\,dg=\int_G\overline\chi(gg_0)\,d(gg_0)=\overline\chi(g_0)\int_G\overline\chi(g)\,dg.\]But with $\chi(g_0)\ne1,$ this only way for this to be true is for $\hat f(\chi)=0.$ Thus, $\hat f=1_{1_G}\op{Vol}(G)$ is the $1_G$-indicator.
+					</p>
+					<p>
+						To finish, we check the inverse Fourier transform. Because of the above discussion, we know\[f(g)=\op{Vol}(\{1_G\})\sum_{\chi\in\hat G}\hat f(\chi)\chi(g).\]We know most of this: $f(g)=1$ because $f=1_G$; and $\hat f(\chi)=\op{Vol}(G)1_{1_G},$ so the summands vanish except for $\chi=1_G\in\hat G,$ in which case the summand will be $\op{Vol}(G)\cdot1$ in this case. Plugging everything in, we see\[1=\op{Vol}(\{1_G\})\op{Vol}(G).\]So we see that $\op{Vol}(G)=1$ if and only if $\op{Vol}(\{1_G\})=1,$ and we are done here. $\blacksquare$
+					</p>
+					<p>
+						This is nice, now, because the "natural'' Haar measure on $G$ giving it measure $1$ is also exactly the measure which makes $\hat G$ have the counting measure. In this case, we do have our series expansion\[f(g)=\sum_{\chi\in\hat G}\hat f(\chi)\chi(g)\]for sufficiently nice $f.$ In particular, the $\hat f(\chi)$ are constants not dependent on $g.$ This is our generalized Fourier series.
+					</p>
+					<p>
+						For effect, we derive standard Fourier series. Look at $\RR/\ZZ,$ whose dual is the discrete group $\ZZ.$ For a quick proof of this, we already know that $\RR\cong\widehat\RR,$ and surely we can extend any character on $\RR/\ZZ$ periodically. So all characters of $\RR/\ZZ$ look like\[x\mapsto e^{2\pi irx}\]for some $r\in\RR.$ Because we need to vanish on $\ZZ,$ it suffices for $e^{2\pi ir}=1,$ so $r\in\ZZ.$ Thus, all or characters actually look like $x\mapsto e^{2\pi inx}$ for $n\in\ZZ,$ which provides our correspondence between $\widehat{\RR/\ZZ}$ and $\ZZ.$
+					</p>
+					<p>
+						We ran through that proof to say that the inverse Fourier transform in $\RR/\ZZ$ endowed with measure giving $\RR/\ZZ$ volume $1$ has\[f(x)=\sum_{\chi\in\widehat{\RR/\ZZ}}\hat f(\chi)\chi(g)=\sum_{n\in\ZZ}\hat f(n)e^{2\pi inx}\]for sufficiently nice $f.$ Note that we are abusing notation a bit by writing $\hat f(n)$ because we actually mean $\hat f(x\mapsto e^{2\pi inx}),$ but we can redefine\[\hat f(n):=\int_{\RR/\ZZ}f(x)e^{-2\pi inx}\,dx.\]So yes, we are getting standard Fourier series out of this abstraction.
+					</p>
+					<p>
+						It is interesting that we can even carry this, practically verbatim, through to $\mathbb A_K/K,$ which has dual $K.$ Again, the correspondence here is that, for a standard $\psi:\mathbb A_K,$ we can associate $k\in K$ with $\psi_k(x):=\psi(kx).$ (We do not show this here.) Then our inverse Fourier transform (using the Haar measure which gives $\op{Vol}(\mathbb A_K/K)=1$) says\[f(a)=\sum_{\chi\in\widehat{\mathbb A_K/K}}\hat f(\chi)\chi(a)=\sum_{k\in K}\hat f(k)\psi(kx).\]Again we are abusing notation for a prettier statement (and emphasis) by writing $\hat f(k)$ for $\hat f(\psi_k).$ Anyways, the point is that this looks a lot like Fourier series with $\RR/\ZZ,$ entirely because we have a similarly nice classification of characters on $\mathbb A_K.$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

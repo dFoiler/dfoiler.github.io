@@ -289,7 +289,7 @@ We remark now that the connectedness of $\RR$ implies what we wanted, and no com
 
 We also note here that this characterization of locally constant is pretty unhelpful on totally disconnected spaces. (We do care about totally disconnected spaces because of $\QQ_p.$) To fix our intuitive picture, I think it's helpful to attach the discrete topology on $S$ and visualize $f$ as continuous. That is, ``locally constant'' is somehow similar to ``continuous'' on totally disconnected spaces.
 
-To be explicit, Tate's thesis is concerned with Fourier analysis on ``smooth'' functions on which ``tend to $0$ rapidly.'' On $\RR$ or $\CC,$ we can just say that $f:\RR\to\CC$ is in $C^\infty$ and has all of its derivatives go to $0.$ But on local fields, we make ``smooth'' into ``locally constant'' and ``tend to $0$ rapidly'' into ``compact support.'' We have the following characterization; read as $F=\QQ_p.$
+To be explicit, Tate's thesis is concerned with Fourier analysis on ``smooth'' functions which ``tend to $0$ rapidly.'' On $\RR$ or $\CC,$ we can just say that $f:\RR\to\CC$ is in $C^\infty$ and has all of its derivatives go to $0.$ But on local fields, we make ``smooth'' into ``locally constant'' and ``tend to $0$ rapidly'' into ``compact support.'' We have the following characterization; read as $F=\QQ_p.$
 \begin{proposition}
     Fix $F$ a non-Archimedean topological field. Suppose $f:F\to\CC$ is locally constant and has compact support. Then $f$ is a $\CC$-linear combination of indicators on open sets.
 \end{proposition}
@@ -352,7 +352,86 @@ However, this forces all $n$ points to be in different cosets of $\ZZ_p/p\ZZ_p,$
 The proposition is written as an ``at most'' statement, but I find it remarkable that the equality case exists at all. The fact that we can embed the complete graph $K_p$ in $\QQ_p$ (and with ease!) makes its geometry feel super weird. For comparison, $\RR$ can only do $2,$ and $\CC$ can only do $3$; and typically, I think this many equidistant points is visualized as a $p$-simplex in $\RR^p,$ which $\QQ_p$ feels very different from.
 
 \subsubsection{March 5th}
-Today I learned about multiplicative (quasi)characters of local fields.\todo{drp}
+Today I learned about multiplicative (quasi)characters of local fields, from \href{http://math.mit.edu/~poonen/786/notes.pdf}{the MIT notes} as usual. Fix $F$ a local field with unit group $F^\times.$ For convenience, we let $U=\{x\in F^\times:|x|=1\}$ (i.e., the units in the ring of integers if $F$ is nonarchimedean), and $|F^\times|=\{|x|:x\in F^\times\}.$ Note $U$ and $|F^\times|$ are groups. We take the following definition.
+\begin{definition}
+    A (multiplicative) character $\chi:F^\times\to\CC^\times$ is unramified if and only if $\chi(U)=\{1\}.$
+\end{definition}
+Note that we are expanding our definition of character to multiply into $\CC^\times$ instead of just $S^1$; we'll call a character ``unitary'' if its image lives in $S^1.$
+
+We take the following lemma.
+\begin{lemma}
+    A character $\chi:F^\times\to\CC^\times$ is unramified if and only if $\chi(x)=|x|^s$ for some $s\in\CC.$
+\end{lemma}
+We see $\chi(x)=|x|^s$ for $s\in\CC$ implies $\chi(x)=1$ if $x\in U,$ which deals with the reverse implication.
+
+For the reverse implication, we note that the mapping $F^\times\to|F^\times|$ by $x\mapsto|x|$ is surjective with kernel $U,$ so $|F^\times|\cong F^\times/U.$ So if $\chi:F^\times\to\CC^\times$ acts trivially on $U,$ it also makes a character on cosets $\chi:F^\times/U\to\CC^\times,$ so we care about the induced character
+\[\chi:|F^\times|\to\CC^\times.\]
+It suffices to show that this (or any) character $|F^\times|\to\CC^\times$ has the form $x\mapsto|x|^s$ for $s\in\CC.$ Indeed, then we can write any $x\in F^\times$ as $x/|x|\cdot|x|$ for $x/|x|\in U$ and $|x|\in|F^\times|,$ so
+\[\chi(x)=\chi\left(\frac x{|x|}\right)\chi(|x|)=1|x|^s\]
+because $\chi$ already acted trivially on $U.$
+
+So fix a character $\chi:|F^\times|\to\CC^\times.$ We split our work if $F$ is archimedean or not.
+\begin{itemize}
+    \item If $F$ is nonarchimedean, then we note
+    \[|F^\times|=\{|x|:x\in F^\times\}=\left\{q^k:k\in\ZZ\right\},\]
+    where $q$ is the size of the residue field of $F.$ From here, if we let $\chi(q)=q^s$ for some $s=\log\chi(q)/\log q\in\CC$ (pick any branch of $\log$), then we have
+    \[\chi\left(q^k\right)=\chi(q)^k=q^{sk}=\left(q^k\right)^s,\]
+    which is what we wanted. Note the use of discreteness in this argument.
+    \item Else $F$ is archimedean, so $F=\RR$ or $F=\CC.$ In this case $|F^\times|=\RR^\times_{>0},$ so we note that we're really studying characters $\chi:\RR^\times_{>0}\to\CC^\times.$ Now, the idea is that $a^\QQ$ for $a\ne1$ is dense in $\RR^\times_{>0},$ so we can more or less finish with a similar argument as in the nonarchimedean case.
+    
+    However, there is some technicality here because $\chi(2)$ doesn't actually determine $\chi(\sqrt2)$ (for example) for argument reasons, so we have to be more careful. Note that $\log:\RR^\times_{>0}\to\RR$ is an isomorphism of groups, so we focus on characters
+    \[\chi(\log)=:\psi:\RR\to\CC^\times.\]
+    Now, we can separate $\psi=|\psi|e^{i\arg\psi}$ into $e^{i\arg\psi}:\RR\to S^1$ and $|\psi|:\RR\to\RR^\times_{>0},$ which we do because $|\psi|$ no longer has argument issues. We could do some careful continuity argument to understand $\RR\to S^1,$ but we know all these characters take the form $x\mapsto e^{bix}$ for some $b\in\RR$ because of our classification of local characters. So let $e^{i\arg\psi(x)}=e^{bix}$ for fixed $b\in\RR.$
+    
+    So as promised, we use a continuity argument on $|\psi|.$ We can write $|\psi|(e)=e^a$ for some unique (!) $a=\log|\psi(e)|\in\RR,$ and then $|\psi|\left(e^{m/n}\right)=e^{am/n}$ because $e^{1/n}$ is a well-defined real number. Thus, $|\psi|:\QQ\to\RR^\times_{>0}$ looks like $q\mapsto e^{aq}.$
+    
+    Then for any $x\in\RR,$ we can fix some Cauchy sequence $\{q_k\}_{k\in\NN}\subseteq\QQ$ with $q_\bullet\to x.$ By continuity, we have $|\psi|(q_\bullet)\to\psi(x)$ as well, but
+    \[|\psi|(q_\bullet)=e^{aq_\bullet}\to e^{xq}\]
+    because $\exp$ is continuous. Thus, $\psi(x)=e^{xq}$ for any $x\in\RR.$
+    
+    Bringing all of this together, we let $s:=a+bi$ so that
+    \[\psi(x)=|\psi(x)|e^{i\arg\psi(x)}=e^{(a+bi)x}=e^{sx}.\]
+    To finish, we note $x\in\RR^\times_{>0}$ have $\chi(x)=\psi(\log x)=e^{s\log x}=x^s,$ which is what we wanted.
+\end{itemize}
+Having covered all cases, we are done here. $\blacksquare$
+
+Having established that unramified characters are well-behaved, we note the following decomposition is really the reason why we introduced them.
+\begin{proposition}
+    Any character $\chi:F^\times\to\CC^\times$ can be decomposed into $\chi(x)=\eta(x)|x|^s$ for some unitary character $\eta$ and some $s\in\CC.$
+\end{proposition}
+Note that it's not unreasonable to expect this a priori, for $|F^\times|\cong F^\times/U$ essentially says that $F^\times$ also has a decomposition into ``norm part'' $|F^\times|$ and ``unitary part'' $U.$ Because we already know that $F\cong\widehat F,$ it's not super surprising that characters on $F^\times$ are sharing similar structure as $F^\times.$
+
+With this in mind, the idea is to write, for any $x\in F^\times,$
+\[\chi=\frac\chi{|\chi|}\cdot|\chi|.\]
+We see $\frac\chi{|\chi|}$ is unitary, and showing $|\chi|$ is unramified comes down to showing that $\chi(U)\subseteq S^1$ or that the induced $\chi:U\to\CC^\times$ must in fact be unitary. (We remark that it is tempting to try to show $|x|=1$ implies $|\chi(x)|=1$ more directly, but this is harder than it looks.) Note $U$ is a group, so $\chi:U\to\CC^\times$ is a character.
+
+This comes down to $U$ being compact. Indeed, $U$ is closed because
+\[U=F^\times\setminus\{x\in F^\times:|x|\ne1\}=F^\times\setminus\left(\{x\in F^\times:|x|<1\}\cup\{x\in F^\times:|x|>1\}\right)\]
+is the complement of an open set because
+\[\{x\in F^\times:|x|>1\}=\bigcup_{|x|>1}\{y\in F^\times:|y-x|<|x|-1\}\]
+because $|y-x|<1-|x|$ implies $|y|>|y-x|-|x|>1.$ Then because $U$ is also bounded (by $2,$ say), we see $U$ is closed and bounded and therefore compact.
+
+We now take the following lemma to finish.
+\begin{lemma}
+    Suppose $G$ is a compact abelian group and $\chi:G\to\CC^\times$ is a character. Then $\chi$ is unitary.
+\end{lemma}
+Letting $U_k=\{z\in\CC^\times:|z|<k\},$ we note that $\{U_k\}_{k\in\NN}$ forms an open cover of $\CC^\times$ because every element has some finite norm. It follows that
+\[\left\{\chi^{-1}(U_k)\right\}_{k\in\NN}\]
+is an open cover of $G$ because each $g\in G$ goes to some $\chi(g)\in\CC^\times=\bigcup_kU_k.$ We may now use compactness to extract a finite subcover $\chi^{-1}(U_{k_1}),\ldots,\chi^{-1}(U_{k_n}),$ but because $a<b$ implies $U_a\subseteq U_b$ implies $\chi^{-1}(U_a)\subseteq\chi^{-1}(U_b),$ we can let $N=\max\{k_\bullet\}$ so that
+\[G\subseteq\bigcup_{\ell=1}^n\chi^{-1}(U_{k_n})\subseteq\bigcup_{\ell=1}^n\chi^{-1}(U_N)=\chi^{-1}(U_N).\]
+In particular, we see $\chi(G)\subseteq U_N,$ so the image $\chi(G)$ has norm bounded by $N.$
+
+To finish, fix any $g\in G$ so that we want to show $|\chi(g)|=1.$ For any $k\in\NN,$ we note that
+\[|\chi(g)|^k=\left|\chi\left(g^k\right)\right|<N,\]
+so $|\chi(g)|<N^{1/k}$ for any $k\in\NN.$ It follows $|\chi(g)|\le1,$ and running the same argument with $g^{-1}$ means $|\chi(g)|=|\chi(g^{-1})|^{-1}\ge1$ as well, which finishes. $\blacksquare$
+
+Applying the lemma to $U,$ which we know to be a compact abelian group, implies that the restriction of $\chi$ to $U$ must be unitary, so $|\chi|$ is indeed unramified. So we are done here. $\blacksquare$
+
+With the decomposition in hand, we can kind of explain why we expanded our characters from $S^1$ to $\CC^\times.$ Note the following discussion is far from rigorous. Consider a Dirichlet $L$-function, which looks like
+\[L(s,\chi)=\prod_p\frac1{1-\chi(p)p^{-s}},\]
+where $\chi:\QQ^\times\to S^1$ is a unitary character, provided we let $\QQ^\times$ ignore finitely many primes. However, looking at our decomposition, we see $p\mapsto\chi(p)p^{-s}$ is really just a single character $\chi:\QQ^\times\to\CC^\times,$ so we can view the above as
+\[L(\chi)=\prod_p\frac1{1-\chi(p)}.\]
+What's nice here is that we have compressed the number of variables we have to handle. In practice, I think we do usually go ahead and separate out $\chi:F\to\CC^\times$ into unitary and unramified parts, but the single variable helps make our statements cleaner.
 
 \subsubsection{March 6th}
 Today I learned a little motivation for the compact-open topology: the evaluation map is continuous, from \href{https://ncatlab.org/nlab/show/compact-open+topology}{the nlab page}. That is, we have the following proposition.
@@ -587,7 +666,7 @@ The fact that terms come in pairs of $x^n+x^{n+1}$ suggests that we should facto
 Now terms come in pairs of $x^n+x^{n+8},$ so we factor out $1+x^8$ to get
 \[f(x)=(1+x)\left(1+x^8\right)\left(1+x^{64}+x^{512}+x^{576}+x^{4096}+x^{4160}+\cdots\right).\]
 We see terms come in pairs of $x^n+x^{n+64},$ so we factor this out again to get
-\[f(x)=(1+x)\left(1+x^8\right)\left(1+x^64\right)\left(1+x^{512}+x^{4096}+\cdots\right)\]
+\[f(x)=(1+x)\left(1+x^8\right)\left(1+x^{64}\right)\left(1+x^{512}+x^{4096}+\cdots\right)\]
 At this point, the pattern suggests that we have
 \[f(x)\stackrel?=\prod_{k=0}^\infty\left(1+x^{8^k}\right).\]
 This doesn't actually expand out to any nice (say, rational) function, so trying to solve $f(x)f\left(x^2\right)f\left(x^4\right)=\frac1{1-x}$ by inspection would likely fail.
@@ -615,5 +694,1150 @@ So we get our representation of each $n\in\NN,$ and it certainly feels very uniq
 This is not terribly rigorous, but we could make it rigorous if we wanted. For example, $n\pmod8$ certainly uniquely determines $a,b,c\pmod2$ because the higher bits of $a,b,c\in X$ don't matter. After subtracting the required bit, each of $n,a,b,c$ will be divisible by $8$ (because $a_8,b_8,c_8$ only have $0$s and $1$s), so we can divide everything by $8$ and induct downwards. $\blacksquare$
 
 Anyways, the point of all this discussion is that expansion of generating functions can algebraically deal with sums of restricted subsets of $\NN,$ and they can even count the number of times some $n\in\NN$ gets hit. For example, I think the Hardy-Littlewood circle method concerns itself with products of
-\[f(q)=\sum_{k\in\NN}q^{k^2},\]
+\[\Theta(q)=\sum_{k\in\ZZ}q^{k^2},\]
 which can feasibly compute properties of sums of squares (and other powers more generally).
+
+\subsubsection{March 10th}
+Today I learned that the law of the excluded middle fails in homotopy type theory, from \href{https://homotopytypetheory.org/book/}{the Homotopy Type Theory book} of course. Roughly speaking, the law of the excluded middle comes down to $\lnot\lnot A\to\lnot A$ being problematic. How this goes, however, is somewhat intricate. Anyways, we claim the following.
+\begin{theorem}
+    We have that
+    \[\lnot\left(\prod_{A:\UU}(\lnot\lnot A\to A)\right).\]
+\end{theorem}
+At a high level, this is following from univalence plus fact that our functions, being continuous, must communicate nicely with equality types. In particular, both of these facts talk about how equalities (between types) and functions should interact, and they conspire together to make $\lnot\lnot A\to A$ problematic.
+
+In particular, we will build towards the following.
+\begin{lemma}
+    Suppose $f:\prod_{(A:\UU)}(\lnot\lnot A\to A).$ For nonempty equivalent types $X,Y:\UU,$ there are elements $x:X$ and $y:Y$ such that, for any equivalence $e:X\simeq Y,$ we have $e(x)=y.$
+\end{lemma}
+This is very strange; essentially, we are forcing equivalences to have ``canonical'' choices about where they send elements, and this will prove to lead quickly to contradiction, as we will show later.
+
+Anyways, we promised that univalence and function application would be important, so we should start there. Fix any $e:X\simeq Y,$ we get a witness $p:\equiv\op{ua}(e):X=_\UU Y$ from univalence. Looking at $A\mapsto(\lnot\lnot A\to A)$ as a function family, we get (dependently) apply it to $X=Y$ so that
+\[\op{apd}_f(p):\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)(f(X))=f(Y).\]
+The image here is that we have a transported map $(\lnot\lnot X\to X)\to(\lnot\lnot Y\to Y)$ because $X=Y,$ and applying dependently means that $f(X)$ pushed along this transport must be equal to $f(Y).$
+
+We note that already we can feel problems brewing: $\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)$ is roughly moving along $X\simeq Y,$ but $f(X)$ and $f(Y)$ don't care about the particular path $p$ chosen. To solidify this, we introduce $\hat y:\lnot\lnot Y$ (which exists because $Y$ is nonempty) so that
+\[\op{happly}(\op{apd}_f(p),\hat y):\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)(f(X))(\hat y)=f(Y)(\hat y).\]
+At this point, both sides of the equality are physical elements of $Y,$ and the rest of this is (admittedly difficult) computation.
+
+Currently, the main monster is the transport, so we focus our efforts there first. Abusing notation, we note that we know how to deal with transports of function type families by writing
+\[(A\mapsto\lnot\lnot A)\to(A\mapsto A):\equiv A\mapsto(\lnot\lnot A\to A).\]
+In particular, we have the following commutative diagram of transports.
+\begin{center}
+    \begin{tikzcd}
+        X \arrow[d, "p"] & \lnot\lnot X \arrow[r, "f"]                                & X \arrow[d, "p_*"] \\
+        Y                & \lnot\lnot Y \arrow[r, "p_*(f)"'] \arrow[u, "(p^{-1})_*"] & Y                 
+    \end{tikzcd}
+\end{center}
+There is some significant abuse of notation as to what each transport is, but we ignore this. The point is that the function $\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)(f(X))$ witnessing $\lnot\lnot Y\to Y$ is propositionally equal to the function first moving the input $\hat y:\lnot\lnot Y$ up to $\lnot\lnot X$ along $p^{-1},$ then moving along $f$ to $X$ and finally moving down $p$ to $Y.$ That is,
+\[\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)(f(X))(\hat y)=\op{transport}^{A\mapsto A}(p)\left(f(X)\left(\op{transport}^{A\mapsto\lnot\lnot A}(p^{-1})(\hat y)\right)\right).\]
+To continue, we need to use the following technical lemma.
+\begin{lemma}
+    For type $A,$ every element of $\lnot A$ is equal.
+\end{lemma}
+This follows from function extensionality. Note that for any inhabitants $x,y:0,$ the map $0\to(x=y)$ means that $x$ and $y$ must be equal. So because all elements of $0$ are equal, any maps $f,g:\lnot A\equiv A\to 0$ must be equal on all inputs, so $f=g$ by function extensionality. $\blacksquare$
+
+This is the reason why it matters we are considering $\lnot\lnot A$ instead of some other operation on types: every inhabitant of $\lnot\lnot A$ is equal! In particular, all possible options inhabitating $\lnot\lnot X$ are equal, so all possible
+\[\hat x:\equiv\op{transport}^{A\mapsto\lnot\lnot A}(p^{-1})(\hat y):\lnot\lnot X\]
+are equal. Thus, we see
+\[\op{transport}^{A\mapsto(\lnot\lnot A\to A)}(p)(f(X))(\hat y)=\op{transport}^{A\mapsto A}(p)\left(f(X)(\hat x)\right)\]
+for any of the equal choices of $\hat x:\lnot\lnot X,$ which follows from function application.
+
+We are done with the hard part of the computation. At this point, we remark that $\op{ua}$ is defined as the quasi-inverse of $\op{transport}^{A\mapsto A}:\prod_{A,B:\UU}(A=B)\to(A\simeq B),$ so in fact $p\equiv\op{ua}(e)$ has
+\[\op{transport}^{A\mapsto A}(p)(f(X)(\hat x))=e(f(X)(\hat x)).\]
+Returning to the original equality, we see that
+\[e(f(X)(\hat x))=f(Y)(\hat y),\]
+where the choices of $e,\hat x,\hat y$ all do not matter. In particular, all possible $\hat x:\lnot\lnot X$ and $\hat y:\lnot\lnot Y$ are equal, and it must be the case that $e$ sends $x:\equiv f(X)(\hat x)$ to $y:\equiv f(Y)(\hat y)$ (propositionally). This completes the lemma. $\blacksquare$
+
+Returning to the proof of the main theorem, once we fix some $f:\prod_{(A:\UU)}(\lnot\lnot A\to A),$ all it remains to do is exhibit some equivalences which break having ``canonical'' elements. For this, we consider autoequivalences, for the reflexive $A\simeq A$ is always inhabited by $\op{id}.$ Running this through the lemma, there are elements $a,a':A$ such that, for any $e:A\simeq A,$ we have
+\[e(a)=a'.\]
+However, take $e\equiv\op{id},$ and we are forced into $a=a',$ so in fact every $e:A\simeq A$ has some $e(a)=a$ for our $a:A.$ That is, every equivalence has (the same) fixed point.
+
+However, we can construct autoequivalences with no fixed points. We take $e:2\simeq2$ by
+\[e(0_2)\equiv1_2\qquad\text{and}\qquad e(1_2)=0_2.\]
+We note that $e\circ e\sim\op{id},$ so $e$ is its own quasi-inverse and therefore is in fact an equivalence. Just looking at $e$ we see that it has no fixed point, but we'll write out the details. The fixed point of $e$ is propositionally equal to either $0_2$ or $1_2$, so either $1_2\equiv e(0_2)=0_2$ or $0_2\equiv e(1_2)=1_2.$ But we also know
+\[0_2\ne1_2\equiv(0_2=1_2)\to0,\]
+and as all the possible fixed points lead to an inhabitant of $0_2=1_2,$ we see that we do indeed get an inhabitant of $0.$ So we are done here. $\blacksquare$
+
+It is somewhat remarkable that exactly what breaks the law of the excluded middle---that we have ``nontrivial'' autoequivalences (that is, non-reflexive autoequivalences)---is that $\UU$ does not behave like a (type-theoretic) set. Of course, there is univalence hiding around in the background, for we took advantage of these nontrivial autoequivalences by turning them into nontrivial loops.
+
+We also remark that very little of this proof actually cared about the specific construct $\lnot\lnot A\to A.$ Only the sublemma needed this fact, for we needed to limit what $f(X)(\hat x)$ and $f(Y)(\hat y)$ could look like, and we did this by limiting what $\hat x$ and $\hat y$ could look like. I can't help but feel like this argument has some unused potential by replacing $\lnot\lnot$ with some other type with at most one path-connected component.
+
+\subsubsection{March 11th}
+Today I learned a little about local $\zeta$-functions. We have the following definition.
+\begin{definition}
+    Fix $F$ a local field and $f:F\to\CC$ a Shwartz-Bruhat function with $\chi:F^\times\to\CC$ a multiplicative character. Then we define the local $\zeta$-function as
+    \[\zeta(f,\chi):=\int_{F^\times}f(x)\chi(x)\,d^\times x.\]
+\end{definition}
+For the time being it doesn't matter exactly how our $d^\times x$ behaves, so we make it $\frac c{|x|}dx$ for some positive constant $c,$ where $dx$ is our self-dual measure. This positive constant will be fixed later when we move into global theory.
+
+This function $\zeta(f,\chi)$ will turn out to have a functional equation and extend fully to a holomorphic function over all characters $\chi.$ However, we begin by showing that it is converges for positive character exponents.
+\begin{lemma}
+    For local $\zeta$-function $\zeta(f,\chi),$ the given definition converges for exponents $\sigma>0.$
+\end{lemma}
+We can more or less pretend that $F=\RR$ or $F=\CC,$ and most of the argument will go through with little trouble. The statement had better be true for $\zeta(|f|,|\chi|),$ so we show absolute convergence. So we are showing that
+\[\int_{F^\times}|f(x)|\cdot|x|^\sigma\,d^\times x<\infty.\]
+There are competing forces of ``small'' at play. Namely, we split the integral as follows
+\[\int_{F^\times}|f(x)|\cdot|x|^\sigma\,d^\times x=\int_{|x|\le1}|f(x)|\cdot|x|^\sigma\,d^\times x+\int_{|x|>1}|f(x)|\cdot|x|^\sigma\,d^\times x.\]
+For very small values of $x,$ we need to make sure that $|f(x)|$ is smallish, and for very large values of $x,$ we need to make sure that $|f(x)|$ is smallish. Because small and large values of $x$ behave differently, we take these integrals one at a time.
+
+The $|x|>1$ integral is easier to deal with. By definition of Shwartz-Bruhat, we can say that $|f(x)|=C/x^{\sigma+2}$ over $|x|\ge1$ for some positive constant $C.$ Indeed, this is automatic for $F=\RR$ or $F=\CC,$ and for $F$ nonarchimedean, $f$ as a finite $\CC$-linear combination of indicators, so we merely have to accommodate a finite sum. Thus,
+\[\int_{|x|>1}|f(x)|\cdot|x|^\sigma\,d^\times x\le cC\int_{|x|>1}|x|^{-3}\,dx.\]
+Note we have changed measures to $dx.$ We now do casework on $F.$
+\begin{itemize}
+    \item Over $F=\RR,$ this integral is $2\int_1^\infty x^{-3}\,dx=1<\infty.$
+    \item Over $F=\CC,$ we can change to polar coordinates as
+    \[\int_{|z|>1}|z|^{-3}\,dz=\int_1^\infty\int_0^{2\pi}r^{-3}\,2rdrd\theta.\]
+    This $2$ comes from the fact we're using twice the Lebesgue measure as our self-dual measure on $\CC.$ Anyways, this evaluates to $4\pi\int_1^\infty r^{-2}\,dr=4\pi<\infty.$
+    \item Over $F$ nonarchimedean, we let $q$ be the size of the residue field of $F$ so that $|x|\in q^\ZZ.$ Thus, the integral turns into a geometric series like
+    \[\int_{|x|>1}|x|^{-2}\,d^\times x=\sum_{k=1}^\infty\left(q^k\right)^{-3}\int_{|x|=q^k}d^\times x.\]
+    The integral now measures the multiplicative volume $\op{Vol}(\mathcal O_F^\times),$ which is finite (and constant with respect to $q$). Then $q^{-3}<1$ means that the infinite series is finite as well.
+\end{itemize}
+Having dealt with all cases, we are safe.
+
+For the $|x|\le1$ integral, we show that $|f(x)|$ is bounded above for largish. We note that the region $|x|\le1$ is bounded and closed in a local field, so it is compact. Further, $|f(x)|$ is continuous, so it is bounded above: the sets $\{x:|f(x)|<N\}$ for $N\in\ZZ^+$ are an open cover of $F$ and therefore $|x|\le1$; take a finite subcover to get an upper bound of $|f(x)|.$
+
+So fix an upper bound $M$ for $|f(x)|$ in $|x|\le1,$ and we see
+\[\int_{|x|\le1}|f(x)|\cdot|x|^\sigma\,d^\times x\le M\int_{|x|\le1}|x|^\sigma\,d^\times x.\]
+Because there is an $|x|^{-1}$ hiding in the $d^\times x,$ it is not obvious that this is finite. We could do this by casework on $F,$ but it turns out that the nonarchimedean geometric series trick works for all cases. Fix some $a\in F^\times$ with $|a|<1,$ and then we can write
+\[\int_{|x|\le1}|x|^\sigma\,d^\times x=\sum_{k=0}^\infty\int_{|a|^{k+1}<|x|\le|a|^k}|x|^\sigma\,d^\times x.\]
+In particular, we can bound these integrands above by $|a|^k$ to get
+\[\int_{|x|\le1}|x|^\sigma\,d^\times x\le\sum_{k=0}^\infty|a|^k\int_{|a|^{k+1}<|x|\le|a|^k}d^\times x.\]
+Using the multiplicative measure, the integral is equal to $\int_{|a|<|x|\le1}d^\times x,$ which is finite (and constant with respect to $k$) because $\{x:|a|<|x|\le1\}$ is a bounded set. So we are left with the geometric series, which is finite because $|a|<1.$ This completes the proof. $\blacksquare$
+
+We briefly remark that the above convergence also says that $\zeta(f,\chi)$ is holomorphic over $\sigma>0$ in the unramified part of $\chi.$ Namely, writing $\chi=\chi_0|\bullet|^s$ for unitary part $\chi_0,$ we can write
+\[\zeta(f,\chi_0|\bullet|^s)=\int_{F^\times}f(x)\chi_0(x)\cdot|x|^s\,d^\times x.\]
+Now, over $\op{Re}(s)>0,$ this converges, and we can take the derivative of this with respect to $s$ by differentiating under the integral sign. For example, all functions here have continuous partial derivatives, so we're safe.
+
+Later in life we will build to the functional equation $\zeta(\hat f,\chi^\vee)/L(\chi^\vee)=\varepsilon\zeta(f,\chi)/L(\chi)$ for some auxiliary $L$-factors $L(\chi)$ and error term $\varepsilon.$ However, a difficult part of this is that dealing with general functions $f$ is hard, and it is significantly easier to verify this functional equation for individual $f$ and $\varepsilon.$
+
+The solution is the following ``translation'' lemma, which turns an evaluation for some function $f$ to an evaluation for a different function $g.$
+\begin{lemma}
+    Given local $\zeta$-functions $\zeta(f,\chi)$ and $\zeta(g,\chi),$ we have
+    \[\zeta(f,\chi)\zeta(\hat g,\chi^\vee)=\zeta(\hat f,\chi^\vee)\zeta(g,\chi),\]
+    for characters $\chi$ of exponent $\sigma\in(0,1).$
+\end{lemma}
+The condition $\sigma\in(0,1)$ essentially asserts that the integral definition of $\zeta$ actually (absolutely) converges, from the previous lemma.
+
+Anyways, we don't have much better to do than muscle through this, so we write
+\[\zeta(f,\chi)\zeta(\hat g,\chi^\vee)=\int_{F^\times}f(x)\chi(x)\,d^\times x\int_{F^\times}\hat g(y)\chi(y)^{-1}|y|\,d^\times y.\]
+Because these integrals converge absolutely, we meld them into
+\[\iint_{(F^\times)^2}f(x)\hat g(y)\chi(x/y)|y|\,d^\times xd^\times y.\]
+We need to talk about $g$ intelligently as well, so we let $\psi$ be our standard character and expand $\hat g$ as
+\[\iint_{(F^\times)^2}f(x)\left(\int_Fg(z)\psi(yz)\,dz\right)\chi(x/y)|y|\,d^\times xd^\times y.\]
+To make all our measures on equal footing, we write $dz=c^{-1}|z|d^\times z$ (losing $0$ doesn't lose anything of substance), so this is
+\[c^{-1}\iiint_{(F^\times)^3}f(x)g(z)\chi(x/y)|yz|\psi(yz)\,d^\times xd^\times yd^\times z.\]
+This is almost symmetric in $f$ and $g,$ which would let us finish, but the character $\chi(x/y)$ doesn't talk about $z.$ So we let $y=xt$ to replace $d^\times y=d^\times t$ with something more conducive to symmetry. Now we have
+\[c^{-1}\iiint_{(F^\times)^3}f(x)g(z)\chi(t^{-1})|txz|\psi(txz)\,d^\times xd^\times td^\times z.\]
+Now this is symmetric in $f\leftrightarrow g,$ so this quantity is also $\zeta(g,\chi)\zeta(\hat f,\chi^\vee).$ This completes the proof. $\blacksquare$
+
+\subsubsection{March 12th}
+Today I learned the finish to the proof of the local $\zeta$ functional equation.\todo{}
+
+\subsubsection{March 13th}
+Today I learned the definition of a sheaf. The idea here is to generalize functions on a space in a purely algebraic way. In order to get our bearings, we first define a presheaf.
+\begin{definition}
+    Fix $X$ a topological space (or more generally, a scheme). Then a presheaf consists of the data of a map $\mathcal O:X\to\op{Set}$ and restriction mappings $\op{res}_{U_1,U_2}:\mathcal O(U_1)\to\mathcal O(U_2)$ whenever $U_1\supseteq U_2.$ Additionally, we require the restriction mappings to satisfy
+    \[\begin{cases}
+        \op{res}_{U,U}=\op{id}_{\mathcal O(U)}, \\
+        \op{res}_{U_1,U_3}=\op{res}_{U_2,U_3}\circ\op{res}_{U_1,U_2}.
+    \end{cases}\]
+\end{definition}
+The coherence laws that we're requiring $\op{res}$ to behave essentially say that restricting $\mathcal O(U)$ to itself shouldn't change anything, and the order of restriction shouldn't matter.
+
+We quickly remark that the data of a presheaf is pretty much what we need for a functor. This is nice later because it gives us some categorical grounding to how we think about presheaves; for example, maps between presheaves are pretty much natural transformations.
+\begin{proposition}
+    Define the category of a topological space $X$ to have morphisms drawn for containment: open subsets $U_1$ and $U_2$ have an arrow $U_1\to U_2$ if and only if $U_1\subseteq U_2.$ Then a presheaf $\mathcal O$ on $X$ is exactly what we need to be a contravariant functor to $\op{Set}.$
+\end{proposition}
+The full functor sends open sets $U$ to $\mathcal O(U)\in\op{Set}$ and morphisms $U_1\to U_2$ to $\op{res}_{U_2,U_1}$; note that $\op{res}_{U_2,U_1}$ exists because $U_1\to U_2$ exists if and only if $U_1\subseteq U_2.$
+
+Call this mapping $F.$ We have shown how $F$ sends objects to objects and morphisms to morphisms, so it remains to show our coherence laws. Well, we need
+\[\begin{cases}
+    F(\op{id}_U)=\op{id}_{F(U)} & U\text{ open},\\
+    F(g\circ f)=F(f)\circ F(g) & f,g\text{ morhpisms}.
+\end{cases}\]
+The first identity is asserting that $\op{res}_{U,U}=\op{id}_{\mathcal O(U)},$ which is a required coherence law. Secondly, the second is saying that, for open sets $U_1\subseteq U_2\subseteq U_3,$ we have $\op{res}_{U_3,U_1}=\op{res}_{U_2,U_1}\circ\op{res}_{U_3,U_2},$ which is the other required coherence law.
+
+We remark that if we have any functor $F$ from the category of $X$ to $\op{Set},$ then we can name $\mathcal O(U):=F(U)$ and $\op{res}_{U_2,U_1}:=F(f)$ for $f:U_1\to U_2$ to get back out our presheaf. In particular, we showed above that the coherence laws correspond to each other; we're not going to be formal about this. $\blacksquare$
+
+Now, a sheaf is a presheaf satisfying two more coherence laws.
+\begin{definition}
+    Fix $X$ a topological space. A sheaf consists of the same data $\mathcal O$ and $\op{res}$ along with the following two more coherence laws.
+    \begin{itemize}
+        \item Identity: Fix $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of open $U\subseteq X.$ Then, given $f,g\in\mathcal (U),$
+        \[\op{res}_{U,U_\alpha}(f)=\op{res}_{U,U_\alpha}(g)\text{ for all }\alpha\implies f=g.\]
+        \item Gluability: Fix $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of open $U\subseteq X.$ If we can find $f_\alpha\in\mathcal O(U_\alpha)$ for each $\alpha,$ that cohere in that
+        \[\op{res}_{U_\alpha,U_\alpha\cap U_\beta}(f_\alpha)=\op{res}_{U_\beta,U_\alpha\cap U_\beta}(f_\beta)\]
+        for each $\alpha$ and $\beta,$ then we can construct a single $f\in\mathcal O(U)$ such that $\op{res}_{U,U_\alpha}(f)=f_\alpha$ for each $\alpha.$
+    \end{itemize}
+\end{definition}
+The identity law says that the data of $f\in\mathcal O(U)$ is uniquely determined by its restrictions. Reading these as functions, it makes sense that being told locally what the function does communicates global information. The gluability law says that we can glue cohering local data into more global data. Again, reading as functions, this makes sense.
+
+To solidify the intuition that sheaves should thought of as generalizing functions, we take the following proposition.
+\begin{proposition}
+    Fix $X$ and $Y$ topological spaces. The set of continuous maps from $X\to Y$ induces a sheaf: for $U\subseteq X,$ we send $\mathcal O(U)$ to continuous maps $U\to Y,$ and the restriction map is restriction $\op{res}_{U_1,U_2}:f\mapsto f|_{U_2}.$
+\end{proposition}
+We begin by checking that this actually well-defined. Certainly $\mathcal O$ is well-defined as presented, but with the residue maps, it's not immediately obvious that continuous functions restrict to continuous functions. Well, for $f\in\mathcal O(U_1),$ then we have to show $f|_{U_2}$ is also continuous. Fixing $V\subseteq Y$ open, this means we need
+\[\left(f|_{U_2}\right)^{-1}(V)=\{x\in U_2:f|_{U_2}(x)\in V\}.\]
+Well, by nature of restriction, this set is $f^{-1}(V)\cap U_2,$ which is open because $f^{-1}(V)$ is open by continuity of $f.$
+
+Next we check that this is a presheaf, which we do separately.
+\begin{lemma}
+    The described data make a presheaf.
+\end{lemma}
+We have already defined our $\mathcal O$ and our residue maps, so we have to check the coherence laws. Fixing $U\subseteq X$ open, the statement that
+\[\op{res}_{U,U}\stackrel?=\op{id}_{\mathcal O(U)}\]
+is saying that the restriction of a function $f\in\mathcal O(U)$ to $U$ is equal to $f.$ Well, for any $x\in U,$ we know $f|_U(x)=f(x),$ so these functions are equal on all inputs and therefore equal as functions.
+
+We now show that restriction behaves in sequence. Fix $U_1\supseteq U_2\supseteq U_3$ open and $f\in\mathcal O(U_1).$ Plugging into the definition of our restriction maps, we need to show that
+\[f|_{U_3}\stackrel?=f|_{U_2}|_{U_3}.\]
+Well, these are both functions on $U_3,$ and for any $x\in U_3,$ we have that $f|_{U_3}(x)=f(x),$ and $f|_{U_2}|_{U_3}(x)=f|_{U_2}(x)=f(x),$ so these functions are equal on all inputs and therefore equal as functions. This finishes. $\blacksquare$
+
+It remains to check the last two coherence laws to be a sheaf. The identity law roughly comes from the fact these are functions. Suppose $f,g\in\mathcal O(U)$ are continuous functions $f,g:U\to Y.$ Then given an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $U,$ we can say that any $x\in U$ lives in some $U_\alpha,$ so given $f$ and $g$ have
+\[f|_{U_\alpha}=g|_{U_\alpha},\]
+then $f(x)=g(x).$ In particular, if $f$ and $g$ agree on their restrictions to the open cover, then they agree on all inputs, so $f=g$ as functions.
+
+Checking gluability comes from the fact that ``continuity'' is inherently a local phenomenon. (For example, ``boundedness'' is a global phenomenon, and so bounded functions $X\to\RR$ do not have to form a sheaf.) So suppose we are given $U\subseteq X$ as well as an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $U$ with functions $f_\alpha\in\mathcal O(U_\alpha)$ which satisfy
+\[f_\alpha|_{U_\alpha\cap U_\beta}=f_\beta|_{U\alpha\cap U_\beta}\]
+for any $\alpha$ or $\beta.$ We want to construct some $f\in\mathcal O(U)$ which restricts to the $f_\alpha.$ Well, for any $x\in U,$ we know $x\in U_\alpha$ for some $\alpha,$ so we can define
+\[f(x):=f_\alpha(x).\]
+This is well-defined because if $x\in U_\alpha$ and $U_\beta$ for two $\alpha,\beta\in\lambda,$ then $f_\alpha(x)=f_\beta(x)$ by their coherence law. Additionally, we see that $f$ restricts properly because $x\in U_\alpha$ gives $f=f_\alpha$ by definition.
+
+So we have constructed our $f,$ and now we need to show that it is continuous. Well, fix some open set $V\subseteq Y,$ and we want to show that $f^{-1}(V)$ is open. This is
+\[f^{-1}(V)=\{x\in U:f(x)\in V\}.\]
+Decomposing this into the open cover, we can loop through $x\in U$ by looping through individual $U_\alpha$s like
+\[f^{-1}(V)=\bigcup_{\alpha\in\lambda}\{x\in U_\alpha:f(x)\in V\}.\]
+But $f$ on $U_\alpha$ behaves like the already continuous function $f_\alpha,$ so the inner set $f_\alpha^{-1}(V)$ is open already (in $U_\alpha$ and in $U$ by intersection). Thus, $f^{-1}(V)$ is open, and we are done here. $\blacksquare$
+
+Observed that the continuity condition only mattered at the end when checking gluability. So functions of lots of types can inherit at least most of this proof, and we really only have check that gluability produces a function of the desired type.
+
+\subsubsection{March 14th}
+Today I learned about one-point compactification, from \href{https://ncatlab.org/nlab/show/one-point+compactification}{the nlab page} for example. Roughly speaking, the idea is to take topological space $X$ and add a point $\infty$ (along with lots of open sets) to make $X\cup\{\infty\}$ feel smaller and, in particular, compact. Anyways, we take the following definition.
+\begin{definition}
+    Given a topological space $X,$ the one-point compactification of $X$ is a topological space $X^*$ with underlying set $X\cup\{\infty\}$ for an added point $\infty\not\in X.$ Its open sets are
+    \begin{itemize}
+        \item open sets of $X,$
+        \item $(X\setminus C)\cup\{\infty\}$ for some closed and compact subset $C\subseteq X.$
+    \end{itemize}
+\end{definition}
+We note that this topology is somewhat ``natural'' because $X\setminus C$ is basically a large open set, so we're essentially endowing $X^*$ with the open sets endowed to it by $X,$ with some restriction on neighborhoods of $\infty.$
+
+Already we can see that $X^*$ should be compact, for covering $\infty$ only leaves a compact subset $C$ of $X$ to cover, so covers of $X^*$ we can reduce to covers of $C,$ of which there exists a finite subcover. This is more or less our motivation; the fact that this makes a well-defined topology is remarkable.
+
+Anyways, we should probably the claimed open sets actually a topology. In particular, we're not taking these open sets as a subbasis.
+\begin{proposition}
+    The claimed topology on $X^*$ is actually a topology.
+\end{proposition}
+Because $C=\emp$ is compact, $X\cup\{\infty\}$ is open. Because $\emp$ is open in $X,$ $\emp$ is open in $X^*.$ It remains to deal with finite intersections and arbitrary unions.
+
+We start with finite intersections. This is fairly quick and comes down to casework because our open sets only have two types.
+\begin{itemize}
+    \item If our intersection looks like $U_1\cap U_2$ for open $U_1,U_2\subseteq X,$ then this is open because $X$ is a topological space.
+    \item If our intersection looks like $U\cap[(X\setminus C)\cup\{\infty\}]$ for open $U\subseteq X$ and closed and compact $C\subseteq X,$ then we note that this is
+    \[[U\cap(X\setminus C)]\cup[U\cap\{\infty\}]\]
+    by distributing. The former set is open in $X$ because $X\setminus C$ is open in $X$; the latter set is open in $X$ because it is empty. So the union of these two is open.
+    \item If our intersection looks like $[(X\setminus C_1)\cup\{\infty\}]\cap[(X\setminus C_2)\cup\{\infty\}]$ for closed and compact $C_1,C_2\subseteq X,$ then we note that this is
+    \[[(X\setminus C_1)\cap(X\setminus C_2)]\cup\{\infty\}=[X\setminus(C_1\cup C_2)]\cup\{\infty\}\]
+    by distributing and de Morgan's law. Thus, it remains to show that $C_1\cup C_2$ is closed and compact in $X.$ Well, it's closed in $X$ because $X$ is a topological space. It's compact because an open cover of $C_1\cup C_2$ can be restricted to covers of $C_1$ and $C_2$; extracting the finite subcovers of $C_1$ and $C_2$ and then joining the subcovers together gives a finite subcover of $C_1\cup C_2.$
+\end{itemize}
+This finishes the casework for finite intersections.
+
+It remains to deal with arbitrary unions, which we do in a linear order for clarity. We begin by dealing with the an arbitrary union of (more than zero) open sets like $(X\setminus C)\cup\{\infty\}.$
+\begin{lemma}
+    Fix a nonempty collection of open sets $(X\setminus C_\alpha)\cup\{\infty\}$ for closed and compact $\{C_\alpha\}_{\alpha\in\lambda}.$ Then we have
+    \[\bigcup_{\alpha\in\lambda}\big((X\setminus C_\alpha)\cup\{\infty\}\big)=(X\setminus C)\cup\{\infty\}\]
+    for some closed and compact $C\subseteq X.$
+\end{lemma}    
+We note that the arbitrary union has to contain $\infty,$ so it had better have this form. Now, we write
+\[\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\cup\{\infty\}=\left(\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\right)\cup\{\infty\}.\]
+Applying de Morgan's law, this is
+\[\bigcup_{\alpha\in\lambda}(X\setminus C_\alpha)\cup\{\infty\}=\left(X\setminus\bigcap_{\alpha\in\lambda}C_\alpha\right)\cup\{\infty\}.\]
+So it suffices to show that $C:=\bigcap_{\alpha\in\lambda}C_\alpha$ is closed and compact. Closed sets are closed under arbitrary intersection, so it is certainly closed.
+
+As for compact, fixing any $C_\bullet\in\{C_\alpha\}_{\alpha\in\lambda},$ we note that an open cover of $C$ can be turned into an open cover of $C_\bullet$ by appending the open $X\setminus C.$ Then extracting our finite subcover from $C_\bullet,$ we can afterwards remove $X\setminus C$ from the finite subcover (if it is in the subcover) to get a finite subcover for $C$---$X\setminus C$ doesn't help cover $C.$ $\blacksquare$
+
+Now take any open sets in $X^*,$ and we'll do the general-case arbitrary union. Our open sets can be sorted into being $\{U_\alpha\}_{\alpha\in\lambda}$ for $U_\alpha\subseteq X$ open or $(X\setminus C_\beta)\cup\{\infty\}$ for closed compact $\{C_\beta\}_{\beta\in\mu}.$ If the $(X\setminus C_\bullet)\cup\{\infty\}$ collection is empty, the union of the $U_\alpha$ is open because $X$ is a topological space. Otherwise, we are considering
+\[\left(\bigcup_{\alpha\in\lambda}U_\alpha\right)\cup\left(\bigcup_{\beta\in\mu}(X\setminus C_\beta)\cup\{\infty\}\right),\]
+where the right collection is nonempty. The left set here is some open $U\subseteq X$ again because $X$ is a topological space. The right set here takes the form $(X\setminus C)\cup\{\infty\}$ for some closed and compact $C$ because of lemma. So we have to show
+\[U\cup(X\setminus C)\cup\{\infty\}\]
+is open. This should contain $\infty,$ so we don't have many options. By de Moragn's law, this is $[X\setminus(C\cap(X\setminus U))]\cup\{\infty\},$ so we have to show that $C\cap(X\setminus U)$ is closed and compact in $X.$ Well, it is closed because both $C$ and $X\setminus U$ are.
+
+As for compact, we repeat the trick from the lemma. Fix any cover of $C\cap(X\setminus U).$ If we add the set $U$ to this cover, we cover
+\[C\cap(X\setminus U)\cup U\supseteq C,\]
+so we get a finite subcover covering $C.$ We can turn this into a finite subcover of $C\cap(X\setminus U)$ by removing the open set $U$ (which is possibly in the finite subcover of $C$), which is legal because $U$ can't possibly help us cover $C\cap(X\setminus U).$ This completes the proof that we actually have a topology on $X^*.$ $\blacksquare$
+
+While we're here, I guess I should actually show that $X^*$ is compact, justifying the name ``compactification.''
+\begin{proposition}
+    For topological space $X,$ its one-point compactification $X^*$ is compact.
+\end{proposition}
+This is done as outlined at the beginning. Fix any open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $X^*.$ One of these open sets needs to cover $\infty,$ but our only open sets covering $\infty$ take the form $(X\setminus C)\cup\{\infty\},$ so pick up some
+\[(X\setminus C)\cup\{\infty\}\in\{U_\alpha\}_{\alpha\in\lambda}.\]
+It more or less suffices to deal with open covers of $X$ now. Indeed, each $U_\bullet\in\{U_\alpha\}_{\alpha\in\lambda}$ is defined so that $U_\bullet\setminus\{\infty\}$ is open in $X$ (either it is $U_\bullet$ or $X\setminus C_\bullet$ for some closed $C_\bullet\subseteq X$), so we can view the collection
+\[\{U_\alpha\setminus\{\infty\}\}_{\alpha\in\lambda}\]
+as an open cover of $X.$ In particular, it is an open cover of $C,$ so we get to extract a finite subcover $\{U_k\setminus\{\infty\}\}_{k=1}^N$ from the $U_\bullet,$ and then $\{U_k\}_{k=1}^N$ is a finite subcover of $C$ directly from the $U_\bullet.$ So taking
+\[\{(X\setminus C)\cup\{\infty\}\}\cup\{U_k\}_{k=1}^N\]
+makes a finite subcover of $C\cup(X\setminus C)\cup\{\infty\}=X^*,$ which is what we wanted. $\blacksquare$
+
+In other news, happy $\pi$ day, I guess.
+
+\subsubsection{March 15th}
+Today I learned how to fix the law of the excluded middle in homotopy type theory, from \href{https://homotopytypetheory.org/book/}{the homotopy type theory book} as usual. The main issue with univalence is that it allows distinction between proofs/witnesses for a particular type, so we take the following definition.
+\begin{definition}
+    Call a type $A:\UU$ a mere proposition if and only if the type
+    \[\op{isProp}(A):\equiv\prod_{(a,b:P)}(a=b)\]
+    is inhabited. In other words, all witnesses are equal.
+\end{definition}
+So, in essence, types with a witness to $\op{isProp}(A)$ are either true or false, and being true doesn't give us any more information than that $A$ is true, for all proofs are the same here. Of course, requiring $\op{isProp}(A)$ weakens our logic, and I think homotopy type theory likes dealing with types more than mere propositions.
+
+Anyways, we can formalize the idea that mere propositions are either true or false with no extra information. Certainly we hope that if mere proposition captures the idea of purely true or false, then the types $0$ and $1$ should mere propositions, so we start with these.
+\begin{example}
+    The type $0$ is a mere proposition because any inhabitants $a,b:0$ let us inhabit any type, of which $a=b$ is an example, using the induction of $0.$
+\end{example}
+\begin{example}
+    The type $1$ is a mere proposition because we using the induction of $1$ on
+    \[\prod_{(a:1)}\prod_{(b:1)}(a=b)\]
+    means that we have to witness $\prod_{(b:1)}(\star=1),$ for which induction on $1$ (again) means we have to witness $\star=\star.$ Now, $\op{refl}_\star$ works here, so we're safe.
+\end{example}
+Thus, true and false are mere propositions, so we formalize the idea that mere propositions are either true or false with equivalences.
+\begin{proposition}
+    Suppose $A$ is a mere proposition. If $A,$ then $A=1.$ If $\lnot A,$ then $A=0.$
+\end{proposition}
+The easiest way to show this is to take the following lemma.
+\begin{lemma}
+    If $A$ and $B$ are mere propositions for which $A\to B$ and $B\to A$ are inhabited, then $A=B.$
+\end{lemma}
+We note that univalence means that we merely have to witness the equivalence $A\simeq B.$ Well, pick up any $f:A\to B$ and $g:B\to A,$ and we claim that $f$ and $g$ are quasi-inverses, which will be enough. Indeed, for any $a:A,$ we have that $(g\circ f)(a):A,$ but $A$ is a mere proposition, so
+\[(g\circ f)(a)=a,\]
+so $g\circ f\sim\op{id}.$ Similarly, any $b:B$ gives $(f\circ g)(b):B,$ which implies $(g\circ f)(b)=b$ because $B$ is a mere proposition, so $f\circ g\sim\op{id}$ as well. This is what we wanted. $\blacksquare$
+
+In lieu of the above lemma, we merely have to exhibit maps to show the desired equalities. From here, we split this into cases.
+\begin{itemize}
+    \item We note that we always have $\lambda(a:A).\star:A\to1,$ so it remains to exhibit $1\to A.$ Well, given $A,$ we can fix $a:A$ and then use induction to give a map $1\to A$ sending $\star\mapsto a.$ So given $A,$ we do have $A=1$ by lemma.
+    \item We note that we always have $0\to A$ by inducting on $0,$ so it remains to exhibit $A\to 0:\equiv\lnot A.$ So given $\lnot A,$ we do have $A=0$ by lemma.
+\end{itemize}
+Having proved both parts of the proposition, we are done here. $\blacksquare$
+
+Having established that mere propositions are well-behaved in terms of their truthiness, we introduce the law of the excluded middle in homotopy type theory. Having eliminated all possibly problematic $\infty$-groupoid structure for mere propositions, our law of the excluded middle is
+\[\op{LEM}:\prod_{(A:\UU)}\big(\op{isProp}(A)\to(A+\lnot A)\big).\]
+That is, all mere propositions are (constructively) either true or false. Note that this has not been stated as a theorem because it is an axiom. I am told that one can construct of models of homotopy type theory where even this law of the excluded middle breaks, which means it cannot be proven. But at least nothing breaks (immediately).
+
+It will turn out that being a mere proposition is not a ``serious'' block to proving types are inhabited. In particular, there is a way (I have not learned) to take a type $A$ and get a mere proposition $\lVert A\rVert$ that is inhabited if and only if $A$ is.
+
+\subsubsection{March 16th}
+Today I learned about proposition truncation. The idea, roughly speaking, is to recreate the dichotomy between propositions and objects in (homotopy) type theory, even when we still have propositions as types in the Curry-Howard correspondence.
+
+So given a type $A:\UU,$ we would like a type $\lVert A\rVert$ which is a mere proposition and inhabited whenever $A$ is inhabited. To be explicit, we take the following synthetic definition.
+\begin{definition}
+    Given $A:\UU,$ we define the truncated type $\lVert A\rVert$ to have the following properties.
+    \begin{itemize}
+        \item Construction: for $a:A,$ there exists some $|a|:\lVert A\rVert.$
+        \item Mere proposition: for any $p,q:\lVert A\rVert,$ we have $p=q.$
+        \item Recursion: given a function $f:A\to P$ where $P$ is a mere proposition, there is an induced function $\op{rec}(f):\lVert A\rVert\to B$ such that $\op{rec}(f)(|a|)=f(a)$ for each $a:A.$
+    \end{itemize}
+\end{definition}
+It would be nice to have the recursion principle satisfy judgemental equalities, but we settle for propositional ones for reasons that will appear later. In practice, we could upgrade, but I choose not to here.
+
+Some extra words are necessary to explain the recursion. We are essentially saying that if a mere proposition follows from $A,$ then it had better follow from $\lVert A\rVert$ as well. Note that truncation loses the ``distinctness'' of proofs, but the recursion principle asserts that we did not lose the power of our proofs.
+
+We would like to say that $\lVert A\rVert$ is inhabited if and only if $A$ is, but this is impossible. Certainly our constructor says $A\to\lVert A\rVert,$ but the reverse implication cannot hold: we would have to be able to conjure a physical witness from $A,$ which we don't want $\lVert A\rVert$ to be able to do anyways.
+
+We remark that this ``proof distinction'' is a real problem, not just a phantom. For example, we can certainly witness
+\[\lVert1+1\rVert,\]
+but we cannot build the desired function $\lVert1+1\rVert\to1+1.$ In particular, we can only have one output because all elements of $\lVert1+1\rVert$ are equal, but we would like to be able to witness both $0_2$ and $1_2.$
+
+However, modulo this problem, the recursion principle does something roughly equivalent: whatever statements $A$ can prove, $\lVert A\rVert$ can also prove, provided we reduce ourselves to only proving mere propositions. As mathematicians, this is fine, but as homotopy type theorists, we might prefer not to do this in order to keep the higher groupoid structure.
+
+I guess I should provide a construction of proposition truncation, merely because it is possible.
+\begin{proposition}
+    Given $A:\UU,$ the type $\lnot\lnot A$ behaves like $\lVert A\rVert$ as required, assuming the law of the excluded middle $\op{LEM}.$
+\end{proposition}
+This is a somewhat natural construction, guided by the intuition that we can always make traditional logic into constructive logic if we just add enough $\lnot\lnot$s. For example, $\lnot\lnot\lnot A\to\lnot A$ is true.
+
+Anyways, given $a:A,$ we note that
+\[\lambda f.f(a):\lnot\lnot A\equiv(A\to 0)\to 0,\]
+so we set $|a|\equiv\lambda f.f(a).$ Showing that $\lnot\lnot A$ is a mere proposition boils down to the fact that $\lnot A$ is a mere proposition for any type $A,$ which we showed a few days ago. In particular, given any $p,q:\lnot\lnot A,$ function extensionality means that it suffices to witness
+\[\prod_{f:A\to0}p(f)=q(f).\]
+Well, if we are provided with $f:A\to0,$ then $p(f):0,$ which lets us witness (among other things) the equality $p(f)=g(f)$ by induction. So the equality $p=q$ follows.
+
+It remains to show the recursion, which is the part that requires the law of the excluded middle. We are going to end up using the law of the excluded middle on $P$ (our other option is maybe $\lnot\lnot A,$ but it doesn't give anything), but to avoid using excluded middle for as long as possible, we take the following lemma.
+\begin{lemma}
+    For types $A,B:\UU,$ if $A\to B,$ then $\lnot B\to\lnot A.$
+\end{lemma}
+This is basically a weak contraposition; note we are not claiming the reverse implication. Anyways, suppose $f:A\to B,$ and we need to witness
+\[(B\to0)\to(A\to0).\]
+Viewing this as a curried function, we are given $\overline b:B\to0$ and $a:A,$ and we need to witness $0.$ Well, $\overline b\big(f(a)\big)$ will do the trick, so we're done. $\blacksquare$
+
+To use the lemma, we note that $f:A\to P$ gives a function $\lnot P\to\lnot A$ gives a function $\lnot\lnot A\to\lnot\lnot P.$ It is not clear how to exhibit $P$ from $\lnot\lnot P,$ but $P$ is a mere proposition, so we may use the law of the excluded middle: we know
+\[\op{LEM}(P):P+\lnot P.\]
+So we do casework. If $\op{LEM}$ gives us $P,$ then we're done. Otherwise, $\op{LEM}$ gives us a witness of $\lnot P,$ but we have something in $\lnot\lnot P,$ so can witness $0.$ Being able to witness $0$ tells us $P$ for free, so we're done again. Thus, we are able to exhibit $\op{rec}(f):\lnot\lnot A\to P.$
+
+Finally, to show that $\op{rec}(f)(a)=f(a)$ for each $a:A,$ we note that this equality is taking place in a mere proposition, so it follows for free. This finishes the proof. $\blacksquare$
+
+Anyways, the point of all this discussion is that type theory does permit us to do ``real,'' traditional logic by just making everything a truncated type. We can take a law of the excluded middle, without fear of breaking anything or losing (too much) power in our mathematics.
+
+\subsubsection{March 17th}
+Today I learned about using lattice-attacks to solve the small inverse problem.\todo{}
+
+\subsubsection{March 18th}
+Today I learned a cute combinatorial proof from the AIME II. Here's the main statement.
+\begin{proposition}
+    Fix finite sets $A$ and $B.$ If $|A|\cdot|B|=|A\cap B|\cdot|A\cup B|,$ then either $A\subseteq B$ or $B\subseteq A.$
+\end{proposition}
+Finiteness gives us a pretty clear way in. For brevity, let $a=|A|,$ $b=|B|,$ and $x=|A\cap B|,$ and we can see that $|A\cup B|=a+b-x$ by the Principle of inclusion-exclusion. Plugging in, we see
+\[ab=x(a+b-x),\]
+which rearranges to
+\[0=ab-ax-bx+x^2=(a-x)(b-x).\]
+It follows that one of $a=x$ or $b=x.$ Because $A\cap B\subseteq A,B$ already, having $|A\cap B|=|A|$ or $|A\cap B|=|B|$ immediately requires $A\cap B=A$ or $A\cap B=B,$ which means $A\subseteq B$ or $B\subseteq A.$ This is what we wanted. $\blacksquare$
+
+Of course, if one expects the statement to be true a priori (which I did not while taking the AIME), a faster way to do this is by saying the unordered pairs
+\[\{|A|,|B|\}\quad\text{and}\quad\{|A\cap B|,|A\cup B|\}\]
+have equal sum (by PIE) and equal product (by hypothesis). So by Vieta's (i.e., build the quadratic), our pairs must be equal, and we finish by casework on how the unordered pairs are equal. I believe this is the intended solution.
+
+It's worth mentioning that finiteness is actually crucial to the proposition. That is, we have
+\[|A\times B|=|(A\cap B)\times(A\cup B)|\]
+does not in general imply that $A\subseteq B$ or $B\subseteq A.$ This is perhaps unsurprising; we might feel like $(A\cap B)\times(A\cup B)$ to be smaller than $A\times B$ (by an AM-GM argument, say), but $2\ZZ$ feels smaller than $\ZZ$ in a similar way when in fact they have the same size.
+
+To make an explicit counterexample, we take
+\[A=\left\{n^2:n\in\ZZ\right\}\quad\text{and}\quad B=\left\{n^3:n\in\ZZ\right\}.\]
+Note $A$ and $B$ are both countable, so $A\cup B$ is countable. Further, $A\cap B=\left\{n^6:n\in\ZZ\right\}$ is also countable. So, bijecting everything to $\NN,$ we see
+\[|A\times B|=|\NN\times\NN|=|(A\cap B)\times(A\cup B)|.\]
+However, $4\in A\setminus B$ and $8\in B\setminus A,$ so we see $A\not\subseteq B$ and $B\not\subseteq A.$
+
+As an addendum, we remark that the AIME question actually asked to count the number of $A,B\subseteq S:=\{1,2,3,4,5\}$ satisfying. This is not hard to do either, again by a clean combinatorial argument. Without loss of generality, we will count $A\subseteq B,$ and PIE will let us count $(A,B)$ with $A\subseteq B$ or $B\subseteq A.$ Now, an element $k\in S$ has three options.
+\begin{itemize}
+    \item $k$ belongs to neither $A$ nor $B.$
+    \item $k$ belongs to $B$ but not $A.$
+    \item $k$ belongs to both $A$ and $B.$
+\end{itemize}
+Thus, each element of $S$ has three options, so there are $3^{|S|}$ total pairs $(A,B)$ with $A\subseteq B.$ More generally, we can say that
+\[\left\{(A,B)\in\mathcal P(S)^2:A\subseteq B\right\}\longleftrightarrow(S\to\{1_\emp,1_B,1_A\}),\]
+for any $S,$ with the same argument.
+
+\subsubsection{March 19th}
+Today I learned a different framing of the (weak) approximation theorem for $\AA_K.$ Roughly the idea here is that $K\subseteq\AA_K,$ though ``small,'' should be able to cover $\AA_K$ if given a couple of primes to move around in. In particular, we claim the following.
+\begin{theorem}
+    For number field $K,$ let $\mf m$ be the formal product of its infinite places. Then $\AA_K=K+\AA_{K,\mf m}.$
+\end{theorem}
+At a high level, because we don't have to worry about infinite primes, this more or less amounts to the Chinese remainder theorem over the finite primes. Fix some $a\in\AA_K$ so that we need to find $k\in K$ with $a-k\in\AA_{K,\mf m}.$
+
+For all but finitely many finite places $\mf p,$ we already have $a_\mf p\in\mathcal O_\mf p,$ so let $S$ be the set of problematic finite places with $a_\mf p\not\in\mathcal O_\mf p.$ Roughly, we would like to fix $k\in K$ to have
+\[k\stackrel?\equiv a_\mf p\pmod{\mf p^{\nu_\mf p((a_\mf p))}}\]
+for each $\mf p\in S$ by the Chinese remainder theorem, but we would rather not deal with the ideal $\mf p^{\nu_\mf p(a_\mf p)}$ because of its negative exponent. However, we can find nonzero
+\[m\in\prod_{\mf p\in S}\mf p^{-\nu_\mf p(a_\mf p)}\]
+so that $ma\in\AA_{K,\mf m}.$ Now we fix $\ell\in\mathcal O_K$ satisfying
+\[\ell\equiv ma_\mf p\pmod{\mf p^{\nu_\mf p((ma_\mf p))}}\]
+for each $\mf p\in S$ by the Chinese remainder theorem. It follows that
+\[a-\ell/m=\frac{ma-\ell}m,\]
+which is in $\mathcal O_\mf p$ for $\mf p\in S$ by construction and for $\mf p\not\in S$ because $\ell/m\in\mathcal O_K\subseteq\mathcal O_\mf p.$ Fixing $k:=\ell/m$ finishes. $\blacksquare$
+
+We remark that this is similar to (but distinct from) saying $K$ has fundamental domain $\AA_{K,\mf m}.$ In particular, we're merely showing that we can cover $\AA_K,$ not that we have covered it uniquely, which is very false; for example, $K\cap\AA_{K,\mf m}=\mathcal O_K$ by watching contributions of each finite prime. However, this suggests that $K$ could have a fundamental domain.
+
+I guess I should also remark that I have seen the approximation theorem as the following.
+\begin{theorem}
+    Fix $|\bullet|_1,\ldots,|\bullet|_n$ nonequivalent valuations of a number field $K.$ Then for any sequence $k_1,\ldots,k_n\in K$ and error $\varepsilon,$ we can find $k$ with
+    \[|k-k_\bullet|_\bullet<\varepsilon.\]
+\end{theorem}
+These statements are more or less the same, which we see by writing $\nu_\bullet$ for the prime associated to $|\bullet|_\bullet$ and then looking at the sequence $\{k_1,\ldots,k_n\}$ as specifying finitely many coordinates of an adele. This also explains the finiteness in the second statement: we cannot specify infinitely many coordinates of an adele arbitrarily without putting most of them in $\mathcal O_K.$
+
+The first statement is in my opinion cleaner, but it does not account for archimedean places; instead, we get to look at all of the nonarchimedean places at once, provided all but finitely many of the $k_\bullet$ coordinates are integral of course. However, in exchange for putting archimedean and nonarchimedean places on the same footing, the proof of the second statement is forced to be mostly topological, which is nice.
+
+\subsubsection{March 20th}
+Today I learned the proof that a number field $K$ is discrete and cocompact in its adele ring $\mathbb A_K.$ We begin by showing this for $\QQ\subseteq\AA_\QQ$ and then will expand to the general case by viewing $K$ as a finite-dimensional $\QQ$-vector space.
+\begin{proposition}
+    We have $\QQ\subseteq\AA_\QQ$ is discrete and cocompact.
+\end{proposition}
+For this, we exhibit a compact fundamental domain for $\AA_\QQ/\QQ$ as
+\[D:=[-1/2,1/2]\times\prod_{p<\infty}\ZZ_p.\]
+It is quick to see that $D$ is compact, but we can't appeal to Tychonoff because $\AA_\QQ$ isn't equipped with the product topology. There might be a way to do this because each nonarchimedean projection of $D$ is in $\ZZ_p,$ which is compact, but this trick is unnecessary.
+
+Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $D$; there is at least one open set, say $U_\beta,$ and its projections to $\QQ_p$ are $\ZZ_p$ for all but finitely many $\nu.$ That is, there exists a finite set $S$ of (say, nonarchimedean) places such that
+\[\prod_{p\not\in S}\ZZ_p\subseteq U_\beta.\]
+Note we are being somewhat sloppy with our notation because the left-hand side does not technically have all of the coordinates of $\AA_\QQ,$ but we also don't care about them yet. Indeed, this single $U_\beta$ covers most of $D$ already; it remains to cover
+\[[-1/2,1/2]\times\prod_{p\in S}\ZZ_p.\]
+However, each of these sets is compact, and our open cover $\{U_\alpha\}_{\alpha\in\lambda}$ must cover them. Extracting the corresponding open cover for each of the (finitely many) above components and directly unioning them with $U_\beta$ gives us our finite subcover of $D.$
+
+To finish, we take the following claim to show $D$ is a fundamental domain.
+\begin{lemma}
+    We have $D\oplus\QQ\to\AA_\QQ$ by $(d,q)\mapsto d+q$ is a group isomorphism.
+\end{lemma}
+Quickly, we show this is enough. Automatically this implies that each element of $\AA_\QQ/\QQ$ has exactly one representative in $D,$ so $D\cong\AA_\QQ/\QQ.$ So $D$ being compact tells us $\QQ\subseteq\AA_\QQ$ is cocompact. Additionally, we note that certainly $0\in D,$ so the above claim asserts it is the only element. In fact, $|0|_\infty<1/2,$ so
+\[0\in\op{Int}D=\{a\in\AA_\QQ:|a_\infty|<1/2\text{ and }|a_p|_p\le1\text{ for }p<\infty\}\subseteq D,\]
+which is an open subset of $\AA_\QQ$ containing $0$ as its only rational. It follows the translate $q+\op{Int}D$ is an open set containing $q$ as its only rational, so $\QQ\subseteq\AA_\QQ$ is discrete; else $q+\op{Int}D-q=\op{Int}D$ would contain another rational.
+
+Anyways, we show the lemma now. This is a group homomorphism because
+\[(d_1,q_1)+(d_2,q_2)\to(d_1+q_1)+(d_2+q_2)\leftarrow(d_1+d_2,q_1+q_2).\]
+So for injectivity, it suffices for trivial kernel; that is, $d+q=0$ if and only if $d=0$ and $q=0.$ Well, $d+q=0$ implies $d=-q,$ so it suffices to show $D\cap\QQ=\{0\}.$ Certainly $0\in D\cap\QQ,$ and for any other $q\in D\cap\QQ,$ then $|q|_p\le1$ for $p<\infty$ requires $\nu_p(q)\ge0,$ so in fact $q\in\ZZ.$ But then $q\in(-1/2,1/2)$ forces $q=0,$ as desired.
+
+Surjectivity is somewhat harder. Fix an adele $a\in\AA_\QQ$ that we want to hit. We have to cover the poles of $a$ with the rational, but there are only finitely many. Let $S$ be a finite set of nonarchimedean places containing the poles of $a,$ and we use the Chinese remainder theorem to fix
+\[q\equiv a_p\pmod{p^{\nu_p(a_p)}}\]
+for each finite prime $p\in S.$ The Chinese remainder theorem applies because $S$ contains only finitely many places. It follows that $a+q\in\ZZ_p$ for each finite prime $p.$
+
+To push this into $D,$ it remains to deal with $a_\infty.$ Choose $n:=\lfloor a_\infty\rceil\in\ZZ$ to be the closest integer to $a_\infty.$ Then
+\[a+q_0+n\in[-1/2,1/2]\times\prod_{p<\infty}\ZZ_p=D.\]
+Thus, $a=(a+q+n)-q-n$ is in the image of $D\oplus\QQ.$ This completes the lemma and the proposition. $\blacksquare$
+
+It remains to extend this to arbitrary number fields. As promised, fix $\{\alpha_1,\ldots,\alpha_n\}$ be a basis of $K/\QQ.$ The main lemma to proceed is that this same basis can be lifted to a basis of $\AA_K$ over $\AA_\QQ,$ but we have to pay attention to topology.
+\begin{lemma}
+    A basis $\{\alpha_1,\ldots,\alpha_n\}$ of $K/\QQ$ induces an isomorphism
+    \[\alpha:\AA_\QQ^n\to\AA_K\]
+    of topological groups.
+\end{lemma}
+We're not going to be terribly formal with this lemma. The map sends $(a_k)_{k=1}^n$ to $\sum_ka_k\alpha_k.$ This map is linear and has trivial kernel, which we won't show explicitly; track the basis backwards. Similarly, surjectivity follows because we can represent some $a_\nu\in K_\nu$ with that basis and then Cauchy sequences move backwards.
+
+Anyways, the difficult portion of the statement is the topological part. It is a fact that the diagonal embedding of the basis $\{\alpha_\bullet\}$ induces a topological isomorphism
+\[\alpha_p:\QQ_p^n\to\prod_{\mf p\mid p}K_\mf p\]
+for each finite place $p$ of $\QQ,$ and in fact, for all but finitely many $p$ (including $p=\infty$), $\alpha_p$ restricts to an isomorphism $\ZZ_p^n\cong\prod_{\mf p\mid p}\mathcal O_{K_\mf p}.$ Letting $\mf m_0$ be the (formal) product of this finite set of places, we note that any $\mf m_0\mid\mf m$ has
+\[\AA_{\QQ,\mf m}^n=\prod_{p\mid\mf m}\QQ_p^n\times\prod_{p\nmid\mf m}\ZZ_p^n.\]
+Using our $\alpha_p,$ we have that
+\[\AA_{\QQ,\mf m}^n\cong\left(\prod_{p\mid\mf m}\prod_{\nu\mid p}K_\nu\right)\times\left(\prod_{p\nmid\mf m}\prod_{\nu\mid p}K_\nu\right)\cong\AA_{K,\mf m}.\]
+So we have that our basis induces an isomorphism $\AA_{\QQ,\mf m}^n\cong\AA_{K,\mf m}$ for any modulus $\mf m$ divisible by $\mf m_0.$ This isomorphisms agree on restriction, so gluing them together as $\mf m$ varies lets us piece together a full isomorphism $\AA_\QQ^n\cong\AA_K$ (the $\AA_{K,\mf m}$ cover $\AA_K$). Note we are not being terribly rigorous here. $\blacksquare$
+
+Now we can prove the main theorem with relative ease. Pulling back the topological isomorphism $\AA_\QQ^n\to\AA_K$ means that showing $K$ is discrete/cocompact in $\AA_K$ is equivalent to showing that $\QQ^n$ is discrete/cocompact in $\AA_\QQ.$ Explicitly, the conditions for discreteness and cocompactness can be written using only open sets, so we can pull them back along the homeomorphism.
+
+But now, showing $\QQ^n$ is discrete/cocompact in $\AA_\QQ^n$ can be shown by merely showing $\QQ$ is discrete/cocompact in $\AA_\QQ,$ by coordinate projection. In particular, the product is finite, so we're dealing with the box topology on $\AA_\QQ^n,$ so it suffices to check only one coordinate and then multiply the open sets checking discrete/cocompact.
+
+At this point, appealing to the proposition we showed at the beginning finishes.
+\begin{theorem}
+    For arbitrary number field $K,$ the (diagonal) embedding $K\subseteq\AA_K$ is discrete and cocompact.
+\end{theorem}
+We remark that the proof holds for arbitrary global fields without too much extra work. Changing $\QQ$ out for $\FF_q[t]$ and $p=\infty$ to $p=(t^{-1})$ for our infinite prime does most of the work. We do not show this here.
+
+\subsubsection{March 21st}
+Today I learned about univalence validating synthetic type construction. Roughly speaking, we expect/would like all instances of synthetic constructions of types to be equal, which under univalence means that we merely have to show they are homotopically equivalent.
+
+As a motivating example, we do this for products. We take the following synthetic construction of products.
+\begin{definition}
+    Products are defined by a type family $P:\UU\to\UU\to\UU$ for which the following hold.
+    \begin{itemize}
+        \item Constructor: for fixed $A,B:\UU,$ there is a function $\op{pair}(A,B):A\to B\to P(A,B).$ We will often suppress the types $A$ and $B$ in $\op{pair}$ if the fixed types are clear.
+        \item Induction: for fixed $A,B:\UU,$ there is an inductor
+        \[\op{ind}_{A,B}:\prod_{(C:P(A,B)\to\UU)}\left(\prod_{(a:A)}\prod_{(b:B)}C(\op{pair}(a,b))\right)\to\prod_{(p:P(A,B))}C(p)\]
+        for which
+        \[\op{ind}_{A,B}(C)(f)(\op{pair}(a,b))=f(a,b),\]
+        for any $a:A$ and $b:B.$ Again, we will often suppress the types $A$ and $B$ in $\op{ind}$ if the fixed types are clear.
+    \end{itemize}
+\end{definition}
+Note that we have demoted the usually judgemental equality in the inductor to a mere propositional equality; frankly, we will not need the strength of a judgemental equality. Additionally, we remark that types are frequently constructed with perhaps a recursion and maybe a uniqueness principle, but we do not do this for simplicity.
+
+The following is the claim here.
+\begin{proposition}
+    Suppose $(P_1,\op{pair}_1,\op{ind}_1)$ and $(P_2,\op{pair}_2,\op{ind}_2)$ make product types. Then, for fixed $A,B:\UU,$ we have $P_1(A,B)\simeq P_2(A,B).$
+\end{proposition}
+We would like to exhibit quasi-inverses forwards and backwards, but for this, we need maps forwards and backwards. In one direction, we would like to exhibit $P_1(A,B)\to P_2(A,B),$ but we only have one way to construct such functions: induction. So we make $P_2(A,B)$ a constant type family by abuse of notation so that induction means we need to exhibit
+\[A\to B\to P_2(A,B).\]
+But $\op{pair}_2$ exhibits this! So we see
+\[\alpha_1\equiv\op{ind}_1(\op{pair}_2):P_1(A,B)\to P_2(A,B),\]
+which satisfies $\alpha_1(\op{pair}_1(a,b))=\op{pair}_2(a,b).$ Switching $1$s and $2$s gives a corresponding function
+\[\alpha_2\equiv\op{ind}_2(\op{pair}_1):P_2(A,B)\to P_1(A,B),\]
+which satisfies $\alpha_2(\op{pair}_2(a,b))=\op{pair}_1(a,b).$
+
+To finish, we claim that $\alpha_1$ and $\alpha_2$ are in fact quasi-inverses. In one direction, we need to witness $\alpha_2\circ\alpha_1\sim\op{id}_{P_1(A,B)},$ which is the same as
+\[\prod_{p_1:P_1(A,B)}\alpha_2(\alpha_1(p_1))=p_1.\]
+Again by induction, we make $p_1\mapsto\alpha_2(\alpha_1(p_1))=p_1$ a type family so that induction makes it suffice for
+\[\prod_{(a:A)}\prod_{(b:B)}\alpha_2\big(\alpha_1(\op{pair}_1(a,b))\big)=\op{pair}_1(a,b).\]
+Well, we know that $\alpha_1(\op{pair}_1(a,b))=\op{pair}_2(a,b)$ by definition of $\alpha_1,$ and $\alpha_2(\op{pair}_2(a,b))=\op{pair}_1(a,b),$ so applying $\alpha_2$ to the first equality gives
+\[\alpha_2\big(\alpha_1(\op{pair}_1(a,b))\big)=\op{pair}_1(a,b).\]
+This is what we wanted. Switching $1$s and $2$s shows $\alpha_1\circ\alpha_2\sim\op{id}_{P_2(A,B)},$ so we are done here. $\blacksquare$
+
+At this point, we are obligated to say that, for fixed $A$ and $B,$ $P_1(A,B)\simeq P_2(A,B)$ gives $P_1(A,B)=P_2(A,B)$ by univalence, so $P_1=P_2$ by function extensionality. So indeed, our synthetic construction of products guarantees ``unique'' products like we wanted.
+
+We remark that the proof actually gives stronger than just $P_1(A,B)\simeq P_2(A,B)$ because the proof talks about the relationship between the underlying constructors and inductors. In particular, we know that the homotopic equivalence takes $\op{pair}_1$ to and from $\op{pair}_2$ ``naturally'': $\op{pair}_1(0,0):P_1(2,2)$ will not be taken to $\op{pair}_2(1,1):P_2(2,2).$
+
+I also want to say that this feels like universal properties in category theory. That is, we can uniquely determine certain constructed objects merely by looking at their maps and functions in and out, which is a central philosophy in category theory. Explicitly, the following is the universal property for products.
+\begin{definition}
+    Given objects $A,B$ in a category $\mathcal C,$ the product $A\times B$ is defined to be an object with projection maps $\pi_1:A\times B\to A$ and $\pi_2:A\times B\to B$ such that any maps $C\to A$ and $C\to B$ induce a map $C\to A\times B$ commuting with $\pi_1$ and $\pi_2.$
+\end{definition}
+Now, type-theoretic products do not mention projection mappings, but one can show that we can construct induction given projections and vice versa, so induction and projections are more or less the same concept. We do note that there is a difference because type theory does care about the inhabitants of a type; category theory tries not to.
+
+I guess I should provide the example that started this line of thinking. It is exercise 3.15 from \href{https://hott.github.io/book/nightly/hott-online-1280-ga0040d8.pdf}{the Homotopy Type Theory book}. We recall the synthetic definition of truncated types.
+\begin{definition}
+    Truncated types are defined by a type family $T:\UU\to\UU$ satisfying the following.
+    \begin{itemize}
+        \item Construction: for fixed type $A,$ there is a function $\op{trunc}_A:A\to T(A).$ We will omit the subscript when possible.
+        \item Mere proposition: for fixed type $A,$ we have $p=q$ for any $p,q:T(A).$ Formally, $\op{isProp}(T(A))$ is inhabited.
+        \item Recursion: for fixed type $A$ and mere proposition $P,$ and function $f:A\to P,$ there is an induced function $\op{rec}_A(P)(f):T(A)\to P.$ Formally,
+        \[\op{rec}:\prod_{(P:\op{Prop})}\prod_{(f:A\to P)}T(A)\to P.\]
+        As usual, we will omit the subscript when possible.
+    \end{itemize}
+\end{definition}
+Note we have omitted requirement that $\op{rec}_A(P)(f)(\op{trunc}(a))=f(a)$ because these are inhabitants of a mere proposition $P,$ so the (propositional) equality is free.
+
+Now, we claim the following.
+\begin{proposition}
+    Suppose $(T_1,\op{trunc}_1,\op{rec}_1)$ and $(T_2,\op{trunc}_2,\op{rec}_2)$ make truncated types. Then, for fixed type $A:\UU,$ we have $T_1(A)\simeq T_2(A).$
+\end{proposition}
+We follow the outline suggested by products. We want to exhibit quasi-inverses, and it will turn out that any natural map back and forth will do the trick. To exhibit $T_1(A)\to T_2(A),$ recursion on $T_1$ means that it suffices to exhibit $A\to T_2(A)$ because $T_2(A)$ is a mere proposition. But we already have $\op{trunc}_2:A\to T_2(A),$ so we see
+\[\alpha_1:\equiv\op{rec}_1(T_2(A))(\op{trunc}_2):T_1(A)\to T_2(A).\]
+Switching the roles of $1$ and $2$ gives us the reverse mapping
+\[\alpha_2:\equiv\op{rec}_2(T_1(A))(\op{trunc}_1):T_2(A)\to T_1(A).\]
+We could go through the entire proof that $\alpha_1$ and $\alpha_2$ are actually quasi-inverses, but $T_1(A)$ and $T_2(A)$ are mere propositions, so we just cite the fact that mere propositions $P$ and $Q$ are homotopically equivalent if we can exhibit $P\to Q$ and $Q\to P.$ This finishes. $\blacksquare$
+
+Thus, any two examples of how to truncate types are equal as types by univalence. In particular, our example $A\mapsto\lnot\lnot A$ has
+\[\lnot\lnot A\simeq\lVert A\rVert\]
+for any $A:\UU,$ assuming the law of the excluded middle. So we can be satisfied that our example of proposition truncation is ``good enough'' even if we only got propositional equality in our recursion.
+
+\subsubsection{March 22nd}
+Today I learned about the axiom of choice in homotopy type theory. Roughly speaking, the statement is equivalent to saying ``the product of nonempty sets is nonempty'' in homotopy type theory. Using truncation for the implicit ``there exists,'' this means we are postulating
+\[\op{ac}:\prod_{x:X}\lVert Y(x)\rVert\to\left\lVert\prod_{x:X}Y(x)\right\rVert,\]
+where $X$ is a set, and $Y$ is a family of sets. We do note that the reverse implication is provable, as it is in classical set theory.
+\begin{proposition}
+    For type $X$ and family $Y:X\to\UU,$ we have
+    \[\left\lVert\prod_{x:X}Y(x)\right\rVert\to\prod_{x:X}\left\lVert Y(x)\right\rVert.\]
+\end{proposition}
+We are trying to construct a function from a mere proposition, so it would be nice if the codomain was also a mere proposition. In fact, it is generally true that, for type $A$ and family of mere propositions $B:A\to\UU,$ we have
+\[\prod_{a:A}B(a)\]
+is also a mere proposition. Indeed, this follows from function extensionality: if $f,g:\prod_{(a:A)}B(a),$ then $f=g$ follows from $\prod_{(a:A)}f(a)=g(a),$ which is true because $f(a),g(a):B(a),$ and $B(a)$ is a mere proposition.
+
+Thus, by recursion on truncation, it suffices to show
+\[\prod_{x:X}Y(x)\to\prod_{x:X}\lVert Y(x)\rVert.\]
+However, this is not difficult: we take any $f:\prod_{(x:X)}Y(x)$ to $x\mapsto|f(x)|:\lVert Y(x)\rVert.$ So we are done. $\blacksquare$
+
+We showed in the proof that both sides of the axiom of choice are mere propositions, so the map $\op{ac}$ is really providing the other direction of the equivalence provided in the above proposition. That is, the axiom of choice asserts that
+\[\prod_{x:X}\lVert Y(x)\rVert\simeq\left\lVert\prod_{x:X}Y(x)\right\rVert.\]
+For some reason this feels stronger to me.
+
+The proposition, in statement and proof, did not require any assumptions of $X$ being a set or $Y$ a family of sets, so there might be hope that we can remove these conditions from $\op{ac}.$ The Homotopy Type Theory book asserts that we can strengthen $\op{ac}$ to allow arbitrary type families $Y:X\to\UU$ but notes that we cannot lift the restriction that $X$ is a set.
+
+\begin{proposition}
+    There exists a $1$-type $X:\UU$ for which the hypothesis of $\op{ac}$ holds but not the conclusion.
+\end{proposition}
+At a high level, what I think is happening is that truncation kills ``too much'' of the higher-groupoid structure of our types, which makes $\op{ac}$ problematic if there is nontrivial structure there. It is not clear to me how to formalize this intuition, but what follows is a proof.
+
+In particular, the condition of being a $1$-type is added to the statement for tightness: the idea is that sets are $0$-types, so if we try to make the higher groupoid structure of $X$ ``any more complicated,'' then we die. So suppose for the time being that $X$ is not a set but is a $1$-type.
+
+Anyways, we would like to keep $Y:X\to\UU$ a family of sets for consistency. The only concrete thing that we know about $X$ is that its equality types are sets, so we use these to generate our type family. That is, fix a basepoint $x_0:X$ to be determined later, and we let
+\[Y(x):\equiv(x_0=x).\]
+This does mean we will have to inhabit $\lVert Y(x)\rVert\equiv\lVert x_0=x\rVert$ later, which looks hard. In particular, it is not the case that $x_0=x$ for each $x,$ for this would imply that $X$ is a mere proposition, and mere propositions are sets. In fact, we note that we also want to witness
+\[\left\lVert\prod_{x:X}Y(x)\right\rVert\to0,\]
+but because $0$ is a proposition, it suffices to witness $\prod_{(x:X)}Y(x)\to0$ by recursing on the truncation. But again, we know this because $X$ is not a set and so not a mere proposition. (We don't prove that mere propositions are sets here.)
+
+It remains to exhibit $X$ which is a $1$-type but not a set such that $\lVert x_0=x\rVert$ for each $x:X.$ Now for the magic.
+\begin{lemma}
+    The type
+    \[X:\equiv\sum_{A:\UU}\lVert2=A\rVert\]
+    works.
+\end{lemma}
+We begin by studying paths in $X.$ Pick up two objects $(A,p),(B,q):X$ (which look like that by propositional uniqueness), and we note that
+\[\big((A,p)=(B,q)\big)\simeq\sum_{r:A=B}\op{transport}^{Y}(r)(p)=q\]
+because of how paths work in pairs. However, both $r_*(p)$ and $q$ inhabit $\lVert2=B\rVert,$ which is a mere proposition, so we get this equality for free. Thus, we can construct functions back and forth from $A=B$ to $(A,p)=(B,q)$ using the above (and the fact that $\lVert2=B\rVert$ is a mere proposition): forwards by appending the transported equality and backwards by projection. It follows
+\[\big((A,p)=(B,q)\big)\simeq(A=B).\]
+So by univalence, $\big((A,p)=(B,q)\big)\simeq(A\simeq B).$
+
+Now we can quickly show that $X$ is not a set: note that
+\[\big((2,|\op{refl}_2|)=(2,|\op{refl}_2|)\big)\simeq(2\simeq2).\]
+However, this equality type is not a mere proposition, for $2\simeq2$ has nontrivial equivalences (see the proof that the law of the excluded middle fails). So $X$ is not a set. Note we have assumed that $A$ is a set with $A\simeq B$ implies $B$ is a set, which we do not show here.
+
+Continuing, we take $x_0:\equiv(2,|\op{refl}_2|)$ as our basepoint, and we show $\prod_{(x:X)}\lVert x_0=x\rVert.$ This is nice because, for any other $(A,p):X,$ we already know that $\lVert2=A\rVert$ is inhabited by $p.$ In particular, we recall
+\[\big(x_0=(A,p)\big)\simeq(2=A),\]
+and so we can exhibit $\lVert2=A\rVert\to\lVert x_0=(A,p)\rVert$ (by recursing on truncation) and then push $p:\lVert2=A\rVert$ through. Note how strange this is: we have no hope of actually exhibiting $x_0=(A,p)$ or even $2=A,$ but we can exhibit $\lVert x_0=(A,p)\rVert$ just fine.
+
+It remains to show that $X$ is a $1$-type. That is, for $(A,p),(B,q):X$ (which look like that by propositional uniqueness), we have to show that
+\[\big((A,p)=(B,q)\big)\simeq(A\simeq B)\]
+is a set. We claim that $A$ and $B$ are setsl we show this for $A,$ and $B$ is similar. We note that $2=A$ will imply that $A$ is a set (because $2$ is a set), but we only know that $p:\lVert2=A\rVert.$ Thus, it would be nice for the condition
+\[\op{isSet}(A):\equiv\prod_{(a,b:A)}\prod_{(x,y:a=b)}(x=y)\]
+to be a mere proposition so that recursion on the truncation of $p$ would finish. However, it is true that $\op{isSet}(A)$ is indeed a mere proposition, so we're done here. $\blacksquare$
+
+The lemma finishes the proposition by exhibiting exactly what we needed from $X.$ So we are done here. $\blacksquare$
+
+We make two remarks on what makes the $X$ here weird. First, our witness the fact $(2,|\op{refl}_2|)=(2,|\op{refl}_2|)$ is not a mere proposition is more or less a manifestation of truncation ignoring too much higher-groupoid structure. Namely, we would like the only path here to be the one that induced $|\op{refl}_2|,$ for the object itself is telling us its preferred path, but truncation has provided other options.
+
+Secondly, the proof that $X$ is a $1$-type proves that $A$ is a set through the fact that we can witness merely $\lVert2=A\rVert.$ A priori, we would like to say that $2$ and $A$ have the same structure from this, but we cannot actually extract $2=A$ due to the weird truncation. However, what we were able to do is extract any information about structure, phrased as a mere proposition, which $\op{isSet}$ qualifies as.
+
+\subsubsection{March 23rd}
+Today I learned a cute application of a generalized Eisenstein's criterion. With a careful argument, we can extend Eisenstein's criterion for $\ZZ[x]$ to arbitrary integral domains; we include this proof for the sake of completeness, just to show that it works. We take the proof from \href{https://crypto.stanford.edu/pbc/notes/numbertheory/eisenstein.html}{these notes}.
+\begin{theorem}
+    Fix $D$ an integral domain and $\mf p\subseteq D$ a prime. Suppose $a\in D[x]$ looks like
+    \[a(x)=\sum_{n=0}^{\deg a}a_nx^n.\]
+    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n<\deg a,$ and $a_{\deg a}\not\in\mf p,$ then the polynomial $a$ is irreducible.
+\end{theorem}
+We essentially repeat the proof from $\ZZ[x].$ We remark that the condition that $D$ be an integral domain essentially makes our prime $\mf p$ behave. Anyways, we proceed by contraposition, showing that if $a=bc$ for nonconstant $b$ and $c,$ then $a_{\deg a}\in\mf p,$ provided the other conditions on the coefficients of $a.$
+
+Write
+\[b(x)=\sum_{k=0}^{\deg b}b_kx^k\quad\text{and}\quad c(x)=\sum_{\ell=0}^{\deg c}c_\ell x^\ell.\]
+Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\not\in\mf p.$
+
+Now we claim that $b\in\mf pD[x].$ We show this by (strong) induction on the coefficients on $b.$ The above immediately gives $b_0\in\mf p,$ so suppose that $b_k\in\mf p$ for each $k<n\le\deg b<\deg a$ so that we want to show $b_n\in\mf p.$ Well, we note that
+\[b(x)c(x)=\left(\sum_{k=0}^{\deg b}b_kx^k\right)\left(\sum_{\ell=0}^{\deg c}c_\ell x^\ell\right)=\sum_{\substack{k\in[0,\deg b]\\\ell\in[0,\deg c]}}b_kc_\ell x^{k+\ell}=\sum_{d=0}^{\deg a}\left(\sum_{k+\ell=d}b_kc_\ell\right)x^d.\]
+(Yes, I am running out of letters.) It follows that the $x^n$ coefficient of $a=bc$ is
+\[a_nx^n=\left(\sum_{k=0}^nb_kc_{k-\ell}\right)x^n.\]
+However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\not\in\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
+
+We are pretty much done now. Because $b\in\mf pD[x],$ we see $a=bc\in\mf pD[x]$ as well, from which it follows that all of the coefficients of $a$ are in $\mf p.$ In particular, $a_{\deg a}\in\mf p,$ which is what we wanted. $\blacksquare$
+
+Anyways, the benefit of abstraction is generality, so let's see this version of Eisenstein's criterion do something interesting. We claim the following.
+\begin{proposition}
+    The polynomial $x^n+y^n-1\in\QQ[x,y]$ is irreducible.
+\end{proposition}
+View this as an element of $\QQ[x][y],$ where the polynomial looks like
+\[y^n+0y^{n-1}+\cdots+0y+\left(x^n-1\right).\]
+Thus, it suffices to show that $x^n-1\in\QQ[x]$ is contained in some prime but not the square of that prime.
+
+We could say that ``obviously'' the prime $(x-1)$ works, but we can claim stronger: the factorization of $x^n-1$ can contain no repeated factors. Indeed, to check for repeated factors, we check the greatest common divisor of $x^n-1$ with its derivative, which looks like
+\[\gcd\left(x^n-1,nx^{n-1}\right)\mid(x/n)\cdot nx^{n-1}-\left(x^n-1\right)=1,\]
+so the polynomials are coprime. Thus, the factorization has no prime factors, so any prime dividing $\left(x^n-1\right)$ will work with Eisenstein's criterion; certainly such a prime exists because $(x-1)$ is one. $\blacksquare$
+
+I am obligated to say that the above proof works as long as we're in characteristic which does not divide $n.$ We worked in $\QQ$ mostly for psychological reasons.
+
+We even remark that we can extend Eisenstein's criterion to three variables, though doing so requires more work.
+\begin{proposition}
+    The polynomial $x^2+y^2+z^2\in\QQ[x,y,z]$ is irreducible.
+\end{proposition}
+We take this argument from \href{http://www-users.math.umn.edu/~garrett/m/algebra/notes/16.pdf}{here}. Again, we view this as a polynomial in $\QQ[x,y][z],$ where the polynomial looks like $z^2+0z+\left(x^2+y^2\right).$ Thus, we suffices to show that the ``constant term'' $x^2+y^2$ is contained in some prime but not its square in $\QQ[x,y].$
+
+However, because $\QQ[x,y]$ has unique prime factorization, it suffices to check that $x^2+y^2$ has some prime factor which is not repeated in its prime factorization. Well, it's nonconstant, so it is in some prime, and we can check for repeated factors in the factorization of $x^2+y^2$ in $\QQ(x)[y]$ by computing its greatest common divisor with its (formal) derivative (which is with respect to $y$). This is
+\[\gcd\left(x^2+y^2,2y\right)\mid x^2+y^2-(y/2)\cdot2y=x^2.\]
+But $x^2$ is a constant polynomial in $\QQ(x)[y]$ and therefore a unit! In particular, $x^2+y^2$ has no repeated roots in its factorization, so we are done here. $\blacksquare$
+
+To be fair, this was somewhat annoying to establish the fact that $x^2+y^2+z^2$ is irreducible (which looks like it should be obvious), but so it goes. It might also be possible to show this by exhibiting $x^2+y^2+z^2$ exhibiting a prime for very large $x,y,z$ a la Cohn's criterion, but I don't know if this works yet.
+
+\subsubsection{March 24th}
+Today I learned the Zeckendorf decomposition of positive integers into nonconsecutive Fibonacci numbers. For concretness, we define our Fibonacci numbers by $F_1=1,$ $F_2=2,$ and $F_{n+2}=F_{n+1}+F_n$ so that we don't have the usual repeated $1$ in the sequence. As advertised, the main theorem is as follows.
+\begin{theorem}
+    Every positive integer can be decomposed uniquely (!) into a sum of nonconsecutive Fibonacci numbers.
+\end{theorem}
+The main motivating idea behind the theorem is the following lemma, which is more or less a bounding result.
+\begin{lemma}
+    We have that
+    \[1+\sum_{k=1}^nF_{2k-1}=F_{2n},\quad\text{and}\quad1+\sum_{k=1}^nF_{2k}=F_{2n+1}.\]
+    Equivalently,
+    \[\sum_{\substack{0<k<N\\k\not\equiv N\pmod2}}F_k=F_N-1.\]
+\end{lemma}
+The idea here is that we can write
+\begin{align*}
+    F_n &= F_{n-1}+F_{n-2} \\
+    &= F_{n-1}+F_{n-3}+F_{n-4} \\
+    &= F_{n-1}+F_{n-3}+F_{n-5}+F_{n-6} \\
+    &= \cdots.
+\end{align*}
+However, we can provide quick proofs of the identities via induction. Their bases cases are $n=0,$ where they read $1+1=2$ and $1+2=3$ respectively, which are true. Then the inductive step of the left-hand expression is
+\[1+\sum_{k=1}^{n+1}F_{2k-1}=\left(1+\sum_{k=1}^nF_{2k-1}\right)+F_{2n+1}=F_{2n}+F_{2n+1}=F_{2n+2}.\]
+Similarly, the inductive step of the right-hand expression is
+\[1+\sum_{k=1}^{n+1}F_{2k}=\left(1+\sum_{k=1}^nF_{2k}\right)+F_{2n+2}=F_{2n+1}+F_{2n+2}=F_{2n+3}.\]
+This completes the proof of the lemma. $\blacksquare$
+
+We now proceed with the proof of theorem, which we split up by lemma.
+\begin{lemma}
+    Every positive integer can be decomposed into a sum of nonconsecutive Fibonacci numbers.
+\end{lemma}
+Note we don't care about uniqueness yet. Anyways, the idea here is that the greedily choosing the largest Fibonacci number repeatedly works, and in fact it must work if the statement is to be true. Indeed, if we skip the largest Fibonacci number $F_N,$ then the sum of the largest nonconsecutive Fibonacci sum is merely
+\[\sum_{\substack{0<k<N\\k\not\equiv N\pmod2}}F_k=F_N-1<F_N,\]
+so our task would be impossible for bounding reasons. We mention this because it is important in the uniqueness proof.
+
+Of course, showing that the greedy algorithm works is a matter of applying strong induction. Certainly the statement is true for $1,$ which provides its own decomposition. Else, suppose that we can represent all positive integers less $n$ by a sum of nonconsecutive Fibonacci numbers. Because Fibonacci numbers grow arbitrarily large, we may extract $N$ so that
+\[F_N\le n<F_{N+1}.\]
+To apply the greedy algorithm to our induction, we would like to choose $F_N$ and then append it to the decomposition of $n-F_N$ into nonconsecutive Fibonacci numbers. However, there is a slight issue because we don't yet know that the decomposition of $F_N$ does not contain $F_{N-1},$ which would disallow $F_N.$
+
+To fix this, we see that
+\[n-F_N<F_{N+1}-F_N=F_{N-1},\]
+so the decomposition of $n-F_N$ simply cannot contain $F_{N-1}$ for bounding reasons. So we use our induction to write
+\[n-F_N=\sum_{k\in S}F_k\]
+for some set of indices $S\subseteq\ZZ^+$ not containing consecutive integers. Because of the bounding, all indices in $S$ are less than $N-1,$ so $S\subseteq\{N\}$ still does not have consecutive integers. Thus, $S\cup\{N\}$ summing to $(n-F_N)+F_N=n$ will provide the required decomposition of $n.$ $\blacksquare$
+
+It remains to show uniqueness.
+\begin{lemma}
+    If $S,T\subseteq\ZZ^+$ do not contain consecutive integers, then $S\ne T$ implies
+    \[\sum_{k\in S}F_k\ne\sum_{\ell\in T}F_\ell.\]
+\end{lemma}
+Note that certainly $S\cap T\subseteq S,T,$ so we can subtract these indices from the sums to have sets $S\setminus(S\cap T)$ and $T\setminus(S\cap T)$ are still unequal subsets, and we still want to show the equivalent statement
+\[\sum_{k\in S\setminus(S\cap T)}F_k\stackrel?=\sum_{\ell\in T\setminus(S\cap T)}F_\ell.\]
+To be explicit, this implies what we want by adding back in the indices in $S\cap T$ back to both sides. Anyways, we can reset $S$ and $T$ to not have any intersection.
+
+The punchline in what follows is that the fact that $S$ or $T$ has a largest element the other does not have implies bounding says that their Fibonacci sums must be unequal. That is, we  order $S=\{s_k\}_{k=1}^N$ and $T=\{t_\ell\}_{\ell=1}^M$ with $s_1<s_2<\cdots<s_N$ and $t_1<t_2<\cdots<t_M.$ Without loss of generality, we fix $s_N\ge t_M$ (otherwise switch), so $s_N>t_M$ because $S\cap T=\emp.$
+
+Now, this index $s_N$ is massive in compared to anything in $T.$ In particular, because $T$ does not consecutive integers, we see $t_\ell\le t_M-2(M-\ell)\le s_N-(2(M-\ell)+1).$ So by lemma,
+\[\sum_{\ell\in T}F_\ell=\sum_{\ell=1}^MF_{t_\ell}\le\sum_{\substack{0<t<s_N\\t\not\equiv s_N\pmod2}}F_t<F_{s_N}.\]
+In particular,
+\[\sum_{k\in S}F_k>\sum_{\ell\in T}F_\ell,\]
+which is what we wanted. $\blacksquare$
+
+To finish the proof of uniqueness, we suppose that some positive integer has multiple decompositions with indices $S$ and $T$ not containing consecutive integers. Then the contrapositive of the above lemma implies that
+\[\sum_{k\in S}F_k=n=\sum_{\ell\in T}F_\ell\]
+gives $S=T.$ Thus, our decompositions are unique, and we're done. $\blacksquare$
+
+I was pretty impressed by the theorem when I first read it but was a bit disappointed by the fact that it more or less amounts to a bounding result, as shown in the first lemma. I suppose it is remarkable that this is true at all and that no clever machinery was necessary.
+
+\subsubsection{March 25th}
+Today I learned that the expected number of cycles in the cycle decomposition of a random permutation on $n$ letters is $H_n.$ We present two proofs of this, one combinatorial and clever, the other via generating functions and more immediately generalizable.
+
+We begin with the combinatorial approach.
+\begin{theorem}
+    For random $\sigma\in S_n,$ the expected number of cycles of $\sigma$ is $H_n.$
+\end{theorem}
+The key trick is to set indicator variables $X_k$ for each $k\in\{1,\ldots,n\}$ equal to the reciprocal of the size of the cycle containing $k.$ Then we want
+\[\mathbb E\left[\sum_{k=1}^nX_k\right].\]
+Indeed, $\sum_{k=1}^nX_k$ counts each cycle of length $\ell$ a total of $\ell$ times, incrementing $\frac1\ell$ each time, so we total to incrementing $\frac\ell\ell=1$ time for each cycle. So by linearity of expectation, we are computing
+\[\mathbb E\left[\sum_{k=1}^nX_k\right]=\sum_{k=1}^n\mathbb E[X_k].\]
+Of course, there is nothing special about $k$ in our sum, so we want $n\mathbb E[X_1].$
+
+So it remains to compute $n\mathbb E[X_1].$ For this, we note that the number of permutations for which $1$ is in a cycle of length $\ell$ is
+\[\underbrace{(n-1)(n-2)\cdots(n-\ell+1)}_{1\text{'s cycle}}\cdot\underbrace{(n-\ell)!}_{\text{else}}=(n-1)!.\]
+This means that the cycle length $\ell$ of $1$ is evenly distributed across all permutations (!). Thus, remembering that $X_1$ weights $\ell$ by $\frac1\ell,$ we see that 
+\[n\mathbb E[X_1]=n\cdot\frac1{n!}\sum_{\ell=1}^n\frac{(n-1)!}\ell=H_n.\]
+This is what we wanted. $\blacksquare$
+
+Really, the key observation in the above proof is that the cycle of length of a particular element is evenly distributed over all permutations. This is remarkable fact, but I don't know a more combinatorial proof than the algebraic proof I gave.
+
+Anyways, we now do this with generating functions. To set up the work we do, we define a weighting function $b:\NN\to\CC$ and define, for $\sigma\in S_n,$
+\[b(\sigma)=\sum_{c\in\sigma}b(\#c)\]
+to be the sum over the cycles $c$ of $\sigma.$ Most of our work is done by the following lemma.
+\begin{proposition}
+    We have that, as formal power series in $x$ and $u,$
+    \[1+\sum_{n=1}^\infty\left(\sum_{\sigma\in S_n}u^{b(\sigma)}\right)\frac{z^n}{n!}=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right).\]
+\end{proposition}
+We show this by brute force. To begin, name the right-hand side $g(x,u),$ and we note that it is
+\[g(x,u)=\prod_{k=1}^\infty\exp\left(u^{b(k)}\frac{z^k}k\right)=\prod_{k=1}^\infty\sum_{m_k=0}^\infty\frac{\left(u^{b(k)}z^k/k\right)^{m_k}}{m_k!}.\]
+We can rearrange the sum and the product with some force by writing
+\[g(x,u)=\sum_{\{m_k\}_k\in\NN^\NN}\prod_{k=1}^\infty\frac{\left(u^{b(k)}z^k/k\right)^{m_k}}{m_k!}.\]
+We want to group terms by $z^n/n!,$ so we rearrange the sum (legal because the sum is formal) to
+\[g(x,u)=\sum_{n=0}^\infty\left(\sum_{\sum_kkm_k=n}u^{\sum_km_kb(k)}n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}\right)\frac{z^n}{n!}.\]
+Now, looking to the left-hand side of the desired expression, it suffices to show that, for $n>0,$
+\[\sum_{\sigma\in S_n}u^{b(\sigma)}=\sum_{\sum_kkm_k=n}u^{\sum_km_kb(k)}n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}.\]
+We note that $n=0$ gives both sides constant term $1,$ so we don't have to check it.
+
+To derive the bijection between these, we note that it suffices to show that the number of $\sigma\in S_n$ with cycle decomposition cycle-lengths given by $m_k$ cycles of length $k$ is $n!\prod_k\frac1{k^{m_k}m_k!}.$ Indeed, the right-hand side then features power of $u$ as $u^{b(\sigma)},$ and we're summing over all possible cycle decompositions, so they'll match.
+
+So what remains is combinatorics. The following lemma will finish.
+\begin{lemma}
+    Fix a positive integer $n$ and $\{m_k\}_{k=1}^\infty\subseteq\NN$ satisfying $n=\sum_{k=1}^\infty km_k.$ Then the number of permutations with $m_k$ cycles with of length $k$ is
+    \[n!\prod_{k=1}^\infty\frac1{k^{m_k}m_k!}.\]
+\end{lemma}
+For concreteness, fix $N$ the largest index $m_k$ that is nonzero. To make the proof easier, we begin by choosing the $m_1$ elements that will belong to cycles of length $1,$ then the $2m_2$ elements that will belong to cycles of length $2,$ and so on. There are
+\[\binom n{m_1}\binom{n-m_1}{2m_2}\binom{n-m_1-2m_2}{3m_3}\cdots\binom{Nm_N}{Nm_N}\]
+ways to do this. Expanding the binomial coefficients and then cancelling redundant factorials gives
+\[\frac{n!}{m_1!(2m_2)!(3m_3)!\cdots(Nm_N)!}.\]
+
+Now, we have to count the number of ways to split $km_k$ elements into $m_k$ cycles of length $k.$ The number of ways to divide up the elements into cycles is
+\[\frac{\displaystyle\binom{km_k}k\binom{km_k-k}k\cdots\binom kk}{m_k!}.\]
+After expanding the binomial coefficients and cancelling redundant factorials (again), this is
+\[\frac{(km_k)!}{k!^km_k!}\]
+Finally, the number of ways to arrange each of the $k$ elements into a cycle is $(k-1)!,$ so the number of permutations on $km_k$ which are $m_k$ cycles of length $k$ is
+\[\frac{(km_k)!}{k^km_k!}.\]
+Bringing this all together, the number we want is
+\[\frac{n!}{m_1!(2m_2)!(3m_3)!\cdots(Nm_N)!}\prod_{k=1}^N\frac{(km_k)!}{k^km_k!}.\]
+This rearranges to the desired. $\blacksquare$
+
+We now kill the theorem. Set our weighting function $b(k)=1$ for all $k$ so that $b(\sigma)$ is the number of cycles in $\sigma\in S_n.$ For concreteness, we let
+\[g(z,u)=1+\sum_{n=1}^\infty\left(\sum_{\sigma\in S_n}u^{b(\sigma)}\right)\frac{z^n}{n!}=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right)\]
+by proposition. In order to average $b(\sigma),$ we look at
+\[\frac{\del g}{\del u}\bigg|_{u=1}=\sum_{n=1}^\infty b(\sigma)\frac{z^n}{n!}\]
+so that the $z^n$ coefficient here exactly measures the average we want. On the other hand, we see
+\[g(z,u)=\exp\left(\sum_{k=1}^\infty u^{b(k)}\frac{z^k}k\right)=\left(\frac1{1-z}\right)^u\]
+by fiddling around with the Taylor series of $\log(1-z),$ so
+\[\frac{\del g}{\del u}\bigg|_{u=1}=\frac1{1-z}\log\left(\frac1{1-z}\right)=\left(\sum_{k=0}^\infty z^k\right)\left(\sum_{\ell=1}^\infty\frac{z^\ell}\ell\right).\]
+In particular, the $z^n$ coefficient comes out to
+\[\sum_{k=0}^nz^k\cdot\frac{z^{n-k}}{n-k}=z^nH_n.\]
+This is what we wanted. $\blacksquare$
+
+The context that this came up in is in analog to the statement that the average number of prime factors of an integer $n$ is $\log\log n.$ Comparing this to the statement we just proved, we roughly showed that the ``factorization'' of a random permutation $\sigma\in S_n$ has $\log n$ ``prime factors.'' The extra $\log$ factor here comes from there being lots more permutations than integer or something.
+
+\subsubsection{March 26th}
+Today I learned a small extension of Euclidean proofs of Dirichlet's theorem, from \href{https://projecteuclid.org/euclid.facm/1229442627}{this paper}. Say that a prime $p$ divides a polynomial $f\in\ZZ[x]$ if $p$ divides $f(k)$ for some $k\in\ZZ.$ The main theorem driving the discussion here is the following.
+\begin{theorem}
+    For any two nonconstant polynomials $f,g\in\ZZ[x]$ share infinitely many prime divisors. In fact, they share a positive density of primes.
+\end{theorem}
+It suffices to take $f$ and $g$ irreducible by taking some irreducible factor. The idea is to relate prime divisors to prime-splitting via Dedekind-Kummer and then control factorization by going up to some large field. In particular, we can let $\theta$ be an algebraic integer generating the Galois closure of the splitting fields of $f$ and $g.$
+
+We are guaranteed that infinitely many primes split completely in $\QQ(\theta),$ and their density is $1/[\QQ(\theta):\QQ].$ We showed this a while ago by analyzing the residue of $\zeta_K$ at $s=1,$ but there are also Euclidean proofs of this statement without the density via Dedekind-Kummer.
+
+Anyways, the reason we care is that we claim all but finitely of the infinitely many primes $p$ which split completely in $\QQ(\theta)$ is a divisor of $f$ and $g.$ Let $\alpha$ and $\beta$ be some root of $f$ and $g$ respectively so that we have the following tower.
+\begin{center}
+    \begin{tikzcd}
+                                              & \mathbb Q(\theta) \arrow[ld, no head] \arrow[rd, no head] &                                      \\
+        \mathbb Q(\alpha) \arrow[rd, no head] &                                                           & \mathbb Q(\beta) \arrow[ld, no head] \\
+                                              & \mathbb Q                                                 &                                     
+    \end{tikzcd}
+\end{center}
+In particular, $p$ splits completely in both $\QQ(\alpha)$ and $\QQ(\beta).$ Now, by Dedekind-Kummer, the splitting behavior of $p$ corresponds to the factorization of $f$ and $g$ in $\FF_p[x],$ so for all but finitely many $p,$ we know $f$ and $g$ split completely into linear factors.
+
+Thus, for all but finitely many of our $p,$ we know $f$ and $g$ have a root in $\FF_p,$ implying that $p$ is a prime divisor of both $f$ and $g.$ This finishes. $\blacksquare$
+
+Now, this is interesting because it provides a bit of a comic perspective to the usual Euclidean proofs of Dirichlet's theorem for $1\pmod n$ primes, for fixed positive integer $n.$ Namely, typically a lot of effort is put into showing that, for integer $a$ and prime $p,$
+\[p\mid\Phi_n(a)\implies p\mid n\text{ or }p\equiv1\pmod n.\]
+This can be done quickly by looking at $\QQ(\zeta_n),$ for unramified $p\nmid n$ will give $\Phi_n$ a linear factor if and only if $p$ splits completely in $\QQ(\zeta_n)$ if and only if $p\equiv1\pmod n.$ Alternatively, one can show more manually that the multiplicative order of $a\pmod p$ is $n,$ implying $p\equiv1\pmod n.$
+
+This is nice because then the polynomial $\Phi_n(nx)\in\ZZ[x]$ satisfies the property that, for some integer $a$ and prime $p,$
+\[p\mid\Phi_n(na)\implies p\equiv1\pmod n.\]
+This can be used to show that there are infinitely many $1\pmod n$ primes in the usual way, for nonconstant polynomials have infinitely many prime divisors (use Dedekind-Kummer, or even directly apply the theorem with $g(x)=x$).
+
+However, once we have constructed $\Phi_n(nx)$ with only $1\pmod n$ prime divisors, the theorem gives the following.
+\begin{proposition}
+    Fix a positive integer $n.$ Then any nonconstant polynomial $f\in\ZZ[x]$ has infinitely many $1\pmod n$ prime divisors.
+\end{proposition}
+This is proven by using the theorem with our $f$ and $g(x):=\Phi_n(nx).$ Any of the infinitely many shared prime divisors will surely divide $f$ and be $1\pmod n.$ $\blacksquare$
+
+So in fact, any old polynomial could be used to witness a Euclidean proof of Dirichlet's theorem for $1\pmod n$ primes! However, I am not aware of any proof of this fact which does not go through all this machinery, so our discussion of cyclotomics is probably still necessary exposition.
+
+Also, this suggests a difficulty to extending Euclidean proofs of Dirichlet's theorem for general $k\pmod n$ with $\gcd(k,n)=1.$ Namely, if we wanted to continue the polynomial approach, all of the polynomials we use will have (infinitely many) $1\pmod n$ prime factors, so we literally cannot always construct some $f\in\ZZ[x]$ such that
+\[p\mid f(a)\implies p\equiv k\pmod n,\]
+where $a$ is an integer and $p$ is prime. I know it is possible to work around this somewhat (though I haven't gone through the full argument), but it some sense to me why we probably can't go all the way to Dirichlet's theorem.
+
+\subsubsection{March 27th}
+Today I learned the proof of the adelic poisson summation formula\todo{}
+
+\subsubsection{March 28th}
+Today I learned the proof of the global zeta functional equation. Fix a number field $K.$ We have the following definition.
+\begin{definition}
+    Fix $f:\mathbb A_K\to\CC$ to be Shwartz-Bruhat (finite $\CC$-linear combination of a restricted product of Shwartz-Bruhat functions on the local fields), and fix an idele-class character $\chi:\mathbb A_K^\times\to\CC^\times$ (multiplicative and trivial on $K^\times$). Now, we define the global $\zeta$-function by
+    \[\zeta(f,\chi)=\int_{\mathbb A^\times_K}f(x)\chi(x)\,d^\times x.\]
+\end{definition}
+Note that this is intended to mimic Riemann's proof of the functional equation for $\zeta,$ for we can interpret
+\[\xi(\chi)=\int_{\AA^\times_K}\left(\prod_\nu G_\nu(x)\right)\chi(x)\,d^\times x,\]
+where $G_\nu$ is the Gaussian at the place $\nu.$
+
+Anyways, we begin by showing that this thing converges absolutely for $\chi$ of exponent $\sigma>1.$
+\begin{lemma}
+    Fix $f$ and $\chi$ to have a global zeta function $\zeta(f,\chi).$ If the exponent of $\chi$ is $\sigma>1,$ then $\zeta(f,\chi)$ converges absolutely.
+\end{lemma}
+This is a matter of computation. Because $f$ is a finite $\CC$-linear combination of products of Shwartz-Bruhat functions on the local fields, we can let $f=\prod_\nu f_\nu.$ Throwing absolute values all over the place, we are interested in the convergence of
+\[\int_{\AA_K^\times}\left(\prod_\nu|f_\nu(x)|\right)|x|^\sigma\,d^\times x.\]
+By Fubini's theorem, it suffices to show the aboslute convergence of
+\[\prod_\nu\int_{K_\nu}|f_\nu(x)|\cdot|x|^\sigma_\nu\,d^\times x.\]
+The infinite places are integrals over Shwartz functions, so their integrals surely converge. Now, $f_\nu=1_{\mathcal O_\nu}$ for all but finitely many of the remaining finite places $\mf p,$ so we can just determine the convergence of
+\[\prod_\mf p\int_{\mathcal O_\mf p}|x|^\sigma_\mf p\,d^\times x.\]
+Now, we split up the integral over $\mathcal O_\mf p$ into an infinite sum by norm. Each of the $\mf p$ factors looks like
+\[\int_{\mathcal O_\mf p}|x|^\sigma_\mf p\,d^\times x=\sum_{n=0}^\infty\int_{\mf p^n\setminus\mf p^{n+1}}|x|^\sigma_\mf p\,d^\times x.\]
+By construction of $|\bullet|_\mf p,$ we get $|x|_\mf p^\sigma=\op N(\mf p)^{-n\sigma}$ is constant in the integral, and the multiplicative integral can be rescaled to $\mathcal O_\nu^\times,$ which has measure $1$ (for all but finitely many, specifically unramified, $\nu$) by construction of $d^\times x.$ So we see we are interested in
+\[\prod_\mf p\sum_{n=0}^\infty\op N(\mf p)^{-n\sigma}.\]
+But this is just $\zeta_K(\sigma)$! We can show the convergence of $\zeta_K$ because, fixing $d=[K:\QQ],$ each prime $p$ has at most $d$ primes above it, and those primes have norm at least $p,$ so
+\[\prod_\mf p\sum_{n=0}^\infty\op N(\mf p)^{-n\sigma}\le\prod_p\left(\sum_{n=0}^\infty p^{-n\sigma}\right)^d=\zeta(\sigma)^d,\]
+which converges absolutely for $\sigma>1.$ (Note we have essentially said that the completely split primes are the most problematic, a statement we can refine to show that completely split primes have Dirichlet density $1/d$ in Galois extensions.) This completes the proof. $\blacksquare$
+
+We now continue with the proof of the functional equation. In order to properly mimic Riemann's proof, we would like an equation like
+\[\xi(s)=\int_0^\infty\left(\frac{\Theta(s)-1}2\right)t^{s/2}\,\frac{dt}t,\]
+so we attempt to split up $\AA^\times_K$ in $\zeta(f,\chi)$ by a norm parameter $t.$ Well, we have an exact sequence of locally compact abelian groups
+\[0\longrightarrow\mathbb A^\times_{K,1}\longrightarrow\mathbb A_K^\times\longrightarrow\left|\mathbb A_K^\times\right|\longrightarrow0,\]
+and our measures will decompose properly. I do not concern myself too much with the details here; I think the measure on $\mathbb A^\times_{K,1}$ should be defined to work properly with the others, so there shouldn't be any big issue here.
+
+Anyways, the point is that we can write
+\[\zeta(f,\chi)=\int_{\left|\AA_K^\times\right|}\underbrace{\int_{t\mathbb A^\times_{K,1}}f(x)\chi(x)\,d^\times x}_{=:\,\zeta_t(f,\chi)}\,\frac{dt}t.\]
+Here $\left|\AA_K^\times\right|$ plays the role of $[0,\infty)$ from Riemann's proof, and so we would like $\zeta_t(f,\chi)$ to have its own functional equation, like $\frac{\Theta(t)-1}2$ did. We have the following lemma.
+\begin{lemma}
+    For given $f$ and $\chi$ as before, the quantity
+    \[\zeta_t(f,\chi)+f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)\,d^\times x\]
+    is unaffected by the transformation $(t,f,\chi)\mapsto(t^{-1},\hat f,\chi^\vee).$
+\end{lemma}
+Riemann's proof applies the Poisson summation formula to get the functional equation for $\Theta,$ so we want to apply the adelic Poisson summation formula here. In order to keep the domain of integration sane, we write
+\[\zeta_t(f,\chi)=\int_{\mathbb A^\times_{K,1}}f(tx)\chi(tx)\,d^\times x.\]
+(Note the measure is multiplicative, so this is safe.) To apply the Poisson summation formula, we need to introduce a sum on $K.$ Well, $K^\times$ is a discrete and cocompact subset of $\mathbb A^\times_{K,1},$ a fact we don't show here, so we see
+\[\zeta_t(f,\chi)=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K^\times}f(ktx)\right)\chi(ktx)\,d^\times x.\]
+We recognize that $\mathbb A^\times_{K,1}/K^\times$ is the idele-class group, so there is number-theoretic information sneaking into this proof. Currently the sum is over $K^\times,$ so we add in the $0$ term to make the sum over $k.$ We get
+\[\zeta_t(f,\chi)+f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)d^\times x=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K}f(ktx)\right)\chi(ktx)\,d^\times x.\tag{$*$}\]
+Note $\chi(ktx)=\chi(tx)$ because $\chi$ is an idele-class character. For brevity, we let the left-hand side by $L$ for now.
+
+To apply the Poisson summation formula to $k\mapsto f(ktx),$ we need to compute its Fourier transform. As in Riemann's proof, there is a scale factor to worry about here; define $g(k):=f(ktx),$ and we see
+\[\hat g(\xi)=\int_\AA g(a)\psi(\xi a)\,da=\int_\AA f(atx)\psi\left(atx\cdot\frac\xi{tx}\right)\,\frac{d(atx)}{|tx|},\]
+which is $\frac1{|tx|}\hat f\left(\frac\xi{tx}\right).$ It follows that
+\[L=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\frac1{|tx|}\sum_{k\in K}\hat f\left(\frac k{tx}\right)\right)\chi(tx)\,d^\times x.\]
+Sending $x\mapsto x^{-1}$ gives
+\[L=\int_{\mathbb A^\times_{K,1}/K^\times}\left(\sum_{k\in K}\hat f\left(k\cdot\frac xt\right)\right)\left|\frac xt\right|\chi\left(\frac xt\right)^{-1}\,d^\times x.\]
+Note that this equation is exactly the equation for $(*)$ after sending $(t,f,\chi)\mapsto(t^{-1},\hat f,\chi^\vee),$ so we have gone over halfway through the functional equation and are now done. $\blacksquare$
+
+To use the functional equation, we again mimic Riemann and split up our sliced integral for $\zeta(f,\chi)$ into
+\[\zeta(f,\chi)=\underbrace{\int_0^1\zeta_t(f,\chi)\,\frac{dt}t}_{=:\,J(f,\chi)}+\underbrace{\int_1^\infty\zeta_t(f,\chi)\,\frac{dt}t}_{=:\,I(f,\chi)}.\]
+I am mostly interested in number fields, where $\left|\AA_K^\times\right|=(0,\infty),$ but we remark that in function fields these integrals are actually infinite sums; the shared $1$ term is then of nonzero measure and needs to be dealt with some care. I am told that convention is to split it between both integrals, but it doesn't matter significantly.
+
+As in Riemann's proof, the integral $I(f,\chi)$ converges absolutely for all exponents. Indeed,
+\[I(f,\chi)=\int_1^\infty\int_{t\mathbb A^\times_{K,1}}f(x)\chi(x)\,d^\times x\,\frac{dt}t.\]
+Throwing absolute values everywhere, we note that a smaller exponent $\sigma$ merely makes the integrand smaller because we're integrating over norms in $t\in[1,\infty),$ so absolute convergence of the full $\zeta(f,\chi)$ over $\sigma>1$ implies absolute convergence for all $\sigma$ here.
+
+Applying the finishing touches, we continue with Riemann and use the functional equation for $\zeta_t$ to rewrite $J(f,\chi).$ Still working over $\sigma>1,$ it is
+\[J(f,\chi)=\int_0^1\zeta_{1/t}(\hat f,\chi^\vee)\,\frac{dt}t+\int_0^1\left[\hat f(0)\int_{t^{-1}\mathbb A^\times_{K,1}/K^\times}\chi^\vee(x)\,d^\times x-f(0)\int_{t\mathbb A^\times_{K,1}/K^\times}\chi(x)\,d^\times x\right]\frac{dt}t.\]
+The first term, after taking $t\mapsto t^{-1}$ is $I(\hat f,\chi^\vee),$ so we see $\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)$ plus a whole bunch of error stuff, just like in Riemann's proof. Well, there's no time like the present to figure out those error terms.
+\begin{lemma}
+    We have that
+    \[\int_{\mathbb A^\times_{K,1}/K^\times}\chi(tx)\,d^\times x=\begin{cases}
+        t^s\op{Vol}(\mathbb A^\times_{K,1}/K^\times) & \chi=(x\mapsto|x|^s), \\
+        0 & \text{else}.
+    \end{cases}\]
+\end{lemma}
+If $\chi(x)=|x|^s$ is unramified, then the integral is $|xt|^s=t^s,$ which is constant over $d^\times x,$ so this comes out to $t^s\op{Vol}(\mathbb A^\times_{K,1}/K^\times).$ Otherwise we use orthogonality of characters. Removing the $\chi(t),$ we want to show that
+\[\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x=0.\]
+Because $\chi(x)$ does not take the form $|x|^s,$ we claim it is nonconstant on $\mathbb A_{K,1}^\times.$ This will finish because, then, if $\chi(a)\ne1$ ($\chi(1)=1$ is in the image), we see
+\[\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x=\int_{\AA_{K,1}^\times/K^\times}\chi(ax)\,d^\times(ax)=\chi(a)|a|\int_{\AA_{K,1}^\times/K^\times}\chi(x)\,d^\times x.\]
+This is justified because $\mathbb A^\times_{K,1}$ is a (topological) group so that $a\mathbb A^\times_{K,1}=\mathbb A^\times_{K,1},$ and the measure $d^\times(ax)$ is defined as $|a|d^\times x.$ However, $|a|=1$ and $\chi(a)\ne1,$ so the integral must vanish for the equation to be true.
+
+Now we show that $\chi$ is constant on $\mathbb A^\times_{K,1}$ implies $\chi(x)=|x|^s$ on $\mathbb A^\times_K.$ Well, $1\in\mathbb A_{K,1}^\times,$ so $\chi$ being constant on $\mathbb A_{K,1}^\times$ implies $\chi\big(\mathbb A_{K,1}^\times\big)=\{1\}.$ But then for any $a\in\mathbb A^\times_K,$ we note $|a/|a||=1,$ so
+\[\chi(a)=\chi(|a|)\cdot\chi\left(\frac a{|a|}\right)=\chi(|a|).\]
+Thus $\chi$ is equal to its restriction to $|\mathbb A_K^\times|,$ so with $K$ a function field, $|\mathbb A_K^\times|=\RR^\times_{>0}$ by logarithms. However, we know from a couple weeks ago that all characters $\RR^\times_{>0}\to\CC^\times$ take the form $x\mapsto\op{sgn}(x)^b|x|^s$ for $b\in\{0,1\}$ and $s\in\CC.$ Because $\chi$ is an idele-class character, $\chi(-1)=1,$ so we have to take $b=0,$ which finishes this claim. $\blacksquare$
+
+Thus, if $\chi$ is not of the form $x\mapsto|x|^s,$ then we see
+\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)\]
+because the integral will vanish. We note that $\zeta_t(\hat\hat f,\chi^{\vee\vee})=\zeta_t(x\mapsto f(-x),\chi),$ and then
+\[\zeta_t(-f,\chi)=\int_{t\mathbb A^\times_{K,1}}f(-x)\chi(x)\,d^\times x=\int_{t\mathbb A^\times_{K,1}}f(x)\chi(-x)\,d^\times x=\zeta_t(f,\chi)\]
+because $\chi(-1)=1.$ (Recall $\chi$ is trivial on $K^\times,$ so $\chi(-1)=-1$ is illegal.) In particular, this means we have an equation for $\zeta(f,\chi)$ closed under $(f,\chi)\mapsto(\hat f,\chi^\vee),$ so $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$ Additionally, $I(f,\chi)$ is entire, so $\zeta(f,\chi)$ is as well.
+
+On the other hand, when $\chi(x)=|x|^s,$ then we fix $V:=\op{Vol}(\mathbb A^\times_{K,1}/K^\times)$ so that
+\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)+\int_0^1\left[\hat f(0)V(t^{-1})^{1-s}-f(0)Vt^s\right]\frac{dt}t.\]
+These integrals evaluate to
+\[\zeta(f,\chi)=I(f,\chi)+I(\hat f,\chi^\vee)-\frac{\hat f(0)V}{1-s}-\frac{f(0)V}s.\]
+Again, we see that this is invariant under $(f,\chi,s)\mapsto(\hat f,\chi^\vee,1-s),$ so we have our functional equation $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$ Additionally, we see this expression is holomorphic with merely two poles at $s=0$ and $s=1,$ at which our residues are $-f(0)V$ and $\hat f(0)V$ respectively.
+
+Thus, we have the following theorem.
+\begin{theorem}
+    Fix $f$ and $\chi$ so that $\zeta(f,\chi)$ is a global $\zeta$ integral. We have the following.
+    \begin{itemize}
+        \item We have $\zeta(f,\chi)=\zeta(\hat f,\chi^\vee).$
+        \item If $\chi$ is not of the form $x\mapsto|x|^s,$ then $\zeta(f,\chi)$ has an entire expansion to all of $\CC.$
+        \item Else if $\chi(x)=|x|^s,$ then $\zeta(f,\chi)$ has a meromorphic extension to all of $\CC\setminus\{0,1\}.$ At $s=0,$ we have a simple pole with residue $-f(0)\op{Vol}(\mathbb A^\times_{K,1}/K^\times),$ and $s=1,$ we have a simple pole with residue $\hat f(0)\op{Vol}(\mathbb A^\times _{K,1}/K^\times).$
+    \end{itemize}
+\end{theorem}
+All of this follows from the discussion above. $\blacksquare$
+
+\subsubsection{March 29th}
+Today I learned some stuff around the pigeonhole principle. What interested me most today was the following.
+\begin{proposition}
+    Fix $(X,\mu)$ a measurable space. Suppose $\{A_n\}_{n\in\NN}$ is a countable collection of measurable sets which are the subset of a measurable set $B\supseteq A_\bullet.$ If
+    \[\sum_{n\in\NN}\mu(A_n)>\mu(B),\]
+    then there exist indices $k$ and $\ell$ for which $A_k\cap A_\ell\ne\emp.$
+\end{proposition}
+The main idea here is that, even though the statement feels sufficiently intuitive, we actually want to show the contrapositive. In particular, we show that if $A_k\cap A_\ell\ne\emp$ implies $k=\ell,$ then
+\[\sum_{n\in\NN}\mu(A_n)\le\mu(B).\]
+Now the measure $\mu$ can actually help us. The condition tells us that the collection $\{A_n\}_{n\in\NN}$ is a disjoint collection of measurable sets, so it follows
+\[\sum_{n\in\NN}\mu(A_n)\le\mu\left(\bigcup_{n\in\NN}A_n\right)\le\mu(B),\]
+and we're done immediately. The first inequality holds because of the disjoint countable union, and the second inequality holds by subset. $\blacksquare$
+
+What I find interesting about this proof is its generality. For example, even though there are potential circular reasoning issues, we can endow $X$ with the counting measure so that we get the following statement.
+\begin{proposition}
+    Fix $B$ a finite set. If a countable collection $\{A_n\}_{n\in\NN}$ of subsets has
+    \[\sum_{n\in\NN}|A_n|>|B|,\]
+    then some two of the $A_\bullet$ intersect.
+\end{proposition}
+That is, we have recovered the usual pigeonhole principle immediately. We do remark that the measure-theoretic version is not necessarily strictly stronger, however. For example, the provided proof makes it difficult to expand to uncountable collections, and the set-theoretic version permits infinite cardinalities more readily.
+
+Anyways, I guess I should say that I started this journey as an attempt to justify the step in the proof of Minkowski's theorem where we consider the size of translated sets as bigger than the fundamental domain they occupy. In this case, all of the set-theoretic cardinalities are merely $|\RR|,$ but we can still use the measure-theoretic version of the pigeonhole principle to conclude.
+
+While we're here, let's use the pigeonhole principle on some combinatorial number theory.
+\begin{proposition}
+    If $S\subseteq\{1,2,\ldots,2n\}$ has more than $n$ elements, then there exists distinct $k,\ell\in S$ which are relatively prime.
+\end{proposition}
+The idea is to focus on the equality case, which is all evens. What breaks all evens is that, as soon as we add on another element, we can choose that odd number with ``lots'' of its even friends. While $2$ looks like a tempting choice, the neighbors of the odd number are more apparent.
+
+In particular, we note that
+\[S\subseteq\{1,2\}\cup\{3,4\}\cup\cdots\cup\{2n-1,2n\}.\]
+There are $n$ sets on the right-hand sets while more than $n$ elements in $S,$ so there are distinct $k,\ell\in S$ which belong to the same set $\{2m-1,2m\}.$ In other words, there exists an $m$ with $2m-1,2m\in S,$ and these $2m-1$ and $2m$ make our relatively prime pair. $\blacksquare$
+
+Let's do another one, for fun. I saw this one in Mrs. Harrelson's number theory class.
+\begin{proposition}
+    If $S\subseteq\{1,2,\ldots,2n\}$ has more than $n$ elements, then there exists distinct $k,\ell\in S$ for which $k\mid\ell.$
+\end{proposition}
+Again, we focus on the equality case, which is $S=\{n+1,\ldots,2n\},$ in which no element divides another for size reasons. However, as soon as we add another element $k,$ it must be no greater than $n.$ If $k\in(n/2,n],$ then $2k$ double lives in $S.$ If $k\in(n/4,n/2],$ then $4k$ lives in $S,$ and so on. This gives us a methodical way of finding $k$'s multiple.
+
+As an aside, we note that we could do something like $k\floor{n/k}$ as our multiple of $k,$ but it isn't clear how to generalize this when $S$ doesn't contain literally everything bigger than $n.$ What's going on under the surface here is that we are able to double our way out of trouble, and this algorithm provides a unique multiple for each $k.$
+
+So we organize ourselves around doubling. We would like to say something like ``there exists two elements such that one is double another,'' but this is false, for we could choose
+\[\{2,5,6,7,8\}\subseteq\{1,2,3,4,5,6,7,8\}.\]
+We see that $2$'s double doesn't actually live in $\{2,5,6,7,8\},$ so we have to be more careful---we want to consider doubles of doubles, and so on.
+
+Thus, we note
+\[\{1,2,\ldots,2n\}=\bigcup_{\substack{1\le k\le 2n\\k\text{ odd}}}\left\{k2^\nu:\nu\in\NN\text{ and }k2^\nu\le2n\right\}\]
+is a disjoint union of $n$ sets. Because $S$ has more than $n$ elements, two of $S$'s elements live in the same set generated by an odd $k,$ implying they must take the form $k2^\alpha$ and $k2^\beta$ for distinct $\alpha$ and $\beta.$ Asserting $\alpha\le\beta$ without loss of generality, we see $k2^\alpha\mid k2^\beta,$ and we are done. $\blacksquare$
+
+This last proof I have little idea how to motivate; I have done my best, but it is truly clever.
+
+\subsubsection{March 30th}
+Today I learned the proof that meromorphic functions are conformal (i.e., angle-perserving) almost everywhere. Fix $f:\CC\to\CC$ analytic and, abusing notation, we will label $(u,v):=f:\RR^2\to\RR^2$ by the composition
+\[(x,y)\mapsto x+yi\mapsto f(x+yi)=(\op{Re}f(x+yi),\op{Im}f(x+yi)).\]Then the Cauchy-Riemann equations say that
+\[\frac{\del u}{\del x}=\frac{\del v}{\del y}\quad\text{and}\quad\frac{\del u}{\del y}=-\frac{\del v}{\del x}.\]
+At a high level, this means that the Jacobian of $f$ looks like
+\[\begin{bmatrix}
+    \del u/\del x & \del u/\del y \\
+    \del v/\del x & \del v/\del y
+\end{bmatrix}=\begin{bmatrix}
+    \del v/\del y & -\del v/\del x \\
+    \del v/\del x & \del v/\del y
+\end{bmatrix}\]
+is a rotation matrix when nonzero, so provided that $f'$ is nonzero, $f$ is conformal.
+
+For formality reasons, we will stay in $\RR^2$ and just assume that our $f=(u,v):\RR^2\to\RR^2$ satisfy the Cauchy-Riemann equations as our way of using the fact $f$ is meromorphic. To show all angles are preserved, it suffices to show that angles with one side horizontal are preserved because we can just subtract to get all angles.
+
+Let $\arg:\RR^2\to(\RR/2\pi\ZZ)$ be the function sending a point to its angle. Fixing a point $x$ and direction vector $v,$ we want to know that
+\[\arg\big(f(x+v)-f(x)\big)=\arg v\]
+as $v\to0.$ Note that we have to be a bit precise with $v\to0$ because we want to maintain direction, so we really want
+\[\arg\big(f(x+vdx)-f(x)\big)=\arg v\]
+as $dx\to0$ in $\RR.$
+
+To use the derivative of $f,$ we would like to use the total derivative (equal to the Jacobian from earlier!), which by definition satisfies
+\[\lim_{dx\to0}\frac{\lVert f(x+vdx)-f(x)-(Df)(x)(vdx)\rVert}{\lVert vdx\rVert}=0.\]
+\todo{}
+
+\subsubsection{March 31st}
+Today I learned that the Zeckendorf decomposition from a few days ago in fact gives the least number of Fibonacci numbers a positive integer can be decomposed into by (possibly repeated) Fibonacci numbers. That is, we have the following theorem.
+\begin{theorem}
+    Fix $n$ an integer. If $\{a_k\}_{k=1}^m$ is a sequence of positive integers such that
+    \[n=\sum_{k=1}^mF_{a_k},\]
+    then $m$ is at least the number of Fibonacci numbers in the Zeckendorf decomposition.
+\end{theorem}
+We note that this is not sharp in the sense that the Zeckendorf decomposition is the definitive minimum. For example, the Zeckendorf decomposition of $6=5+1,$ which the above theorem claims is minimal, but we also have $6=3+3,$ which uses the same number of terms. Yes, repeats are permitted.
+
+Let's show this. Fix $n$ an integer and suppose that it always takes at least $m$ Fibonacci numbers to decompose $n$ into a sum of Fibonacci numbers. Such an $m$ exists because, say, the Zeckendorf decomposition, provides a decomposition into Fibonacci numbers.
+
+Now, we order all of the sequences in $S$ (and remove repeated sequences) to be decreasing and then order $S$ $\textit{lexicographically}.$ That is, we order by $\{a_k\}_{k=1}^m\succ\{b_k\}_{k=1}^m$ is and only if
+\[a_\ell>b_\ell\qquad\text{and}\qquad a_k=b_k\text{ for }k<\ell.\]
+Note that as long as the sequences $\{a_k\}_{k=1}^m$ and $\{b_k\}_{k=1}^m$ are unequal and differ at some index, we are forced to set $\ell$ to the first difference, and we get $\{a_k\}_{k=1}^m\succ\{b_k\}_{k=1}^m$ if and only if $a_\ell>b_\ell.$ We can show that this is a strict total order, but we don't really bother beyond this.
+
+We applied this ordering in order to get the maximal element; this move is justified by $S$ is finite, for a sequence $\{a_k\}_{k=1}^m$ can only feature indices with $F_{a_\bullet}<n,$ of which there are finitely many, and there are only finitely many terms. So we can weakly say that $S$ is finite, and we let $\{z_k\}_{k=1}^m$ be the maximal element after lexicographically ordering $S.$
+
+We can talk somewhat indirectly about what $\{z_k\}_{k=1}^m$ looks like.
+\begin{lemma}
+    Suppose $\{a_k\}_{k=1}^M$ is a decreasing sequence for which
+    \[n=\sum_{k=1}^MF_{a_k}.\]
+    If any of the $\{a_k\}_{k=1}^M$ are consecutive, then $\{a_k\}_{k=1}^M\not\in S.$
+\end{lemma}
+The idea here is that if we have consecutive Fibonacci numbers $F_{a+1}$ and $F_a,$ then we can combine these into a single Fibonacci number $F_{a+2},$ making the sequence of indices have fewer elements. So the sequence won't be in $S.$
+
+Being painfully formal, note that because $\{a_k\}_{k=1}^M$ is decreasing, the existence of consecutive elements means that the consecutive elements have consecutive indices. So suppose fix $\ell$ with $a_\ell=a_{\ell+1}+1.$ Now we construct another sequence $\{a'_k\}_{k=1}^{M-1}$ by
+\[a'_k=\begin{cases}
+    a_k & 1\le k<\ell, \\
+    a_\ell+1 & k=\ell, \\
+    a_{k+1} & \ell<k<M.
+\end{cases}\]
+This is constructed so that
+\[\sum_{k=1}^{M-1}F_{a'_k}=\left(\sum_{k=1}^{\ell-1}F_{a_k}\right)+F_{a_{\ell+1}}+\left(\sum_{k=\ell+1}^MF_{a_{k+1}}\right).\]
+Noting that $F_{a_\ell+1}=F_{a_\ell}+F_{a_\ell-1}=F_{a_\ell}+F_{a_{\ell+1}},$ this sums collapses to
+\[\sum_{k=1}^{M-1}F_{a'_k}=\sum_{k=1}^MF_{a_k}=n.\]
+In particular, there is a sequence of indices decomposing $n$ shorter than $\{a_k\}_{k=1}^M,$ so we cannot have $\{a_k\}_{k=1}^M\in S$ by definition of $S.$ $\blacksquare$
+
+Thus, we know that $\{z_k\}_{k=1}^m\in S$ doesn't have consecutive indices. We can say further.
+\begin{lemma}
+    Suppose $\{a_k\}_{k=1}^m\in S.$ If $\{a_k\}_{k=1}^m$ has repeated elements, then there is a sequence $\{a'_k\}_{k=1}^m\in S$ such that $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$
+\end{lemma}
+This comes down to the lexicographic ordering, which lets us look locally. The idea is that we can swap consecutive elements $F_n+F_n$ with $F_{n+1}+F_{n-2},$ which is larger, lexicographically.
+
+Again being painfully formal, suppose two elements of $\{a_k\}_{k=1}^m$ are equal, with value $a_\bullet.$ Now, we cannot have $a_\bullet=1,$ for then we could combine two $F_{a_\bullet}=1$s into a single $2,$ as in the previous lemma. I'm too lazy to be formal with this.
+
+Now, let $x$ be the least index in $\{k:a_k=a_\bullet\},$ and $y$ be the greatest index. Because $a_\bullet$ appears at least once, $x<y,$ and because $\{a_k\}_{k=1}^m$ is decreasing, we see $a_k=a_\bullet$ for any $x\le k\le y.$ Now, we let
+\[a'_k=\begin{cases}
+    a_k & 1\le k<x, \\
+    a_\bullet+1 & k=x, \\
+    a_k=a_\bullet & x<k<y, \\
+    \max\{a_\bullet-2,1\} & k=y, \\
+    a_k & y<k\le m.
+\end{cases}\]
+This definition is so annoying to ensure that $\{a'_k\}_{k=1}^m$ is decreasing so that it can be in $S.$ This is casework.
+\begin{itemize}
+    \item We are decreasing over $0\le k<x$ because $\{a_k\}_{k=1}^m$ does.
+    \item The index $a'_x$ doesn't violate because we know $a_{x-1}>a_x,$ so $a'_{x-1}=a_{x-1}\ge a_x+1=a'_x.$
+    \item Over $x<k<y,$ we are constant.
+    \item At $a'_y,$ there are a couple of potential problems. We note that we are not skipping over an index equal to $a_\bullet-1$ because $\{a_k\}_{k=1}^m$ cannot contain consecutive indices. So $a'_y\ge a_\bullet-2\ge a_{y+1}=a'_{y+1}.$ Further, $1$ is the minimal index, so we are not really risking anything by maxing it with $1.$ (It is a valid index because it at least $1.$)
+    \item Over $y<k\le m,$ we are decreasing because $\{a_k\}_{k=1}^m$ is.
+\end{itemize}
+Also, it can be checked that $\{a'_k\}_{k=1}^m$ still gives a Fibonacci sum of $n.$ The main attraction is
+\[F_{a'_x}+F_{a'_y}=F_{a_\bullet+1}+F_{\max\{a_\bullet-2,1\}}.\]
+Very quickly, we note that $\max\{a_\bullet-2,1\}$ will only have an effect if $a_\bullet=1$ or $a_\bullet=2.$ We dispelled the former case; for the latter, it's true that $F_1=F_{a_\bullet-2}=F_0=1$ anyways. So we are interested in
+\[F_{a'_x}+F_{a'_y}=F_{a_\bullet+1}+F_{a_\bullet-2}=F_{a_\bullet}+F_{a_\bullet-1}+F_{a_\bullet-2}=2F_{a_\bullet}.\]
+It follows that
+\[\sum_{k=1}^mF_{a'_k}=\left(\sum_{k=1}^{x-1}F_{a_k}\right)+F_{a'_x}+\left(\sum_{k=x+1}^{y-1}F_{a_k}\right)+F_{a'_y}+\left(\sum_{k=y+1}^mF_{a_k}\right).\]
+Using the Fibonacci main attraction, this equals the original sum of $\{a_k\}_{k=1}^m.$ So we do have $\{a'_k\}_{k=1}^m\in S.$
+
+Finally, it remains to show that $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$ Well, all the elements are equal before $x,$ and we know
+\[a'_x=a_\bullet+1=a_x+1>a_x,\]
+so indeed, we have $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$ So we are done. $\blacksquare$
+
+In fact, we remark that our argument implies a minimal representation cannot have more than $2$ repeated elements, for then the above substitution process takes $F_n+F_n+F_n$ to $F_{n+1}+F_n+F_{n-2},$ which has consecutive elements and therefore cannot be in $S.$
+
+What the above lemma tells us about $\{z_k\}_{k=1}^m$ is that it has no repeated Fibonacci numbers. Combining, our lexicographically maximal sequence is one with no repeated indices and no consecutive indices, so because the Zeckendorf decomposition is the unique decomposition into nonconsecutive Fibonacci numbers, $\{z_k\}_{k=1}^m$ is the Zeckendorf decomposition!
+
+Thus, we conclude that the Zeckendorf decomposition contains the minimal number of Fibonacci numbers possible in a Fibonacci decomposition. This finishes the proof of the theorem. $\blacksquare$
+
+We also remark that we are given some algorithm how to generate the other minimal elements of $S.$ Repeated elements are really our only problem, but we know that we can always decompose repeats into a non-repeating sequence as in our second lemma. This implies that we can, recursively, work backwards from our Zeckendorf decomposition by looking for indices $3$ apart and then writing
+\[F_{n+3}+F_n=F_{n+2}+F_{n+2}.\]
+Doing something like this recursively must eventually hit all minimal decompositions in $S$ because we can always take any minimal decomposition and reverse this process to get back to the Zeckendorf decomposition.

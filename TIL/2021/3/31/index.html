@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 31st
+					</h2>
+					<p>
+						Today I learned that the Zeckendorf decomposition from a few days ago in fact gives the least number of Fibonacci numbers a positive integer can be decomposed into by (possibly repeated) Fibonacci numbers. That is, we have the following theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $n$ an integer. If $\{a_k\}_{k=1}^m$ is a sequence of positive integers such that    \[n=\sum_{k=1}^mF_{a_k},\]    then $m$ is at least the number of Fibonacci numbers in the Zeckendorf decomposition.
+						</p>
+					</div>
+					<p>
+						We note that this is not sharp in the sense that the Zeckendorf decomposition is the definitive minimum. For example, the Zeckendorf decomposition of $6=5+1,$ which the above theorem claims is minimal, but we also have $6=3+3,$ which uses the same number of terms. Yes, repeats are permitted.
+					</p>
+					<p>
+						Let's show this. Fix $n$ an integer and suppose that it always takes at least $m$ Fibonacci numbers to decompose $n$ into a sum of Fibonacci numbers. Such an $m$ exists because, say, the Zeckendorf decomposition, provides a decomposition into Fibonacci numbers.
+					</p>
+					<p>
+						Now, we order all of the sequences in $S$ (and remove repeated sequences) to be decreasing and then order $S$ $\textit{lexicographically}.$ That is, we order by $\{a_k\}_{k=1}^m\succ\{b_k\}_{k=1}^m$ is and only if\[a_\ell \gt b_\ell\qquad\text{and}\qquad a_k=b_k\text{ for }k \lt \ell.\]Note that as long as the sequences $\{a_k\}_{k=1}^m$ and $\{b_k\}_{k=1}^m$ are unequal and differ at some index, we are forced to set $\ell$ to the first difference, and we get $\{a_k\}_{k=1}^m\succ\{b_k\}_{k=1}^m$ if and only if $a_\ell \gt b_\ell.$ We can show that this is a strict total order, but we don't really bother beyond this.
+					</p>
+					<p>
+						We applied this ordering in order to get the maximal element; this move is justified by $S$ is finite, for a sequence $\{a_k\}_{k=1}^m$ can only feature indices with $F_{a_\bullet} \lt n,$ of which there are finitely many, and there are only finitely many terms. So we can weakly say that $S$ is finite, and we let $\{z_k\}_{k=1}^m$ be the maximal element after lexicographically ordering $S.$
+					</p>
+					<p>
+						We can talk somewhat indirectly about what $\{z_k\}_{k=1}^m$ looks like.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $\{a_k\}_{k=1}^M$ is a decreasing sequence for which    \[n=\sum_{k=1}^MF_{a_k}.\]    If any of the $\{a_k\}_{k=1}^M$ are consecutive, then $\{a_k\}_{k=1}^M\not\in S.$
+						</p>
+					</div>
+					<p>
+						The idea here is that if we have consecutive Fibonacci numbers $F_{a+1}$ and $F_a,$ then we can combine these into a single Fibonacci number $F_{a+2},$ making the sequence of indices have fewer elements. So the sequence won't be in $S.$
+					</p>
+					<p>
+						Being painfully formal, note that because $\{a_k\}_{k=1}^M$ is decreasing, the existence of consecutive elements means that the consecutive elements have consecutive indices. So suppose fix $\ell$ with $a_\ell=a_{\ell+1}+1.$ Now we construct another sequence $\{a'_k\}_{k=1}^{M-1}$ by\[a'_k=\begin{cases}    a_k & 1\le k \lt \ell, \\    a_\ell+1 & k=\ell, \\    a_{k+1} & \ell \lt k \lt M.\end{cases}\]This is constructed so that\[\sum_{k=1}^{M-1}F_{a'_k}=\left(\sum_{k=1}^{\ell-1}F_{a_k}\right)+F_{a_{\ell+1}}+\left(\sum_{k=\ell+1}^MF_{a_{k+1}}\right).\]Noting that $F_{a_\ell+1}=F_{a_\ell}+F_{a_\ell-1}=F_{a_\ell}+F_{a_{\ell+1}},$ this sums collapses to\[\sum_{k=1}^{M-1}F_{a'_k}=\sum_{k=1}^MF_{a_k}=n.\]In particular, there is a sequence of indices decomposing $n$ shorter than $\{a_k\}_{k=1}^M,$ so we cannot have $\{a_k\}_{k=1}^M\in S$ by definition of $S.$ $\blacksquare$
+					</p>
+					<p>
+						Thus, we know that $\{z_k\}_{k=1}^m\in S$ doesn't have consecutive indices. We can say further.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $\{a_k\}_{k=1}^m\in S.$ If $\{a_k\}_{k=1}^m$ has repeated elements, then there is a sequence $\{a'_k\}_{k=1}^m\in S$ such that $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$
+						</p>
+					</div>
+					<p>
+						This comes down to the lexicographic ordering, which lets us look locally. The idea is that we can swap consecutive elements $F_n+F_n$ with $F_{n+1}+F_{n-2},$ which is larger, lexicographically.
+					</p>
+					<p>
+						Again being painfully formal, suppose two elements of $\{a_k\}_{k=1}^m$ are equal, with value $a_\bullet.$ Now, we cannot have $a_\bullet=1,$ for then we could combine two $F_{a_\bullet}=1$s into a single $2,$ as in the previous lemma. I'm too lazy to be formal with this.
+					</p>
+					<p>
+						Now, let $x$ be the least index in $\{k:a_k=a_\bullet\},$ and $y$ be the greatest index. Because $a_\bullet$ appears at least once, $x \lt y,$ and because $\{a_k\}_{k=1}^m$ is decreasing, we see $a_k=a_\bullet$ for any $x\le k\le y.$ Now, we let\[a'_k=\begin{cases}    a_k & 1\le k \lt x, \\    a_\bullet+1 & k=x, \\    a_k=a_\bullet & x \lt k \lt y, \\    \max\{a_\bullet-2,1\} & k=y, \\    a_k & y \lt k\le m.\end{cases}\]This definition is so annoying to ensure that $\{a'_k\}_{k=1}^m$ is decreasing so that it can be in $S.$ This is casework.
+					</p>
+					<ul>
+						<li>
+							<p>
+								We are decreasing over $0\le k \lt x$ because $\{a_k\}_{k=1}^m$ does.
+							</p>
+						</li>
+						<li>
+							<p>
+								The index $a'_x$ doesn't violate because we know $a_{x-1} \gt a_x,$ so $a'_{x-1}=a_{x-1}\ge a_x+1=a'_x.$
+							</p>
+						</li>
+						<li>
+							<p>
+								Over $x \lt k \lt y,$ we are constant.
+							</p>
+						</li>
+						<li>
+							<p>
+								At $a'_y,$ there are a couple of potential problems. We note that we are not skipping over an index equal to $a_\bullet-1$ because $\{a_k\}_{k=1}^m$ cannot contain consecutive indices. So $a'_y\ge a_\bullet-2\ge a_{y+1}=a'_{y+1}.$ Further, $1$ is the minimal index, so we are not really risking anything by maxing it with $1.$ (It is a valid index because it at least $1.$)
+							</p>
+						</li>
+						<li>
+							<p>
+								Over $y \lt k\le m,$ we are decreasing because $\{a_k\}_{k=1}^m$ is.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Also, it can be checked that $\{a'_k\}_{k=1}^m$ still gives a Fibonacci sum of $n.$ The main attraction is\[F_{a'_x}+F_{a'_y}=F_{a_\bullet+1}+F_{\max\{a_\bullet-2,1\}}.\]Very quickly, we note that $\max\{a_\bullet-2,1\}$ will only have an effect if $a_\bullet=1$ or $a_\bullet=2.$ We dispelled the former case; for the latter, it's true that $F_1=F_{a_\bullet-2}=F_0=1$ anyways. So we are interested in\[F_{a'_x}+F_{a'_y}=F_{a_\bullet+1}+F_{a_\bullet-2}=F_{a_\bullet}+F_{a_\bullet-1}+F_{a_\bullet-2}=2F_{a_\bullet}.\]It follows that\[\sum_{k=1}^mF_{a'_k}=\left(\sum_{k=1}^{x-1}F_{a_k}\right)+F_{a'_x}+\left(\sum_{k=x+1}^{y-1}F_{a_k}\right)+F_{a'_y}+\left(\sum_{k=y+1}^mF_{a_k}\right).\]Using the Fibonacci main attraction, this equals the original sum of $\{a_k\}_{k=1}^m.$ So we do have $\{a'_k\}_{k=1}^m\in S.$
+					</p>
+					<p>
+						Finally, it remains to show that $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$ Well, all the elements are equal before $x,$ and we know\[a'_x=a_\bullet+1=a_x+1 \gt a_x,\]so indeed, we have $\{a'_k\}_{k=1}^m\succ\{a_k\}_{k=1}^m.$ So we are done. $\blacksquare$
+					</p>
+					<p>
+						In fact, we remark that our argument implies a minimal representation cannot have more than $2$ repeated elements, for then the above substitution process takes $F_n+F_n+F_n$ to $F_{n+1}+F_n+F_{n-2},$ which has consecutive elements and therefore cannot be in $S.$
+					</p>
+					<p>
+						What the above lemma tells us about $\{z_k\}_{k=1}^m$ is that it has no repeated Fibonacci numbers. Combining, our lexicographically maximal sequence is one with no repeated indices and no consecutive indices, so because the Zeckendorf decomposition is the unique decomposition into nonconsecutive Fibonacci numbers, $\{z_k\}_{k=1}^m$ is the Zeckendorf decomposition!
+					</p>
+					<p>
+						Thus, we conclude that the Zeckendorf decomposition contains the minimal number of Fibonacci numbers possible in a Fibonacci decomposition. This finishes the proof of the theorem. $\blacksquare$
+					</p>
+					<p>
+						We also remark that we are given some algorithm how to generate the other minimal elements of $S.$ Repeated elements are really our only problem, but we know that we can always decompose repeats into a non-repeating sequence as in our second lemma. This implies that we can, recursively, work backwards from our Zeckendorf decomposition by looking for indices $3$ apart and then writing\[F_{n+3}+F_n=F_{n+2}+F_{n+2}.\]Doing something like this recursively must eventually hit all minimal decompositions in $S$ because we can always take any minimal decomposition and reverse this process to get back to the Zeckendorf decomposition.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 11th
+					</h2>
+					<p>
+						Today I learned a little about local $\zeta$-functions. We have the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $F$ a local field and $f:F\to\CC$ a Shwartz-Bruhat function with $\chi:F^\times\to\CC$ a multiplicative character. Then we define the local $\zeta$-function as    \[\zeta(f,\chi):=\int_{F^\times}f(x)\chi(x)\,d^\times x.\]
+						</p>
+					</div>
+					<p>
+						For the time being it doesn't matter exactly how our $d^\times x$ behaves, so we make it $\frac c{|x|}dx$ for some positive constant $c,$ where $dx$ is our self-dual measure. This positive constant will be fixed later when we move into global theory.
+					</p>
+					<p>
+						This function $\zeta(f,\chi)$ will turn out to have a functional equation and extend fully to a holomorphic function over all characters $\chi.$ However, we begin by showing that it is converges for positive character exponents.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For local $\zeta$-function $\zeta(f,\chi),$ the given definition converges for exponents $\sigma \gt 0.$
+						</p>
+					</div>
+					<p>
+						We can more or less pretend that $F=\RR$ or $F=\CC,$ and most of the argument will go through with little trouble. The statement had better be true for $\zeta(|f|,|\chi|),$ so we show absolute convergence. So we are showing that\[\int_{F^\times}|f(x)|\cdot|x|^\sigma\,d^\times x \lt \infty.\]There are competing forces of "small'' at play. Namely, we split the integral as follows\[\int_{F^\times}|f(x)|\cdot|x|^\sigma\,d^\times x=\int_{|x|\le1}|f(x)|\cdot|x|^\sigma\,d^\times x+\int_{|x| \gt 1}|f(x)|\cdot|x|^\sigma\,d^\times x.\]For very small values of $x,$ we need to make sure that $|f(x)|$ is smallish, and for very large values of $x,$ we need to make sure that $|f(x)|$ is smallish. Because small and large values of $x$ behave differently, we take these integrals one at a time.
+					</p>
+					<p>
+						The $|x| \gt 1$ integral is easier to deal with. By definition of Shwartz-Bruhat, we can say that $|f(x)|=C/x^{\sigma+2}$ over $|x|\ge1$ for some positive constant $C.$ Indeed, this is automatic for $F=\RR$ or $F=\CC,$ and for $F$ nonarchimedean, $f$ as a finite $\CC$-linear combination of indicators, so we merely have to accommodate a finite sum. Thus,\[\int_{|x| \gt 1}|f(x)|\cdot|x|^\sigma\,d^\times x\le cC\int_{|x| \gt 1}|x|^{-3}\,dx.\]Note we have changed measures to $dx.$ We now do casework on $F.$
+					</p>
+					<ul>
+						<li>
+							<p>
+								Over $F=\RR,$ this integral is $2\int_1^\infty x^{-3}\,dx=1 \lt \infty.$
+							</p>
+						</li>
+						<li>
+							<p>
+								Over $F=\CC,$ we can change to polar coordinates as    \[\int_{|z| \gt 1}|z|^{-3}\,dz=\int_1^\infty\int_0^{2\pi}r^{-3}\,2rdrd\theta.\]    This $2$ comes from the fact we're using twice the Lebesgue measure as our self-dual measure on $\CC.$ Anyways, this evaluates to $4\pi\int_1^\infty r^{-2}\,dr=4\pi \lt \infty.$
+							</p>
+						</li>
+						<li>
+							<p>
+								Over $F$ nonarchimedean, we let $q$ be the size of the residue field of $F$ so that $|x|\in q^\ZZ.$ Thus, the integral turns into a geometric series like    \[\int_{|x| \gt 1}|x|^{-2}\,d^\times x=\sum_{k=1}^\infty\left(q^k\right)^{-3}\int_{|x|=q^k}d^\times x.\]    The integral now measures the multiplicative volume $\op{Vol}(\mathcal O_F^\times),$ which is finite (and constant with respect to $q$). Then $q^{-3} \lt 1$ means that the infinite series is finite as well.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having dealt with all cases, we are safe.
+					</p>
+					<p>
+						For the $|x|\le1$ integral, we show that $|f(x)|$ is bounded above for largish. We note that the region $|x|\le1$ is bounded and closed in a local field, so it is compact. Further, $|f(x)|$ is continuous, so it is bounded above: the sets $\{x:|f(x)| \lt N\}$ for $N\in\ZZ^+$ are an open cover of $F$ and therefore $|x|\le1$; take a finite subcover to get an upper bound of $|f(x)|.$
+					</p>
+					<p>
+						So fix an upper bound $M$ for $|f(x)|$ in $|x|\le1,$ and we see\[\int_{|x|\le1}|f(x)|\cdot|x|^\sigma\,d^\times x\le M\int_{|x|\le1}|x|^\sigma\,d^\times x.\]Because there is an $|x|^{-1}$ hiding in the $d^\times x,$ it is not obvious that this is finite. We could do this by casework on $F,$ but it turns out that the nonarchimedean geometric series trick works for all cases. Fix some $a\in F^\times$ with $|a| \lt 1,$ and then we can write\[\int_{|x|\le1}|x|^\sigma\,d^\times x=\sum_{k=0}^\infty\int_{|a|^{k+1} \lt |x|\le|a|^k}|x|^\sigma\,d^\times x.\]In particular, we can bound these integrands above by $|a|^k$ to get\[\int_{|x|\le1}|x|^\sigma\,d^\times x\le\sum_{k=0}^\infty|a|^k\int_{|a|^{k+1} \lt |x|\le|a|^k}d^\times x.\]Using the multiplicative measure, the integral is equal to $\int_{|a| \lt |x|\le1}d^\times x,$ which is finite (and constant with respect to $k$) because $\{x:|a| \lt |x|\le1\}$ is a bounded set. So we are left with the geometric series, which is finite because $|a| \lt 1.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We briefly remark that the above convergence also says that $\zeta(f,\chi)$ is holomorphic over $\sigma \gt 0$ in the unramified part of $\chi.$ Namely, writing $\chi=\chi_0|\bullet|^s$ for unitary part $\chi_0,$ we can write\[\zeta(f,\chi_0|\bullet|^s)=\int_{F^\times}f(x)\chi_0(x)\cdot|x|^s\,d^\times x.\]Now, over $\op{Re}(s) \gt 0,$ this converges, and we can take the derivative of this with respect to $s$ by differentiating under the integral sign. For example, all functions here have continuous partial derivatives, so we're safe.
+					</p>
+					<p>
+						Later in life we will build to the functional equation $\zeta(\hat f,\chi^\vee)/L(\chi^\vee)=\varepsilon\zeta(f,\chi)/L(\chi)$ for some auxiliary $L$-factors $L(\chi)$ and error term $\varepsilon.$ However, a difficult part of this is that dealing with general functions $f$ is hard, and it is significantly easier to verify this functional equation for individual $f$ and $\varepsilon.$
+					</p>
+					<p>
+						The solution is the following "translation'' lemma, which turns an evaluation for some function $f$ to an evaluation for a different function $g.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given local $\zeta$-functions $\zeta(f,\chi)$ and $\zeta(g,\chi),$ we have    \[\zeta(f,\chi)\zeta(\hat g,\chi^\vee)=\zeta(\hat f,\chi^\vee)\zeta(g,\chi),\]    for characters $\chi$ of exponent $\sigma\in(0,1).$
+						</p>
+					</div>
+					<p>
+						The condition $\sigma\in(0,1)$ essentially asserts that the integral definition of $\zeta$ actually (absolutely) converges, from the previous lemma.
+					</p>
+					<p>
+						Anyways, we don't have much better to do than muscle through this, so we write\[\zeta(f,\chi)\zeta(\hat g,\chi^\vee)=\int_{F^\times}f(x)\chi(x)\,d^\times x\int_{F^\times}\hat g(y)\chi(y)^{-1}|y|\,d^\times y.\]Because these integrals converge absolutely, we meld them into\[\iint_{(F^\times)^2}f(x)\hat g(y)\chi(x/y)|y|\,d^\times xd^\times y.\]We need to talk about $g$ intelligently as well, so we let $\psi$ be our standard character and expand $\hat g$ as\[\iint_{(F^\times)^2}f(x)\left(\int_Fg(z)\psi(yz)\,dz\right)\chi(x/y)|y|\,d^\times xd^\times y.\]To make all our measures on equal footing, we write $dz=c^{-1}|z|d^\times z$ (losing $0$ doesn't lose anything of substance), so this is\[c^{-1}\iiint_{(F^\times)^3}f(x)g(z)\chi(x/y)|yz|\psi(yz)\,d^\times xd^\times yd^\times z.\]This is almost symmetric in $f$ and $g,$ which would let us finish, but the character $\chi(x/y)$ doesn't talk about $z.$ So we let $y=xt$ to replace $d^\times y=d^\times t$ with something more conducive to symmetry. Now we have\[c^{-1}\iiint_{(F^\times)^3}f(x)g(z)\chi(t^{-1})|txz|\psi(txz)\,d^\times xd^\times td^\times z.\]Now this is symmetric in $f\leftrightarrow g,$ so this quantity is also $\zeta(g,\chi)\zeta(\hat f,\chi^\vee).$ This completes the proof. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

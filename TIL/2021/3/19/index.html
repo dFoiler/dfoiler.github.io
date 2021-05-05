@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 19th
+					</h2>
+					<p>
+						Today I learned a different framing of the (weak) approximation theorem for $\AA_K.$ Roughly the idea here is that $K\subseteq\AA_K,$ though "small,'' should be able to cover $\AA_K$ if given a couple of primes to move around in. In particular, we claim the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For number field $K,$ let $\mf m$ be the formal product of its infinite places. Then $\AA_K=K+\AA_{K,\mf m}.$
+						</p>
+					</div>
+					<p>
+						At a high level, because we don't have to worry about infinite primes, this more or less amounts to the Chinese remainder theorem over the finite primes. Fix some $a\in\AA_K$ so that we need to find $k\in K$ with $a-k\in\AA_{K,\mf m}.$
+					</p>
+					<p>
+						For all but finitely many finite places $\mf p,$ we already have $a_\mf p\in\mathcal O_\mf p,$ so let $S$ be the set of problematic finite places with $a_\mf p\not\in\mathcal O_\mf p.$ Roughly, we would like to fix $k\in K$ to have\[k\stackrel?\equiv a_\mf p\pmod{\mf p^{\nu_\mf p((a_\mf p))}}\]for each $\mf p\in S$ by the Chinese remainder theorem, but we would rather not deal with the ideal $\mf p^{\nu_\mf p(a_\mf p)}$ because of its negative exponent. However, we can find nonzero\[m\in\prod_{\mf p\in S}\mf p^{-\nu_\mf p(a_\mf p)}\]so that $ma\in\AA_{K,\mf m}.$ Now we fix $\ell\in\mathcal O_K$ satisfying\[\ell\equiv ma_\mf p\pmod{\mf p^{\nu_\mf p((ma_\mf p))}}\]for each $\mf p\in S$ by the Chinese remainder theorem. It follows that\[a-\ell/m=\frac{ma-\ell}m,\]which is in $\mathcal O_\mf p$ for $\mf p\in S$ by construction and for $\mf p\not\in S$ because $\ell/m\in\mathcal O_K\subseteq\mathcal O_\mf p.$ Fixing $k:=\ell/m$ finishes. $\blacksquare$
+					</p>
+					<p>
+						We remark that this is similar to (but distinct from) saying $K$ has fundamental domain $\AA_{K,\mf m}.$ In particular, we're merely showing that we can cover $\AA_K,$ not that we have covered it uniquely, which is very false; for example, $K\cap\AA_{K,\mf m}=\mathcal O_K$ by watching contributions of each finite prime. However, this suggests that $K$ could have a fundamental domain.
+					</p>
+					<p>
+						I guess I should also remark that I have seen the approximation theorem as the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $|\bullet|_1,\ldots,|\bullet|_n$ nonequivalent valuations of a number field $K.$ Then for any sequence $k_1,\ldots,k_n\in K$ and error $\varepsilon,$ we can find $k$ with    \[|k-k_\bullet|_\bullet \lt \varepsilon.\]
+						</p>
+					</div>
+					<p>
+						These statements are more or less the same, which we see by writing $\nu_\bullet$ for the prime associated to $|\bullet|_\bullet$ and then looking at the sequence $\{k_1,\ldots,k_n\}$ as specifying finitely many coordinates of an adele. This also explains the finiteness in the second statement: we cannot specify infinitely many coordinates of an adele arbitrarily without putting most of them in $\mathcal O_K.$
+					</p>
+					<p>
+						The first statement is in my opinion cleaner, but it does not account for archimedean places; instead, we get to look at all of the nonarchimedean places at once, provided all but finitely many of the $k_\bullet$ coordinates are integral of course. However, in exchange for putting archimedean and nonarchimedean places on the same footing, the proof of the second statement is forced to be mostly topological, which is nice.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

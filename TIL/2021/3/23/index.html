@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 23rd
+					</h2>
+					<p>
+						Today I learned a cute application of a generalized Eisenstein's criterion. With a careful argument, we can extend Eisenstein's criterion for $\ZZ[x]$ to arbitrary integral domains; we include this proof for the sake of completeness, just to show that it works. We take the proof from
+						<a href="https://crypto.stanford.edu/pbc/notes/numbertheory/eisenstein.html">
+							these notes
+						</a>
+						.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $D$ an integral domain and $\mf p\subseteq D$ a prime. Suppose $a\in D[x]$ looks like    \[a(x)=\sum_{n=0}^{\deg a}a_nx^n.\]    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n \lt \deg a,$ and $a_{\deg a}\not\in\mf p,$ then the polynomial $a$ is irreducible.
+						</p>
+					</div>
+					<p>
+						We essentially repeat the proof from $\ZZ[x].$ We remark that the condition that $D$ be an integral domain essentially makes our prime $\mf p$ behave. Anyways, we proceed by contraposition, showing that if $a=bc$ for nonconstant $b$ and $c,$ then $a_{\deg a}\in\mf p,$ provided the other conditions on the coefficients of $a.$
+					</p>
+					<p>
+						Write\[b(x)=\sum_{k=0}^{\deg b}b_kx^k\quad\text{and}\quad c(x)=\sum_{\ell=0}^{\deg c}c_\ell x^\ell.\]Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\not\in\mf p.$
+					</p>
+					<p>
+						Now we claim that $b\in\mf pD[x].$ We show this by (strong) induction on the coefficients on $b.$ The above immediately gives $b_0\in\mf p,$ so suppose that $b_k\in\mf p$ for each $k \lt n\le\deg b \lt \deg a$ so that we want to show $b_n\in\mf p.$ Well, we note that\[b(x)c(x)=\left(\sum_{k=0}^{\deg b}b_kx^k\right)\left(\sum_{\ell=0}^{\deg c}c_\ell x^\ell\right)=\sum_{\substack{k\in[0,\deg b]\\\ell\in[0,\deg c]}}b_kc_\ell x^{k+\ell}=\sum_{d=0}^{\deg a}\left(\sum_{k+\ell=d}b_kc_\ell\right)x^d.\](Yes, I am running out of letters.) It follows that the $x^n$ coefficient of $a=bc$ is\[a_nx^n=\left(\sum_{k=0}^nb_kc_{k-\ell}\right)x^n.\]However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\not\in\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
+					</p>
+					<p>
+						We are pretty much done now. Because $b\in\mf pD[x],$ we see $a=bc\in\mf pD[x]$ as well, from which it follows that all of the coefficients of $a$ are in $\mf p.$ In particular, $a_{\deg a}\in\mf p,$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Anyways, the benefit of abstraction is generality, so let's see this version of Eisenstein's criterion do something interesting. We claim the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The polynomial $x^n+y^n-1\in\QQ[x,y]$ is irreducible.
+						</p>
+					</div>
+					<p>
+						View this as an element of $\QQ[x][y],$ where the polynomial looks like\[y^n+0y^{n-1}+\cdots+0y+\left(x^n-1\right).\]Thus, it suffices to show that $x^n-1\in\QQ[x]$ is contained in some prime but not the square of that prime.
+					</p>
+					<p>
+						We could say that "obviously'' the prime $(x-1)$ works, but we can claim stronger: the factorization of $x^n-1$ can contain no repeated factors. Indeed, to check for repeated factors, we check the greatest common divisor of $x^n-1$ with its derivative, which looks like\[\gcd\left(x^n-1,nx^{n-1}\right)\mid(x/n)\cdot nx^{n-1}-\left(x^n-1\right)=1,\]so the polynomials are coprime. Thus, the factorization has no prime factors, so any prime dividing $\left(x^n-1\right)$ will work with Eisenstein's criterion; certainly such a prime exists because $(x-1)$ is one. $\blacksquare$
+					</p>
+					<p>
+						I am obligated to say that the above proof works as long as we're in characteristic which does not divide $n.$ We worked in $\QQ$ mostly for psychological reasons.
+					</p>
+					<p>
+						We even remark that we can extend Eisenstein's criterion to three variables, though doing so requires more work.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The polynomial $x^2+y^2+z^2\in\QQ[x,y,z]$ is irreducible.
+						</p>
+					</div>
+					<p>
+						We take this argument from
+						<a href="http://www-users.math.umn.edu/~garrett/m/algebra/notes/16.pdf">
+							here
+						</a>
+						. Again, we view this as a polynomial in $\QQ[x,y][z],$ where the polynomial looks like $z^2+0z+\left(x^2+y^2\right).$ Thus, we suffices to show that the "constant term'' $x^2+y^2$ is contained in some prime but not its square in $\QQ[x,y].$
+					</p>
+					<p>
+						However, because $\QQ[x,y]$ has unique prime factorization, it suffices to check that $x^2+y^2$ has some prime factor which is not repeated in its prime factorization. Well, it's nonconstant, so it is in some prime, and we can check for repeated factors in the factorization of $x^2+y^2$ in $\QQ(x)[y]$ by computing its greatest common divisor with its (formal) derivative (which is with respect to $y$). This is\[\gcd\left(x^2+y^2,2y\right)\mid x^2+y^2-(y/2)\cdot2y=x^2.\]But $x^2$ is a constant polynomial in $\QQ(x)[y]$ and therefore a unit! In particular, $x^2+y^2$ has no repeated roots in its factorization, so we are done here. $\blacksquare$
+					</p>
+					<p>
+						To be fair, this was somewhat annoying to establish the fact that $x^2+y^2+z^2$ is irreducible (which looks like it should be obvious), but so it goes. It might also be possible to show this by exhibiting $x^2+y^2+z^2$ exhibiting a prime for very large $x,y,z$ a la Cohn's criterion, but I don't know if this works yet.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

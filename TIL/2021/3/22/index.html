@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 22nd
+					</h2>
+					<p>
+						Today I learned about the axiom of choice in homotopy type theory. Roughly speaking, the statement is equivalent to saying "the product of nonempty sets is nonempty'' in homotopy type theory. Using truncation for the implicit "there exists,'' this means we are postulating\[\op{ac}:\prod_{x:X}\lVert Y(x)\rVert\to\left\lVert\prod_{x:X}Y(x)\right\rVert,\]where $X$ is a set, and $Y$ is a family of sets. We do note that the reverse implication is provable, as it is in classical set theory.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							For type $X$ and family $Y:X\to\UU,$ we have    \[\left\lVert\prod_{x:X}Y(x)\right\rVert\to\prod_{x:X}\left\lVert Y(x)\right\rVert.\]
+						</p>
+					</div>
+					<p>
+						We are trying to construct a function from a mere proposition, so it would be nice if the codomain was also a mere proposition. In fact, it is generally true that, for type $A$ and family of mere propositions $B:A\to\UU,$ we have\[\prod_{a:A}B(a)\]is also a mere proposition. Indeed, this follows from function extensionality: if $f,g:\prod_{(a:A)}B(a),$ then $f=g$ follows from $\prod_{(a:A)}f(a)=g(a),$ which is true because $f(a),g(a):B(a),$ and $B(a)$ is a mere proposition.
+					</p>
+					<p>
+						Thus, by recursion on truncation, it suffices to show\[\prod_{x:X}Y(x)\to\prod_{x:X}\lVert Y(x)\rVert.\]However, this is not difficult: we take any $f:\prod_{(x:X)}Y(x)$ to $x\mapsto|f(x)|:\lVert Y(x)\rVert.$ So we are done. $\blacksquare$
+					</p>
+					<p>
+						We showed in the proof that both sides of the axiom of choice are mere propositions, so the map $\op{ac}$ is really providing the other direction of the equivalence provided in the above proposition. That is, the axiom of choice asserts that\[\prod_{x:X}\lVert Y(x)\rVert\simeq\left\lVert\prod_{x:X}Y(x)\right\rVert.\]For some reason this feels stronger to me.
+					</p>
+					<p>
+						The proposition, in statement and proof, did not require any assumptions of $X$ being a set or $Y$ a family of sets, so there might be hope that we can remove these conditions from $\op{ac}.$ The Homotopy Type Theory book asserts that we can strengthen $\op{ac}$ to allow arbitrary type families $Y:X\to\UU$ but notes that we cannot lift the restriction that $X$ is a set.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							There exists a $1$-type $X:\UU$ for which the hypothesis of $\op{ac}$ holds but not the conclusion.
+						</p>
+					</div>
+					<p>
+						At a high level, what I think is happening is that truncation kills "too much'' of the higher-groupoid structure of our types, which makes $\op{ac}$ problematic if there is nontrivial structure there. It is not clear to me how to formalize this intuition, but what follows is a proof.
+					</p>
+					<p>
+						In particular, the condition of being a $1$-type is added to the statement for tightness: the idea is that sets are $0$-types, so if we try to make the higher groupoid structure of $X$ "any more complicated,'' then we die. So suppose for the time being that $X$ is not a set but is a $1$-type.
+					</p>
+					<p>
+						Anyways, we would like to keep $Y:X\to\UU$ a family of sets for consistency. The only concrete thing that we know about $X$ is that its equality types are sets, so we use these to generate our type family. That is, fix a basepoint $x_0:X$ to be determined later, and we let\[Y(x):\equiv(x_0=x).\]This does mean we will have to inhabit $\lVert Y(x)\rVert\equiv\lVert x_0=x\rVert$ later, which looks hard. In particular, it is not the case that $x_0=x$ for each $x,$ for this would imply that $X$ is a mere proposition, and mere propositions are sets. In fact, we note that we also want to witness\[\left\lVert\prod_{x:X}Y(x)\right\rVert\to0,\]but because $0$ is a proposition, it suffices to witness $\prod_{(x:X)}Y(x)\to0$ by recursing on the truncation. But again, we know this because $X$ is not a set and so not a mere proposition. (We don't prove that mere propositions are sets here.)
+					</p>
+					<p>
+						It remains to exhibit $X$ which is a $1$-type but not a set such that $\lVert x_0=x\rVert$ for each $x:X.$ Now for the magic.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The type    \[X:\equiv\sum_{A:\UU}\lVert2=A\rVert\]    works.
+						</p>
+					</div>
+					<p>
+						We begin by studying paths in $X.$ Pick up two objects $(A,p),(B,q):X$ (which look like that by propositional uniqueness), and we note that\[\big((A,p)=(B,q)\big)\simeq\sum_{r:A=B}\op{transport}^{Y}(r)(p)=q\]because of how paths work in pairs. However, both $r_*(p)$ and $q$ inhabit $\lVert2=B\rVert,$ which is a mere proposition, so we get this equality for free. Thus, we can construct functions back and forth from $A=B$ to $(A,p)=(B,q)$ using the above (and the fact that $\lVert2=B\rVert$ is a mere proposition): forwards by appending the transported equality and backwards by projection. It follows\[\big((A,p)=(B,q)\big)\simeq(A=B).\]So by univalence, $\big((A,p)=(B,q)\big)\simeq(A\simeq B).$
+					</p>
+					<p>
+						Now we can quickly show that $X$ is not a set: note that\[\big((2,|\op{refl}_2|)=(2,|\op{refl}_2|)\big)\simeq(2\simeq2).\]However, this equality type is not a mere proposition, for $2\simeq2$ has nontrivial equivalences (see the proof that the law of the excluded middle fails). So $X$ is not a set. Note we have assumed that $A$ is a set with $A\simeq B$ implies $B$ is a set, which we do not show here.
+					</p>
+					<p>
+						Continuing, we take $x_0:\equiv(2,|\op{refl}_2|)$ as our basepoint, and we show $\prod_{(x:X)}\lVert x_0=x\rVert.$ This is nice because, for any other $(A,p):X,$ we already know that $\lVert2=A\rVert$ is inhabited by $p.$ In particular, we recall\[\big(x_0=(A,p)\big)\simeq(2=A),\]and so we can exhibit $\lVert2=A\rVert\to\lVert x_0=(A,p)\rVert$ (by recursing on truncation) and then push $p:\lVert2=A\rVert$ through. Note how strange this is: we have no hope of actually exhibiting $x_0=(A,p)$ or even $2=A,$ but we can exhibit $\lVert x_0=(A,p)\rVert$ just fine.
+					</p>
+					<p>
+						It remains to show that $X$ is a $1$-type. That is, for $(A,p),(B,q):X$ (which look like that by propositional uniqueness), we have to show that\[\big((A,p)=(B,q)\big)\simeq(A\simeq B)\]is a set. We claim that $A$ and $B$ are setsl we show this for $A,$ and $B$ is similar. We note that $2=A$ will imply that $A$ is a set (because $2$ is a set), but we only know that $p:\lVert2=A\rVert.$ Thus, it would be nice for the condition\[\op{isSet}(A):\equiv\prod_{(a,b:A)}\prod_{(x,y:a=b)}(x=y)\]to be a mere proposition so that recursion on the truncation of $p$ would finish. However, it is true that $\op{isSet}(A)$ is indeed a mere proposition, so we're done here. $\blacksquare$
+					</p>
+					<p>
+						The lemma finishes the proposition by exhibiting exactly what we needed from $X.$ So we are done here. $\blacksquare$
+					</p>
+					<p>
+						We make two remarks on what makes the $X$ here weird. First, our witness the fact $(2,|\op{refl}_2|)=(2,|\op{refl}_2|)$ is not a mere proposition is more or less a manifestation of truncation ignoring too much higher-groupoid structure. Namely, we would like the only path here to be the one that induced $|\op{refl}_2|,$ for the object itself is telling us its preferred path, but truncation has provided other options.
+					</p>
+					<p>
+						Secondly, the proof that $X$ is a $1$-type proves that $A$ is a set through the fact that we can witness merely $\lVert2=A\rVert.$ A priori, we would like to say that $2$ and $A$ have the same structure from this, but we cannot actually extract $2=A$ due to the weird truncation. However, what we were able to do is extract any information about structure, phrased as a mere proposition, which $\op{isSet}$ qualifies as.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

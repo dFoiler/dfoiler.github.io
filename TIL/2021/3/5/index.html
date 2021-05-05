@@ -72,6 +72,16 @@
 							March 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -85,7 +95,112 @@
 						March 5th
 					</h2>
 					<p>
-						Today I learned about multiplicative (quasi)characters of local fields.\todo{drp}
+						Today I learned about multiplicative (quasi)characters of local fields, from
+						<a href="http://math.mit.edu/~poonen/786/notes.pdf">
+							the MIT notes
+						</a>
+						as usual. Fix $F$ a local field with unit group $F^\times.$ For convenience, we let $U=\{x\in F^\times:|x|=1\}$ (i.e., the units in the ring of integers if $F$ is nonarchimedean), and $|F^\times|=\{|x|:x\in F^\times\}.$ Note $U$ and $|F^\times|$ are groups. We take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A (multiplicative) character $\chi:F^\times\to\CC^\times$ is unramified if and only if $\chi(U)=\{1\}.$
+						</p>
+					</div>
+					<p>
+						Note that we are expanding our definition of character to multiply into $\CC^\times$ instead of just $S^1$; we'll call a character "unitary'' if its image lives in $S^1.$
+					</p>
+					<p>
+						We take the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							A character $\chi:F^\times\to\CC^\times$ is unramified if and only if $\chi(x)=|x|^s$ for some $s\in\CC.$
+						</p>
+					</div>
+					<p>
+						We see $\chi(x)=|x|^s$ for $s\in\CC$ implies $\chi(x)=1$ if $x\in U,$ which deals with the reverse implication.
+					</p>
+					<p>
+						For the reverse implication, we note that the mapping $F^\times\to|F^\times|$ by $x\mapsto|x|$ is surjective with kernel $U,$ so $|F^\times|\cong F^\times/U.$ So if $\chi:F^\times\to\CC^\times$ acts trivially on $U,$ it also makes a character on cosets $\chi:F^\times/U\to\CC^\times,$ so we care about the induced character\[\chi:|F^\times|\to\CC^\times.\]It suffices to show that this (or any) character $|F^\times|\to\CC^\times$ has the form $x\mapsto|x|^s$ for $s\in\CC.$ Indeed, then we can write any $x\in F^\times$ as $x/|x|\cdot|x|$ for $x/|x|\in U$ and $|x|\in|F^\times|,$ so\[\chi(x)=\chi\left(\frac x{|x|}\right)\chi(|x|)=1|x|^s\]because $\chi$ already acted trivially on $U.$
+					</p>
+					<p>
+						So fix a character $\chi:|F^\times|\to\CC^\times.$ We split our work if $F$ is archimedean or not.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $F$ is nonarchimedean, then we note    \[|F^\times|=\{|x|:x\in F^\times\}=\left\{q^k:k\in\ZZ\right\},\]    where $q$ is the size of the residue field of $F.$ From here, if we let $\chi(q)=q^s$ for some $s=\log\chi(q)/\log q\in\CC$ (pick any branch of $\log$), then we have    \[\chi\left(q^k\right)=\chi(q)^k=q^{sk}=\left(q^k\right)^s,\]    which is what we wanted. Note the use of discreteness in this argument.
+							</p>
+						</li>
+						<li>
+							<p>
+								Else $F$ is archimedean, so $F=\RR$ or $F=\CC.$ In this case $|F^\times|=\RR^\times_{ \gt 0},$ so we note that we're really studying characters $\chi:\RR^\times_{ \gt 0}\to\CC^\times.$ Now, the idea is that $a^\QQ$ for $a\ne1$ is dense in $\RR^\times_{ \gt 0},$ so we can more or less finish with a similar argument as in the nonarchimedean case.
+							</p>
+							<p>
+								However, there is some technicality here because $\chi(2)$ doesn't actually determine $\chi(\sqrt2)$ (for example) for argument reasons, so we have to be more careful. Note that $\log:\RR^\times_{ \gt 0}\to\RR$ is an isomorphism of groups, so we focus on characters    \[\chi(\log)=:\psi:\RR\to\CC^\times.\]    Now, we can separate $\psi=|\psi|e^{i\arg\psi}$ into $e^{i\arg\psi}:\RR\to S^1$ and $|\psi|:\RR\to\RR^\times_{ \gt 0},$ which we do because $|\psi|$ no longer has argument issues. We could do some careful continuity argument to understand $\RR\to S^1,$ but we know all these characters take the form $x\mapsto e^{bix}$ for some $b\in\RR$ because of our classification of local characters. So let $e^{i\arg\psi(x)}=e^{bix}$ for fixed $b\in\RR.$
+							</p>
+							<p>
+								So as promised, we use a continuity argument on $|\psi|.$ We can write $|\psi|(e)=e^a$ for some unique (!) $a=\log|\psi(e)|\in\RR,$ and then $|\psi|\left(e^{m/n}\right)=e^{am/n}$ because $e^{1/n}$ is a well-defined real number. Thus, $|\psi|:\QQ\to\RR^\times_{ \gt 0}$ looks like $q\mapsto e^{aq}.$
+							</p>
+							<p>
+								Then for any $x\in\RR,$ we can fix some Cauchy sequence $\{q_k\}_{k\in\NN}\subseteq\QQ$ with $q_\bullet\to x.$ By continuity, we have $|\psi|(q_\bullet)\to\psi(x)$ as well, but    \[|\psi|(q_\bullet)=e^{aq_\bullet}\to e^{xq}\]    because $\exp$ is continuous. Thus, $\psi(x)=e^{xq}$ for any $x\in\RR.$
+							</p>
+							<p>
+								Bringing all of this together, we let $s:=a+bi$ so that    \[\psi(x)=|\psi(x)|e^{i\arg\psi(x)}=e^{(a+bi)x}=e^{sx}.\]    To finish, we note $x\in\RR^\times_{ \gt 0}$ have $\chi(x)=\psi(\log x)=e^{s\log x}=x^s,$ which is what we wanted.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having covered all cases, we are done here. $\blacksquare$
+					</p>
+					<p>
+						Having established that unramified characters are well-behaved, we note the following decomposition is really the reason why we introduced them.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Any character $\chi:F^\times\to\CC^\times$ can be decomposed into $\chi(x)=\eta(x)|x|^s$ for some unitary character $\eta$ and some $s\in\CC.$
+						</p>
+					</div>
+					<p>
+						Note that it's not unreasonable to expect this a priori, for $|F^\times|\cong F^\times/U$ essentially says that $F^\times$ also has a decomposition into "norm part'' $|F^\times|$ and "unitary part'' $U.$ Because we already know that $F\cong\widehat F,$ it's not super surprising that characters on $F^\times$ are sharing similar structure as $F^\times.$
+					</p>
+					<p>
+						With this in mind, the idea is to write, for any $x\in F^\times,$\[\chi=\frac\chi{|\chi|}\cdot|\chi|.\]We see $\frac\chi{|\chi|}$ is unitary, and showing $|\chi|$ is unramified comes down to showing that $\chi(U)\subseteq S^1$ or that the induced $\chi:U\to\CC^\times$ must in fact be unitary. (We remark that it is tempting to try to show $|x|=1$ implies $|\chi(x)|=1$ more directly, but this is harder than it looks.) Note $U$ is a group, so $\chi:U\to\CC^\times$ is a character.
+					</p>
+					<p>
+						This comes down to $U$ being compact. Indeed, $U$ is closed because\[U=F^\times\setminus\{x\in F^\times:|x|\ne1\}=F^\times\setminus\left(\{x\in F^\times:|x| \lt 1\}\cup\{x\in F^\times:|x| \gt 1\}\right)\]is the complement of an open set because\[\{x\in F^\times:|x| \gt 1\}=\bigcup_{|x| \gt 1}\{y\in F^\times:|y-x| \lt |x|-1\}\]because $|y-x| \lt 1-|x|$ implies $|y| \gt |y-x|-|x| \gt 1.$ Then because $U$ is also bounded (by $2,$ say), we see $U$ is closed and bounded and therefore compact.
+					</p>
+					<p>
+						We now take the following lemma to finish.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $G$ is a compact abelian group and $\chi:G\to\CC^\times$ is a character. Then $\chi$ is unitary.
+						</p>
+					</div>
+					<p>
+						Letting $U_k=\{z\in\CC^\times:|z| \lt k\},$ we note that $\{U_k\}_{k\in\NN}$ forms an open cover of $\CC^\times$ because every element has some finite norm. It follows that\[\left\{\chi^{-1}(U_k)\right\}_{k\in\NN}\]is an open cover of $G$ because each $g\in G$ goes to some $\chi(g)\in\CC^\times=\bigcup_kU_k.$ We may now use compactness to extract a finite subcover $\chi^{-1}(U_{k_1}),\ldots,\chi^{-1}(U_{k_n}),$ but because $a \lt b$ implies $U_a\subseteq U_b$ implies $\chi^{-1}(U_a)\subseteq\chi^{-1}(U_b),$ we can let $N=\max\{k_\bullet\}$ so that\[G\subseteq\bigcup_{\ell=1}^n\chi^{-1}(U_{k_n})\subseteq\bigcup_{\ell=1}^n\chi^{-1}(U_N)=\chi^{-1}(U_N).\]In particular, we see $\chi(G)\subseteq U_N,$ so the image $\chi(G)$ has norm bounded by $N.$
+					</p>
+					<p>
+						To finish, fix any $g\in G$ so that we want to show $|\chi(g)|=1.$ For any $k\in\NN,$ we note that\[|\chi(g)|^k=\left|\chi\left(g^k\right)\right| \lt N,\]so $|\chi(g)| \lt N^{1/k}$ for any $k\in\NN.$ It follows $|\chi(g)|\le1,$ and running the same argument with $g^{-1}$ means $|\chi(g)|=|\chi(g^{-1})|^{-1}\ge1$ as well, which finishes. $\blacksquare$
+					</p>
+					<p>
+						Applying the lemma to $U,$ which we know to be a compact abelian group, implies that the restriction of $\chi$ to $U$ must be unitary, so $|\chi|$ is indeed unramified. So we are done here. $\blacksquare$
+					</p>
+					<p>
+						With the decomposition in hand, we can kind of explain why we expanded our characters from $S^1$ to $\CC^\times.$ Note the following discussion is far from rigorous. Consider a Dirichlet $L$-function, which looks like\[L(s,\chi)=\prod_p\frac1{1-\chi(p)p^{-s}},\]where $\chi:\QQ^\times\to S^1$ is a unitary character, provided we let $\QQ^\times$ ignore finitely many primes. However, looking at our decomposition, we see $p\mapsto\chi(p)p^{-s}$ is really just a single character $\chi:\QQ^\times\to\CC^\times,$ so we can view the above as\[L(\chi)=\prod_p\frac1{1-\chi(p)}.\]What's nice here is that we have compressed the number of variables we have to handle. In practice, I think we do usually go ahead and separate out $\chi:F\to\CC^\times$ into unitary and unramified parts, but the single variable helps make our statements cleaner.
 					</p>
 				</div>
 			</div>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 1st
+					</h2>
+					<p>
+						Today I learned that the matrix exponential can be used to solve systems of linear differential equations, from 3Blue1Brown of course. To review, for $M\in\CC^{n\times n},$ we define\[e^M:=\sum_{k=0}^\infty\frac1{k!}M^k,\]using the Taylor series as our definition. We begin by showing this exists with the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $m$ is the largest absolute value of any entry in $M.$ Then, for $k\ge1,$ the entries of $M^k$ are bounded in absolute value by $n^{k-1}m^k.$
+						</p>
+					</div>
+					<p>
+						We proceed by induction; for $k=1,$ there is nothing to prove. Now, for $k+1,$ we suppose that the entries of $M^k$ are bounded by $n^{k-1}m^k.$ Then the formula for matrix multiplication implies that\[\left(M^{k+1}\right)_{x,y}=\left(M^kM\right)_{x,y}=\sum_{z=1}^n\left(M^k\right)_{x,z}M_{z,y}.\]By the inductive hypothesis, we can bound this as\[\left|\left(M^{k+1}\right)_{x,y}\right|\le\sum_{z=1}^n\left|\left(M^k\right)_{x,z}\right|\cdot\left|M_{z,y}\right|\le n\cdot\left(n^{k-1}m^k\right)\cdot m.\]This bound rearranges to $n^{k+1-1}m^{k+1},$ which completes the inductive step. $\blacksquare$
+					</p>
+					<p>
+						We know that equality holds in the equalities if all entries of $M$ are equal. Anywyas, the point is that we can write\[\left(e^M\right)_{x,y}=\sum_{k=0}^\infty\frac1{k!}\left(M^k\right)_{x,y}.\]This series converges (absolutely!) because we can set $m$ as $\max_{x,y}|M_{x,y}|,$ and bound with the lemma as\[\sum_{k=0}^\infty\frac1{k!}\left|\left(M^k\right)_{x,y}\right|\le\sum_{k=0}^\infty\frac1{k!}\left(n^{k-1}m^k\right)=\frac1ne^{mn}.\]So we see that this series converges (absolutely) pointwise in each of its components.
+					</p>
+					<p>
+						As motivation for what follows, we review solving linear differential equations in one variable. That is, we want to solve\[\frac{dx}{dt}=mx,\]where $m\in\CC^{1\times1},$ with initial condition $x(0).$ If the function $x$ is to be differentiable, then it had better be analytic, so we wave our hands really hard and make it infinitely differentiable. We can show (say, by induction) that, for positive integers $k,$\[\frac{d^kx}{dt^k}x=\frac{d^{k-1}}{dt^{k-1}}\underbrace{\frac{dx}{dt}}_{mx}=m\frac{d^{k-2}}{dt^{k-2}}\underbrace{\frac{dx}{dt}}_{mx}=\cdots=m^kx.\]Thus, we see\[\frac{d^kx}{dt^k}\bigg|_{x=0}=m^kx_0,\]so expanding out a Taylor expansion tells us that\[x=\sum_{k=0}^\infty\frac{t^k}{k!}\left(\frac{d^kx}{dt^k}\bigg|_{x=0}\right)=\left(\sum_{k=0}^\infty\frac1{k!}(tm)^k\right)x_0.\]That is, our solutions are $e^{tm}x_0.$ What's remarkable is that the above proof has been written so that everything but the Taylor expansion will work for matrices! So it should not be terribly surprising that we have the following theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $M\in\CC{n\times n}.$ Then $x(t)=e^{tM}x_0$ is a solution of $\frac{dx}{dt}=Mx$ for any initial condition $x_0\in\CC^n.$
+						</p>
+					</div>
+					<p>
+						In particular, note that $e^{tM}x_0$ features a matrix-vector product (!). Anyways, this proof comes down to symbol-pushing. Observe that\[e^{tM}x_0=\left(\sum_{k=0}^\infty\frac1{k!}(tM)^k\right)x_0.\]We would like to bring in $x_0$ into the infinite sum; this is legal because the sum will absolutely converge, so we may multiply through the $x_0$ before or after. Indeed, for\[e^{tM}x_0\stackrel?=\sum_{k=0}^\infty\frac1{k!}(tM)^kx_0,\]we can create a similar bounding lemma to before, simply asserting that an entry of $(tM)^kx_0$ is bounded by $n$ times the largest entry of $(tM)^k$ times the largest entry of $x_0,$ which is still only exponential in $k.$ I'm too lazy to work out all the details here.
+					</p>
+					<p>
+						Now, taking the derivative, we find\[\frac{dx}{dt}=\frac d{dt}\sum_{k=0}^\infty\frac1{k!}(tM)^kx_0=\sum_{k=0}^\infty\frac d{dt}\frac1{k!}(tM)^kx_0.\]Note that we are allowed to bring in the derivative here because both sides are converging properly, plus maybe some analytic property that someone else is paid to think about. Anyways, most of the expression $\frac1{k!}(tM)^kx_0$ is constant with respect to $t,$ so we find\[\frac{dx}{dt}=\sum_{k=0}^\infty\frac1{k!}\left(\frac d{dt}t^k\right)M^kx_0=\sum_{k=1}^\infty\frac k{k!}t^{k-1}M^kx_0.\]Yes, this series still converges pointwise because we can write it as\[\frac{dx}{dt}=\sum_{k=1}^\infty\frac1{(k-1)!}(tM)^{k-1}(Mx_0)=e^MMx_0.\]Alternatively, we can push out the $M$ to say that $\frac{dx}{dt}=Me^Mx_0=Mx,$ which is what we wanted. Note that we are not justifying this push of $M$ out super rigorously, but I think we can do this as $k\to\infty$ safely and $M^k/k!$'s entries vanish. $\blacksquare$
+					</p>
+					<p>
+						As a brief addendum for computing $e^M,$ we note that if $A$ and $B$ are similar with $A=SBS^{-1},$ then\[e^A=\sum_{k=0}^\infty\frac1{k!}A^k=\sum_{k=0}^\infty\frac1{k!}SB^kS^{-1}=Se^BS^{-1}.\]Again, we are freely moving $S$ and $S^{-1}$ in and out of the sum because it's a mere linear transformation and will not affect the convergence. Anyways, the point is that if $M=SDS^{-1}$ is diagonalizable with $D$ diagaonl, then\[e^M=Se^DS^{-1},\]and now we note that diagonal matrices are very well-behaved, for an eigenvector $x$ with eigenvalue $\lambda$ has\[e^Mv=\sum_{k=0}^\infty\frac1{k!}M^kv=\sum_{k=0}^\infty\frac1{k!}\lambda^kv=e^\lambda v.\]Thus, employing an eigenbasis for $M,$ we see\[\exp\left(\begin{bmatrix}    \lambda_1 & & & 0 \\    & \lambda_2 \\    & & \ddots \\    0 & & & \lambda_n\end{bmatrix}\right)=\begin{bmatrix}    e^{\lambda_1} & & & 0 \\    & e^{\lambda_2} \\    & & \ddots \\    0 & & & e^{\lambda_n}\end{bmatrix}.\]So we can easily compute the matrix exponential of diagonal matrices, which means we can extend to diagonalizable matrices without too much fuss.
+					</p>
+					<p>
+						As an example, we note that\[R:=\begin{bmatrix}    0 & -1 \\ 1 & 0\end{bmatrix}=\begin{bmatrix}    -i & i \\ 1 & 1\end{bmatrix}\begin{bmatrix}    -i & 0 \\ 0 & i\end{bmatrix}\begin{bmatrix}    i/2 & 1/2 \\ -i/2 & 1/2\end{bmatrix}.\]Here, multiplication by $R$ corresponds to a $90^\circ$ rotation in $\RR^2$ the way that multiplication by $i$ corresponds to a $90^\circ$ rotation in the complex plane. So we see\[e^{tR}=\begin{bmatrix}    -i & i \\ 1 & 1\end{bmatrix}\begin{bmatrix}    e^{-it} & 0 \\ 0 & e^{it}\end{bmatrix}\begin{bmatrix}    i/2 & 1/2 \\ -i/2 & 1/2\end{bmatrix}=\begin{bmatrix}    \cos t & -\sin t \\    \sin t & \cos t\end{bmatrix}.\]That is, the exponential is generating the rest of our rotations, just like in $\CC.$ Cute.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 8th
+					</h2>
+					<p>
+						Today I learned how to construct wild automorphisms of $\CC$ via Zorn's lemma. This is the proof I've actually worked through using Zorn's lemma (!), so maybe I should have chosen something less involved, but here we go.
+					</p>
+					<p>
+						The intuition is similar to the compactness of $[0,1]$: we can extend any automorphism of some subfield $K$ of $\CC$ upwards some finite number of steps, so it feels like induction should be able to extend this to a full automorphism of $\CC.$ This is not really the case, but transfinite induction will do the trick, with some minor magic.
+					</p>
+					<p>
+						We would like to say something like "any automorphism of $K$ can be extended to an automorphism of $K(\alpha)$ for any $\alpha\in\CC\setminus K$,'' but this is problematic for finite extensions. In particular, for $\sigma\in\op{Aut}K,$ if $[K(\alpha):K] \lt \infty$ with minimal polynomial $f,$ then we need\[(\sigma f)(\sigma\alpha)=0.\]In particular, the coefficients here are being switched, so we need to take $\alpha$ to the root of a different polynomial. But if we take $\alpha$ to some $\beta,$ we need to figure out where $\beta$ goes and so on. This is annoying.
+					</p>
+					<p>
+						So instead of considering automorphisms of $K,$ we generalize to isomorphisms $K\to L.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $K,L\subsetneq\CC$ subfields, and suppose we have some field isomorphism $\sigma:K\to L.$ Then for any $\alpha\in\CC\setminus K$ such that $[K(\alpha):K] \lt \infty,$ it is possible to extend $\sigma$ to an isomorphism on $K(\alpha)\to L'$ for some field $L'$ containing $L.$
+						</p>
+					</div>
+					<p>
+						We have already more or less outlined how to do this. Let $f$ be the minimal polynomial of $\alpha$ over $K.$ As stated above, we need $(\sigma f)(\sigma\alpha)=0,$ so we define $\beta:=\sigma(\alpha)$ to be any root of the irreducible polynomial $\sigma(f).$ (We note $\sigma(f)$ is irreducible because any factorization of $\sigma(f)$ can be tracked back to a factorization of $f.$) Now, we can extend\[\sigma:K(\alpha)\to L(\beta)\]by extending $\sigma$ linearly to all of $K(\alpha).$ To show that this is actually isomorphism, we have to show that $\sigma$ still satisfies the ring homomorphism axioms, and $\sigma$ is a bijection. We outline these.
+					</p>
+					<p>
+						The ring homomorphism axioms come form the fact we extended $\sigma$ linearly, so this was defined to work. If we wanted formality, we'd have to manually check this, but I can't be bothered. Surjectivity of $\sigma$ comes from writing\[\underbrace{\sum_{\ell=-N}^Mb_\ell\beta^k}_{\in L(\beta)}=\sigma\left(\sum_{\ell=-N}^M\sigma^{-1}(b_\ell)\alpha^\ell\right)\in\sigma\left(K(\alpha)\right).\]Injectivity is the difficult part. It suffices to show that $\sigma$ has trivial kernel. Now, we see that\[0=\sigma\left(\sum_{k=-N}^Ma_k\alpha^k\right)=\sum_{k=-N}^M\sigma(a_k)\beta^k.\]We can multiply through by $\beta^N$ so that we see $\beta$ is a root of\[\sum_{k=0}^{N+M}\sigma(a_{k-N})x^k\in L[x].\]However, by definition of the minimal polynomial, we see that $\sigma(f)$ must divide this, so reversing $\sigma$s everywhere, we have that $f$ divides\[\sum_{k=0}^{N+M}a_{k-N}x^k\in K[x].\]In particular, plugging in $\alpha$ means that the original element was in fact $0$ in $K(\alpha).$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						At this point we are able to use Zorn's lemma to deal with all of our finite extensions simultaneously. For brevity, we let $\overline K$ be the algebraic closure of $K.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $K,L\subseteq\CC$ subfields, and suppose we have some field isomorphism $\sigma:K\to L.$ Then we can extend $\sigma$ to an isomorphism $\overline K\to\overline L.$
+						</p>
+					</div>
+					<p>
+						Again, the intuition is that we are always able to "push'' $\sigma$ at least one step closer to $\overline K\to\overline L$ by taking out some element $\alpha\in\overline K$ and then using the previous lemma to append.
+					</p>
+					<p>
+						To codify this, we use Zorn's lemma to use transfinite induction. Our partially ordered set $\mathcal P$ will be triples of $(\sigma',K',L')$ where $\sigma':K'\to L'$ is an isomorphism extending $\sigma,$ and we also require $K'\subseteq\overline K$ and $L'\subseteq\overline L.$ We order by writing\[(\sigma_1,K_1,L_1)\preceq(\sigma_2,K_2,L_2)\]if $\sigma_2$ is an extension of $\sigma_1$ with $K_1\subseteq K_2$ and $L_1\subseteq L_2.$ While we might want to only look at the fields, we keep track of the isomorphism in our partially ordered set so that chains have nice isomorphisms which restrict properly.
+					</p>
+					<p>
+						In particular, we now show that $\mathcal P$ satisfies the chain condition. Suppose $\mathcal C\subseteq\mathcal P$ is a nonempty chain, and we need to exhibit a maximal isomorphism, say $\sigma_\mathcal C.$ Let $K_\mathcal C$ be the union of the $K$ coordinates of the elements of $\mathcal C,$ and we define $L_\mathcal C$ similarly. Now, we define\[\sigma_\mathcal C:K_\mathcal C\to L_\mathcal C\]by taking any $\alpha\in K'$ for $(\sigma',K',L')\in\mathcal C$ to $\sigma_\mathcal C(\alpha):=\sigma'(\alpha).$ Note that this makes sense because $\alpha\in K_1\cap K_2$ with $(\sigma_1,K_1,L_1),$ $(\sigma_2,K_2,L_2)\in\mathcal C$ must have (without loss of generality) $K_1\subseteq K_2$ with $\sigma_1$ the restriction of $\sigma_2.$ So $\sigma_1(\alpha)=\sigma_2(\alpha),$ so we are indeed allowed to choose any $K'$ containing $\alpha$ to define $\sigma_\mathcal C(\alpha).$
+					</p>
+					<p>
+						Anyways, we claim that $(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C)$ is an upper bound of $\mathcal C.$ To show that $\sigma_\mathcal C$ is an isomorphism, we need to show that it is a ring isomorphism and bijective. For the ring isomorphism conditions, when we fix $\alpha,\beta\in K_\mathcal C,$ we can place $\alpha,\beta\in K'$ with \[(\sigma',K',L')\in\mathcal C\]by taking the larger of the fields that $\alpha$ and $\beta$ live in. So $\sigma_\mathcal C$ inherits ring homomorphism from $\sigma'$ because $\sigma'$ is the restriction of $\sigma$ to $K'.$
+					</p>
+					<p>
+						Continuing, surjectivity follows similarly because any $\alpha\in L_\mathcal C$ belongs to some $L'$ with $(\sigma',K',L'),$ so we can hit $\alpha$ from $\sigma'(K')=L'.$ And we get injectivity from trivial kernel: if $\sigma_\mathcal C(\alpha)=0,$ then we can place $\alpha\in K'$ in some $(\sigma',K',L'),$ and $\sigma'(\alpha)=0$ implies $\alpha=0.$
+					</p>
+					<p>
+						So for any $(\sigma',K',L')\in\mathcal C,$ we see $(\sigma',K',L')\preceq(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C),$ so we have exhibited an upper bound. And because the $K_\mathcal C$ and $L_\mathcal C$ are merely unions of subfields of $\overline K$ and $\overline L,$ we do have $(\sigma_\mathcal C,K_\mathcal C,L_\mathcal C)$ is in our partially ordered set.
+					</p>
+					<p>
+						Now finally we get to use Zorn's lemma to extract $(\overline\sigma,K',L')$ a maximal element of the partially ordered set. Note that $\overline\sigma$ restricts to $\sigma:K\to L$ because it must bein the partially ordered set. So it remains to show that actually $\overline\sigma:\overline K\to\overline L.$
+					</p>
+					<p>
+						If the domain of $\overline\sigma$ is not actually $\overline K,$ then we can find some $\alpha\in\overline K\setminus K'.$ Because $\alpha$ is finite degree over $K,$ it is also finite degree over $K',$ so we can use the previous lemma to extend $\overline\sigma$ to an isomorpism with domain over $K'(\alpha)\supsetneq K'.$ This violates the maximality of $(\overline\sigma,K',L').$
+					</p>
+					<p>
+						Thus, the domain of $\overline\sigma$ is algebraically closed, so its codomain must also be algebraically closed. In particular, all polynomials over $\sigma(K)=L$ must have a root, so $\overline L$ is a subfield of the codomain of $\overline\sigma.$ But $\overline\sigma$ is in the partially ordered set, so the codomain must actually be $\overline L.$ This competes the proof. $\blacksquare$
+					</p>
+					<p>
+						As a corollary of the above result, we can extend any automorphism $\sigma:K\to K$ to an automorphism $\overline K\to\overline K.$ So we moved through field isomorphisms to give us a little breathing room but did end up extending automorphisms to automorphisms, which is what we're interested in.
+					</p>
+					<p>
+						Now it remains to extend by transcendental extensions. It turns out that it is now easier to extend only automorphisms instead of field isomorphisms, so we only do that. The exact difficulty is that, for $\alpha$ transcendental over $K,$ it's not clear where to take $\alpha$ when trying to extend $\sigma:K\to L.$
+					</p>
+					<p>
+						Yes, we should have $\sigma(\alpha)$ transcendental over $L,$ but it's not clear how to extract a transcendental element. Even worse, there are isomorphisms $K\to\CC$ where $K$ is a proper subfield of $\CC,$ so there isn't an easy way to extend this because there are no transcendental elements for us to use. We'd have to modify the logic of $\sigma,$ which is annoying.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $K\subsetneq\CC,$ and take any automorphism $\sigma\in\op{Aut}K.$ Then if $\alpha\in\CC\setminus K$ is transcendental, then we can extend $\sigma$ to an automorphism of $K(\alpha).$
+						</p>
+					</div>
+					<p>
+						The idea is that we should just be able to fix $\alpha.$ There are fancier ways of doing this, but we just set $\sigma(\alpha):=\alpha$ and then extend linearly. It remains to show that $\sigma$ is actually a field isomophism&mdash;we need to check that it is a ring homomorphism and bijective.
+					</p>
+					<p>
+						Satisfying the ring homomorphism conditions should follow from the fact we defined $\sigma$ by extending linearly. We get surjectivity by writing, for any $\sum_{k=-N}^Ma_k\alpha^k\in K(\alpha),$\[\sum_{k=-N}^Ma_k\alpha^k=\sigma\left(\sum_{k=-N}^M\sigma^{-1}(a_k)\alpha^k\right).\]Finally, injectivity follows from having trivial kernel&mdash;if $\sigma\left(\sum_{k=-N}^Ma_k\alpha^k\right)=0,$ then\[\sum_{k=-N}^M\sigma(a_k)\alpha^{k+N}=0\]provides a polynomial in $K$ for which $\alpha$ is a root, violating the fact that $\alpha$ is transcendental over $K.$ $\blacksquare$
+					</p>
+					<p>
+						We are now ready for the main attraction.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $K\subseteq\CC$ a subfield of $\CC.$ Any $\sigma\in\op{Aut}K$ can be extended to an automorphism of $\CC.$
+						</p>
+					</div>
+					<p>
+						We use Zorn's lemma again. Even though we are only dealing with automorphisms, we are going to make our partially ordered set still triples $(\sigma',K',K')$ where $\sigma':K'\to K'$ is an extension of $K$ to some $K'$ between $K$ and $\mathcal C.$ In particular, we can endow this set with the same ordering as in the previous proposition, allowing fields up to $\CC$ instead of $\overline K.$
+					</p>
+					<p>
+						In particular, the proof that every chain has an upper bound carries through verbatim; of note is that nowhere in the proof did we use the fact that these were subfields of $\overline K$ up until analyzing the maximal automorphism. The reader is encouraged to verify this, but I won't do so manually out of laziness.
+					</p>
+					<p>
+						So now we extract our maximal element $(\sigma',K',K')$ from Zorn's lemma. The automorphism $\sigma'$ restricts to $\sigma:K\to K$ by definition of the partially ordered set, so it remains to show that, in fact, $K'=\CC.$ Well, suppose we have some $\alpha\in\CC\setminus K',$ and we'll show that $\sigma'$ cannot be maximal. We have two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $\alpha$ has finite degree over $K',$ then we remark that we can extend $\sigma':K'\to K'$ to $\overline{\sigma'}:\overline{K'}\to\overline{K'}$ by the proposition, and now $\overline{K'}$ is strictly larger than $K.$ So $(\overline{\sigma'},\overline{K'},\overline{K'})\succeq(\sigma',K',K')$&mdash;note that $(\overline{\sigma'},\overline{K'},\overline{K'})$ is in the partially ordered set because $\sigma'$ still restricts to $\sigma$&mdash;so we have successfully shown $\sigma'$ isn't maximal.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $\alpha$ has infinite degree over $K'$ and is trancendental, the previous lemma shows that we can extend $\sigma':K'\to K'$ to an automorphism $\sigma_\alpha':K'(\alpha)\to K'(\alpha).$ Again, now $(\sigma)\alpha',K'(\alpha),K'(\alpha))\succeq(\sigma',K',K'),$ so we have shown $\sigma'$ isn't maximal.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Thus, because $\sigma'$ is by construction maximal, we must have its domain (and codomain) are $\CC,$ so we have extended $\sigma\in\op{Aut}\CC$ to an element of $\op{Aut}\CC.$ $\blacksquare$
+					</p>
+					<p>
+						In particular, this lets us construct "lots'' of wild automorphisms. For example, we have an automorphism $\QQ(\sqrt2)\to\QQ(\sqrt2)$ taking $a+b\sqrt2\mapsto a-b\sqrt2$ and then extend this to an automorphism of $\CC.$ This cannot extend to either the identity map or conjugation because it doesn't fix $\RR,$ so this extension is a wild automorphism. What it looks like I haven't the faintest clue.
+					</p>
+					<p>
+						What I find really annoying about this proof (result notwithstanding) is that it forces me to think really abstractly about subfields of $\CC.$ Most of the theory I know does carry through to the general case, but I have to keep track of the fact that, say, there do exist isomorphisms $K\to\CC$ where $K$ is a proper (!) subfield of $\CC.$ The axiom of choice is why we can't have nice things.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

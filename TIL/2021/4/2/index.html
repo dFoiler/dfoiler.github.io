@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 2nd
+					</h2>
+					<p>
+						Today I learned how to show that $A\times B:\equiv\prod_{(x:2)}\op{rec}_2(\UU,A,B)(x)$ behaves the way that it should. This turns out to be significantly more involved than I first thought. Anyways, the main idea is that we can represent a pair $(a,b)$ as a function on $2$ taking $0$ to $a$ and $1$ to $b.$ This motivates the constructor\[\op{pair}_{A\times B}(a,b):\equiv\op{ind}\big(\op{rec}_2(\UU,A,B),a,b\big).\]For brevity, we define the notation $(a,b):\equiv\op{pair}_{A\times B}(a,b).$ Also from the function idea we take our projections somewhat for free as\[\begin{cases}    \op{pr}_1(p):\equiv p(0), \\    \op{pr}_2(p):\equiv p(1).\end{cases}\]In particular, $p:A\times B$ is actually a function on $2,$ returning our $A$ element on $0$ and $B$ on $1.$
+					</p>
+					<p>
+						The end goal here is to create an induction, which is the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We can inhabit    \[\op{ind}_{A\times B}:\prod_{(C:A\times B\to\UU)}\left(\prod_{(a:A)}\prod_{(b:B)}C((a,b))\right)\to\left(\prod_{(p:A\times B)}C(p)\right)\]    satisfying    \[\op{ind}_{A\times B}(C,g)((a,b))=g(a)(b)\]    for each $a:A$ and $b:B.$ Note that this equality is propositional.
+						</p>
+					</div>
+					<p>
+						Defining projections is nice because they get us very close to induction by writing\[\lambda C.\lambda g.\lambda p.g(\op{pr}_1p)(\op{pr}_2p):\prod_{(C:A\times B\to\UU)}\left(\prod_{(a:A)}\prod_{(b:B)}C((a,b))\right)\to\left(\prod_{(p:A\times B)}C((\op{pr}_1p,\op{pr}_2p))\right).\]However, the induction we want should actually output a function $\prod_{(p:A\times B)}C(p),$ which is similar to but not the same as $(\op{pr}_1p,\op{pr}_2p).$
+					</p>
+					<p>
+						In particular, we need a propositional uniqueness principle to continue.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We can inhabit    \[\op{uniq}_{A\times B}:\prod_{p:A\times B}(\op{pr}_1p,\op{pr}_2p)=p\]    satisfying    \[\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)}.\]    Again, note that this second equality is propositional.
+						</p>
+					</div>
+					<p>
+						Typically this statement is proven by induction on $p:A\times B,$ but of course we can't do that yet. Instead, we recall that $p$ is a function under the hood, so we use function extensionality. By function extensionality, it suffices to exhibit the homotopy\[\prod_{(x:2)}(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\]but this is true simply by definition of the projections. Being painfully explicit, we see\[\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)\]will exhibit the homotopy, and then we can set\[\op{uniq}_{A\times B}:\equiv\lambda p.\op{funext}\left(\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)\right).\]This finishes the first part of the lemma.
+					</p>
+					<p>
+						To get the definitional equality for $\op{uniq}_{A\times B},$ we have to use a little more power from function extensionality. Namely, $\op{funext}$ is a quasi-inverse for\[\op{happly}:\prod_{(f,g:A\to B)}(f=g)\to\prod_{(a:A)}f(a)=g(a),\]which is defined by path induction with $\op{happly}(f,f,\op{refl}_f):\equiv\lambda a.\op{refl}_{f(a)}.$ We mention this because the fact $\op{happly}$ and $\op{funext}$ are quasi-inverses implies a path\[\op{funext}(f,f,\lambda a.\op{refl}_{f(a)})=\op{refl}_f.\]We can check by function extensionality (again) that, for fixed $p:A\times B,$\[\op{ind}_2\big(\lambda x.(\op{pr}_1p,\op{pr}_2p)(x)=p(x),\op{refl}_{p(0)},\op{refl}_{p(1)}\big)=\lambda a.\op{refl}_{p(a)},\]so pushing this path through $\op{ap}_{\op{funext}}$ tells us that\[\op{uniq}_{A\times B}(p)=\op{funext}\big((\op{pr}_1p,\op{pr}_2p),p,\lambda a.\op{refl}_{p(a)}\big).\]When $p\equiv(a,b),$ we see that this is $\op{funext}(p,p,\lambda a.\op{refl}_{p(a)}),$ so we get $\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)}$ after concatenating the paths. This completes the proof off the lemma. $\blacksquare$
+					</p>
+					<p>
+						To finish, then, we take our almost-induction from $A\times B$ to $C((\op{pr}_1p,\op{pr}_2p))$ and then transport along $\op{uniq}_{A\times B}$ through the family $C$ to $C(p).$ For completeness, we re-prove transport so that we get its definitional equality.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $A:\UU$ a type and $B:A\to\UU$ a family. Then for $x,y:A$ and $p:x=y,$ there is a function    \[\op{transport}^B(p):B(x)\to B(y)\]    satisfying $\op{transport}^B(\op{refl}_x)\equiv\op{id}_{B(x)}.$
+						</p>
+					</div>
+					<p>
+						As usual, this is proven by path induction on the path $p,$ for which it suffices to exhibit a function $\op{transport}^B(p)$ in the case where $p\equiv\op{refl}_x:x=x.$ In this case, we need a function $B(x)\to B(x),$ which we choose to be $\op{id}_{B(x)}\equiv\lambda b.b.$ If we wanted to be explicit, which we are notably not in the habit of given the above lemma, this looks like\[\op{transport}^B\equiv\op{ind}_{=A}\left(\prod_{(x,y:A)}\prod_{(p:x=y)}B(x)\to B(y),\prod_{(x:A)}\op{id}_{B(x)}\right).\]Anyways, this finishes the proof of the lemma. $\blacksquare$
+					</p>
+					<p>
+						Now we can finally exhibit our induction. Given family $C:A\times B\to\UU$ and function $g:\prod_{(a:A)}\prod_{(b:B)}C((a,b))$ with input pair $p:A\times B,$ we can write\[\op{ind}_{A\times B}(C,g)(p):\equiv\op{transport}^C(\op{uniq}_{A\times B}p)\big(g(\op{pr}_1p,\op{pr}_2p)\big).\]Note that this is well-typed because $g(\op{pr}_1,\op{pr}_2p):C((\op{pr}_1p,\op{pr}_2)).$ We then transport along $\op{uniq}_{A\times B}p:(\op{pr}_1p,\op{pr}_2p)=p,$ which is giving a function $C((\op{pr}_1p,\op{pr}_2p))\to C(p).$ Thus, the composite of these is indeed outputting into $C(p).$
+					</p>
+					<p>
+						It remains to check that induction behaves when we pass $(a,b)$ into it. Plugging in, we see that\[\op{ind}_{A\times B}(C,g)((a,b))\equiv\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)\big(g(a)(b)\big).\]Now, it roughly remains to show that $\op{transport}$ is well-behaved. Well, $\op{uniq}_{A\times B}((a,b))=\op{refl}_{(a,b)},$ so pushing this equality (via $\op{ap}$) through the restricted (!) function $\op{transport}^C:((a,b)=(a,b))\to C((a,b))\to C((a,b))$ tells us that\[\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)=\op{id}_{C((a,b))}.\]This is an equality of functions, so we can push it through $\op{happly}$ to say that\[\op{transport}^C\big(\op{uniq}_{A\times B}((a,b))\big)\big(g(a)(b)\big)=\op{id}_{C((a,b))}(g(a)(b))\equiv g(a)(b).\]This completes the proof of the theorem. $\blacksquare$
+					</p>
+					<p>
+						What I find remarkable about the above proof is that I didn't just have to use the existence of $\op{funext},$ but I had to know that it was the quasi-inverse to $\op{happly}$ in order to get the definitional equality. There might be a way around this, but I am not aware of it.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

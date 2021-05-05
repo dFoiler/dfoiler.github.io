@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 16th
+					</h2>
+					<p>
+						Today I learned about proposition truncation. The idea, roughly speaking, is to recreate the dichotomy between propositions and objects in (homotopy) type theory, even when we still have propositions as types in the Curry-Howard correspondence.
+					</p>
+					<p>
+						So given a type $A:\UU,$ we would like a type $\lVert A\rVert$ which is a mere proposition and inhabited whenever $A$ is inhabited. To be explicit, we take the following synthetic definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given $A:\UU,$ we define the truncated type $\lVert A\rVert$ to have the following properties.
+						</p>
+						<ul>
+							<li>
+								<p>
+									Construction: for $a:A,$ there exists some $|a|:\lVert A\rVert.$
+								</p>
+							</li>
+							<li>
+								<p>
+									Mere proposition: for any $p,q:\lVert A\rVert,$ we have $p=q.$
+								</p>
+							</li>
+							<li>
+								<p>
+									Recursion: given a function $f:A\to P$ where $P$ is a mere proposition, there is an induced function $\op{rec}(f):\lVert A\rVert\to B$ such that $\op{rec}(f)(|a|)=f(a)$ for each $a:A.$
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						It would be nice to have the recursion principle satisfy judgemental equalities, but we settle for propositional ones for reasons that will appear later. In practice, we could upgrade, but I choose not to here.
+					</p>
+					<p>
+						Some extra words are necessary to explain the recursion. We are essentially saying that if a mere proposition follows from $A,$ then it had better follow from $\lVert A\rVert$ as well. Note that truncation loses the "distinctness'' of proofs, but the recursion principle asserts that we did not lose the power of our proofs.
+					</p>
+					<p>
+						We would like to say that $\lVert A\rVert$ is inhabited if and only if $A$ is, but this is impossible. Certainly our constructor says $A\to\lVert A\rVert,$ but the reverse implication cannot hold: we would have to be able to conjure a physical witness from $A,$ which we don't want $\lVert A\rVert$ to be able to do anyways.
+					</p>
+					<p>
+						We remark that this "proof distinction'' is a real problem, not just a phantom. For example, we can certainly witness\[\lVert1+1\rVert,\]but we cannot build the desired function $\lVert1+1\rVert\to1+1.$ In particular, we can only have one output because all elements of $\lVert1+1\rVert$ are equal, but we would like to be able to witness both $0_2$ and $1_2.$
+					</p>
+					<p>
+						However, modulo this problem, the recursion principle does something roughly equivalent: whatever statements $A$ can prove, $\lVert A\rVert$ can also prove, provided we reduce ourselves to only proving mere propositions. As mathematicians, this is fine, but as homotopy type theorists, we might prefer not to do this in order to keep the higher groupoid structure.
+					</p>
+					<p>
+						I guess I should provide a construction of proposition truncation, merely because it is possible.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Given $A:\UU,$ the type $\lnot\lnot A$ behaves like $\lVert A\rVert$ as required, assuming the law of the excluded middle $\op{LEM}.$
+						</p>
+					</div>
+					<p>
+						This is a somewhat natural construction, guided by the intuition that we can always make traditional logic into constructive logic if we just add enough $\lnot\lnot$s. For example, $\lnot\lnot\lnot A\to\lnot A$ is true.
+					</p>
+					<p>
+						Anyways, given $a:A,$ we note that\[\lambda f.f(a):\lnot\lnot A\equiv(A\to 0)\to 0,\]so we set $|a|\equiv\lambda f.f(a).$ Showing that $\lnot\lnot A$ is a mere proposition boils down to the fact that $\lnot A$ is a mere proposition for any type $A,$ which we showed a few days ago. In particular, given any $p,q:\lnot\lnot A,$ function extensionality means that it suffices to witness\[\prod_{f:A\to0}p(f)=q(f).\]Well, if we are provided with $f:A\to0,$ then $p(f):0,$ which lets us witness (among other things) the equality $p(f)=g(f)$ by induction. So the equality $p=q$ follows.
+					</p>
+					<p>
+						It remains to show the recursion, which is the part that requires the law of the excluded middle. We are going to end up using the law of the excluded middle on $P$ (our other option is maybe $\lnot\lnot A,$ but it doesn't give anything), but to avoid using excluded middle for as long as possible, we take the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For types $A,B:\UU,$ if $A\to B,$ then $\lnot B\to\lnot A.$
+						</p>
+					</div>
+					<p>
+						This is basically a weak contraposition; note we are not claiming the reverse implication. Anyways, suppose $f:A\to B,$ and we need to witness\[(B\to0)\to(A\to0).\]Viewing this as a curried function, we are given $\overline b:B\to0$ and $a:A,$ and we need to witness $0.$ Well, $\overline b\big(f(a)\big)$ will do the trick, so we're done. $\blacksquare$
+					</p>
+					<p>
+						To use the lemma, we note that $f:A\to P$ gives a function $\lnot P\to\lnot A$ gives a function $\lnot\lnot A\to\lnot\lnot P.$ It is not clear how to exhibit $P$ from $\lnot\lnot P,$ but $P$ is a mere proposition, so we may use the law of the excluded middle: we know\[\op{LEM}(P):P+\lnot P.\]So we do casework. If $\op{LEM}$ gives us $P,$ then we're done. Otherwise, $\op{LEM}$ gives us a witness of $\lnot P,$ but we have something in $\lnot\lnot P,$ so can witness $0.$ Being able to witness $0$ tells us $P$ for free, so we're done again. Thus, we are able to exhibit $\op{rec}(f):\lnot\lnot A\to P.$
+					</p>
+					<p>
+						Finally, to show that $\op{rec}(f)(a)=f(a)$ for each $a:A,$ we note that this equality is taking place in a mere proposition, so it follows for free. This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						Anyways, the point of all this discussion is that type theory does permit us to do "real,'' traditional logic by just making everything a truncated type. We can take a law of the excluded middle, without fear of breaking anything or losing (too much) power in our mathematics.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

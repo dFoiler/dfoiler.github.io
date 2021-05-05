@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 7th
+					</h2>
+					<p>
+						Today I learned about "wild'' automorphisms of $\CC,$ from
+						<a href="https://web.archive.org/web/20190611111804/https://www.jstor.org/stable/2689301">
+							here
+						</a>
+						. These are elements of $\op{Aut}\CC$ which are neither $z\mapsto z$ nor $z\mapsto\overline z.$ Very quickly, we note that any automorphism $\sigma\in\op{Aut}\CC$ must at least fix $1$ by definition, and so it fixes $\ZZ$ by generation, and then it fixes $\QQ$ by division.
+					</p>
+					<p>
+						Additionally, we recall the following statement we proved a while ago.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\op{Aut}\RR=\{\op{id}\}.$
+						</p>
+					</div>
+					<p>
+						We give this proof quickly. The identity is always an automorphism, so the substance is showing that it is the only one. Fix $\sigma\in\op{Aut}\RR.$ The key observation is that, if $x \gt 0,$ then\[\sigma(x)=\sigma(\sqrt x\cdot\sqrt x)=\sigma(\sqrt x)^2 \gt 0.\]In particular, $\sigma$ sends $\RR_{ \gt 0}$ to $\RR_{ \gt 0}.$ So, for example, $x \gt y$ implies $x-y \gt 0$ implies $\sigma(x-y) \gt 0$ implies $\sigma(x) \gt \sigma(y),$ so $\sigma$ is strictly increasing.
+					</p>
+					<p>
+						Now, we already know that $\sigma$ fixes $\QQ$ by carrying over the argument from before. Fixing any $\alpha\in\RR$ and any error $\varepsilon\in(0,\infty),$ we claim that\[\sigma(\alpha)\in(\alpha-\varepsilon,\alpha+\varepsilon).\]Taking $\varepsilon\to0$ will force $\sigma(\alpha)=\alpha,$ finishing. (If unequal, set $\varepsilon=|\sigma(\alpha)-\alpha|.$) To show the claim, we simply note that $\QQ\subseteq\RR$ is dense, so we can find some rationals $q_1\in(\alpha-\varepsilon,\alpha)$ and $q_2\in(\alpha,\alpha+\varepsilon),$ so the fact that $\sigma$ is increasing means\[\alpha-\varepsilon \lt q_1=\sigma(q_1) \lt \sigma(\alpha) \lt \sigma(q_2)=q_2 \lt \alpha+\varepsilon.\]This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We bring up this proof in order to say the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $\sigma\in\op{Aut}\CC.$ If $\sigma(\RR)\subseteq\RR,$ then $\sigma$ is either $\op{id}$ or $z\mapsto\overline z.$
+						</p>
+					</div>
+					<p>
+						The point is that $\sigma(\RR)\subseteq\RR$ means that we can restrict the automorphism $\sigma\in\op{Aut}\CC$ to an automorphism of $\RR.$ (If we wanted to be formal, we could show the axioms go through, but we simply say that the axioms are inherited from holding in $\CC.$) But we know that automorphisms of $\RR$ are $\op{id},$ so we know that $\sigma$ fixes $\RR.$
+					</p>
+					<p>
+						Because $\CC=\RR(i),$ it remains to figure out where $\sigma$ sends $i.$ Well, still need\[\sigma(i)^2=\sigma\left(i^2\right)=\sigma(-1)=-1,\]so $\sigma(i)\in\{\pm i\}.$ If $\sigma(i)=i,$ then for any $a+bi\in\CC,$ we see $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a+bi,$ so $\sigma=\op{id}.$ Alternatively, if $\sigma(i)=-i,$ we see $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a-bi,$ so $\sigma=(z\mapsto\overline z).$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						This might not directly seem like a strong condition on $\sigma,$ but it is. Indeed, $\CC$ needs to fix $\QQ,$ so if $\sigma$ is continuous, then $\sigma$ should fix $\RR$ as well. (Note the closure of $\QQ$ is $\RR.$) So all the wild automorphisms cannot be nice to the topology on $\CC.$ In fact, wild automorphisms are quite mean to the topology on $\CC.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $\sigma\in\op{Aut}\CC$ is a wild automorphism. Then $\sigma(\RR)$ is dense in $\CC.$
+						</p>
+					</div>
+					<p>
+						We note that $\sigma(\RR)\cap\RR$ is at least dense in $\RR$ because $\sigma$ fixes $\QQ.$ So it remains to get imaginary parts.
+					</p>
+					<p>
+						For this, we note that there needs to be some $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ Indeed, if for each $\alpha\in\RR,$ we have $\sigma(\alpha)\in\RR,$ then $\sigma(\RR)\subseteq\RR,$ implying $\sigma$ is one of the non-wild automorphisms. So we get to fix $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ This gives us imaginary parts.
+					</p>
+					<p>
+						Now we show density. The visual is that we can more or less fill up $\RR$ (with $\QQ$) and another non-parallel line $\sigma(\alpha)\RR,$ so the linear combination of these will fill up $\CC.$ Fix $z\in\CC$ and distance $\delta \gt 0$ so that we want to show $\sigma(\RR)\cap B(z,\delta)\ne\emp.$ Letting $\varepsilon:=\delta/\sqrt2$ so that\[S:=\{a+bi:|\op{Re}z-a|,|\op{Im}z-b| \lt \varepsilon\}\subseteq B(z,\delta).\]To see this, we note $|z-(a+bi)|=|\op{Re}z-a|^2+|\op{Im}z-b|^2,$ which is bounded by $2\varepsilon^2/2=\delta$ by construction.
+					</p>
+					<p>
+						We finish by showing that $\sigma(\QQ(\alpha))\cap S\ne\emp.$ Because $\QQ$ is dense in $\RR,$ we can find some $q_i\in\QQ$ with\[\op{Im}\sigma(q_i\alpha)=q_i\op{Im}\sigma(\alpha)\in(\op{Im}z-\varepsilon,\op{Im}z+\varepsilon).\]Indeed, it suffices to find $q_i$ in\[\left(\frac{\op{Im}z}{\op{Im}\sigma(\alpha)}-\frac\varepsilon{\op{Im}\sigma(\alpha)},\frac{\op{Im}z}{\op{Im}\sigma(\alpha)}+\frac\varepsilon{\op{Im}\sigma(\alpha)}\right),\]for which the density of $\QQ$ in $\RR$ suffices. We also note that, for any $q_r\in\QQ,$ we have\[\op{Im}\sigma(q_r+q_i\alpha)=\op{Im}\sigma(q_r)+\op{Im}\sigma(q_i\alpha)=\op{Im}\sigma(q_i\alpha)\]is also in $(\op{Im}z-\varepsilon,\op{Im}z+\varepsilon).$
+					</p>
+					<p>
+						So we can use the extra degree of parameter $q_r$ to approximate the real part of $z.$ That is, we now need\[\op{Re}\sigma(q_r+q_i\alpha)=\op{Re}\sigma(q_r)+\op{Re}\sigma(q_i\alpha)=q_r+q_i\op{Re}\sigma(\alpha)\]to live in $(\op{Re}z-\varepsilon,\op{Re}z+\varepsilon).$ We note that this is why we dealt with the imaginary part first: it's possible for $\op{Re}\sigma(\alpha)\ne0,$ so we would like to know $q_i$ in advance. Anyways, rearranging tell us we need to find $q_r$ in\[\left(\op{Re}z-q_i\op{Re}\sigma(\alpha)-\varepsilon,\op{Re}z-q_i\op{Re}\sigma(\alpha)+\varepsilon\right).\]But once again we can find such a $q_r$ by using the density of $\QQ$ in $\RR.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						However, it turns that the axiom of choice can provide us with wild automorphisms. I know the proof uses Zorn's lemma, but I haven't worked through the details. I am also told that we can weaken the condition from continuous to measurable to know that $\sigma\in\op{Aut}\CC$ implies $\sigma=\op{id}$ or $\sigma=(z\mapsto\overline z).$
+					</p>
+					<p>
+						This second statement is remarkable because it means that wild automorphisms will give "lots'' of immeasurable sets. Though this is non-constructive ("here's an automorphism, and watch where it takes some measurable set we don't know about to a immeasurable set''), at least it avoids the typical Vitali set argument.
+					</p>
+					<p>
+						Additionally, this perspective means that models of Zermelo-Fraenkel set theory which don't have immeasurable sets (which exist but reject choice) do not have wild automorphisms. So in essence, it's the axiom of choice that gives us these problems and is why we can't have nice things.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

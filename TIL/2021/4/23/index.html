@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 23rd
+					</h2>
+					<p>
+						Today I learned how to extract the Dirichlet series coefficients from a Dirichlet series function, from
+						<a href="https://mathoverflow.net/q/30975">
+							here
+						</a>
+						. The intuition is that, given a Dirichlet series $f(s)=\sum_{n=1}^\infty a_nn^{-s},$ we can write this like\[f(s)=\sum_{n=1}^\infty a_ne^{(-\log n)s}.\]Now, we can hope that these exponentials are somewhat orthogonal, so we should try an inner product with $e^{(\log m)s}$ to extract the $a_m$ term of this series, as with Fourier series. Something like this works.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ a Dirichlet series. Given that $f(s)$ absolutely converges at $\sigma\in\RR,$ then we can write    \[a_m=\lim_{T\to0}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt\]    for positive integers $m.$
+						</p>
+					</div>
+					<p>
+						The absolute convergence condition is a bit annoying, but in my experience most series I come across absolutely converge at some $\sigma\in\RR.$ For example, as long as $a_n$ is polynomial, we're safe.
+					</p>
+					<p>
+						Anyways, fix $T$ for now to be made large later. Treating this like a Fourier series, we expand out the integral as\[\int_{-T}^T\left(\sum_{n=1}^\infty\frac{a_n}{n^{\sigma+it}}\right)m^{\sigma+it}\,dt.\]We can put absolute values everywhere, and this will converge fine&mdash;$|a_n/n^{\sigma+it}|=|a_n|/n^\sigma,$ and the sum converges absolutely at $\sigma,$ but the integral is finite and so safe. So Fubini's theorem lets us interchange these so that the integral is\[\sum_{n=1}^\infty\int_{-T}^T\frac{a_n}{n^{\sigma+it}}\cdot m^{\sigma+it}\,dt=m^\sigma\sum_{n=1}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]Now, when $m=n,$ this integral collapses to $\int_{-T}^Tdt=2T,$ so we remove this term from the sum to get\[2Ta_m+m^\sigma\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]We have to show that the sum is $o(T).$ Note $(m/n)^{-it}$ behaves like a nontrivial complex exponential, so we expect lots of cancellation. (This is like how a geometric series can detect when the common ratio is $1.$) Namely, when $m\ne n,$ let $\alpha=\log(m/n)\ne0$ so that $(m/n)^{-it}=e^{\alpha it}.$ Thus,\[\int_{-T}^T(m/n)^{it}\,dt=\int_{-T}^Te^{\alpha it}\,dt=\frac{e^{\alpha iT}-e^{-\alpha iT}}{\alpha i}.\]We can bound the absolute value of this below $\alpha_m:=2/|\log((m+1/m))|$; in particular, $|\alpha|$ is strictly decreasing and concave up, so the $n$ with the smallest absolute value is at $n=m+1.$ Anyways, the point is that the integral is $O(1)$ with respect to $n,$ so we can write\[\Bigg|\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right)\Bigg|\le\alpha_m\sum_{\substack{n=1\\n\ne m}}^\infty\frac{|a_n|}{n^\sigma},\]which is finite because $f(s)$ absolutely converges at $\sigma.$
+					</p>
+					<p>
+						Bringing this together, we see that\[\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=a_m+\frac{m^\sigma}{2T}\sum_{\substack{n=1\\n\ne m}}^\infty\left(\frac{a_n}{n^\sigma}\int_{-T}^T(m/n)^{it}\,dt\right).\]We just showed that the sum is bounded in absolute value by a constant (not dependent on $T$), so as we take $T\to\infty,$ that term is $O(1/T)$ and vanishes. So in total we get that\[\lim_{T\to\infty}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=a_m.\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						It is perhaps surprising that we are integrating over a line from $\sigma-iT$ to $\sigma+iT$ instead of a more sane contour as is common with, say, power series. However, I think the moral of the story with these types of Dirichlet series is that where power series use circular contours, Dirichlet series use vertical lines. As for why, I think\[\left|n^s\right|=n^{\op{Re}s}\]is the reason why. Namely, growth properties at $s$ translate reasonably well to anything on $\op{Re}s.$
+					</p>
+					<p>
+						Anyways, because the function behavior can extract the Dirichlet series coefficients now, we can show that the function determines its Dirichlet series. To begin with, we note that two Dirichlet series $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ and $g(s)=\sum_{n=1}^\infty b_nn^{-s}$ which absolutely converge somewhere must both converge at some real $\sigma\in\RR.$
+					</p>
+					<p>
+						Indeed, given that $f(s)$ and $g(s)$ converge absolutely at some $s_a$ and $s_b$ respectively, then for any $\sigma\in\RR$ greater than $\op{Re}s_a,$ we have that\[|f(\sigma)|\le\sum_{n=1}^\infty\frac{|a_n|}{n^\sigma}\le\sum_{n=1}^\infty\frac{|a_n|}{\left|n^{s_a}\right|} \lt \infty\]because of the absolute convergence. It follows we can fix some $\sigma \gt \max\{\op{Re}s_a,\op{Re}s_b\}$ so that both $f(s)$ and $g(s)$ converge absolutely at $\sigma.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose we have $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ and $g(s)=\sum_{n=1}^\infty b_nn^{-s}$ both converge absolutely at $\op{Re}s=\sigma$ and that $f(s)=g(s)$ along this line. Then $a_n=b_n$ for each positive integer $n.$
+						</p>
+					</div>
+					<p>
+						We can use the previous proposition to note that, given positive integer $m,$\[\lim_{T\to0}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt=\lim_{T\to0}\frac1{2T}\int_{-T}^Tg(\sigma+it)m^{\sigma+it}\,dt\]implies that $a_m=b_m.$ In particular, we have used the full strength of $f(s)=g(s)$ along $\op{Re}(s)=\sigma$ in the integral. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						The above feels somewhat surprising to me, or at least it did for a while. Namely, the exponentials $n^s$ over positive integers $n$ are pretty "slow,'' so it feels like we could finagle two series to be equal at a couple of values but not equal over the entire plane. Of course, this is also true for power series: $\sin(z)$ and $\cos(z)$ intersect infinitely often.
+					</p>
+					<p>
+						However, as soon as we require the two series to be equal over some part of $\CC$ of geometric substance&mdash;a circle for power series and a vertical line for Dirichlet series&mdash;then we get full equality wherever the series converge.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 20th
+					</h2>
+					<p>
+						Today I learned a little about the relationship between localizing a global field and localizing a ring. For concreteness, we fix $K$ a number field and $\mf p$ a (finite) prime. In order to differentiate notation, we let $\mathcal O_\mf p$ be the $\mf p$-adic integers, and we let\[\mathcal O_{\mathcal O\setminus\mf p}=\left\{\frac ab\in K:b\not\in\mf p\right\}\]be the localization of the ring.
+					</p>
+					<p>
+						To begin with, we remark that these are definitely not equivalent objects. For example, $\mathcal O_{\mathcal O\setminus\mf p}\subseteq K$ is countable, but thinking about\[\mathcal O_\mf p=\varprojlim\mathcal O_K/\mf p^\bullet\mathcal O_K\]as coherent sequences, this set bijects into $(\mathcal O_K/\mf p)^\NN$&mdash;each next term in the coherent sequence has $|\mathcal O_K/\mf p|$ possibilities because $(\mathcal O_K/\mf p^{n+1})/(\mathcal O_K/\mf p^n)\cong\mathcal O_K/\mf p).$ And we know that\[|\RR|=\left|\{0,1\}^\NN\right|=\left|(\ZZ/2\ZZ)^\NN\right|\le\left|(\mathcal O_K/\mf p)^\NN\right|\le\left|(\ZZ/2^{\op N(\mf p)}\ZZ)^\NN\right|=|\RR|.\]In particular, $\mathcal O_\mf p$ is uncountable.
+					</p>
+					<p>
+						However, we do have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p$ which inherits a lot of its properties from the embedding $K\to K_\mf p.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have a dense embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
+						</p>
+					</div>
+					<p>
+						The idea is to take the dense embedding $K\to K_\mf p$ and restrict the input to $\mathcal O_{\mathcal O\setminus\mf p}.$ In particular, for any $\frac ab\in\mathcal O_{\mathcal O\setminus\mf p}$ with $b\not\in\mf p,$ we have that\[\left|\frac ab\right|_\mf p=\frac{|a|_\mf p}{|b|_\mf p}\le\frac11=1,\]so this restriction does go into $\mathcal O_\mf p\subseteq K_\mf p.$ So we have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
+					</p>
+					<p>
+						However, we know stronger. In particular, if we pick up $k\in K\cap\mathcal O_\mf p,$ then we claim $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ We may write $k=\frac ab$ with $a,b\in\mathcal O_K,$ and because $a,b\in\mathcal O_\mf p$ (via the above embedding), we can write $a=a_0\varpi^\alpha$ and $b=b_0\varpi^\beta,$ where $\varpi\in\mf p^2\setminus\mf p$ and $a_0,b_0\not\in\mf p.$ In particular, $a/b\in\mathcal O_\mf p$ requires\[0\le\nu_\mf p(a/b)=\nu_\mf p(a_0)-\nu_\mf p(b_0)+\alpha-\beta=\alpha-\beta.\]This lets us write\[\frac ab=\frac{a_0\varpi^\alpha}{b_0\varpi^\beta}=\frac{a_0\varpi^{\alpha-\beta}}{b_0}\in\mathcal O_{\mathcal O\setminus\mf p}.\]Thus, the elements that go into $\mathcal O_\mf p$ in the embedding are ones that start in $\mathcal O_{\mathcal O\setminus\mf p}.$
+					</p>
+					<p>
+						This tells us our embedding is dense pretty quickly. Fixing any open ball $B(a,r)\subseteq\mathcal O_\mf p\subseteq K_\mf p,$ we know that $K\subseteq K_\mf p$ is dense, so we can find $k\in K\cap B(a,r).$ But then $k\in\mathcal K\cap O_\mf p,$ so the above argument requires $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ So $k$ provides our element of $\mathcal O_{\mathcal O\setminus\mf p}\cap B(a,r).$ $\blacksquare$
+					</p>
+					<p>
+						From the point of view of number theory, the above lemma basically is telling me to think about $\mathcal O_{\mathcal O\setminus\mf p}$ as the $\mf p$-adic integers in $K.$ I don't personally use them much, but they do have some of the usual properties associated with the $\mf p$-adic integers. For example, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that $\mathcal O_{\mathcal O\setminus\mf p}$ is a discrete valuation ring with $\mf p\mathcal O_{\mathcal O\setminus\mf p}$ its only maximal ideal.
+						</p>
+					</div>
+					<p>
+						We classify the ideals of $\mathcal O_{\mathcal O\setminus\mf p}.$ Let $I$ be any ideal of $\mathcal O_{\mathcal O\setminus\mf p}.$ All elements of $\mathcal O_{\mathcal O\setminus\mf p}$ have $\nu_\mf p$ bounded below by $0$ because the denominator cannot have elements divisible by $\mf p.$ So we can find $a\in I$ such that\[\nu_\mf p(\alpha)=\inf_{\beta\in I}\nu_\mf p(\beta)\]by the well-order of $\NN.$ Now we claim that $I=\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p}.$ Indeed, $I\subseteq\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p}$ because the numerator of any element of $I$ must have at least $\nu_\mf p(\alpha)$ powers of $\mf p.$
+					</p>
+					<p>
+						On the other hand, we can write any element of $\mf p^{\nu_\mf p(\alpha)}\mathcal O_{\mathcal O\setminus\mf p},$ as\[\underbrace{p_1\cdot\ldots\cdot p_{\nu_\mf p(\alpha)}}_{\in\mf p}\cdot\frac xy=\alpha\cdot\underbrace{\frac{p_1}{\alpha}}_{\in\mathcal O_{\mathcal O\setminus\mf p}}\cdot p_2\cdot\ldots\cdot p_{\nu_\mf p(\alpha)}\cdot\frac xy\in\alpha\mathcal O_{\mathcal O\setminus\mf p}.\]In particular, this element lives in $I,$ which completes the proof. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

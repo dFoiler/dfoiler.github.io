@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 17th
+					</h2>
+					<p>
+						Today I learned the proof of the functional equation for the Dedekind zeta function $\zeta_K,$ mostly from
+						<a href="https://web.archive.org/web/20210418222054/https://math.mit.edu/research/undergraduate/urop-plus/documents/2018/Zeff.pdf">
+							here
+						</a>
+						. The main idea is to use a global zeta integral $\zeta\left(g,|\bullet|^s\right)$ with a "mostly'' self-dual Gaussian $g.$ The exact specifics of our Gaussian comes down to local $\zeta$ computations, but we have to be careful about our measures.
+					</p>
+					<p>
+						To be explicit, we define $g_\nu(x_\nu):=e^{-\pi x_\nu^2}$ for real archimedean $\nu$ and $g_\nu:=e^{-2\pi z\overline z}$ for complex archimedean $\nu.$ Additionally, we take inspiration from our proof that the global zeta integrals converge for exponent greater than $1$ and set $g_\mf p=1_{\mathcal O_\mf p}$ for nonarchimedean $\mf p.$
+					</p>
+					<p>
+						Combining these local factors into $g=\prod_\nu g_\nu:\AA_K\to\CC$ gives a Shwartz-Bruhat function, practically by definition. (For the archimedean places, we don't prove that those Gaussians are Shwartz, but they are.) Now, the main claim is the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							With $g:\AA_K\to\CC$ defined as above, we have for $\op{Re}s \gt 1$ that    \[\zeta\left(g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{-1/2}\zeta_K(s),\]    where $K$ has (absolute) signature $(r_1,r_2).$ Here, $\Gamma_\RR(s):=\pi^{-s/2}\Gamma(s/2)$ and $\Gamma_\CC(s)=2(2\pi)^{-s}\Gamma(s).$
+						</p>
+					</div>
+					<p>
+						Expanding this out, we are simplifying\[\zeta\left(g,|\bullet|^s\right)=\int_{\AA_K^\times}g(x)|x|^s\,d^\times x=\prod_\nu\underbrace{\int_{K_\nu^\times}g_\nu(x_\nu)|x_\nu|_\nu^s\,d^\times x_\nu}_{\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)}.\]Note that while $\AA_K^\times\not\cong\prod_\nu K_\nu^\times,$ this decomposition is legal because, after the projections, we are hitting all of those elements. In particular, all but finitely many (all the nonarchimedean places) of the $g_\nu$ are $1_{\mathcal O_\nu},$ so we are far from asserting that $\AA_K^\times$ is the product of the $K_\nu^\times.$
+					</p>
+					<p>
+						It remains to evaluate these integrals, but we need to discuss our measures first. We do this from the ground up because they introduce subtle factors. We are using the self-dual measure with respect to our standard character $\psi.$ What this means is that we have defined, for local fields $K_\nu$ with standard character $\psi_\nu,$\[\hat f(x):=\int_{K_\nu}f(x)\psi_\nu(xy)\,dx,\]which is legal because $\widehat{K_\nu}\cong K_\nu.$ However, this is a specific measure $d\chi$ on $\widehat{K_\nu}$ that makes the inverse Fourier transform well-behaved given a measure $dx$ on $K_\nu,$ and $d\chi$ might not match $\psi_\nu(xy)\,dx.$ Regardless, it is at least scaled by some $c$ (Haar measure is unique), so\[\hat{\hat f}(y)=\int_{K_\nu}f(y)\psi_\nu(xy)\,dy\]will be off from correctly inverting the Fourier transform by $c^2.$ Shifting $dy$ on $K_\nu$ to accommodate this $c^2,$ we can make $\hat{\hat f}(x)=f(-x)$ for all Shwartz-Bruhat $f:K_\nu\to\CC.$ In particular, it suffices to check a single function satisfies $\hat{\hat f}(x)=f(-x)$ to make sure we are using the self-dual measure.
+					</p>
+					<p>
+						We deal with our places in cases: real archimedean, complex archimedean, or nonarchimedean.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The self-dual measure $dx$ on $K_\nu$ for real $\nu$ is the standard Lebesgue measure.
+						</p>
+					</div>
+					<p>
+						We check this with the Gaussian $g_\RR(x)=e^{-\pi x^2}.$ Our standard character is $\psi_\RR(x)=e^{-2\pi ix}.$ Now, we are evaluating\[\widehat{g_\RR}(y)=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\,dx.\]I steal the evaluation of this from
+						<a href="https://math.stackexchange.com/a/270580/869257">
+							this post
+						</a>
+						: take the derivative under the integral sign so that\[\frac{\widehat{g_\RR}(y)}{dy}=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi ix)\,dx.\]Now, $\frac d{dx}e^{-\pi x^2}=-2\pi xe^{-\pi x^2},$ so we may integrate by parts to get\[\frac{\widehat{g_\RR}(y)}{dy}=\underbrace{ie^{-\pi x^2}e^{-2\pi ixy}\bigg|_{-\infty}^\infty}_0-\underbrace{\int_\RR ie^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi iy)\,dx}_{2\pi g_\RR(y)}.\]So we have an ordinary differential equation $\frac{\widehat{g_\RR}(y)}{dy}=-2\pi g_\RR(y),$ which we can solve to get solutions $\widehat{g_\RR}(y)=ce^{-\pi y^2}.$ We can evaluate $\widehat{g_\RR}(0)$ directly as $\int_\RR e^{-\pi x^2}\,dx=1,$ so we conclude $\widehat{g_{\RR}}=g_\RR.$ It follows that $g_\RR$ gives $\hat{\hat f}(x)=f(-x)$ because $g_\RR$ is also even. This finishes. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The self-dual measure $dz$ on $K_\nu$ for complex $\nu$ is twice the standard Lebesgue measure.
+						</p>
+					</div>
+					<p>
+						Intuitively, we are doubling the Lebesgue measure here because there are two embeddings associated with $\nu$ because conjugation gives the same place. However, we can't lose this size, so we have to double to accommodate.
+					</p>
+					<p>
+						We check this with the Gaussian $g_\CC(z)=e^{-2\pi z\overline z}.$ Our standard character is $\psi_\CC(z)=\psi_\RR(\op{Trace}_{\CC/\RR}z),$ which is $e^{-4\pi i\op{Re}z}.$ (This extra factor of $2$ from $\op{Trace}_{\CC/\RR}$ is the rigorization of the above intuition.) Our Fourier transform is\[\widehat{g_\CC}(y)=\int_\CC e^{-2\pi z\overline z}e^{-4\pi i\op{Re}(zy)}\,dz.\]Writing $\CC\cong\RR^2$ with $y=c+di$ and $dz=2da\,db$ (recall we are using twice the Lebesgue measure) gives\[\widehat{g_\CC}(c+di)=\iint_{\RR^2}e^{-2\pi\left(a^2+b^2\right)}e^{-4\pi i(ac-bd)}\,2da\,db.\]Now, this integral can be separated into\[\widehat{g_\CC}(c+di)=\left(\int_\RR e^{-2\pi a^2}e^{-4\pi iac}\,\sqrt2da\right)\left(\int_\RR e^{-2\pi b^2}e^{4\pi ibd}\,\sqrt2db\right).\]Taking $a\sqrt2\mapsto a$ and $b\sqrt2\mapsto-b$ gives\[\widehat{g_\CC}(c+di)=\left(\int_\RR e^{-\pi a^2}e^{-2\pi ia(c\sqrt2)}\,da\right)\left(\int_\RR e^{-\pi b^2}e^{-2\pi ib(d\sqrt2)}\,db\right),\]which are themselves Fourier transforms of $g_\RR(x)=e^{-\pi x^2},$ which we know how to do. In particular, this collapses to $\widehat{g_\RR}(c\sqrt2)\widehat{g_\RR}(d\sqrt2)=e^{-2\pi\left(c^2+d^2\right)}.$ In other words, we see $\widehat{g_\CC}(y)=g_\CC(y),$ so it follows $g_\CC$ witnesses a $\hat{\hat f}(x)=f(-x)$ because $g_\CC$ is also even. This finishes. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The self-dual measure $dx$ on $K_\mf p$ for nonarchimedean $\mf p$ is the measure assigning $\mathcal O_\mf p$ a measure of $\op N(\mathcal D_\mf p)^{-1/2},$ where $\mathcal D_\mf p$ is the different ideal.
+						</p>
+					</div>
+					<p>
+						The different becomes involved because our standard character is $\psi_\mf p(x):=\psi_p(\op{Trace}_{K_\mf p/\QQ_p}x),$ where $p$ is the rational prime below $\mf p.$ Anyways, we check this with (surprise!) the Gaussian $g_\mf p=1_{\mathcal O_\mf p}.$ We have that\[\widehat{g_\mf p}(y)=\int_{K_\mf p}g_\mf p(x)\psi_\mf p(xy)\,dx=\int_{\mathcal O_\mf p}\psi_\mf p(xy)\,dx.\]If $\op{Trace}_{K_\mf p/\QQ_p}(y\mathcal O_\mf p)\in\ZZ_p$&mdash;i.e., if $y$ is in the dual lattice $\mathcal O_\mf p^\vee$&mdash;then $x\mapsto\psi_\mf p(xy)$ takes all $x$ to $1,$ and we get out $\op{Vol}(\mathcal O_\mf p).$ Otherwise, we note $\psi_\mf p(1y)$ doesn't go to $1,$ so $x\mapsto\psi_\mf p(xy)$ gives a nontrivial character over the compact group $\mathcal O_\mf p,$ so this integral is $0$ by orthogonality of characters. Thus, $\widehat{g_\mf p}(y)=\op{Vol}(\mathcal O_\mf p)\cdot1_{\mathcal O_\mf p^\vee}.$
+					</p>
+					<p>
+						It will be worth our time to briefly talk about $\mathcal O_\mf p^\vee.$ We note that $\mathcal O_\mf p^\vee$ is closed under addition (the trace is additive) and $y\in\mathcal O_\mf p^\vee$ means that $y\mathcal O_\mf p\subseteq\mathcal O_\mf p^\vee,$ so $\mathcal O_\mf p^\vee$ is an $\mathcal O_\mf p$-ideal. Because $\mathcal O_\mf p$ is also a discrete valuation ring, we can then assert, for some positive integer $d,$\[\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,\]where $\varpi$ is the uniformizer of $K_\mf p.$ In particular, we get the following properties.
+					</p>
+					<ul>
+						<li>
+							<p>
+								We have that $\mathcal O_\mf p^{\vee\vee}$ is the set of elements $y\in K_\mf p$ such that $\op{Trace}_{K_\mf p/\QQ_p}(y\mathcal O^\vee)\in\ZZ_p,$ which really means $y$ needs to have a nonnegative number of factors of $\varpi,$ or $y\in\mathcal O_\mf p.$
+							</p>
+						</li>
+						<li>
+							<p>
+								We have that $\op{Vol}(\mathcal O_\mf p^\vee)=p^{-d}\op{Vol}(\mathcal O_\mf p)$ because $\mathcal O_\mf p/\varpi^d\mathcal O_\mf p$ has $p^d$ elements.
+							</p>
+						</li>
+						<li>
+							<p>
+								This also implies $\mathcal D_\mf p:=(\mathcal O_\mf p^\vee)^{-1}=\varpi^{-d}\mathcal O_\mf p$ has norm $p^{-d}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Now, taking the next Fourier transform, we see\[\widehat{\widehat{g_\mf p}}(y)=\int_{K_\mf p}g_\mf p(x)\overline{\psi_\mf p(xy)}\,dx=\op{Vol}(\mathcal O_\mf p)\int_{\mathcal O_\mf p^\vee}\overline{\psi_\mf p(xy)}\,dx.\]Again, if $y\in\mathcal O_\mf p^{\vee\vee}=\mathcal O_\mf p,$ then $x\mapsto\overline{\psi_\mf p(xy)}$ is the trivial character, so we get out $\op{Vol}(\mathcal O_\mf p)\op{Vol}(\mathcal O_\mf p^\vee).$ Otherwise, $x\mapsto\overline{\psi_\mf p(xy)}$ is a nontrivial character of the compact subgroup $\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,$ so this evaluates to $0$ by orthogonality of characters. Thus,\[\widehat{\widehat{g_\mf p}}=\op{Vol}(\mathcal O_\mf p)\op{Vol}(\mathcal O_\mf p^\vee)1_{\mathcal O_\mf p}=\op{Vol}(\mathcal O_\mf p)^2\op N(\mathcal D_\mf p)1_{\mathcal O_\mf p}.\]We would like this to be $g_\mf p,$ so we set $\op{Vol}(\mathcal O_\mf p)=\op N(\mathcal D_\mf p)^{-1/2}$ (as prescribed in the lemma) so that this term cancels out properly. It follows that $g_\mf p$ again witnesses an $f$ with $\hat{\hat f}(x)=f(-x)$ because $g_\mf p$ is even. $\blacksquare$
+					</p>
+					<p>
+						Having properly established all of our measures, it remains to actually compute the integrals of interest. We begin have three cases: $\nu$ is real archimedean, complex archimedean, or nonarchimedean. We do these one at a time.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\Gamma_\RR(s)$ for real archimedean $\nu.$
+						</p>
+					</div>
+					<p>
+						If $\nu$ is real archimedean, then $K_\nu^\times\cong\RR^\times,$ so we are evaluating\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_{\RR^\times}e^{-\pi x^2}|x|^s\,d^\times x=2\int_0^\infty e^{-\pi x^2}x^s\,d^\times x.\]We want this to become a $\Gamma_\RR(s)$ factor, so we want to coerce this to look like $\Gamma(s)=\int_0^\infty e^{-x}x^s\,d^\times x.$ We let $y:=\pi x^2$ so that $d^\times y=2d^\times x.$ Our integral now looks like\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_0^\infty e^{-y}\pi^{-s/2}y^{s/2} d^\times y.\]This is $\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2),$ which is what we wanted. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\pi\Gamma_\CC(s)$ for complex archimedean $\nu.$
+						</p>
+					</div>
+					<p>
+						If $\nu$ is complex archimedean, then $K_\nu^\times\cong\CC^\times,$ so we are evaluating\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_{\CC^\times}e^{-2\pi|z|^2}|z|_\CC^s\,d^\times z,\]where $d^\times z/|z|_\CC$ with $dz$ twice the Lebesgue measure and $|\bullet|_\CC$ is the square of the typical magnitude. (We square so that multiplication corresponds to an actual scaling of space.) Transforming to polar coordinates, we get $dz=2dx\,dy=2rdr\,d\theta,$ and $d^\times z=(2/r)dr\,d\theta=2d^\times r\,d\theta,$ so\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=\int_0^{2\pi}\int_0^\infty e^{-2\pi r^2}r^{2s}\,2d^\times r\,d\theta.\]Note that we can remove the $d\theta$ intergral to get a $2\pi$ out. Again, we would like $\Gamma$ to appear somewhere here, so we integrate over $x:=2\pi r^2$ so that $d^\times x=2d^\times r,$ which gives\[\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right)=2\pi\int_0^\infty e^{-x}x^s(2\pi)^{-s}\,d^\times x.\]The integral is now cleanly $(2\pi)^{-s}\Gamma(s),$ so indeed we see everything collapses to $\pi\cdot2(2\pi)^{-s}\Gamma(s)=\pi\Gamma_\CC(s) \lt $ as desired. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\cdot\left(1-\op N(\mf p)^{-s}\right)^{-1}$ for nonarchimedean $\mf p.$
+						</p>
+					</div>
+					<p>
+						We are evaluating\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\int_{K_\mf p}g_\mf p(x)|x|_\mf p^s\,d^\times x=\int_{\mathcal O_\mf p}|x|_\mf p^s\,d^\times x\]because $g_\mf p=1_{\mathcal O_\mf p}.$ Because $\mathcal O_\mf p$ is defined by $|x|_\mf p\le1,$ we can evaluate this as a geometric series by writing\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\sum_{k=0}^\infty\int_{|x|_\mf p=\op N(\mf p)^{-k}}\op N(\mf p)^{-ks}\,d^\times x.\]Because we are dealing with a multiplicative measure, we can transform the integral from $|x|_\mf p=\op N(\mf p)^{-k}$ to $|x|_\mf p=1$ (say, by multiplying by an appropriate power of the inverse uniformizer $\varpi^{-1}$). This means\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\left(\sum_{k=0}^\infty\op N(\mf p)^{-ks}\right)\int_{\mathcal O_\mf p^\times}d^\times x.\]The infinite sum collapses to $\left(1-\op N(\mf p)^{-s}\right)^{-1},$ so the integral is where the $\op N(\mathcal D_\mf p)^{-1/2}$ will come from.
+					</p>
+					<p>
+						The measure $d^\times x$ can technically be defined in lots of ways, but we need $\mathcal O_\mf p^\times$ needs to have measure $1$ have all but finitely many $\mf p$ so that open sets of $\mathcal A_K^\times$ (where all but finitely many of the components are $\mathcal O_\mf p^\times$) can actually have measure. To do this naturally, our definition is $d^\times x=\frac1{1-\op N(\mf p)^{-1}}\cdot\frac{dx}{|x|_\mf p}$ so that\[\int_{\mathcal O_\mf p^\times}d^\times x=\frac1{1-\op N(\mf p)^{-1}}\int_{\mathcal O_\mf p\setminus\mf p}dx=\op N(\mathcal D_\mf p)^{-1/2}.\]In particular, the last inequality holds because $\mf p$ is one of $\op N(\mf p)$ cosets of $\mathcal O_\mf p.$ Anyways, we see this is $1$ for unramified primes $\mf p,$ so our wish is granted.
+					</p>
+					<p>
+						Combining these, we see\[\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\frac1{1-\op N(\mf p)^{-s}}\cdot\op N(\mathcal D_\mf p)^{-1/2},\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We are finally ready to complete the proof of the proposition. We recall\[\zeta\left(g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(g_\nu,|\bullet|_\nu^s\right).\]Because $K$ has signature $(r_1,r_2),$ we know there are $r_1$ real archimedean places and $r_2$ complex archimedean places. We've evaluated these $\zeta_\nu$ elements, so our archimedean places contribute a total of $\Gamma_\RR(s)^{r_1}\cdot(\pi\Gamma_\CC(s))^{r_2}.$
+					</p>
+					<p>
+						As for our archimedean places, our evaluation of the $\zeta_\mf p$ tells us we have\[\prod_\mf p\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{-1/2}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]It happens that the individual $\mathcal D_\mf p$ multiply together to give the full different $\mathcal D_K,$ which has norm $|\op{disc}\mathcal O_K|,$ so the first factor contributes $|\op{disc}\mathcal O_K|.$ The second factor is the Euler product for $\zeta_K(s).$
+					</p>
+					<p>
+						Bringing this all together, we see that\[\prod_\mf p\zeta_\mf p\left(g_\mf p,|\bullet|_\mf p^s\right)=\Gamma_\RR(s)^{r_1}\cdot(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{-1/2}\zeta_K(s).\]This completes the proof of the proposition. $\blacksquare$
+					</p>
+					<p>
+						We remark that the proposition provides an meromorphic continuation of $\zeta_K(s)$ because $\zeta\left(g,|\bullet|^s\right)$ and the $\Gamma$ factors all have meromorphic continuations. We do not talk in detail about what this looks like here; we're moving towards a real functional equation of $\zeta_K$ anyways.
+					</p>
+					<p>
+						There is also a sister of the proposition we need to establish before we can actually apply the global $\zeta$ functional equation.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							With $g:\AA_K\to\CC$ defined as above, we have for $\op{Re}s \gt 1$ that    \[\zeta\left(\hat g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s-1}\zeta_K(s),\]    where $K$ has (absolute) signature $(r_1,r_2).$
+						</p>
+					</div>
+					<p>
+						We have actually done most of the work for this already. Starting the same way, we are evaluating\[\zeta\left(\hat g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(\widehat{g_\nu},|\bullet|_\nu^s\right).\]All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is archimedean, which is easier the second time.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{s-1}\cdot\left(1-\op N(\mf p)^{-s}\right)^{-1}$ for nonarchimedean $\mf p.$
+						</p>
+					</div>
+					<p>
+						Observe that when trying to establish our self-dual archimedean measures, we found $\widehat{g_\mf p}=\op N(\mathcal D_\mf p)^{-1/2}1_{\mathcal O_\mf p^\vee}.$ Fixing $d$ so that $\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,$ we see we want\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\int_{K_\mf p}\widehat{g_\mf p}(x)|x|_\mf p^s\,d^\times x=\op N(\mathcal D_\mf p)^{-1/2}\int_{\varpi^d\mathcal O_\mf p}|x|_\mf p^s\,d^\times x.\]As before, we turn this into an infinite geometric series, but this time we are integrating over $|x|_\mf p\le\op N(\mf p)^{-d},$ so\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\sum_{k=d}^\infty\int_{|x|_\mf p=\op N(\mf p)^{-k}}\op N(\mf p)^{-ks}\,d^\times x.\]Rescaling multiplicatively the integral over $|x|_\mf p=\op N(\mf p)^{-k}$ to $\mathcal O_\mf p^\times,$ we see\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\left(\sum_{k=d}^\infty\op N(\mf p)^{-ks}\right)\int_{\mathcal O_\mf p^\times}d^\times x.\]Recalling that the measure of $\mathcal O_\mf p^\times$ is $\op N(\mf p)^{-1/2},$ we see this is\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1}\sum_{k=d}^\infty\op N(\mf p)^{-ks}.\]Finally, the infinite series collapses to $\op N(\mf p)^{-ds}\cdot\frac1{1-\op N(\mf p)^{-s}}.$ After noting that $\op N(\mf p)^{-d}=\op N(\mathcal D_\mf p),$ we see that the above rearranges into the desired. $\blacksquare$
+					</p>
+					<p>
+						In light of the above lemma, we see that the archimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute\[\prod_\mf p\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{s-1}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]As discussed, the product of $\op N(\mathcal D_\mf p)$ multiply out to $\op N(\mathcal D_K)=|\op{disc}\mathcal O_K|,$ so the left product is $|\op{disc}\mathcal O_K|^{s-1}.$ And again, the right-hand product is the Euler product of $\zeta_K(s).$
+					</p>
+					<p>
+						Combining the archimedean factors with the nonarchimedean ones, we see\[\zeta\left(\hat g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s-1}\zeta_K(s),\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We are finally able to apply the global $\zeta$ functional equation. Namely, we know that\[\zeta\left(g,|\bullet|^s\right)=\zeta\left(\hat g,|\bullet|^{1-s}\right).\]Almost everything in the two propositions is symmetric except that $\zeta\left(g,|\bullet|^s\right)$ has a factor of $|\op{disc}\mathcal O_K|^{-1/2}$ where $\zeta\left(\widehat g,|\bullet|^{1-s}\right)$ has a factor of $|\op{disc}\mathcal O_K|^{-s}.$ To deal with this, we define\[\xi_K(s):=|\op{disc}\mathcal O_K|^{(s+1)/2}\zeta\left(g,|\bullet|^s\right)\]so that\[\xi_K(s)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s),\]and\[\xi_K(1-s)=\Gamma_\RR(1-s)^{r_1}(\pi\Gamma_\CC(1-s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{(1-s)/2}\zeta_K(1-s),\]which was configured to be $|\op{disc}\mathcal O_K|^{(s+1)/2}\zeta\left(\widehat g,|\bullet|^s\right).$ In particular, we know $\xi_K(s)=\xi_K(1-s).$ This gives the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Let $K$ be a number field and $\zeta_K$ the Dedekind zeta function. Then fixing    \[\Lambda_K(s)=\left(\frac{|\op{disc}\mathcal O_K|}{4^{r_2}\pi^n}\right)^{s/2}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\zeta_K(s),\]    we have the functional equation $\Lambda_K(s)=\Lambda_K(1-s).$
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion after expanding out our definition of $\xi_K.$ Namely, we know that\[\xi_K(s)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s)\]satisfies $\xi_K(s)=\xi_K(1-s),$ so it remains to show that this equation for $\xi_K$ implies the one in the theorem. Plugging into the definitions $\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2)$ and $\Gamma_\CC(s)=2(2\pi)^{-s}\Gamma(s),$ this is\[\xi_K(s)=\pi^{-r_1s/2+r_2-r_2s}\cdot2^{r_2-r_2s}\cdot\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\cdot|\op{disc}\mathcal O_K|^{s/2}\zeta_K(s).\]The factors $\pi^{r_2}$ and $2^{r_2}$ we may safely ignore because they do not depend on $s.$ Noting that $r_1+2r_2=n,$ we can simplify this a bit into\[\frac{\xi_K(s)}{2^{r_2}\pi^{r_2}}=\left(\frac{|\op{disc}\mathcal O_K|}{4^{r_2}\pi^n}\right)^{s/2}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\zeta_K(s).\]The right-hand side is $\Lambda_K,$ so we conclude $\Lambda_K(s)=\Lambda_K(1-s).$ This finishes the proof of the theorem. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

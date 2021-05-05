@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 29th
+					</h2>
+					<p>
+						Today I learned some stuff around the pigeonhole principle. What interested me most today was the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $(X,\mu)$ a measurable space. Suppose $\{A_n\}_{n\in\NN}$ is a countable collection of measurable sets which are the subset of a measurable set $B\supseteq A_\bullet.$ If    \[\sum_{n\in\NN}\mu(A_n) \gt \mu(B),\]    then there exist indices $k$ and $\ell$ for which $A_k\cap A_\ell\ne\emp.$
+						</p>
+					</div>
+					<p>
+						The main idea here is that, even though the statement feels sufficiently intuitive, we actually want to show the contrapositive. In particular, we show that if $A_k\cap A_\ell\ne\emp$ implies $k=\ell,$ then\[\sum_{n\in\NN}\mu(A_n)\le\mu(B).\]Now the measure $\mu$ can actually help us. The condition tells us that the collection $\{A_n\}_{n\in\NN}$ is a disjoint collection of measurable sets, so it follows\[\sum_{n\in\NN}\mu(A_n)\le\mu\left(\bigcup_{n\in\NN}A_n\right)\le\mu(B),\]and we're done immediately. The first inequality holds because of the disjoint countable union, and the second inequality holds by subset. $\blacksquare$
+					</p>
+					<p>
+						What I find interesting about this proof is its generality. For example, even though there are potential circular reasoning issues, we can endow $X$ with the counting measure so that we get the following statement.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $B$ a finite set. If a countable collection $\{A_n\}_{n\in\NN}$ of subsets has    \[\sum_{n\in\NN}|A_n| \gt |B|,\]    then some two of the $A_\bullet$ intersect.
+						</p>
+					</div>
+					<p>
+						That is, we have recovered the usual pigeonhole principle immediately. We do remark that the measure-theoretic version is not necessarily strictly stronger, however. For example, the provided proof makes it difficult to expand to uncountable collections, and the set-theoretic version permits infinite cardinalities more readily.
+					</p>
+					<p>
+						Anyways, I guess I should say that I started this journey as an attempt to justify the step in the proof of Minkowski's theorem where we consider the size of translated sets as bigger than the fundamental domain they occupy. In this case, all of the set-theoretic cardinalities are merely $|\RR|,$ but we can still use the measure-theoretic version of the pigeonhole principle to conclude.
+					</p>
+					<p>
+						While we're here, let's use the pigeonhole principle on some combinatorial number theory.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							If $S\subseteq\{1,2,\ldots,2n\}$ has more than $n$ elements, then there exists distinct $k,\ell\in S$ which are relatively prime.
+						</p>
+					</div>
+					<p>
+						The idea is to focus on the equality case, which is all evens. What breaks all evens is that, as soon as we add on another element, we can choose that odd number with "lots'' of its even friends. While $2$ looks like a tempting choice, the neighbors of the odd number are more apparent.
+					</p>
+					<p>
+						In particular, we note that\[S\subseteq\{1,2\}\cup\{3,4\}\cup\cdots\cup\{2n-1,2n\}.\]There are $n$ sets on the right-hand sets while more than $n$ elements in $S,$ so there are distinct $k,\ell\in S$ which belong to the same set $\{2m-1,2m\}.$ In other words, there exists an $m$ with $2m-1,2m\in S,$ and these $2m-1$ and $2m$ make our relatively prime pair. $\blacksquare$
+					</p>
+					<p>
+						Let's do another one, for fun. I saw this one in Mrs. Harrelson's number theory class.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							If $S\subseteq\{1,2,\ldots,2n\}$ has more than $n$ elements, then there exists distinct $k,\ell\in S$ for which $k\mid\ell.$
+						</p>
+					</div>
+					<p>
+						Again, we focus on the equality case, which is $S=\{n+1,\ldots,2n\},$ in which no element divides another for size reasons. However, as soon as we add another element $k,$ it must be no greater than $n.$ If $k\in(n/2,n],$ then $2k$ double lives in $S.$ If $k\in(n/4,n/2],$ then $4k$ lives in $S,$ and so on. This gives us a methodical way of finding $k$'s multiple.
+					</p>
+					<p>
+						As an aside, we note that we could do something like $k\floor{n/k}$ as our multiple of $k,$ but it isn't clear how to generalize this when $S$ doesn't contain literally everything bigger than $n.$ What's going on under the surface here is that we are able to double our way out of trouble, and this algorithm provides a unique multiple for each $k.$
+					</p>
+					<p>
+						So we organize ourselves around doubling. We would like to say something like "there exists two elements such that one is double another,'' but this is false, for we could choose\[\{2,5,6,7,8\}\subseteq\{1,2,3,4,5,6,7,8\}.\]We see that $2$'s double doesn't actually live in $\{2,5,6,7,8\},$ so we have to be more careful&mdash;we want to consider doubles of doubles, and so on.
+					</p>
+					<p>
+						Thus, we note\[\{1,2,\ldots,2n\}=\bigcup_{\substack{1\le k\le 2n\\k\text{ odd}}}\left\{k2^\nu:\nu\in\NN\text{ and }k2^\nu\le2n\right\}\]is a disjoint union of $n$ sets. Because $S$ has more than $n$ elements, two of $S$'s elements live in the same set generated by an odd $k,$ implying they must take the form $k2^\alpha$ and $k2^\beta$ for distinct $\alpha$ and $\beta.$ Asserting $\alpha\le\beta$ without loss of generality, we see $k2^\alpha\mid k2^\beta,$ and we are done. $\blacksquare$
+					</p>
+					<p>
+						This last proof I have little idea how to motivate; I have done my best, but it is truly clever.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 20th
+					</h2>
+					<p>
+						Today I learned the proof that a number field $K$ is discrete and cocompact in its adele ring $\mathbb A_K.$ We begin by showing this for $\QQ\subseteq\AA_\QQ$ and then will expand to the general case by viewing $K$ as a finite-dimensional $\QQ$-vector space.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have $\QQ\subseteq\AA_\QQ$ is discrete and cocompact.
+						</p>
+					</div>
+					<p>
+						For this, we exhibit a compact fundamental domain for $\AA_\QQ/\QQ$ as\[D:=[-1/2,1/2]\times\prod_{p \lt \infty}\ZZ_p.\]It is quick to see that $D$ is compact, but we can't appeal to Tychonoff because $\AA_\QQ$ isn't equipped with the product topology. There might be a way to do this because each nonarchimedean projection of $D$ is in $\ZZ_p,$ which is compact, but this trick is unnecessary.
+					</p>
+					<p>
+						Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $D$; there is at least one open set, say $U_\beta,$ and its projections to $\QQ_p$ are $\ZZ_p$ for all but finitely many $\nu.$ That is, there exists a finite set $S$ of (say, nonarchimedean) places such that\[\prod_{p\not\in S}\ZZ_p\subseteq U_\beta.\]Note we are being somewhat sloppy with our notation because the left-hand side does not technically have all of the coordinates of $\AA_\QQ,$ but we also don't care about them yet. Indeed, this single $U_\beta$ covers most of $D$ already; it remains to cover\[[-1/2,1/2]\times\prod_{p\in S}\ZZ_p.\]However, each of these sets is compact, and our open cover $\{U_\alpha\}_{\alpha\in\lambda}$ must cover them. Extracting the corresponding open cover for each of the (finitely many) above components and directly unioning them with $U_\beta$ gives us our finite subcover of $D.$
+					</p>
+					<p>
+						To finish, we take the following claim to show $D$ is a fundamental domain.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have $D\oplus\QQ\to\AA_\QQ$ by $(d,q)\mapsto d+q$ is a group isomorphism.
+						</p>
+					</div>
+					<p>
+						Quickly, we show this is enough. Automatically this implies that each element of $\AA_\QQ/\QQ$ has exactly one representative in $D,$ so $D\cong\AA_\QQ/\QQ.$ So $D$ being compact tells us $\QQ\subseteq\AA_\QQ$ is cocompact. Additionally, we note that certainly $0\in D,$ so the above claim asserts it is the only element. In fact, $|0|_\infty \lt 1/2,$ so\[0\in\op{Int}D=\{a\in\AA_\QQ:|a_\infty| \lt 1/2\text{ and }|a_p|_p\le1\text{ for }p \lt \infty\}\subseteq D,\]which is an open subset of $\AA_\QQ$ containing $0$ as its only rational. It follows the translate $q+\op{Int}D$ is an open set containing $q$ as its only rational, so $\QQ\subseteq\AA_\QQ$ is discrete; else $q+\op{Int}D-q=\op{Int}D$ would contain another rational.
+					</p>
+					<p>
+						Anyways, we show the lemma now. This is a group homomorphism because\[(d_1,q_1)+(d_2,q_2)\to(d_1+q_1)+(d_2+q_2)\leftarrow(d_1+d_2,q_1+q_2).\]So for injectivity, it suffices for trivial kernel; that is, $d+q=0$ if and only if $d=0$ and $q=0.$ Well, $d+q=0$ implies $d=-q,$ so it suffices to show $D\cap\QQ=\{0\}.$ Certainly $0\in D\cap\QQ,$ and for any other $q\in D\cap\QQ,$ then $|q|_p\le1$ for $p \lt \infty$ requires $\nu_p(q)\ge0,$ so in fact $q\in\ZZ.$ But then $q\in(-1/2,1/2)$ forces $q=0,$ as desired.
+					</p>
+					<p>
+						Surjectivity is somewhat harder. Fix an adele $a\in\AA_\QQ$ that we want to hit. We have to cover the poles of $a$ with the rational, but there are only finitely many. Let $S$ be a finite set of nonarchimedean places containing the poles of $a,$ and we use the Chinese remainder theorem to fix\[q\equiv a_p\pmod{p^{\nu_p(a_p)}}\]for each finite prime $p\in S.$ The Chinese remainder theorem applies because $S$ contains only finitely many places. It follows that $a+q\in\ZZ_p$ for each finite prime $p.$
+					</p>
+					<p>
+						To push this into $D,$ it remains to deal with $a_\infty.$ Choose $n:=\lfloor a_\infty\rceil\in\ZZ$ to be the closest integer to $a_\infty.$ Then\[a+q_0+n\in[-1/2,1/2]\times\prod_{p \lt \infty}\ZZ_p=D.\]Thus, $a=(a+q+n)-q-n$ is in the image of $D\oplus\QQ.$ This completes the lemma and the proposition. $\blacksquare$
+					</p>
+					<p>
+						It remains to extend this to arbitrary number fields. As promised, fix $\{\alpha_1,\ldots,\alpha_n\}$ be a basis of $K/\QQ.$ The main lemma to proceed is that this same basis can be lifted to a basis of $\AA_K$ over $\AA_\QQ,$ but we have to pay attention to topology.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							A basis $\{\alpha_1,\ldots,\alpha_n\}$ of $K/\QQ$ induces an isomorphism    \[\alpha:\AA_\QQ^n\to\AA_K\]    of topological groups.
+						</p>
+					</div>
+					<p>
+						We're not going to be terribly formal with this lemma. The map sends $(a_k)_{k=1}^n$ to $\sum_ka_k\alpha_k.$ This map is linear and has trivial kernel, which we won't show explicitly; track the basis backwards. Similarly, surjectivity follows because we can represent some $a_\nu\in K_\nu$ with that basis and then Cauchy sequences move backwards.
+					</p>
+					<p>
+						Anyways, the difficult portion of the statement is the topological part. It is a fact that the diagonal embedding of the basis $\{\alpha_\bullet\}$ induces a topological isomorphism\[\alpha_p:\QQ_p^n\to\prod_{\mf p\mid p}K_\mf p\]for each finite place $p$ of $\QQ,$ and in fact, for all but finitely many $p$ (including $p=\infty$), $\alpha_p$ restricts to an isomorphism $\ZZ_p^n\cong\prod_{\mf p\mid p}\mathcal O_{K_\mf p}.$ Letting $\mf m_0$ be the (formal) product of this finite set of places, we note that any $\mf m_0\mid\mf m$ has\[\AA_{\QQ,\mf m}^n=\prod_{p\mid\mf m}\QQ_p^n\times\prod_{p\nmid\mf m}\ZZ_p^n.\]Using our $\alpha_p,$ we have that\[\AA_{\QQ,\mf m}^n\cong\left(\prod_{p\mid\mf m}\prod_{\nu\mid p}K_\nu\right)\times\left(\prod_{p\nmid\mf m}\prod_{\nu\mid p}K_\nu\right)\cong\AA_{K,\mf m}.\]So we have that our basis induces an isomorphism $\AA_{\QQ,\mf m}^n\cong\AA_{K,\mf m}$ for any modulus $\mf m$ divisible by $\mf m_0.$ This isomorphisms agree on restriction, so gluing them together as $\mf m$ varies lets us piece together a full isomorphism $\AA_\QQ^n\cong\AA_K$ (the $\AA_{K,\mf m}$ cover $\AA_K$). Note we are not being terribly rigorous here. $\blacksquare$
+					</p>
+					<p>
+						Now we can prove the main theorem with relative ease. Pulling back the topological isomorphism $\AA_\QQ^n\to\AA_K$ means that showing $K$ is discrete/cocompact in $\AA_K$ is equivalent to showing that $\QQ^n$ is discrete/cocompact in $\AA_\QQ.$ Explicitly, the conditions for discreteness and cocompactness can be written using only open sets, so we can pull them back along the homeomorphism.
+					</p>
+					<p>
+						But now, showing $\QQ^n$ is discrete/cocompact in $\AA_\QQ^n$ can be shown by merely showing $\QQ$ is discrete/cocompact in $\AA_\QQ,$ by coordinate projection. In particular, the product is finite, so we're dealing with the box topology on $\AA_\QQ^n,$ so it suffices to check only one coordinate and then multiply the open sets checking discrete/cocompact.
+					</p>
+					<p>
+						At this point, appealing to the proposition we showed at the beginning finishes.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For arbitrary number field $K,$ the (diagonal) embedding $K\subseteq\AA_K$ is discrete and cocompact.
+						</p>
+					</div>
+					<p>
+						We remark that the proof holds for arbitrary global fields without too much extra work. Changing $\QQ$ out for $\FF_q[t]$ and $p=\infty$ to $p=(t^{-1})$ for our infinite prime does most of the work. We do not show this here.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

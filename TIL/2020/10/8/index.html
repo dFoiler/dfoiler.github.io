@@ -72,6 +72,16 @@
 							March 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -85,7 +95,7 @@
 						October 8th
 					</h2>
 					<p>
-						Today I learned a nice argument that if all roots of a polynomial $P(x)\in\ZZ[x]$ have magnitude no more than $1,$ then they are all either $0$ or roots of unity. Factor $P(x)$ over $\CC$ as\[P(x)=\prod_{k=1}^n(x-\alpha_k).\]Note that all of the $\alpha_\bullet$ are algebraic integers. The main pllayer in this proof is the sequence of polynomials\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right).\]Essentially, it is necessary and sufficient to show that, eventually, these polynomials cycle their roots&mdash;if they're all roots of unity or $0,$ then taking the least common multiple of all the periods will give us an $M$ so that $P_{M+1}(x)=P(x),$ for example.
+						Today I learned a nice argument that if all roots of a polynomial $P(x)\in\ZZ[x]$ have magnitude no more than $1,$ then they are all either $0$ or roots of unity. Factor $P(x)$ over $\CC$ as\[P(x)=\prod_{k=1}^n(x-\alpha_k).\]Note that all of the $\alpha_\bullet$ are algebraic integers. The main player in this proof is the sequence of polynomials\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right).\]Essentially, it is necessary and sufficient to show that, eventually, these polynomials cycle their roots&mdash;if they're all roots of unity or $0,$ then taking the least common multiple of all the periods will give us an $M$ so that $P_{M+1}(x)=P(x),$ for example.
 					</p>
 					<p>
 						For this, we show there are only finitely many options for the $P_m(x),$ which we can do by showing that the coefficients live in $\ZZ[x]$ and bounded. For $\ZZ[x],$ note that $\ZZ=\overline\ZZ\cap\QQ,$ so it suffices to show that $P_m$'s coefficients live in both $\overline\ZZ$ and $\QQ.$ The former isn't difficult: observe that a full expansion of\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right)\]will give coefficients that are all finite sums of finite products of the $\alpha_\bullet^m.$ But $\overline\ZZ$ is a ring, and we know each $\alpha_\bullet\in\overline\ZZ,$ so these coefficients must be in $\overline\ZZ$ as well.

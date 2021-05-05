@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to April)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						April 25th
+					</h2>
+					<p>
+						Today I learned about Pratt primality certificates. The idea here is that primes are the only integers with $\varphi(n)=n-1,$ and primes are one of the comparatively few integers with a generator. Thus, we can prove that $p$ is prime primality by exhibiting a generator with order $p-1.$ We codify this as follows.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose we are given a positive integer $p$ and a witness $g$ such that $g^{p-1}\equiv1\pmod p$ but $g^{(p-1)/q}\not\equiv1\pmod p$ for each prime $q\mid p-1.$ Then $g$ has multiplicative order $p-1,$ and $p$ is prime.
+						</p>
+					</div>
+					<p>
+						So that we don't have to worry about it, we note that $p=1$ fails the test because $g^k\equiv1\pmod1$ for any integers $a$ or $k,$ so it's impossible to satisfy the second hypothesis on $g.$
+					</p>
+					<p>
+						The fact that $g^{p-1}\equiv1\pmod p$ guarantees that $\gcd(g,p)\le\gcd(g^{p-1},p)=\gcd(1,p)=1,$ so $g\in(\ZZ/p\ZZ)^\times.$ Now, we can ask you what the multiplicative order of $g\pmod p$ is; let the order be $N.$ We claim that $N=p-1,$ which is where we will use the other hypothesis on $g.$
+					</p>
+					<p>
+						Well, $g^{p-1}\equiv1$ means that $N\mid p-1.$ Further, we are given that, fixing any prime $q\mid p-1,$ we have\[g^{(p-1)/q}\not\equiv1\pmod p.\]In particular, the order $N$ cannot divide any of these $(p-1)/q.$ Because for other primes $q'\mid p-1,$ we do have $\nu_{q'}(N)\le\nu_{q'}((p-1/q))=\nu_{q'}(p-1),$ the place where divisibility breaks must be at $q$: we must have $\nu_q(N) \gt \nu_q((p-1)/q).$ This implies that\[\nu_q(N)\ge\nu_q(p-1),\]for each $q\mid p-1.$ Thus, $p-1\mid N$ as well, so $N=p-1$ because $N$ and $p-1$ are both positive integers.
+					</p>
+					<p>
+						It remains to actually show that $p$ is prime. Well, the order $N=p-1$ must divide $\varphi(p)$ by the Euler totient theorem, so $\varphi(p)\ge p-1.$ However, $\varphi(p),$ defined as the number of positive integers less than or equal to $p$ coprime to $p,$ is no more than $p-1$ by dropping $p$ (because we are looking at $p \gt 1$). It follows\[\varphi(p)=p-1.\]This quickly implies that $p$ is prime: because we hit equality on $\varphi(p)\le p-1,$ every positive integer less than $p$ is coprime to $p.$ In particular, $p$ has no smaller prime factors (which would not be coprime), meaning that $p$ is its own prime factorization. So $p$ is prime. $\blacksquare$
+					</p>
+					<p>
+						We now actually have to turn the above statement into a primality certificate. It might seem problematic that proving the primality of $p$ requires knowing the primality of primes $q\mid p-1,$ and this is right. However, the primes $q\mid p-1$ are strictly smaller, so we can just induct downwards in our certificate, providing the prime factorization of $p-1$ and proving the primalities of the primes $q\mid p-1$ all at once. Our base is that $2$ is prime.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given a prime $p,$ we define the Pratt primality certificate recursively as follows.
+						</p>
+						<ul>
+							<li>
+								<p>
+									If $p=2,$ then we don't provide a certificate.
+								</p>
+							</li>
+							<li>
+								<p>
+									An integer $g$ with multiplicative order $p-1.$
+								</p>
+							</li>
+							<li>
+								<p>
+									The primes in the prime factorization of $p-1.$
+								</p>
+							</li>
+							<li>
+								<p>
+									The Pratt primality certificate proving that each of the primes in the prime factorization of $p-1$ are prime.
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						As stated above, the certificate is finite in length because the recursive step deals with primes strictly smaller than $p,$ so eventually we will get down to $2,$ which has no needed certificate.
+					</p>
+					<p>
+						However, we can be more effective in how many extra certificates we will have to generate.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For each prime $p,$ there at most $4\log_2p-4$ primes that need certificates.
+						</p>
+					</div>
+					<p>
+						We do this by induction; for $p=2,$ there are indeed no primes that need certificates. For the inductive step, write $p=\prod_{k=1}^np_k$ its prime factorization. Then each $p_k$ needs at most $4\log_2p_k-4$ certificates, implying that we need at most\[\underbrace1_p+\sum_{k=1}^n\underbrace{(4\log_2p_k-4)}_{p_k} \lt 4\log_2\left(\prod_{k=1}^np_k\right)-4k\le4\log_2p-4\]certificates in the entire tree. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						Each prime and generator that we need to write down in the Pratt certificate of $p$ has at most $\log_2p$ bits, and each prime needs a generator which also has at most $\log_2p$ bits, so in total we need to write down $O((\log p)^2)$ bits because there are $O(\log p)$ primes to certify.
+					</p>
+					<p>
+						As for verification, we basically need to check that each of the prime factorizations check out and that the generator $g$ really does generate. Checking the prime factorizations has each prime multiply at most once, so that's $O(\log p)$ multiplications of primes of the size $O(\log p).$ Even doing basic $O((\log n)^2)$ multiplication, this step is $O((\log p)^3).$
+					</p>
+					<p>
+						It remains to check that the $g$ really do generate, which is what we use the proposition for. We have to check that $g^{p-1}\equiv1$ while $g^{(p-1)/q}\not\equiv1$ for each prime $q\mid p-1.$ Well, modular exponentiation by repeated squaring says that one of these checks needs $O(\log p)$ multiplications.
+					</p>
+					<p>
+						Further, because there are $O(\log p)$ total primes which need certificates, this also doubles as an upper bound for the number of exponentiations: each exponentiation aside from the $g^{p-1}\equiv1$ corresponds to a prime that needs a certificate below, aside from $2.$ In particular, adding in the single $g^{p-1}\equiv1$ and at most $\log_2p$ total $2$s keeps us at $O(\log p)$ exponentiations. This totals to\[O\big(\underbrace{\log p}_{\text{exps}}\cdot\underbrace{\log p}_{\text{mults.}}\cdot\underbrace{(\log p)^2}_{\text{a mult.}}\big)=O\left((\log p)^4\right)\]to do the entire verification. This is a reasonble run-time.
+					</p>
+					<p>
+						However, the issue with Pratt certificates is, of course, that we need to factor $p-1$ and then one less than each of $p-1$'s prime factors, and so on. There is not currently an efficient way to do this factorization, so generating Pratt certificates is hard, even though their length is relatively small, and checking is relatively fast.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 2nd
+					</h2>
+					<p>
+						Today I learned the proof that Berstein polynomials uniformly approximate continuous functions on $[0,1],$ from
+						<a href="https://web.archive.org/web/20210421224053/https://en.wikipedia.org/wiki/Bernstein_polynomial">
+							the Wikipedia page
+						</a>
+						. Here is the statement that we are building towards.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $f:[0,1]\to\RR$ a continuous function. Then there is a sequence of polynomials $p_1,p_2,\ldots\in\RR[x]$ that uniformly converge to $f.$ In other words, for any $\varepsilon,$ we may write
+						</p>
+					</div>
+					<p>
+						We present an elementary presentation of this because I'm not very familiar with probability theory. (For example, I don't know a proof of the weak law of large numbers.) The main character in the proof is the following class of polynomials.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given positive integer $n$ and another positive integer $k\le n,$ we can define the corresponding Berstein polynomial as    \[\binom nkx^k(1-x)^{n-k}.\]
+						</p>
+					</div>
+					<p>
+						In terms of probability theory, the given polynomial is taking a coin weighted to turn heads with probability $x$ and then asking for the probability that $k$ of $n$ flips will turn heads.
+					</p>
+					<p>
+						With this in mind, our central construction is to take a large positive integer $n$ and then define the polynomial\[f_n(x):=\sum_{k=0}^nf\left(\frac kn\right)\left[\binom nkx^k(1-x)^{n-k}\right].\]The idea here is that, for $x\approx\ell/n$ for some $\ell,$ then the probability of giving too many more or too many fewer than $\ell$ of the first $n$ of our flips to turn up heads has pretty small probability. In particular, $f_n(x)$ will approximately by the average of the values of $f$ around $x.$ This intuition can be rigorized.
+					</p>
+					<p>
+						To make this work, we need to say that the average value of $f$ around $x$ is approximately $f(x),$ or even sharper, that $f$ close to $x$ is approximately $f(x),$ which is true because $f$ is continuous. However, because we are aiming for uniform convergence of our $f_\bullet,$ however, we need this approximation to be uniform as well: in other words, we need $f$ to be uniformly continuous.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $f:[0,1]\to\RR$ a continuous function. Then $f$ is in fact uniformly continuous.
+						</p>
+					</div>
+					<p>
+						This comes from the fact $[0,1]$ is compact; for example, this is not true on the open interval $(0,1)$ because of $f(x)=1/x.$ The point is that for fixed $\varepsilon \gt 0,$ we can exhibit a $\delta_x \gt 0$ for any $x\in[0,1]$ such that\[|x'-x| \lt \delta_x\implies|f(x')-f(x)| \lt \varepsilon.\]But the intervals $(x-\delta_x/2,x+\delta_x/2)$ form an open cover of $[0,1]$ (note $x\in(x-\delta_x/2,x+\delta_x/2)$), so we may extract a finite subcover. (This division by $2$ will be important shortly.) That is, we have a set of points $\{x_k\}_{k=1}^n\subseteq[0,1]$ together with $\{\delta_k\}_{k=1}^n\subseteq\RR_{ \gt 0}$ such that\[[0,1]\subseteq\bigcup_{k=1}^n(x_k-\delta_k/2,x_k+\delta_k/2)\quad\text{and}\quad|x-x_\bullet| \lt \delta_\bullet\implies|f(x)-f(x_\bullet)| \lt \varepsilon.\]Now let $\delta:=\frac12\min_k\{\delta_k\}.$ The point of this $\frac12$ is that, for any $x,y\in[0,1]$ satisfying $|x-y| \lt \delta,$ we may find some $x_\bullet$ and $\delta_\bullet$ from our open cover with $x\in(x_k-\delta_k/2,x_k+\delta_k/2),$ implying\[|y-x_\bullet|\le|y-x|+|x-x_\bullet| \lt \delta+\delta_\bullet/2 \lt \delta_\bullet.\]Here is where the division by $2$ from earlier mattered as well. In particular, $|x-y| \lt \delta$ is implying that\[|f(x)-f(y)|\le|f(x)-f(x_\bullet)|+|f(y)-f(x_\bullet)| \lt \varepsilon+\varepsilon=2\varepsilon.\]Sending $\varepsilon\mapsto\varepsilon/2$ in the above proof gives us uniform continuity. $\blacksquare$
+					</p>
+					<p>
+						Let's begin to attack the theorem directly. Fixing $x\in[0,1]$ and error $\varepsilon \gt 0,$ we need to be able to take $n$ large enough so that\[|f_n(x)-f(x)| \lt \varepsilon.\]Expanding this out using the triangle inequality, we can bound by\[|f_n(x)-f(x)|\le\sum_{k=0}^n\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right].\]As explained above, we expect most of the contribution of $f_n(x)$ to come from terms where $x\approx k/n.$ How close? Well, we would like to be close enough so that $f(k/n)$ is about $\varepsilon$-close to $f(x),$ so we use the uniform continuity of $f$ to give us $\delta$ so that\[\sum_{|x-k/n| \lt \delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right] \lt \varepsilon\sum_{|x-k/n| \lt \delta}\binom nkx^k(1-x)^{n-k}.\]This is less than $\varepsilon$ because $\sum_{k=0}^n\binom nkx^k(1-x)^k=1$ by the binomial theorem. (This application of the binomial theorem effectively says the sum of these probabilities is $1.$) This is our main term.
+					</p>
+					<p>
+						It remains to bound the hopefully negligible\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right].\]Note that we have not made $n$ large yet, so that should show up here. In particular, we expect this to be small because the "probability terms'' $\binom nkx^k(1-x)^{n-k}$ should total to something quite small because the probability of hitting too many heads outside of the expected value ought be small.
+					</p>
+					<p>
+						However, rigorizing this argument means that we would like to not care about $\left|f\left(\frac kn\right)-f(x)\right|,$ which means we would like $f$ to be bounded.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $f:[0,1]\to\RR$ a continuous function. Then $f$ is bounded.
+						</p>
+					</div>
+					<p>
+						Again, this comes from the fact $[0,1]$ is compact. In particular, the collection\[\bigcup_{R=0}^\infty(-R,R)\]is an open cover of $\RR,$ so continuity of $f$ guarantees that\[\bigcup_{R=0}^\infty f^{-1}\big((-R,R)\big)\]is an open cover of $[0,1].$ Extracting a finite subcover, we may select a largest $R$ among the finite subcover, implying that $[0,1]\subseteq f^{-1}\big((-R,R)\big).$ In particular, $f$ is bounded by $R.$ $\blacksquare$
+					</p>
+					<p>
+						So we fix $R$ to bound $f$ so that $\left|f\left(\frac kn\right)-f(x)\right| \lt 2R,$ implying that\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]\le2R\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}.\]Now we have to do probability theory to bound that sum. Because we are trying to show that living outside of $|x-k/n| \lt \delta$ occurs with low probability, we study the variance and prove a version of Chebychev's inequality to finish. To introduce the variance, we write\[\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}\le\delta^{-2}\sum_{k=0}^n\left(x-\frac kn\right)^2\cdot\binom nkx^k(1-x)^{n-k},\]where the sum now features the variance. We can compute this sum directly via generating functions' techniques.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have, for $x\in[0,1],$    \[\sum_{k=0}^n\left(x-\frac kn\right)^2\cdot\binom nkx^k(1-x)^{n-k}=\frac{x(x-1)}n.\]
+						</p>
+					</div>
+					<p>
+						To make this prettier, we fix $t:=\frac x{x-1}$ so that $x=\frac t{t+1}$ and $1-x=\frac1{t+1}.$ (The risk of $x=1$ can be patched by continuity.) We are left to prove that\[\sum_{k=0}^n\left(\frac t{t+1}-\frac kn\right)^2\cdot\binom nkt^k\left(\frac1{t+1}\right)^n\stackrel?=\frac t{n(t+1)^2},\]which rearranges to\[\sum_{k=0}^n\big(nt-k(t+1)\big)^2\cdot\binom nkt^k\stackrel?=nt(t+1)^n\]after multiplying both sides by $n^2(t+1)^{n+2}.$
+					</p>
+					<p>
+						Now we go into full bash. Note that $(1+t)^n=\sum_{k=0}^n\binom nkt^k$ by binomial theorem, so taking the derivative gives\[n(t+1)^{n-1}=\sum_{k=0}^n\binom nkkt^{k-1}.\]Taking the derivative again gives\[n(n-1)(t+1)^{n-2}=\sum_{k=0}^n\binom nk\left(k^2-k\right)t^{k-1}.\]Checking our sum, we see that it expands into\[\sum_{k=0}^{n}\left(\left(\left(k^{2}-k\right)\left(t+1\right)^{2}+k\left(\left(t+1\right)^{2}-2nt\left(t+1\right)\right)+n^{2}t^{2}\right)\cdot\binom nkt^{k}\right),\]which is\[\left(t+1\right)^{2}t^2\left(\sum_{k=0}^{n}\binom nk\left(k^{2}-k\right)t^k\right)+\left(\left(t+1\right)^{2}-2nt\left(t+1\right)\right)t\left(\sum_{k=0}^n\binom nkkt^k\right)+n^{2}t^{2}\left(\sum_{k=0}^n\binom nkt^{k}\right),\]which collapses to\[n(n-1)\left(t+1\right)^nt^2+n(t+1)^n\left(\left(t+1\right)-2nt\right)t+n^{2}t^2(t+1)^n.\]Factoring out the desired $nt(t+1)^n,$ we are left with\[nt(t+1)^n\left(nt+\left(\left(t+1\right)-2nt\right)+nt\right),\]and the inner sum does indeed cancel out to just $1.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						It follows that\[\sum_{|x-k/n|\ge\delta}\binom nkx^k(1-x)^{n-k}\le\delta^{-2}\frac{x(x-1)}n\le\frac{\delta^{-2}}n.\]Sending $n\to\infty$ now means that we can make this as small as we please. In particular, we can also make\[\sum_{|x-k/n|\ge\delta}\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right]\le\frac{2R\delta^{-2}}n\]as small as we please. Thus, we can make it less than, say, $\varepsilon,$ so we can bring everything together to get\[|f_n(x)-f(x)|\le\sum_{k=0}^n\left|f\left(\textstyle\frac kn\right)-f(x)\right|\left[\binom nkx^k(1-x)^{n-k}\right] \lt 2\varepsilon,\]were the other $\varepsilon$ came from the main term. Now sending $\varepsilon\mapsto\varepsilon/2$ in the above proof recovers uniform convergence. This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						I like a couple of things about the above proof. First off, this is entirely elementary, minus maybe the fact we didn't prove that $[0,1]$ is compact, but this could in theory be done. But secondly, we are using ideas from probability theory to motivate parts of the proof, even if we don't actually use the main theorems. I am under the impression it is possible to state this entire proof with probability theory in half the space (or less).
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>
