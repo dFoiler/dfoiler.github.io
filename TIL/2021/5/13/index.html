@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 13th
+					</h2>
+					<p>
+						Today I learned a little combinatorial reciprocity, from
+						<a href="https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf">
+							Combinatorial Reciprocity Theorems
+						</a>
+						. By coincidence (with respect to what we did a few days ago), our main character will be partially ordered sets ("posets''), and specifically we will be looking at order-preserving maps between posets.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given posets $(X,\le_X)$ and $(Y,\le_Y),$ we say that a map $\varphi:X\to Y$ is weakly order-preserving if and only if    \[x_1\le_Xx_2\implies\varphi(x_1)\le_Y\varphi(x_2).\]    Similarly, $\varphi:X\to Y$ is strictly order-preserving if and only if    \[x_1\lneq_Xx_2\implies\varphi(x_1)\lneq_Y\varphi(x_2).\]
+						</p>
+					</div>
+					<p>
+						Again, if we want to think about posets algebraically, these are basically describing structure-preserving maps (i.e., homomorphisms). As a brief aside, it might look like we are requiring strictly order-preserving maps to be injective, and this is a reasonable intuition, but it is not correct: an antichain can be compressed to one element, and this map is strictly order-preserving.
+					</p>
+					<p>
+						Where we're going, we also need the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							We call a totally ordered set with $n$ elements an $n$-chain. Along these lines, we will define a "standard'' $n$-chain by $[n]:=\{1,2,\ldots,n\}$ with the usual ordering.
+						</p>
+					</div>
+					<p>
+						We would like all of these to be "the same'' in some sense, and indeed they are.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $(X,\le)$ and $(Y,\le)$ are both $n$-chains. Then there is a unique bijective order-preserving map $\varphi:X\to Y.$ We will call this map $\iota_{X,Y}.$
+						</p>
+					</div>
+					<p>
+						This is by induction on $n.$ If $n=0$ or even $n=1,$ there is nothing to prove here.
+					</p>
+					<p>
+						For the inductive step, we remark that the finiteness of $X$ and $Y$ guarantees that there is a maximum element. We could show this by induction as well: at $n=1,$ we're done; adding one element to $X$ will either be the maximum or less than the maximum before adding.
+					</p>
+					<p>
+						Let the maximums be $m_x\in X$ and $m_y\in Y.$ Quickly, we note that we must have $\varphi(m_x)=m_y$ because surely $\varphi(m_x)\le m_y$ and $\varphi^{-1}(m_y)\le m_x.$ Now, then we note $X':=X\setminus\{m_x\}$ and $Y':=Y\setminus\{m_y\}$ are smaller totally ordered sets of the same size. So by induction let their unique bijective order-preserving map be $\varphi':X'\to Y'.$ Then we define\[\varphi(x)=\begin{cases}    \varphi'(x) & x\ne m_x, \\    m_y & y\ne m_y.\end{cases}\]Because $\varphi(m_x)=m_y$ is forced, this is fact the only possible bijective order-preserving map; we now show it works. This is surjective because\[\varphi(X)=\varphi'(X')\cup\varphi(\{m_x\})=Y'\cup\{m_y\}=Y\]by surjectivity of $\varphi'.$ So now $\varphi$ is bijective because it is a surjective mapping of sets of the same size. Further, $\varphi$ preserves order because $x_1\le x_2$ either has $x_2=m_x,$ in which case\[\varphi(x_1)\le\varphi(x_2)=m_y\]is true because $m_y$ is a maximal element, or $x_1$ and $x_2$ are strictly smaller than $m_x$ so that $x_1,x_2\in X',$ meaning\[\varphi(x_1)=\varphi'(x_1)\le\varphi'(x_2)=\varphi(x_2)\]follows from $\varphi'$ preserving order. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						I think the idea in combinatorial reciprocity is to build a polynomial to compute some combinatorics problem and then plug in values outside of the intended values (say, negatives), and magically, we will still get out a number of significance. Here's our polynomial of interest.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix a finite poset $(X,\le).$ The number of strictly order-preserving maps $\varphi:X\to[n]$ is polynomial in $n$ of degree $\#X.$ The same holds for weakly order-preserving maps.
+						</p>
+					</div>
+					<p>
+						This is not as interesting as it appears. The main idea is to do casework on the number of elements in the image of an order-preserving map. For now, fix $\varphi$ an order-preserving map, of either kind. The main point is that $\varphi(X)$ is a totally ordered set; indeed, it inherits this structure from being a subset of the totally ordered $[n].$
+					</p>
+					<p>
+						Now we can count the total number of maps $\varphi$ by dividing up by the size of $\varphi(X)$; fix $m=\#\varphi(X).$ The claim is that we can biject maps $\varphi$ with pairs of order-preserving surjections (of the correct kind) $\varphi_1:X\to[m]$ and strictly order-preserving injections $\varphi_2:[m]\to[n].$ Indeed, given $\varphi:X\to[n],$ we can take it to\[(\varphi_1,\varphi_2)=(\iota_{\varphi(X),[m]}\circ\varphi,\iota_{[m],\varphi(X)}).\]Here, $\varphi_1$ is surjective because $\varphi$ surjects onto $[m]$; $\varphi_2$ is injective because it is the expansion of the bijective $\iota.$ And of $\varphi_1$ is order-preserving because $\varphi$ and $\iota$ are, and $\varphi_2$ is stritly order-preserving because $\iota$ is. So the correspondence is well-defined.
+					</p>
+					<p>
+						Further, our correspondence is injective by the bijectivity of the map $\iota_{\varphi(X),[m]}.$ For surjectivity, we can pick up some surjective order-preserving $\varphi_1:X\to[m]$ and injective strictly order-preserving $\varphi_2:[m]\to[n]$ and then define\[\varphi:=\varphi_2\circ\varphi_1.\]This is well-defined because the surjectivity of $\varphi_1$ means $\#\varphi_1(X)=m,$ and the injectivity of $\varphi_2$ means $\#(\varphi_2\circ\varphi_1)(X)=m.$ We need to show that\[\begin{cases}    \varphi_1=\iota_{\varphi(X),[m]}\circ\varphi_2\circ\varphi_1, & (1)\\    \varphi_2=\iota_{[m],\varphi(X)}. & (2)\end{cases}\]Now, $(2)$ is true because of how $\varphi$ is defined: the image of $\varphi$ is the image of $\varphi_2,$ and the injectivity of $\varphi_2$ means there is a unique bijective order-preserving map from $[m]$ to $\varphi(X)=\varphi_2(X).$ Then $(1)$ follows because\[\iota_{\varphi_X,[m]}\circ\iota_{[m],\varphi(X)}:\varphi(X)\to\varphi(X)\]is a bijective order-preserving map. But so is $\op{id}_{\varphi(X)},$ so this must in fact be $\op{id}_{\varphi(X)},$ finishing $(1).$
+					</p>
+					<p>
+						To finish our counting, we now loop over $m$ counting pairs $(\varphi_1,\varphi_2)$ as described. Note that $\varphi_1$ has nothing to do with $n,$ so the number of $\varphi_1$ is going to be fixed with respect to $n$; call it $N_m.$ As for $\varphi_2,$ we note that there are\[\binom nm\]ways to choose the $m$ elements of the image $\varphi_2(X)\subseteq[n],$ and once the image is chosen, there is exactly one way to go from $\varphi(X)\to[n].$ So the number of pairs is $N_m\binom nm$ for fixed $m,$ meaning there are in total\[\sum_{m\ge1}N_m\binom nm\]order-preserving maps from $X\to[m].$ To turn this into a polynomial, we note that our parameter $m=\#\varphi(X)\le\#X,$ so this is in fact a finite sum\[\sum_{m=1}^{\#X}N_m\binom nm.\]This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						For brevity, we let $S_X(n)$ be the polynomial for strictly-ordered maps and $W_X(n)$ be the polynomial for weakly-ordered maps. To give some motivation for where we're going, we note that the case of $X=[N]$ for some fixed $N$ has\[S_{[N]}(n)=\binom nN\]because we only need to choose the image of $X$ in $[n]$ and then biject. (Alternatively, we can use the polynomial we built in the proof, noting that $N_m=0$ unless $m=n,$ in which case $N_m=1.$) But on the other hand,\[W_{[N]}(n)=\binom{n+N-1}N\]by stars and bars. Indeed, once told the $n$-tuple $(a_1,\ldots,a_n)$ saying that $a_k$ of $[N]$'s elements go to $k\in[n],$ we can construct the rest of the map using the ordering of $X.$ (We won't be rigorous here.) So we are computing the number of tuples with $a_1+\cdots+a_n=N,$ which is the above by stars and bars. The remarkable fact is that\[(-1)^N\binom{-n}N=(-1)^N\cdot\frac1{N!}\prod_{k=0}^{N-1}(-n-k)=\frac1{N!}\prod_{k=0}^{N-1}(n+k)=\binom{n+N-1}N.\]This seems like a numerical trick&mdash;this is what it looked like to me for a while&mdash;but it is in fact a facet of something more profound. It's telling us $S_{[N]}(-n)=(-1)^NW_{[N]}(n),$ which is in fact generally true.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For any finite poset $X,$ we have that $S_X(-n)=(-1)^{\#X}W_X(n).$
+						</p>
+					</div>
+					<p>
+						I don't know the proof of this, but isn't it amazing! $\blacksquare$
+					</p>
+					<p>
+						I have no clue why one should expect such a thing to be true. What's amazing is that the polynomials $S_X$ and $W_X$ feel quite different because the patterns of their coefficients $N_m$ really feel like they have nothing to do with each other. But somehow plugging in negative values&mdash;values that the polynomials were notably not built for&mdash;can recover the values of the other one. Astounding.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

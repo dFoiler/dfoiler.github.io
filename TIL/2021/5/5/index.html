@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 5th
+					</h2>
+					<p>
+						Today I learned the proof of Penney's nontransitive coin-flipping game. The game is as follows: the first player chooses some ordered triple of heads and tails, and then the second player analogously chooses a different triple. Then a coin is flipped until the last three flips matches the triple of one the players' triples, in which event that player wins. Note that the game terminates with probably $1$ because any random triple fails to match with probability $1-\frac18-\frac18 \lt 1,$ so someone will win eventually.
+					</p>
+					<p>
+						It turns out that no matter what the first player chooses, the second player can always select a triple that wins out over the first player. By symmetry, we can flip $\texttt{H}\leftrightarrow\texttt{T}$ to guarantee the first coin of player one is $\texttt{H},$ meaning we have to account for $\texttt{HHH}$, $\texttt{HHT}$, $\texttt{HTH}$, and $\texttt{HTT}.$ We begin with some easy cases.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If the first player chooses $\texttt{HHH},$ then the second player can choose $\texttt{THH}$ to win.
+						</p>
+					</div>
+					<p>
+						We have two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								Note that $\frac18$ of the time, the opening triple is $\texttt{HHH},$ in which case player two loses.
+							</p>
+						</li>
+						<li>
+							<p>
+								Otherwise, we claim that player two wins. Indeed, there is a tails sometime in the first $3$ flips, and the existence of a tail implies that player one cannot win: find the first instance of $\texttt{HHH}$ in the series of coin flips, and then we see this group of $\texttt{HHH}$ was proceeded by a $\texttt{T},$ meaning that $\texttt{THH}$ beat $\texttt{HHH}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Thus, we see that player two wins with probability $\frac78 \gt \frac12.$ We briefly remark that this is optimal because we can never avoid the chance that the first player just happens on the best sequence to start. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If the first player chooses $\texttt{HHT},$ then the second player can choose $\texttt{THH}$ to win.
+						</p>
+					</div>
+					<p>
+						Again, we have two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If the first two flips happen to be $\texttt{HH},$ then player two loses. Indeed, player two needs a $\texttt{T}$ sometime to find a $\texttt{THH},$ but the first time a $\texttt{T}$ appears, it will be proceeded by at least two $\texttt{H},$ implying that $\texttt{HHT}$ beat $\texttt{THH}.$
+							</p>
+						</li>
+						<li>
+							<p>
+								Otherwise, we claim that player two wins. Indeed, there is a tails sometime in the first two flips, and for $\texttt{HHT}$ to win, we need to see a $\texttt{HH}$ sometime in the sequence. But this $\texttt{HH}$ is not at the beginning, and so the first $\texttt{HH}$ is preceded by a $\texttt{T},$ implying $\texttt{THH}$ beat $\texttt{HHT}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						It follows player two wins with probability $\frac34 \gt \frac12$ and so usually wins. $\blacksquare$
+					</p>
+					<p>
+						It remains to deal with $\texttt{HTH}$ and $\texttt{HTT}.$ For this, we introduce the following state diagram.
+					</p>
+					<img src="img1.png">
+					<p>
+						The arrows denote a movement with probability $\frac12.$ We will claim that $\texttt{HHT}$ beats both of $\texttt{HTH}$ and $\texttt{HTT},$ so because everything involved starts with $\texttt{T},$ we note that we can imagine starting the sequence with $\texttt{TTT}$ and then append to it.
+					</p>
+					<p>
+						We can start filling out some of the diagram, placing on each node the probability player two wins starting there. We are interested in the probability that player two wins starting at $\texttt{TTT},$ which we call $p.$ Then $\texttt{TTT}$ either travels to itself or travels to $\texttt{TTH},$ so we will end up in $\texttt{TTH}$ with probability $1.$ Filling in these probabilities, so far we have the following.
+					</p>
+					<img src="img2.png">
+					<p>
+						Now, we will be claiming that $\texttt{HHT}$ is our winner, so starting there wins with a probability $1$ (and feeds nowhere). But the note that $\texttt{HHH}$ doesn't have any outlet except into $\texttt{HHT},$ so hitting $\texttt{HHT}$ means player two win with probability $1.$ And similarly, $\texttt{THH}$ doesn't have any outlets except into the winning states $\texttt{HHH}$ and $\texttt{HHT},$ so it also wins with probability $1.$
+					</p>
+					<img src="img3.png">
+					<p>
+						Because one of $\texttt{HTH}$ or $\texttt{HTT}$ will player one winning and so player two losing in our analysis, those will become $0$ in the lemmas that follow. So the last block we can fill in, for now, is $\texttt{THT}.$ For this, we note that $\texttt{TTH}$ in the top-left splits into $1$ with probability $\frac12$ and into $\texttt{THT}$ with probability $\frac12,$ so $p$ is the average of $\texttt{THT}$'s probability and $1.$ So $\texttt{THT}$'s probability is $2p-1.$
+					</p>
+					<img src="img4.png">
+					<p>
+						Now we move into our concrete cases.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If the first player chooses $\texttt{HTH},$ then the second player can choose $\texttt{HHT}$ to win.
+						</p>
+					</div>
+					<p>
+						We have already filled in a lot of our state diagram. Note that starting at $\texttt{HTH}$ now gives probability $0$ of winning (and feeds nowhere), but $\texttt{HTT}$ is just another state which can only feed into the probability-$p$ states $\texttt{TTT}$ and $\texttt{TTH}.$ So our diagram is as follows.
+					</p>
+					<img src="img5.png">
+					<p>
+						Now, we see that $2p-1$ feeds into a $0$ with probability $\frac12$ and a $p$ with probabilty $\frac12,$ so\[2p-1=\frac12(0+p).\]Solving gives player two winning with probability $p=\frac23 \gt \frac12.$ $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							If the first player chooses $\texttt{HTT},$ then the second player can (still) choose $\texttt{HHT}$ to win.
+						</p>
+					</div>
+					<p>
+						Again, a lot of our state diagram is already filled in above. This time the probability at $\texttt{HTT}$ is $0$ and feeds nowhere. But now we can evaluate the probability at $\texttt{HTH}$ as the average between its outputs $2p-1$ and $1,$ which is simply $p.$ So our diagram is now the following.
+					</p>
+					<img src="img6.png">
+					<p>
+						But again, $2p-1$ feeds into a $0$ and a $p$ each with probability $\frac12,$ implying $2p-1=\frac12(0+p),$ so $p=\frac23 \gt \frac12$ is the probability that player two wins. $\blacksquare$
+					</p>
+					<p>
+						Putting everything together, we have the following table.\[\begin{array}{c|c|c}    \text{player one's choice} & \text{player two's choice} & \text{player two's probability} \\\hline    \texttt{HHH} & \texttt{THH} & 7/8 \\    \texttt{HHT} & \texttt{THH} & 3/4 \\    \texttt{HTH} & \texttt{HHT} & 2/3 \\    \texttt{HTT} & \texttt{HHT} & 2/3\end{array}\]Flipping the entire table tells player two what to do when player one starts with a tails.\[\begin{array}{c|c|c}    \text{player one's choice} & \text{player two's choice} & \text{player two's probability} \\\hline    \texttt{TTT} & \texttt{HTT} & 7/8 \\    \texttt{TTH} & \texttt{HTT} & 3/4 \\    \texttt{THT} & \texttt{TTH} & 2/3 \\    \texttt{THH} & \texttt{TTH} & 2/3\end{array}\]So indeed, player two can always arrange the game to have a better-than-even winning probability. The game is non-transitive.
+					</p>
+					<p>
+						Intuitively, Wikipedia explains what's going on as player one typically needs the first two flips to set up and the last to execute, but player's two choice is arranged so that its last two match up, meaning that player two will generally win before player one finishes setting up. I find this somewhat convincing because it reflects the arguments for $\texttt{HHH}$ and $\texttt{HHT}$ well, though these are the easier cases. In contrast, I can't see what's going on with $\texttt{HTT}$ or $\texttt{HTH}$ as well. The cleanest argument I have is the states diagram I presented, and it is nontrivially painful even though a lot of the work can be shared.
+					</p>
+					<p>
+						Anyways, what I like about this game is that it is non-transitive (of course), and it feels more natural than, say, non-transitive dice. Given my experience with contest math, asking which of two players will win in this game for fixed choices is a pretty common flavor of question.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

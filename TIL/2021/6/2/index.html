@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 2nd
+					</h2>
+					<p>
+						Today I learned a proof that $e^q$ is irrational for any $q\in\QQ\setminus\{0\},$ following Hermite. Note that we can write $q=n/m$ for $n$ a positive integer and $m$ an integer, and $e^{n/m}$ rational implies $\left(e^{n/m}\right)^m=e^n$ rational, so it suffices to show (by contraposition) that $e^n$ is irrational for positive integers $n.$
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							The value $e^n$ is irrational for positive integers $n.$
+						</p>
+					</div>
+					<p>
+						This proof is truly magical. Our result is going to come from bounding: we are going to create an arbitrarily small integral that the rationality of $e$ forces to be an integer, and that will yield contradiction. Of course, we have to use something about $e,$ so we are going to use the fact that\[\frac d{dx}e^{nx}=ne^{nx}.\]Note this is a defining property of $e,$ so we can be sure we are using its full power. We would like to use this to make a (small) integral, so we have to introduce a (small) auxiliary differentiable function $F:\RR\to\RR$ here: the product rule tells us that\[\frac d{dx}F(x)e^{nx}=F'(x)e^{nx}+nF(x)e^{nx}.\]We promised an integral, and indeed, our integral is going to be\[\int_0^1\left(F'(x)+nF(x)\right)e^{nx}\,dx=F(x)e^{nx}\bigg|_0^1=F(1)e^n-F(0).\]When we suppose that $e^n$ is rational (which we will postpone as long as possible), we might hope that $F(0)$ and $F(1)$ are integers so that the above integral can be made into an integer when multiplied by the supposed denominator of $e^n.$
+					</p>
+					<p>
+						To proceed, we recognize we will need better control of $F'(x)+nF(x)$&mdash;after all, we have to make its integral arbitrarily small. So we define, for now, $f(x):=F'(x)+nF(x)$ and attempt to solve for $F$ in terms of $f.$ Well, we see\[F(x)=\frac1nf(x)-\frac1nF'(x).\]Of course, we don't know what $F'$ is directly, but we can solve for it by differentiating the above into $F'(x)=\frac1nf'(x)-\frac1nF''(x),$ so we see\[F(x)=\frac1nf(x)-\frac1{n^2}f'(x)+\frac1{n^2}F''(x).\]We can continue this process inductively and just write\[F(x)=\sum_{k=0}^\infty\frac{(-1)^k}{n^{k+1}}f^{(k)}(x),\]assuming everything converges properly. We can check that, assuming nice enough convergence (which we will have), this does indeed give $f(x)=F'(x)+nF(x).$
+					</p>
+					<p>
+						We said above that it would be nice for $F(0)$ and $F(1)$ to be integers, which makes choosing an $f(x)$ to define $F(x)$ a bit annoying: after all, there's that infinite sum to deal with. Our way out is to make $f(x)$ a polynomial, thus making the sum finite, and then multiplying $f$ with a very large power of $n$ to accommodate for the given denominators.
+					</p>
+					<p>
+						Now we introduce the star of our story. Choose $N$ very large, to be fixed later, making\[f_0(x):=\frac{x^N(1-x)^N}{N!}\]very small. Then we define $f(x):=n^{2N+1}f_0(x)$ to deal with the denominators so that\[F(x):=\sum_{k=0}^\infty\frac{(-1)^k}{n^{k+1}}f^{(k)}(x)=\sum_{k=0}^{2n}n^{2N-k}f_0^{(k)}(x).\]It might be totally obvious that $F(0)$ and $F(1)$ are integers, but they are: we can write\[f_0(x)=\sum_{k=N}^{2N}\binom N{2N-k}(-x)^k.\]Reading this off like a Taylor expansion, we see $k \lt N$ gives $f_0^{(k)}(0)=0,$ and for $k\ge N,$ we get $f^{(k)}(0)=(-1)^kk!\binom N{2N-k},$ and $k!$ does enough to cover the denominator of $N!.$ This shows the $f_0^{(k)}(0)$ are integers, so $F(0)$ is an integer. Further,\[f_0(x)=f_0(1-x),\]so $f_0^{(k)}(1)=(-1)^kf_0^{(k)}(0)$ is also an integer for any $k,$ meaning that $F(1)$ is an integer.
+					</p>
+					<p>
+						Now surely $f(x)=F'(x)+nF(x)$ still holds from our work above, for we have the nicest converge, from a finite sum. We recall our integral as\[\int_0^1f(x)e^{nx}\,dx=F(x)e^{nx}\bigg|_0^1=F(1)e^n-F(0).\]However, we can bound the integral because $f(x)=n^{2N+1}f_0(x) \lt n^{2N+1}/N!$ for $x\in(0,1).$ (Our lower-bound is that the integral is positive.) Thus,\[0 \lt \int_0^1f(x)e^{nx}\,dx \lt \frac{n^{2N+1}}{N!}\cdot e^n.\]This can be made arbitrarily small because $N!$ is faster than exponential, which is a problem because $F(1)e^n-F(0)$ has its denominator bounded by the denominator of $e^n.$
+					</p>
+					<p>
+						To formalize, we finally suppose for the sake of contradiction that $e^n=p/q.$ Then\[q\int_0^1f(x)e^{nx}\,dx=pF(1)-qF(0)\]is an integer, but\[0 \lt q\int_0^1f(x)e^{nx}\,dx \lt \frac{pn^{2N+1}}{N!}.\]Taking $N$ large enough, we can force $N! \gt pn^{2N+1},$ making the upper-bound less than $1.$ This gives us an integer between $0$ and $1,$ which is our contradiction. This finishes. $\blacksquare$
+					</p>
+					<p>
+						To close off loose ends, we show that we can in fact make $\frac{n^{2N+1}}{N!}$ arbitrarily small as $N\to\infty.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given a fixed integer $n,$ we can choose $N$ large enough so that    \[\frac{n^{2N+1}}{N!}\]    can be made arbitrarily small.
+						</p>
+					</div>
+					<p>
+						For all $N,$ note that we can say\[\log N!=\sum_{k=1}^N\log k \gt \sum_{k=\ceil{N/2}}^N\log k \gt \frac N2\log\frac N2.\]There is a technical detail here that there are at least $N/2$ integers between $\ceil{N/2}$ and $N$ inclusive, but this is true. (If $N$ is even, there are $N/2+1$ integers; if $N$ is odd, there are $N/2+1/2$ integers.) Anyways, this implies that\[N! \gt (N/2)^{N/2}.\]If we let $N=2n^6k$ for some large positive integer $k,$ we see\[\frac{n^{2N+1}}{N!}\le\frac{n^{3N}}{(N/2)^{N/2}}=\frac{n^{6n^6k}}{n^{6n^3k}\cdot k^{n^6k}}=\frac1{k^{n^6k}}.\]This is less than $\frac1k,$ for example, so we can make the original quantity as small as we please, finishing. $\blacksquare$
+					</p>
+					<p>
+						As commentary, I have tried my best to motivate this proof, but it is truly magical. There is a pretty large jump to the introduction of the $f_0,$ and from there everything comes together. I really don't know where this proof comes from.
+					</p>
+					<p>
+						In other news, today was senior salute. It was a good day.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

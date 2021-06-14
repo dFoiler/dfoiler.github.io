@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 11th
+					</h2>
+					<p>
+						Today I learned a little about maps between totally ordered sets. The main observation here is that ordered sets behave more or less like algebraic structures in that they are "sets with extra structure'' even if that structure doesn't come in the form of a binary operation. To make this easier to codify, we work in with category theory.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A partially ordered category $\mathcal C$ is one which has, for objects $C$ and $C',$ at most one morphism in $C\to C'.$
+						</p>
+					</div>
+					<p>
+						It should not be immediately clear why this gives a partial order, but we run through the axioms to compare. Namely, we turn a partial order $(\mathcal C,\le)$ into a category by saying $C_1\le C_2$ induces a unique morphism $C_1\to C_2.$
+					</p>
+					<ul>
+						<li>
+							<p>
+								Reflexivitiy: this is equivalent to the existence of morphisms $C\to C$ for $C\in\mathcal C,$ for which $\op{id}_C$ are guaranteed because $\mathcal C$ is a category.
+							</p>
+						</li>
+						<li>
+							<p>
+								Antisymmetry: if we have $f:C\to C'$ and $g:C'\to C,$ then we note $f\circ g:C'\to C'$ and $g\circ f:C\to C,$ but because there is only one morphism in each of these classes, we must have $f\circ g=\op{id}_{C'}$ and $g\circ f=\op{id}_C.$ In particular, $C$ and $C'$ are isomoprhic. So isomprhisms capture our notion of antisymmetry.
+							</p>
+						</li>
+						<li>
+							<p>
+								Transitivity: the ability to inhabit    \[\op{Mor}(C,C')\to\op{Mor}(C',C'')\to\op{Mor}(C,C'')\]    is exactly what composition of morphisms is for.
+							</p>
+						</li>
+					</ul>
+					<p>
+						So indeed, the definition of a partially ordered category cleanly captures the notion of a partially ordered category.
+					</p>
+					<p>
+						Maps between partially ordered sets can be annoying, so we move into totally ordered categories.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A totally ordered category $\mathcal C$ is one which has, for objects $C$ and $C',$ exactly one morphism among $C\to C'$ and $C'\to C.$
+						</p>
+					</div>
+					<p>
+						Totality has been captured by requiring there to be at least one morphism $C\to C'$ or $C'\to C.$ The bound of exactly one is done here to make our notion of antisymmetry stronger than mere isomorphism: now, if we inhabit both $C\to C'$ and $C'\to C,$ then they must be the same class, so $C=C'$ as objects. We do this for purely psychological reasons.
+					</p>
+					<p>
+						Anyways, the point of moving to category theory is that it lets us more easily talk about maps between partially/totally ordered sets. Intuitively, we would like a map $\varphi$ between partially/totally ordered sets $(X,\le_X)$ and $(Y,\le_Y)$ to be a function $\varphi:X\to Y$ such that\[x_1\le_Xx_1\implies\varphi(x_1)\le_X\varphi(x_2).\]In category theory, we get this for free using functors! Fixing partially/totally ordered categories $\mathcal C$ and $\mathcal D,$ we see that a functor $F:\mathcal C\to\mathcal D$ has\[C_1\stackrel f\to C_2\implies F(C_1)\stackrel{F(f)}\to F(C_2)\]because of how functors behave. Thus, we can talk about maps between our partially/ordered sets more cleanly by calling them functors. In particular, we have more theory to deal with the axioms.
+					</p>
+					<p>
+						It turns out that functors between totally ordered sets/categories don't look terribly interesting. We have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $\mathcal C$ is a finite totally ordered category. Then the only bijective endofunctor on $\mathcal C$ is the identity.
+						</p>
+					</div>
+					<p>
+						\begin{proof}    This is by induction. Fix the objects of our category $\{x_1,x_2,\ldots,x_n\}$ with a unique arrow $x_a\to x_b$ whenever $a\le b.$ Further, suppose that $F:\mathcal C\to\mathcal C$ is an endofunctor. Because our morphisms are unique, we really only have to worry about where our elements are going. We claim, by (strong) induction that $F(x_k)=x_k$ for $1\le k\le n.$
+					</p>
+					<p>
+						As our base case, we show $k=1.$ Suppose for the sake of contradiction that $F(x_1)=x_\ell$ for $\ell\ne1.$ Then we may look at the arrow $f:x_{\ell-1}\to x_\ell,$ and because $F$ is a bijective endofunctor, we can look backwards at     \[F^{-1}(f):F^{-1}(x_{\ell-1})\to x_1.\]    However, there are no arrows into $x_1,$ so we have arrived at a contradiction.
+					</p>
+					<p>
+						Our inductive step is similar; by inductive hypothesis, we may assert that $F(x_\ell)=x_\ell$ for all $\ell \lt k \lt n$ so that we want to show $F(x_k)=x_k.$ Well, fix $\ell$ so that $F(x_k)=x_\ell$ for some $\ell\ge k.$ (We cannot have $\ell \lt k$ because these elements are already taken.) Then we can again look at $f:x_{\ell-1}\to x_\ell$ and trace back to    \[F^{-1}(f):F^{-1}(x_{\ell-1})\to x_k.\]    It follows that $F^{-1}(x_{\ell-1})$ maps to some $x_\bullet$ below $x_k.$ However, $F^{-1}(x_{\ell-1})$ cannot go to $x_k$ because identity morphisms map to identity morphisms, and $F^{-1}(f)$ is not the identity, so it follows $F^{-1}(x_{\ell-1})$ is below $x_{k-1}.$ But then we see $\ell\ge k,$ which requires $\ell=k$ for this to be possible, completing the proof.\end{proof}
+					</p>
+					<p>
+						Each of these hypotheses is necessary. If the endofunctor isn't bijective, then we could, for example, compress all of $\mathcal C$ to one of its elements and make all morphisms go to the identity. More creatively, it is also possible to compress $\mathcal C$ onto, say, two elements in a similar way.
+					</p>
+					<p>
+						The finite condition on $\mathcal C$ matters because we can, for example, take $\mathcal C=\ZZ$ with $\le$ to induce a totally ordered set, and then something like $n\mapsto n+1$ will provide an endofunctor. Infinite chains can in general be shifted like this.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

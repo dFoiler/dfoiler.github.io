@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -134,10 +139,10 @@
 						Being disconnected is easier to deal with (topologically speaking), so we show the contrapositive: suppose $X=A\sqcup B$ is a disjoint union of open sets $A$ and $B,$ and we show that $X$ is not path-connected. Indeed, we hope there is no path $p:[0,1]\to X$ with $p(0)\in A$ and $p(1)\in B,$ which because $A$ and $B$ are nonempty will imply $X$ is not path-connected.
 					</p>
 					<p>
-						Continuing to avoid stubbornly avoid contradiction, suppose (without loss of generality) we have a path $p(0)\in A,$ and we want to show $p(1)\not\in B.$ However, we see\[[0,1]=p^{-1}(X)=p^{-1}(A\sqcup B)=p^{-1}(A)\sqcup p^{-1}(B).\]This last union holds because $A\sqcup B$ covers the entire image, and $p^{-1}(A)\cap p^{-1}(B)=\emp$ because passing the intersection through $p$ would exhibit $A\cap B=\emp.$
+						Continuing to avoid stubbornly avoid contradiction, suppose (without loss of generality) we have a path $p(0)\in A,$ and we want to show $p(1)\notin B.$ However, we see\[[0,1]=p^{-1}(X)=p^{-1}(A\sqcup B)=p^{-1}(A)\sqcup p^{-1}(B).\]This last union holds because $A\sqcup B$ covers the entire image, and $p^{-1}(A)\cap p^{-1}(B)=\emp$ because passing the intersection through $p$ would exhibit $A\cap B=\emp.$
 					</p>
 					<p>
-						Anyways, the point is that $p$ is continuous, so $p^{-1}(A)\sqcup p^{-1}(B)$ provides a disjoint open cover of $[0,1].$ But $[0,1]$ is connected, so one needs to completely cover $[0,1]$&mdash;explicitly, we note that\[p^{-1}(A)=[0,1]\setminus p^{-1}(B)\]is both open and closed, and it is also inhabited, so $p^{-1}(A)=[0,1].$ In particular, $p(1)\not\in B,$ so we are done. $\blacksquare$
+						Anyways, the point is that $p$ is continuous, so $p^{-1}(A)\sqcup p^{-1}(B)$ provides a disjoint open cover of $[0,1].$ But $[0,1]$ is connected, so one needs to completely cover $[0,1]$&mdash;explicitly, we note that\[p^{-1}(A)=[0,1]\setminus p^{-1}(B)\]is both open and closed, and it is also inhabited, so $p^{-1}(A)=[0,1].$ In particular, $p(1)\notin B,$ so we are done. $\blacksquare$
 					</p>
 					<p>
 						To get a feeling that path-connectedness is stronger than typical connectedness, we take the following lemma.
@@ -207,7 +212,7 @@
 						As discussed, the problem is $(0,1)$; we claim that its path-connected component is $\{(0,1)\}$ alone. Indeed, fix a path $p:[0,1]\to S$ with $p(0)=(0,1),$ and we show that $p(1)=(0,1)$&mdash;in fact, we show $p([0,1])=\{(0,1)\}.$ The intuition is that if $p(t)=(0,1),$ then $p(t+\varepsilon)$ needs to be "close'' to $(0,1)$ by continuity, but $S\cap B((0,1),\delta)$ is disconnected for small $\delta,$ so there isn't a way for $p(t+\varepsilon)\ne(0,1).$
 					</p>
 					<p>
-						In particular, this "push a little further'' feels like the proof that $[0,1]$ is compact, so we imitate it, in its inefficient form. (One can make the following proof more efficient.) Let\[T=\big\{t\in[0,1]:p([0,t])=\{(0,1)\}\big\}.\]Now, $T$ has a least upper bound, say $t_0,$ such that $t \lt t_0$ implies $t\in T.$ Namely, $t\not\in T$ implies $p([0,t])$ is outside $\{(0,1)\},$ so $t$ is an upper bound for $T,$ so $t\ge t_0.$
+						In particular, this "push a little further'' feels like the proof that $[0,1]$ is compact, so we imitate it, in its inefficient form. (One can make the following proof more efficient.) Let\[T=\big\{t\in[0,1]:p([0,t])=\{(0,1)\}\big\}.\]Now, $T$ has a least upper bound, say $t_0,$ such that $t \lt t_0$ implies $t\in T.$ Namely, $t\notin T$ implies $p([0,t])$ is outside $\{(0,1)\},$ so $t$ is an upper bound for $T,$ so $t\ge t_0.$
 					</p>
 					<p>
 						Further, we can show $p(t_0)=(0,1).$ Indeed, we know that $p^{-1}(\{(0,1)\})$ ought be closed because $p$ is continuous and $\{(0,1)\}$ is closed, and because $t \lt t_0$ implies $t\in T\subseteq p^{-1}(\{(0,1)\}),$ we conclude $t_0$ is a limit point of $p^{-1}(\{(0,1)\}).$ So we must have $t_0\in p^{-1}(\{(0,1)\}).$ We note that this effectively show $T$ is closed.

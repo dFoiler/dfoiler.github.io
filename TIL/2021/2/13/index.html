@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -107,7 +112,7 @@
 						Using the intuition from before, we focus on the identity case where, say $h=e.$ Using the $T_1$ condition, we fix a neighborhood $U$ around $h=e$ excluding $g.$ We would like to use $gU$ for our neighborhood around $g,$ but $U$ and $gU$ might not be disjoint. However, any intersection\[u_2=gu_1\in U\cap gU\]forces $g=u_2u_1^{-1}$ to almost live inside of $U.$ So to fix this, we use the lemma to take a smaller open neighborhood $V\subseteq U$ of $e$ to be symmetric with $VV\subseteq U.$ Then we use $V$ and $gV$ as our neighborhoods, giving $u_1^{-1}\in V,$ and $g=u_2u_1^{-1}\in VV\subseteq U.$ This is our contradiction, proving $T_2.$
 					</p>
 					<p>
-						For clarity, let's do the general case with $h\ne e$ more directly. By $T_1,$ fix an open neighborhood $U$ around $e$ excluding $h^{-1}g,$ and the lemma gives us a smaller open neighborhood $V\subseteq U$ of $e$ which is symmetric and satisfies $VV\subseteq U.$ Now we claim\[gV\quad\text{and}\quad hV\]are the required neighborhoods for $T_2.$ Indeed, if $gV\cap hV$ is non-empty, then $h^{-1}gV\cap V$ is non-empty, so\[\{h^{-1}g\}\cap VV^{-1}\]is also non-empty. However, $V^{-1}=V,$ so $VV^{-1}\subseteq VV\subseteq U,$ and $h^{-1}g\not\in U,$ so this is a contradiction. Thus, $gV\cap hV=\emp,$ and we are done here.
+						For clarity, let's do the general case with $h\ne e$ more directly. By $T_1,$ fix an open neighborhood $U$ around $e$ excluding $h^{-1}g,$ and the lemma gives us a smaller open neighborhood $V\subseteq U$ of $e$ which is symmetric and satisfies $VV\subseteq U.$ Now we claim\[gV\quad\text{and}\quad hV\]are the required neighborhoods for $T_2.$ Indeed, if $gV\cap hV$ is non-empty, then $h^{-1}gV\cap V$ is non-empty, so\[\{h^{-1}g\}\cap VV^{-1}\]is also non-empty. However, $V^{-1}=V,$ so $VV^{-1}\subseteq VV\subseteq U,$ and $h^{-1}g\notin U,$ so this is a contradiction. Thus, $gV\cap hV=\emp,$ and we are done here.
 					</p>
 				</div>
 			</div>

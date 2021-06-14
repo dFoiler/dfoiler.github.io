@@ -424,7 +424,7 @@ follows. The previous paragraph gave us information about $I,$ so we focus there
 \[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]
 This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and
 \[\sigma(I)\subseteq\mf u.\]
-So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\not\in D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:
+So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\notin D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:
 \[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]
 Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$
 
@@ -485,11 +485,11 @@ Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\
 \[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]
 works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$
 
-Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if
+Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\notin V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if
 \[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]
 But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if
-\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]
-because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
+\[\sigma(\alpha)-\alpha\notin\mf q^{m+1}\]
+because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\notin V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
 
 \subsubsection{September 29th}
 Today I learned a construction giving a construction for a witness to the Solovay--Strassen primality test, from \href{https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf}{Keith Conrad}. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.

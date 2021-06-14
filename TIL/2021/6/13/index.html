@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 13th
+					</h2>
+					<p>
+						Today I learned a few ways to evaluate $\zeta$ at even integers, from THE BOOK, as well as some consequences.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\pi\cot(\pi x)=\lim_{N\to\infty}\sum_{k=-N}^N\frac1{x+k}.\]
+						</p>
+					</div>
+					<p>
+						There are a variety of proofs of this, but we will not do this here because I do not know any proof that is not its worth own entry. For completeness, we outline the proof from THE BOOK, which uses the amazingly clever Herglotz trick. Define\[f(x)=\pi\cot(\pi x)-\lim_{N\to\infty}\sum_{k=-N}^N\frac1{x+k}.\]Then one can show that $f(x)$ is periodic with period $1$ and continuous at any point in $\RR\setminus\ZZ$ as well as that $f(x)\to0$ as $x\to0.$
+					</p>
+					<p>
+						Now, the Herglotz trick consists of showing that $f(x)$ satisfies the functional equation\[f\left(\frac x2\right)+f\left(\frac{x+1}2\right)=2f(x)\]and then using this to show that $f$ must be constantly $0.$ Indeed, $|f|$ has a maximum value because it is periodic and continuous and so attains a maximum on the compact set $(0,1),$ which is enough. Say that $|f(x_0)|=M$ is maximal. The trick is to note that applying the triangle inequality to\[f\left(\frac{x_0}2\right)+f\left(\frac{x_0+1}2\right)=2M\]requires that $\left|f\left(\frac{x_0}2\right)\right|=M$ achieves the maximum also. So $x_0$ achieving maximum magnitude implies $x_0/2$ does as well, which forms a sequence approaching $0$ giving absolute value $M.$ But we know $f(x)\to0$ as $x\to0,$ so $M=0,$ finishing. $\blacksquare$
+					</p>
+					<p>
+						Anyways, we use this to derive values of $\zeta$ at positive even integers. The main character of our story will be\[x\cot(x).\]We will derive a Taylor expansion for this function in two ways and derive the desired result in a generating functions sort of way. We can rearrange the lemma into\[\pi x\cot(\pi x)=\lim_{N\to\infty}\sum_{k=-N}^N\frac x{x+k}=1+\sum_{k=1}^\infty\left(\frac x{x-k}+\frac x{x+k}\right).\]This gives\[\pi x\cot(\pi x)=1+\sum_{k=1}^\infty\frac{2x^2}{x^2-k^2}.\]The idea now is that we want to expand out $\frac{2x^2}{x^2-k^2}$ as a geometric series to hopefully pick up a series with $\frac1{k^n}$ in it. Because we want $k$ in the denominator later in life, we write\[\pi x\cot(\pi x)=1-2\sum_{k=1}^\infty\frac{(x/k)^2}{1-(x/k)^2}.\]Now, for $|x| \lt 1,$ we have $|x/k| \lt 1$ always, so we may expand the inner sum as an infinite geometric series as\[\pi x\cot(\pi x)=1-2\sum_{k=1}^\infty\sum_{n=1}^\infty\left(\frac xk\right)^{2s}.\]We know that this converges for $|x| \lt 1,$ and all terms are positive, so in fact it is absolutely converging. Thus, we may swap the order of summation and factor out a $x^{2n}$ to get\[\pi x\cot(\pi x)=1-2\sum_{n=1}^\infty\left(x^{2n}\sum_{k=1}^\infty\frac1{k^{2n}}\right).\]That inner sum is $\zeta(2n),$ so we have the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For $|x| \lt 1,$ we have that    \[\pi x\cot(\pi x)=1-2\sum_{n=1}^\infty\zeta(2n)x^{2n}.\]
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. $\blacksquare$
+					</p>
+					<p>
+						It remains to actually evaluate the Taylor expansion of $\pi x\cot(\pi x)$ in a second way. We will not be using the theory developed above. The main hope is that $\exp$ is relatively well-studied, so we write\[\cot x=\frac{\cos x}{\sin x}=\frac{\left(e^{ix}+e^{-ix}\right)/2}{\left(e^{ix}-e^{-ix}\right)/2i}=i\cdot\frac{e^{2ix}+1}{e^{2ix}-1}.\]At this point we can almost the Bernoulli numbers appearing, so we introduce their definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							The Bernoulli numbers $\{B_k\}_{k=0}^\infty$ are defined by the generating function    \[\frac x{e^x-1}=\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!},\]    which has radius convergence $2\pi.$
+						</p>
+					</div>
+					<p>
+						One important fact about Bernoulli numbers is that they are rational, which we will outline quickly. We can prove this induction by noting $x\to0$ gives $B_0=1$ as our base case, and then\[x=\left(e^x-1\right)\left(\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!}\right)=\left(\sum_{\ell=1}^{\infty}\frac{x^\ell}{\ell!}\right)\left(\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!}\right).\]Expanding this equation out gives a series of systems of equations, all of whose terms are rational, and solving this system must preserve being rational, so we conclude the $B_\bullet$ are rational. To be explicit, equating the coefficient for $x^n$ with $n \gt 0,$ we see\[\sum_{\ell=1}^n\frac{B_{n-\ell}}{\ell!(n-\ell)!}=1_{n=1},\]which is our equation. Solving for $B_{n-1}$ gives\[B_{n-1}=(n-1)!\left(1_{n=1}-\sum_{\ell=2}^n\frac{B_{n-\ell}}{\ell!(n-\ell)!}\right)\]is our explicit recursion, and indeed, it only requires field operations. This is not terribly important, but it's a nice property.
+					</p>
+					<p>
+						Anyways, we return to talking about $\cot.$ Rearranging what we have to try to employ this definition, we write\[\cot x=i+\frac{2i}{e^{2ix}-1}.\]Now, we multiply by $x$ to plug in the definition of Bernoulli numbers with $x\mapsto2ix,$ as\[x\cot x=ix+\frac{(2ix)}{e^{(2ix)}-1}=ix+\sum_{k=0}^\infty B_k\cdot\frac{(2ix)^k}{k!}.\]This gives us our other Taylor expansion of $\pi x\cot(\pi x).$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\pi x\cot(\pi x)=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k.\]
+						</p>
+					</div>
+					<p>
+						This follows from taking $x\mapsto\pi x$ in the above formula. $\blacksquare$
+					</p>
+					<p>
+						Now, comparing coefficients between our two expansions of $\pi x\cot(\pi x),$ we get a number of nice properties. Indeed, the work above shows that\[1+\sum_{n=1}^\infty(-2\zeta(2n))x^{2n}=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k.\]These functions define the same function over, say, $|x|\le\min\{1,2\pi\},$ so these must actually be the same power series. To start off, here is our main attraction: an explicit formula for $\zeta(2n),$ showing that it is a rational multiple of $\pi^{2n}.$
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For positive integers $n,$ we have that    \[\zeta(2n)=\frac{(-1)^{n+1}B_{2n}}{2(2n)!}\cdot(2\pi)^{2n}.\]
+						</p>
+					</div>
+					<p>
+						Comparing the coefficients of $x^{2n}$ and $x^k$ gives\[-2\zeta(2n)=\frac{B_{2n}(2\pi i)^{2n}}{(2n)!}.\]This simplifies into\[\zeta(2n)=(-1)^{n}\cdot\frac{B_{2n}(2\pi)^{2n}}{-2(2n)!},\]which rearranges into the desired. $\blacksquare$
+					</p>
+					<p>
+						However, we even get some other properties of the Bernoulli numbers based off of properties of the left-hand side. For example, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that $B_1=-1$ and $B_{2n+1}=0$ for positive integers $n.$
+						</p>
+					</div>
+					<p>
+						Indeed, there is no odd power in the right-hand side of the equality\[1+\sum_{n=1}^\infty(-2\zeta(2n))x^{2n}=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k,\]so we conclude that odd powers must vanish for the right-hand side as well. At $k=1,$ the coefficient is\[0=\pi i+\frac{B_1(2\pi i)^1}{1!},\]which implies that $B_1=-\frac12.$ Continuing, when $k=2n+1,$ we have\[0=\frac{B_{2n+1}(2\pi i)^{2n+1}}{(2n+1)!},\]from which $B_{2n+1}=0$ immediately follows. $\blacksquare$
+					</p>
+					<p>
+						Of course, there are more direct proofs of the above fact; for example, $\frac x{e^x-1}+\frac12x=\frac x2\cdot\frac{e^x+1}{e^x-1}$ is the product of two odd functions and is therefore even, implying that its power series must have $B_1=-1$ and $B_{2n+1}=0$ for $n \gt 0.$ However, the fact that we are able to get this result quickly from the theory is remarkable.
+					</p>
+					<p>
+						We can even talk intelligently about $B_{2n}$ using properties of $\zeta,$ if we're careful.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that $B_{2n}\sim(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}.$
+						</p>
+					</div>
+					<p>
+						For this we recall that\[\zeta(2n)=\frac{(-1)^{n+1}B_{2n}}{2(2n)!}\cdot(2\pi)^{2n}\]and read this backwards to get\[B_{2n}=(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}\cdot\frac1{\zeta(2n)}.\]Now, as $n\to\infty,$ we see that\[1\le\sum_{k=1}^\infty\frac1{k^{2n}} \lt 1+\int_1^\infty\frac1{x^{2n}}\,dx=1+\frac1{2n-1}\]will cause $\zeta(2n)\to1.$ Thus, we may ignore this term in the limit to conclude\[B_{2n}\sim(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}.\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We could use the Stirling formula approximation to get an estimate which is easier to handle, but the Stirling approximation scares me, so I'll avoid it. Nevertheless, this result, using properties of $\zeta$ to talk about the growth rate of Bernoulli numbers, is cute enough to call it quits here.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

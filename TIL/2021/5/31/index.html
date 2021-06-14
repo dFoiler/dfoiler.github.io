@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 31st
+					</h2>
+					<p>
+						Today I learned a proof that $\ZZ[x]$ is a unique factorization domain, using Gauss's lemma. Discussion of Gauss's lemma has to begin with the definition of "primitive.''
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain. Then the polynomial $a(x)=\sum_{k=0}^da_kx^k\in\mathcal O_K[x]$ is "primitive'' if and only if the greatest common divisor of the $\{a_k\}_{k=0}^d$ is $1.$ Equivalently, if $u$ divides all of the $\{a_k\}_{k=0}^d,$ then $u\in\mathcal O_K^\times$ is a unit.
+						</p>
+					</div>
+					<p>
+						We remark that, fixing $K$ the field of fractions of $\mathcal O_K,$ any $f\in K[x]$ can be turned into a primitive polyomial by factoring out some element of $K.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain and $K$ its field of fractions. Then given any $f(x)=\sum_{k=0}^da_kx^k\in K[x],$ there exists a $k\in K$ such that $kf(x)$ is in $\mathcal O_K[x]$ and primitive. Further, this $k$ is unique up to multiplication by $\mathcal O_K^\times.$
+						</p>
+					</div>
+					<p>
+						We begin by pushing $f(x)$ into $\mathcal O_K[x].$ Well, we can write $a_k=\frac{x_k}{y_k}$ for $x_k,y_k\in\mathcal O_K$ because $K$ is the field of fractions. Then\[\left(\prod_{k=0}^dy_k\right)f(x)\]surely has all of its coefficients in $\mathcal O_K[x]$ because we've cleared all denominators. So, starting over, we may take $f(x)\in\mathcal O_K[x].$
+					</p>
+					<p>
+						The idea now is to divide out by the greatest common divisor of the coefficients of $f(x)$ to force primitive. (We have to use the fact that $\mathcal O_K$ is a unique factorization domain now.) Let $\PP$ be our set of irreducibles, and we can factor each $a_k$ as\[a_k=u_k\prod_{p\in\PP}p^{\nu_p(a_k)},\]where $u_k$ is a unit, and all but finitely many of the $\nu_p(a_k)$ are $0.$ We now choose\[g:=\prod_{p\in\PP}p^{\min_k\{\nu_p(a_k)\}}\]as our greatest common divisor. Namely, our $k\in K$ is $k:=g^{-1}.$ Note that $\nu_p(g)\le\nu_p(a_k)$ for any $k$ because $\nu_p(g)=\min_k\{\nu_p(a_k)\}$ by construction. It follows that $g^{-1}f(x)$ is still in $\mathcal O_K[x]$ because its coefficients are\[g^{-1}a_k=u_k\prod_{p\in\PP}p^{\nu_p(a_k)-\min_\ell\{\nu_p(a_\ell)\}}\in\mathcal O_K.\]It remains to show that $g^{-1}f(x)$ is primitive. Pick up $u\in\mathcal O_K,$ and suppose that $u$ divides all the $a_k.$ Then for any prime $p\in\PP,$ we must have\[\nu_p(u)\le\nu_p(a_k)-\min_\ell\{\nu_p(a_\ell)\}\]for any $k.$ In particular, running over all $k$ implies $\nu_p(u)$ is less than $\min_k\{\nu_p(a_k)\}-\min_\ell\{\nu_p(a_\ell)\}=0.$ Thus, the prime factorization of $u$ looks like\[u=u'\prod_{p\in\PP}p^{\nu_p(u)}=u'\prod_{p\in\PP}p^0=u'\]for some unit $u'.$ So $u$ is a unit, and we are done here.
+					</p>
+					<p>
+						For the uniqueness, note if $g^{-1}f(x)$ is primitive in $\mathcal O_K[x],$ then we actually must have, for each irreducible $p,$\[0=\min_k\left\{\nu_p\left(g^{-1}a_k\right)\right\},\]implying that $\nu_p(g)=\min_k\{\nu_p(a_k)\}.$ So in fact the exponents in the factorization of $g$ are all forced, meaning that, if we factor $g$ in $\mathcal O_K$ with positive and negative exponents, then $g$ is unique up to the unit in $\mathcal O_K^\times$ of that factorization. $\blacksquare$
+					</p>
+					<p>
+						The main attraction, now, is Gauss's lemma, which is the statement that primitive polynomials are closed under multiplication.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain. Provided that $f,g\in\mathcal O_K[x]$ are both primitive, then $fg$ is also primitive.
+						</p>
+					</div>
+					<p>
+						The proof is not very enlightening. We show the contrapositive: if $fg$ is not primitive, then one of $f$ or $g$ is not primitive. For concreteness, let\[f(x)=\sum_{k=0}^da_kx^k\qquad\text{and}\qquad g(x)=\sum_{\ell=0}^db_\ell x^\ell.\]where $d\ge\max\{\deg f,\deg g\}.$ This tells us that\[(fg)(x)=\sum_{n=0}^{2d}\underbrace{\left(\sum_{k+\ell=n}a_kb_\ell\right)}_{c_n}x^n.\]Now, if $(fg)$ isn't primitive, then there is some $g\in\mathcal O_K\setminus\mathcal O_K^\times$ such that $g$ divides all the coefficients of $(fg).$ By looking at the factorization of $g,$ we may take $g$ irreducible.
+					</p>
+					<p>
+						Now, if $g$ divides all the coefficients of $f,$ then $f$ isn't primitive, and we are done. Otherwise, we claim that $g$ divides all the coefficients of $g,$ by induction on $\ell.$ For $\ell=0,$ we note that\[c_0=a_0b_0.\]But $g$ does not divide $a_0,$ so $g$ must divide $b_0.$ (This is where we use the condition that $\mathcal O_K$ is a unique factorization domain.) For the inductive step, suppose that $g$ divides $b_0$ down through $b_\ell.$ Then we note that\[c_{\ell+1}=\sum_{k=0}^{\ell+1}a_kb_{\ell+1-k}=a_0b_{\ell+1}+\sum_{k=1}^{\ell+1} a_kb_{\ell+1-k}.\]Now, the sum on the rightmost side here is divisible by $g$ because each term contains some $b_{\ell'}$ with $0\le\ell'\le\ell,$ all of which are divisible by $g.$ Adding in that $c_{\ell+1}$ is divisibble by $g,$ we must have\[g\mid a_0b_{\ell+1}\]as well. But again, $g$ does not divide $a_0,$ so instead $g$ divides $b_{\ell+1}.$ This completes the inductive step and thus the proof. $\blacksquare$
+					</p>
+					<p>
+						The reason we care about the above result is that it lets us say that $f\in \mathcal O_K[x]$ which is irreducible in $K[x]$ but primitive in $\mathcal O_K[x]$ is in fact irreducible in $\mathcal O_K[x].$ This is an annoying technical statement, but we need to prove it.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain with $K$ its field of fractions. Then nonconstant $f\in\mathcal O_K[x]$ is irreducible in $\mathcal O_K[x]$ if and only if $f$ is both irreducible in $K[x]$ and primitive in $\mathcal O_K[x].$
+						</p>
+					</div>
+					<p>
+						For one direction, take $f$ irreducible over $K[x]$ and primitive in $\mathcal O_K[x].$ Then if we write $f=gh$ in $\mathcal O_K[x],$ we cannot have $g$ and $h$ both nonconstant because this would violate irreducibility in $K[x].$ But if (without loss of generality) $g$ is constant, then $g$ divides all coefficients of $f,$ so $g$ is a unit. It follows $f$ is irreducible.
+					</p>
+					<p>
+						In the other direction, take $f$ irreducible over $\mathcal O_K[x].$ Here, $f$ must be primitive over $\mathcal O_K[x],$ or else there is a $c\in\mathcal O_K\setminus\mathcal O_K^\times$ dividing all coefficients of $f,$ implying that $f=c\cdot(f/c)$ witnesses $f$ not being irreducible. (This is a valid factorization because $c$ is not a unit!)
+					</p>
+					<p>
+						The hard part, now, is showing that $f$ is irreducible over $K[x].$ (Note we have yet to use Gauss's lemma.) Well, suppose $f=gh$ in $K[x].$ By lemma, we can find $a$ and $b$ in $K$ so that $ag$ and $bh$ are both primitive in $\mathcal O_K[x].$ Then we write\[(ab)f=(ag)(bh)\]and note that $(ab)f$ must also be primitive by Gauss's lemma (!). Because $ag,bh\in\mathcal O_K[x],$ we see $(ab)f\in\mathcal O_K[x],$ but $f$ is already primitive, so $(ab)$ must be a unit. To be formal, we would write\[(ab)f(x)=\sum_{k=0}^d(ab)c_kx^k\]and then note that\[0=\min_k\{\nu_p(abc_k)\}=\nu_p(ab)+\min_k\{\min\nu_p(c_k)\}=\nu_p(ab)\]implies that, indeed, $ab$ is a unit. Anyways, the fact $f$ is irreducible in $\mathcal O_K[x]$ means $(ab)f$ is also irreducible (we only multiplied by a unit), so the factorization\[(ab)f=(ag)(bh)\]must have one of $ag$ or $bh$ a unit. In particular, whichever one it is must be constant, establishing that $f$ is irreducible in $K[x].$ This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						We are now ready to show that $\mathcal O_K[x]$ is a unique factorization domain.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain. Then $\mathcal O_K[x]$ is also a unique factorization domain.
+						</p>
+					</div>
+					<p>
+						Let $K$ be the fraction field of $\mathcal O_K,$ and pick up some $f\in\mathcal O_K[x].$ The idea is to inherit from $K[x]$ and factor $f$ in $K[x]$&mdash;which is a unique factorization domain because $K[x]$ is a Euclidean domain&mdash;and then show that its factorization in $K[x]$ is in fact its factorization in $\mathcal O_K[x].$
+					</p>
+					<p>
+						To generate our factorization, factor $f(x)$ as\[f(x)=\prod_{k=0}^mg_k(x)\]into irreducibles in $K[x].$ It's possible that some of these are not in $\mathcal O_K[x],$ so we let $g_k=c_kf_k$ where $c_k\in K$ and $f_k\in\mathcal O_K[x]$ is primitive. Multiplying our constants $c_k$ together into a large $c,$ we see\[f(x)=c\prod_{k=0}^mf_k(x),\]where the $f_k(x)$ are irreducible in $K[x]$ and primitive in $\mathcal O_K[x].$ By the above lemma, we see that these $f_k(x)$ are then irreducible, and in fact the $c$ can be factored into irreducibles in $\mathcal O_K$ as well. Also, irreducibles in $\mathcal O_K$ stay irreducible in $\mathcal O_K[x]$; for example, $c=ab$ in $\mathcal O_K[x]$ with $c\in\mathcal O_K$ irreducible must have $a$ and $b$ degree-$0$ and therefore in $\mathcal O_K$ anyways.
+					</p>
+					<p>
+						It remains to show that this factorization is unique up to units. Well, suppose we have written another factorization into irreducibles\[f(x)=\overline c\prod_{k=0}^{\overline m}\overline f_k(x)\]in $\mathcal O_K[x].$ Well, each $\overline f_k$ is irreducible in $\mathcal O_K[x]$ and therefore irreducible in $K[x],$ so this is also a factorization into irreducibles in $K[x],$ which we know to be unique. In particular, each $\overline f_k$ is a multiplier $\overline c_k$ away from one of the $g_k,$ and there must be the same number, so reorder the $\overline f_k$ appropriately. We can now write\[c_kf_k(x)=g_k(x)=\overline c_k\overline f_k(x).\]We now show that the factorization is unique. Note $c_k$ and $\overline c_k$ are determined up multiplication by a unit in $\mathcal O_K^\times$ because we found them by extracting primitive part; say $c_k=u_k\overline c_k.$ Then\[c=\prod_{k=0}^mc_k=\left(\prod_{k=0}^mu_k\right)\left(\prod_{k=0}^m\overline c_k\right)=u\overline c,\]where $u\in\mathcal O_K^\times$ is a product of the other units. Thus, $c$ and $c'$ are unique up to units. Further, $f_k=\frac{\overline c_k}{c_k}\overline f_k=u_kf_k$ is also unique up to the unit $u_k\in\mathcal O_K^\times.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						The ideas in these proofs are not terribly complicated. Really, the above proof is just "Inherit factorization in $\mathcal O_K[x]$ from factorization in $K[x]$,'' but the technicalities are super annoying. The fact we need something like Gauss's lemma at all is perhaps surprising given that this difficulty is not at all obvious from the intuition. So it goes.
+					</p>
+					<p>
+						As a sample application, we note that $\ZZ$ is a unique factorization domain, so it follows $\ZZ[x]$ is one. Of course, we can continue this process to say that $\ZZ[x_1,x_2]$ and then inductively up to $\ZZ[x_1,\ldots,x_n]$ also being a unique factorization domain. Similarly, for $K$ a field, $K[x_1]$ is a unique factorization domain, and we can induct to say $K[x_1,\ldots,x_n]$ is one as well.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

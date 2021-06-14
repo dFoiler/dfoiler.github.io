@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -193,7 +198,7 @@
 						To make the phrasing easier, we replace $f(x)$ with $f(x)-xf(1)$ so that $f(1)=0$; we want to show $f\equiv0.$ As usual, we can get $f(\QQ)=\{0\}.$
 					</p>
 					<p>
-						The main claim here is that $f^{-1}(\RR\setminus\{0\})$ has $0$ measure; it has a measure because $f$ is measurable. For this, we let $S_+=f^{-1}(\RR_{ \gt 0})$ and $S_-=f^{-1}(\RR_{ \lt 0}).$ We note that any $s_+\in S_+$ and $s_-\in S_-$ needs to have\[f(s_+-s_-)=f(s_+)-f(s_-) \gt 0,\]so in particular $s_+-s_-\not\in\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,\[\mu\big(f^{-1}(\RR\setminus\{0\})\big)=\mu(S_+)+\mu(S_-)=0.\]This finishes the claim.
+						The main claim here is that $f^{-1}(\RR\setminus\{0\})$ has $0$ measure; it has a measure because $f$ is measurable. For this, we let $S_+=f^{-1}(\RR_{ \gt 0})$ and $S_-=f^{-1}(\RR_{ \lt 0}).$ We note that any $s_+\in S_+$ and $s_-\in S_-$ needs to have\[f(s_+-s_-)=f(s_+)-f(s_-) \gt 0,\]so in particular $s_+-s_-\notin\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,\[\mu\big(f^{-1}(\RR\setminus\{0\})\big)=\mu(S_+)+\mu(S_-)=0.\]This finishes the claim.
 					</p>
 					<p>
 						To finish the proof, we see $f^{-1}(\{0\})$ has positive (in fact infinite) measure. Supposing for the sake of contradiction we can find $x_0$ with $f(x_0)\ne0,$ we see\[f\left(x_0+f^{-1}(\{0\})\right)=f(x_0)\ne0,\]so $x_0+f^{-1}(\{0\})$ is a subset of $f^{-1}(\RR\setminus\{0\})$ of nonzero measure, which is a contradiction. This completes the proof. $\blacksquare$

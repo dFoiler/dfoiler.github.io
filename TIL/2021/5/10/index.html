@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 10th
+					</h2>
+					<p>
+						Today I learned another
+						<a href="https://mathoverflow.net/a/203520">
+							another application of Chebotarev
+						</a>
+						because these are fun. Namely, we are building towards the following statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix a nonconstant irreducible polynomial $f\in\ZZ[x].$ Then $f$ is prime with probability $0.$ In other words,    \[\lim_{N\to\infty}\frac1N\#\big\{n\in\ZZ\cap[1,N]:f(n)\text{ is prime}\big\}=0.\]
+						</p>
+					</div>
+					<p>
+						This intuitively feels very false, and indeed we can get away with some pretty stupid bounding. Signing as necessary, we make the leading coefficient of $f$ positive; this will not change when $f(x)$ is prime.
+					</p>
+					<p>
+						Quickly, we note that this means $f'(x)\to\infty$ as $x\to\infty$ (here we use that $f$ is nonconstant) so there is a constant $M$ such that $f(x)$ is strictly increasing over $x\ge M.$ This $M$ will in the future guarantee that $f(x)$ needs to be "large,'' and so having "small'' prime factors will be enough to rule out the primality of $f(x).$
+					</p>
+					<p>
+						Intuitively, we can let $n_p$ be the number of roots of $f(x)\pmod p$ so that the probability of a random integer $x$ giving $f(x)$ prime is\[\prod_p\left(1-\frac{n_p}p\right),\]assuming that these events are independent. Then Chebotarev told us that the expected value of $n_p$ is $1,$ so this probability is approximately\[\prod_p\left(1-\frac1p\right)=\left(\prod_p\frac1{1-1/p}\right)^{-1}=\left(\sum_{n=1}^\infty\frac1n\right)^{-1}=0.\]So heuristically, we do have density $0.$
+					</p>
+					<p>
+						We will spend the rest of our time rigorizing this heuristic. To rigorize the independence of the divisibility probabilities, we pick some positive constant named $K$ and let the product of all (positive) primes below $K$ be $P.$ Then we note that\[\#\{x\in\ZZ/P\ZZ:\gcd(f(x),P)=1\}=\prod_{p\mid P}\#\{x\in\ZZ/p\ZZ:p\nmid f(x)\}\]by the Chinese remainder theorem: the left-hand side is the number of residues divisible by no prime factor $p,$ which biject into $\bigoplus_p\ZZ/p\ZZ$ as elements having no coordinate $0.$ Fixing $n_p$ the number of roots of $f(x)\pmod p,$ we see that\[\#\{x\in\ZZ/P\ZZ:\gcd(f(x),P)=1\}=\prod_{p\mid P}(p-n_p)=P\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]So here we can begin to see the probability argument emerging.
+					</p>
+					<p>
+						We now turn to the desired quantity in the theorem; note that it suffices to upper-bound the limit by $0$ because the limit is at least nonnegative. Fix $N$ a (large) positive integer. To start, we partition positive integers $x\le N$ into $\ZZ/P\ZZ$ to use the above result, writing\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+\#\left\{P\ceil{\frac MP} \lt x\le P\ceil{\frac NP}:f(x)\text{ prime}\right\}.\]It is not clear why we have written this with $M$ here. Well, we want to say that $p\mid f(x)$ implies that $f(x)$ is prime, but it is potentially possible that $|f(x)|=p$ and so actually $f(x)$ is prime.
+					</p>
+					<p>
+						To rule this out, we see that our interval of $x$ is entirely larger than $M,$ so $f(x)$ is strictly increasing, and so we can only have these size problems once. As a crude upper bound, we can inherit at most $P$ primes this way. All of the other primes for the $x$ in this interval must not be divisible by any prime $p\mid P.$ So we write\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\#\left\{P\ceil{\frac MP} \lt x\le P\ceil{\frac NP}:p\nmid f(x)\text{ for }p\mid P\right\}.\]But there are $\ceil{\frac NP}-\ceil{\frac NP}$ copies of $\ZZ/P\ZZ$ in our interval, so this right-hand side collapses into\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\left(\ceil{\frac NP}-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]This might look complicated, and that's because it is, but we only care about the parts depending on $N.$ To make this more amenable to analysis, we upper-bound $\ceil{\frac NP}$ by $\frac NP+1$ and then rearrange this as\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\left(1-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right)+N\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]Dividing everything by $N,$ we get that\[\frac{\#\{x\le N:f(x)\text{ prime}\}}N\le\frac{P\ceil{\frac MP}+P+\left(1-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right)}N+\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]The final term is our main term. As $N\to\infty,$ the rest of the terms will vanish, so we see that we have the main term as an upper bound for our limit. That is,\[\limsup_{N\to\infty}\frac{\#\{x\le N:f(x)\text{ prime}\}}N=\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]This product over $p\mid P$ is really a product over the primes $p\le K$ for the positive constant $K$ we fixed earlier. We now hope that $K\to\infty$ sends this to $0.$
+					</p>
+					<p>
+						Indeed, here is a clean way to finish. For concavity reasons, we have that $1-x\le e^{-x}$ for real values of $x.$ This implies that\[\prod_{p\le K}\left(1-\frac{n_p}p\right)=\exp\left(-\sum_{p\le K}\frac{n_p}p\right).\]Sending $K\to\infty$ will make the right-hand side vanish because of the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix nonconstant irreducible $f\in\ZZ[x],$ and let $n_p$ be the number of roots of $f(x)\pmod p.$ Then    \[\lim_{s\to1^+}\sum_p\frac{n_p}{p^s}\bigg/\sum_p\frac1{p^s}=1.\]
+						</p>
+					</div>
+					<p>
+						We showed this a few days ago. It is an application of Chebotarev. $\blacksquare$
+					</p>
+					<p>
+						In particular, if $\sum_p\frac{n_p}p$ must diverge in order to keep up with the divergence of $\sum_p\frac1p.$ It follows that\[\exp\left(-\sum_{p\le K}\frac{n_p}p\right)\to0\]as $K\to\infty.$ Bringing this all together, we have that\[\limsup_{N\to\infty}\frac{\#\{x\le N:f(x)\text{ prime}\}}N=\prod_{p\le P}\left(1-\frac{n_p}p\right)\le0.\]Because this limit is surely nonnegative, this limit must now actually be $0.$ $\blacksquare$
+					</p>
+					<p>
+						There is something to be said for the $1-x\le e^{-x}$ feeling quite clever. As motivation, we note that the usual trick to test the size of infinite products is to take logarithms. If any of the $n_p=p,$ then the entire product is $0$ already. Otherwise, we take $\log$ and want to show\[-\log\prod_{p\le K}\left(1-\frac{n_p}p\right)=\sum_{p\le K}-\log\left(1-\frac{n_p}p\right)\]goes to $\infty$ as $K\to\infty.$ Well, expanding out our Taylor series (if any $n_p=p,$ then this of course is $0$), this is\[\sum_{p\le K}\sum_{k=1}^\infty\frac1k\cdot\frac{n_p^k}{p^k}.\]We expect the main term to be $k=1,$ so we rearrange this as (all terms are positive, so rearrangement is legal)\[\sum_{p\le K}\frac{n_p}p+\sum_{p\le K}\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k}.\]The first term now goes to $\infty$ by the Chebotarev application, so we can be confident the entire thing goes to $\infty.$
+					</p>
+					<p>
+						But in fact, this is the only term we have to care about, which is what motivates us to bound by writing $-\log(1-x)\le x,$ or equivalently $1-x\le e^{-x}.$ We begin by writing\[\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k} \lt \sum_{k=2}^\infty\left(\frac{n_p}p\right)^k=\frac{n_p^2}{p(p-n_p)}.\]Now, the key trick is that we can bound $n_p\le\deg f$ globally, so we know\[\sum_{p \gt \deg f}\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k} \lt \sum_{p \gt \deg f}\frac{(\deg f)^2}{p(p-\deg f)} \lt \deg f\sum_{n=\deg f+1}^\infty\left(\frac1{n-\deg f}-\frac1n\right),\]which converges by telescoping. We can safely add in the primes less than $\deg f,$ which have a finite contribution, so indeed, this entire sum is finite. So this part of the sum we can be confident doesn't matter.
+					</p>
+					<p>
+						It is worth remarking that the Bateman-Horn conjecture says that $f$ should produce a number of primes proportional to $\frac x{\log x},$ which is remarkable (and of course much stronger than what we just did). Namely, we have the following.\begin{conjecture}    Fix $f\in\ZZ[x]$ a polynomial producing infinitely many primes, and let $n_p$ be the number of roots of $f(x)\pmod p.$ The Bateman-Horn conjecture implies that    \[\#\{x\le N:f(x)\text{ is prime}\}\sim\left(\prod_p\frac{p-n_p}{p-1}\right)\frac x{\log f(x)}.\]\end{conjecture}Essentially, this says the probability of $f(x)$ for $x$ large roughly boils down to the probability a number of that size is prime and the probability $f(x)$ is divisible by one of the smaller primes in the product. I think the arguments given above can turn into a heuristic argument for Bateman-Horn in this case (by taking $\exp$ of the Chebotarev application?), but it doesn't look obvious.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

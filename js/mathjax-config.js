@@ -19,6 +19,7 @@ window.MathJax = {
 			CC: "\\mathbb{C}",
 			FF: "\\mathbb{F}",
 			PP: "\\mathbb{P}",
+			CP: "\\mathbb{CP}",
 			e: "\\varepsilon",
 			ball: ["(#1-#2,\\,#1+#2)",2],
 			floor: ["\\left\\lfloor{#1}\\right\\rfloor",1],

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 5th
+					</h2>
+					<p>
+						Today I learned about the difficulty generalizing the result from yesterday to arbitrary dimensions. We are going to go done through the proof in an arbitrary dimension $d$ and see what problems we have; however, we will be less detailed. We are interested in computing\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}\]for prime-power $q.$ As before, we note that, given $k\in\FF_q^\times,$ we can take $v\mapsto kv$ and preserve the condition we're counting, and as long as $v\ne0,$ there are $q-1$ nonzero vectors in $\FF_qv.$ So we can instead count\[1+(q-1)\#\left\{L\in(\FF_q^d\setminus\{0\})/\FF_q^\times:\langle v,v\rangle=0\text{ for all }v\in L\right\}.\]Note that if any $v\in L$ has $\langle v,v\rangle,$ then all $v'\in L$ do because $v'=kv$ for some $k\in\FF_q,$ and $\langle v',v'\rangle=k^2\langle v,v\rangle=0.$ This is to say that we don't have to keep very careful track of the condition. Very quickly, we note that the analysis above says that there are\[\#\left((\FF_q^d\setminus\{0\})/\FF_q^\times\right)=\frac{q^d-1}{q-1}\]total such one-dimensional subspaces of $\FF_q^d.$
+					</p>
+					<p>
+						As before, we count this by introducing an an auxiliary graph. Define $G_q$ with vertices labeled by each one-dimensional subspace in $(\FF_q^d\setminus\{0\})/\FF_q^\times.$ Then for $L_1,L_2\in V(G_p),$ we place an edge between $L_1$ and $L_2$ if and only if\[\langle v_1,v_2\rangle=0\text{ for all }v_1\in L_1,v_2\in L_2.\]Again, note that it suffices for $\langle v_1,v_2\rangle$ for a single $v_1\in L_1\setminus\{0\}$ and $v_2\in L_2\setminus\{0\}.$ Indeed, then for any other $v_1'\in L_1$ and $v_2'\in L_2,$ we can write $v_1'=k_1v_1$ and $v_2'=k_2v_2$ because $L_1,L_2$ are one-dimensional. Then we have\[\langle v_1',v_2'\rangle=k_1k_2\langle v_1,v_2\rangle=0,\]so indeed $L_1$ and $L_2$ are adjacent.
+					</p>
+					<p>
+						Now, we are interested in counting the number of one-dimensional subspaces $L\in(\FF_q^d\setminus\{0\})/\FF_q^\times$ such that $L$ is adjacent to itself: we want there to be a nonzero vector $v\in L\setminus\{0\}$ with $\langle v,v\rangle=0.$ So because we want to compute the number of loops in $G_q,$ we fix $A_q$ the adjacency matrix of $G_q$ so that we want to compute\[\op{trace}A_q=\#\left\{L\in V(G_q):\langle v,v\rangle=0\text{ for all }v\in L\right\}.\]But as before, the matrix $A_q$ is significantly more complicated than $A_q^2.$ We have the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The matrix $A_q^2$ is equal to $\frac{q^{d-2}-1}{q-1}J+q^{d-2}I,$ where $J$ is the all-ones matrix.
+						</p>
+					</div>
+					<p>
+						We compute the matrix coefficients of $A_q^2$ manually. By properties of the adjacency matrix, the coefficient of $A_q^2$ corresponding to the vertices $L_1$ and $L_2$ is the number of length-two paths between them. In other words, it is the number of vertices $L$ such that\[\langle v_1,v\rangle=\langle v,v_2\rangle=0\text{ for all }v_1\in L_1,v\in L,v_2\in L_2.\]To compute the number of one-dimensional subspaces $L,$ we'll compute the number of vectors $v$ for which $\langle v_1,v\rangle=\langle v,v_2\rangle=0$ for all $v_1\in L_1$ and $v_2\in L_2.$ This will be enough because the set of such vectors forms a subspace (it's $L_1^\perp\cap L_2^\perp$), so we can safely mod out by $\FF_q^\times$ later. So we are, roughly speaking, computing\[\dim\left(L_1^\perp\cap L_2^\perp\right)=\dim\left(L_1^\perp\right)+\dim\left(L_2^\perp\right)-\dim\left(L_1^\perp+L_2^\perp\right),\]where the dimensions are taken over $\FF_q.$ Note that $\dim L_\bullet^\perp=d-\dim L_\bullet=d-1$ by duality or something, so the hard part is computing $\dim\left(L_1^\perp+L_2^\perp\right).$ Now we have two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $L_1\ne L_2,$ then $L_1^\perp\ne L_2^\perp.$ But the dimension of both $L_\bullet^\perp$ has dimension $d-1,$ and $L_1^\perp+L_2^\perp$ must be strictly larger than $L_1^\perp$ or $L_2^\perp$ (one has a vector not in the other), meaning that $L_1^\perp+L_2^\perp$ has to have the largest possible dimension, $d.$
+							</p>
+							<p>
+								Thus, $\dim\left(L_1^\perp\cap L_2^\perp\right)=d-2.$
+							</p>
+						</li>
+						<li>
+							<p>
+								If $L_1=L_2,$ then $L_1^\perp=L_2^\perp,$ so $L_1^\perp+L_2^\perp=L_1^\perp$ has dimension $d-1.$ Thus, $\dim\left(L_1^\perp\cap L_2^\perp\right)=d-1.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Returning to both cases simultaneously, we let $d':=\dim\left(L_1^\perp\cap L_2^\perp\right)$ as computed above. Then the number of points in $L_1^\perp\cap L_2^\perp$ is $q^{d'}.$ For each vector $v,$ it generates a one-dimensional subspace $\FF_qv,$ and these orbits are disjoint except for the origin because intersecting orbits $k_1v_1=k_2v_2$ have $v_1=k_1^{-1}k_2v_2$ and $v_2=k_2^{-1}k_1v_1$ create the same orbit.
+					</p>
+					<p>
+						Thus, the number of one-dimensional subspaces adjacent to both $L_1$ and $L_2$ is\[\frac{q^{d'}-1}{q-1}.\]This lets write out $A_q^2$ explicitly as\[A_q^2=\frac1{q-1}\begin{bmatrix}    q^{\color{red}d-1}-1 & q^{d-2}-1 & \cdots & q^{d-2} - 1 & q^{d-2}-1 \\    q^{d-2}-1 & q^{\color{red}d-1}-1 & \cdots & q^{d-2} - 1 & q^{d-2}-1 \\    \vdots & \vdots & \ddots & \vdots & \vdots \\    q^{d-2}-1 & q^{d-2}-1 & \cdots & q^{\color{red}d-1} - 1 & q^{d-2}-1 \\    q^{d-2}-1 & q^{d-2}-1 & \cdots & q^{d-2} - 1 & q^{\color{red}d-1}-1\end{bmatrix}.\]With $J$ as the all-ones matrix, we can collapse this into\[A_q^2=\frac{q^{d-2}-1}{q-1}J+\frac{q^{d-1}-q^{d-2}}{q-1}I.\]This rearranges into the desired, so we call it quits. $\blacksquare$
+					</p>
+					<p>
+						And now we can somewhat safely compute the eigenvalues of $A_q.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The matrix $A_q$ has one eigenvalue of $\frac{q^{d-1}-1}{q-1}$ and $\frac{q^d-1}{q-1}-1$ eigenvalues of $\pm\sqrt{q^{d-2}}.$
+						</p>
+					</div>
+					<p>
+						Observe that $A_q,$ as the adjacency matrix of a undirected graph, is real and symmetric and therefore diagonalizable. Thus, we are guaranteed all $\frac{q^d-1}{q-1}$ eigenvalues.
+					</p>
+					<p>
+						We leverage what we know about $A_q^2$ because its eigenvalues are the square of the eigenvalues of $A_q.$ The matrix $J$ has one-dimensional image (all of its columns are $\langle1,\ldots,1\rangle,$ after all), so it has kernel of dimension $\frac{q^d-1}{q-1}-1.$ In other words, $J$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of $0.$ It follows that $A_q^2$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of\[0+q^{d-2}.\]Thus, $A_q$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of $\pm\sqrt{q^{d-2}}.$
+					</p>
+					<p>
+						It remains to find our last eigenvalue of $A_q.$ Well, it should come from the eigenvector of nonzero eigenvalue from $J,$ which is $\langle1,\ldots,1\rangle.$ Note that we immediately know this eigenvector is different from our others because the other eigenvectors are from the kernel of $J.$ Anyways, we need to compute\[A_q\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}.\]Well, each component will end up being the number of adjacencies to a given vertex of $G_q,$ by properties of he adjacency matrix. (Just look at the multiplication work.) In other words, fixing a one-dimensional subspace $L\in V(G_p),$ we want the number of one-dimensional subspaces in $L^\perp.$ Well, we actually computed this in the previous lemma as\[\frac{q^{d-1}-1}{q-1},\]mostly because $\dim L^\perp=d-1.$ Because this is invariant of our choise of $L,$ we note\[A_q\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}=\frac{q^{d-1}-1}{q-1}\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix},\]and so we have found our last eigenvalue. $\blacksquare$
+					</p>
+					<p>
+						We quickly remark that we could have found the last eigenvalue, up to sign, by noting the eigenvalue of $\langle1,\ldots,1\rangle$ is $\frac{q^d-1}{q-1}$ in $J$ (this is $J$'s width), adding in the $q^{d-2}$ to get the corresponding eigenvalue for $A_q^2,$ and finish by taking the square-root. However, we'd have to do the above computation anyways to get the sign.
+					</p>
+					<p>
+						Anyways, we, as before, let $a$ be the number of eigenvectors with eigenvalue $+\sqrt{q^{d-2}}$ and $b$ be the number of eigenvectors with eigenvalue $-\sqrt{q^{d-2}}.$ Then we know\[\op{trace}A_q=\frac{q^{d-1}-1}{q-1}+(a-b)\sqrt{q^{d-2}}\]by summing the eigenvalues. Returning to the original problem, we see that\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=1+(q-1)\left(\frac{q^{d-1}-1}{q-1}+(a-b)\sqrt{q^{d-2}}\right),\]which simplifies to\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}.\]As an example of what this can do, we immediately have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $q$ a non-square prime-power and $d$ an odd dimension. Then    \[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}.\]
+						</p>
+					</div>
+					<p>
+						Starting from our last equation, we note that $q^{d-2}$ is a non-square raised to an odd power and is therefore odd. It follows $\sqrt{q^{d-2}}$ is irrational, but\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}\]needs to be an integer, so we had better have $a-b=0.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						Or we can take a slightly different approach to say the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $q$ a prime-power and $d$ a dimension. If either $q$ is square or $d$ even, then    \[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}\equiv0\pmod{\sqrt{q^{d-2}}}.\]
+						</p>
+					</div>
+					<p>
+						Note that the condition $q$ square or $d$ even is meant to ensure $q^{d-2}$ is itself a square so that $\sqrt{q^{d-2}}$ is integral. Then we note the equation\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}\]immediately gives the desired upon taking$\pmod{\sqrt{q^{d-2}}}.$ There is perhaps a technicality to note $q^{(d-2)/2}\mid q^{d-1},$ but this is equivalent to $2(d-1)\ge d-2,$ or $d\ge0,$ so we don't have anything to worry about. $\blacksquare$
+					</p>
+					<p>
+						Very quickly, we remark that the above result does guarantee that there are a nonzero number o nonzero solutions, for being divisible by $\sqrt{q^{d-2}}$ means that the number of nonzero solutions is $-1\pmod{q^{d-2}}.$ However, this divisibility condition isn't great for size because we expect there to be about $q^{d-1}$ total solutions anyways (as in the other case).
+					</p>
+					<p>
+						This last result is not really very impressive, but it is cute. As alluded, the problem with square $q$ or even $d$ is that $\sqrt{q^{d-2}}$ is actually an integer, so we can't blatantly ignore it as in the other case. And indeed, the distinction is not a mere limitation to the technique but actually representative of a deeper problem.
+					</p>
+					<div class="example">
+						<p>
+							<b>
+								Example.
+							</b>
+							Fix $d=2$ and $q=p$ an odd prime. Then note $\langle v,v\rangle=0$ for $v=(x,y)\in\FF_p^2$ is equivalent to    \[x^2\equiv-y^2\pmod p.\]    If $x=0,$ we had better have $y=0,$ so we always at least have that solution. Otherwise, nonzero solutions require $(x/y)^2\equiv-1\pmod p$ and so require a square-root of $-1.$ So the number of desired $v\in\FF_p62$ is dependent on $\left(\frac{-1}p\right),$ or equivalently on $p\pmod4.$
+						</p>
+					</div>
+					<p>
+						We can actually complete this example. We have two cases
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $p\equiv3\pmod4$ so that $\left(\frac{-1}p\right)=-1,$ then there will be no nonzero solutions because, as discussed, nonzero $v=(x,y)$ satisfying gives $(x/y)\equiv-1.$ So we have only $\boxed1$ solution here.
+							</p>
+						</li>
+						<li>
+							<p>
+								Else, $p\equiv1\pmod4$ so that $\left(\frac{-1}p\right)=1$; fix $k:=\sqrt{-1}$ to be a square-root of $-1.$ As above, any nonzero solution $v=(x,y)$ gives    \[(x/y)^2\equiv-1\pmod p.\]    In particular, $x/y$ is equal to $k$ or $-k,$ so $x\equiv\pm ky.$ Note $k$ is nonzero, so as $y$ varies across its $p-1$ nonzero options, we get two different nonzero values of $x$ for each. So the total number of solutions is $1+(p-1)\cdot2=\boxed{2p-1}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						In all cases, we do see that the number of solutions is (sadly) divisible by $\sqrt{p^{2-2}}=1.$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

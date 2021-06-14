@@ -350,7 +350,7 @@ Very quickly, we remark that if $\varepsilon_0\in S,$ then each $\varepsilon<\va
 
 We would like to use the least upper-bound property on $S.$ Note that some open set $U_\bullet$ covers $0$ and so contains an interval like $[0,2\varepsilon)$ for some $\varepsilon>0.$ (Formally, dissolve $U_\bullet$ into intervals because by the basis of our topology; one such interval contains $0.$) This implies that $[0,\varepsilon]\subseteq U_\bullet$ can be finitely covered, so $\varepsilon\in S$ inhabits $S.$
 
-Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\not\in S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha<\varepsilon_0$ implies $\alpha\in S.$
+Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\notin S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha<\varepsilon_0$ implies $\alpha\in S.$
 
 We now do casework on $\varepsilon_0.$
 \begin{itemize}
@@ -401,7 +401,7 @@ then $\{x\in\RR:f(x)\ne0\}=(0,\infty).$ We would like this set to be closed, so 
 Of note are the implications of being in or out of the support because these are somewhat confusing. The idea to remember is that $\op{supp}(f)$ is potentially a bit bigger than the nonzero set of a function (as it is defined). For example, we do have
 \[f(x)\ne0\implies x\in\op{supp}(f),\]
 but the converse does not hold: some $x$ with $f(x)=0$ could sneak in because of the closure. Explicitly, see $f(x)=\max\{x,0\}$ from before. Taking contrapositives, we also have
-\[x\not\in\op{supp}(f)\implies f(x)=0,\]
+\[x\notin\op{supp}(f)\implies f(x)=0,\]
 but again the converse does not hold for the same reason. Here, we're saying that $X\setminus\op{supp}(f)$ is a restricted version of $f(x)=0.$
 
 I will also mention the definition of compact support, which is actually why I had to look up the definition of support. A function has ``compact support'' merely if its support (topologically) is also compact. Our $f(x)$ from before does not work because $[0,\infty)$ is too big to be compact, but
@@ -427,7 +427,7 @@ For clarity, let's do the general case with $h\ne e$ more directly. By $T_1,$ fi
 \[gV\quad\text{and}\quad hV\]
 are the required neighborhoods for $T_2.$ Indeed, if $gV\cap hV$ is non-empty, then $h^{-1}gV\cap V$ is non-empty, so
 \[\{h^{-1}g\}\cap VV^{-1}\]
-is also non-empty. However, $V^{-1}=V,$ so $VV^{-1}\subseteq VV\subseteq U,$ and $h^{-1}g\not\in U,$ so this is a contradiction. Thus, $gV\cap hV=\emp,$ and we are done here.
+is also non-empty. However, $V^{-1}=V,$ so $VV^{-1}\subseteq VV\subseteq U,$ and $h^{-1}g\notin U,$ so this is a contradiction. Thus, $gV\cap hV=\emp,$ and we are done here.
 
 \subsubsection{February 14th}
 Today I learned some basic facts about Artin $L$-functions. We define these by an Euler product, but it turns out that unramified primes are a bit annoying to deal with, so I will adopt the notation
@@ -772,7 +772,7 @@ Note $V$ is open in $G^\circ$ because $G^\circ\cap U$ is open in $G^\circ$; in f
 
 Finishing up here, $G^\circ\cap U$ and $V$ decompose $G^\circ$ into disjoint open sets, so one of them must be empty. Certainly $e\in U,$ so $V$ must in fact be empty. But this requires $G^\circ\setminus U$ to be empty, so indeed $G^\circ\subseteq U.$
 
-Now we know $G^\circ$ to be quite small, inside of every open subgroup of $G.$ This is not quite good enough to deduce that $G^\circ=\{e\}$---we haven't even used the fact $G$ is profinite yet! But we can finish now. Fix any $g\in G\setminus\{e\},$ which we label $(g_\bullet)$ to get us thinking profinitely. We want to know $g\not\in G^\circ,$ which we can show $x$ not in some open subgroup of $G.$
+Now we know $G^\circ$ to be quite small, inside of every open subgroup of $G.$ This is not quite good enough to deduce that $G^\circ=\{e\}$---we haven't even used the fact $G$ is profinite yet! But we can finish now. Fix any $g\in G\setminus\{e\},$ which we label $(g_\bullet)$ to get us thinking profinitely. We want to know $g\notin G^\circ,$ which we can show $x$ not in some open subgroup of $G.$
 
 Well, $(g_\bullet)\ne e$ cannot be the identity on all coordinates, so fix $g_k\ne e_k\in G_k.$ Then we look at
 \[U=\{(x_\bullet)\in G:x_k=e_k\}.\]
@@ -940,9 +940,9 @@ So our closed sets are closed under arbitrary intersection.
 
 Similarly, the union $V(I)\cup V(J)$ is extracting points which are $0$ on either everyone in $I$ or everyone in $J.$ This is a bit fuzzier, but we claim
 \[V(I)\cup V(J)=V(IJ).\]
-If $x\in V(I)\cup V(J),$ then $x\in V(IJ),$ for $IJ$ is generated by products $fg$ with $f\in I$ and $g\in J,$ and we must have $(fg)(x)=0.$ Conversely, if $x\not\in V(I)\cup V(J),$ then there exists a polynomial $f\in I$ and a polynomial $g\in J$ such that
+If $x\in V(I)\cup V(J),$ then $x\in V(IJ),$ for $IJ$ is generated by products $fg$ with $f\in I$ and $g\in J,$ and we must have $(fg)(x)=0.$ Conversely, if $x\notin V(I)\cup V(J),$ then there exists a polynomial $f\in I$ and a polynomial $g\in J$ such that
 \[f(x)\ne0\quad\text{and}\quad g(x)\ne0.\]
-Thus, $(fg)(x)\ne0$ with $fg\in IJ,$ so $x\not\in V(IJ).$ So the claim follows. Inducting, we see that for a collection $\{I_n\}_{n\in\NN}$
+Thus, $(fg)(x)\ne0$ with $fg\in IJ,$ so $x\notin V(IJ).$ So the claim follows. Inducting, we see that for a collection $\{I_n\}_{n\in\NN}$
 \[\bigcup_{n\in\NN}V(I_n)=V\left(\prod_{n\in\NN}I_n\right).\]
 Note that this argument had to use a contrapositive to get the second inclusion, which I think is why we don't have arbitrary union.
 
@@ -966,9 +966,9 @@ Now, $\mf p$ is in the intersection is and only if each $I_\bullet\subseteq\mf p
 \[I_\bullet\subseteq\mf p\]
 for each $I_\bullet.$ So $\mf p$ is also in the intersection. So we have arbitrary intersection.
 
-For unions, we again still have $V(I)\cup V(J)=V(IJ).$ Here, we see $\mf p\in V(I)\cup V(J)$ if and only if $I,J\subseteq\mf p.$ So because $IJ$ is generated by products $ab$ with $a\in I$ and $b\in J,$ we see $IJ\subseteq\mf p$ because each $ab\in\mf p.$ Conversely, if $\mf p\not\in V(I)\cup V(J),$ then there exists $a\in V(I)$ and $b\in V(J)$ with
-\[a\not\in\mf p\quad\text{and}\quad b\not\in\mf p\]
-But then $ab\not\in\mf p$ because $\mf p$ is prime (!), so $\mf p\not\in V(IJ).$ Inducting from here gives finite unions.
+For unions, we again still have $V(I)\cup V(J)=V(IJ).$ Here, we see $\mf p\in V(I)\cup V(J)$ if and only if $I,J\subseteq\mf p.$ So because $IJ$ is generated by products $ab$ with $a\in I$ and $b\in J,$ we see $IJ\subseteq\mf p$ because each $ab\in\mf p.$ Conversely, if $\mf p\notin V(I)\cup V(J),$ then there exists $a\in V(I)$ and $b\in V(J)$ with
+\[a\notin\mf p\quad\text{and}\quad b\notin\mf p\]
+But then $ab\notin\mf p$ because $\mf p$ is prime (!), so $\mf p\notin V(IJ).$ Inducting from here gives finite unions.
 
 \subsubsection{February 24th}
 Today I learned about the $p$-adic Gaussian to derive the completed Riemann $\xi$ function, from \href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao}. We're going to synthetically derive the $\Gamma$ factor of the $\xi$ function, and then this will give us an idea of how to synthetically derive the entire $\xi$ function.

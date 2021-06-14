@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 27th
+					</h2>
+					<p>
+						Today I learned that the intersection of all prime ideals in a ring is set the of nilpotent elements, from Undergraduate Commutative Algebra. Here is our main character.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							An element $a$ of a ring $R$ is said to be nilpotent if and only if there exists a positive integer $n$ such that $a^n=0.$ The set of all nilpotent elements is the nilradical, denoted $\op{nilrad}R.$
+						</p>
+					</div>
+					<p>
+						It turns out there is in fact a slightly more general concept, the radical of an ideal.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix a ring $R$ and ideal $I\subseteq R.$ We define    \[\op{rad}I:=\left\{r\in R:r^n\in I\text{ for some }n\in\NN\right\}.\]
+						</p>
+					</div>
+					<p>
+						In particular, because $I=\{0\}$ is an ideal, we can think $\op{nilrad}R=\op{rad}(0).$
+					</p>
+					<p>
+						Very quickly, we note that the radical is an ideal.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Given a ring $R$ and ideal $I\subseteq R,$ $\op{rad}I$ is an ideal.
+						</p>
+					</div>
+					<p>
+						We have to show that, for any $r\in R,$ we have $r\op{rad}I\subseteq\op{rad}I$; and for any $a,b\in\op{rad}I,$ we have $a+b\in\op{rad}I.$ We can actually just combine this to show that, for $a,b\in\op{rad}I$ and coefficients $r,s\in R,$ we have $ra+sb\in\op{rad}I.$
+					</p>
+					<p>
+						Well, because $a,b\in\op{rad}I,$ we can find positive integers $n,m$ such that $a^n,b^m\in I.$ Looking at $ra+sb,$ we use the binomial theorem to say\[(ra+sb)^{n+m}=\sum_{k=0}^{n+m}\binom{n+m}k(ra)^k(sb)^{n+m-k}.\]We claim that this is in $I$ because all of its terms are in $I.$ Indeed, if $k\ge n,$ then $a^k\in I,$ so $\binom{n+m}r^k(sb)^{n+m-k}a^k\in I.$ And if $k\le n,$ then $n+m-k\ge m,$ so $b^k\in I$ and $\binom{n+m}k(ar)^ks^{n+m-k}b^{n+m-k}\in I.$ It follows $ra+sb\in\op{rad}I,$ finishing. $\blacksquare$
+					</p>
+					<p>
+						Anyways, our main claim is the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix a ring $R$ and ideal $I\subseteq R,$ we have    \[\op{rad}I=\bigcap_{\substack{\mf p\in\op{Spec}R\\\mf p\supseteq I}}\mf p.\]    Here, we note an empty intersection means $\op{rad}I=R.$
+						</p>
+					</div>
+					<p>
+						To provide more words to the empty intersection case, we note that we're actually going to show\[\op{rad}I=\{a\in R:a\in\mf p\text{ for all primes }\mf p\supseteq I\},\]so the lack of primes $\mf p\supseteq I$ (such as when $I=R$) does indeed give $\op{rad}I=R.$
+					</p>
+					<p>
+						In one direction, pick up any $a\in\op{rad}I$ so that $a^n\in I$ for some $n\in\NN$ and any prime $\mf p\supseteq I.$ Then note\[\underbrace{a\cdot a\cdot\ldots\cdot a}_{n\text{ times}}\in I\subseteq\mf p\]implies that $a\in\mf p.$ So indeed, $\op{rad}I\subseteq\mf p$ for any prime $\mf p\supseteq I.$
+					</p>
+					<p>
+						The other direction requires more care. We show the contrapositive: if an $a\in R$ has $S:=\left\{1,a,a^2,\ldots\right\}$ disjoint from $I,$ then we can find a prime $\mf p\in\op{Spec}R$ containing $I$ but not $a.$ This establishes that\[R\setminus\op{rad}I\subseteq\bigcup_{\mf p\supseteq I}R\setminus\mf p,\]which does indeed give the other needed inclusion after taking complements. To show this, we note $S$ is a multiplicative subset of $R$ (any $a^k,a^\ell\in S$ has $a^k\cdot a^\ell=a^{k+\ell}\in S$), so we claim stronger.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix a ring $R$ and multiplicative subset $S$ and ideal $I$ disjoint from $S.$ Then we can expand $I$ into a prime $\mf p$ containing $I$ but disjoint from $S.$
+						</p>
+					</div>
+					<p>
+						I have isolated out this lemma because it requires the axiom of choice, more specifically Zorn's lemma.
+					</p>
+					<p>
+						Our construction will be an ideal $\mf p$ maximal among ideals containing $I$ but disjoint from $S,$ and to construct we use Zorn's lemma. It is not obvious that this $\mf p$ is prime, but we will show this later. As promised, our partially ordered set will be\[\Omega:=\{\text{ideals }J\subseteq R:I\supseteq J\text{ and }J\cap S=\emp\},\]partially ordered by $\subseteq.$ To show the hypothesis of Zorn's lemma, suppose we have a nonempty ascending chain $\{J_\alpha\}_{\alpha\in\lambda}$ of ideals in $\Omega.$ Then we claim that\[J:=\bigcup_{\alpha\in\lambda}J_\alpha\]is an upper bound in $\Omega.$ Certainly each $J_\alpha$ is a subset of $J,$ so it is an upper bound. To show that $J\in\Omega,$ we note we can pick up some $J_\alpha\in\{J_\alpha\}_{\alpha\in\lambda}$ so that $I\subseteq J_\alpha\subseteq J.$ Further, any $j\in J$ lives in some $J_\alpha\in\{J_\alpha\}_{\alpha\in\lambda}$ and $J_\alpha\cap S=\emp,$ implying $j\not\in S,$ so it follows $J\cap S=\emp.$
+					</p>
+					<p>
+						It remains to actually check that $J$ is an ideal to satisfy the hypothesis of Zorn's lemma. Well, as before, it suffices to pick up $r,s\in R$ and $j,k\in J$ and show that $rj+sk\in J.$ We can find $\alpha$ and $\beta$ such that $j\in J_\alpha$ and $k\in J_\beta$ for $J_\alpha,J_\beta\in\{J_\alpha\}_{\alpha\in\lambda}$; without loss of generality $J_\beta\subseteq J_\alpha$ by the chain condition. It follows\[rj+sk\in J_\alpha\subseteq J\]because $J_\alpha$ is an ideal.
+					</p>
+					<p>
+						Thus, we have finished establishing that each nonempty ascending chain in $\Omega$ has an upper bound, so let $\mf p$ be a maximal element by Zorn's lemma. It remains to show that $\mf p$ is prime. We do this by contraposition: suppose $a_1,a_2\notin\mf p,$ and we show $a_1a_2\notin\mf p.$
+					</p>
+					<p>
+						The main trick is to use the maximality of $\mf p$ by noting that the ideals $\mf p+(a_1)$ and $\mf p+(a_2)$ are both strictly larger than $\mf p$ while being ideals containing $I,$ so they must intersect with $S.$ We fix $s_1=p_1+a_1r_1$ and $s_2=p_2+a_2r_2$ with $s_1,s_2\in S$ and $r_1,r_2\in R.$ Then $S$ also contains\[s_1s_2=(p_1+a_1r_1)(p_2+a_2r_2)=\underbrace{p_1p_2+p_1a_2r_2+p_2a_1r_1}_{\in\mf p}+a_1a_2r_1r_2.\]We know $s_1s_2$ cannot live in $\mf p,$ so to keep this expression outside of $\mf p,$ we had better have $a_1a_2r_1r_2$ outside of $\mf p,$ so $a_1a_2$ is outside of $\mf p$ as well. This finishes. $\blacksquare$
+					</p>
+					<p>
+						As a brief aside, we mention that we cannot simply choose $R\setminus S$ as our prime ideal in the above lemma because $R\setminus S$ might not even be an ideal! For example, $\ZZ\setminus\{1,2,4,8,\ldots\}$ contains $3$ and $5$ and therefore $2\cdot3-5=1,$ so the ideal generated by these elements is all of $\ZZ.$
+					</p>
+					<p>
+						Anyways, we are now pretty much done with the proposition, as suggested. We have $S=\langle a,\times\rangle$ a multiplicative set disjoint from the ideal $I,$ so we can find $\mf p$ not containing anything in $S$ (and therefore not containing $a$), so\[\bigcap_{\mf p\supseteq I}\mf p\]can only contain elements for which $I\cap\left\{1,a,a^2,\ldots\right\}$ is nonempty; i.e., $a\in\op{rad}I.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						Because all ideals at least contain $(0),$ we can apply the above proposition to say\[\op{nilrad}A=\op{rad}(0)=\bigcap_{\substack{\mf p\in\op{Spec}A\\\mf p\supseteq(0)}}\mf p=\bigcap_{\mf p\in\op{Spec}A}\mf p.\]This is cute, so we call it here.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

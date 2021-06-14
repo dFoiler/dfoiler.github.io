@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 6th
+					</h2>
+					<p>
+						Today I learned the classification of primes in polynomial rings over principal ideal domains, from Undergraduate Commutative Algebra. Before continuing, we collect some facts that should be written down somewhere. We begin with the equivalence of prime and irreducible in unique factorization domains.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $p$ is a non-unit prime in the integral domain $\mathcal O_K.$ Then $p$ is irreducible.
+						</p>
+					</div>
+					<p>
+						Indeed, suppose $p=ab$ for some $a,b\in\mathcal O_K.$ We need to show that one of $a$ or $b$ is a unit. Well, $p=ab$ means that $p\mid ab,$ so $p\mid a$ or $p\mid b$ by definition of prime. Without loss of generality, we say $p\mid a,$ so let $a=pk.$ Thus we see that\[p=(pk)b.\]Because $p$ is prime, it is nonzero, so the fact $\mathcal O_K$ is an integral domain lets us cancel this to $bk=1.$ Thus, $b\mid1,$ so $b\in\mathcal O_K^\times$ is a unit.
+					</p>
+					<p>
+						Technically, we also need to know that $a$ is not a unit for $p$ to be irreducible. Well, if $a$ is also a unit, then $p=ab$ is a unit as well, and we supposed that $p$ is not a unit as a hypothesis. $\blacksquare$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $q$ is an irreducible in the unique factorization domain $\mathcal O_K.$ Then $q$ is a prime.
+						</p>
+					</div>
+					<p>
+						Suppose $q\mid ab$ with $a,b\in\mathcal O_K.$ To use the unique factorization condition, we note that\[\frac{ab}q=u\prod_{p\text{ irred.}}p^{\nu_p(ab/q)},\]where all but finitely many of the $\nu_p(ab)$ are zero. In particular, we note that\[ab=u\left(q\prod_{p\text{ irred.}}p_k\right)\]is a perfectly valid factorization into irreducibles of $ab.$ However, we can also write\[a=u_a\prod_{p\text{ irred.}}p^{\nu_p(a)}\quad\text{and}\quad b=u_b\prod_{p\text{ irred.}}p^{\nu_p(b)}\]where again all but finitely many of the $\nu_p(a)$ and $\nu_p(b)$ are zero. This means that\[ab=u_au_b\prod_{p\text{ irred.}}p^{\nu_p(a)+\nu_p(b)}\]is another valid factorization into irreducibles of $ab.$ Comparing our two factorizations, we see that $q$ must be conjugate to some irreducible $p$ in the second factorization, and that irreducible $p$ needs to have $\nu_p(a)+\nu_p(b)$ positive because it is positive in the first factorization. But if\[\nu_p(a)+\nu_p(b) \gt 0,\]then at least one of $\nu_p(a)$ or $\nu_p(b)$ must be positive. Without loss of generality, we assert $\nu_p(a) \gt 0,$ but then $p\mid a,$ and because $q$ is conjugate to $p,$ we also have $q\mid a.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We will also need to know that primes are maximal in principal ideal domains. Note that maximal ideals are integral domains because the corresponding quotient is a field and hence an integral domain.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $(p)$ is a prime ideal in the principal ideal domain $\mathcal O_K.$ Then $(p)$ is also maximal.
+						</p>
+					</div>
+					<p>
+						We show this directly. Find an ideal between $(p)$ and $\mathcal O_K,$ and name it $(a)$ because it must be principal. Namely, we know that $(p)\subseteq(a)\subseteq\mathcal O_K$ and would like to show $(a)=(p)$ or $(a)=\mathcal O_K.$
+					</p>
+					<p>
+						Well, $p\in(a)$ implies that $p=ab$ for some $b\in\mathcal O_K.$ However, $p$ prime implies $p$ irreducible, so $p=ab$ requires either $a$ or $b$ to be a unit. We take these cases one at a time.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $a$ is a unit, then $(a)=\mathcal O_K.$ Using more words, $a\mid1$ requires some $k$ with $1=ak,$ so $1\in(a),$ so $\mathcal O_K=(1)\subseteq(a).$
+							</p>
+						</li>
+						<li>
+							<p>
+								If $b$ is a unit, then $(a)=(p).$ Indeed, $a=pb^{-1},$ so $a\in(p),$ so $(a)\subseteq(p),$ but we supposed that $(p)\subseteq(a)$ already.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having dealt with all cases, we are done here. $\blacksquare$
+					</p>
+					<p>
+						Now, in what follows, we fix $\mathcal O_K$ a principal ideal domain and $K$ its field of fractions. We know $\mathcal O_K$ is a unique factorization domain, so $\mathcal O_K[x]$ is a unique factorization domain as well. We are interested in classifying the primes/irreducibles in $\mathcal O_K[x].$ So fix $\mf p$ a prime ideal.
+					</p>
+					<p>
+						Getting rid of the easy cases, we begin by taking $\mf p=(\pi)$ principal with $\pi\in\mathcal O_K[x].$ We can always have $\mf p=(0),$ but if $\pi$ is a nonzero non-unit prime of the unique factorization domain $\mathcal O_K[x],$ then this is equivalent to $\pi$ being irreducible. So\[(\pi)\text{ prime}\iff\pi=0\text{ or }\pi\text{ prime/irreducible}.\]It can be checked manually that $\mathcal O_K[x]/(\pi)$ is an integral domain, but we don't have to.
+					</p>
+					<p>
+						It remains to deal with the case where $\mf p$ is a prime ideal but not principal. The intuition for this case is to take $\mathcal O_K=\CC[y]$ so that the maximal ideals in $\mathcal O_K[x]=\CC[x,y]$ all look like $(x-\alpha,y-\beta)$ with $\alpha,\beta\in\CC.$ What does this mean? Well,\[(x-\alpha,y-\beta)\]looks like the expansion of the maximal ideal $(y-\beta)\subseteq\mathcal O_K,$ so we would like to show that $\mf p$ looks like this: some kind of expansion of a maximal ideal in $\mathcal O_K.$
+					</p>
+					<p>
+						For this, we pick up the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_K$ a principal ideal domain. Suppose that $\mf p$ is a non-principal ideal of $\mathcal O_K[x].$ Then $\mf p\cap(\mathcal O_K\setminus\{0\})$ is nonempty.
+						</p>
+					</div>
+					<p>
+						Fix $K$ the field of fractions of $\mathcal O_K[x].$ As a general approach, what we want to do is say that $\mf p$ non-principal means that it has elements $f_1$ and $f_2$ which are coprime in a $\mathcal O_K[x]$ sort of way, so we can reduce them to elements coprime in a $K[x]$ sort of way, and then Bezout's lemma says there are $c_1,c_2\in K[x]$ such that\[c_1f_1+c_2f_2=1\]because $K[x]$ is a principal ideal domain. Clearing fractions to push everything into $\mathcal O_K[x]$ gives us our element of $\mathcal O_K[x]\setminus\{0\}$ in $\mf p.$
+					</p>
+					<p>
+						We begin by looking for those elements $f_1$ and $f_2$ of $\mf p$ which share no non-unit common factor of $\mathcal O_K[x].$ This is surprisingly annoying, so if the reader would like to skip this, we denote where the proof of this begins and ends.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Using everything as defined above, we can find $f_1$ and $f_2$ in $\mf p$ which share no non-unit common factors.
+						</p>
+					</div>
+					<p>
+						Pick up any nonzero $f_1\in\mf p$ and look at its decomposition into irreducibles. (Note $\mf p\ne\{0\}$ because $\mf p$ is not principal.) One of those irreducibles needs to be in $\mf p$ because $\mf p$ is a prime (after all, the entire product $f_1\in\mf p$), so say $p_1\in\mf p$ is one such irreducible.
+					</p>
+					<p>
+						Now, $\mf p$ is not principal, so $\mf p\setminus(p_1)$ must be nonempty. So find some $f_2\in\mf p\setminus(\pi_1)$ and play the same trick: surely $f_2$ is nonzero because $0\in(p_1),$ so we can look at the factorization of $f_2$ into irreducibles. This factorization is just a glorified product, so one of the irreducible factors&mdash;say, $p_2$&mdash;lives in $\mf p.$
+					</p>
+					<p>
+						Thus, we have two irreducibles $p_1$ and $p_2$ in $\mf p,$ where $p_2\in\mf p\setminus(p_1).$ We claim that $p_1$ and $p_2$ have no non-unit common factors. Indeed, if we find $g\in\mathcal O_K[x]$ satisfying $g\mid p_1$ and $g\mid p_2,$ then dissolving everything into its prime factorization means that\[\nu_p(g)\le\min\{\nu_p(p_1),\nu_p(p_2)\}\]for each irreducible $p$ of $\mathcal O_K[x].$ However, $p_1=p_1$ is a valid factorization into irreducibles for $p_1,$ so $\nu_p(g)=\nu_p(p_1)=0$ for any $p$ not conjugate to $p_1.$ Similarly, $\nu_p(g)=0$ for any prime not conjugate to $p_2.$ But if $p$ is conjugate to both $p_1$ and $p_2,$ then $p_1=u_1p$ and $p_2=u_2p$ with $u_1,u_2\in\mathcal O_K[x]^\times,$ implying\[p_2=u_2p=u_2u_1^{-1}p_1\in(p_1),\]which is false by construction. So no prime is conjugate to both $p_1$ and $p_2,$ implying $\nu_p(g)=0$ for all irreducibles $p.$ It follows the factorization of $g$ into irreducibles features no irreducibles, so $g$ is a unit. $\blacksquare$
+					</p>
+					<p>
+						As our promised next step, we lift the condition that $f_1$ and $f_2$ share no non-unit common factors in $\mathcal O_K[x]$ to sharing no non-unit common factors in $K[x].$ This lifting sounds like a job for Gauss's lemma, so indeed we will use Gauss's lemma.
+					</p>
+					<p>
+						Suppose $g\in K[x]$ is a common factor of $f_1$ and $f_2$ in $K[x],$ and we would like to show $\deg g=0$ so that $g$ is a unit of $K.$ We need to move this argument into $\mathcal O_K[x]$ to use our hypothesis on $f_1$ and $f_2,$ so we write $f_1=gg_1$ and $f_2=gg_2$ and use our lemma from a few days ago to say\[g=ag',\quad g_1=a_1g_1',\quad g_2=a_2g_2'\]where $a,a_1,a_2\in K^\times$ and $g',g_1',g_2'\in\mathcal O_K[x]$ are primitive. We claim that $g'$ is a common factor of $f_1$ and $f_2$ in $\mathcal O_K[x],$ which will finish because it requires that $g'$ is a unit of $\mathcal O_K[x],$ so $g=ag'\in K$ is a unit of $K[x].$ Indeed, we'll show $g'\mid f_1,$ from which $g'\mid f_2$ will follow similarly. We write\[f_1=gg_1=(aa_1)(g'g_1').\]Now, $g'g_1'$ is primitive by Gauss's lemma (here is here we used it). To finish here, we need to know $aa_1\in\mathcal O_K.$ A quick way to see this is that, for any prime $p$ of $\mathcal O_K,$ we know that the minimum of $\nu_p$ across the coefficients of $f_1$ and $(aa_1)(g'g_1')$ are equal. Well, $f_1\in\mathcal O_K[x],$ so the minimum is nonnegative, and $g'g_1'$ is primitive, so the minimum is $0.$ Thus, $\nu_p(aa_1)\ge0$ for each $p,$ so $aa_1\in\mathcal O_K.$
+					</p>
+					<p>
+						And as our promised final step, we note that $f_1$ and $f_2$ sharing no non-unit common factors in $K[x]$ means that the ideal $(f_1,f_2)=K[x]$ in $K[x].$ In particular, we can find $c_1,c_2\in K[x]$ such that\[c_1f_1+c_2f_2=1.\]Multiplying together all the denominators of $c_1$ and $c_2$ gives us a giant nonzero constant $C\in\mathcal O_K$ such that $Cc_1\in\mathcal O_K[x]$ and $Cc_2\in\mathcal O_K[x],$ so\[(Cc_1)f_1+(Cc_2)f_2=C\]lives in $(f_1,f_2)$ in $\mathcal O_K[x]$ and therefore lives in $\mf p.$ This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						We can now do some analysis on what $\mf p$ looks like. We can get to the following with some small coercion.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_K$ a principal ideal domain and $\mf p$ a non-principal prime ideal. We can find some prime element $p\in\mathcal O_K\cap\mf p$ and polynomial $\pi\in\mathcal O_K[x]$ such that $\overline\pi\in\mathcal O_K/(p)[x]$ is irreducible.
+						</p>
+					</div>
+					<p>
+						It is nonzero by the lemma we worked so hard for, and it is also a prime $\mathcal O_K$-ideal. That it is an ideal follows because $\mf p$ is an $\mathcal O_K[x]$-ideal and $\mathcal O_K$ a ring. It is not all of $\mathcal O_K$ because then $1\in\mf p,$ which is problematic. And it is prime is also inherited: if $a,b\in\mathcal O_K$ have\[ab\in\mf p\cap\mathcal O_K,\]then $ab\in\mf p$ requires $a\in\mf p$ or $b\in\mf p.$ We already know $a,b\in\mathcal O_K,$ so $a\in\mf p\cap\mathcal O_K$ or $b\in\mf p\cap\mathcal O_K.$ Anyways, the point of all of this is to say that\[\mf p\cap\mathcal O_K=(p)\]for some prime $p$ of $\mathcal O_K$ because $\mathcal O_K$ is a principal ideal domain. This gives the first part of the desired.
+					</p>
+					<p>
+						Continuing, we note $\mf p$ is not itself principal, so we can find some $f\in\mf p\setminus(p).$ We might be tempted to pick up an irreducible $\pi$ from the factorization of $f\in\mathcal O_K[x]$ and analyze $(p,\pi).$ However, $(p,\pi)$ need not even be prime in this construction: choosing $\mathcal O_K$ with $p=2$ and $\pi=x^2+1,$ we see\[(x+1)^2\in\left(2,x^2+1\right)\subseteq\ZZ[x],\]but of course $x+1\not\in\left(2,x^2+1\right).$
+					</p>
+					<p>
+						The correct thing to do is to note that $(p)$ is prime in a principal ideal domain $\mathcal O_K$ and hence maximal, so $\mathcal O_K/(p)[x]$ is a unique factorization domain (a polynomial ring of a field). Instead of picking up any irreducible dividing $f,$ we will pick up an irreducible dividing its equivalence class $\overline f\in\mathcal O_K/(p)[x].$ We quickly establish $\deg\overline f \gt 0$: write\[f(x)=\sum_{k=0}^da_kx^k\in\mathcal O_K[x],\]If all $a_k$ for $k \gt 0$ live in $(p),$ then $a_0=f(x)-p\sum_{k=1}^d(a_k/p)x^k\in(p)$ as well, meaning $f\in(p).$ We chose $f\not\in(p),$ so there is some $k \gt 0$ with $a_k\not\in(p),$ meaning $\deg\overline f\ge k \gt 0.$ So we are allowed to write\[\overline f=\prod_{k=1}^n\overline\pi_k\]for a positive number of irreducible polynomials $\{\overline\pi_k\}_{k=1}^n\subseteq\mathcal O_K/(p)[x].$ We would like one of the $\pi_\bullet$ to live into $\mf p.$ Well, the above equality lets us find some $q\in(p)$ with\[\prod_{k=1}^n\pi_k=f-pq\in\mf p,\]so $\mf p$ prime lets us find some $\pi$ in the product such that $\pi\in\mf p.$ This gives the second part of the desired. $\blacksquare$
+					</p>
+					<p>
+						It turns out that the above lemma the $p$ and $\pi$ of the above lemma actually generate $\mf p.$ We have the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Using everything as defined in the previous lemma, we have $\mf p=(p,\pi).$
+						</p>
+					</div>
+					<p>
+						Indeed, we claim that $(p,\pi)$ is maximal, so $(p,\pi)\subseteq\mf p\subsetneq\mathcal O_K$ ($\mathcal O_K$ is not a prime ideal), from what it follows $\mf p=(p,\pi).$ To show the claim, we simply note\[\frac{\mathcal O_K[x]}{(p,\pi)}\cong\frac{\mathcal O_K/(p)[x]}{(\overline\pi)}\cong\mathcal O_K/(p)[\alpha],\]where $\alpha$ is a root of $\overline\pi\in\mathcal O_K/(p)[x].$ With more words, $p$ prime in $\mathcal O_K$ means $(p)$ is maximal, so $\mathcal O_K/(p)$ is a field. Adjoining the transcendental $x$ and then modding out by $\overline\pi$ is equivalent to adjoining a root $\overline\pi$ to the field $\mathcal O_K/(p),$ remaining a field. Thus, $(p,\pi)$ is maximal. $\blacksquare$
+					</p>
+					<p>
+						Putting this all together, we have the following theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $\mathcal O_K$ a principal ideal domain. All prime ideals $\mf p$ of $\mathcal O_K[x]$ fall into exactly one of the following categories.
+						</p>
+						<ul>
+							<li>
+								<p>
+									$\mf p$ is principal and looks like $(0)$ or $(f)$ for some prime/irreducible $f\in\mathcal O_K[x].$
+								</p>
+							</li>
+							<li>
+								<p>
+									$\mf p$ is maximal and looks like $(p,\pi)$ where $p\in\mathcal O_K$ is prime, and $\pi$ reduces$\pmod p$ to some irreducible $\overline\pi\in\mathcal O_K/(p)[x].$
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>
+						This follows from the above discussion, by doing casework on if $\mf p$ is principal or not. The first part of the theorem comes from our discussion of the principal case, and the above lemma covers the second part of the theorem for when $\mf p$ is non-principal.
+					</p>
+					<p>
+						Further, note that all the principal primes are not maximal: if $\mf p=(p)$ with $\deg p=0,$ then $p\in\mathcal O_K,$ so $p$ is prime, and then $(p,x)$ is a strictly larger proper ideal. Indeed, $x\in\mathcal O_K[x]\setminus(p)$ while $1+p\in\mathcal O_K[x]\setminus(p,x).$
+					</p>
+					<p>
+						Similarly, if $\mf p=(f)$ with $\deg f \gt 0,$ then we can pick up a prime $p\in\mathcal O_K,$ and $(p,f)$ is a strictly larger proper ideal. Indeed, $(f)$ has no nonzero elements in $\mathcal O_K,$ so $p\in\mathcal O_K[x]\setminus(f).$ And further, $1+p$ is not in $(p,f)$ either: note $1+p=ap+bf$ needs $b=0$ because $\deg(1+p)=0,$ but $1+p=ap$ means $p$ is a unit.
+					</p>
+					<p>
+						The point of the above is to say that our cases really are disjoint: being non-principal and prime is really the same as being maximal. The previous discussion gives the forward direction, and the above two paragraphs give the reverse direction. $\blacksquare$
+					</p>
+					<p>
+						What's nice about the above abstraction is that we get to leverage both geometric intuition from $\mathcal O_K=\CC[y]$ and more number-theoretic intuition from $\mathcal O_K=\ZZ.$ To be more explicit, we get a nice picture of $\op{Spec}\CC[y,x]$ as consisting of the maximal ideals\[(y-\beta,x-\alpha)\]because $\CC$ is algebraically closed. These can be associated with the points $(\beta,\alpha)\in\CC^2,$ so we can picture our maximal ideals as points. Then the principal ideals $(f)$ with $f\in\CC[y,x]$ prime/irreducible more or consist of "curves'' in the plane that cannot be reduced into components.
+					</p>
+					<p>
+						Meanwhile we also get a nice number-theoretic statement about what the primes of $\ZZ[x]$ or $\ZZ[i][x]$ look like, which is nice. I'm not sure how much I care about these primes, and it disturbs me a bit that this much work was needed to classify them, but it is nice to have it and in this generality.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

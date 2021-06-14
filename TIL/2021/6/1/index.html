@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 1st
+					</h2>
+					<p>
+						Today I learned about the Mahler measure, from
+						<a href="https://web.archive.org/web/20210112151948/https://www.uni-due.de/~adg350u/Skripte/DioApp.pdf">
+							here
+						</a>
+						. Roughly speaking, the Mahler measure is supposed to measure the "size'' of an algebraic number. Here's our definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $\alpha\in\overline\QQ$ an algebraic number with minimal polynomial $f(x)=\sum_{k=0}^da_kx^k\in\ZZ[x]$ with $\gcd(a_0,\ldots,a_d)=1.$ Then we define the Mahler measure as    \[M(\alpha):=|a_d|\prod_{\ell=1}^d\max\{1,\alpha_k\},\]    where $\{\alpha_k\}_{\ell=1}^d$ are the Galois conjugates of $\alpha.$
+						</p>
+					</div>
+					<p>
+						Note that the polynomial $f(x)=a_d\prod_{\ell=1}^d(x-\alpha_\ell)$ is uniquely determined modulo multiplication by a unit: we merely need $a_d$ to be a least common multiple of the denominators of $\prod_{\ell=1}^d(x-\alpha_\ell),$ and no further is allowed to keep $f(x)$ primitive. Thus, $|a_d|$ and therefore $M(\alpha)$ is well-defined.
+					</p>
+					<p>
+						There is little immediate reason to think that $M$ is the correct way to measure size of $\alpha\in\overline\QQ,$ but $M$ does have some nice properties. For example, because the polynomial is shared between all Galois conjugates, all Galois conjugates have the same Mahler measure. This is nice because we would like the Galois group to preserve $M.$
+					</p>
+					<p>
+						Additionally, $M$ satisfies the basic and necessary property of a size: finite bounds.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							For a fixed bounds $D$ and $N,$ there are only finitely many $\alpha\in\overline\QQ$ of degree less than or equal to $D$ which satisfy $M(\alpha)\le N.$
+						</p>
+					</div>
+					<p>
+						The basic idea is to bound the possible polynomials which an $\alpha$ could appear from; then the polynomials need to be in $\ZZ[x],$ so there are only finitely many of those. To bound the coefficients of a minimal polynomial $f(x)$ of some $\alpha\in\overline\QQ$ satisfying $M(\alpha)\le N,$ we use Vieta's formula. For clarity, let\[f(x):=\sum_{k=0}^da_kx^k=a_d\prod_{\ell=1}^d(x-\alpha_\ell)\]for $\{a_k\}_{k=0}^d\subseteq\ZZ$ coprime and $\{\alpha_\ell\}_{\ell=1}^d\subseteq\overline\QQ$ the Galois conjugates of $\alpha.$ Now, Vieta's formula asserts that we make a coefficient $a_k$ by choosing $k$ of the $x$s in the product and then $d-k$ of the $\alpha_\bullet$s. In other words, fixing some $k,$\[a_k=a_d\sum_{\substack{S\subseteq[1,d]\cap\ZZ\\|S|=d-k}}\left(\prod_{\ell\in S}-\alpha_\ell\right).\]Then the triangle inequality plus some rearranging asserts that\[|a_k|\le\sum_{\substack{S\subseteq[1,d]\cap\ZZ\\|S|=d-k}}\left(|a_d|\prod_{\ell\in S}|\alpha_\ell|\right)\le\sum_{S\subseteq[1,d]\cap\ZZ}M(\alpha)=2^dM(\alpha).\]This gives us a global bound for the size of the coefficients of polynomials $f(x)$ giving $M(\alpha)\le N,$ by $|a_k|\le 2^dM(\alpha)\le 2^DN.$
+					</p>
+					<p>
+						To finish, we note that each $\alpha\in\overline\QQ$ with $M(\alpha)\le N$ can be associated with one of its minimal polynomials $f(x).$ Because each of these polynomials has degree bounded by $D$ and coefficients bounded (in absolute value) by $2^DN,$ we have at most\[\left(2^DN\right)^D\]such polynomials. (This is a very crude bound, but it will do.) Then each polynomial can be associated backwards with at most its $D$ roots, so there are at most\[D\left(2^DN\right)^D\]such $\alpha\in\overline\QQ.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						We remark that the degree requirement is necessary: fix any $n\in\NN,$ and the root of unity $\zeta_n:=e^{2\pi i/n}$ is an algebraic integer (its minimial polynomial is the cyclotomic $\Phi_n(x)$), and its conjugates are all of the form $\zeta_n^k$ for some integer $k.$ Thus, all the Galois conjugates of $\zeta_n$ are of absolute value $1,$ implying $M(\zeta_n)=1.$
+					</p>
+					<p>
+						As a final addendum, we note that one of the results from a few months ago has its proof nicely abbreviated by the introduction of the Mahler measure.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Roots of unity are the only nonzero algebraic integers with all Galois conjugates of absolute value less than or equal $1.$
+						</p>
+					</div>
+					<p>
+						Fix one such nonzero $\alpha\in\overline\ZZ\setminus\{0\}$ of degree $d$ with Galois conjugates $\{\alpha_\ell\}_{\ell=1}^d.$ What makes the Mahler measure tractable here is that $\alpha\overline\ZZ$ makes the leading coefficient of $\alpha$'s minimal polynomial equal to $1.$ Thus,\[M(\alpha)=\prod_{\ell=1}^d\max\{1,|\alpha_\ell|\}.\]However, we are told that $|\alpha_\ell|=1$ for each $\alpha_\ell,$ so in fact $M(\alpha)=1.$
+					</p>
+					<p>
+						As before, the key step is to consider what happens to $\alpha^k$ for powers $k\in\NN.$ Well, $\overline\ZZ$ is a ring, so $\alpha^k$ still has leading coefficient $1.$ And considering the orbit of $\alpha^k$ under the Galois group of the Galois closure of $\QQ(\alpha)$ over $\QQ,$ the Galois conjugates of $\alpha^k$ are $\{\alpha_\ell^k\}_{\ell=1}^d.$ Thus,\[M\left(\alpha^k\right)=\prod_{\ell=1}^d\max\left\{1,|\alpha_\ell|^k\right\},\]which comes out to $1$ again because $|\alpha_\ell|^k\le1$ for each $\alpha_\ell.$
+					</p>
+					<p>
+						To deal the killing blow, look at the sequence $\{\alpha^k\}_{k=1}^\infty.$ Every element lives in $\QQ(\alpha),$ so their degrees are bounded by the degree of $\alpha,$ and we have just established that their Mahler measures are uniformly bounded by $1.$ So there can only be finitely many distinct elements in this sequence, so the Pigeonhole principle requires repeats. So extract distinct $k_1$ and $k_2$ yielding\[\alpha^{k_1}=\alpha^{k_2}.\]Without loss of generality, we let $k_1 \gt k_2.$ We required $\alpha\ne0$ in the hypothesis, so we get $\alpha^{k_1-k_2}=1,$ meaning that $\alpha$ is a root of unity. This finishes. $\blacksquare$
+					</p>
+					<p>
+						As some commentary, the above proof establishes some of what's nice about the Mahler measure: it at least somewhat behaves in powers because the Galois conjugates behave in powers, and the finite bound property allows some kind of "well-ordering''-type thinking. Regardless, I am unconvinced this is the best way to measure heights.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

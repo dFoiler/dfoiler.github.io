@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -253,7 +258,7 @@
 						</p>
 					</div>
 					<p>
-						We have actually done most of the work for this already. Starting the same way, we are evaluating\[\zeta\left(\hat g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(\widehat{g_\nu},|\bullet|_\nu^s\right).\]All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is archimedean, which is easier the second time.
+						We have actually done most of the work for this already. Starting the same way, we are evaluating\[\zeta\left(\hat g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(\widehat{g_\nu},|\bullet|_\nu^s\right).\]All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is nonarchimedean, which is easier the second time.
 					</p>
 					<div class="lemma">
 						<p>
@@ -267,7 +272,7 @@
 						Observe that when trying to establish our self-dual archimedean measures, we found $\widehat{g_\mf p}=\op N(\mathcal D_\mf p)^{-1/2}1_{\mathcal O_\mf p^\vee}.$ Fixing $d$ so that $\mathcal O_\mf p^\vee=\varpi^d\mathcal O_\mf p,$ we see we want\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\int_{K_\mf p}\widehat{g_\mf p}(x)|x|_\mf p^s\,d^\times x=\op N(\mathcal D_\mf p)^{-1/2}\int_{\varpi^d\mathcal O_\mf p}|x|_\mf p^s\,d^\times x.\]As before, we turn this into an infinite geometric series, but this time we are integrating over $|x|_\mf p\le\op N(\mf p)^{-d},$ so\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\sum_{k=d}^\infty\int_{|x|_\mf p=\op N(\mf p)^{-k}}\op N(\mf p)^{-ks}\,d^\times x.\]Rescaling multiplicatively the integral over $|x|_\mf p=\op N(\mf p)^{-k}$ to $\mathcal O_\mf p^\times,$ we see\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1/2}\left(\sum_{k=d}^\infty\op N(\mf p)^{-ks}\right)\int_{\mathcal O_\mf p^\times}d^\times x.\]Recalling that the measure of $\mathcal O_\mf p^\times$ is $\op N(\mf p)^{-1/2},$ we see this is\[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1}\sum_{k=d}^\infty\op N(\mf p)^{-ks}.\]Finally, the infinite series collapses to $\op N(\mf p)^{-ds}\cdot\frac1{1-\op N(\mf p)^{-s}}.$ After noting that $\op N(\mf p)^{-d}=\op N(\mathcal D_\mf p),$ we see that the above rearranges into the desired. $\blacksquare$
 					</p>
 					<p>
-						In light of the above lemma, we see that the archimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute\[\prod_\mf p\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{s-1}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]As discussed, the product of $\op N(\mathcal D_\mf p)$ multiply out to $\op N(\mathcal D_K)=|\op{disc}\mathcal O_K|,$ so the left product is $|\op{disc}\mathcal O_K|^{s-1}.$ And again, the right-hand product is the Euler product of $\zeta_K(s).$
+						In light of the above lemma, we see that the nonarchimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute\[\prod_\mf p\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{s-1}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]As discussed, the product of $\op N(\mathcal D_\mf p)$ multiply out to $\op N(\mathcal D_K)=|\op{disc}\mathcal O_K|,$ so the left product is $|\op{disc}\mathcal O_K|^{s-1}.$ And again, the right-hand product is the Euler product of $\zeta_K(s).$
 					</p>
 					<p>
 						Combining the archimedean factors with the nonarchimedean ones, we see\[\zeta\left(\hat g,|\bullet|^s\right)=\Gamma_\RR(s)^{r_1}(\pi\Gamma_\CC(s))^{r_2}\cdot|\op{disc}\mathcal O_K|^{s-1}\zeta_K(s),\]which is what we wanted. $\blacksquare$

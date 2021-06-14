@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 10th
+					</h2>
+					<p>
+						Today I learned a proof to Sperner's theorem, from THE BOOK. For background, the problem is to take the subsets of $[n]:=\{1,\ldots,n\}$ for $n\in\NN$ and turn them into a poset with relation $\subseteq.$ Then the question we ask is for the largest possible antichain in the poset, or the largest number of incomparable elements in a single family.
+					</p>
+					<p>
+						Observe that if all the subsets have the same size, then we are an antichain for free: if $|A|=|B|$ while $A\subseteq B,$ then $A=B,$ so distinct elements must be incomparable. Fixing a size $k,$ the most subsets we can get from this construction is $\binom nk.$ To maximize $\binom nk$ over $k,$ we note that\[\binom nk=\frac{n!}{k!(n-k)!}=\frac{k+1}{n-k}\cdot\frac{n!}{(k+1)!(n-k-1)!}=\frac{k+1}{n-k}\binom n{k+1}.\]In particular, $\binom nk$ is increasing as long as $k+1\le n-k,$ or equivalently $k\le(n-1)/2,$ and decreasing as long as $k+1\ge n-k,$ or equivalently $k\ge(n-1)/2.$ The point is that we are maximized at the middle, so $\binom n{\floor{n/2}}$ is the best we can do.
+					</p>
+					<p>
+						Sperner's theorem says that this is in fact maximal, which is perhaps surprising.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							The largest antichain in the poset of subsets of $[n]$ ordered by $\subseteq$ has size $\binom n{\floor{n/2}}.$
+						</p>
+					</div>
+					<p>
+						The key idea in this proof is that two subsets $A$ and $B$ can belong to an antichain if and only if $A$ and $B$ themselves do not belong to any chain. The way to turn this into combinatorics is to consider the set of chains\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_n=[n]\]where $\#A_k=k.$ Call such chain an "incremental'' chain. As outline for what's about to happen, we will count the number of chains containing each individual subset in an antichain, and all these chains must be distinct because the subsets are in antichain, so we can bound the total number of chains containing any subset in the antichain without tears.
+					</p>
+					<p>
+						Suppose we require $S\subseteq[n]$ with to live in the chain; we count the number of incremental chains containing $S.$ We claim the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given a finite set $S,$ there are $(\#S)!$ incremental chains to $S,$ which look like    \[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{\#S}=S.\]
+						</p>
+					</div>
+					<p>
+						Observe that the only place for $S$ is at $A_{\#S}$ if the size is to match. On one hand, the number of inrecemental chains\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{\#S}=S\]can be bijected with the one-element distinct subsets of $S$ by\[A_1\setminus A_0,\,A_2\setminus A_1,\,\ldots,\,A_{\#S}\setminus A_{\#S-1}.\]More specifically, we see that $\sigma(k)\in A_k\setminus A_{k-1}$ (unique because $\#(A_k\setminus A_{k-1})=1$) forms a bijection $\sigma:[\#S]\to S$ because the domain and codomain have the same size, and $\sigma$ is injective because distinct $k+1$ and $\ell+1$ gives $k \lt \ell$ without loss of generality, implying $A_{k+1}\subseteq A_\ell,$ so $A_{k+1}\setminus A_k\ne A_{\ell+1}\subseteq A_\ell.$
+					</p>
+					<p>
+						This correspondence between chains to $S$ and bijections $\sigma:[\#S]\to S$ is in fact a one-to-one correspondence, with inverse map\[A_k=\bigcup_{\ell=1}^k\sigma(\ell).\]This is actually a chain because because $A_{k+1}=A_k\subseteq\sigma(k+1),$ and it has the right form because $A_{\#S}=\sigma([\#S])=S,$ and $\#A_k=\#\sigma([k])=k.$ We won't be rigorous showing that the forward and backward maps are actually inverses, but we will say that\[\bigcup_{\ell=1}^k(A_\ell\setminus A_{\ell-1})=A_k\setminus A_0=A_k\]shows that the forward composed with backward map is the identity, and\[\{\sigma(k)\}=\bigcup_{\ell=1}^k\sigma(\ell)\bigg\backslash\bigcup_{\ell=1}^{k-1}\sigma(\ell).\]shows the other direction. All of this to say that there are $(\#S)!$ total incremental chains to $S$ because this is the number of bijections. $\blacksquare$
+					</p>
+					<p>
+						Continuing, it remains to count the number of incremental chains from $S$ to $[n].$ However, we can biject such chains with incremental chains\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{n-\#S}=[n]\setminus S.\]Indeed, unioning each individual chain with $S$: the difference in size between consecutive elements remains $1,$ we start at $S,$ and we end at $[n].$ We won't be as formal as above showing that this is a bijection, but it is. This implies the number of incremental chains from $S$ to $[n]$ is $(n-\#S)!.$
+					</p>
+					<p>
+						Thus, for any particular subset $S,$ there are $(\#S)!\cdot(n-\#S)!$ total incremental chains through $S.$ Given an antichain $\mathcal F,$ we note that distinct $S$ and $T$ cannot share any incremental chains. Indeed, if both $S$ and $T$ live in an incremental chain\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_n=[n],\]either $S\subseteq T$ or $T\subseteq S$ because this is a chain, implying that $S=T$ because $S$ and $T$ are in the antichain $\mathcal F.$ So the total number of incremental chains through any element of $\mathcal F$ is\[\sum_{S\in\mathcal F}(\#S)!(n-\#S)!.\]That was the key step, where we turned the antichain condition into actual numbers. Anyways, to finish, we let $s_k$ be the number of subsets in $\mathcal F$ of size $k$ so that we can write the above as\[\sum_{k=0}^ns_k\cdot k!(n-k)!.\]Now, we can bound the number of incremental chains through $\mathcal F$ above by the total number of incremental chains in $[n],$ which is $n!$ by lemma. Doing some rearranging, we see that\[\sum_{k=0}^n\frac{s_k}{\binom nk}\le1.\]The theorem statement makes us think that we should only have to care about the $k=\floor{n/2}$ and $k=\ceil{n/2}$ terms, so we may safely note that $\binom nk\le\binom n{\floor{n/2}}$ to get a lower bound\[\sum_{k=0}^n\frac{s_k}{\binom n{\floor n/2}}\le1.\]In particular, $\#\mathcal F=\sum_{k=0}^ns_k\le\binom n{\floor{n/2}},$ which is exactly what we wanted. $\blacksquare$
+					</p>
+					<p>
+						This proof is exceedingly clever. The way to translate the antichain condition into something countable is quite remarkable, and even the inequality manipulation at the end pays very careful attention to the equality case to make sure we get what we need. This is quite nice.
+					</p>
+					<p>
+						As an aside, we note that the statement of Sperner's theorem doesn't actually tell us what the optimal cases are. Writing everything down, the inequalities we used are\[\sum_{k=0}^n\frac{s_k}{\binom n{\floor n/2}}\le\sum_{k=0}^n\frac{s_k}{\binom nk}\le1.\]The second inequality has equality case when our $\mathcal F$ actually uses all incremental chains. But the former inequality will only hold if all the $s_k=0$ except for $s_{\floor{n/2}}$ and $s_{\ceil{n/2}}.$ So we get the following immediately.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The largest antichain in the poset of subsets of $[n]$ ordered by $\subseteq$ is exactly all the subsets of size $n/2$ for $n$ even.
+						</p>
+					</div>
+					<p>
+						Indeed, in this case, $\floor{n/2}=\ceil{n/2},$ so continuing from the above discussion, all terms except for $k=n/2$ give $s_k=0,$ so $\#\mathcal F=s_{n/2}=\binom n{n/2},$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						As for $n$ odd, the most we can immediately say is that $s_{\floor{n/2}}+s_{\ceil{n/2}}=n,$ but I am fairly confident that the equality cases are indeed either the set of all subsets of size $\floor{n/2}$ or the set of all subsets of size $\ceil{n/2}.$ This proof is somewhat involved, but intuitively, having a subset of size $\ceil{n/2}$ prevents $\ceil{n/2}$ subsets of size $\floor{n/2}$ from appearing in the antichain, which is a heavy cost.
+						<a href="https://www.whitman.edu/mathematics/cgt_online/book/section01.07.html">
+							Here
+						</a>
+						is a more complete proof, which I haven't read.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

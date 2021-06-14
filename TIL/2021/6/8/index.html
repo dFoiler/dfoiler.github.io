@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 8th
+					</h2>
+					<p>
+						Today I learned about the semi-failure of function extensionality for polynomials. I think this entry is going to be more story-based than usual. The "inciting incident'' here is Fermat's little theorem, which asserts that\[x^p\equiv x\pmod p.\]More generally, we have that\[x^q=x\text{ in }\FF_q,\]for any finite field $\FF_q.$ This is potentially problematic because the literal polynomials $x^q\in\FF_q[x]$ and $x\in\FF_q[x]$ have the exact same behavior over $\FF_q,$ but they are of course different polynomials. In other words, they are the same function (according to function extensionality) while different polynomials.
+					</p>
+					<p>
+						The resolution to this problem, of course, is to expand the size of the field. Even though $x^p=x$ in $\FF_p,$ if we move up into $\FF_{p^2},$ then for some $a\in\FF_p$ not a quadratic residue, we have\[\left(\sqrt a\right)^p=a^{(p-1)/2}\sqrt a=\left(\frac ap\right)\sqrt a=-\sqrt a,\]so we no longer have $x^p=x$ as functions. However, even in this larger field, we still have $x\mapsto x^{p^2}$ equal to the identity map. The only way to resolve these continually popping up problems is to move into the algebraic closure\[\bigcup_{k \gt 0}\FF_{p^k},\]where such problems no longer occur. One can try to explain this by saying that being in the algebraic closure implies that all polynomials fully factor, so they have the same set of roots, so they are already pretty much equal.
+					</p>
+					<p>
+						However, one can make an even simpler argument.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $K$ a field and two polynomials $a(x),b(x)\in K[x].$ If $a(x)\ne b(x)$ is a nonzero polynomial, then $a(x)$ and $b(x)$ agree on at most $\deg(a-b)(x)$ points.
+						</p>
+					</div>
+					<p>
+						This is an application of Lagrange's theorem on polynomials. The condition that $a(x)\ne b(x)$ is really saying that $(a-b)(x)\ne0$ so that $\deg(a-b)(x)$ is a well-defined nonnegative integer. Now, asserting that $a(x)$ and $b(x)$ agree on $d$ points is saying that\[a(k)=b(k)\]for $d$ distinct values of $k\in K.$ This means that $(a-b)(x)$ has a root on each of the $d$ distinct values of $k\in K,$ so Lagrange's theorem on polynomials asserts that the degree of $(a-b)(x)$ must be at least $d.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						Looking at our inciting incident $x^q\equiv x$ in $\FF_q,$ we see that this is exactly the equality case of the above: the breaking of function extensionality is saying that $x^q\ne x$ as polynomials while $x^q=x$ for all $x\in\FF_q,$ or equivalently, that these two polynomials agree on $q$ points. The above proposition says that this requires\[\deg\left(x^q-x\right)\ge q,\]which is of course true: it is in fact exactly degree $q.$ This kind of thinking lets us reconcile function extensoinality.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $K$ an infinite field and two polynomials $a(x),b(x)\in K[x].$ If $a(x)=b(x)$ on all elements of $x\in K,$ then we know $a(x)=b(x)$ as polynomials.
+						</p>
+					</div>
+					<p>
+						This is a direct application of the lemma. We show the contrapositive: if $a(x)\ne b(x),$ then $a(x)$ and $b(x)$ must disagree on some value of $x\in K.$ Well, the lemma says that $a(x)$ and $b(x)$ are allowed to agree on at most\[\deg(a-b)(x) \lt \infty\]points of $K,$ so on $K$ minus this finite set of points we have that $a(x)$ and $b(x)$ must disagree. Because $K$ is infinite, we know that $K$ minus this finite set of points is nonempty, so we are done. $\blacksquare$
+					</p>
+					<p>
+						This helps explain why moving to the algebraic closure of $\FF_p$ earlier fixed the problem: the algebraic closure has infinitely many elements, so we retain function extensionality for polynomials, even when it broke for any component finite fields.
+					</p>
+					<p>
+						Additionally, we know for free that function extensionality for polynomials over characteristic-$0$ fields will hold because a characteristic-$0$ field must have the infinite field $\QQ$ as a subfield, so the above proposition kicks in immediately.
+					</p>
+					<p>
+						Of course, the best we can say for finite fields is that $a(x)=b(x)$ on all elements of $x\in\FF_q$ implies that $\deg(a-b)(x)\ge q,$ but if we are careful about the equality case $x^q\equiv x,$ then we can do a little better.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $K=\FF_q$ a finite field for prime-power $q.$ Then given polynomials $a(x)$ and $b(x)$ which agree on all elements of $\FF_q,$ then $a(x)\equiv b(x)\pmod{x^q-x}.$
+						</p>
+					</div>
+					<p>
+						One way to show this is to use the lemma again. Observe that a full reduction of a polynomial$\pmod{x^q-x}$ will yield a polynomial of degree strictly less than $q.$ Indeed, if we want to reduce\[a(x)=\sum_{k=0}^\infty a_kx^k\]where all but finitely many of the $\{a_k\}_{k=0}^\infty$ are nonzero, then we note $x^d\equiv x^{d\pmod q}\pmod{x^q-x}$ (by, say, induction), so we can say\[a(x)\equiv\sum_{r=1}^{q-1}\left(\sum_{k\equiv r\pmod q}a_k\right)x^r\pmod{x^q-x}.\]Now, the point of saying this is to note that the two polynomials are still equal on all elements of $\FF_q$ because $x^q-x=0$ for all elements $x\in\FF_q.$
+					</p>
+					<p>
+						So, after reducing $a(x)$ and $b(x)$ as in the proposition, we note that the lemma implies that $a(x)$ and $b(x)$ agreeing on all $q$ elements of $\FF_q$ requires $a(x)=b(x)$ or $\deg(a-b)(x)\ge q.$ Well, $\deg a,\deg b,$ if defined, are bounded strictly above $q,$ so $\deg(a-b)$ is as well. So we must instead have $a(x)=b(x),$ finishing. $\blacksquare$
+					</p>
+					<p>
+						An alternate way to view the above proposition is to note that $\FF_q$ is pretty much made of the $x$ such that $x^q-x=0.$ This means that polynomials which are equivalent$\pmod{x^q-x}$ should have the same behavior on $\FF_q$ (and conversely!) because this is rigged by the structure of $\FF_q$ itself.
+					</p>
+					<p>
+						Anyways, I think that's the furthest we can salvage polynomial functional extensionality. Essentially, the only exceptions are the ones generated by the inciting incident and friends, so we have managed to contain the problem as much as we reasonably can.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

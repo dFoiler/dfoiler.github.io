@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -109,7 +114,7 @@
 						For this, we exhibit a compact fundamental domain for $\AA_\QQ/\QQ$ as\[D:=[-1/2,1/2]\times\prod_{p \lt \infty}\ZZ_p.\]It is quick to see that $D$ is compact, but we can't appeal to Tychonoff because $\AA_\QQ$ isn't equipped with the product topology. There might be a way to do this because each nonarchimedean projection of $D$ is in $\ZZ_p,$ which is compact, but this trick is unnecessary.
 					</p>
 					<p>
-						Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $D$; there is at least one open set, say $U_\beta,$ and its projections to $\QQ_p$ are $\ZZ_p$ for all but finitely many $\nu.$ That is, there exists a finite set $S$ of (say, nonarchimedean) places such that\[\prod_{p\not\in S}\ZZ_p\subseteq U_\beta.\]Note we are being somewhat sloppy with our notation because the left-hand side does not technically have all of the coordinates of $\AA_\QQ,$ but we also don't care about them yet. Indeed, this single $U_\beta$ covers most of $D$ already; it remains to cover\[[-1/2,1/2]\times\prod_{p\in S}\ZZ_p.\]However, each of these sets is compact, and our open cover $\{U_\alpha\}_{\alpha\in\lambda}$ must cover them. Extracting the corresponding open cover for each of the (finitely many) above components and directly unioning them with $U_\beta$ gives us our finite subcover of $D.$
+						Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $D$; there is at least one open set, say $U_\beta,$ and its projections to $\QQ_p$ are $\ZZ_p$ for all but finitely many $\nu.$ That is, there exists a finite set $S$ of (say, nonarchimedean) places such that\[\prod_{p\notin S}\ZZ_p\subseteq U_\beta.\]Note we are being somewhat sloppy with our notation because the left-hand side does not technically have all of the coordinates of $\AA_\QQ,$ but we also don't care about them yet. Indeed, this single $U_\beta$ covers most of $D$ already; it remains to cover\[[-1/2,1/2]\times\prod_{p\in S}\ZZ_p.\]However, each of these sets is compact, and our open cover $\{U_\alpha\}_{\alpha\in\lambda}$ must cover them. Extracting the corresponding open cover for each of the (finitely many) above components and directly unioning them with $U_\beta$ gives us our finite subcover of $D.$
 					</p>
 					<p>
 						To finish, we take the following claim to show $D$ is a fundamental domain.

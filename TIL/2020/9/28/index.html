@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -104,7 +109,7 @@
 						Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\pmod{q^{m+1}}$ implies $\sigma(\alpha)\equiv\alpha\pmod{\mf q^m},$ so the $V_m$ are a (not strictly) decreasing sequence of subgroups. And in fact, we claim that there is an $M$ for which $V_m=\{\op{id}\}$ for any integer $m\ge M.$ In fact, we can construct that $M$ explicitly: fix $L=K[\alpha]$ where $\alpha\in\mathcal O_L.$ (Certainly an $\alpha$ exists; multiplying it by a sufficient constant will make its polynomial monic.) Then we claim/I think\[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$
 					</p>
 					<p>
-						Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
+						Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\notin V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if\[\sigma(\alpha)-\alpha\notin\mf q^{m+1}\]because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\notin V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
 					</p>
 				</div>
 			</div>

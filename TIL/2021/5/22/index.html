@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 22nd
+					</h2>
+					<p>
+						Today I learned a few things about infinite descent. Here's our prototypical example.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The equation $a^3+2b^3=4c^3$ has no nonzero integer solutions.
+						</p>
+					</div>
+					<p>
+						Fix $(a_0,b_0,c_0)$ any solution, possibly the all-$0$ solution. The trick is to look$\pmod2.$ Indeed,$\pmod2$ says that $a$ is even. Dividing by $2,$ this means that we can write $a_0=2a_1,$ so\[4a_1^3+b_0^3=2c_0^3.\]Now,$\pmod2$ says that $b_0$ is even, so we can let $b_0=2b_1.$ Then dividing by $2$ implies\[2a_1^3+4b_1^3=c_0^3.\]So we have that $c_0$ is all even, so we again we write $c_0=2c_1,$ which gives\[a_1^3+2b_1^3=4c_1^3.\]But this is the original equation! So any solution $(a,b,c)$ can be turned into a smaller solution $(a/2,b/2,c/2).$
+					</p>
+					<p>
+						There are a few ways to convert this "compressor'' into the proposition. Here's a fast way. Suppose for the sake of contradiction there is a solution with $|a|+|b|+|c| \gt 0.$ Then let $(a_0,b_0,c_0)$ be a solution minimizing $|a|+|b|+|c|,$ extracted by well-order. But $(a_0/2,b_0/2,c_0/2)$ has\[\left|\frac{a_0}2\right|+\left|\frac{b_0}2\right|+\left|\frac{c_0}2\right| \lt |a_0|+|b_0|+|c_0|,\]contradicting minimality of $(a_0,b_0,c_0).$ Thus, all solutions must satisfy $|a|+|b|+|c|=0,$ meaning $(a,b,c)=(0,0,0),$ completing the proof. $\blacksquare$
+					</p>
+					<p>
+						As a precursor, we provide a way to finish the proposition without using contradiction. The idea is that solutions must be evenly even, but only $0$ is infinitely even. Using the compressor inductively, we can conclude that $\nu_2(a),\nu_2(b),\nu_2(c)$ can be made arbitrarily large. In particular, looking in $\ZZ_2,$ we see that\[|a|_2=2^{-\nu_2(a)}\]can be made arbitrarily close to $0,$ and similarly for $b$ and $c.$ It follows that we must actually have $|a|_2=|b|_2=|c|_2=0,$ so $a=b=c=0.$
+					</p>
+					<p>
+						The point of providing this out is to note that our inductive parity argument is "really'' expanding $\ZZ$ to look at $\ZZ_2,$ and once in $\ZZ_2,$ we can more quickly say that there are no solutions because $\ZZ_2$ has a well-behaved metric.
+					</p>
+					<p>
+						With this in mind, we are going to prove the following in many ways.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The equation $a^2+4b^4=6c^6$ has no nonzero integer solutions.
+						</p>
+					</div>
+					<p>
+						It is possible to attack this by doing descent$\pmod2.$ Suppose $(x,y,z)$ is a solution to the above. Looking$\pmod2,$ we see that $a$ is even, so $(x/2,y,z)$ is a solution to\[2a^2+2b^4=3c^6.\]Now,$\pmod2$ says that $c$ is even, so $(x/2,y,z/2)$ is a solution to\[a^2+b^4=2^5\cdot3c^6.\]Here we have to start being clever. If we check$\pmod4,$ we have to squares sum to $0\pmod4,$ so both $a$ and $b$ are even. Thus, $(x/4,y/2,z/2)$ is a solution to\[a^2+4b^4=2^3\cdot3c^6.\]Checking$\pmod2,$ we see $a$ is even, so $(x/8,y/2,z/2)$ is a solution to\[a^2+b^4=2\cdot3c^6,\]We can't simply look$\pmod4$ anymore, so this approach looks doomed. But it turns out that$\pmod8$ forces everything here to be even! Indeed, the squares$\pmod8$ are $\{0,1,4\},$ so\[\begin{cases}    a^2\in\{0,1,4\}, \\    b^4\in\{0,1\}, \\    6c^6\in\{0,6\}.\end{cases}\]If $a$ is odd, then $b$ had better be odd as well because $6c^6$ is even, and vice versa by$\pmod2.$ But this fails$\pmod8$ because $a^2+b^4\equiv2\pmod8,$ which isn't an option for $6c^6.$ Otherwise, we are taking $c$ is odd with $b$ is even, which means $a^2\equiv6\pmod8,$ which is still impossible.
+					</p>
+					<p>
+						Dividing everything by $2,$ $(x/16,y/4,z/4)$ is a solution to\[a^2+4b^4=2^5\cdot3c^6.\]Now,$\pmod2$ says $a$ is even, so $(x/32,y/4,z/4)$ is a solution to\[a^2+b^4=2^3\cdot3c^6.\]And here we can look$\pmod4$ again, which means $a$ and $b$ have to be even here, so $(x/64,y/8,z/4)$ is a solution to\[a^2+4b^4=6c^6.\]But this is our original equation! So every solution $(x,y,z)$ to the original equation induces another solution $(x/64,y/8,z/4).$
+					</p>
+					<p>
+						Finishing again by contradiction, we can suppose there is a nonzero integer solution to the equation, which lets us pick up $(x_0,y_0,z_0)$ a solution minimizing $|a|+|b|+|c|.$ But then $(x_0/64,y_0/8,z_0/4)$ is also a solution with\[\left|\frac{x_0}{64}\right|+\left|\frac{y_0}8\right|+\left|\frac{z_0}4\right| \lt |x_0|+|y_0|+|z_0|,\]contradicting the minimality of $(x_0,y_0,z_0).$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						If we used the same trick as before to remove the contradiction, we would find there are no nonzero solutions in $\ZZ_2$ either. In fact this is true, and we present a perhaps cleaner proof of this fact using the arithmetic of $\ZZ_2.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The equation $a^2+4b^4=6c^6$ has no nonzero solutions in $\ZZ_2.$
+						</p>
+					</div>
+					<p>
+						To begin, we claim that if any of $a,b,c$ is $0,$ then all of them are $0.$ Indeed, if two are $0,$ then the equation says that $a^2=0$ or $4b^4=0$ or $6c^6=0,$ meaning the third is $0.$ Then we quickly give our casework.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If only $a=0,$ then $4b^4=6c^6$ implies that $c=0$ (done) or $3$ is a square in $\QQ_2,$ which is false by$\pmod4.$
+							</p>
+						</li>
+						<li>
+							<p>
+								If only $b=0,$ then $a^2=6c^6$ implies that $c=0$ (done) or $6$ is a square in $\QQ_2,$ which is false by$\pmod4$ again.
+							</p>
+						</li>
+						<li>
+							<p>
+								If only $c=0,$ then $a^2+4b^4=0$ implies that $b=0$ (done) or $-4$ is a square in $\QQ_2,$ which is false because it implies $-1$ is a square, which breaks$\pmod4.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						So any nonzero solution to $a^2+4b^4=6c^6$ tells us that all of $a,b,c$ must be nonzero.
+					</p>
+					<p>
+						The reason we did all of the above is that we can set $a=2^xu,$ $b=2^yv,$ and $c=2^zw$ with $|u|_2=|v|_2=|w|_2=1$ and $x,y,z\in\ZZ.$ (Dealing with some of them equal to $0$ requires $x,y,z\in\ZZ\cup\{\infty\}$.) Plugging this all in, we see that\[2^{2x}u^2+2^{4y+2}v^4=3\cdot2^{6z+1}w^6.\]If we write out the ultrametric inequality with $|\bullet|_2,$ we see that\[2^{-(6z+1)}\le\max\left\{2^{-2x},2^{-(4y+2)}\right\},\]and equality holds if $2^{-2x}\ne2^{-(4y+2)}.$ Well, the key step is to see that equality cannot hold because $6z+1$ is odd while both $2x$ and $4y$ are even! So we see $2x=4y+2.$ Plugging this all back in, we see\[2^{4y+2}u^2+2^{4y+2}v^4=3\cdot2^{6y+1}w^6,\]where we are also told that $6y+1 \gt 4y+2.$ Dividing out, we see that\[u^2+v^4=3\cdot2^{2(3y-2y+1)+1}w^6.\]But now this looks like our equation $a^2+b^4=6c^6$ from earlier, which we know forced everything to be even. Indeed, we can check$\pmod8$ here, but we are told that $u,v,w$ are supposed to be odd, so $u^2,v^4,w^6\equiv1\pmod8,$ which looks like\[2\equiv3\cdot2^{2(3y-2y+1)+1}\pmod8.\]This is impossible because the power of $2$ on the right is odd, so the right-hand side lives in $\{3,6,0\},$ none of which are $2.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						Lastly, just to prove a point that descent doesn't always give back the original equation, we present a final descent proof using$\pmod3$ instead, which is cleaner than the$\pmod2$ one.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The equation $a^2+4b^4=6c^6$ has no nonzero solutions in $\ZZ_3.$
+						</p>
+					</div>
+					<p>
+						We'll take a different approach than with $\ZZ_2,$ trying to imitate the descent closer. Pick up a (possibly zero) solution $(x,y,z)$ in $\ZZ_3.$ Then if we look$\pmod3,$ we see that\[x^2+\left(2y^2\right)^2\equiv0\pmod3.\]But the squares$\pmod3$ are $0$ and $1,$ so the only way to sum to $0$ is with $0+0=0.$ In particular, $x$ and $y$ are both divisible by $3,$ so $(x/3,y/3,z)$ is a solution to\[3a^2+27\cdot4b^4=2c^6.\]If we take$\pmod3$ here, we see that $c$ is divisible by $3,$ so $(x/3,y/3,z/3)$ is a solution to\[a^2+9\cdot4b^4=3^6\cdot2c^6.\]If we take$\pmod3$ here, we see that $a$ is divisible by $3,$ so $(x/9,y/3,z/3)$ is a solution to\[a^2+4b^4=3^3\cdot6c^6.\]This looks similar to the original equation!
+					</p>
+					<p>
+						In particular, the exact same argument as above shows that, given $k\in\NN,$ any solution $(x,y,z)$ to\[a^2+4b^4=3^k\cdot6c^6\]has all terms divisible by $3$ induces a solution $(x/9,y/3,z/3)$ to $a^2+4b^4=3^{k+3}\cdot6c^6.$ Indeed,$\pmod3$ of the above says $x$ and $y$ are both divisible by $3.$ Then again, we can check$\pmod3$ to get $z$ divisible by $3$ and then $x/3$ divisible by $3,$ in exactly the above way.
+					</p>
+					<p>
+						Using an inductive argument, we can then say that $\nu_3(x),\nu_3(y),$ and $\nu_3(z)$ are arbitrarily large; I'm not going to be rigorous about this, but we are inducing larger and larger solutions to $a^2+4b^4=3^\bullet\cdot6c^6.$ However, it follows that\[|x|_3=|y|_3=|z|_3=0\]if their $\nu_3$ are unbounded. Thus, $x=y=z=0,$ finishing. $\blacksquare$
+					</p>
+					<p>
+						The point of the above presentation is to really connect a descent argument in $\ZZ$ with the descent argument in $\ZZ_3$; we could very much do the same thing in $\ZZ_2,$ but the descent argument$\pmod2$ was a bit involved. Anyways, having proven impossibility with this $3$ times, we call it good enough.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

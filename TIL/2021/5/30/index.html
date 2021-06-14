@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 30th
+					</h2>
+					<p>
+						Today I learned about Euler's continued fraction formula, from the
+						<a href="https://en.wikipedia.org/wiki/Euler's_continued_fraction_formula">
+							Wikipedia
+						</a>
+						page. The following is the statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $\{a_k\}_{k=1}^n$ is a sequence of elements in a (say) characteristic-$0$ field. Then the generalized continued fraction    \[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}}\]    is equal to $a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1\cdots a_n.$
+						</p>
+					</div>
+					<p>
+						We will present two inductive proofs of this identity, from two separate ideas. To start, our base case is $n=0,$ for which the statement is $\frac{a_0}1=a_0,$ and there is nothing more to prove.
+					</p>
+					<p>
+						The first idea for the inductive step is to substitute into $a_n$ to make $a_{n+1}$ appear. Looking at the sequence sum answer, we expect that the substitution $a_n\mapsto a_n(1+a_{n+1})$ will do the trick, for\[\sum_{k=0}^n\prod_{\ell=0}^ka_\ell=\left(\sum_{k=0}^{n-1}a_\ell\right)+a_0\cdots a_n\]becomes\[\left(\sum_{k=0}^{n-1}a_\ell\right)+a_0\cdots a_{n-1}(a_n+a_{n+1})=\sum_{k=0}^{n+1}\prod_{\ell=0}^ka_\ell\]after distributing. This is the desired answer, so it remains to manipulate the generalized continued fraction. The only part with a $a_n$ is the fraction $\frac{a_n}{1+a_n},$ so that it our focus. To start, we see\[\frac{a_n}{1+a_n}\mapsto\frac{a_n(1+a_{n+1})}{1+a_n(1+a_{n+1})}.\]Dividing, this fraction is\[\frac{a_n}{a_n+\frac1{1+a_{n+1}}}.\]To get the needed minus sign, we note that $\frac1{a_{n+1}}=1-\frac{a_{n+1}}{1+a_{n+1}}.$ So in total, we see that the entire fraction\[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}}\]becomes\[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}}},\]which completes the inducitve step. $\blacksquare$
+					</p>
+					<p>
+						The second idea for the inductive step is to wrap around the outside of the generalized continued fraction. However, the outside is not very inductive, so we simplify it a bit. Dividing by $a_0$ and taking the reciprocal ($a_0=0$ gives nothing to prove), it suffices to show that\[1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]is equal to $(1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n)^{-1}.$ To finish making the outer layers look like inner ones, we add $a_0$ so that it suffices to show\[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]is equal to $\frac{a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_n}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n}.$ This is more conducive to induction by adding a layer to the outside, so we prove it.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $\{a_k\}_{k=1}^n$ is a sequence of elements in a (say) characteristic-$0$ field. Then the generalized continued fraction    \[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]    is equal to $\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_n}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n}.$
+						</p>
+					</div>
+					<p>
+						The base case of $n=0$ means we have to prove $1+a_0=1+a_0,$ which is true. For the inductive step, we have to show that\[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}}\]is equal to $\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_{n+1}}.$ Shifting indices, we already that the inner part\[1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{1+a_3-\dfrac{a_4}{\ddots-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}\]is equal to $\frac{1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1}}{1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1}}$ from the inductive hypothesis. Plugging in, we have to show that\[1+a_0-\dfrac{a_1}{\frac{1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1}}{1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1}}}=\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_{n+1}}.\]Clearing denominators, we have to show\[(1+a_0)(1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1})-a_1(1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1})\]is equal to $1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}.$ However, this is true after expanding the product above and then cancelling $1\cdot(a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1})$ with the other term. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						As quick commentary, I would definitely say that the first idea is cleaner in terms of the manipulation required, but I think the second idea is easier to come up with. I had seen something similar to the first idea before (in the magic box algorithm for continued fractions) and consider it very clever.
+					</p>
+					<p>
+						Anyways, let's see this do something cool. Observe that the theorem provides an entirely symbolic manipulation, so we are allowed to take $n\to\infty$ in the limit and be fine. So, for example, let's turn the series\[\arctan(x)=\int_0^x\frac1{1+t^2}\,dt=\sum_{k=0}^\infty(-1)^k\frac{x^{2k+1}}{2k+1}\]into a continued fraction. We quickly say that care with the convergence here does say that this series holds at $x=1.$ Anyways, we want to define a sequence $\{a_\ell\}_{\ell=1}^\infty$ such that\[\prod_{\ell=0}^ka_\ell=(-1)^k\frac{x^{2k+1}}{2k+1}.\]Well, we claim that $a_0=x$ and $a_\ell=-\frac{2k-1}{2k+1}x^2$ for $\ell \gt 0$ will work. Indeed, $k=0$ gives $a_0=x$ as the above needs, and as for inductive step,\[\prod_{\ell=0}^{k+1}a_\ell=a_{k+1}\prod_{\ell=0}^ka_\ell=-\frac{2k+1}{2k+3}x^2\cdot(-1)^k\frac{x^{2k+1}}{2k+1}=(-1)^{k+1}\frac{x^{2k+3}}{2k+3}\]by the inductive hypothesis. Plugging all this in, we get the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\arctan(x)=\dfrac x{1+\dfrac{x^2}{3-x^2+\dfrac{(3x)^2}{5-3x^2+\dfrac{(5x)^2}{7-5x^2-\ddots}}}}.\]
+						</p>
+					</div>
+					<p>
+						Using the sequence $\{a_\ell\}_{\ell=0}^\infty$ defined in the above discussion, we know that\[\arctan(x)=\dfrac x{1-\dfrac{-x^2/3}{1-x^2/3-\dfrac{-3x^2/5}{1-3x^2/5-\dfrac{-5x^2/7}{1-5x^2/7-\ddots}}}}\]from the theorem. If we wanted to be rigorous, we would cut off this series at some finite place and then send its end off to infinity at the end, but we will not bother. Propagating the denominators of the fractions in fractions down gives\[\arctan(x)=\dfrac x{1-\dfrac{-x^2}{3-x^2-\dfrac{-(3x)^2}{5-3x^2-\dfrac{-(5x)^2}{7-5x^2-\ddots}}}}.\]Again, formality would require us to cut off the fraction at some point and then propagate the denominators down, but it doesn't make a difference. Now we locally adjust the signs to get\[\arctan(x)=\dfrac x{1+\dfrac{x^2}{3-x^2+\dfrac{(3x)^2}{5-3x^2+\dfrac{(5x)^2}{7-5x^2-\ddots}}}},\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						To close, we'll plug in $x=1$ to get the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that    \[\pi=\dfrac4{1+\dfrac{1^2}{2+\dfrac{3^2}{2+\dfrac{5^2}{2+\ddots}}}}.\]
+						</p>
+					</div>
+					<p>
+						This follows from plugging in $x=1$ into the above lemma and then multiplying both sides by $4.$ $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

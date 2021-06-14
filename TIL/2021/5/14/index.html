@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 14th
+					</h2>
+					<p>
+						Today I learned a little more about doing algebra over posets, from
+						<a href="https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf">
+							Combinatorial Reciprocity Theorems
+						</a>
+						. To review, we are thinking about posets as "sets with structure,'' where the "structure'' is the partial order we provided. This motivates us to define order-preserving maps, which are maps $\varphi:X\to Y$ between posets $(X,\le)$ and $(Y,\le)$ such that\[x_1\le x_2\implies\varphi(x_1)\le\varphi(x_2).\]We say that $\varphi$ is strictly order-preserving if $x_1 \lt x_2$ implies $\varphi(x_1) \lt \varphi(x_2).$
+					</p>
+					<p>
+						These order-preserving maps behave more or less like homomorphisms. Trying to move in a more categorical framework, we can study their "kernels.'' There is no obvious notion of an identity element in a poset, but a minimum element can do. To be explicit, given a poset $(X,\le)$ and order-preserving $\varphi:X\to[n],$ we can ask what the possible\[\varphi^{-1}(\{1\})\]are. The main property here is that $x\in\varphi^{-1}(\{1\})$ and $x'\le x,$ then we had better have\[\varphi(x')\le\varphi(x)=1,\]implying $x'\in\varphi^{-1}(\{1\}).$ This motivates us to take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given a poset $(X,\le),$ we say that $I\subseteq X$ is an order ideal if and only if, given $x\in I,$ we have    \[x'\le x\implies x'\in I.\]    At a high level, this means that we are taking some elements of $X$ and everything smaller.
+						</p>
+					</div>
+					<p>
+						To show that these actually make kernels, we note that for any order ideal $I\subseteq X,$ we can define the order-preserving map $\varphi:X\to[n]$ by taking $\varphi(I)=\{1\}$ and $\varphi(X\setminus I)=\{n\}.$ To show this is order-preserving, we need to know that\[x_1\le x_2\implies\varphi(x_1)\le\varphi(x_2).\]Well, if $x_2\in I,$ then we see $x_1\in I$ because $I$ is an order ideal, so $\varphi(x_1)=\varphi(x_2)=1.$ Alternatively, if $x_2\notin I,$ then $\varphi(x_2)=n,$ which is the largest element, so it doesn't matter what $\varphi(x_1)$ is.
+					</p>
+					<p>
+						As a quick remark about language, I think we're associating posets with rings, which is why we are calling these ideals. So our "extra-structured'' posets, namely $n$-chains, have the nice property that all of their ideals are "principal.'' Namely, an order ideal $I$ of $[n]$ is a sub-poset and therefore is itself a chain.
+					</p>
+					<p>
+						But $I$ is a finite chain, so it has a maximum element, say $m\in[n].$ To finish, we note\[x\le m\implies x\in I,\]so we basically have $I=[m]\subseteq[n].$ So indeed, $I$ is basically "generated by $m.$'' I am obligated to say that things are a bit funnier in the infinite case: $(-\infty,0)$ and $(-\infty,0]$ are both order ideals of $(\RR,\le),$ but it's not clear which should be "generated by $0.$''
+					</p>
+					<p>
+						Very briefly, we note that any set of subsets of $X$ can be endowed with poset structure by $\subseteq.$
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given a poset $X,$ we define the lattice of order ideals as the set of order ideals ordered by $\subseteq.$
+						</p>
+					</div>
+					<p>
+						Anyways, the reason we care about order ideals is that they're going to let us talk intelligently about order-preserving maps only using data internal to the poset $X.$ We have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $(X,\le)$ a poset and $n$ a positive integer. We can biject order-preserving maps $\varphi:X\to[n]$ with a sequence of ascending order ideals:    \[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X.\]
+						</p>
+					</div>
+					<p>
+						Our correspondence is to take $\varphi:X\to[n]$ to the sequence\[I_k=\varphi^{-1}(\{1,2,\ldots,k\}),\]for $k\in\{1,2,\ldots,n-1\}.$ Note this gives $I_0=\emp$ and $I_n=X$ for free. As an abuse of notation, we will write $[k]=\{1,2,\ldots,k\}\subseteq[n].$ We begin by showing this correspondence is well-defined. All of the $I_\bullet$ are order ideals because, given $x\in I,$ we see $x'\le x$ implies\[\varphi(x')\le\varphi(x)\in[k],\]so $\varphi(x')\in[k]$ as well, meaning $x'\in I.$ And this sequence is ascending because $k\le\ell$ implies $[k]\subseteq[\ell]$ so that\[I_k=\varphi^{-1}([k])\subseteq\varphi^{-1}([\ell])=I_\ell.\]This finishes our check that our correspondence is well-defined.
+					</p>
+					<p>
+						To show injectivity, suppose $\varphi_1$ and $\varphi_2$ both give the same ascending sequence of order ideals. Then for any $x\in X,$ there is a smallest $k\in[n]$ such that $x\in I_k.$ (Certainly $x\in I_n,$ so well-order guarantees a smallest $k.$) But this means that $x\in I_k\setminus I_{k-1},$ so\[\varphi_\bullet(x)\in[k]\setminus[k-1]=\{k\}.\]In particular, $\varphi_1(x)=\varphi_2(x)=k.$ So the $\varphi_\bullet$ are equal on all inputs and are therefore equal.
+					</p>
+					<p>
+						To show surjectivity, we do the same thing. Any ascending sequence of order ideals (with $I_0=\emp$ and $I_n=X$), we will construct a $\varphi:X\to[n]$ giving the desired sequence. For some $x\in X,$ we again note that there is a smallest $k\in[n]$ such that $x\in I_k,$ so we take $x\mapsto k.$ To be explicit,\[\varphi(x):=\min\{k\in[n]:x\in I_k\}.\]Around here it is apparent why we want things finite: this makes less sense with codomain $\RR.$ We have to show that this $\varphi$ is order-preserving. Well, for $x_1,x_2\in X$ with $x_1\le x_2,$ we note that\[x_2\in I_{\varphi(x_2)}\]by definition. But now $I_{\varphi(x_2)}$ is an order ideal, so $x_1\in I_{\varphi(x_2)}$ as well, implying $\varphi(x_2)\in\{k\in[n]:x_1\in I_k\},$ so $\varphi(x_1)\le\varphi(x_2),$ as desired. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We have a slight refinement for strictly order-preserving maps.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $(X,\le)$ a poset and $n$ a positive integer. We can biject order-preserving maps $\varphi:X\to[n]$ with a sequence of ascending order ideals    \[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X\]    such that $I_k\setminus I_{k-1}$ is an antichain of $X$ for each $k\in[n].$
+						</p>
+					</div>
+					<p>
+						We continue with the bijection of the previous proof. The key observation is that\[\varphi(I_k\setminus I_{k-1})=\big\{\min\{k\in[n]:x\in I_k\}:x\in I_k\setminus I_{k-1}\big\}=\{k\}.\]In particular, $\varphi$ is strictly order-preserving if and only if $x_1\le x_2$ and $x_1\ne x_2$ implies $\varphi(x_1)\le\varphi(x_2)$ and $\varphi(x_1)\ne\varphi(x_2).$ We already know that $\varphi(x_1)\le\varphi(x_2),$ so the conclusion we are interested in is $\varphi(x_1)\ne\varphi(x_2).$ Namely, strictly order-preserving is equivalent to\[x_1\lneq x_2\implies\varphi(x_1)\ne\varphi(x_2).\]Taking the contrapositive, this is equivalent to\[\varphi(x_1)=\varphi(x_2)\implies x_1=x_2\text{ or }x_1\not\le x_2.\]Using the key observation, this is now\[x_1,x_2\in I_k\setminus I_{k-1}\implies x_1=x_2\text{ or }x_1\not\le x_2.\]In other words, for distinct $x_1,x_2\in I_k\setminus I_{k-1},$ we cannot have $x_1\not\le x_2.$ Switching the role of $x_1$ and $x_2,$ we cannot have $x_2\not\le x_1$ either, so $x_1$ and $x_2$ are incomparable, implying $I_k\setminus I_{k-1}$ is antichain. And conversely, if $I_k\setminus I_{k-1}$ is antichain, then the above condition still holds. This finishes. $\blacksquare$
+					</p>
+					<p>
+						The main point here is that we have reduced the study of order-preserving maps $\varphi:X\to[n]$ to studying chains of particular kinds/lengths inside of the lattice of order ideals. Studying chains in a poset is a general poset question, and hopefully this abstraction is helpful.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

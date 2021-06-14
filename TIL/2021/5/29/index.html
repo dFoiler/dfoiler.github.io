@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 29th
+					</h2>
+					<p>
+						Today I learned a heuristic reason why $\pi^2\approx10,$ from
+						<a href="http://people.math.harvard.edu/~elkies/Misc/pi10.pdf">
+							Noam Elkies
+						</a>
+						. The main idea is to take the Basel problem\[\frac{\pi^2}6=\zeta(2)=\sum_{n=1}^\infty\frac1{n^2},\]and we will try to extract some terms from the sum and bound its later terms simultaneously. Indeed, the key trick is to write to make the later part of the sum telescoping. The way that Noam Elkies does this is by writing\[\sum_{n=1}^\infty\frac1{n^2}=1+\sum_{n=2}^\infty\frac1{n^2}\lessapprox1+\sum_{n=2}^\infty\frac4{4n^2-1}.\]Now, the latter sum telescopes as\[\sum_{n=2}^\infty\frac2{4n^2-1}=\sum_{n=2}\left(\frac1{2n-1}-\frac1{2n+1}\right)=\frac13.\]So in total, we get that $\frac{\pi^2}6\lessapprox1+2\cdot\frac13=\frac53,$ so $\pi^2\lessapprox10.$
+					</p>
+					<p>
+						Bounding the error term, we can see that\[\frac53-\frac{\pi^2}6=\sum_{n=2}^\infty\left(\frac4{4n^2-1}-\frac1{n^2}\right)=\sum_{n=2}^\infty\frac1{n^2\left(4n^2-1\right)}.\]This sum at least aesthetically looks very small because it is on the order of $n^{-4}.$ Our only not-clever tool to estimate a sum like this is integral comparison, but integral comparison is very unforgiving to leading terms. So we extract out the leading term $\frac1{60}$ and then bound the remaining terms by noting $n\ge3$ means $4n^2-1\ge\frac{35}9n^2.$ In symbols,\[\sum_{n=2}^\infty\frac1{n^2\left(4n^2-1\right)}\le\frac1{60}+\sum_{n=3}^\infty\frac1{n^2\cdot\frac{35}9n^2}.\]Bounding the sum as an integral (it's strictly decreasing), we see\[\sum_{n=3}^\infty\frac1{n^4} \lt \int_2^\infty x^{-4}\,dx=\frac{2^{-3}}3=\frac1{24}.\]So our error is bounded by\[\frac1{60}+\frac9{35}\cdot\frac1{24}=\frac{14+9}{840}=\frac{23}{840}.\]Numerically, this is approximately $0.02738.$ For a more explicit bound, it is less than $\frac3{100}$ because $2300=23\cdot100 \lt 3\cdot840=2520.$ So we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that $\pi^2\lessapprox10$ within $0.18.$
+						</p>
+					</div>
+					<p>
+						The above discussion tells us $\frac{\pi^2}6\lessapprox\frac53$ within $0.03.$ It follows that $\pi^2\lessapprox10$ within $6\cdot0.03\approx0.18.$ The actual error is about $0.13.$ $\blacksquare$
+					</p>
+					<p>
+						The magical thing about the above is that we cleanly bounded the sum by comparing it to a telescope, and this got us good bounds. Note that this is basically the same thing as doing series acceleration with $\sum_n\frac4{4n^2-1},$ but it is impressive that it works this well.
+					</p>
+					<p>
+						To give a feeling for how magical this is, we cannot do the same thing with $\frac9{9n^2-1}$ despite the partial fractions because the series does not telescope. However, we can do series acceleration with $\frac1{n^2-1}$ (the more standard friend) anyways. Because this is a bit worse, we need to extract $1+\frac14$ to get the desired estimate, which looks like\[\sum_{n=1}^\infty\frac1{n^2}\lessapprox1+\frac14+\sum_{n=3}^\infty\frac1{n^2-1}.\]As usual, the sum over $\frac1{n^2-1}$ telescopes as\[\sum_{n=3}^\infty\frac1{n^2-1}=\sum_{n=3}^\infty\left(\frac1{n-1}-\frac1{n+1}\right)=\frac12+\frac13.\]So in total, we get that $\frac{\pi^2}6\lessapprox1+\frac14+\frac56=\frac53.$ And it follows that $\pi^2\lessapprox10.$ As for the error term, we can again take the difference to find it is\[\sum_{n=3}^\infty\left(\frac1{n^2-1}-\frac1{n^2}\right)=\sum_{n=3}^\infty\frac1{n^2\left(n^2-1\right)}.\]If we do the same thing we did last time, taking the leading term $\frac1{72}$ and then bounding the rest with an integral, we get an error term of $0.02705,$ which isn't much better than last time. We can take out a few more terms to do better, however, writing\[\sum_{n=3}^\infty\frac1{n^2\left(n^2-1\right)}=\frac1{9\cdot8}+\frac1{16\cdot15}+\sum_{n=5}^\infty\frac1{n^2\left(n^2-1\right)}.\]Now, for $n\ge5,$ we have $n^2-1\ge\frac{24}{25}n^2,$ so we may bound\[\sum_{n=5}^\infty\frac1{n^2\left(n^2-1\right)}\le\frac{25}{24}\sum_{n=5}^\infty\frac1{n^4}.\]Bounding the sum as an integral, we see\[\sum_{n=5}^\infty\frac1{n^4} \lt \int_4^\infty x^{-4}\,dx=\frac{4^{-3}}3.\]So in total, our error is bounded by\[\frac1{9\cdot8}+\frac1{16\cdot15}+\frac{25}{24}\cdot\frac1{3\cdot64}.\]This fraction simplifies to $\frac{64\cdot5+3\cdot32+25\cdot5}{9\cdot512\cdot5},$ which is $\frac{320+96+125}{9\cdot2560},$ or simply $\frac{541}{23040}.$ Numerically, this is roughly $0.02348,$ but we can show it is less than $\frac1{40}$ because $40\cdot541=21640 \lt 23040.$ This gives the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that $\pi^2\lessapprox10$ within $0.15.$
+						</p>
+					</div>
+					<p>
+						The above work tells us that $\frac{pi^2}6\lessapprox\frac53$ with an error bounded by $\frac1{40}=0.025.$ Multiplying by $6,$ we see $\pi^2\lessapprox10$ within $0.025\cdot6=0.15.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						Of course, we could take out even more terms to get better estimates of the error term. And we can also get better estimates of $\pi^2$ by taking our more terms from the sum. For example, we can check that\[\pi^2 \lt 6\left(1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}+\sum_{n=5}^{1000}\frac{1}{n^{2}-1}\right) \lt 9.9.\]I'm not going to estimate the error term here.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

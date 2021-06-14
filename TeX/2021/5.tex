@@ -7,12 +7,68 @@
 
 
 \subsubsection{May 1st}
-Today I learned that there are no global differential forms on (say) the Riemann sphere. \todo{}
+Today I learned that a heuristic for the fact there are no global holomorphic $1$-forms on (say) the Riemann sphere. We promised this would be a heuristic, and indeed, it's going to be quite hand-wavy because I don't think I have all the background to make this fully rigorous. Anyways, we will be talking about sheaves on $\CP^1.$
+\begin{definition}
+    We will define $\CP^1$ as the set of all lines in $\CC^2.$ In particular, it is
+    \[\CP^1=\{[x:y]:x,y\in\CC,x\ne0\text{ or }y\ne0\}/\sim,\]
+    where $\sim$ says $[x:y]\sim[kx:ky]$ for any $k\in\CC^\times.$
+\end{definition}
+A lot of what we're going to say can be done over a general field instead of over $\CC$ specifically, but we won't dwell on this too much. We will say that we can define a projective space, but we will not do so.
+
+We begin by talking about the sheaf of holomorphic functions $\CP^1\to\CC$; fix $F$ an element. Ignoring the point at infinity, which is $[1:0],$ we remark that we can project all points $[x:y]$ with $y\ne0$ to some $[x:1],$ and we'll have the geometry here be isomorphic to $\CC$ by $[x:1]\mapsto x.$ In particular, we can restrict our $F:\CP^1\to\CC$ to a function
+\[\CP^1\setminus\{\infty\}\cong\CC\to\CC.\]
+However, complex analysis gives us a lot of tools to talk about holomorphic functions. For example, holomorphic functions on any open set $U$ behave like a power series. So when we try to define an element of the sheaf of holomorphic functions, this comes down to defining a family of
+\[p_U(x)\in\CC[[x]]\]
+for each open set $U\subseteq p_U(x)$ such that the restriction maps behave nicely. However, if two holomorphic power series $p_U(x)=\sum_{k=0}^\infty a_kx^k$ on $U$ and $p_V(x)=\sum_{k=0}^\infty b_kx^k$ on $V$ agree on $U\cap V\ne\emp$ (which they must because we are on a sheaf), then we can find some disk $D(z_0,r)\subseteq U\cap V$ with $r>0,$ meaning
+\[a_n=\oint_{\del D(z_0,r)}\frac{p_U^{(n)}(z)}{z-z_0}\,dz=\oint_{\del D(z_0,r)}\frac{p_V^{(n)}(z)}{z-z_0}\,dz=b_n.\]
+Thus, requiring our family of $\{p_U\}_{U\subseteq\CC}$ to behave nicely with restriction means that all of these $p_U(x)$ must all be shadows of the same power series/holomorphic function. Indeed, run the above argument with $V=\CC$ to see that all the $p_U$ are actually $p_\CC$ in disguise. (This is just analytic continuation.) So $F$ is $p_\CC(x)$ on $[x:1].$
+
+However, we can play almost the same game with the points $[1:x],$ for the set of points $[1:x]$ in $\CP^1$ (which is $\CP^1\setminus\{0\}$) should be isomorphic to $\CC$ by $[1:x]\mapsto x.$ So again, we can restrict our $F:\CP^1\to\CC$ to a function
+\[\CP^1\setminus\{0\}\cong\CC\to\CC.\]
+Now the above argument works verbatim, and we get that our element of the sheaf of holomorphic functions $\CP^1\to\CC$ all look like restrictions of
+\[q_\CC(x)\in\CC[[x]]\]
+for some global $q_\CC$ that we restrict to the individual open sets of $\CC.$ So $F$ is $q_\CC(x)$ on $[1:x].$
+
+Now, here's the punchline: we need the $p_\CC$ and $q_\CC$ defined above to cohere in $\CP^1,$ again because we're in a sheaf and things need to restrict properly. However, $p_\CC(x)$ is defined over elements of the form $[x:1]\in\CP^1$ while $q_\CC(x)$ is defined over elements of the form $[1:x]\in\CP^1.$ So, to cohere, we need that
+\[p_\CC(x)=F([x:1])=F([1:1/x])=q_\CC(1/x)\]
+for any $x\in\CC\setminus\{0\}.$ However, this is impossible if $p_\CC$ and $q_\CC$ are not both constants; for example, if $p_\CC$ is nonconstant as $|x|\to\infty,$ we must have $\sup|p_\CC(x)|\to\infty$ while $|q_\CC(x)|\to|q(0)|.$ Sending $|1/x|\to\infty$ (i.e., $x\to0$) implies that $q_\CC$ is constant as well. This gives the following.
+\begin{proposition}
+    The only globally defined holomorphic functions in $\CP^1\to\CC$ are constants.
+\end{proposition}
+This follows from the above discussion. To summarize, if $F:\CP^1\to\CC$ is a global holomorphic function, it needs to behave like a power series in $\CC[[x]]$ on points of the form $[x:1]$ and a perhaps different power series in $\CC[[x]]$ on points of the form $[1:x],$ but to make these equal on all points, we must have $F$ a constant. Of course, constants are holomorphic functions $\CP^1\to\CC,$ so these work. $\blacksquare$
+
+With the above argument as our template, we now go on to discuss the sheaf of holomorphic $1$-forms. These look like $d\omega$ which can be integrated reasonably over curves in $\CP^1.$ Doing the same thing as we did above, we first restrict our global $1$-form to points $[x:1]\in\CP^1,$ which is isomorphic to $\CC$ by $[x:1]\to x.$ Then if we can integrate
+\[d\omega|_{\CP^1\setminus\{\infty\}}\]
+over lines in $\CC$ to yield holomorphic functions. Namely, if we assert that
+\[F(z)=\int_0^zd\omega|_{\CP^1\setminus\{\infty\}}\]
+is a holomorphic function over $z\in\CC,$ then we can take the derivative to say that $d\omega/dz=F(z)$ is a holomorphic function on $z,$ meaning that $F(z)$ is just a power series here. I'm not being very rigorous here because I don't know what I'm talking about, but the main point is that the holomorphic $1$-forms of $\CC$ look like
+\[d\omega|_{\CP^1\setminus\{\infty\}}=p_\CC([x:1])\,d[x:1]\]
+for some holomorphic $p_\CC(x)\in\CC[[x]].$
+
+Continuing, we can say the same thing when we restrict our global holomorphic $1$-form $d\omega$ to points of the form $[1:x]\in\CP^1,$ which is again isomorphic to $\CC$ by $[1:x]\mapsto x.$ So again we have a holomorphic $1$-form on $\CC,$ so we conclude
+\[d\omega|_{\CP^1\setminus\{0\}}=q_\CC([1:x])\,d[1:x]\]
+for some holomorphic $q_\CC(x)\in\CC[[x]].$
+
+And, as before, we now attempt to glue these two restrictions of $d\omega$ together. When we restrict to $\CP^1\setminus\{0,\infty\}$ over which both of our definitions restrict, we see
+\[p_\CC([x:1])\,d[x:1]=q_\CC([1:1/x])\,d[1:1/x]\]
+because $[x:1]=[1:1/x]$ for $x\in\CC^\times.$ However, $d(1/x)=x^{-2}\,dx,$ so we can abuse notation a bit and write
+\[p_\CC(x)\,dx=-x^{-2}q_\CC(1/x)\,dx.\]
+Using the same trick as before to extract the non-differential part, we can note that
+\[\int_1^zp_\CC(x)\,dx=\int_1^z-x^{-2}q_\CC(1/x)\,dx\]
+need to both be holomorphic functions in $z\in\CC^\times,$ and differentiating this holomorphic function implies $p_\CC(x)=x^{-2}q_\CC(1/x).$ However, this is impossible because $p_\CC(x)$ has no poles, but $-x^{-2}q_\CC(1/x)$ must have a pole at $x=0.$ So we get the following.
+\begin{proposition}
+    There are no globally defined holomorphic $1$-forms on $\CP^1.$
+\end{proposition}
+This follows from the above discussion. We won't summarize this time. $\blacksquare$
+
+As some final commentary, the only property of the differential that we used here was that $dt^{-1}=-t^{-2}\,dt.$ Sure, we used a lot of the geometry of $\CC$ in the above discussion, but the exact argument for differential forms essentially boiled down to the fact $-x^{-2}q_\CC(x)$ had negative degree. This is to say that I think these ideas can be generalized much further.
 
 \subsubsection{May 2nd}
 Today I learned the proof that Berstein polynomials uniformly approximate continuous functions on $[0,1],$ from \href{https://web.archive.org/web/20210421224053/https://en.wikipedia.org/wiki/Bernstein_polynomial}{the Wikipedia page}. Here is the statement that we are building towards.
 \begin{theorem}
-    Fix $f:[0,1]\to\RR$ a continuous function. Then there is a sequence of polynomials $p_1,p_2,\ldots\in\RR[x]$ that uniformly converge to $f.$ In other words, for any $\varepsilon,$ we may write
+    Fix $f:[0,1]\to\RR$ a continuous function. Then there is a sequence of polynomials $p_1,p_2,\ldots\in\RR[x]$ that uniformly converge to $f.$ In other words, for any $\varepsilon,$ we may there exists a bound $N$ such that $n\ge N$ implies
+    \[|p_n(x)-f(x)|<\varepsilon\]
+    for any $x\in[0,1].$
 \end{theorem}
 We present an elementary presentation of this because I'm not very familiar with probability theory. (For example, I don't know a proof of the weak law of large numbers.) The main character in the proof is the following class of polynomials.
 \begin{definition}
@@ -218,3 +274,1729 @@ This statement follows from the above discussion. $\blacksquare$
 As some commentary, I am a bit amused by the path we took this final statement. The original theorem is more or less the statement that we want to prove: it is a very natural interpretation of ``average.'' Running through the proof, there was a point where we needed natural density, and swapping out the natural density with Dirichlet density gave the above. Namely, it is not immediately obvious why the above is the correct Dirichlet form of ``average,'' but after having seen it, it makes sense.
 
 In other news, may the 4th be with you.
+
+\subsubsection{May 5th}
+Today I learned the proof of Penney's nontransitive coin-flipping game. The game is as follows: the first player chooses some ordered triple of heads and tails, and then the second player analogously chooses a different triple. Then a coin is flipped until the last three flips matches the triple of one the players' triples, in which event that player wins. Note that the game terminates with probably $1$ because any random triple fails to match with probability $1-\frac18-\frac18<1,$ so someone will win eventually.
+
+It turns out that no matter what the first player chooses, the second player can always select a triple that wins out over the first player. By symmetry, we can flip $\texttt{H}\leftrightarrow\texttt{T}$ to guarantee the first coin of player one is $\texttt{H},$ meaning we have to account for $\texttt{HHH}$, $\texttt{HHT}$, $\texttt{HTH}$, and $\texttt{HTT}.$ We begin with some easy cases.
+\begin{lemma}
+    If the first player chooses $\texttt{HHH},$ then the second player can choose $\texttt{THH}$ to win.
+\end{lemma}
+We have two cases.
+\begin{itemize}
+    \item Note that $\frac18$ of the time, the opening triple is $\texttt{HHH},$ in which case player two loses.
+    \item Otherwise, we claim that player two wins. Indeed, there is a tails sometime in the first $3$ flips, and the existence of a tail implies that player one cannot win: find the first instance of $\texttt{HHH}$ in the series of coin flips, and then we see this group of $\texttt{HHH}$ was proceeded by a $\texttt{T},$ meaning that $\texttt{THH}$ beat $\texttt{HHH}.$
+\end{itemize}
+Thus, we see that player two wins with probability $\frac78>\frac12.$ We briefly remark that this is optimal because we can never avoid the chance that the first player just happens on the best sequence to start. $\blacksquare$
+
+\begin{lemma}
+    If the first player chooses $\texttt{HHT},$ then the second player can choose $\texttt{THH}$ to win.
+\end{lemma}
+Again, we have two cases.
+\begin{itemize}
+    \item If the first two flips happen to be $\texttt{HH},$ then player two loses. Indeed, player two needs a $\texttt{T}$ sometime to find a $\texttt{THH},$ but the first time a $\texttt{T}$ appears, it will be proceeded by at least two $\texttt{H},$ implying that $\texttt{HHT}$ beat $\texttt{THH}.$
+    \item Otherwise, we claim that player two wins. Indeed, there is a tails sometime in the first two flips, and for $\texttt{HHT}$ to win, we need to see a $\texttt{HH}$ sometime in the sequence. But this $\texttt{HH}$ is not at the beginning, and so the first $\texttt{HH}$ is preceded by a $\texttt{T},$ implying $\texttt{THH}$ beat $\texttt{HHT}.$
+\end{itemize}
+It follows player two wins with probability $\frac34>\frac12$ and so usually wins. $\blacksquare$
+
+It remains to deal with $\texttt{HTH}$ and $\texttt{HTT}.$ For this, we introduce the following state diagram.
+\begin{center}
+    \begin{tikzcd}
+                                                                      & \text{TTH} \arrow[rrr] \arrow[rd] &                                                          &                                                          & \text{THH} \arrow[dd] \arrow[rd]  &                                                                  \\
+    \text{TTT} \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & \text{THT} \arrow[r, bend right, shift right] \arrow[ld] & \text{HTH} \arrow[l, bend right, shift right] \arrow[ru] &                                   & \text{HHH} \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & \text{HTT} \arrow[uu] \arrow[lu]  &                                                          &                                                          & \text{HHT} \arrow[lll] \arrow[lu] &                                                                 
+    \end{tikzcd}
+\end{center}
+The arrows denote a movement with probability $\frac12.$ We will claim that $\texttt{HHT}$ beats both of $\texttt{HTH}$ and $\texttt{HTT},$ so because everything involved starts with $\texttt{T},$ we note that we can imagine starting the sequence with $\texttt{TTT}$ and then append to it.
+
+We can start filling out some of the diagram, placing on each node the probability player two wins starting there. We are interested in the probability that player two wins starting at $\texttt{TTT},$ which we call $p.$ Then $\texttt{TTT}$ either travels to itself or travels to $\texttt{TTH},$ so we will end up in $\texttt{TTH}$ with probability $1.$ Filling in these probabilities, so far we have the following.
+\begin{center}
+    \begin{tikzcd}
+                                                                      & p \arrow[rrr] \arrow[rd] &                                                          &                                                          & \text{THH} \arrow[dd] \arrow[rd]  &                                                                  \\
+    p \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & \text{THT} \arrow[r, bend right, shift right] \arrow[ld] & \text{HTH} \arrow[l, bend right, shift right] \arrow[ru] &                                   & \text{HHH} \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & \text{HTT} \arrow[uu] \arrow[lu]  &                                                          &                                                          & \text{HHT} \arrow[lll] \arrow[lu] &                                                                 
+    \end{tikzcd}
+\end{center}
+Now, we will be claiming that $\texttt{HHT}$ is our winner, so starting there wins with a probability $1$ (and feeds nowhere). But the note that $\texttt{HHH}$ doesn't have any outlet except into $\texttt{HHT},$ so hitting $\texttt{HHT}$ means player two win with probability $1.$ And similarly, $\texttt{THH}$ doesn't have any outlets except into the winning states $\texttt{HHH}$ and $\texttt{HHT},$ so it also wins with probability $1.$
+\begin{center}
+    \begin{tikzcd}
+                                                                      & p \arrow[rrr] \arrow[rd] &                                                          &                                                          & 1 \arrow[dd] \arrow[rd]  &                                                                  \\
+    p \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & \text{THT} \arrow[r, bend right, shift right] \arrow[ld] & \text{HTH} \arrow[l, bend right, shift right] \arrow[ru] &                                   & 1 \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & \text{HTT} \arrow[uu] \arrow[lu]  &                                                          &                                                          & 1 &
+    \end{tikzcd}
+\end{center}
+Because one of $\texttt{HTH}$ or $\texttt{HTT}$ will player one winning and so player two losing in our analysis, those will become $0$ in the lemmas that follow. So the last block we can fill in, for now, is $\texttt{THT}.$ For this, we note that $\texttt{TTH}$ in the top-left splits into $1$ with probability $\frac12$ and into $\texttt{THT}$ with probability $\frac12,$ so $p$ is the average of $\texttt{THT}$'s probability and $1.$ So $\texttt{THT}$'s probability is $2p-1.$
+\begin{center}
+    \begin{tikzcd}
+                                                                      & p \arrow[rrr] \arrow[rd] &                                                          &                                                          & 1 \arrow[dd] \arrow[rd]  &                                                                  \\
+    p \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & 2p-1 \arrow[r, bend right, shift right] \arrow[ld] & \text{HTH} \arrow[l, bend right, shift right] \arrow[ru] &                                   & 1 \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & \text{HTT} \arrow[uu] \arrow[lu]  &                                                          &                                                          & 1 &
+    \end{tikzcd}
+\end{center}
+Now we move into our concrete cases.
+\begin{lemma}
+    If the first player chooses $\texttt{HTH},$ then the second player can choose $\texttt{HHT}$ to win.
+\end{lemma}
+We have already filled in a lot of our state diagram. Note that starting at $\texttt{HTH}$ now gives probability $0$ of winning (and feeds nowhere), but $\texttt{HTT}$ is just another state which can only feed into the probability-$p$ states $\texttt{TTT}$ and $\texttt{TTH}.$ So our diagram is as follows.
+\begin{center}
+    \begin{tikzcd}
+                                                                      & p \arrow[rrr] \arrow[rd] &                                                          &                                                          & 1 \arrow[dd] \arrow[rd]  &                                                                  \\
+    p \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & 2p-1 \arrow[r, bend right, shift right] \arrow[ld] & 0 &                                   & 1 \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & p \arrow[uu] \arrow[lu]  &                                                          &                                                          & 1  & 
+    \end{tikzcd}
+\end{center}
+Now, we see that $2p-1$ feeds into a $0$ with probability $\frac12$ and a $p$ with probabilty $\frac12,$ so
+\[2p-1=\frac12(0+p).\]
+Solving gives player two winning with probability $p=\frac23>\frac12.$ $\blacksquare$
+
+\begin{lemma}
+    If the first player chooses $\texttt{HTT},$ then the second player can (still) choose $\texttt{HHT}$ to win.
+\end{lemma}
+Again, a lot of our state diagram is already filled in above. This time the probability at $\texttt{HTT}$ is $0$ and feeds nowhere. But now we can evaluate the probability at $\texttt{HTH}$ as the average between its outputs $2p-1$ and $1,$ which is simply $p.$ So our diagram is now the following.
+\begin{center}
+    \begin{tikzcd}
+                                                                      & p \arrow[rrr] \arrow[rd] &                                                          &                                                          & 1 \arrow[dd] \arrow[rd]  &                                                                  \\
+    p \arrow[loop, distance=2em, in=215, out=145] \arrow[ru] &                                   & 2p-1 \arrow[r, bend right, shift right] \arrow[ld] & p \arrow[l, bend right, shift right] \arrow[ru] &                                   & 1 \arrow[ld] \arrow[loop, distance=2em, in=35, out=325] \\
+                                                                      & 0 &                                                          &                                                          & 1 &
+    \end{tikzcd}
+\end{center}
+But again, $2p-1$ feeds into a $0$ and a $p$ each with probability $\frac12,$ implying $2p-1=\frac12(0+p),$ so $p=\frac23>\frac12$ is the probability that player two wins. $\blacksquare$
+
+Putting everything together, we have the following table.
+\[\begin{array}{c|c|c}
+    \text{player one's choice} & \text{player two's choice} & \text{player two's probability} \\\hline
+    \texttt{HHH} & \texttt{THH} & 7/8 \\
+    \texttt{HHT} & \texttt{THH} & 3/4 \\
+    \texttt{HTH} & \texttt{HHT} & 2/3 \\
+    \texttt{HTT} & \texttt{HHT} & 2/3
+\end{array}\]
+Flipping the entire table tells player two what to do when player one starts with a tails.
+\[\begin{array}{c|c|c}
+    \text{player one's choice} & \text{player two's choice} & \text{player two's probability} \\\hline
+    \texttt{TTT} & \texttt{HTT} & 7/8 \\
+    \texttt{TTH} & \texttt{HTT} & 3/4 \\
+    \texttt{THT} & \texttt{TTH} & 2/3 \\
+    \texttt{THH} & \texttt{TTH} & 2/3
+\end{array}\]
+So indeed, player two can always arrange the game to have a better-than-even winning probability. The game is non-transitive.
+
+Intuitively, Wikipedia explains what's going on as player one typically needs the first two flips to set up and the last to execute, but player's two choice is arranged so that its last two match up, meaning that player two will generally win before player one finishes setting up. 
+I find this somewhat convincing because it reflects the arguments for $\texttt{HHH}$ and $\texttt{HHT}$ well, though these are the easier cases. In contrast, I can't see what's going on with $\texttt{HTT}$ or $\texttt{HTH}$ as well. The cleanest argument I have is the states diagram I presented, and it is nontrivially painful even though a lot of the work can be shared.
+
+Anyways, what I like about this game is that it is non-transitive (of course), and it feels more natural than, say, non-transitive dice. Given my experience with contest math, asking which of two players will win in this game for fixed choices is a pretty common flavor of question.
+
+\subsubsection{May 6th}
+Today I learned the definition of covariance, from the \href{https://web.archive.org/web/20210427201700/https://en.wikipedia.org/wiki/Covariance}{Wikipedia page}. The definition is as follows.
+\begin{definition}
+    Given random variables $X$ and $Y,$ we define their ``covariance'' as
+    \[\op{cov}(X,Y):=\mathbb E\big[(X-\mathbb E[X])(Y-\mathbb E[Y])\big].\]
+\end{definition}
+Roughly speaking, this measures how ``related'' the two variables are. For example, the toy case $X=Y$ gives
+\[\mathbb E\big[(X-\mathbb E[X])(Y-\mathbb E[Y])\big]=\mathbb E\big[(X-\mathbb E[X])^2\big]=\op{var}(X),\]
+which just measures the variance; similar holds for $Y=aX$ for constant $a.$ Of course, there are some caveats here. For example, if $X$ is a constant, then $\op{cov}(X,Y)=0$ because $X-\mathbb E[x]=0.$ My interpretation of this is that we can pretty easily predict $X$ from $Y$ (it's constant), giving a kind of vacuous correlation.
+
+We briefly remark that linearity of expectation lets us expand this out, assuming that everything exists. Expanding, we see
+\[\op{cov}(X,Y)=\mathbb E\big[XY-X\mathbb E[Y]-Y\mathbb E[X]+\mathbb E[X]\mathbb E[Y]\big].\]
+Now, linearity of expectation (and using the fact that $\mathbb E[X]$ and $\mathbb E[Y]$ are constants), this becomes
+\[\op{cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y]-\mathbb E[Y]\mathbb E[X]+\mathbb E[X]\mathbb E[Y],\]
+which is
+\[\op{cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y].\]
+This form is maybe conceptually easier because it is very directly computes how far from independence we are, in that independence implies $\mathbb E[XY]=\mathbb E[X]\mathbb E[Y].$
+
+Anyways, to align with this intuition, we have the following definition.
+\begin{definition}
+    We say that two random variables $X$ and $Y$ are ``uncorrelated'' if and only if $\op{cov}(X,Y)=0.$
+\end{definition}
+Note that this really means uncorrelated in a linear sense because that's what $\op{cov}$ can detect. A quick example is to make $X\in\{-2,-1,1,2\}$ chosen with equal probability, and then we set $Y:=X^2.$ These are certainly not independent (namely, $0=\mathbb P(X\le-2,Y\le1)<\mathbb P(X\le-2)\mathbb P(Y\le1)$), but
+\[XY=X^3\in\{-8,-1,1,8\}\]
+all with equal probability, implying that $\mathbb E[XY]=0.$ It follows
+\[\op{cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y]=0-0\mathbb E[Y]=0.\]
+So indeed, $X$ and $Y$ are not independent, yet covariance was unable to detect this. I am under the impression this failure is because the relationship is not a linear one.
+
+As a final remark one why we should care about covariance, we note the following.
+\begin{proposition}
+    The mapping $\op{cov}$ induces a symmetric bilinear pairing.
+\end{proposition}
+There are a couple of things we need to check, which we do in sequence. Fix $X,Y,Z$ random variables and $a$ a constant.
+\begin{itemize}
+    \item For symmetric, we have to check $\op{cov}(X,Y)=\op{cov}(Y,X),$ which degenerates into the statement
+    \[\mathbb E[XY]-\mathbb E[X]\mathbb E[Y]=\mathbb E[YX]-\mathbb E[Y]\mathbb E[X],\]
+    which is true by, say, commutativity of multiplication.
+    \item To be a bilinear pairing, we also need to check that $\op{cov}(aX,Y)=a\op{cov}(X,Y).$ Well, this expands into
+    \[\mathbb E[aXY]-\mathbb E[aX]\mathbb E[Y]=a\mathbb E[XY]-a\mathbb E[X]\mathbb E[Y],\]
+    but we can move the constant $a$ in and out by linearity of expectation.
+    \item Finally, we also need to check that $\op{cov}(X+Y,Z)=\op{cov}(X,Z)+\op{cov}(Y,Z),$ which expands into needing
+    \[\mathbb E[(X+Y)Z]-\mathbb E[X+Y]\mathbb E[Z]=\mathbb E[XZ]-\mathbb E[X]\mathbb E[Z]+\mathbb E[YZ]-\mathbb E[Y]\mathbb E[Z].\]
+    Distributing $(X+Y)Z=XZ+YZ$ and then using linearity of expectation will finish this.
+\end{itemize}
+This is enough to show that we have a symmetric bilinear form, so we are done here. $\blacksquare$
+
+We remark that we are at least positive semi-definite because $\op{cov}(X,X)=\mathbb E\left[(X-\mathbb E[X])^2\right]\ge0$ from before. However, we are not completely positive definite because random variables are potentially funny: for example, $X$ the floor of a random real number in $[0,1]$ will give $\mathbb E[X]=0$ and then
+\[\op{cov}(X,X)=\op{var}(X)=0,\]
+but of course $X$ isn't identically $0$ because maybe it'll be $1$ with probability $0.$ So we don't have a legitimate inner product, but it's close enough. The real point here is to motivate looking at things like the covariance matrix, defined as
+\[\begin{bmatrix}
+    \op{cov}(X_1,X_1) & \op{cov}(X_1,X_2) & \cdots & \op{cov}(X_1,X_n) \\
+    \op{cov}(X_2,X_1) & \op{cov}(X_2,X_2) & \cdots & \op{cov}(X_2,X_n) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \op{cov}(X_n,X_1) & \op{cov}(X_n,X_2) & \cdots & \op{cov}(X_n,X_n
+\end{bmatrix}.\]
+Such a construction is natural when given a bilinear form; see also the discriminant of a number ring. The covariance matrix in particular is important for, say, principal component analysis (or so I am told).
+
+\subsubsection{May 7th}
+Today I learned Tate's proof of the Riemann-Roch theorem for curves over finite fields.\todo{}
+
+\subsubsection{May 8th}
+Today I learned the power iteration method to compute the largest eigenvalue of a matrix, from (say) the \href{https://web.archive.org/web/20210506174826/https://en.wikipedia.org/wiki/Power_iteration}{Wikipedia page}. The algorithm is as follows.
+\begin{proposition}
+    Fix a diagonalizable matrix $M\in\CC^{n\times n}$ with a single largest eigenvalue (in terms of absolute value), and pick up a unit vector $v_0$ with a nonzero component in the direction of the largest eigenvalue's eigenvector. Then define the sequence of unit vectors recursively by
+    \[v_{k+1}=\frac{Mv_k}{\lVert Mv_k\rVert}\]
+    for $k\ge0.$ Then $v_k$ will approach the span of the desired eigenvector.
+\end{proposition}
+We make a few comments before jumping into the proof. For example, look at
+\[M=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}.\]
+If we look at $v_0=\frac1{\sqrt2}\langle1,-1\rangle,$ an eigenvector, then we note that
+\[v_k=\frac1{\sqrt2}\begin{bmatrix}(-1)^k \\ (-1)^{k+1} \end{bmatrix}\]
+for $k\ge0$ by an inductive argument (say). In particular, $v_k$ doesn't actually approach a single eigenvector because it flips between two, but it does remain on the span of a single eigenvector, which is enough. This is a general problem for negative eigenvalues because they will flip the vector.
+
+However, $M$ doesn't even work for the proposition because its two eigenvalues $1$ and $-1$ have the same magnitude, so no eigenvector has to be found by this process. Because $M^2=I,$ the $\{v_k\}$ will always alternate between two vectors, with no need to converge to a particular line. For example, $v=\langle1,0\rangle$ with alternate between $\langle1,0\rangle$ and $\langle0,1\rangle.$
+
+We also remark that the hypothesis for $v_0$ to have a nonzero component in the direction of the largest eigenvector's eigenvector is necessary. For example, if $v_0\in\ker M,$ then the process will immediately break down.
+
+Anyways, we now prove this. The main idea is to ``amplify'' the component of $v$ pointing in the direction of the desired eigenvector by application. Because $M$ is diagonalizable, we have an eigenbasis $\{e_\ell\}_{\ell=1}^n$ with eigenvalues $\{\lambda_\ell\}_{\ell=1}^n.$ Rearranging as necessary, we order the eigenvalues by $|\lambda_1|>|\lambda_2|\ge|\lambda_3|\ge\cdots\ge|\lambda_n|.$ Note the first inequality is strict.
+
+Now, picking up any unit vector $v_0$ with a nonzero component in the direction of  we can write it in the eigenbasis as
+\[v_0=\sum_{\ell=0}^na_\ell e_\ell.\]
+Then the main idea is manifested by writing
+\[M^kv_0=\sum_{\ell=0}^n\lambda_\ell^ka_\ell e_\ell,\]
+which means
+\[\frac{M^kv_0}{\lambda_1^k}=\sum_{\ell=0}^n\left(\frac{\lambda_\ell}{\lambda_1}\right)^ka_\ell e_\ell.\]
+In particular, as $k\to\infty,$ we have that $M^kv_0/\lambda_1^k$ approaches $a_1e_1$ because each of the ratios $(\lambda_\ell/|\lambda_1|)^k\to0$ except for $\ell=1.$
+
+To finish, we can show, by an inductive argument for example, that $v_k=M^kv_0/\lVert M^kv_0\rVert$ (the constants we multiply by each time can be transferred in and out of the matrix multiplication, so all that matters is ensuring we have a unit vector). This means that
+\[v_k=\frac{M^kv_0}{\lVert M^kv_0\rVert}=\frac{\lambda_1^k}{\lVert M^kv_0\rVert}\cdot\frac{M^kv_0}{\lambda_1^k}.\]
+Sending $k\to\infty$ will make the vector here approach $a_1e_1,$ but $v_k$ needs to be a unit vector scaled by a positive quantity, so what we know is that
+\[\left\lVert v_k-\left(\frac{\lambda_1}{|\lambda_1|}\right)^k\frac{a_1e_1}{\lVert a_1e_1\rVert}\right\rVert\to0.\]
+In particular, the vector $v_k$ is approaching is $M^kv_0$ scaled by a positive value to be a unit vector. Note here we have finally used the condition $a_1\ne0.$
+
+This is what we meant by ``$v_k$ approaches the span of the desired eigenvector,'' and indeed $k\to\infty$ makes $v_k$ arbitrarily close to the span of $e_1.$ So we are done. $\blacksquare$
+
+We remark that we can also detect the eigenvalue by computing $Mv_k\cdot v_k$ because, as $k\to\infty,$
+\[Mv_k\cdot v_k\to\left(\frac{\lambda_1}{|\lambda_1|}\right)^k\frac{\lambda_1 a_1e_1}{\lVert a_1e_1\rVert}\cdot\left(\frac{\lambda_1}{|\lambda_1|}\right)^k\frac{a_1e_1}{\lVert a_1e_1\rVert}=\lambda_1\]
+by (say) continuity of all the functions involved.
+
+We also note that we can use the power iteration algorithm on $M^{-1}$ (assuming that the matrix is invertible) to get out the smallest eigenvalue. In fact, once the largest eigenvalue's eigenvector is computed, we can remove its span from the space and repeat this process to (gradually) get out all the eigenvectors. Of course, this is sketchy because convergence of these eigenvectors is potentially slow.
+
+I am under the impression that we can throw out the diagonalizable condition on $M$ by using the Jordan normal form instead of diagonalization, but this seemed unneccessarily painful. The kinds off matrices we are doing this with, in $\CC^{n\times n},$ are almost always diagonalizable. A similar intuition makes me comfortable with the condition that $v_0$ having a nonzero component in the direction of $e_1$: random vectors will be fine.
+
+\subsubsection{May 9th}
+Today I learned some properties of the type $S^1.$ Here's our definition; note that this is a higher inductive type.
+\begin{definition}
+    The type $S^1$ is defined as containing a point $\op{base}:S^1$ and a path $\op{loop}:\op{base}=_{S^1}\op{base}$ as well.
+\end{definition}
+We very quickly note that, yes, $\op{loop}$ has two types: it is of type $\op{base}=_{S^1}\op{base}$ while also living in $S^1.$ Nothing in the theory prevents objects from having multiple types, so this isn't technically a problem, but we will in general not think about $\op{loop}$ in this way.
+
+The benefit we gain from the multi-typing is that it makes our recursion and induction easier to write down. Our recursor, given type $C:\UU,$ needs to be told where we send $\op{base},$ say $b:C,$ as well as where we send $\op{loop}$ (after all, $\op{loop}:S^1$ too), say $\ell:b=b,$ satisfying the equations
+\[\begin{cases}
+    \op{rec}_{S^1}(C,b,\ell)(\op{base}):\equiv b, \\
+    \op{rec}_{S^1}(C,b,\ell)(\op{loop})=\ell.
+\end{cases}\]
+Note that the cost of having $\op{loop}:S^1$ is that the typing of $\op{rec}(C,b,\ell)$ is a bit awkward. Because $\ell$ does not need to have type $C,$ our output type for $\op{rec}(C,b,\ell)$ cannot actually be $C$ but rather some type containing both the elements of $C$ and its paths. We will not concern ourselves with the exact formality but will say we should have
+\[\op{rec}_{S^1}(C,b,\ell)(p)=\op{ap}_{\op{rec}_{S^1}(C,b,\ell)}(p)\]
+just because it makes the world a better place.
+
+As an example of something we can do with this, we have the following.
+\begin{proposition}
+    Suppose that $S^1$ exists and $\op{loop}=\op{refl}_{\op{base}}$ in $\op{base}=\op{base}.$ Then every type is a set.
+\end{proposition}
+Fix an arbitrary type $A:\UU,$ which we will show is a set. That is, we have to show that for any $x,y:A$ and $p,q:x=_Ay,$ we have $p=_{x=y}q.$ Well, it suffices to show that $p\cdot q^{-1}=q\cdot q^{-1}$ because we can later concatenate by $q$ again, so it suffices to show that
+\[p\cdot q^{-1}=\op{refl}_x.\]
+But here $p$ and $q$ are arbitrary, so we might as well show that $p=\op{refl}_x$ for any $p:x=x.$
+
+Now we bring in $S^1.$ Using our recursion principle, there exists map taking $\op{base}$ to our fixed basepoint $b:A$ and $\op{loop}$ to somewhere equal to $p.$ However, by hypothesis, we know that
+\[\op{loop}=\op{refl}_{\op{base}}.\]
+Applying $\op{rec}_{S^1}(A,x,p)$ both sides of this gives (something equal to) $p$ on the left-hand side, but the construction of $\op{ap}_f$ takes $\op{refl}_a$ to $\op{refl}_{f(a)},$ so we see that
+\[p=\op{rec}_{S^1}(A,x,p)(\op{loop})=\op{rec}_{S^1}(A,x,p)(\op{refl}_{\op{base}})=\op{ap}_{\op{rec}_{S^1}(A,x,p)}(\op{refl}_{\op{base}})=\op{refl}_x.\]
+This is what we wanted, so we are done here. $\blacksquare$
+
+Of course, not every type is a set under the univalence axiom, so it follows that we must have $\op{loop}\ne\op{refl}_{\op{base}}.$ We have chosen the above phrasing because it emphasizes that the existence of an (reasonable) $S^1$ communicates something about the universe we live in (that not every type is a set), in the same way that the existence of the an interval type implies function extensionality.
+
+We now define induction on $S^1.$ Fix a type family $C:S^1\to\UU.$ We need to be told where to send $\op{base},$ say some $b:C(\op{base}),$ and we also need to know where to send $\op{loop}.$ However, $\op{loop}$ is a path, and we are defining a dependent function, so it is not obvious how to do this. Well, we use $\op{apd}$ so that
+\[\op{apd}_{\op{ind}_{S^1}(C,b,\ell)}(\op{loop})=\ell,\]
+for a given path $\ell:\op{transport}^C(\op{loop})(b)=b.$ Observe that even though all our types end up in $b=b,$ we still need to use $\op{apd}$ and transport the first input because, say, $\op{transport}^C(\op{loop})$ might not be the identity. After all, $\op{loop}\ne\op{refl}_{\op{base}}.$
+
+Here is an application.
+\begin{proposition}
+    We can exhibit
+    \[\prod_{\left(x:S^1\right)}(x=_{S^1}x)\]
+    that is not the usual $x\mapsto\op{refl}_x.$
+\end{proposition}
+We use induction on $S^1.$ Our type family is $C(x)\equiv x=_{S^1}x.$ Because $S^1$ is so small, it suffices we want to take $\op{base}:S^1$ to $\op{loop}:\op{base}=\op{base}\equiv C(\op{base}).$ However, we now have to ask where $\op{loop}$ should go, which comes down to finding something in
+\[\ell:\op{transport}^{x\mapsto(x=x)}(\op{loop})(\op{loop})=\op{loop}.\]
+Thus, we have to prove that these two objects are equal. We bring in the following lemma.
+\begin{lemma}
+    Given a type $A:\UU$ with $a,b:A$ and paths $p:a=b$ and $q:a=a,$ we see
+    \[\op{transport}^{x\mapsto(x=x)}(p)(q)=p^{-1}\cdot q\cdot p.\]
+\end{lemma}
+Very quickly, we remark that this statement type-checks because transporting along $p:a=b$ should take elements from $(a=a)$ to $(b=b)$ because our type family is $x\mapsto(x=x).$ Anyways, this is by path induction: write what we want to prove as
+\[\prod_{(a,b:A)}\prod_{(p:a=b)}\left(\prod_{(q:a=a)}\op{transport}^{x\mapsto(x=x)}(p)(q)=p^{-1}\cdot q\cdot p\right)\]
+so that we can safely do path induction on $p.$ Here, $a\equiv b$ and $p\equiv\op{refl}_a,$ implying $\op{transport}^{x\mapsto(x=x)}(p)\equiv\op{id}_{a=a}.$ Thus, it suffices to prove that
+\[\op{id}_{(a=a)}(q)=\op{refl}_a^{-1}\cdot q\cdot\op{refl}_a,\]
+which is true by our various identity laws. $\blacksquare$
+
+Thus, we should have our induction on $S^1$ send $\op{loop}$ directly to
+\[\op{transport}^{x\mapsto(x=x)}(\op{loop})(\op{loop})=\op{loop}^{-1}\cdot\op{loop}\cdot\op{loop}=\op{loop}.\]
+Anyways, this finishes our induction, so it remains to show that this function is not $x\mapsto\op{refl}_x.$ Well, the function we constructed above takes $\op{base}$ to $\op{loop},$ and $\op{loop}\ne\op{refl}_{\op{base}},$ so we are done. $\blacksquare$
+
+\subsubsection{May 10th}
+Today I learned another \href{https://mathoverflow.net/a/203520}{another application of Chebotarev} because these are fun. Namely, we are building towards the following statement.
+\begin{theorem}
+    Fix a nonconstant irreducible polynomial $f\in\ZZ[x].$ Then $f$ is prime with probability $0.$ In other words,
+    \[\lim_{N\to\infty}\frac1N\#\big\{n\in\ZZ\cap[1,N]:f(n)\text{ is prime}\big\}=0.\]
+\end{theorem}
+This intuitively feels very false, and indeed we can get away with some pretty stupid bounding. Signing as necessary, we make the leading coefficient of $f$ positive; this will not change when $f(x)$ is prime.
+
+Quickly, we note that this means $f'(x)\to\infty$ as $x\to\infty$ (here we use that $f$ is nonconstant) so there is a constant $M$ such that $f(x)$ is strictly increasing over $x\ge M.$ This $M$ will in the future guarantee that $f(x)$ needs to be ``large,'' and so having ``small'' prime factors will be enough to rule out the primality of $f(x).$
+
+Intuitively, we can let $n_p$ be the number of roots of $f(x)\pmod p$ so that the probability of a random integer $x$ giving $f(x)$ prime is
+\[\prod_p\left(1-\frac{n_p}p\right),\]
+assuming that these events are independent. Then Chebotarev told us that the expected value of $n_p$ is $1,$ so this probability is approximately
+\[\prod_p\left(1-\frac1p\right)=\left(\prod_p\frac1{1-1/p}\right)^{-1}=\left(\sum_{n=1}^\infty\frac1n\right)^{-1}=0.\]
+So heuristically, we do have density $0.$
+
+We will spend the rest of our time rigorizing this heuristic. To rigorize the independence of the divisibility probabilities, we pick some positive constant named $K$ and let the product of all (positive) primes below $K$ be $P.$ Then we note that
+\[\#\{x\in\ZZ/P\ZZ:\gcd(f(x),P)=1\}=\prod_{p\mid P}\#\{x\in\ZZ/p\ZZ:p\nmid f(x)\}\]
+by the Chinese remainder theorem: the left-hand side is the number of residues divisible by no prime factor $p,$ which biject into $\bigoplus_p\ZZ/p\ZZ$ as elements having no coordinate $0.$ Fixing $n_p$ the number of roots of $f(x)\pmod p,$ we see that
+\[\#\{x\in\ZZ/P\ZZ:\gcd(f(x),P)=1\}=\prod_{p\mid P}(p-n_p)=P\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]
+So here we can begin to see the probability argument emerging.
+
+We now turn to the desired quantity in the theorem; note that it suffices to upper-bound the limit by $0$ because the limit is at least nonnegative. Fix $N$ a (large) positive integer. To start, we partition positive integers $x\le N$ into $\ZZ/P\ZZ$ to use the above result, writing
+\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+\#\left\{P\ceil{\frac MP}<x\le P\ceil{\frac NP}:f(x)\text{ prime}\right\}.\]
+It is not clear why we have written this with $M$ here. Well, we want to say that $p\mid f(x)$ implies that $f(x)$ is prime, but it is potentially possible that $|f(x)|=p$ and so actually $f(x)$ is prime.
+
+To rule this out, we see that our interval of $x$ is entirely larger than $M,$ so $f(x)$ is strictly increasing, and so we can only have these size problems once. As a crude upper bound, we can inherit at most $P$ primes this way. All of the other primes for the $x$ in this interval must not be divisible by any prime $p\mid P.$ So we write
+\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\#\left\{P\ceil{\frac MP}<x\le P\ceil{\frac NP}:p\nmid f(x)\text{ for }p\mid P\right\}.\]
+But there are $\ceil{\frac NP}-\ceil{\frac NP}$ copies of $\ZZ/P\ZZ$ in our interval, so this right-hand side collapses into
+\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\left(\ceil{\frac NP}-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]
+This might look complicated, and that's because it is, but we only care about the parts depending on $N.$ To make this more amenable to analysis, we upper-bound $\ceil{\frac NP}$ by $\frac NP+1$ and then rearrange this as
+\[\#\{x\le N:f(x)\text{ prime}\}\le P\ceil{\frac MP}+P+\left(1-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right)+N\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]
+Dividing everything by $N,$ we get that
+\[\frac{\#\{x\le N:f(x)\text{ prime}\}}N\le\frac{P\ceil{\frac MP}+P+\left(1-\ceil{\frac MP}\right)P\prod_{p\mid P}\left(1-\frac{n_p}p\right)}N+\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]
+The final term is our main term. As $N\to\infty,$ the rest of the terms will vanish, so we see that we have the main term as an upper bound for our limit. That is,
+\[\limsup_{N\to\infty}\frac{\#\{x\le N:f(x)\text{ prime}\}}N=\prod_{p\mid P}\left(1-\frac{n_p}p\right).\]
+This product over $p\mid P$ is really a product over the primes $p\le K$ for the positive constant $K$ we fixed earlier. We now hope that $K\to\infty$ sends this to $0.$
+
+Indeed, here is a clean way to finish. For concavity reasons, we have that $1-x\le e^{-x}$ for real values of $x.$ This implies that
+\[\prod_{p\le K}\left(1-\frac{n_p}p\right)=\exp\left(-\sum_{p\le K}\frac{n_p}p\right).\]
+Sending $K\to\infty$ will make the right-hand side vanish because of the following.
+\begin{theorem}
+    Fix nonconstant irreducible $f\in\ZZ[x],$ and let $n_p$ be the number of roots of $f(x)\pmod p.$ Then
+    \[\lim_{s\to1^+}\sum_p\frac{n_p}{p^s}\bigg/\sum_p\frac1{p^s}=1.\]
+\end{theorem}
+We showed this a few days ago. It is an application of Chebotarev. $\blacksquare$
+
+In particular, if $\sum_p\frac{n_p}p$ must diverge in order to keep up with the divergence of $\sum_p\frac1p.$ It follows that
+\[\exp\left(-\sum_{p\le K}\frac{n_p}p\right)\to0\]
+as $K\to\infty.$ Bringing this all together, we have that
+\[\limsup_{N\to\infty}\frac{\#\{x\le N:f(x)\text{ prime}\}}N=\prod_{p\le P}\left(1-\frac{n_p}p\right)\le0.\]
+Because this limit is surely nonnegative, this limit must now actually be $0.$ $\blacksquare$
+
+There is something to be said for the $1-x\le e^{-x}$ feeling quite clever. As motivation, we note that the usual trick to test the size of infinite products is to take logarithms. If any of the $n_p=p,$ then the entire product is $0$ already. Otherwise, we take $\log$ and want to show
+\[-\log\prod_{p\le K}\left(1-\frac{n_p}p\right)=\sum_{p\le K}-\log\left(1-\frac{n_p}p\right)\]
+goes to $\infty$ as $K\to\infty.$ Well, expanding out our Taylor series (if any $n_p=p,$ then this of course is $0$), this is
+\[\sum_{p\le K}\sum_{k=1}^\infty\frac1k\cdot\frac{n_p^k}{p^k}.\]
+We expect the main term to be $k=1,$ so we rearrange this as (all terms are positive, so rearrangement is legal)
+\[\sum_{p\le K}\frac{n_p}p+\sum_{p\le K}\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k}.\]
+The first term now goes to $\infty$ by the Chebotarev application, so we can be confident the entire thing goes to $\infty.$
+
+But in fact, this is the only term we have to care about, which is what motivates us to bound by writing $-\log(1-x)\le x,$ or equivalently $1-x\le e^{-x}.$ We begin by writing
+\[\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k}<\sum_{k=2}^\infty\left(\frac{n_p}p\right)^k=\frac{n_p^2}{p(p-n_p)}.\]
+Now, the key trick is that we can bound $n_p\le\deg f$ globally, so we know
+\[\sum_{p>\deg f}\sum_{k=2}^\infty\frac1k\cdot\frac{n_p^k}{p^k}<\sum_{p>\deg f}\frac{(\deg f)^2}{p(p-\deg f)}<\deg f\sum_{n=\deg f+1}^\infty\left(\frac1{n-\deg f}-\frac1n\right),\]
+which converges by telescoping. We can safely add in the primes less than $\deg f,$ which have a finite contribution, so indeed, this entire sum is finite. So this part of the sum we can be confident doesn't matter.
+
+It is worth remarking that the Bateman-Horn conjecture says that $f$ should produce a number of primes proportional to $\frac x{\log x},$ which is remarkable (and of course much stronger than what we just did). Namely, we have the following.
+\begin{conjecture}
+    Fix $f\in\ZZ[x]$ a polynomial producing infinitely many primes, and let $n_p$ be the number of roots of $f(x)\pmod p.$ The Bateman-Horn conjecture implies that
+    \[\#\{x\le N:f(x)\text{ is prime}\}\sim\left(\prod_p\frac{p-n_p}{p-1}\right)\frac x{\log f(x)}.\]
+\end{conjecture}
+Essentially, this says the probability of $f(x)$ for $x$ large roughly boils down to the probability a number of that size is prime and the probability $f(x)$ is divisible by one of the smaller primes in the product. I think the arguments given above can turn into a heuristic argument for Bateman-Horn in this case (by taking $\exp$ of the Chebotarev application?), but it doesn't look obvious.
+
+\subsubsection{May 11th}
+Today I learned a little about maps between totally ordered sets. The main observation here is that ordered sets behave more or less like algebraic structures in that they are ``sets with extra structure'' even if that structure doesn't come in the form of a binary operation. To make this easier to codify, we work in with category theory.
+\begin{definition}
+    A partially ordered category $\mathcal C$ is one which has, for objects $C$ and $C',$ at most one morphism in $C\to C'.$
+\end{definition}
+It should not be immediately clear why this gives a partial order, but we run through the axioms to compare. Namely, we turn a partial order $(\mathcal C,\le)$ into a category by saying $C_1\le C_2$ induces a unique morphism $C_1\to C_2.$
+\begin{itemize}
+    \item Reflexivitiy: this is equivalent to the existence of morphisms $C\to C$ for $C\in\mathcal C,$ for which $\op{id}_C$ are guaranteed because $\mathcal C$ is a category.
+    \item Antisymmetry: if we have $f:C\to C'$ and $g:C'\to C,$ then we note $f\circ g:C'\to C'$ and $g\circ f:C\to C,$ but because there is only one morphism in each of these classes, we must have $f\circ g=\op{id}_{C'}$ and $g\circ f=\op{id}_C.$ In particular, $C$ and $C'$ are isomoprhic. So isomprhisms capture our notion of antisymmetry.
+    \item Transitivity: the ability to inhabit
+    \[\op{Mor}(C,C')\to\op{Mor}(C',C'')\to\op{Mor}(C,C'')\]
+    is exactly what composition of morphisms is for.
+\end{itemize}
+So indeed, the definition of a partially ordered category cleanly captures the notion of a partially ordered category.
+
+Maps between partially ordered sets can be annoying, so we move into totally ordered categories.
+\begin{definition}
+    A totally ordered category $\mathcal C$ is one which has, for objects $C$ and $C',$ exactly one morphism among $C\to C'$ and $C'\to C.$
+\end{definition}
+Totality has been captured by requiring there to be at least one morphism $C\to C'$ or $C'\to C.$ The bound of exactly one is done here to make our notion of antisymmetry stronger than mere isomorphism: now, if we inhabit both $C\to C'$ and $C'\to C,$ then they must be the same class, so $C=C'$ as objects. We do this for purely psychological reasons.
+
+Anyways, the point of moving to category theory is that it lets us more easily talk about maps between partially/totally ordered sets. Intuitively, we would like a map $\varphi$ between partially/totally ordered sets $(X,\le_X)$ and $(Y,\le_Y)$ to be a function $\varphi:X\to Y$ such that
+\[x_1\le_Xx_1\implies\varphi(x_1)\le_X\varphi(x_2).\]
+In category theory, we get this for free using functors! Fixing partially/totally ordered categories $\mathcal C$ and $\mathcal D,$ we see that a functor $F:\mathcal C\to\mathcal D$ has
+\[C_1\stackrel f\to C_2\implies F(C_1)\stackrel{F(f)}\to F(C_2)\]
+because of how functors behave. Thus, we can talk about maps between our partially/ordered sets more cleanly by calling them functors. In particular, we have more theory to deal with the axioms.
+
+It turns out that functors between totally ordered sets/categories don't look terribly interesting. We have the following.
+\begin{proposition}
+    Suppose $\mathcal C$ is a finite totally ordered category. Then the only bijective endofunctor on $\mathcal C$ is the identity.
+\end{proposition}
+
+\begin{proof}
+    This is by induction. Fix the objects of our category $\{x_1,x_2,\ldots,x_n\}$ with a unique arrow $x_a\to x_b$ whenever $a\le b.$ Further, suppose that $F:\mathcal C\to\mathcal C$ is an endofunctor. Because our morphisms are unique, we really only have to worry about where our elements are going. We claim, by (strong) induction that $F(x_k)=x_k$ for $1\le k\le n.$
+    
+    As our base case, we show $k=1.$ Suppose for the sake of contradiction that $F(x_1)=x_\ell$ for $\ell\ne1.$ Then we may look at the arrow $f:x_{\ell-1}\to x_\ell,$ and because $F$ is a bijective endofunctor, we can look backwards at 
+    \[F^{-1}(f):F^{-1}(x_{\ell-1})\to x_1.\]
+    However, there are no arrows into $x_1,$ so we have arrived at a contradiction.
+    
+    Our inductive step is similar; by inductive hypothesis, we may assert that $F(x_\ell)=x_\ell$ for all $\ell<k<n$ so that we want to show $F(x_k)=x_k.$ Well, fix $\ell$ so that $F(x_k)=x_\ell$ for some $\ell\ge k.$ (We cannot have $\ell<k$ because these elements are already taken.) Then we can again look at $f:x_{\ell-1}\to x_\ell$ and trace back to
+    \[F^{-1}(f):F^{-1}(x_{\ell-1})\to x_k.\]
+    It follows that $F^{-1}(x_{\ell-1})$ maps to some $x_\bullet$ below $x_k.$ However, $F^{-1}(x_{\ell-1})$ cannot go to $x_k$ because identity morphisms map to identity morphisms, and $F^{-1}(f)$ is not the identity, so it follows $F^{-1}(x_{\ell-1})$ is below $x_{k-1}.$ But then we see $\ell\ge k,$ which requires $\ell=k$ for this to be possible, completing the proof.
+\end{proof}
+
+Each of these hypotheses is necessary. If the endofunctor isn't bijective, then we could, for example, compress all of $\mathcal C$ to one of its elements and make all morphisms go to the identity. More creatively, it is also possible to compress $\mathcal C$ onto, say, two elements in a similar way.
+
+The finite condition on $\mathcal C$ matters because we can, for example, take $\mathcal C=\ZZ$ with $\le$ to induce a totally ordered set, and then something like $n\mapsto n+1$ will provide an endofunctor. Infinite chains can in general be shifted like this.
+
+\subsubsection{May 12th}
+Today I learned an alternative presentation of the Dirichlet form of the Chebotarev application from a few days ago, from \href{https://web.archive.org/web/20180725092628/https://arxiv.org/pdf/1807.08899.pdf}{here}. Namely, we show the following.
+\begin{theorem}
+    Fix $f\in\ZZ[x]$ an irreducible polynomial, and let $\omega_f(p)$ be the number of roots of $f(x)\pmod p$ for $p$ prime. Then
+    \[\lim_{s\to1^+}\sum_p\frac{\omega_f(p)}{p^s}\bigg/\sum_p\frac1{p^s}=1.\]
+\end{theorem}
+We do this by showing the following stronger statement.
+\begin{lemma}
+    Fix $f\in\ZZ[x]$ an irreducible polynomial, and let $\omega_f(p)$ be the number of roots of $f(x)\pmod p$ for $p$ prime. Then
+    \[\sum_p\frac{\omega_f(p)-1}p\]
+    converges.
+\end{lemma}
+Indeed, this statement would let us say that the numerator of
+\[\lim_{s\to1^+}\left(\frac{\sum_p\frac{\omega_f(p)}{p^s}}{\sum_p\frac1{p^s}}-1\right)=\lim_{s\to1^+}\frac{\sum_p\frac{\omega_f(p)-1}{p^s}}{\sum_p\frac1{p^s}}\]
+is in fact finite as $s\to1^+,$ implying that the total limit vanishes. (Note that for given $s>1,$ the sums in the numerator all absolutely converge because $\omega_f(p)\le\deg f$ is $O(1),$ so there is no need to worry about the rearrangements.) This gives the theorem. $\blacksquare$
+
+It remains to show the stronger lemma; we focus on the $\omega_f(p)$ part of the sum because it is the part we don't understand. Like with our last proof, fix $K:=\QQ(\alpha)$ of degree where $\alpha$ is a root of $f(x).$ The main idea is to note that, for all but finitely many $p,$ we can associate the prime factorisation of $(p)$ in $\mathcal O_K$ with the factorization of $f(x)\pmod p.$
+
+In particular, for all but finitely many primes, we may ignore ramification and say that the number of linear factors in $f(x)\pmod p$ is the number of degree-$1$ primes above $(p).$ But now we say that this means, for sufficiently large $x$ covering these cases,
+\[\sum_{p\le x}\frac{\omega_f(p)}p=\sum_{\substack{\op N(\mf p)\le x\\f(\mf p/p)=1}}\frac1{\op N(\mf p)}+C_{DK},\]
+where $C_{DK}$ comes from the finitely many primes from Dedekind-Kummer or ramification. However, degree-$1$ primes are really the only primes of substance for our measure, for
+\[\sum_p\sum_{f(\mf p/p)\ge2}\frac1{\op N(\mf p)}\le\sum_p\frac{\deg f}{p^2}<\deg f\sum_{n=1}^\infty\frac1{n^2}<\infty.\]
+In particular, we can write
+\[\sum_p\sum_{f(\mf p/p)\ge2}\frac1{\op N(\mf p)}-\sum_p\sum_{\substack{\op N(\mf p)\le x\\f(\mf p/p)\ge2}}\frac1{\op N(\mf p)}=\sum_p\sum_{\substack{\op N(\mf p)>x\\f(\mf p/p)\ge2}}\frac1{\op N(\mf p)},\]
+and we can bound this sum as
+\[\sum_p\sum_{\substack{\op N(\mf p)>x\\f(\mf p/p)\ge2}}\frac1{\op N(\mf p)}\le\sum_{p\ge x}\frac{\deg f}{p^2}<\deg f\sum_{n>x}\frac1{n^2}<\deg f\sum_{n>x}\left(\frac1{n-1}-\frac1n\right),\]
+which is $O(1/x)$ by telescoping. We said all of this to say that
+\[\sum_{\substack{\op N(\mf p)\le x\\f(\mf p/p)=1}}\frac1{\op N(\mf p)}=\sum_{\op N(\mf p)\le x}\frac1{\op N(\mf p)}+C_f+O(1/x),\]
+where $C_f:=\sum_p\sum_{f(\mf p/p)\ge2}\frac1{\op N(\mf p)}$ comes from the primes of degree larger than $1.$ Putting this back together,
+\[\sum_{p\le x}\frac{\omega_f(p)}p=\sum_{\op N(\mf p)\le x}\frac1{\op N(\mf p)}+C_f+C_{DK}+O(1/x).\]
+It remains to bound that sum reasonably.
+
+For this we pick up Merten's second theorem in the number field case.
+\begin{lemma}
+    Given a number field $K,$ we have that
+    \[\sum_{\op N(\mf p)\le x}\frac1{\op N(\mf p)}=\log\log x+C_K+o(1),\]
+    where $C_K$ is some constant depending on $K.$
+\end{lemma}
+We are not going to prove this rigorously here (because I don't know its proof), but I will provide a reference \href{https://arxiv.org/pdf/math/0703570.pdf}{here}. From the proof I have skimmed, it looks like the Prime number theorem for number fields makes quick work of this. $\blacksquare$
+
+Anyways, from this it follows
+\[\sum_{p\le x}\frac{\omega_f(p)}p=\log\log x+C_K+C_f+C_{DK}+o(1),\]
+where we have sadly had to increase the error term. On the other hand, Merten's over $K=\QQ$ tells us
+\[\sum_{p\le x}\frac1p=\log\log x+C_\QQ+o(1)\]
+as well. Finally taking the difference, we see that
+\[\sum_{p\le x}\frac{\omega_f(p)-1}p=C_K+C_f+C_{DK}-C_\QQ+o(1).\]
+This is exactly the convergence we required. $\blacksquare$
+
+\subsubsection{May 13th}
+Today I learned a little combinatorial reciprocity, from \href{https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf}{Combinatorial Reciprocity Theorems}. By coincidence (with respect to what we did a few days ago), our main character will be partially ordered sets (``posets''), and specifically we will be looking at order-preserving maps between posets.
+\begin{definition}
+    Given posets $(X,\le_X)$ and $(Y,\le_Y),$ we say that a map $\varphi:X\to Y$ is weakly order-preserving if and only if
+    \[x_1\le_Xx_2\implies\varphi(x_1)\le_Y\varphi(x_2).\]
+    Similarly, $\varphi:X\to Y$ is strictly order-preserving if and only if
+    \[x_1\lneq_Xx_2\implies\varphi(x_1)\lneq_Y\varphi(x_2).\]
+\end{definition}
+Again, if we want to think about posets algebraically, these are basically describing structure-preserving maps (i.e., homomorphisms). As a brief aside, it might look like we are requiring strictly order-preserving maps to be injective, and this is a reasonable intuition, but it is not correct: an antichain can be compressed to one element, and this map is strictly order-preserving.
+
+Where we're going, we also need the following definition.
+\begin{definition}
+    We call a totally ordered set with $n$ elements an $n$-chain. Along these lines, we will define a ``standard'' $n$-chain by $[n]:=\{1,2,\ldots,n\}$ with the usual ordering.
+\end{definition}
+We would like all of these to be ``the same'' in some sense, and indeed they are.
+\begin{lemma}
+    Suppose $(X,\le)$ and $(Y,\le)$ are both $n$-chains. Then there is a unique bijective order-preserving map $\varphi:X\to Y.$ We will call this map $\iota_{X,Y}.$
+\end{lemma}
+This is by induction on $n.$ If $n=0$ or even $n=1,$ there is nothing to prove here.
+
+For the inductive step, we remark that the finiteness of $X$ and $Y$ guarantees that there is a maximum element. We could show this by induction as well: at $n=1,$ we're done; adding one element to $X$ will either be the maximum or less than the maximum before adding.
+
+Let the maximums be $m_x\in X$ and $m_y\in Y.$ Quickly, we note that we must have $\varphi(m_x)=m_y$ because surely $\varphi(m_x)\le m_y$ and $\varphi^{-1}(m_y)\le m_x.$ Now, then we note $X':=X\setminus\{m_x\}$ and $Y':=Y\setminus\{m_y\}$ are smaller totally ordered sets of the same size. So by induction let their unique bijective order-preserving map be $\varphi':X'\to Y'.$ Then we define
+\[\varphi(x)=\begin{cases}
+    \varphi'(x) & x\ne m_x, \\
+    m_y & y\ne m_y.
+\end{cases}\]
+Because $\varphi(m_x)=m_y$ is forced, this is fact the only possible bijective order-preserving map; we now show it works. This is surjective because
+\[\varphi(X)=\varphi'(X')\cup\varphi(\{m_x\})=Y'\cup\{m_y\}=Y\]
+by surjectivity of $\varphi'.$ So now $\varphi$ is bijective because it is a surjective mapping of sets of the same size. Further, $\varphi$ preserves order because $x_1\le x_2$ either has $x_2=m_x,$ in which case
+\[\varphi(x_1)\le\varphi(x_2)=m_y\]
+is true because $m_y$ is a maximal element, or $x_1$ and $x_2$ are strictly smaller than $m_x$ so that $x_1,x_2\in X',$ meaning
+\[\varphi(x_1)=\varphi'(x_1)\le\varphi'(x_2)=\varphi(x_2)\]
+follows from $\varphi'$ preserving order. This completes the proof. $\blacksquare$
+
+I think the idea in combinatorial reciprocity is to build a polynomial to compute some combinatorics problem and then plug in values outside of the intended values (say, negatives), and magically, we will still get out a number of significance. Here's our polynomial of interest.
+\begin{proposition}
+    Fix a finite poset $(X,\le).$ The number of strictly order-preserving maps $\varphi:X\to[n]$ is polynomial in $n$ of degree $\#X.$ The same holds for weakly order-preserving maps.
+\end{proposition}
+This is not as interesting as it appears. The main idea is to do casework on the number of elements in the image of an order-preserving map. For now, fix $\varphi$ an order-preserving map, of either kind. The main point is that $\varphi(X)$ is a totally ordered set; indeed, it inherits this structure from being a subset of the totally ordered $[n].$
+
+Now we can count the total number of maps $\varphi$ by dividing up by the size of $\varphi(X)$; fix $m=\#\varphi(X).$ The claim is that we can biject maps $\varphi$ with pairs of order-preserving surjections (of the correct kind) $\varphi_1:X\to[m]$ and strictly order-preserving injections $\varphi_2:[m]\to[n].$ Indeed, given $\varphi:X\to[n],$ we can take it to
+\[(\varphi_1,\varphi_2)=(\iota_{\varphi(X),[m]}\circ\varphi,\iota_{[m],\varphi(X)}).\]
+Here, $\varphi_1$ is surjective because $\varphi$ surjects onto $[m]$; $\varphi_2$ is injective because it is the expansion of the bijective $\iota.$ And of $\varphi_1$ is order-preserving because $\varphi$ and $\iota$ are, and $\varphi_2$ is stritly order-preserving because $\iota$ is. So the correspondence is well-defined.
+
+Further, our correspondence is injective by the bijectivity of the map $\iota_{\varphi(X),[m]}.$ For surjectivity, we can pick up some surjective order-preserving $\varphi_1:X\to[m]$ and injective strictly order-preserving $\varphi_2:[m]\to[n]$ and then define
+\[\varphi:=\varphi_2\circ\varphi_1.\]
+This is well-defined because the surjectivity of $\varphi_1$ means $\#\varphi_1(X)=m,$ and the injectivity of $\varphi_2$ means $\#(\varphi_2\circ\varphi_1)(X)=m.$ We need to show that
+\[\begin{cases}
+    \varphi_1=\iota_{\varphi(X),[m]}\circ\varphi_2\circ\varphi_1, & (1)\\
+    \varphi_2=\iota_{[m],\varphi(X)}. & (2)
+\end{cases}\]
+Now, $(2)$ is true because of how $\varphi$ is defined: the image of $\varphi$ is the image of $\varphi_2,$ and the injectivity of $\varphi_2$ means there is a unique bijective order-preserving map from $[m]$ to $\varphi(X)=\varphi_2(X).$ Then $(1)$ follows because
+\[\iota_{\varphi_X,[m]}\circ\iota_{[m],\varphi(X)}:\varphi(X)\to\varphi(X)\]
+is a bijective order-preserving map. But so is $\op{id}_{\varphi(X)},$ so this must in fact be $\op{id}_{\varphi(X)},$ finishing $(1).$
+
+To finish our counting, we now loop over $m$ counting pairs $(\varphi_1,\varphi_2)$ as described. Note that $\varphi_1$ has nothing to do with $n,$ so the number of $\varphi_1$ is going to be fixed with respect to $n$; call it $N_m.$ As for $\varphi_2,$ we note that there are
+\[\binom nm\]
+ways to choose the $m$ elements of the image $\varphi_2(X)\subseteq[n],$ and once the image is chosen, there is exactly one way to go from $\varphi(X)\to[n].$ So the number of pairs is $N_m\binom nm$ for fixed $m,$ meaning there are in total
+\[\sum_{m\ge1}N_m\binom nm\]
+order-preserving maps from $X\to[m].$ To turn this into a polynomial, we note that our parameter $m=\#\varphi(X)\le\#X,$ so this is in fact a finite sum
+\[\sum_{m=1}^{\#X}N_m\binom nm.\]
+This finishes the proof. $\blacksquare$
+
+For brevity, we let $S_X(n)$ be the polynomial for strictly-ordered maps and $W_X(n)$ be the polynomial for weakly-ordered maps. To give some motivation for where we're going, we note that the case of $X=[N]$ for some fixed $N$ has
+\[S_{[N]}(n)=\binom nN\]
+because we only need to choose the image of $X$ in $[n]$ and then biject. (Alternatively, we can use the polynomial we built in the proof, noting that $N_m=0$ unless $m=n,$ in which case $N_m=1.$) But on the other hand,
+\[W_{[N]}(n)=\binom{n+N-1}N\]
+by stars and bars. Indeed, once told the $n$-tuple $(a_1,\ldots,a_n)$ saying that $a_k$ of $[N]$'s elements go to $k\in[n],$ we can construct the rest of the map using the ordering of $X.$ (We won't be rigorous here.) So we are computing the number of tuples with $a_1+\cdots+a_n=N,$ which is the above by stars and bars. The remarkable fact is that
+\[(-1)^N\binom{-n}N=(-1)^N\cdot\frac1{N!}\prod_{k=0}^{N-1}(-n-k)=\frac1{N!}\prod_{k=0}^{N-1}(n+k)=\binom{n+N-1}N.\]
+This seems like a numerical trick---this is what it looked like to me for a while---but it is in fact a facet of something more profound. It's telling us $S_{[N]}(-n)=(-1)^NW_{[N]}(n),$ which is in fact generally true.
+\begin{theorem}
+    For any finite poset $X,$ we have that $S_X(-n)=(-1)^{\#X}W_X(n).$
+\end{theorem}
+I don't know the proof of this, but isn't it amazing! $\blacksquare$
+
+I have no clue why one should expect such a thing to be true. What's amazing is that the polynomials $S_X$ and $W_X$ feel quite different because the patterns of their coefficients $N_m$ really feel like they have nothing to do with each other. But somehow plugging in negative values---values that the polynomials were notably not built for---can recover the values of the other one. Astounding.
+
+\subsubsection{May 14th}
+Today I learned a little more about doing algebra over posets, from \href{https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf}{Combinatorial Reciprocity Theorems}. To review, we are thinking about posets as ``sets with structure,'' where the ``structure'' is the partial order we provided. This motivates us to define order-preserving maps, which are maps $\varphi:X\to Y$ between posets $(X,\le)$ and $(Y,\le)$ such that
+\[x_1\le x_2\implies\varphi(x_1)\le\varphi(x_2).\]
+We say that $\varphi$ is strictly order-preserving if $x_1<x_2$ implies $\varphi(x_1)<\varphi(x_2).$
+
+These order-preserving maps behave more or less like homomorphisms. Trying to move in a more categorical framework, we can study their ``kernels.'' There is no obvious notion of an identity element in a poset, but a minimum element can do. To be explicit, given a poset $(X,\le)$ and order-preserving $\varphi:X\to[n],$ we can ask what the possible
+\[\varphi^{-1}(\{1\})\]
+are. The main property here is that $x\in\varphi^{-1}(\{1\})$ and $x'\le x,$ then we had better have
+\[\varphi(x')\le\varphi(x)=1,\]
+implying $x'\in\varphi^{-1}(\{1\}).$ This motivates us to take the following definition.
+\begin{definition}
+    Given a poset $(X,\le),$ we say that $I\subseteq X$ is an order ideal if and only if, given $x\in I,$ we have
+    \[x'\le x\implies x'\in I.\]
+    At a high level, this means that we are taking some elements of $X$ and everything smaller.
+\end{definition}
+To show that these actually make kernels, we note that for any order ideal $I\subseteq X,$ we can define the order-preserving map $\varphi:X\to[n]$ by taking $\varphi(I)=\{1\}$ and $\varphi(X\setminus I)=\{n\}.$ To show this is order-preserving, we need to know that
+\[x_1\le x_2\implies\varphi(x_1)\le\varphi(x_2).\]
+Well, if $x_2\in I,$ then we see $x_1\in I$ because $I$ is an order ideal, so $\varphi(x_1)=\varphi(x_2)=1.$ Alternatively, if $x_2\notin I,$ then $\varphi(x_2)=n,$ which is the largest element, so it doesn't matter what $\varphi(x_1)$ is.
+
+As a quick remark about language, I think we're associating posets with rings, which is why we are calling these ideals. So our ``extra-structured'' posets, namely $n$-chains, have the nice property that all of their ideals are ``principal.'' Namely, an order ideal $I$ of $[n]$ is a sub-poset and therefore is itself a chain.
+
+But $I$ is a finite chain, so it has a maximum element, say $m\in[n].$ To finish, we note
+\[x\le m\implies x\in I,\]
+so we basically have $I=[m]\subseteq[n].$ So indeed, $I$ is basically ``generated by $m.$'' I am obligated to say that things are a bit funnier in the infinite case: $(-\infty,0)$ and $(-\infty,0]$ are both order ideals of $(\RR,\le),$ but it's not clear which should be ``generated by $0.$''
+
+Very briefly, we note that any set of subsets of $X$ can be endowed with poset structure by $\subseteq.$
+\begin{definition}
+    Given a poset $X,$ we define the lattice of order ideals as the set of order ideals ordered by $\subseteq.$
+\end{definition}
+
+Anyways, the reason we care about order ideals is that they're going to let us talk intelligently about order-preserving maps only using data internal to the poset $X.$ We have the following.
+\begin{proposition}
+    Fix $(X,\le)$ a poset and $n$ a positive integer. We can biject order-preserving maps $\varphi:X\to[n]$ with a sequence of ascending order ideals:
+    \[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X.\]
+\end{proposition}
+Our correspondence is to take $\varphi:X\to[n]$ to the sequence
+\[I_k=\varphi^{-1}(\{1,2,\ldots,k\}),\]
+for $k\in\{1,2,\ldots,n-1\}.$ Note this gives $I_0=\emp$ and $I_n=X$ for free. As an abuse of notation, we will write $[k]=\{1,2,\ldots,k\}\subseteq[n].$ We begin by showing this correspondence is well-defined. All of the $I_\bullet$ are order ideals because, given $x\in I,$ we see $x'\le x$ implies
+\[\varphi(x')\le\varphi(x)\in[k],\]
+so $\varphi(x')\in[k]$ as well, meaning $x'\in I.$ And this sequence is ascending because $k\le\ell$ implies $[k]\subseteq[\ell]$ so that
+\[I_k=\varphi^{-1}([k])\subseteq\varphi^{-1}([\ell])=I_\ell.\]
+This finishes our check that our correspondence is well-defined.
+
+To show injectivity, suppose $\varphi_1$ and $\varphi_2$ both give the same ascending sequence of order ideals. Then for any $x\in X,$ there is a smallest $k\in[n]$ such that $x\in I_k.$ (Certainly $x\in I_n,$ so well-order guarantees a smallest $k.$) But this means that $x\in I_k\setminus I_{k-1},$ so
+\[\varphi_\bullet(x)\in[k]\setminus[k-1]=\{k\}.\]
+In particular, $\varphi_1(x)=\varphi_2(x)=k.$ So the $\varphi_\bullet$ are equal on all inputs and are therefore equal.
+
+To show surjectivity, we do the same thing. Any ascending sequence of order ideals (with $I_0=\emp$ and $I_n=X$), we will construct a $\varphi:X\to[n]$ giving the desired sequence. For some $x\in X,$ we again note that there is a smallest $k\in[n]$ such that $x\in I_k,$ so we take $x\mapsto k.$ To be explicit,
+\[\varphi(x):=\min\{k\in[n]:x\in I_k\}.\]
+Around here it is apparent why we want things finite: this makes less sense with codomain $\RR.$ We have to show that this $\varphi$ is order-preserving. Well, for $x_1,x_2\in X$ with $x_1\le x_2,$ we note that
+\[x_2\in I_{\varphi(x_2)}\]
+by definition. But now $I_{\varphi(x_2)}$ is an order ideal, so $x_1\in I_{\varphi(x_2)}$ as well, implying $\varphi(x_2)\in\{k\in[n]:x_1\in I_k\},$ so $\varphi(x_1)\le\varphi(x_2),$ as desired. This completes the proof. $\blacksquare$
+
+We have a slight refinement for strictly order-preserving maps.
+\begin{proposition}
+    Fix $(X,\le)$ a poset and $n$ a positive integer. We can biject order-preserving maps $\varphi:X\to[n]$ with a sequence of ascending order ideals
+    \[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X\]
+    such that $I_k\setminus I_{k-1}$ is an antichain of $X$ for each $k\in[n].$
+\end{proposition}
+We continue with the bijection of the previous proof. The key observation is that
+\[\varphi(I_k\setminus I_{k-1})=\big\{\min\{k\in[n]:x\in I_k\}:x\in I_k\setminus I_{k-1}\big\}=\{k\}.\]
+In particular, $\varphi$ is strictly order-preserving if and only if $x_1\le x_2$ and $x_1\ne x_2$ implies $\varphi(x_1)\le\varphi(x_2)$ and $\varphi(x_1)\ne\varphi(x_2).$ We already know that $\varphi(x_1)\le\varphi(x_2),$ so the conclusion we are interested in is $\varphi(x_1)\ne\varphi(x_2).$ Namely, strictly order-preserving is equivalent to
+\[x_1\lneq x_2\implies\varphi(x_1)\ne\varphi(x_2).\]
+Taking the contrapositive, this is equivalent to
+\[\varphi(x_1)=\varphi(x_2)\implies x_1=x_2\text{ or }x_1\not\le x_2.\]
+Using the key observation, this is now
+\[x_1,x_2\in I_k\setminus I_{k-1}\implies x_1=x_2\text{ or }x_1\not\le x_2.\]
+In other words, for distinct $x_1,x_2\in I_k\setminus I_{k-1},$ we cannot have $x_1\not\le x_2.$ Switching the role of $x_1$ and $x_2,$ we cannot have $x_2\not\le x_1$ either, so $x_1$ and $x_2$ are incomparable, implying $I_k\setminus I_{k-1}$ is antichain. And conversely, if $I_k\setminus I_{k-1}$ is antichain, then the above condition still holds. This finishes. $\blacksquare$
+
+The main point here is that we have reduced the study of order-preserving maps $\varphi:X\to[n]$ to studying chains of particular kinds/lengths inside of the lattice of order ideals. Studying chains in a poset is a general poset question, and hopefully this abstraction is helpful.
+
+\subsubsection{May 15th}
+Today I learned about incidence algebras taking advantage of the digraph structure of posets, from \href{https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf}{Combinatorial Reciprocity Theorems} as usual. To review, last time we reduced the problem of counting order-preserving maps $\varphi:X\to[n]$ to counting multichains of length $n$ in the lattice of order ideals $\mathcal J(X)$ from $\emp$ to $X.$
+
+To count multichains, we note that viewing the poset as a directed graph means we're really counting the number of directed paths of given length through $\mathcal J(X).$ For this, we would like to introduce an adjacency matrix, but to make the presentation more concrete, we take the following lemma.
+\begin{lemma}
+    Given a poset $(X,\le),$ there is a bijective order-preserving map $\varphi:X\to[\#X].$ This $\varphi$ is called a linear extension of $X.$
+\end{lemma}
+This is by induction on $\#X=:n.$ If $n=0$ or $n=1,$ there is nothing to prove here: any map will do.
+
+For the inductive step, we claim that $X$ has a maximal element which is not less or equal to than any other element. We could prove this by induction too: if $\#X=0$ or $\#X=1,$ then any element will work, and for the inductive step, we can take $\#X=n+1$ and remove some $x\in X$ so that
+\[\#(X\setminus\{x\})=n\]
+has a maximal element, say $x_0.$ Then either $x\le x_0$ so that $x_0$ remains maximal in $X,$ or $x_0\le x$ so that every $x'\in X$ has $x'\le x_0\le x,$ implying $x$ is maximal.
+
+Anyways, the point is that for $\#X=n+1,$ we can remove a maximal element $x_0\in X$ and then use the inductive hypothesis to pick up our bijective order-preserving map $\varphi_0:(X\setminus\{x_0\})\to[n].$ Then we extend $\varphi_0$ to $\varphi:X\to[n+1]$ by
+\[\varphi(x)=\begin{cases}
+    \varphi_0(x) & x\ne x_0, \\
+    n+1 & x=x_0.
+\end{cases}\]
+This is surjective because
+\[\varphi(X)=\varphi(X\setminus\{x_0\})\cup\varphi(\{x_0\})=[n]\cup\{n+1\}=[n+1],\]
+so $\varphi$ is in fact bijective because $\#X=\#[n+1].$ Further, to show $\varphi$ is order-preserving, we fix $x_1,x_2\in X$ with $x_1\le x_2$ and have the following cases.
+\begin{itemize}
+    \item If $x_2\ne x_0,$ then we note that $x_1\ne x_0$ because $x_2\lneq x_0.$ Thus, $x_1,x_2\in X\setminus\{x_0\},$ so $\varphi(x_1)\le\varphi(x_2)$ follows from the order-preserving property of $\varphi_0.$
+    \item If $x_2=x_0,$ then we note that $\varphi(x_2)=n+1$ is the largest element of $[n+1],$ so surely $\varphi(x_1)\le\varphi(x_2).$
+\end{itemize}
+Having dealt with all cases, we are done here. $\blacksquare$
+
+The above lemma gives us a natural way to order the elements of $X.$ Namely, we can enumerate $X=\{x_1,\ldots,x_n\}$ for $n=\#X$ by $x_k=\varphi^{-1}(k)$ (this is well-defined because $\varphi$ is bijective) so that $x_k\le x_\ell$ implies $k\le\ell.$
+
+Note that this ordering is not canonical---we have to choose some $\varphi$---so we do remark that what follows can be done without doing any ordering at all. However, I'm choosing this presentation so that I can actually write down an adjacency matrix and similar. To account for guilt, I will give definitions without using the linear extension.
+
+Namely, we take the following definition.
+\begin{definition}
+    Given a poset $(X,\le),$ we define the function
+    \[\zeta_X(x,y):=\begin{cases}
+        1 & x\le y, \\
+        0 & \text{else}.
+    \end{cases}\]
+    We will suppress the subscript as much as possible.
+\end{definition}
+This is essentially the adjacency matrix of our directed graph. For example, if we take $X=\{1,2,3,6\}$ ordered by divisibility ($a\le b\iff a\mid b$), then we can choose $\varphi:X\to[4]$ by ordering $X$ by size. (This works because $a\mid b$ implies that $a$ is no greater than $b.$) Here's the Hasse diagram.
+\begin{center}
+    \begin{tikzcd}
+                     & 6                       &              \\
+        2 \arrow[ru] &                         & 3 \arrow[lu] \\
+                     & 1 \arrow[lu] \arrow[ru] &             
+    \end{tikzcd}
+\end{center}
+And here's our $\zeta$ adjacency matrix, where we have our basis $\{e_k\}$ ordered by the linear extension $\varphi.$
+\[\zeta_X=\begin{bmatrix}
+    1 & 1 & 1 & 1 \\
+      & 1 &   & 1 \\
+      &   & 1 & 1 \\
+      &   &   & 1
+\end{bmatrix}.\]
+It will be helpful for us to generalize the adjacency matrix a little bit so that we have a little more groundwork.
+\begin{definition}
+    Given a poset $(X,\le),$ we define the incidence $\CC$-algebra $I(X)$ by functions $\alpha:X\times X\to\CC$ which consist of functions satisfying
+    \[\alpha(x,y)=0\quad\text{for}x\not\le y.\]
+\end{definition}
+In other words, our incidence algebra essentially consists of matrices which has $0$ where $\zeta$ has $0.$ We will equip $I(X)$ with pointwise addition and matrix multiplication. To be more canonical, we can more explicitly define our multiplication of $\alpha,\beta\in I(X)$ by
+\[(\alpha*\beta)(x,z)=\sum_{y\in X}\alpha(x,y)\beta(y,z).\]
+Note that $I(X)$ is closed under $*$ because the existence of a $y\in X$ with $\alpha(x,y),\beta(y,z)\ne0$ guarantees that $x\le y\le z$; i.e., $x\not\le z$ implies $(\alpha*\beta)(x,z)=0.$ Anyways, this is actually a $\CC$-algebra because matrix multiplication distributes over matrix addition.
+
+The point of generalizing the adjacency matrix like this was to create a canonical matrix multiplication. Now that we can take powers of the adjacency matrix, we note the following.
+\begin{proposition}
+    Fix a poset $(X,\le)$ and nonnegative integer $n.$ Then given $x,y\in X,$ we have that $\zeta^n(x,y)$ is equal to the number of $n+1$-multichains
+    \[x=x_0\le x_1\le\cdots\le x_{n-1}<x_n=y.\]
+\end{proposition}
+Now we are doing graph theory. Because we are essentially counting paths of prescribed length in the directed graph of $X,$ we can use the adjacency matrix $\zeta_{\mathcal J(X)}.$ In particular, we proceed by induction on $n.$ If $n=0,$ then $\zeta^0$ is the ``identity matrix'' (by definition), which is defined by
+\[\zeta^0(x_1,y_1)=\begin{cases}
+    1 & x_0=x_1, \\
+    0 & \text{else}.
+\end{cases}\]
+In particular, the only possible path from $x$ to $y$ of length $1$ is the identity path, which will occur when $x=y.$ This finishes our base case.
+
+For the inductive step, we suppose $n$ and prove $n+1.$ Well, the key observation is that
+\[\zeta^{n+1}(x,y)=\left(\zeta^n*\zeta\right)(x,y)=\sum_{z\in X}\zeta^n(x,z)\zeta(z,y)=\sum_{y\le z}\zeta^n(x,z).\]
+Indeed, we can count the number of $n+1$-multichains
+\[x=x_0\le x_1\le\cdots\le x_{n-1}=x_n\le x_{n+1}=y\]
+by looping over the possible $z=x_n\le y$ and then counting the number of ways for us to go from $x$ to $z$ in $n$ steps, which is $\zeta^n(x,z).$ (There is no overlap between these cases because $x_n$ is distinct between cases.) This is the given sum. $\blacksquare$
+
+In particular, we can say the following.
+\begin{proposition}
+    Given a poset $(X,\le)$ and nonnegative integer $n,$ the number of (weakly) order-preserving maps $\varphi:X\to[n]$ is equal to $\zeta^n_{\mathcal J(X)}(\emp,X).$
+\end{proposition}
+As discussed yesterday, the number of order-preserving maps $\varphi:X\to[n]$ is equal to the number of ascending $n$-chains
+\[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X\]
+in $\mathcal J(X).$ The above proposition says that this is equal to $\zeta_{\mathcal J(X)}^n(\emp,X),$ finishing. $\blacksquare$
+
+We talked about the ``identity matrix'' in the proof of the first proposition, and this turns out to play a somewhat important role.
+\begin{definition}
+    Given a poset $(X,\le),$ we define
+    \[\delta_X(x,y):=\begin{cases}
+        1 & x=y, \\
+        0 & \text{else}.
+    \end{cases}\]
+    Again, we will suppress the subscript as much as possible.
+\end{definition}
+Quickly, $\delta$ is in the incidence algebra because $x\not\le y$ implies $x\ne y$ implies $\delta_X(x,y)=0.$ We didn't check this in the proof, but this does satisfy $\delta*\alpha=\alpha*\delta=\alpha$ for $\alpha\in $ This can be seen quickly from the definition of $*,$ or we can just note that placing this in a linear extension makes $\delta$ the identity matrix.
+
+It will also turn out to be helpful to define $\eta:=\zeta-\delta.$ If we write out the definitions of $\zeta$ and $\delta,$ we see
+\[\eta_X(x,y)=\begin{cases}
+    1 & x\le y\text{ and }x\ne y, \\
+    0 & \text{else},
+\end{cases}\]
+for $x,y\in X.$ It turns out that $\eta$ has some analogous behavior to $\zeta.$
+\begin{proposition}
+    Fix $(X,\le)$ and nonnegative integer $n.$ Then given $x,y\in X,$ we have that $\zeta^n(x,y)$ is equal to the number of $n+1$-chains
+    \[x=x_0<x_1<\cdots<x_{n-1}<x_n=y.\]
+\end{proposition}
+The proof is almost identical to the one for $\zeta.$ We induct on $n.$ For $n=0,$ we again have $\eta^0=\delta,$ and indeed, the number of $1$-chains from $x$ to $y$ in $X$ is equal to $1$ if $x=y$---our chain is $x$---and $0$ otherwise.
+
+For the inductive step, we suppose $n$ and prove $n+1.$ The key observation is again that
+\[\eta^{n+1}(x,y)=\left(\eta*^n\eta\right)(x,y)=\sum_{z\in X}\eta^n(x,z)\eta(z,y)=\sum_{y<z}\eta^n(x,z).\]
+Indeed, we can count the number of $n+1$-chains
+\[x=x_0\le x_1<\cdots<x_{n-1}=x_n<x_{n+1}=y\]
+by looping over the possible $z=x_n<y$ and then counting the number of ways for us to go from $x$ to $z$ in $n$ steps, which is $\eta^n(x,z).$ (Again, there is no overlap between these cases because $x_n$ is distinct between cases.) This is the given sum. $\blacksquare$
+
+The real reason we've written out the above proof is that it tell us $\eta$ is nilpotent for finite $X$---in particular, $\eta^{\#X}=0.$ Indeed, if we fix $x,y\in X$ and nonnegative integer $n,$ then the existence of a $n+1$-chain
+\[x=x_0<x_1<\cdots<x_{n-1}<x_n=y\]
+implies that there are at least $n+1$ elements in $X.$ Thus, $\eta^{\#X}=0.$
+
+This introduces our main trick. It is a very valid point that there is no good reason for powers of $\zeta$ to have coefficients which grow polynomially in the exponent; after all, eigenvalues will grow exponentially. However, we have the following idea to remedy this.
+\begin{idea}
+    We can write $\zeta=\delta+\eta$ so that
+    \[\zeta^n=(\delta+\eta)^n=\sum_{k=0}^n\binom nk\eta^k.\]
+    The binomial theorem applies here because powers of $\eta$ commute. Because $\eta$ is nilpotent of degree $\#X,$ we can then write
+    \[\zeta^n=\sum_{k=0}^{\#X-1}\binom nk\eta^k,\]
+    which is indeed a polynomial in $n.$ (We have $\binom nk=0$ if $n<k.$ This is also compatible with the polynomial version of $\binom nk.$) In particular, $\eta^k$ might be large, but it is constant with respect to $n.$
+\end{idea}
+
+We can refine this a bit for the lattice of order ideals to re-prove a result from earlier.
+\begin{proposition}
+    Given a finite poset $(X,\le)$ and nonnegative integer $n,$ the number of weakly order-preserving maps $\varphi:X\to[n]$ is a polynomial in $n,$ of degree no greater than $\#X.$ We call this polynomial $W_X(n).$
+\end{proposition}
+We refine the degree of $\eta$ in the lattice of order ideals. In particular, the existence of a chain
+\[I_0\subsetneq I_1\subsetneq\cdots\subsetneq I_{n-1}\subsetneq I_n\]
+implies that $X$ has at least $n$ elements because
+\[X=I_n=\bigcup_{k=1}^nI_k\setminus I_{k-1}\]
+is then a disjoint union of of $n$ nonempty sets. It follows that $\eta_{\mathcal J(X)}^{\#X+1}=0.$ Now, we note that we already know that we are interested in $\zeta_{\mathcal J(X)}^n(\emp,X),$ so
+\[\zeta_{\mathcal J(X)}^n=\left(\delta_{\mathcal J(X)}+\eta_{\mathcal J(X)}\right)^n=\sum_{k=0}^n\binom nk\eta_{\mathcal J(X)}^k.\]
+But again, we can cut this off at $k=\#X$ because $\eta^{\#X+1}=0,$ so
+\[\zeta_{\mathcal J(X)}^n=\sum_{k=0}^{\#X}\binom nk\eta_{\mathcal J(X)}^k=:W_X(n).\]
+Plugging in for $\zeta_{\mathcal J(X)}^n(\emp,X)$ makes this a polynomial in $n$ because $\eta_{\mathcal J(X)}^k(\emp,X)$ is just some constant. Because the largest power of $n$ comes from $\binom n{\#X},$ the polynomial has degree at most $\#X,$ finishing. $\blacksquare$
+
+For our combinatorial reciprocity, we are interested in evaluating the polynomial $\zeta^n_{\mathcal J(X)}(\emp,X)$ at negative integers. Note that there is something to be checked here because $\zeta^{-n}_{\mathcal J(X)}(\emp,X)$ might not agree with our polynomial representation $W_X(n)$ of $\zeta^n_{\mathcal J(X)}(\emp,X)$ evaluated at negative inputs.
+
+As an aside, it's not even obvious that $\zeta^{-1}$ is in the incidence algebra. It does turn out when inverses exist, they are in the incidence algebra, but we haven't shown this.
+
+Anyways, It turns out that there's nothing to be afraid of, but we have to be careful.
+\begin{proposition}
+    Given a finite poset $(X,\le)$ and positive integer $n,$ we have that $W_X(-n)=\zeta_{\mathcal J(X)}^{-n}(\emp,X).$
+\end{proposition}
+We begin by noting
+\[\zeta^{-1}=\frac1{\delta+\eta}=\sum_{k=0}^\infty(-\eta)^k=\sum_{k=0}^{\#X}(-\eta)^k.\]
+This manipulation is technically formal---the infinite sum doesn't actually make sense---but we can make it rigorous by saying
+\[\delta=\delta^{\#X+1}+(-\eta)^{\#X+1}=\underbrace{(\delta+\eta)}_{\zeta}\underbrace{\sum_{k=0}^{\#X}(-\eta)^k}_{\zeta^{-1}}\]
+because $\delta^{\#X+1}=\delta$ and $\eta^{\#X+1}=0.$ Taking this series to the power of some fixed positive integer $n,$ we see that
+\[\zeta^{-n}=\left(\sum_{k=0}^{\#X}(-\eta)^k\right)^n=\sum_{\{k_\ell\}_{\ell=1}^n\subseteq[1,\#X]}\prod_{\ell=1}^n(-\eta)^{k_\ell}\]
+by direct expansion. (Powers of $-\eta$ commute, so we don't have to pay attention to order of multiplication.) The addend here is just $(-\eta)$ to the power of $\sum_\ell k_\ell,$ so we group by this sum. The number of sequences $\{k_\ell\}_{\ell=1}^n\subseteq[1,\#X]$ which sum to $K$ is equal to $\binom{n+K-1}{n-1}=\binom{n+K-1}K$ by stars and bars. Thus,
+\[\zeta^{-n}=\sum_{K=0}^{n\#X}\binom{n+K-1}K(-\eta)^K=\sum_{K=0}^{\#X}(-1)^K\binom{n+K-1}K\eta\]
+again using the fact that $\eta$ is nilpotent of order $\#X.$ (I did promise we are going to get a lot of mileage out of $\eta$ being nilpotent.) To finish, we see that $(-1)^K\binom{n+K-1}K=\binom{-n}K$ (as polynomials) from a few days ago, so indeed,
+\[\zeta^{-n}=\sum_{k=0}^{\#X}\binom{-n}k\eta^k,\]
+which matches up with $W_X(-n).$ So we are done here. $\blacksquare$
+
+We quickly note that the substance of the above proof is essentially just saying that the binomial theorem expansion
+\[\zeta^{-n}=(\delta+\eta)^{-n}=\sum_{k=0}^\infty\binom{-n}k\eta^k\]
+is valid. Of course, this assertion requires proof, and its proof is above.
+
+We close by remarking we began by moving our study from order-preserving maps to multichains in the lattice of order ideals. Today we have moved our problem into merely trying to understand the matrix $\zeta$ inside of the incidence algebra. In particular, we just have to study how negative powers of $\zeta$ behave with the lattice of order ideals.
+
+\subsubsection{May 16th}
+Today I learned how to create an order-preserving bijection from $\QQ$ into $\QQ\setminus\{0\},$ which is the back-and-forth trick. We are building towards the following.
+\begin{proposition}
+    There exists a bijection $\varphi:\QQ\to(\QQ\setminus\{0\})$ such that $a\le b$ implies $\varphi(a)\le\varphi(b).$
+\end{proposition}
+What we would like to do is send $\varphi:x\mapsto x,$ but of course this doesn't work because $0$ doesn't have a home. So the question we're interested in is where $0$ should go. It doesn't really matter where we send it, but it has to go somewhere, so we set
+\[\varphi(0):=1.\]
+While we're at it, the values $x\ge0$ aren't going to give us problems, so we'll just set
+\[\varphi(x):=x+1\quad\text{for }x\ge0.\]
+The above means that $\varphi$ takes $[0,\infty)\cap\QQ$ to $[1,\infty)\cap\QQ$ in a bijective (inverse is subtract by $1$) in an order-preserving way ($a\le b$ implies $a+1\le b+1$).
+
+It remains to extend $\varphi$ to biject $(-\infty,0)\cap\QQ$ to $(-\infty,1)\cap\QQ\setminus\{0\}.$ (We don't have to worry about splicing together breaking order-preservation because we are sending the larger values to larger values and vice versa in the splice; I won't be riogorous about this.) We would like to put a bottom on this, so we'll just set
+\[\varphi(x):=x\quad\text{for }x\le-1.\]
+The identity here will provide an order-preserving bijection from $(-\infty,-1]\cap\QQ$ to $(-\infty,-1]\cap\QQ.$
+
+So now we have to provide an order-preserving bijection from $(-1,0)\cap\QQ$ to $(-1,1)\cap\QQ\setminus\{0\}.$ Now, the main idea is that there is a ``natural'' order-preserving bijection from $(-1,0)\cap\QQ$ to $(-1,1)\cap\QQ$ by $x\mapsto2x+1.$ The question, then, is what to do with $-\frac12.$ Well, just like with $0,$ we can send $-\frac12$ somewhere, and then see what follows. This process can be iterated, but we need to be careful.
+
+In essence, we are extending $\varphi$ continually by leaving a smaller and smaller open interval to map, but the open interval will always contain some rationals, so we are never done after a finite process. Indeed, we can see this in the above: after saying where $-\frac12$ goes, we can build a little more of the map, leaving a smaller interval to cover.
+
+After an infinite process, we need to be sure we've approached a irrational so that we have a map for all rationals. So pick $\alpha\in(-1,0)\setminus\QQ$ to approach, and we'll work backwards. Here's the rough starting image.
+\begin{center}
+    \begin{asy}
+        unitsize(1.7cm);
+        dot("$0$", (0,1), N);
+        dot("$-1$", (0,-1), S);
+        dot("$1$", (1.7,1), N);
+        dot("$-1$", (1.7,-1), S);
+        real alpha = sin(1)/2;
+        dot("$\alpha$", (0,alpha), W);
+        draw((0,alpha)--(1.7,0), dashed);
+        draw((0,1)--(0,-1));
+        draw((1.7,1)--(1.7,-1));
+        fill(circle((1.7,0),0.05), rgb(1,1,1));
+        draw(circle((1.7,0),0.05));
+    \end{asy}
+\end{center}
+In order to do our iteration process all at once, we add in some more automatic tools. The process is currently to take some rational (say, $-\frac12$ in our previous discussion), ask where it should go, and then extend the map. Instead, we'll pick up all of our rationals in advance.
+
+Define the sequences $\{\overline q_k\}_{k=1}^\infty$ which approaches $\alpha$ from the top and $\{\underline q_k\}_{k=1}^\infty$ which approaches $\alpha$ from the bottom. If we wanted to be explicit, we could use upper and lower continued fraction convergents. Similarly, we will define $\{\overline p_k\}_{k=1}^\infty$ and $\{\underline p_k\}_{k=1}^\infty$ by
+\[\underline p_k=-\frac1{2^k}\qquad\text{and}\qquad\overline p_k=\frac1{2^k}\]
+so that $\underline p_k$ approaches $0$ from the bottom and $\overline p_k$ from the top. To round things off, we will simply define $\overline q_0=0,\underline q_0=-1$ with $\overline p_0=1$ and $\underline p_0=-1.$ Again, here's our image, connecting the dots.
+\begin{center}
+    \begin{asy}
+        unitsize(1.7cm);
+        dot("$0$", (0,1), N);
+        dot("$-1$", (0,-1), S);
+        dot("$1$", (1.7,1), N);
+        dot("$-1$", (1.7,-1), S);
+        real alpha = sin(1)/2;
+        dot("$\alpha$", (0,alpha), W);
+        draw((0,alpha)--(1.7,0), dashed);
+        draw((0,1)--(0,-1));
+        draw((1.7,1)--(1.7,-1));
+        fill(circle((1.7,0),0.05), rgb(1,1,1));
+        draw(circle((1.7,0),0.05));
+        real[] q = {1,(1+alpha)/2,(1+3*alpha)/4,(1+7*alpha)/8,
+            (-1+alpha)/2,(-1+3*alpha)/4, (-1+7*alpha)/8,-1};
+        real[] p = {1,1.0/2,1.0/4,1.0/8,
+            -1.0/2,-1.0/4,-1.0/8,-1};
+        for(int i = 0; i < 8; ++i)
+        {
+            dot((0,q[i])); dot((1.7,p[i]));
+            draw((0,q[i])--(1.7,p[i]), dotted);
+        }
+    \end{asy}
+\end{center}
+To finish our construction, we make $\varphi$ map $[\underline q_k,\underline q_{k+1}]\cap\QQ$ to $[\underline p_k,\underline p_{k+1}]\cap\QQ$ and $[\overline q_{k+1},\overline q_k]\cap\QQ$ to $[\overline p_{k+1},\overline p_k]\cap\QQ$ for integers $k\ge0.$ We do this by
+\[\varphi(x):=\begin{cases}
+    \underline p_k+(\underline p_{k+1}-\underline p_k)\cdot\frac{x-\underline q_k}{\underline q_{k+1}-\underline q_k} & x\in[\underline q_k,\underline q_{k+1}], \\
+    \overline p_{k+1}+(\overline p_k-\overline p_{k+1})\cdot\frac{x-\overline q_{k+1}}{\overline q_k-\overline q_{k+1}} & x\in[\overline q_{k+1},\overline q_k].
+\end{cases}\]
+In particular, each of these are affine transformations with positive slopes, so they do make the desired order-preserving bijections. They splice together properly because $x=\underline q_k$ will give $\varphi(\underline q_k)=\underline p_k$ or $\varphi(\underline q_{(k-1)+1})=\underline p_{(k-1)+1},$ and similar for $\overline q_k.$ And we can splice this $\varphi$ together with our $\varphi$ from earlier because $\varphi(0)=1$ and $\varphi(-1)=-1$ already.
+
+To show that this is really an order-preserving bijection from all of $\QQ$ to all of $\QQ\setminus\{0\},$ we note that $\varphi$ is defined over
+\[((-\infty,-1]\cap\QQ)\cup\left(\bigcup_{k\ge0}[\underline q_k,\underline q_{k+1}]\cap\QQ\right)\cup\left(\bigcup_{k\ge0}[\overline q_{k+1},\overline q_k]\cap\QQ\right)\cup([0,\infty)\cap\QQ).\]
+Because the $\underline q_k$ and $\overline q_k$ approach $\alpha,$ the union of those intervals will make up $[-1,0]\cap\QQ\setminus\{\alpha\}=[-1,0]\cap\QQ$ because $\underline q_0=-1$ and $\overline q=0.$ Combining with the left and right intervals, everything here unions to all of $\QQ.$ Similarly, the image of $\varphi$ is
+\[((-\infty,-1]\cap\QQ)\cup\left(\bigcup_{k\ge0}[\underline p_k,\underline p_{k+1}]\cap\QQ\right)\cup\left(\bigcup_{k\ge0}[\overline p_{k+1},\overline p_k]\cap\QQ\right)\cup([1,\infty)\cap\QQ).\]
+Again, $\underline p_k$ and $\overline p_k$ approach $0,$ so the union of those intervals will make up $[-1,1]\cap\QQ\setminus\{0\}$ because $\underline p_0=-1$ and $\overline p_1=1.$ Combining with the left and right intervals, we do indeed surject onto $\QQ\setminus\{0\}.$ Because each part of $\varphi$ is an order-preserving bijection, we conclude that $\varphi$ is in fact an order-preserving bijection because the pieces splice in order. $\blacksquare$
+
+We remark that this statement is in fact one instance of the following more general statement.
+\begin{theorem}
+    All countably infinite dense linear orders $X$ are isomorphic.
+\end{theorem}
+I don't know the proof of this, but \href{https://math.stackexchange.com/questions/2952730/back-n-forth-or-a-direct-isomorphism-between-a-countable-dlo-without-endpoints-a}{here} is a reference. $\blacksquare$
+
+Here, ``linear order'' is a fancy way to say ``totally ordered set.'' The interesting definition here is actually ``dense,'' because of course there is no order-preserving bijection from $\ZZ$ to $\QQ$: if $\varphi:\ZZ\to\QQ$ is injective and order-preserving, then $(\varphi(0),\varphi(1))$ has a rational, making $\varphi$ not surjective.
+
+Well, the total order induces an order topology on our linear order $X,$ so we can define dense in the following way.
+\begin{definition}
+    A linear order $(X,\le)$ is ``dense'' if and only if, for any $x,z\in X,$ there exists a $y\in X$ such that $x<y<z.$
+\end{definition}
+With this in mind, we do see that both $\QQ$ and $\QQ\setminus\{0\}$ are both countably infinite dense linear orders, so the theorem says they are isomoprhic, which is what we found.
+
+\subsubsection{May 17th}
+Today I learned the finish of the proof of the poset combinatorial reciprocity theorem, from \href{https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf}{Combinatorial Reciprocity Theorems}. As usual, our setup is to fix a poset $(X,\le)$ with lattice order ideals $\mathcal J(X)$ and let $W_X(n)$ be the number of number of weakly order-preserving maps from $X\to[n].$ We also let $S_X(n)$ be the number of strictly order-preserving maps. Two days ago we also introduced the incidence algebra $I(X)$ including the adjacency matrix
+\[\zeta_X(x,y)=\begin{cases}
+    1 & x \le y \\
+    0 & \text{else}.
+\end{cases}\]
+In particular, we established the following result.
+\begin{proposition}
+    For any integer $n,$ we have that $W_X(n)=\zeta_{\mathcal J(X)}^n(\emp,X).$
+\end{proposition}
+We showed this two days ago. That this holds for nonnegative integers was a combinatorial argument counting directed paths through $\mathcal J(X).$ That this holds for negative integers required some care and used the expansion of $\zeta^n(x,y)=(\zeta(x,y)-1_{x=y}(x,y))^n$ by the binomial theorem. $\blacksquare$
+
+For the combinatorial reciprocity theorem, we are building towards the following.
+\begin{theorem}
+    For poset $(X,\le),$ we have that $W_X(-n)=(-1)^{\#X}S_X(n).$
+\end{theorem}
+We need to relate $W_X(-n)=\zeta_{\mathcal J(X)}^{-n}(\emp,X)$ to $S_X(n).$ Starting from what we understand, all we have gained from writing $W_X(-n)=\zeta_{\mathcal J(X)}^{-n}(\emp,X)$ is the ability to write
+\[\zeta_{\mathcal J(X)}^{-n}(\emp,X)=\underbrace{\left(\zeta^{-1}*\cdots*\zeta^{-1}\right)}_n(\emp,X)=\sum_{\emp=I_0\subseteq\cdots\subseteq I_n=X}\zeta^{-1}(I_0,I_1)\cdots\zeta(I_{n-1},I_n)\]
+by definition of our matrix-multiplication convolution product $*$ of the incidence algebra. (Note that all $\zeta$s are $\zeta_{\mathcal J(X)}.$) The point here is that this expansion is a sum over chains in the lattice of order ideals, from $I_0=\emp$ to $I_n=X.$
+
+Now, we need a way to bring $S_X(n)$ into the picture. Because our current approach involved chains of order ideals, we bring in the following statement.
+\begin{proposition}
+    Fix $(X,\le)$ a poset and $n$ a positive integer. We can biject order-preserving maps $\varphi:X\to[n]$ with a sequence of ascending order ideals
+    \[\emp=I_0\subseteq I_1\subseteq\cdots\subseteq I_{n-1}\subseteq I_n=X\]
+    such that $I_k\setminus I_{k-1}$ is an antichain of $X$ for each $k\in[n].$
+\end{proposition}
+We showed this three days ago. Roughly speaking, $I_k$ corresponds to $\varphi^{-1}(k),$ and this correspondence can be carried through. $\blacksquare$
+
+Looking at our summation, we need the summand to care about when some $I_k\setminus I_{k-1}$ is an antichain for $k\in[n],$ but the only factor of the sum which could possibly ``detect'' this is $\zeta_{\mathcal J(X)}^{-1}(I_{k-1},I_k).$ So we hope that
+\[\zeta_{\mathcal J(X)}^{-1}(I_{k-1},I_k)\stackrel?=0\quad\text{ if }I_k\setminus I_{k-1}\text{ is not an antichain}.\]
+On the other hand, it's not totally clear what to make $\zeta_{\mathcal J(X)}^{-1}(I_{k-1},I_k)$ for $k\in[n]$ when $I_k\setminus I_{k-1}$ really is an antichain.
+
+Because $S_X(n)$ is counting the number of chains $\emp=I_0\subseteq\cdots\subseteq I_n=X$ where the consecutive differences are antichains, and our expression for $\zeta_{\mathcal J(X)}^{-n}(\emp,X)$ is summed over such chains, it would be nice to make the individual $\zeta_{\mathcal J(X)}^{-1}(I_{k-1},I_k)$ merely indicators for $k\in[n].$ However, the theorem statement asserts that
+\[\zeta_{\mathcal J(X)}^{-n}(\emp,X)\stackrel?=W_X(n)=(-1)^{\#X}S_X(n),\]
+and that sign $(-1)^{\#X}$ has to come from somewhere. Looking at our sum
+\[\zeta_{\mathcal J(X)}^{-n}(\emp,X)=\sum_{\emp=I_0\subseteq\cdots\subseteq I_n=X}\zeta^{-1}(I_0,I_1)\cdots\zeta(I_{n-1},I_n),\]
+there is no obvious place to put this sign, so we try to evenly distribute it. The most natural way to do this is by conjecturing
+\[\zeta_{\mathcal J(X)}^{-1}(I_{k-1},I_k)\stackrel?=(-1)^{\#(I_k\setminus I_{k-1})}\quad\text{ if }I_k\setminus I_{k-1}\text{ is an antichain}.\]
+Our guesses are in fact correct.
+\begin{lemma}
+    Fix a poset $(X,\le).$ Then we define
+    \[\zeta_{\mathcal J(X)}^{-1}(I,J)=\begin{cases}
+        (-1)^{\#(J\setminus I)} & I\subseteq J\text{ and }J\setminus I\text{ is an antichain}, \\
+        0 & \text{else}.
+    \end{cases}\]
+\end{lemma}
+Having motivated the statement, there isn't much to do in the proof. Note that $\zeta^{-1}$ is defined as having $\zeta^{-1}*\zeta=\delta,$ where $\delta$ is the identity
+\[\delta(x,y)=1_{x=y}(x,y)\]
+of the incidence algebra. By pushing a linear extension on the finite poset $X,$ we can turn the incidence algebra into proper linear algebra, meaning that the incidence algebra with its convolution mulitplication (which is matrix-multiplication in diguise) is a group, where our identity is $\delta.$
+
+The point of saying this is that we merely have to verify that the provided $\zeta^{-1}$ in the statement actually satisfies $\zeta^{-1}*\zeta=\delta$ to show that it is the inverse. To start, note that
+\[\left(\zeta_{\mathcal J(X)}^{-1}*\zeta_{\mathcal J(X)}\right)(I,K)=\sum_{J\in\mathcal J(X)}\zeta_{\mathcal J(X)}^{-1}(I,J)\zeta_{\mathcal J(X)}(J,K).\]
+The terms here are $0$ by definition unless $I\subseteq J\subseteq K,$ so we might as well introduce that condition into the sum. While we're here, we note that $J\subseteq K$ implies $\zeta_{\mathcal J(X)}(J,K)=1,$ so we can remove that as well, giving
+\[\left(\zeta_{\mathcal J(X)}^{-1}*\zeta_{\mathcal J(X)}\right)(I,K)=\sum_{I\subseteq J\subseteq K}\zeta_{\mathcal J(X)}^{-1}(I,J).\]
+We would like to show that the sum is $\delta.$ We deal with easy cases. Note that $I\not\subseteq K$ makes the sum empty, giving the needed $0.$ We can also quickly deal with $I=K.$ Here, $I\subseteq J\subseteq K$ implies that $I=J=K,$ so there is only one term in the sum. In this case, $J\setminus I=\emp$ is (vacuously!) an antichain, so
+\[\left(\zeta_{\mathcal J(X)}^{-1}*\zeta_{\mathcal J(X)}\right)(I,I)=\sum_{I=J}\zeta_{\mathcal J(X)}^{-1}(I,I)=(-1)^0=1,\]
+which is what we needed.
+
+It remains to deal with the case where $I\subsetneq K.$ In this case, we need to show
+\[\sum_{I\subseteq J\subseteq K}\zeta_{\mathcal J(X)}^{-1}(I,J)\stackrel?=0.\]
+This requires some thought, but luckily there is a nice combinatorial argument. The key idea is that $\zeta_{\mathcal J(X)}^{-1}(I,J)$ acts like a ``counter'' when $J\setminus I$ is an antichain, flipping sign when we add one element to $J.$ So if we can biject pairs $(I,J)$ with a different pair where the $J$ term has one element different, these pairs have $\zeta_{\mathcal J(X)}^{-1}(I,J)$ of different signs, hopefully cancelling.
+
+This is a bit harder than it looks because our one-element peturbation needs to keep $J$ an order ideal and $J\setminus I$ an antichain. For example, we don't want to add a ``large'' element to $J,$ else we risk breaking $J$ being an order ideal.
+
+Motivated by this, we find a minimal element $m\in J\setminus I$: note that $J\setminus I\subseteq X$ is a finite poset; to show minimal elements exist, take the proof that maximal elements exist from a few days ago and reverse the inequality signs. Then we claim $\varphi:\mathcal J(X)\to\mathcal J(X)$ by
+\[\varphi(J):=\begin{cases}
+    J\cup\{m\} & m\notin J, \\
+    J\setminus\{m\} & m\in J,
+\end{cases}\]
+will work as our bijection. The hard part is showing that this is a well-defined map of order ideals $J$ giving $I\subseteq J\subseteq K$ making $J\setminus I$ an antichain. So we first show that this is a bijection, which is easier: it's involutive. On one hand, $m\notin J$ means $\varphi(J)=J\cup\{m\}$ which contains $m,$ implying 
+\[\varphi(\varphi(J))=(J\cup\{m\})\setminus\{m\}=J.\]
+Similarly, $m\in J$ implies $\varphi(J)=J\setminus\{m\},$ which does not contain $m,$ so
+\[\varphi(\varphi(J))=(J\setminus\{m\})\cup\{m\}=J.\]
+So indeed, this is involutive. It also has no fixed points because $m\in J$ implies $m\notin\varphi(J)=J\setminus\{m\},$ and $m\notin J$ implies $m\in\varphi(J)=J\cup\{m\}.$
+
+Now we show that $\varphi$ is a well-defined map of order ideals $J$ giving $I\subseteq J\subseteq K$ making $J\setminus I$ an antichain. We formally split this into two cases.
+\begin{itemize}
+    \item If $m\in J,$ then we need to show $\varphi(J)=J\cup\{m\}$ is an order ideal between $I$ and $K$ with $\varphi(J)\setminus I$ an antichain. Because $m\in K\setminus I,$ we still have
+    \[I\subseteq J\subseteq J\cup\{m\}\subseteq K,\]
+    so we at least live between $I$ and $K.$
+    
+    To show $J\cup\{m\}$ is an order ideal, pick up $x\in J\cup\{m\}$ and suppose $y\le x.$ Note that $x\in K$ at least implies $y\in K.$ If $x\in J,$ then $y\in J\subseteq J\cup\{m\}$ already because $J$ is an order ideal. Alternatively, if $x=m,$ then $m$ minimal means $y=m$ (so $y\in J\cup\{m\}$ for free), or $y\notin K\setminus I.$ In particular, $y\in I\subseteq J\subseteq J\cup\{m\}.$
+    
+    To show that $(J\cup\{m\})\setminus I$ is an antichain, we borrow from the logic above. If we do manage to find $x,y\in J\cup\{m\}$ with $y\le x,$ then $x=m$ means $y\in I$ from above, so $(J\cup\{m\})\setminus I$ is safe. Alternatively, $x\in J$ means $y\in J,$ so $J\setminus I$ being an antichain implies $y\in I$ again. In all cases, we are safe.
+    
+    \item If $m\notin J,$ then we need to show $\varphi(J)=J\setminus\{m\}$ is an order ideal between $I$ and $K$ with $\varphi(J)\setminus I$ an antichain. Because $m\in K\setminus I,$ we still have
+    \[I\subseteq J\setminus\{m\}\subseteq J\subseteq K,\]
+    so we at least live between $I$ and $K.$
+    
+    To show $J\setminus\{m\}$ is an order ideal, pick up $x\in J\setminus\{m\}$ and suppose $y\le x.$ Note that $x\in J$ at least implies $y\in J$ because $J$ is an order ideal. But also $y\le x$ are comparable, so $J\setminus I$ antichain means one of $x,y$ lives in $I.$ But $x\in I$ implies $y\in I$ because $I$ is an order ideal, so surely $y\in I.$ In particular, $y\in J\setminus I.$
+    
+    To show that $(J\setminus\{m\})\setminus I,$ we note that $x,y\in(J\setminus\{m\})\setminus I$ also live in $J\setminus I,$ which is already an antichain, so it follows $x$ and $y$ are uncomparable.
+\end{itemize}
+Thus, we do have that $\varphi$ is an involution of order ideals $J$ between $I$ and $K$ such that $J\setminus I$ is an antichain. From this it follows
+\[\sum_{I\subseteq J\subseteq K}\zeta_{\mathcal J(X)}^{-1}(I,J)=\sum_{I\subseteq J\subseteq K}\zeta_{\mathcal J(X)}^{-1}(I,\varphi(J))=\sum_{I\subseteq J\subseteq K}-\zeta_{\mathcal J(X)}^{-1}(I,J)\]
+because $\varphi(J)$ always has one more or one less element than $J,$ making $(-1)^{\#(J\setminus I)}$ flip sign. It follows that the sum must be $0,$ completing the proof. $\blacksquare$
+
+Having completed the proof of the lemma, we are pretty much done. Recall that
+\[W_X(-n)=\zeta_{\mathcal J(X)}^{-n}(\emp,X)=\sum_{\emp=I_0\subseteq\cdots\subseteq I_n=X}\left(\prod_{k=1}^n\zeta^{-1}(I_{k-1},I_k)\right).\]
+Using the above lemma, the sum only cares about terms where each difference $I_k\setminus I_{k-1}$ is an antichain, in which case we have
+\[W_X(-n)=\sum_{\substack{\emp=I_0\subseteq\cdots\subseteq I_n=X\\I_k\setminus I_{k-1}\text{ antichain}}}\left(\prod_{k=1}^n(-1)^{\#(I_k\setminus I_{k-1})}\right).\]
+Moving the product into the exponent as a sum, we are summing the size of $I_k\setminus I_{k-1}$ over $k\in[n].$ Telescoping, this is $\#(I_n\setminus I_0)=\#X,$ so we see
+\[W_X(-n)=\sum_{\substack{\emp=I_0\subseteq\cdots\subseteq I_n=X\\I_k\setminus I_{k-1}\text{ antichain}}}(-1)^{\#X}.\]
+Factoring out the $(-1)^{\#X}$ and using our proposition for $S_X(n)$ completes the proof. $\blacksquare$
+
+That proof was long enough that I'm not super inclined to give comments. I will say that the cruz of the proof comes down to computing $\zeta^{-1}$ in the case of the lattice of order ideals. I am under the impression that $\zeta^{-1}$ is in general difficult to compute, and this should be unsurprising given that its computation is pretty much our combinatorial reciprocity theorem.
+
+\subsubsection{May 18th}
+Today I learned about the chromatic polynomial of a graph, from \href{https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf}{Combinatorial Reciprocity Theorems}. We begin by using a somewhat formal definition of ``graph coloring.''
+\begin{definition}
+    A graph coloring of a finite graph $G$ is a function $\varphi:V(G)\to[n]$ for some nonnegative integer $n$ such that $v_1,v_2\in V(G)$ adjacent implies $\varphi(v_1)\ne\varphi(v_2).$ We say that $\varphi$ colors $G$ with $n$ colors even though $\varphi$ need not be surjective.
+\end{definition}
+In what follows, we will be pretty liberal interchanging $G$ with $V(G),$ mostly for convenience. For example, we might say that $\varphi:G\to[n]$ is a coloring.
+
+We remark that it doesn't matter if $G$ is directed or undirected. Because $\varphi(v_1)=\varphi(v_2)$ is a symmetric relation, it doesn't matter if this implication comes from $(v_1,v_2)\in E$ or $(v_2,v_1)\in E.$ So in what follows, we will just have $G$ undirected.
+
+The chromatic polynomial interests itself with the number of colorings.
+\begin{definition}
+    Given a finite graph $G,$ the chromatic polynomial $\chi_G(n)$ is the number of colorings of $G$ with $n$ colors.
+\end{definition}
+Very quickly, we note that if $G$ has any loops so that there is a $v\in G$ with edge $\{v,v\}\in E(G)$ will never have any colorings, for surely $\varphi(v)=\varphi(v).$
+
+Anyways, we have called $\chi_G$ the chromatic polynomial of $G$ but have not actually showed that it is chromatic. We do this now, in roughly the same spirit as when we showed the number of order preserving maps from a poset $(X,\le)$ to $[n].$
+\begin{proposition}
+    Given a finite graph $G,$ the chromatic polynomial $\chi_G$ is actually a polynomial.
+\end{proposition}
+The idea is to count the number of ways to color $G$ using exactly $k$ colors and then sum over all $k\in[1,n].$ Indeed, we claim that we can biject colorings $\varphi:G\to[n]$ fixing $k:=\#\varphi(G)$ with pairs of maps a surjective coloring $\varphi_1:G\to[k]$ a surjective coloring and injective order-preserving $\varphi_2:[k]\to[n].$
+
+For this, we bring back the fact there is a unique order-preserving bijection between finite total orders of the same size; we will say $\iota_{X,Y}$ is the map from $(X,\le)$ to $(Y,\le).$ So given $\varphi:G\to[n],$ we can define
+\[\begin{cases}
+    \varphi_1:=\iota_{\varphi(G),[k]}\circ\varphi, \\
+    \varphi_2:=\iota_{\varphi(G),[k]}^{-1}.
+\end{cases}\]
+To show that $\varphi_1$ and $\varphi_2$ have the claimed properties, we have to show that $\varphi_1$ is a surjective coloring and $\varphi_2$ is injective. Well, $\varphi$ surjects onto $\phi(G),$ and then $\iota_{\varphi(G),[k]}$ surjects onto $[k],$ so $\varphi_1$ is surjective. And $\iota_{\varphi(G),[k]}^{-1}$ is a bijection into $\varphi(G)\subseteq[n],$ so $\varphi_2$ is injective. Also, $\varphi_2$ is order-preserving by constrution of $\iota.$
+
+And lastly, the fact that $\varphi_1$ is a coloring is inherited from $\varphi$: the condition $\varphi(v_1)=\varphi(v_2)$ is equivalent to
+\[\varphi_1(v_1)=\iota_{\varphi(G),[k]}\big(\varphi(v_1)\big)=\iota_{\varphi(G),[k]}\big(\varphi(v_2)\big)=\varphi_1(v_2)\]
+because $\iota_{\varphi(G),[k]}$ is a bijection. So, $\{v_1,v_2\}\in E(G)$ implies $\varphi(v_1)\ne\varphi(v_2)$ implies $\varphi_1(v_1)\ne\varphi_1(v_2),$ so $\varphi_1$ is a coloring.
+
+It remains to show that the correspondence $\varphi\mapsto(\varphi_1,\varphi_2)$ is injective and surjective. Well, we note that $\varphi=\varphi_2\circ\varphi_1$ by construction, so injectivity follows: if both $\varphi$ and $\varphi'$ both give the same $(\varphi_1,\varphi_2),$ then $\varphi=\varphi_2\circ\varphi_1=\varphi'.$
+
+So surjectivity remains. Suppose we have a surjective coloring $\varphi_1:G\to[k]$ and an injective order-preserving map $\varphi_2:[k]\to[n].$ Then we claim that $\varphi_1$ and $\varphi_2$ are mapped to by $\varphi=\varphi_2\circ\varphi_1.$ Quickly, $\varphi$ is a coloring because $\{v_1,v_2\}\in E(G)$ implies $\varphi_1(v_1)\ne\varphi(v_2)$ implies
+\[\varphi(v_1)=\varphi_2\big(\varphi_1(v_1)\big)\ne\varphi_2\big(\varphi_1(v_2)\big)=\varphi(v_2)\]
+because $\varphi_2$ is injective. And lastly, we show that $\varphi$ goes to $(\varphi_1,\varphi_2).$ Well, $\varphi(G)=\varphi_2([k])$ because $\varphi_1$ is surjective, so $\varphi_2$ is really a bijection from $[k]$ into $\varphi(G).$ Because $\varphi_2$ is also order-preserving, it has only one option, from which it follows
+\[\varphi_2=\iota^{-1}_{\varphi(G),[k]}.\]
+And now, we see
+\[\iota_{\varphi(G),[k]}\circ\varphi=\iota_{\varphi(G),[k]}\circ\iota^{-1}_{\varphi(G),[k]}=\varphi_1,\]
+so indeed, $\varphi$ goes to the pair $(\varphi_1,\varphi_2).$
+
+Only now we do count pairs $(\varphi_1,\varphi_2).$ Well, the number of $\varphi_1$ is going to some fixed integer not dependent on $n,$ so we'll call it $a_k$ because it might depend on $k.$ But $\varphi_2$ is counting the number of injective order-preserving maps $[k]\to[n],$ which is uniquely determined by the image $\varphi_2([k])$ because the order-preserving bijection from $[k]$ to $\varphi_2([k])$ is unique. So there are $\binom nk$ of these, making $a_k\binom nk$ pairs.
+
+Summing over possible $k,$ we note that we have to use some nonnegative number of colors, and there is no way to use all of more than $\#G$ colors because there are only $\#G$ vertices. So, we sum from $k=0$ to $k=\#G,$ giving
+\[\chi_G(n)=\sum_{k=0}^{\#G}a_k\binom nk.\]
+This is indeed a polynomial, so we are done here. $\blacksquare$
+
+We remark that the above proof actually tells us something about $\chi_G$ as well. For example, the number of colorings using exactly $\#G$ is simply $(\#G)!$ because we can place the colors however we want. Thus, $a_{\#G}=(\#G)!,$ so the leading term of $\chi_G(n)$ comes from
+\[a_{\#G}\binom n{\#G}=(\#G)!\binom n{\#G}=\prod_{\ell=0}^{\#G-1}(n-\ell).\]
+In particular, $\chi_G$ is monic of degree $\#G.$
+
+There is an alternate proof that $\chi_G$ is a polynomial, which is a bit less explicit in formula, but it is important because it establishes the following functional equation.
+\begin{lemma}
+    Fix $G$ a finite graph and $e\in E(G)$ an edge. Then $\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.$
+\end{lemma}
+Here, $G/e$ means the graph $G$ ``modded out'' by the edge $e$: the graph $G/e$ takes the endpoints of $e=\{v_1,v_2\}$ and identifies them. Formally, we have a mapping $\iota_e:G\to G/e$ which just identifies the endpoints of $e$: it bijects everyone except for the ends of $e,$ and edges move with their vertices.
+
+To make the statement more combinatorially receptive, we write the desired equations without minus signs as
+\[\chi_{G\setminus\{e\}}=\chi_G+\chi_{G/e}.\]
+This suggests casework, and indeed we claim that each coloring of $G\setminus\{e\}$ can be bijected with exactly one coloring of either $G$ or $G/e.$ Indeed, we write $e=\{v_1,v_2\}$ and then do casework on if $\varphi:G\setminus\{e\}\to[n]$ has $\varphi(v_1)=\varphi(v_2).$ This equality makes our cases disjoint.
+\begin{itemize}
+    \item If $\varphi(v_1)\ne\varphi(v_2),$ then this can be turned extended into a coloring on $G$ with no changes. Indeed, the only added edge going from $G\setminus\{e\}$ to $G$ is $e$ itself, and we have guaranteed $\varphi(v_1)\ne\varphi(v_2).$
+    
+    And conversely, any coloring on $G$ induces a coloring on $G\setminus\{e\}$ by restriction, and this coloring ``happens'' to satisfy $\varphi(v_1)\ne\varphi(v_2).$ Extension and restriction are inverses, so this is a bijection.
+    \item If $\varphi(v_1)=\varphi(v_2),$ then we can turn this into a coloring of $G/e$ by identifying the endpoints of $e.$ Formally, we can take $\varphi$ to $\varphi\circ\iota_e^{-1},$ which is only defined because $\varphi$ has $\varphi(v_1)=\varphi(v_2).$
+    
+    Being informal, this is a coloring because we haven't introduced any problematic edges: if $\{w_1,w_2\}\in E(G/e),$ then either $w_1,w_2$ are separate from $v_1$ and $v_2,$ and $\varphi$ feels no effect, or one of $w_1$ or $w_2$ is $v_1$ or $v_2,$ but even here, $v_1$ and $v_2$ have the same color, so we don't violate the coloring requirement.
+    
+    And conversely, any coloring on $G/e$ can be brought back to a coloring on $G\setminus\{e\}$ by composing with $\iota_{e},$ but this coloring will happen to have $\varphi(v_1)=\varphi(v_2)$ because $\iota_e(v_1)=\iota_e(v_2).$ Composing with $\iota_e$ and $\iota_e^{-1}$ are inverse operations, so this is indeed a bijection.
+\end{itemize}
+The above casework shows that $\chi_{G\setminus\{e\}}(n)=\chi_G(n)+\chi_{G/e}$ for any integer $n,$ so we are done here. $\blacksquare$
+
+The above functional equation provides another way to prove that $\chi_G$ is a polynomial.
+\begin{proposition}
+    Given a finite graph $G,$ the chromatic polynomial $\chi_G$ is actually a polynomial.
+\end{proposition}
+We prove this by induction on the number of edges of $G.$ If $G$ has no edges, then the number of colorings $G\to[n]$ for a given nonnegative integer $n$ is simply $n^{\#G}$ because each of the $\#G$ vertices can have whatever color they want.
+
+For the inductive step, a graph $G$ with an edge $e\in E(G)$ has chromatic polynomial
+\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]
+But each of $G\setminus\{e\}$ and $G/e$ has at least one fewer edge than $G$ does, so both $\chi_{G\setminus\{e\}}$ and $\chi_{G/e}$ are polynomials by a strong induction hypothesis. It follows $\chi_G$ is a polynomial as well. $\blacksquare$
+
+I think the above proof can show that $\chi_G$ is monic of degree $\#G$ as well, but it requires a bit more work. For example, we can do this by induction, for $G$ with no edges satisfies both of these properties, and then for $G$ with an edge $e,$
+\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]
+The polynomial $\chi_{G\setminus\{e\}}$ is still monic of degree $\#G$ by inductive hypothesis, but $\chi_{G/e}$ is monic of degree $\#G-1,$ so it does not interfere with the leading term. So we are done by induction.
+
+As motivational remark, I will say that the proof that $\chi_G$ is a polynomial by functional equation is probably easier, but I wanted to establish the result from somewhere we already came from, which was posets. And honestly, I can convince myself to care about posets easier than graphs.
+
+\subsubsection{May 19th}
+Today I learned about (undirected) graph orientations. \todo{}
+% def of a graph orientation
+% relate to colorings by the color gradient (compatibility)
+% chromatic polynomial counts the number of strictly compatible colorings/orientation pairs
+
+\subsubsection{May 20th}
+Today I learned some examples of the chromatic polynomial. We take these one at a time. Here are two examples where direct combinatorics is good enough.
+\begin{proposition}
+    The chromatic polynomial for the null graph on $k$ vertices $G$ is $\chi_G(n)=n^k.$
+\end{proposition}
+Well, given $n$ colors, each vertex has $n$ color choices, so multiplying these together gives $\chi_G(n)=n^k.$ This finishes. $\blacksquare$
+
+\begin{proposition}
+    The chromatic polynomial for the complete graph on $k$ vertices $G=K_k$ is $\chi_G(n)=k!\binom nk.$
+\end{proposition}
+Because all vertices are adjacent in the complete graph, all colors must be distinct. Fixing some $n,$ we have to begin by choosing $k$ colors out of the $n,$ of which there are $\binom nk$ ways to do.
+
+After choosing our $k$ colors, the coloring is just a bijection from the $k$ colors to the vertices of $K_k,$ and any bijection will do because all vertices will get their own color. The number of bijections between two $k$-element sets is $k!.$ (This is by induction, or we can say that $1$ has $k$ options, $2$ has $k-1,$ options, and so on.) Multiplying, we get $\binom nk\cdot k!,$ which is what we wanted. $\blacksquare$
+
+We note that we can optimize the above argument by numbering off the vertices of $K_k$ and then saying the first vertex has $n$ options for color, the second has $n-1$ because it can't share the first vertex's color, the third has $n-2$ because it can't be the previous two, and so on. This will multiply to
+\[\prod_{\ell=0}^{k-1}(n-\ell)=k!\binom nk,\]
+which is what we wanted. I chose the above argument because it feels a little more solid to me, and it is more in the spirit of the poset-styled proof that the chromatic polynomial is polynomial.
+
+For the next few graphs, we use the deletion-contraction principle. We recall this briefly.
+\begin{proposition}
+    Given a graph $G$ and an edge $e\in E(G),$ the chromatic polynomial $\chi_\bullet$ satisfies the functional equation
+    \[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]
+\end{proposition}
+We showed this two days ago. The idea is to write this as $\chi_{G\setminus\{e\}}=\chi_G+\chi_{G/e}.$ Now, given $n,$ any $n$-coloring of $\chi_{G\setminus\{e\}}$ either give the endpoints of $e$ different colors, in which case it is a coloring of $G$ in disguise, or it gives the endpoints of $e$ the same colors, in which case it is a coloring of $G/e.$ This casework finishes. $\blacksquare$
+
+We start simple and build.
+\begin{proposition}
+    The chromatic polynomial for any tree on $k$ vertices $G=P_k$ is $\chi_G=n(n-1)^{k-1}.$
+\end{proposition}
+Here is an example of a tree.
+\begin{center}
+    \begin{tikzcd}
+            &                                                                     & \bullet \arrow[ld, no head] \arrow[rrd, no head] &         &                             \\
+            & \bullet \arrow[rd, no head] \arrow[d, no head] \arrow[ldd, no head] &                                                  &         & \bullet \arrow[ld, no head] \\
+            & \bullet                                                             & \bullet                                          & \bullet &                             \\
+    \bullet &                                                                     &                                                  &         &                            
+    \end{tikzcd}
+\end{center}
+For the purposes of the proof, we will need to know that there is a vertex of degree $1$ and that removing this vertex (and edge) keeps the graph of a tree. Well, there is a degree-$1$ vertex (a ``leaf'') because if all vertices have degree at least $2,$ then we have a cycle.
+
+As for connectedness, any path between two vertices not equal to the leaf can be preserved after deleting the leaf because the only way into the leaf is the same way out of the leaf, so a path going through the leaf but not ending at the leaf can have the visit to the leaf deleted entirely. (We are not going to be very rigorous with this.)
+
+Anyways, we prove the statement by induction on $k.$ When $k=1,$ there is only one vertex with no edges, so this is the null graph on $1$ vertex, so $\chi_G(n)=n^1$ from earlier. For the inductive step, we suppose that the statement is true for all trees with $k$ vertices, and we will show it for all trees of $k+1$ vertices. Here is at tree with $k+1$ vertices, named $G.$
+\begin{center}
+    \begin{tikzcd}
+            &                                                                     & \bullet \arrow[ld, no head] \arrow[rrd, no head] &         &                                                      &                                                    \\
+            & \bullet \arrow[rd, no head] \arrow[d, no head] \arrow[ldd, no head] &                                                  &         & \bullet \arrow[ld, no head] \arrow[rd, "e", no head] &                                                    \\
+            & \bullet                                                             & \bullet                                          & \bullet &                                                      & \begin{array}{c}\color{red}\bullet \\ v\end{array} \\
+    \bullet &                                                                     &                                                  &         &                                                      &                                                   
+    \end{tikzcd}
+\end{center}
+Pick a leaf, say the bottom-right leaf, and label it $v$ with its one outgoing edge as $e.$
+
+Now, our functional equation asserts that
+\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e},\]
+so we have to think about $\chi_{G\setminus\{e\}}$ and $\chi_{G/e}.$ Well, we have that $G\setminus\{e\}$ looks like the old graph $G$ with the red vertex $v$ disconnected.
+\begin{center}
+    \begin{tikzcd}
+            &                                                                     & \bullet \arrow[ld, no head] \arrow[rrd, no head] &         &                             &                                                    \\
+            & \bullet \arrow[rd, no head] \arrow[d, no head] \arrow[ldd, no head] &                                                  &         & \bullet \arrow[ld, no head] &                                                    \\
+            & \bullet                                                             & \bullet                                          & \bullet &                             & \begin{array}{cc}\color{red}\bullet \\ v\end{array} \\
+    \bullet &                                                                     &                                                  &         &                             &                                                   
+    \end{tikzcd}
+\end{center}
+The number of ways to color this graph with $n$ colors is the number of ways to first give $v$ some random color and then color the remaining tree with $k+1-1=k$ vertices. (That what remains is s a tree is established above.) By the inductive step, this is $\chi_{G\setminus\{e\}}=n\cdot n(n-1)^{k-1}=n^2(n-1)^{k-1}.$
+
+As for $G/e,$ this is the graph identifying $v$ with its one neighbor, but because $v$ has no other neighbors, this process is exactly the same as deleting $v$ and the edge $e$: the normal process for $G/e$ is to identify the vertices on each side and then adjust each other edge accordingly, but there are no other edges to adjust here! So we get something like the original tree.
+\begin{center}
+    \begin{tikzcd}
+            &                                                                     & \bullet \arrow[ld, no head] \arrow[rrd, no head] &         &                             \\
+            & \bullet \arrow[rd, no head] \arrow[d, no head] \arrow[ldd, no head] &                                                  &         & \bullet \arrow[ld, no head] \\
+            & \bullet                                                             & \bullet                                          & \bullet &                             \\
+    \bullet &                                                                     &                                                  &         &                            
+    \end{tikzcd}
+\end{center}
+The point is that we can say $\chi_{G/e}(n)=n(n-1)^{k-1}.$
+
+Putting this all together, we see that
+\[\chi_G(n)=\chi_{G\setminus\{e\}}(n)-\chi_{G/e}(n)=n^2(n-1)^{k-1}-n(n-1)^{k-1}=n(n-1)^{(k+1)-1},\]
+so we are done here. $\blacksquare$
+
+As an aside, we remark that we can actually choose any edge of the tree in the above proof we want. The point is that $G/e$ will be a tree with one fewer vertex, and $G\setminus\{e\}$ will be two trees which in total have the same number of vertices. So our inductive step looks like
+\[\chi_G(n)=\chi_{G\setminus\{e\}}(n)-\chi_{G/e}(n)=n(n-1)^{a-1}\cdot n(n-1)^{b-1}-n(n-1)^{(k+1-1)-1},\]
+where $a+b=k+1$ corresponds to the number of vertices on each tree. (Note that the number of ways to color a graph with multiple components is the product of the way to color each individual component because components don't communicate.) The above rearranges into
+\[\chi_G(n)=n^2(n-1)^{k-1}-n(n-1)^{k-1}=n(n-1)^{(k+1)-1},\]
+which is what we wanted. However, the above proof requires a strong induction, and it also requires some more sophisticated thought about graph components, both of which are easier if we just use a leaf.
+
+We also remark that we can give a more combinatorial proof of the above result: start somewhere random in the tree, give it one of the $n$ colors, and then progressively look at its neighbors using, say, breadth-first search. Each new vertex we look at will be a neighbor to exactly one of the previously visited vertices and so will have $n-1$ options for color. This gives
+\[\chi_G(n)=n(n-1)^{k-1},\]
+as desired. I didn't give this proof because rigorizing the breadth-first search seems quite painful; however, I mention this here anyways because it is quite intuitive.
+
+Anyways, here's a quick application.
+\begin{proposition}
+    The cycle graph on $k>1$ vertices $G=C_k$ has chromatic polynomial $\chi_G(n)=(n-1)^k+(-1)^k(n-1).$
+\end{proposition}
+Like last time, we use induction on the number of vertices. As our base case, we note that $k=2$ vertices gives $\chi_G(n)=(n-1)^2+(n-1)=n^2-n=n(n-1).$ This is correct because $C_2$ is pretty much two vertices connected by (two) edge(s), so it is $K_2.$
+
+We now proceed with the induction. Suppose the statement is true for $C_k,$ and we will show $G=C_{k+1}.$ We use the functional equation by selecting any edge $e.$ We have that
+\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]
+Being a bit non-rigorous, we note that subtracting an edge of the cycle makes it into a tree with $k+1$ vertices, so $\chi_{G\setminus\{e\}}=n(n-1)^{k+1-1}$ from the previous proposition.
+
+More rigorously, we can label the vertices $\{v_1,\ldots,v_{k+1}\}$ with a connection between $v_\ell$ and $v_{\ell+1\pmod{k+1}}.$ Deleting, say, the edge between $v_1$ and $v_{k+1}$ means that the edges only connect in a directly ascending and descending way, so the only path between $v_a$ and $v_b$ is straight up (if $a<b$) or straight down (if $a>b$).
+
+As for $G/e,$ this is the cycle on $k+1-1$ vertices. Indeed, reusing the labeling in the previous paragraph, we can equivalently choose to mod out by the edge between $v_k$ and $v_{k+1}$ to make a graph on the vertices $\{v_1,\ldots,v_k\}$ with a connection between $v_\ell$ and $v_{\ell+1}$ for $\ell<k$ and an edge between $v_k$ and $v_1.$ This is exactly $C_k.$
+
+Combining all this, we see that
+\[\chi_G(n)=n(n-1)^k-\left((n-1)^k+(-1)^k(n-1)\right).\]
+This rearranges into $\chi_G(n)=(n-1)^{k+1}+(-1)^{k+1}(n-1),$ which is exactly what we wanted. $\blacksquare$
+
+The above is somewhat remarkable because I don't actually know a quick way to prove this result directly, combinatorially. One could remove the phrasing with the use of the tree chromatic polynomial or the functional equation, but I don't know of a non-inductive/non-recursive approach. I might remember something using generating functions, but it isn't terribly direct either.
+
+As some final commentary, we remark that the chromatic polynomial is not unique per graph. The most obvious counterexample we've seen is that all trees on the same number of vertices have the same chromatic polynomial, and there are generally a lot of trees on a given number of vertices.
+
+\subsubsection{May 21st}
+Today I learned the proof of a zero-free region of $\zeta(s),$ modulo some lemmas.\todo{}
+
+\subsubsection{May 22nd}
+Today I learned a few things about infinite descent. Here's our prototypical example.
+\begin{proposition}
+    The equation $a^3+2b^3=4c^3$ has no nonzero integer solutions.
+\end{proposition}
+Fix $(a_0,b_0,c_0)$ any solution, possibly the all-$0$ solution. The trick is to look$\pmod2.$ Indeed,$\pmod2$ says that $a$ is even. Dividing by $2,$ this means that we can write $a_0=2a_1,$ so
+\[4a_1^3+b_0^3=2c_0^3.\]
+Now,$\pmod2$ says that $b_0$ is even, so we can let $b_0=2b_1.$ Then dividing by $2$ implies
+\[2a_1^3+4b_1^3=c_0^3.\]
+So we have that $c_0$ is all even, so we again we write $c_0=2c_1,$ which gives
+\[a_1^3+2b_1^3=4c_1^3.\]
+But this is the original equation! So any solution $(a,b,c)$ can be turned into a smaller solution $(a/2,b/2,c/2).$
+
+There are a few ways to convert this ``compressor'' into the proposition. Here's a fast way. Suppose for the sake of contradiction there is a solution with $|a|+|b|+|c|>0.$ Then let $(a_0,b_0,c_0)$ be a solution minimizing $|a|+|b|+|c|,$ extracted by well-order. But $(a_0/2,b_0/2,c_0/2)$ has
+\[\left|\frac{a_0}2\right|+\left|\frac{b_0}2\right|+\left|\frac{c_0}2\right|<|a_0|+|b_0|+|c_0|,\]
+contradicting minimality of $(a_0,b_0,c_0).$ Thus, all solutions must satisfy $|a|+|b|+|c|=0,$ meaning $(a,b,c)=(0,0,0),$ completing the proof. $\blacksquare$
+
+As a precursor, we provide a way to finish the proposition without using contradiction. The idea is that solutions must be evenly even, but only $0$ is infinitely even. Using the compressor inductively, we can conclude that $\nu_2(a),\nu_2(b),\nu_2(c)$ can be made arbitrarily large. In particular, looking in $\ZZ_2,$ we see that
+\[|a|_2=2^{-\nu_2(a)}\]
+can be made arbitrarily close to $0,$ and similarly for $b$ and $c.$ It follows that we must actually have $|a|_2=|b|_2=|c|_2=0,$ so $a=b=c=0.$
+
+The point of providing this out is to note that our inductive parity argument is ``really'' expanding $\ZZ$ to look at $\ZZ_2,$ and once in $\ZZ_2,$ we can more quickly say that there are no solutions because $\ZZ_2$ has a well-behaved metric.
+
+With this in mind, we are going to prove the following in many ways.
+\begin{proposition}
+    The equation $a^2+4b^4=6c^6$ has no nonzero integer solutions.
+\end{proposition}
+It is possible to attack this by doing descent$\pmod2.$ Suppose $(x,y,z)$ is a solution to the above. Looking$\pmod2,$ we see that $a$ is even, so $(x/2,y,z)$ is a solution to
+\[2a^2+2b^4=3c^6.\]
+Now,$\pmod2$ says that $c$ is even, so $(x/2,y,z/2)$ is a solution to
+\[a^2+b^4=2^5\cdot3c^6.\]
+Here we have to start being clever. If we check$\pmod4,$ we have to squares sum to $0\pmod4,$ so both $a$ and $b$ are even. Thus, $(x/4,y/2,z/2)$ is a solution to
+\[a^2+4b^4=2^3\cdot3c^6.\]
+Checking$\pmod2,$ we see $a$ is even, so $(x/8,y/2,z/2)$ is a solution to
+\[a^2+b^4=2\cdot3c^6,\]
+We can't simply look$\pmod4$ anymore, so this approach looks doomed. But it turns out that$\pmod8$ forces everything here to be even! Indeed, the squares$\pmod8$ are $\{0,1,4\},$ so
+\[\begin{cases}
+    a^2\in\{0,1,4\}, \\
+    b^4\in\{0,1\}, \\
+    6c^6\in\{0,6\}.
+\end{cases}\]
+If $a$ is odd, then $b$ had better be odd as well because $6c^6$ is even, and vice versa by$\pmod2.$ But this fails$\pmod8$ because $a^2+b^4\equiv2\pmod8,$ which isn't an option for $6c^6.$ Otherwise, we are taking $c$ is odd with $b$ is even, which means $a^2\equiv6\pmod8,$ which is still impossible.
+
+Dividing everything by $2,$ $(x/16,y/4,z/4)$ is a solution to
+\[a^2+4b^4=2^5\cdot3c^6.\]
+Now,$\pmod2$ says $a$ is even, so $(x/32,y/4,z/4)$ is a solution to
+\[a^2+b^4=2^3\cdot3c^6.\]
+And here we can look$\pmod4$ again, which means $a$ and $b$ have to be even here, so $(x/64,y/8,z/4)$ is a solution to
+\[a^2+4b^4=6c^6.\]
+But this is our original equation! So every solution $(x,y,z)$ to the original equation induces another solution $(x/64,y/8,z/4).$
+
+Finishing again by contradiction, we can suppose there is a nonzero integer solution to the equation, which lets us pick up $(x_0,y_0,z_0)$ a solution minimizing $|a|+|b|+|c|.$ But then $(x_0/64,y_0/8,z_0/4)$ is also a solution with
+\[\left|\frac{x_0}{64}\right|+\left|\frac{y_0}8\right|+\left|\frac{z_0}4\right|<|x_0|+|y_0|+|z_0|,\]
+contradicting the minimality of $(x_0,y_0,z_0).$ This finishes. $\blacksquare$
+
+If we used the same trick as before to remove the contradiction, we would find there are no nonzero solutions in $\ZZ_2$ either. In fact this is true, and we present a perhaps cleaner proof of this fact using the arithmetic of $\ZZ_2.$
+\begin{lemma}
+    The equation $a^2+4b^4=6c^6$ has no nonzero solutions in $\ZZ_2.$
+\end{lemma}
+To begin, we claim that if any of $a,b,c$ is $0,$ then all of them are $0.$ Indeed, if two are $0,$ then the equation says that $a^2=0$ or $4b^4=0$ or $6c^6=0,$ meaning the third is $0.$ Then we quickly give our casework.
+\begin{itemize}
+    \item If only $a=0,$ then $4b^4=6c^6$ implies that $c=0$ (done) or $3$ is a square in $\QQ_2,$ which is false by$\pmod4.$
+    \item If only $b=0,$ then $a^2=6c^6$ implies that $c=0$ (done) or $6$ is a square in $\QQ_2,$ which is false by$\pmod4$ again.
+    \item If only $c=0,$ then $a^2+4b^4=0$ implies that $b=0$ (done) or $-4$ is a square in $\QQ_2,$ which is false because it implies $-1$ is a square, which breaks$\pmod4.$
+\end{itemize}
+So any nonzero solution to $a^2+4b^4=6c^6$ tells us that all of $a,b,c$ must be nonzero.
+
+The reason we did all of the above is that we can set $a=2^xu,$ $b=2^yv,$ and $c=2^zw$ with $|u|_2=|v|_2=|w|_2=1$ and $x,y,z\in\ZZ.$ (Dealing with some of them equal to $0$ requires $x,y,z\in\ZZ\cup\{\infty\}$.) Plugging this all in, we see that
+\[2^{2x}u^2+2^{4y+2}v^4=3\cdot2^{6z+1}w^6.\]
+If we write out the ultrametric inequality with $|\bullet|_2,$ we see that
+\[2^{-(6z+1)}\le\max\left\{2^{-2x},2^{-(4y+2)}\right\},\]
+and equality holds if $2^{-2x}\ne2^{-(4y+2)}.$ Well, the key step is to see that equality cannot hold because $6z+1$ is odd while both $2x$ and $4y$ are even! So we see $2x=4y+2.$ Plugging this all back in, we see
+\[2^{4y+2}u^2+2^{4y+2}v^4=3\cdot2^{6y+1}w^6,\]
+where we are also told that $6y+1>4y+2.$ Dividing out, we see that
+\[u^2+v^4=3\cdot2^{2(3y-2y+1)+1}w^6.\]
+But now this looks like our equation $a^2+b^4=6c^6$ from earlier, which we know forced everything to be even. Indeed, we can check$\pmod8$ here, but we are told that $u,v,w$ are supposed to be odd, so $u^2,v^4,w^6\equiv1\pmod8,$ which looks like
+\[2\equiv3\cdot2^{2(3y-2y+1)+1}\pmod8.\]
+This is impossible because the power of $2$ on the right is odd, so the right-hand side lives in $\{3,6,0\},$ none of which are $2.$ This completes the proof. $\blacksquare$
+
+Lastly, just to prove a point that descent doesn't always give back the original equation, we present a final descent proof using$\pmod3$ instead, which is cleaner than the$\pmod2$ one.
+\begin{lemma}
+    The equation $a^2+4b^4=6c^6$ has no nonzero solutions in $\ZZ_3.$
+\end{lemma}
+We'll take a different approach than with $\ZZ_2,$ trying to imitate the descent closer. Pick up a (possibly zero) solution $(x,y,z)$ in $\ZZ_3.$ Then if we look$\pmod3,$ we see that
+\[x^2+\left(2y^2\right)^2\equiv0\pmod3.\]
+But the squares$\pmod3$ are $0$ and $1,$ so the only way to sum to $0$ is with $0+0=0.$ In particular, $x$ and $y$ are both divisible by $3,$ so $(x/3,y/3,z)$ is a solution to
+\[3a^2+27\cdot4b^4=2c^6.\]
+If we take$\pmod3$ here, we see that $c$ is divisible by $3,$ so $(x/3,y/3,z/3)$ is a solution to
+\[a^2+9\cdot4b^4=3^6\cdot2c^6.\]
+If we take$\pmod3$ here, we see that $a$ is divisible by $3,$ so $(x/9,y/3,z/3)$ is a solution to
+\[a^2+4b^4=3^3\cdot6c^6.\]
+This looks similar to the original equation!
+
+In particular, the exact same argument as above shows that, given $k\in\NN,$ any solution $(x,y,z)$ to
+\[a^2+4b^4=3^k\cdot6c^6\]
+has all terms divisible by $3$ induces a solution $(x/9,y/3,z/3)$ to $a^2+4b^4=3^{k+3}\cdot6c^6.$ Indeed,$\pmod3$ of the above says $x$ and $y$ are both divisible by $3.$ Then again, we can check$\pmod3$ to get $z$ divisible by $3$ and then $x/3$ divisible by $3,$ in exactly the above way.
+
+Using an inductive argument, we can then say that $\nu_3(x),\nu_3(y),$ and $\nu_3(z)$ are arbitrarily large; I'm not going to be rigorous about this, but we are inducing larger and larger solutions to $a^2+4b^4=3^\bullet\cdot6c^6.$ However, it follows that
+\[|x|_3=|y|_3=|z|_3=0\]
+if their $\nu_3$ are unbounded. Thus, $x=y=z=0,$ finishing. $\blacksquare$
+
+The point of the above presentation is to really connect a descent argument in $\ZZ$ with the descent argument in $\ZZ_3$; we could very much do the same thing in $\ZZ_2,$ but the descent argument$\pmod2$ was a bit involved. Anyways, having proven impossibility with this $3$ times, we call it good enough.
+
+\subsubsection{May 23rd}
+Today I learned some examples of poset M\"obius inversion.\todo{}
+% Boolean lattice
+% number theory using Z under divides
+% I think the proofs are just by brute force showing they satisfy the recurrence + uniqueness
+
+\subsubsection{May 24th}
+Today I learned the proof of the graph coloring combinatorial reciprocity theorem.\todo{}
+% prove the deletion-contraction functional equation: f_G = f_(G/e) + f_(G\e)
+% this is done by restricting colorings with c(v)=c(w) to an acyclic orientation in G/e
+% the others go to G\e; I'm pretty sure there's no overcounting
+% finish by induction on #E(G)
+
+\subsubsection{May 25th}
+Today I learned the proof of some of the lemmas for the zero-free region.\todo{}
+
+\subsubsection{May 26th}
+Today I learned the proof that there are infinitely many primes start with the string $1234,$ from \href{https://math.stackexchange.com/a/61538/869257}{here} Ultimately, this is a size issue: the distance between $1234\cdot10^n$ and $1235\cdot10^n$ is potentially too large to avoid $\pi(n)\sim n/\log n.$ To that end, we show the following.
+\begin{lemma}
+    For any real $\delta>0,$ there exists an $N$ (depending on $\delta$) such that there is a prime in $(n,(1+\delta)n]$ for $n\ge N.$
+\end{lemma}
+This is a generalization of Bertrand's postulate (which is $\delta=1$), so we kill it with the prime number theorem machinery that kills Bertrand's postulate. Starting from the top, we want to be sure that, for sufficiently large $n,$
+\[\pi((1+\delta)n)\stackrel?>\pi(n).\]
+We would like to use the prime number theorem to estimate $\pi(n)\sim n/\log n,$ but of course this is continuous while the above is discrete. So the inequality we actually will attack is
+\[\pi((1+\delta)n)\stackrel?\ge\pi(n)+1.\]
+Because $\pi$ is discrete, this is equivalent to the earlier one, but now we can more readily make things discrete.
+
+The prime number theorem is what moves things to continuous; we know
+\[\lim_{n\to\infty}\frac{\pi(n)}{n/\log n}=1.\]
+The problem using with this statement is that it is relatively ineffective: we have a rough estimate of the number of primes, but we need to be sure a prime exists for our lemma. To make this effective, we use the definition of a limit: take $\varepsilon>0$ small (fixed later) so that we can pick up $N$ so that $n\ge N$ implies
+\[1+\varepsilon>\frac{\pi(n)}{n/\log n}>1-\varepsilon.\]
+This is an estimate we can use! Namely, $n\ge N$ also has $(1+\delta)n\ge N,$ so we can say
+\[\pi((1+\delta)n)>(1-\varepsilon)\frac{(1+\delta)n}{\log((1+\delta)n)},\]
+and similarly $(1+\varepsilon)\frac n{\log((1+\delta)n)}>(1+\varepsilon)\frac n{\log(n)}>\pi(n).$ Now, to prove the inequality of interest, it suffices for
+\[(1-\varepsilon)\frac{(1+\delta)n}{\log((1+\delta)n)}\stackrel?\ge(1+\varepsilon)\frac n{\log((1+\delta)n)}+1.\]
+We remark here that we have made the denominators equal so that the expansion is less painful. In particular, we now need
+\[(1-\varepsilon)(1+\delta)n-(1+\varepsilon)n\stackrel?\ge\log((1+\delta)n).\]
+Now, $(1-\varepsilon)(1+\delta)-(1+\varepsilon)$ simplifies to $\delta-(2+\delta)\varepsilon,$ so we can set $\varepsilon:=\frac12\cdot\frac{\delta}{2+\delta}$ so that $\delta-(2+\delta)\varepsilon=:\varepsilon_0$ is some positive constant. Thus, we have left to show
+\[\varepsilon_0n\stackrel?\ge\log((1+\delta)n).\]
+The right-hand side is linear while the left-hand is logarithmic, so this inequality will hold for sufficiently large $n.$ For example, we can say that
+\[e^{\varepsilon_0n}=\sum_{k=0}^\infty\frac{(\varepsilon_0n)^k}{k!}>\frac12\varepsilon_0^2n^2\]
+is greater than $(1+\delta)n$ for $n>2(1+\delta)/\varepsilon_0^2.$ This completes the proof. $\blacksquare$
+
+We quickly remark that the above proof can also tell us that there are $2$ primes in the desired range by simply making the desired inequality $\pi((1+\delta)n)>\pi(n)+2.$ Nothing in the proof changes except now we need
+\[\varepsilon_0n>2\log((1+\delta)n),\]
+which still holds, albeit for a larger ``sufficiently large $n.$''
+
+This quickly translates into the desired result.
+\begin{proposition}
+    Given any string of $\ell$ base-$b$ digits $B:=\overline{b_1b_2\cdots b_\ell},$ there are infinitely many primes with base-$b$ prefix $B.$
+\end{proposition}
+The integers with base-$b$ prefix $B$ are those $n$ for which there exists a nonnegative integer $k$ such that
+\[n\in\left[Bb^k,(B+1)b^k\right).\]
+Thus, we are requiring the existence of primes in $\left[Bb^k,(B+1)b^k\right).$ The key observation is that this actually requiring a primes in
+\[\left[Bb^k,\frac{B+1}B\cdot Bb^k\right).\]
+Because $Bb^k$ and $\frac{B+1}BBb^k$ are not prime for $k>2$ (they're divisible by $b^2$) it suffices to find primes in $\left(Bb^k,\frac{B+1}B\cdot Bb^k\right],$ for which the lemma applies. Namely, there will always be a prime for sufficiently large $Bb^k,$ which means there will always be a prime for sufficiently large $k.$ This finishes. $\blacksquare$
+
+The usual tricks to prove Bertrand's postulate without the Prime number theorem probably still work, but I suspect that they will be a lot less effective because the $1+\delta$ bound is potentially quite unforgiving. In the given proof, I don't have to keep track of subtle bounds, but I fear that we might if we try to use Chebychev's bounds or similar.
+
+\subsubsection{May 27th}
+Today I learned that the intersection of all prime ideals in a ring is set the of nilpotent elements, from Undergraduate Commutative Algebra. Here is our main character.
+\begin{definition}
+    An element $a$ of a ring $R$ is said to be nilpotent if and only if there exists a positive integer $n$ such that $a^n=0.$ The set of all nilpotent elements is the nilradical, denoted $\op{nilrad}R.$
+\end{definition}
+It turns out there is in fact a slightly more general concept, the radical of an ideal.
+\begin{definition}
+    Fix a ring $R$ and ideal $I\subseteq R.$ We define
+    \[\op{rad}I:=\left\{r\in R:r^n\in I\text{ for some }n\in\NN\right\}.\]
+\end{definition}
+In particular, because $I=\{0\}$ is an ideal, we can think $\op{nilrad}R=\op{rad}(0).$
+
+Very quickly, we note that the radical is an ideal.
+\begin{proposition}
+    Given a ring $R$ and ideal $I\subseteq R,$ $\op{rad}I$ is an ideal.
+\end{proposition}
+We have to show that, for any $r\in R,$ we have $r\op{rad}I\subseteq\op{rad}I$; and for any $a,b\in\op{rad}I,$ we have $a+b\in\op{rad}I.$ We can actually just combine this to show that, for $a,b\in\op{rad}I$ and coefficients $r,s\in R,$ we have $ra+sb\in\op{rad}I.$
+
+Well, because $a,b\in\op{rad}I,$ we can find positive integers $n,m$ such that $a^n,b^m\in I.$ Looking at $ra+sb,$ we use the binomial theorem to say
+\[(ra+sb)^{n+m}=\sum_{k=0}^{n+m}\binom{n+m}k(ra)^k(sb)^{n+m-k}.\]
+We claim that this is in $I$ because all of its terms are in $I.$ Indeed, if $k\ge n,$ then $a^k\in I,$ so $\binom{n+m}r^k(sb)^{n+m-k}a^k\in I.$ And if $k\le n,$ then $n+m-k\ge m,$ so $b^k\in I$ and $\binom{n+m}k(ar)^ks^{n+m-k}b^{n+m-k}\in I.$ It follows $ra+sb\in\op{rad}I,$ finishing. $\blacksquare$
+
+Anyways, our main claim is the following.
+\begin{proposition}
+    Fix a ring $R$ and ideal $I\subseteq R,$ we have
+    \[\op{rad}I=\bigcap_{\substack{\mf p\in\op{Spec}R\\\mf p\supseteq I}}\mf p.\]
+    Here, we note an empty intersection means $\op{rad}I=R.$
+\end{proposition}
+To provide more words to the empty intersection case, we note that we're actually going to show
+\[\op{rad}I=\{a\in R:a\in\mf p\text{ for all primes }\mf p\supseteq I\},\]
+so the lack of primes $\mf p\supseteq I$ (such as when $I=R$) does indeed give $\op{rad}I=R.$
+
+In one direction, pick up any $a\in\op{rad}I$ so that $a^n\in I$ for some $n\in\NN$ and any prime $\mf p\supseteq I.$ Then note
+\[\underbrace{a\cdot a\cdot\ldots\cdot a}_{n\text{ times}}\in I\subseteq\mf p\]
+implies that $a\in\mf p.$ So indeed, $\op{rad}I\subseteq\mf p$ for any prime $\mf p\supseteq I.$
+
+The other direction requires more care. We show the contrapositive: if an $a\in R$ has $S:=\left\{1,a,a^2,\ldots\right\}$ disjoint from $I,$ then we can find a prime $\mf p\in\op{Spec}R$ containing $I$ but not $a.$ This establishes that
+\[R\setminus\op{rad}I\subseteq\bigcup_{\mf p\supseteq I}R\setminus\mf p,\]
+which does indeed give the other needed inclusion after taking complements. To show this, we note $S$ is a multiplicative subset of $R$ (any $a^k,a^\ell\in S$ has $a^k\cdot a^\ell=a^{k+\ell}\in S$), so we claim stronger.
+\begin{lemma}
+    Fix a ring $R$ and multiplicative subset $S$ and ideal $I$ disjoint from $S.$ Then we can expand $I$ into a prime $\mf p$ containing $I$ but disjoint from $S.$
+\end{lemma}
+I have isolated out this lemma because it requires the axiom of choice, more specifically Zorn's lemma.
+
+Our construction will be an ideal $\mf p$ maximal among ideals containing $I$ but disjoint from $S,$ and to construct we use Zorn's lemma. It is not obvious that this $\mf p$ is prime, but we will show this later. As promised, our partially ordered set will be
+\[\Omega:=\{\text{ideals }J\subseteq R:I\supseteq J\text{ and }J\cap S=\emp\},\]
+partially ordered by $\subseteq.$ To show the hypothesis of Zorn's lemma, suppose we have a nonempty ascending chain $\{J_\alpha\}_{\alpha\in\lambda}$ of ideals in $\Omega.$ Then we claim that
+\[J:=\bigcup_{\alpha\in\lambda}J_\alpha\]
+is an upper bound in $\Omega.$ Certainly each $J_\alpha$ is a subset of $J,$ so it is an upper bound. To show that $J\in\Omega,$ we note we can pick up some $J_\alpha\in\{J_\alpha\}_{\alpha\in\lambda}$ so that $I\subseteq J_\alpha\subseteq J.$ Further, any $j\in J$ lives in some $J_\alpha\in\{J_\alpha\}_{\alpha\in\lambda}$ and $J_\alpha\cap S=\emp,$ implying $j\not\in S,$ so it follows $J\cap S=\emp.$
+
+It remains to actually check that $J$ is an ideal to satisfy the hypothesis of Zorn's lemma. Well, as before, it suffices to pick up $r,s\in R$ and $j,k\in J$ and show that $rj+sk\in J.$ We can find $\alpha$ and $\beta$ such that $j\in J_\alpha$ and $k\in J_\beta$ for $J_\alpha,J_\beta\in\{J_\alpha\}_{\alpha\in\lambda}$; without loss of generality $J_\beta\subseteq J_\alpha$ by the chain condition. It follows
+\[rj+sk\in J_\alpha\subseteq J\]
+because $J_\alpha$ is an ideal.
+
+Thus, we have finished establishing that each nonempty ascending chain in $\Omega$ has an upper bound, so let $\mf p$ be a maximal element by Zorn's lemma. It remains to show that $\mf p$ is prime. We do this by contraposition: suppose $a_1,a_2\notin\mf p,$ and we show $a_1a_2\notin\mf p.$
+
+The main trick is to use the maximality of $\mf p$ by noting that the ideals $\mf p+(a_1)$ and $\mf p+(a_2)$ are both strictly larger than $\mf p$ while being ideals containing $I,$ so they must intersect with $S.$ We fix $s_1=p_1+a_1r_1$ and $s_2=p_2+a_2r_2$ with $s_1,s_2\in S$ and $r_1,r_2\in R.$ Then $S$ also contains
+\[s_1s_2=(p_1+a_1r_1)(p_2+a_2r_2)=\underbrace{p_1p_2+p_1a_2r_2+p_2a_1r_1}_{\in\mf p}+a_1a_2r_1r_2.\]
+We know $s_1s_2$ cannot live in $\mf p,$ so to keep this expression outside of $\mf p,$ we had better have $a_1a_2r_1r_2$ outside of $\mf p,$ so $a_1a_2$ is outside of $\mf p$ as well. This finishes. $\blacksquare$
+
+As a brief aside, we mention that we cannot simply choose $R\setminus S$ as our prime ideal in the above lemma because $R\setminus S$ might not even be an ideal! For example, $\ZZ\setminus\{1,2,4,8,\ldots\}$ contains $3$ and $5$ and therefore $2\cdot3-5=1,$ so the ideal generated by these elements is all of $\ZZ.$
+
+Anyways, we are now pretty much done with the proposition, as suggested. We have $S=\langle a,\times\rangle$ a multiplicative set disjoint from the ideal $I,$ so we can find $\mf p$ not containing anything in $S$ (and therefore not containing $a$), so
+\[\bigcap_{\mf p\supseteq I}\mf p\]
+can only contain elements for which $I\cap\left\{1,a,a^2,\ldots\right\}$ is nonempty; i.e., $a\in\op{rad}I.$ This finishes. $\blacksquare$
+
+Because all ideals at least contain $(0),$ we can apply the above proposition to say
+\[\op{nilrad}A=\op{rad}(0)=\bigcap_{\substack{\mf p\in\op{Spec}A\\\mf p\supseteq(0)}}\mf p=\bigcap_{\mf p\in\op{Spec}A}\mf p.\]
+This is cute, so we call it here.
+
+\subsubsection{May 28th}
+Today I learned some background and analogues of the near-miss identity $e^\pi-\pi\approx20,$ from \href{https://mathoverflow.net/questions/131528#comment339695_131557}{here}. We begin with the functional equation for $\Theta,$ which we showed a while back in the proof of the functional equation for $\zeta.$ Because it is important for the discussion, we will outline its proof.
+\begin{proposition}
+    Let $\Theta(t):=\sum_{n\in\ZZ}e^{-\pi n^2t}.$ Then $\Theta(t)=t^{-1/2}\Theta(1/t).$
+\end{proposition}
+This follows from the Poisson summation formula. Namely, given (say, Shwartz) $f:\CC\to\CC,$ we can say that
+\[\sum_{n\in\ZZ}f(n)=\sum_{n\in\ZZ}\hat f(n).\]
+With this in mind, we should take $t$ constant and let $f(n):=e^{-\pi n^2t}.$ We know that the Fourier transform of $g(x)=e^{-\pi x^2}$ is itself (say, due to all of that work with Gaussians from Tate's thesis). Then
+\[\hat f(y)=\int_\RR e^{-\pi x^2t}e^{-2\pi ixy}\,dx=\int_\RR e^{-\pi(x\sqrt t)^2}e^{-2\pi i(x\sqrt t)(y/\sqrt t)}\,\frac{d(x\sqrt t)}{\sqrt t}\]
+after a change of coordinates. However, this latter integral is simply $\hat f(y)=t^{-1/2}\hat g(y/\sqrt t),$ so we see that
+\[\hat f(n)=t^{-1/2}e^{-\pi n^2/t}.\]
+Plugging into the Poisson summation formula, this collapses into
+\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}=\sum_{n\in\ZZ}t^{-1/2}e^{-\pi n^2/t}=t^{-1/2}\Theta(1/t),\]
+which is what we wanted. $\blacksquare$
+
+This is not exactly the identity we are going to use in our discussion. Instead, we look at
+\[\sum_{n\in\ZZ}e^{-\pi n^2t}=\sum_{n\in\ZZ}t^{-1/2}e^{-\pi n^2/t}\]
+and take the derivative with respect to $t$ in order to introduce $\pi$ terms outside of the exponent. We need these if we have hope of talking about $e^\pi-\pi.$ I am not going to concern myself too much with proving that $\Theta$ is in fact holomorphic over $t>0,$ but it is. We get
+\[\sum_{n\in\ZZ}-\pi n^2e^{-\pi n^2t}=\sum_{n\in\ZZ}\left(t^{-1/2}e^{-\pi n^2/t}\cdot-\pi n^2\cdot-t^{-2}+-\frac12t^{-3/2}e^{-\pi n^2/t}\right).\]
+We remark here that both these sums are bounded absolutely by the geometric series $e^{-n},$ so we may rearrange as we please. (I think this also gives us uniform convergence, making the derivative safe.) There are a lot of random $t$s floating around, so now we just throw $t=1$ at the problem to make it go away. Simplifying a bit,
+\[\sum_{n\in\ZZ}-\pi n^2e^{-\pi n^2}=\sum_{n\in\ZZ}\left(\pi n^2e^{-\pi n^2}-\frac12e^{-\pi n^2}\right).\]
+At this point, we could extract the leading terms and simplify into $e^\pi-\pi\approx20,$ but we will simplify the series a bit more to be able to more easily generalize.
+
+Absolute convergence lets us rearrange terms as we please, so we split up the sum into
+\[\sum_{n\in\ZZ}-\pi n^2e^{-\pi n^2}=\sum_{n\in\ZZ}\pi n^2e^{-\pi n^2}-\sum_{n\in\ZZ}\frac12e^{-\pi n^2},\]
+remark that all sums still absolutely converge (bounded by geometric series again), and we rearrange this into
+\[\sum_{n\in\ZZ}2\pi n^2e^{-\pi n^2}=\sum_{n\in\ZZ}\frac12e^{-\pi n^2}.\]
+Doubling,
+\[\sum_{n\in\ZZ}4\pi n^2e^{-\pi n^2}=\sum_{n\in\ZZ}e^{-\pi n^2}.\]
+These functions are even, so we extract $n=0$ and turn this into a sum over $n\ge1,$ which looks like
+\[\sum_{n=1}^\infty8\pi n^2e^{-\pi n^2}=1+\sum_{n=1}^\infty2e^{-\pi n^2}.\]
+We record this identity as our starting point.
+\begin{lemma}
+    We have that
+    \[\sum_{n=1}^\infty\left(8\pi n^2-2\right)e^{-\pi n^2}=1.\]
+\end{lemma}
+This follows from the above discussion, after subtracting, which is legal by the absolute convergence. $\blacksquare$
+
+Being a bit brazen, we say that this infinite series converges very fast (even faster than geometric), so we can estimate by just extracting the leading term as
+\[(8\pi-2)e^{-\pi}\approx1.\]
+Rearranging, we see $e^\pi\approx8\pi-2.$ This has a numerical error of about $0.00795.$ Then adding in the estimate $7\pi\approx22,$ which happens to move the error in the opposite direction, we get $e^\pi\approx\pi+20.$ This has an error of about $0.00090.$
+
+But of course, we can include more than just the leading term to do much better. The first two terms give
+\[(8\pi-2)e^{-\pi}+(32\pi-2)e^{-4\pi}\approx1.\]
+If we want identities which look pretty, we can rearrange this into
+\[e^{4\pi}-(8\pi-2)e^{3\pi}\approx32\pi-2.\]
+The error here is $0.000033.$ Generalizing a bit, let's bound the error in general.
+\begin{lemma}
+    We have that, for fixed $m,$
+    \[0<1-\sum_{n=1}^m\left(8\pi n^2-2\right)e^{-\pi n^2}-1<\frac{8\pi}{\left(1-e^{-\pi}\right)^2}\cdot(m+1)^2e^{-\pi(m+1)^2}.\]
+\end{lemma}
+In light of the previous lemma, we are left to estimate
+\[E:=\sum_{n=m+1}^\infty(8\pi n-2)e^{-\pi n^2}.\]
+This is positive because it has all positive terms. Now, because we expect this series to very rapidly converge, most of its damage is being done by the first term. So we very brazenly bound this by a normal arithmetic-geometric series as
+\[E<8\pi\underbrace{\sum_{n=(m+1)^2}^\infty ne^{-\pi n}}_S.\]
+Looking at the series alone, we can extract the leading term and then rearrange to
+\[S=(m+1)^2e^{-\pi(m+1)^2}+\sum_{n=(m+1)^2}(n+1)e^{-\pi n}.\]
+The series present in $S$ is now $e^{-\pi}S$ plus $e^{-\pi}\sum_{n=(m+1)^2}^\infty e^{-\pi n},$ which is purely geometric. Bringing everything together, our error is bounded by
+\[E<8\pi\cdot\frac1{1-e^{-\pi}}\left((m+1)^2e^{-\pi(m+1)^2}+e^{-\pi}\cdot\frac{e^{-\pi(m+1)^2}}{1-e^{-\pi}}\right).\]
+Factoring things out from the complicated part, this is
+\[E<\frac{8\pi}{\left(1-e^{-\pi}\right)^2}\cdot e^{-\pi(m+1)^2}\left(\left(1-e^{-\pi}\right)(m+1)^2+e^{-\pi}\right).\]
+The subtraction by $e^{-\pi}(m+1)^2$ far outweighs adding $e^{-\pi},$ so we will just get rid of both to bound above as
+\[E<\frac{8\pi}{\left(1-e^{-\pi}\right)^2}\cdot(m+1)^2e^{-\pi(m+1)^2}.\]
+This is what we wanted. $\blacksquare$
+
+Numerically, we can further bound as $\frac{8\pi}{\left(1-e^{-\pi}\right)^2}<30$ by writing
+\[\frac{8\pi}{\left(1-e^{-\pi}\right)^2}<\frac{8\pi}{\left(1-2.5^{-3}\right)^2}=\frac{8\pi\cdot125^{2}}{\left(125-8\right)^2}<\frac{8\pi\cdot125^2}{115^2}=\frac{8\pi\cdot25^2}{23^2}.\]
+We want to show that this is less than $30,$ so using $\pi<22/7,$ it suffices to show that $8\cdot22\cdot25^2<7\cdot23^2\cdot30.$ This simplifies to $110000<111090,$ so we are safe. For reference, the actual value is $27.454.$
+
+Further, we can bound $e^{-\pi}<20^{-1}$ because it is equivalent to $e^\pi>20.$ We could assert that $e^\pi-\pi\approx20$ is close enough to give this inequality from the bounds above, but we'll do this directly. It is enough to show that
+\[\left(\frac83\right)^{3.125}>20.\]
+The fact we're using $e>8/3$ and $\pi>3.125$ should be an indicator that this is somewhat sharp. Taking both sides to the $8$th power means we have to show
+\[8^{25}>20^8\cdot3^{25}.\]
+The key estimate that makes this approach workable is that $3^5=243<256=2^8.$ Thus, $2^{40}>3^{25},$ so it suffices to show that
+\[8^{25}>20^8\cdot2^{40}.\]
+Now, $2^{10}=1024>1000=10^3$ means that $10<2^{10/3}.$ So we note that we have $75$ powers of $2$ on the left-hand side and less than $8+8\cdot10/3+40=224/3.$ So we make it by the skin of our teeth.
+
+We can put this all together into the following lemma.
+\begin{lemma}
+    We have that, for fixed $m,$
+    \[0<1-\sum_{n=1}^m\left(8\pi n^2-2\right)e^{-\pi n^2}<30(m+1)^2\cdot20^{-(m+1)^2}.\]
+\end{lemma}
+This follows from plugging in the above estimates into the previous lemma. $\blacksquare$
+
+We are not actually going to use the lemma directly. But we have formally proved that $(8\pi-2)e^{-\pi}\lessapprox1$ within $30\cdot4\cdot20^{-4}=0.00075.$ However, we are more interested in the error for
+\[e^\pi-(8\pi-2)=e^\pi\left(1-(8\pi-2)e^{-\pi}\right)<e^\pi\cdot30\cdot4\cdot e^{-4\pi}.\]
+So our error bound here is $120e^{-3\pi}<120/20^3=0.015.$ The actual error $0.00795,$ so our estimates were fairly good.
+
+We note that we in fact know $e^\pi$ is greater ($(8\pi-2)e^{-\pi}<1$), so we are allowed to subtract the error from substituting $7\pi\lessapprox22$ (roughly speaking), so the total error for $e^\pi\lessapprox\pi+20$ is still bounded by $0.015.$ The actual error is about two orders of magnitude less than this, but I think it is a numerical coincidence that the $7\pi\lessapprox22$ error is pretty close to the $e^\pi\gtrapprox8\pi-2$ error.
+
+As an aside, we remark that knowing $e^\pi\approx8\pi-2$ within $0.015$ can actually beef up our estimate $e^{-\pi}<20^{-1},$ but we will continue using $20$ because it makes the base-$10$ decimals look prettier.
+
+Anyways, the real reason we have done this is to be able to say the error of
+\[(8\pi-2)e^{-\pi}+(32\pi-2)e^{-4\pi}\lessapprox1\]
+is within $30\cdot9\cdot20^{-9}=27\cdot2^{-9}\cdot10^{-8}.$ If we say $\frac{27}{2^9}<\frac{32}{2^9}=\frac1{16},$ then the error is within $6.25\cdot10^{-10}.$ The actual error is $1.17\cdot10^{-10},$ so we're still doing okay. As we add more terms, we'll do worse by the nature of our estimates, but it rapidly goes to $0$ anyways.
+
+For the prettier identity multiplied by $e^{4\pi},$ we'll just do the general case.
+\begin{proposition}
+    We have that, for fixed $m,$
+    \[0<e^{m^2\pi}-\sum_{n=1}^m\left(8\pi n^2-2\right)e^{\left(m^2-n^2\right)\pi}<30(m+1)^2\cdot20^{-(2m+1)}.\]
+\end{proposition}
+Factoring out $e^{m^2\pi},$ we have to bound
+\[e^{m^2\pi}\left(1-\sum_{n=1}^m\left(8\pi n^2-2\right)e^{-\pi n^2}\right).\]
+Our main bounding lemma now finishes: this is surely positive, and we can upper-bound the error by
+\[e^{\pi m^2}\cdot\frac{8\pi}{\left(1-e^{-\pi}\right)^2}\cdot(m+1)^2e^{-\pi(m+1)^2}.\]
+The exponent of $e^{-\pi}$ turns into $e^{-\pi(2m+1)}$ because $(m+1)^2-m^2=2m+1.$ Now we are done by plugging our estimates for $\frac{8\pi}{\left(1-e^{-\pi}\right)^2}$ and $e^{-\pi}.$ $\blacksquare$
+
+Thus, we can say that the error of
+\[e^{4\pi}-(8\pi-2)e^{3\pi}\lessapprox32\pi-2\]
+is within $30\cdot9\cdot20^{-5}=\frac{27}{2^5}\cdot10^{-4}<10^{-4}$; the actual error is roughly $0.000034.$ This is pretty good, and we know that the error will decrease exponentially (roughly) as we add more terms to these identities, which is doubly impressive considering that the numbers in the identifies are getting larger.
+
+\subsubsection{May 29th}
+Today I learned a heuristic reason why $\pi^2\approx10,$ from \href{http://people.math.harvard.edu/~elkies/Misc/pi10.pdf}{Noam Elkies}. The main idea is to take the Basel problem
+\[\frac{\pi^2}6=\zeta(2)=\sum_{n=1}^\infty\frac1{n^2},\]
+and we will try to extract some terms from the sum and bound its later terms simultaneously. Indeed, the key trick is to write to make the later part of the sum telescoping. The way that Noam Elkies does this is by writing
+\[\sum_{n=1}^\infty\frac1{n^2}=1+\sum_{n=2}^\infty\frac1{n^2}\lessapprox1+\sum_{n=2}^\infty\frac4{4n^2-1}.\]
+Now, the latter sum telescopes as
+\[\sum_{n=2}^\infty\frac2{4n^2-1}=\sum_{n=2}\left(\frac1{2n-1}-\frac1{2n+1}\right)=\frac13.\]
+So in total, we get that $\frac{\pi^2}6\lessapprox1+2\cdot\frac13=\frac53,$ so $\pi^2\lessapprox10.$
+
+Bounding the error term, we can see that
+\[\frac53-\frac{\pi^2}6=\sum_{n=2}^\infty\left(\frac4{4n^2-1}-\frac1{n^2}\right)=\sum_{n=2}^\infty\frac1{n^2\left(4n^2-1\right)}.\]
+This sum at least aesthetically looks very small because it is on the order of $n^{-4}.$ Our only not-clever tool to estimate a sum like this is integral comparison, but integral comparison is very unforgiving to leading terms. So we extract out the leading term $\frac1{60}$ and then bound the remaining terms by noting $n\ge3$ means $4n^2-1\ge\frac{35}9n^2.$ In symbols,
+\[\sum_{n=2}^\infty\frac1{n^2\left(4n^2-1\right)}\le\frac1{60}+\sum_{n=3}^\infty\frac1{n^2\cdot\frac{35}9n^2}.\]
+Bounding the sum as an integral (it's strictly decreasing), we see
+\[\sum_{n=3}^\infty\frac1{n^4}<\int_2^\infty x^{-4}\,dx=\frac{2^{-3}}3=\frac1{24}.\]
+So our error is bounded by
+\[\frac1{60}+\frac9{35}\cdot\frac1{24}=\frac{14+9}{840}=\frac{23}{840}.\]
+Numerically, this is approximately $0.02738.$ For a more explicit bound, it is less than $\frac3{100}$ because $2300=23\cdot100<3\cdot840=2520.$ So we have the following.
+\begin{proposition}
+    We have that $\pi^2\lessapprox10$ within $0.18.$
+\end{proposition}
+The above discussion tells us $\frac{\pi^2}6\lessapprox\frac53$ within $0.03.$ It follows that $\pi^2\lessapprox10$ within $6\cdot0.03\approx0.18.$ The actual error is about $0.13.$ $\blacksquare$
+
+The magical thing about the above is that we cleanly bounded the sum by comparing it to a telescope, and this got us good bounds. Note that this is basically the same thing as doing series acceleration with $\sum_n\frac4{4n^2-1},$ but it is impressive that it works this well.
+
+To give a feeling for how magical this is, we cannot do the same thing with $\frac9{9n^2-1}$ despite the partial fractions because the series does not telescope. However, we can do series acceleration with $\frac1{n^2-1}$ (the more standard friend) anyways. Because this is a bit worse, we need to extract $1+\frac14$ to get the desired estimate, which looks like
+\[\sum_{n=1}^\infty\frac1{n^2}\lessapprox1+\frac14+\sum_{n=3}^\infty\frac1{n^2-1}.\]
+As usual, the sum over $\frac1{n^2-1}$ telescopes as
+\[\sum_{n=3}^\infty\frac1{n^2-1}=\sum_{n=3}^\infty\left(\frac1{n-1}-\frac1{n+1}\right)=\frac12+\frac13.\]
+So in total, we get that $\frac{\pi^2}6\lessapprox1+\frac14+\frac56=\frac53.$ And it follows that $\pi^2\lessapprox10.$ As for the error term, we can again take the difference to find it is
+\[\sum_{n=3}^\infty\left(\frac1{n^2-1}-\frac1{n^2}\right)=\sum_{n=3}^\infty\frac1{n^2\left(n^2-1\right)}.\]
+If we do the same thing we did last time, taking the leading term $\frac1{72}$ and then bounding the rest with an integral, we get an error term of $0.02705,$ which isn't much better than last time. We can take out a few more terms to do better, however, writing
+\[\sum_{n=3}^\infty\frac1{n^2\left(n^2-1\right)}=\frac1{9\cdot8}+\frac1{16\cdot15}+\sum_{n=5}^\infty\frac1{n^2\left(n^2-1\right)}.\]
+Now, for $n\ge5,$ we have $n^2-1\ge\frac{24}{25}n^2,$ so we may bound
+\[\sum_{n=5}^\infty\frac1{n^2\left(n^2-1\right)}\le\frac{25}{24}\sum_{n=5}^\infty\frac1{n^4}.\]
+Bounding the sum as an integral, we see
+\[\sum_{n=5}^\infty\frac1{n^4}<\int_4^\infty x^{-4}\,dx=\frac{4^{-3}}3.\]
+So in total, our error is bounded by
+\[\frac1{9\cdot8}+\frac1{16\cdot15}+\frac{25}{24}\cdot\frac1{3\cdot64}.\]
+This fraction simplifies to $\frac{64\cdot5+3\cdot32+25\cdot5}{9\cdot512\cdot5},$ which is $\frac{320+96+125}{9\cdot2560},$ or simply $\frac{541}{23040}.$ Numerically, this is roughly $0.02348,$ but we can show it is less than $\frac1{40}$ because $40\cdot541=21640<23040.$ This gives the following.
+\begin{proposition}
+    We have that $\pi^2\lessapprox10$ within $0.15.$
+\end{proposition}
+The above work tells us that $\frac{pi^2}6\lessapprox\frac53$ with an error bounded by $\frac1{40}=0.025.$ Multiplying by $6,$ we see $\pi^2\lessapprox10$ within $0.025\cdot6=0.15.$ This finishes. $\blacksquare$
+
+Of course, we could take out even more terms to get better estimates of the error term. And we can also get better estimates of $\pi^2$ by taking our more terms from the sum. For example, we can check that
+\[\pi^2<6\left(1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}+\sum_{n=5}^{1000}\frac{1}{n^{2}-1}\right)<9.9.\]
+I'm not going to estimate the error term here.
+
+\subsubsection{May 30th}
+Today I learned about Euler's continued fraction formula, from the \href{https://en.wikipedia.org/wiki/Euler's_continued_fraction_formula}{Wikipedia} page. The following is the statement.
+\begin{theorem}
+    Suppose $\{a_k\}_{k=1}^n$ is a sequence of elements in a (say) characteristic-$0$ field. Then the generalized continued fraction
+    \[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}}\]
+    is equal to $a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1\cdots a_n.$
+\end{theorem}
+We will present two inductive proofs of this identity, from two separate ideas. To start, our base case is $n=0,$ for which the statement is $\frac{a_0}1=a_0,$ and there is nothing more to prove.
+
+The first idea for the inductive step is to substitute into $a_n$ to make $a_{n+1}$ appear. Looking at the sequence sum answer, we expect that the substitution $a_n\mapsto a_n(1+a_{n+1})$ will do the trick, for
+\[\sum_{k=0}^n\prod_{\ell=0}^ka_\ell=\left(\sum_{k=0}^{n-1}a_\ell\right)+a_0\cdots a_n\]
+becomes
+\[\left(\sum_{k=0}^{n-1}a_\ell\right)+a_0\cdots a_{n-1}(a_n+a_{n+1})=\sum_{k=0}^{n+1}\prod_{\ell=0}^ka_\ell\]
+after distributing. This is the desired answer, so it remains to manipulate the generalized continued fraction. The only part with a $a_n$ is the fraction $\frac{a_n}{1+a_n},$ so that it our focus. To start, we see
+\[\frac{a_n}{1+a_n}\mapsto\frac{a_n(1+a_{n+1})}{1+a_n(1+a_{n+1})}.\]
+Dividing, this fraction is
+\[\frac{a_n}{a_n+\frac1{1+a_{n+1}}}.\]
+To get the needed minus sign, we note that $\frac1{a_{n+1}}=1-\frac{a_{n+1}}{1+a_{n+1}}.$ So in total, we see that the entire fraction
+\[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}}\]
+becomes
+\[\dfrac{a_0}{1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}}},\]
+which completes the inducitve step. $\blacksquare$
+
+The second idea for the inductive step is to wrap around the outside of the generalized continued fraction. However, the outside is not very inductive, so we simplify it a bit. Dividing by $a_0$ and taking the reciprocal ($a_0=0$ gives nothing to prove), it suffices to show that
+\[1-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]
+is equal to $(1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n)^{-1}.$ To finish making the outer layers look like inner ones, we add $a_0$ so that it suffices to show
+\[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]
+is equal to $\frac{a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_n}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n}.$ This is more conducive to induction by adding a layer to the outside, so we prove it.
+\begin{lemma}
+    Suppose $\{a_k\}_{k=1}^n$ is a sequence of elements in a (say) characteristic-$0$ field. Then the generalized continued fraction
+    \[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n}}}}}\]
+    is equal to $\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_n}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_n}.$
+\end{lemma}
+The base case of $n=0$ means we have to prove $1+a_0=1+a_0,$ which is true. For the inductive step, we have to show that
+\[1+a_0-\dfrac{a_1}{1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{\ddots-\dfrac{a_{n-1}}{1+a_{n-1}-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}}\]
+is equal to $\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_{n+1}}.$ Shifting indices, we already that the inner part
+\[1+a_1-\dfrac{a_2}{1+a_2-\dfrac{a_3}{1+a_3-\dfrac{a_4}{\ddots-\dfrac{a_n}{1+a_n-\dfrac{a_{n+1}}{1+a_{n+1}}}}}}\]
+is equal to $\frac{1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1}}{1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1}}$ from the inductive hypothesis. Plugging in, we have to show that
+\[1+a_0-\dfrac{a_1}{\frac{1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1}}{1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1}}}=\frac{1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}}{1+a_1+a_1a_2+\cdots+a_1a_2\cdots a_{n+1}}.\]
+Clearing denominators, we have to show
+\[(1+a_0)(1+a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1})-a_1(1+a_2+a_2a_3+\cdots+a_2a_3\cdots a_{n+1})\]
+is equal to $1+a_0+a_0a_1+a_0a_1a_2+\cdots+a_0a_1a_2\cdots a_{n+1}.$ However, this is true after expanding the product above and then cancelling $1\cdot(a_1+a_1a_2+a_1a_2a_3+\cdots+a_1a_2a_3\cdots a_{n+1})$ with the other term. This completes the proof. $\blacksquare$
+
+As quick commentary, I would definitely say that the first idea is cleaner in terms of the manipulation required, but I think the second idea is easier to come up with. I had seen something similar to the first idea before (in the magic box algorithm for continued fractions) and consider it very clever.
+
+Anyways, let's see this do something cool. Observe that the theorem provides an entirely symbolic manipulation, so we are allowed to take $n\to\infty$ in the limit and be fine. So, for example, let's turn the series
+\[\arctan(x)=\int_0^x\frac1{1+t^2}\,dt=\sum_{k=0}^\infty(-1)^k\frac{x^{2k+1}}{2k+1}\]
+into a continued fraction. We quickly say that care with the convergence here does say that this series holds at $x=1.$ Anyways, we want to define a sequence $\{a_\ell\}_{\ell=1}^\infty$ such that
+\[\prod_{\ell=0}^ka_\ell=(-1)^k\frac{x^{2k+1}}{2k+1}.\]
+Well, we claim that $a_0=x$ and $a_\ell=-\frac{2k-1}{2k+1}x^2$ for $\ell>0$ will work. Indeed, $k=0$ gives $a_0=x$ as the above needs, and as for inductive step,
+\[\prod_{\ell=0}^{k+1}a_\ell=a_{k+1}\prod_{\ell=0}^ka_\ell=-\frac{2k+1}{2k+3}x^2\cdot(-1)^k\frac{x^{2k+1}}{2k+1}=(-1)^{k+1}\frac{x^{2k+3}}{2k+3}\]
+by the inductive hypothesis. Plugging all this in, we get the following.
+\begin{lemma}
+    We have that
+    \[\arctan(x)=\dfrac x{1+\dfrac{x^2}{3-x^2+\dfrac{(3x)^2}{5-3x^2+\dfrac{(5x)^2}{7-5x^2-\ddots}}}}.\]
+\end{lemma}
+Using the sequence $\{a_\ell\}_{\ell=0}^\infty$ defined in the above discussion, we know that
+\[\arctan(x)=\dfrac x{1-\dfrac{-x^2/3}{1-x^2/3-\dfrac{-3x^2/5}{1-3x^2/5-\dfrac{-5x^2/7}{1-5x^2/7-\ddots}}}}\]
+from the theorem. If we wanted to be rigorous, we would cut off this series at some finite place and then send its end off to infinity at the end, but we will not bother. Propagating the denominators of the fractions in fractions down gives
+\[\arctan(x)=\dfrac x{1-\dfrac{-x^2}{3-x^2-\dfrac{-(3x)^2}{5-3x^2-\dfrac{-(5x)^2}{7-5x^2-\ddots}}}}.\]
+Again, formality would require us to cut off the fraction at some point and then propagate the denominators down, but it doesn't make a difference. Now we locally adjust the signs to get
+\[\arctan(x)=\dfrac x{1+\dfrac{x^2}{3-x^2+\dfrac{(3x)^2}{5-3x^2+\dfrac{(5x)^2}{7-5x^2-\ddots}}}},\]
+which is what we wanted. $\blacksquare$
+
+To close, we'll plug in $x=1$ to get the following.
+\begin{proposition}
+    We have that
+    \[\pi=\dfrac4{1+\dfrac{1^2}{2+\dfrac{3^2}{2+\dfrac{5^2}{2+\ddots}}}}.\]
+\end{proposition}
+This follows from plugging in $x=1$ into the above lemma and then multiplying both sides by $4.$ $\blacksquare$
+
+\subsubsection{May 31st}
+Today I learned a proof that $\ZZ[x]$ is a unique factorization domain, using Gauss's lemma. Discussion of Gauss's lemma has to begin with the definition of ``primitive.''
+\begin{definition}
+    Fix $\mathcal O_K$ a unique factorization domain. Then the polynomial $a(x)=\sum_{k=0}^da_kx^k\in\mathcal O_K[x]$ is ``primitive'' if and only if the greatest common divisor of the $\{a_k\}_{k=0}^d$ is $1.$ Equivalently, if $u$ divides all of the $\{a_k\}_{k=0}^d,$ then $u\in\mathcal O_K^\times$ is a unit.
+\end{definition}
+We remark that, fixing $K$ the field of fractions of $\mathcal O_K,$ any $f\in K[x]$ can be turned into a primitive polyomial by factoring out some element of $K.$
+\begin{lemma}
+    Fix $\mathcal O_K$ a unique factorization domain and $K$ its field of fractions. Then given any $f(x)=\sum_{k=0}^da_kx^k\in K[x],$ there exists a $k\in K$ such that $kf(x)$ is in $\mathcal O_K[x]$ and primitive. Further, this $k$ is unique up to multiplication by $\mathcal O_K^\times.$
+\end{lemma}
+We begin by pushing $f(x)$ into $\mathcal O_K[x].$ Well, we can write $a_k=\frac{x_k}{y_k}$ for $x_k,y_k\in\mathcal O_K$ because $K$ is the field of fractions. Then
+\[\left(\prod_{k=0}^dy_k\right)f(x)\]
+surely has all of its coefficients in $\mathcal O_K[x]$ because we've cleared all denominators. So, starting over, we may take $f(x)\in\mathcal O_K[x].$
+
+The idea now is to divide out by the greatest common divisor of the coefficients of $f(x)$ to force primitive. (We have to use the fact that $\mathcal O_K$ is a unique factorization domain now.) Let $\PP$ be our set of irreducibles, and we can factor each $a_k$ as
+\[a_k=u_k\prod_{p\in\PP}p^{\nu_p(a_k)},\]
+where $u_k$ is a unit, and all but finitely many of the $\nu_p(a_k)$ are $0.$ We now choose
+\[g:=\prod_{p\in\PP}p^{\min_k\{\nu_p(a_k)\}}\]
+as our greatest common divisor. Namely, our $k\in K$ is $k:=g^{-1}.$ Note that $\nu_p(g)\le\nu_p(a_k)$ for any $k$ because $\nu_p(g)=\min_k\{\nu_p(a_k)\}$ by construction. It follows that $g^{-1}f(x)$ is still in $\mathcal O_K[x]$ because its coefficients are
+\[g^{-1}a_k=u_k\prod_{p\in\PP}p^{\nu_p(a_k)-\min_\ell\{\nu_p(a_\ell)\}}\in\mathcal O_K.\]
+It remains to show that $g^{-1}f(x)$ is primitive. Pick up $u\in\mathcal O_K,$ and suppose that $u$ divides all the $a_k.$ Then for any prime $p\in\PP,$ we must have
+\[\nu_p(u)\le\nu_p(a_k)-\min_\ell\{\nu_p(a_\ell)\}\]
+for any $k.$ In particular, running over all $k$ implies $\nu_p(u)$ is less than $\min_k\{\nu_p(a_k)\}-\min_\ell\{\nu_p(a_\ell)\}=0.$ Thus, the prime factorization of $u$ looks like
+\[u=u'\prod_{p\in\PP}p^{\nu_p(u)}=u'\prod_{p\in\PP}p^0=u'\]
+for some unit $u'.$ So $u$ is a unit, and we are done here.
+
+For the uniqueness, note if $g^{-1}f(x)$ is primitive in $\mathcal O_K[x],$ then we actually must have, for each irreducible $p,$
+\[0=\min_k\left\{\nu_p\left(g^{-1}a_k\right)\right\},\]
+implying that $\nu_p(g)=\min_k\{\nu_p(a_k)\}.$ So in fact the exponents in the factorization of $g$ are all forced, meaning that, if we factor $g$ in $\mathcal O_K$ with positive and negative exponents, then $g$ is unique up to the unit in $\mathcal O_K^\times$ of that factorization. $\blacksquare$
+
+The main attraction, now, is Gauss's lemma, which is the statement that primitive polynomials are closed under multiplication.
+\begin{proposition}
+    Fix $\mathcal O_K$ a unique factorization domain. Provided that $f,g\in\mathcal O_K[x]$ are both primitive, then $fg$ is also primitive.
+\end{proposition}
+The proof is not very enlightening. We show the contrapositive: if $fg$ is not primitive, then one of $f$ or $g$ is not primitive. For concreteness, let
+\[f(x)=\sum_{k=0}^da_kx^k\qquad\text{and}\qquad g(x)=\sum_{\ell=0}^db_\ell x^\ell.\]
+where $d\ge\max\{\deg f,\deg g\}.$ This tells us that
+\[(fg)(x)=\sum_{n=0}^{2d}\underbrace{\left(\sum_{k+\ell=n}a_kb_\ell\right)}_{c_n}x^n.\]
+Now, if $(fg)$ isn't primitive, then there is some $g\in\mathcal O_K\setminus\mathcal O_K^\times$ such that $g$ divides all the coefficients of $(fg).$ By looking at the factorization of $g,$ we may take $g$ irreducible.
+
+Now, if $g$ divides all the coefficients of $f,$ then $f$ isn't primitive, and we are done. Otherwise, we claim that $g$ divides all the coefficients of $g,$ by induction on $\ell.$ For $\ell=0,$ we note that
+\[c_0=a_0b_0.\]
+But $g$ does not divide $a_0,$ so $g$ must divide $b_0.$ (This is where we use the condition that $\mathcal O_K$ is a unique factorization domain.) For the inductive step, suppose that $g$ divides $b_0$ down through $b_\ell.$ Then we note that
+\[c_{\ell+1}=\sum_{k=0}^{\ell+1}a_kb_{\ell+1-k}=a_0b_{\ell+1}+\sum_{k=1}^{\ell+1} a_kb_{\ell+1-k}.\]
+Now, the sum on the rightmost side here is divisible by $g$ because each term contains some $b_{\ell'}$ with $0\le\ell'\le\ell,$ all of which are divisible by $g.$ Adding in that $c_{\ell+1}$ is divisibble by $g,$ we must have
+\[g\mid a_0b_{\ell+1}\]
+as well. But again, $g$ does not divide $a_0,$ so instead $g$ divides $b_{\ell+1}.$ This completes the inductive step and thus the proof. $\blacksquare$
+
+The reason we care about the above result is that it lets us say that $f\in \mathcal O_K[x]$ which is irreducible in $K[x]$ but primitive in $\mathcal O_K[x]$ is in fact irreducible in $\mathcal O_K[x].$ This is an annoying technical statement, but we need to prove it.
+\begin{lemma}
+    Fix $\mathcal O_K$ a unique factorization domain with $K$ its field of fractions. Then nonconstant $f\in\mathcal O_K[x]$ is irreducible in $\mathcal O_K[x]$ if and only if $f$ is both irreducible in $K[x]$ and primitive in $\mathcal O_K[x].$
+\end{lemma}
+For one direction, take $f$ irreducible over $K[x]$ and primitive in $\mathcal O_K[x].$ Then if we write $f=gh$ in $\mathcal O_K[x],$ we cannot have $g$ and $h$ both nonconstant because this would violate irreducibility in $K[x].$ But if (without loss of generality) $g$ is constant, then $g$ divides all coefficients of $f,$ so $g$ is a unit. It follows $f$ is irreducible.
+
+In the other direction, take $f$ irreducible over $\mathcal O_K[x].$ Here, $f$ must be primitive over $\mathcal O_K[x],$ or else there is a $c\in\mathcal O_K\setminus\mathcal O_K^\times$ dividing all coefficients of $f,$ implying that $f=c\cdot(f/c)$ witnesses $f$ not being irreducible. (This is a valid factorization because $c$ is not a unit!)
+
+The hard part, now, is showing that $f$ is irreducible over $K[x].$ (Note we have yet to use Gauss's lemma.) Well, suppose $f=gh$ in $K[x].$ By lemma, we can find $a$ and $b$ in $K$ so that $ag$ and $bh$ are both primitive in $\mathcal O_K[x].$ Then we write
+\[(ab)f=(ag)(bh)\]
+and note that $(ab)f$ must also be primitive by Gauss's lemma (!). Because $ag,bh\in\mathcal O_K[x],$ we see $(ab)f\in\mathcal O_K[x],$ but $f$ is already primitive, so $(ab)$ must be a unit. To be formal, we would write
+\[(ab)f(x)=\sum_{k=0}^d(ab)c_kx^k\]
+and then note that
+\[0=\min_k\{\nu_p(abc_k)\}=\nu_p(ab)+\min_k\{\min\nu_p(c_k)\}=\nu_p(ab)\]
+implies that, indeed, $ab$ is a unit. Anyways, the fact $f$ is irreducible in $\mathcal O_K[x]$ means $(ab)f$ is also irreducible (we only multiplied by a unit), so the factorization
+\[(ab)f=(ag)(bh)\]
+must have one of $ag$ or $bh$ a unit. In particular, whichever one it is must be constant, establishing that $f$ is irreducible in $K[x].$ This finishes the proof. $\blacksquare$
+
+We are now ready to show that $\mathcal O_K[x]$ is a unique factorization domain.
+\begin{theorem}
+    Fix $\mathcal O_K$ a unique factorization domain. Then $\mathcal O_K[x]$ is also a unique factorization domain.
+\end{theorem}
+Let $K$ be the fraction field of $\mathcal O_K,$ and pick up some $f\in\mathcal O_K[x].$ The idea is to inherit from $K[x]$ and factor $f$ in $K[x]$---which is a unique factorization domain because $K[x]$ is a Euclidean domain---and then show that its factorization in $K[x]$ is in fact its factorization in $\mathcal O_K[x].$
+
+To generate our factorization, factor $f(x)$ as
+\[f(x)=\prod_{k=0}^mg_k(x)\]
+into irreducibles in $K[x].$ It's possible that some of these are not in $\mathcal O_K[x],$ so we let $g_k=c_kf_k$ where $c_k\in K$ and $f_k\in\mathcal O_K[x]$ is primitive. Multiplying our constants $c_k$ together into a large $c,$ we see
+\[f(x)=c\prod_{k=0}^mf_k(x),\]
+where the $f_k(x)$ are irreducible in $K[x]$ and primitive in $\mathcal O_K[x].$ By the above lemma, we see that these $f_k(x)$ are then irreducible, and in fact the $c$ can be factored into irreducibles in $\mathcal O_K$ as well. Also, irreducibles in $\mathcal O_K$ stay irreducible in $\mathcal O_K[x]$; for example, $c=ab$ in $\mathcal O_K[x]$ with $c\in\mathcal O_K$ irreducible must have $a$ and $b$ degree-$0$ and therefore in $\mathcal O_K$ anyways.
+
+It remains to show that this factorization is unique up to units. Well, suppose we have written another factorization into irreducibles
+\[f(x)=\overline c\prod_{k=0}^{\overline m}\overline f_k(x)\]
+in $\mathcal O_K[x].$ Well, each $\overline f_k$ is irreducible in $\mathcal O_K[x]$ and therefore irreducible in $K[x],$ so this is also a factorization into irreducibles in $K[x],$ which we know to be unique. In particular, each $\overline f_k$ is a multiplier $\overline c_k$ away from one of the $g_k,$ and there must be the same number, so reorder the $\overline f_k$ appropriately. We can now write
+\[c_kf_k(x)=g_k(x)=\overline c_k\overline f_k(x).\]
+We now show that the factorization is unique. Note $c_k$ and $\overline c_k$ are determined up multiplication by a unit in $\mathcal O_K^\times$ because we found them by extracting primitive part; say $c_k=u_k\overline c_k.$ Then
+\[c=\prod_{k=0}^mc_k=\left(\prod_{k=0}^mu_k\right)\left(\prod_{k=0}^m\overline c_k\right)=u\overline c,\]
+where $u\in\mathcal O_K^\times$ is a product of the other units. Thus, $c$ and $c'$ are unique up to units. Further, $f_k=\frac{\overline c_k}{c_k}\overline f_k=u_kf_k$ is also unique up to the unit $u_k\in\mathcal O_K^\times.$ This completes the proof. $\blacksquare$
+
+The ideas in these proofs are not terribly complicated. Really, the above proof is just ``Inherit factorization in $\mathcal O_K[x]$ from factorization in $K[x]$,'' but the technicalities are super annoying. The fact we need something like Gauss's lemma at all is perhaps surprising given that this difficulty is not at all obvious from the intuition. So it goes.
+
+As a sample application, we note that $\ZZ$ is a unique factorization domain, so it follows $\ZZ[x]$ is one. Of course, we can continue this process to say that $\ZZ[x_1,x_2]$ and then inductively up to $\ZZ[x_1,\ldots,x_n]$ also being a unique factorization domain. Similarly, for $K$ a field, $K[x_1]$ is a unique factorization domain, and we can induct to say $K[x_1,\ldots,x_n]$ is one as well.

@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -106,17 +111,17 @@
 							<b>
 								Theorem.
 							</b>
-							Fix $D$ an integral domain and $\mf p\subseteq D$ a prime. Suppose $a\in D[x]$ looks like    \[a(x)=\sum_{n=0}^{\deg a}a_nx^n.\]    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n \lt \deg a,$ and $a_{\deg a}\not\in\mf p,$ then the polynomial $a$ is irreducible.
+							Fix $D$ an integral domain and $\mf p\subseteq D$ a prime. Suppose $a\in D[x]$ looks like    \[a(x)=\sum_{n=0}^{\deg a}a_nx^n.\]    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n \lt \deg a,$ and $a_{\deg a}\notin\mf p,$ then the polynomial $a$ is irreducible.
 						</p>
 					</div>
 					<p>
 						We essentially repeat the proof from $\ZZ[x].$ We remark that the condition that $D$ be an integral domain essentially makes our prime $\mf p$ behave. Anyways, we proceed by contraposition, showing that if $a=bc$ for nonconstant $b$ and $c,$ then $a_{\deg a}\in\mf p,$ provided the other conditions on the coefficients of $a.$
 					</p>
 					<p>
-						Write\[b(x)=\sum_{k=0}^{\deg b}b_kx^k\quad\text{and}\quad c(x)=\sum_{\ell=0}^{\deg c}c_\ell x^\ell.\]Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\not\in\mf p.$
+						Write\[b(x)=\sum_{k=0}^{\deg b}b_kx^k\quad\text{and}\quad c(x)=\sum_{\ell=0}^{\deg c}c_\ell x^\ell.\]Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\notin\mf p.$
 					</p>
 					<p>
-						Now we claim that $b\in\mf pD[x].$ We show this by (strong) induction on the coefficients on $b.$ The above immediately gives $b_0\in\mf p,$ so suppose that $b_k\in\mf p$ for each $k \lt n\le\deg b \lt \deg a$ so that we want to show $b_n\in\mf p.$ Well, we note that\[b(x)c(x)=\left(\sum_{k=0}^{\deg b}b_kx^k\right)\left(\sum_{\ell=0}^{\deg c}c_\ell x^\ell\right)=\sum_{\substack{k\in[0,\deg b]\\\ell\in[0,\deg c]}}b_kc_\ell x^{k+\ell}=\sum_{d=0}^{\deg a}\left(\sum_{k+\ell=d}b_kc_\ell\right)x^d.\](Yes, I am running out of letters.) It follows that the $x^n$ coefficient of $a=bc$ is\[a_nx^n=\left(\sum_{k=0}^nb_kc_{k-\ell}\right)x^n.\]However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\not\in\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
+						Now we claim that $b\in\mf pD[x].$ We show this by (strong) induction on the coefficients on $b.$ The above immediately gives $b_0\in\mf p,$ so suppose that $b_k\in\mf p$ for each $k \lt n\le\deg b \lt \deg a$ so that we want to show $b_n\in\mf p.$ Well, we note that\[b(x)c(x)=\left(\sum_{k=0}^{\deg b}b_kx^k\right)\left(\sum_{\ell=0}^{\deg c}c_\ell x^\ell\right)=\sum_{\substack{k\in[0,\deg b]\\\ell\in[0,\deg c]}}b_kc_\ell x^{k+\ell}=\sum_{d=0}^{\deg a}\left(\sum_{k+\ell=d}b_kc_\ell\right)x^d.\](Yes, I am running out of letters.) It follows that the $x^n$ coefficient of $a=bc$ is\[a_nx^n=\left(\sum_{k=0}^nb_kc_{k-\ell}\right)x^n.\]However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\notin\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
 					</p>
 					<p>
 						We are pretty much done now. Because $b\in\mf pD[x],$ we see $a=bc\in\mf pD[x]$ as well, from which it follows that all of the coefficients of $a$ are in $\mf p.$ In particular, $a_{\deg a}\in\mf p,$ which is what we wanted. $\blacksquare$

@@ -258,7 +258,7 @@ by construction of $S.$ Thus, $x\in X_a\cap K^\times,$ so we are done here. $\bl
 
 Now we move towards the proof that $\mathbb A^\times_{K,1}/K^\times$ is compact. It turns out that $\mathbb A^\times_{K,1}$ inherits its topology from $\AA_K$ as well as from $\AA_K^\times,$ which we will show later. \todo{}
 
-\subsection{April 5th}
+\subsubsection{April 5th}
 Today I learned a relatively clean proof of the fact that
 \[\sum_{n\in\FF_p^\times}n^k\equiv0\pmod p\]
 provided that $p-1\nmid k,$ from \href{https://web.archive.org/web/20210406035125/https://math.berkeley.edu/sites/default/files/pages/F08_Final_Exam-C.P.Mok_.pdf}{here}. Quickly, we remark that $p-1\mid k$ implies that all terms are $1,$ so the sum comes out to $-1\pmod p.$ Anyways, we have the following.
@@ -364,7 +364,7 @@ This might not directly seem like a strong condition on $\sigma,$ but it is. Ind
 \end{proposition}
 We note that $\sigma(\RR)\cap\RR$ is at least dense in $\RR$ because $\sigma$ fixes $\QQ.$ So it remains to get imaginary parts.
 
-For this, we note that there needs to be some $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ Indeed, if for each $\alpha\in\RR,$ we have $\sigma(\alpha)\in\RR,$ then $\sigma(\RR)\subseteq\RR,$ implying $\sigma$ is one of the non-wild automorphisms. So we get to fix $\alpha\in\RR$ with $\sigma(\alpha)\not\in\RR.$ This gives us imaginary parts.
+For this, we note that there needs to be some $\alpha\in\RR$ with $\sigma(\alpha)\notin\RR.$ Indeed, if for each $\alpha\in\RR,$ we have $\sigma(\alpha)\in\RR,$ then $\sigma(\RR)\subseteq\RR,$ implying $\sigma$ is one of the non-wild automorphisms. So we get to fix $\alpha\in\RR$ with $\sigma(\alpha)\notin\RR.$ This gives us imaginary parts.
 
 Now we show density. The visual is that we can more or less fill up $\RR$ (with $\QQ$) and another non-parallel line $\sigma(\alpha)\RR,$ so the linear combination of these will fill up $\CC.$ Fix $z\in\CC$ and distance $\delta>0$ so that we want to show $\sigma(\RR)\cap B(z,\delta)\ne\emp.$ Letting $\varepsilon:=\delta/\sqrt2$ so that
 \[S:=\{a+bi:|\op{Re}z-a|,|\op{Im}z-b|<\varepsilon\}\subseteq B(z,\delta).\]
@@ -796,13 +796,13 @@ The idea is that if we divide $X$ into separate components, then a path $p:[0,1]
 
 Being disconnected is easier to deal with (topologically speaking), so we show the contrapositive: suppose $X=A\sqcup B$ is a disjoint union of open sets $A$ and $B,$ and we show that $X$ is not path-connected. Indeed, we hope there is no path $p:[0,1]\to X$ with $p(0)\in A$ and $p(1)\in B,$ which because $A$ and $B$ are nonempty will imply $X$ is not path-connected.
 
-Continuing to avoid stubbornly avoid contradiction, suppose (without loss of generality) we have a path $p(0)\in A,$ and we want to show $p(1)\not\in B.$ However, we see
+Continuing to avoid stubbornly avoid contradiction, suppose (without loss of generality) we have a path $p(0)\in A,$ and we want to show $p(1)\notin B.$ However, we see
 \[[0,1]=p^{-1}(X)=p^{-1}(A\sqcup B)=p^{-1}(A)\sqcup p^{-1}(B).\]
 This last union holds because $A\sqcup B$ covers the entire image, and $p^{-1}(A)\cap p^{-1}(B)=\emp$ because passing the intersection through $p$ would exhibit $A\cap B=\emp.$
 
 Anyways, the point is that $p$ is continuous, so $p^{-1}(A)\sqcup p^{-1}(B)$ provides a disjoint open cover of $[0,1].$ But $[0,1]$ is connected, so one needs to completely cover $[0,1]$---explicitly, we note that
 \[p^{-1}(A)=[0,1]\setminus p^{-1}(B)\]
-is both open and closed, and it is also inhabited, so $p^{-1}(A)=[0,1].$ In particular, $p(1)\not\in B,$ so we are done. $\blacksquare$
+is both open and closed, and it is also inhabited, so $p^{-1}(A)=[0,1].$ In particular, $p(1)\notin B,$ so we are done. $\blacksquare$
 
 To get a feeling that path-connectedness is stronger than typical connectedness, we take the following lemma.
 \begin{lemma}
@@ -860,7 +860,7 @@ As discussed, the problem is $(0,1)$; we claim that its path-connected component
 
 In particular, this ``push a little further'' feels like the proof that $[0,1]$ is compact, so we imitate it, in its inefficient form. (One can make the following proof more efficient.) Let
 \[T=\big\{t\in[0,1]:p([0,t])=\{(0,1)\}\big\}.\]
-Now, $T$ has a least upper bound, say $t_0,$ such that $t<t_0$ implies $t\in T.$ Namely, $t\not\in T$ implies $p([0,t])$ is outside $\{(0,1)\},$ so $t$ is an upper bound for $T,$ so $t\ge t_0.$
+Now, $T$ has a least upper bound, say $t_0,$ such that $t<t_0$ implies $t\in T.$ Namely, $t\notin T$ implies $p([0,t])$ is outside $\{(0,1)\},$ so $t$ is an upper bound for $T,$ so $t\ge t_0.$
 
 Further, we can show $p(t_0)=(0,1).$ Indeed, we know that $p^{-1}(\{(0,1)\})$ ought be closed because $p$ is continuous and $\{(0,1)\}$ is closed, and because $t<t_0$ implies $t\in T\subseteq p^{-1}(\{(0,1)\}),$ we conclude $t_0$ is a limit point of $p^{-1}(\{(0,1)\}).$ So we must have $t_0\in p^{-1}(\{(0,1)\}).$ We note that this effectively show $T$ is closed.
 
@@ -967,7 +967,7 @@ To make the phrasing easier, we replace $f(x)$ with $f(x)-xf(1)$ so that $f(1)=0
 
 The main claim here is that $f^{-1}(\RR\setminus\{0\})$ has $0$ measure; it has a measure because $f$ is measurable. For this, we let $S_+=f^{-1}(\RR_{>0})$ and $S_-=f^{-1}(\RR_{<0}).$ We note that any $s_+\in S_+$ and $s_-\in S_-$ needs to have
 \[f(s_+-s_-)=f(s_+)-f(s_-)>0,\]
-so in particular $s_+-s_-\not\in\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,
+so in particular $s_+-s_-\notin\QQ.$ In particular, by proposition, we cannot have $\mu(S_+)$ and $\mu(S_-)$ have nonzero measure. However, $f(x)=-f(-x)$ (plug in $y=-x$ to the functional equation), so $x\mapsto-x$ bijects $S_+$ to $S_-$ in a measure-preserving way, so they have the same measure, and we conclude both have measure $0.$ Thus,
 \[\mu\big(f^{-1}(\RR\setminus\{0\})\big)=\mu(S_+)+\mu(S_-)=0.\]
 This finishes the claim.
 
@@ -1161,7 +1161,7 @@ There is also a sister of the proposition we need to establish before we can act
 \end{proposition}
 We have actually done most of the work for this already. Starting the same way, we are evaluating
 \[\zeta\left(\hat g,|\bullet|^s\right)=\prod_\nu\zeta_\nu\left(\widehat{g_\nu},|\bullet|_\nu^s\right).\]
-All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is archimedean, which is easier the second time.
+All of our archimedean arguments now carry through verbatim because $\widehat{g_\nu}=g_\nu,$ which we found when looking for our self-dual nonarchimedean measures. We have left to compute the local $\zeta$ integral when $\nu$ is nonarchimedean, which is easier the second time.
 \begin{lemma}
     We have that $\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{s-1}\cdot\left(1-\op N(\mf p)^{-s}\right)^{-1}$ for nonarchimedean $\mf p.$
 \end{lemma}
@@ -1175,7 +1175,7 @@ Recalling that the measure of $\mathcal O_\mf p^\times$ is $\op N(\mf p)^{-1/2},
 \[\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\op N(\mathcal D_\mf p)^{-1}\sum_{k=d}^\infty\op N(\mf p)^{-ks}.\]
 Finally, the infinite series collapses to $\op N(\mf p)^{-ds}\cdot\frac1{1-\op N(\mf p)^{-s}}.$ After noting that $\op N(\mf p)^{-d}=\op N(\mathcal D_\mf p),$ we see that the above rearranges into the desired. $\blacksquare$
 
-In light of the above lemma, we see that the archimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute
+In light of the above lemma, we see that the nonarchimedean factors of $\zeta\left(\hat g,|\bullet|^s\right)$ contribute
 \[\prod_\mf p\zeta_\mf p\left(\widehat{g_\mf p},|\bullet|_\mf p^s\right)=\left(\prod_\mf p\op N(\mathcal D_\mf p)^{s-1}\right)\left(\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}\right).\]
 As discussed, the product of $\op N(\mathcal D_\mf p)$ multiply out to $\op N(\mathcal D_K)=|\op{disc}\mathcal O_K|,$ so the left product is $|\op{disc}\mathcal O_K|^{s-1}.$ And again, the right-hand product is the Euler product of $\zeta_K(s).$
 
@@ -1322,7 +1322,7 @@ for each $\sigma\in\op{Gal}(M/K).$ In particular, $L$ is normal over $K$ if and 
 
 \subsubsection{April 20th}
 Today I learned a little about the relationship between localizing a global field and localizing a ring. For concreteness, we fix $K$ a number field and $\mf p$ a (finite) prime. In order to differentiate notation, we let $\mathcal O_\mf p$ be the $\mf p$-adic integers, and we let
-\[\mathcal O_{\mathcal O\setminus\mf p}=\left\{\frac ab\in K:b\not\in\mf p\right\}\]
+\[\mathcal O_{\mathcal O\setminus\mf p}=\left\{\frac ab\in K:b\notin\mf p\right\}\]
 be the localization of the ring.
 
 To begin with, we remark that these are definitely not equivalent objects. For example, $\mathcal O_{\mathcal O\setminus\mf p}\subseteq K$ is countable, but thinking about
@@ -1335,11 +1335,11 @@ However, we do have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathc
 \begin{proposition}
     We have a dense embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
 \end{proposition}
-The idea is to take the dense embedding $K\to K_\mf p$ and restrict the input to $\mathcal O_{\mathcal O\setminus\mf p}.$ In particular, for any $\frac ab\in\mathcal O_{\mathcal O\setminus\mf p}$ with $b\not\in\mf p,$ we have that
+The idea is to take the dense embedding $K\to K_\mf p$ and restrict the input to $\mathcal O_{\mathcal O\setminus\mf p}.$ In particular, for any $\frac ab\in\mathcal O_{\mathcal O\setminus\mf p}$ with $b\notin\mf p,$ we have that
 \[\left|\frac ab\right|_\mf p=\frac{|a|_\mf p}{|b|_\mf p}\le\frac11=1,\]
 so this restriction does go into $\mathcal O_\mf p\subseteq K_\mf p.$ So we have an embedding $\mathcal O_{\mathcal O\setminus\mf p}\to\mathcal O_\mf p.$
 
-However, we know stronger. In particular, if we pick up $k\in K\cap\mathcal O_\mf p,$ then we claim $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ We may write $k=\frac ab$ with $a,b\in\mathcal O_K,$ and because $a,b\in\mathcal O_\mf p$ (via the above embedding), we can write $a=a_0\varpi^\alpha$ and $b=b_0\varpi^\beta,$ where $\varpi\in\mf p^2\setminus\mf p$ and $a_0,b_0\not\in\mf p.$ In particular, $a/b\in\mathcal O_\mf p$ requires
+However, we know stronger. In particular, if we pick up $k\in K\cap\mathcal O_\mf p,$ then we claim $k\in\mathcal O_{\mathcal O\setminus\mf p}.$ We may write $k=\frac ab$ with $a,b\in\mathcal O_K,$ and because $a,b\in\mathcal O_\mf p$ (via the above embedding), we can write $a=a_0\varpi^\alpha$ and $b=b_0\varpi^\beta,$ where $\varpi\in\mf p^2\setminus\mf p$ and $a_0,b_0\notin\mf p.$ In particular, $a/b\in\mathcal O_\mf p$ requires
 \[0\le\nu_\mf p(a/b)=\nu_\mf p(a_0)-\nu_\mf p(b_0)+\alpha-\beta=\alpha-\beta.\]
 This lets us write
 \[\frac ab=\frac{a_0\varpi^\alpha}{b_0\varpi^\beta}=\frac{a_0\varpi^{\alpha-\beta}}{b_0}\in\mathcal O_{\mathcal O\setminus\mf p}.\]
@@ -1445,7 +1445,7 @@ Today I learned how to extract the Dirichlet series coefficients from a Dirichle
 Now, we can hope that these exponentials are somewhat orthogonal, so we should try an inner product with $e^{(\log m)s}$ to extract the $a_m$ term of this series, as with Fourier series. Something like this works.
 \begin{proposition}
     Fix $f(s)=\sum_{n=1}^\infty a_nn^{-s}$ a Dirichlet series. Given that $f(s)$ absolutely converges at $\sigma\in\RR,$ then we can write
-    \[a_m=\lim_{T\to0}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt\]
+    \[a_m=\lim_{T\to\infty}\frac1{2T}\int_{-T}^Tf(\sigma+it)m^{\sigma+it}\,dt\]
     for positive integers $m.$
 \end{proposition}
 The absolute convergence condition is a bit annoying, but in my experience most series I come across absolutely converge at some $\sigma\in\RR.$ For example, as long as $a_n$ is polynomial, we're safe.
@@ -1660,7 +1660,7 @@ This is a very remarkable statement: we are told nothing about how $\op{funext}$
 The point of stating the above is that it does mean that being able to witness as in the proposition something behaving like function extensionality implies its computation rules. So we can rest assured that it is possible to prove full function extensionality from the existence of an interval type.
 
 \subsubsection{April 27th}
-Today I learned that some self-contained calculus can be done over the $p$-adics. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p<\infty$ prime like $\RR$ and doing the analysis.
+Today I learned that some self-contained calculus can be done over the $p$-adics, from \href{http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf}{here}. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p<\infty$ prime like $\RR$ and doing the analysis.
 
 We define the formal derivative of a power series instead of the normal derivative.
 \begin{definition}
@@ -1696,12 +1696,78 @@ usual derivative.
     Fix $f\in\QQ_p[[x]].$ Then for any $x$ where $f(x)$ converges,
     \[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h.\]
 \end{proposition}
-We remark that the limit is done with respect to $|\bullet|_p,$ as it should be. Anyways, this proof is roughly the same proof done for 
+We remark that the limit is done with respect to $|\bullet|_p,$ as it should be; we will write $|\bullet|$ for $|\bullet|_p$ in what follows, for brevity. Anyways, this proof is roughly the same proof done for polynomials. Let $f(x)=\sum_{k=0}^\infty a_kx^k.$ Very quickly, note that for $h$ sufficiently small, we have $|h|<|x|,$ so
+\[\left|a_k\left(x+h\right)^k\right|=|a_k|\cdot\left|x+k\right|^k=|a_k|\cdot|x|^k=\left|a_kx^k\right|.\]
+In particular, this goes to $0$ as $k\to\infty$ where $f(x)$ converges. The point of saying this is so that we have $f(x+h)$ converges where $f(x)$ converges, for $h$ sufficiently small.
 
-http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf \todo{}
+Now we begin the computation. Observe that
+\[f(x+h)-f(x)=\left(\sum_{k=0}^\infty a_k(x+h)^k\right)-\left(\sum_{k=0}^\infty a_kx^k\right)=\sum_{k=0}^\infty a_k\left((x+h)^k-x^k\right).\]
+The sum still converges because $\left|(x+h)^k-x^k\right|\le\max\left\{\left|(x+h)^k\right|,\left|-x^k\right|\right\}=|x|^k$ for sufficiently small $h.$ Anyways, we use the binomial theorem now to conclude
+\[f(x+h)-f(x)=\sum_{k=0}^\infty\left(\sum_{\ell=1}^k\binom k\ell h^\ell x^{k-\ell}\right)a_k.\]
+Dividing by $h$ and rearranging, we see
+\[\frac{f(x+h)-f(x)}h=\underbrace{\sum_{k=1}^\infty ka_kx^{k-1}}_{f'(x)}+\underbrace{\sum_{k=2}^\infty\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-1}x^{k-\ell}\right)a_k}_{\text{error}}.\]
+We already know that $f'(x)$ converges.
+
+It remains to talk about the error sum, which we must show converges to $0$ as $h\to0.$ Factoring out an $h,$ it suffices to show that
+\[\sum_{k=2}^\infty\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-2}x^{k-\ell}\right)a_k\]
+converges at all, for we are interested in what happens as $h\to0.$ So we need to know that the summands above go to $0.$ Fixing a $k,$ we note that the summand is bounded by
+\[\left|\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-2}x^{k-\ell}\right)a_k\right|\le|a_k|\max_{2\le\ell\le k}\left|\binom k\ell h^{\ell-2}x^{k-\ell}\right|\le|a_k|\max_{2\le\ell\le k}\left|h^{\ell-2}x^{k-\ell}\right|.\]
+So for sufficiently small $h,$ say $|h|\le|x|,$ we can bound the term above by $|a_k|\cdot\left|x^{k-2}\right|.$ Now, $f(x)$ converges, so $\left|a_kx^k\right|$ goes to $0,$ so for $x\ne0$ ($x=0$ gives convergence for free), we may divide by $x^2$ to conclude $\left|a_kx^{k-2}\right|$ goes to $0$ as well. This finishes. $\blacksquare$
+
+I find this statement at least amusing because it reconnects what are typically purely formal derivatives with the usual geometric view. I suppose this is the natural way to define differentiability in $\QQ_p$ and then for power series in $\QQ_p[[x]],$ but the fact it all works properly is nice.
 
 \subsubsection{April 28th}
-Today I learned that the Fourier transform for finite fields behaves as it does in local fields. \href{https://drive.google.com/file/d/1LliHibNgmndXoYlq_gxC-bP-10KWM--Z/view}{hi} \todo{}
+Today I learned that the Fourier transform for finite fields behaves as it does in local fields, from \href{https://drive.google.com/file/d/1LliHibNgmndXoYlq_gxC-bP-10KWM--Z/view}{here}. Two or so weeks ago we classified characters over finite fields $\FF_q$ as being generated by a nontrivial character $\psi_0:\FF_q\to\CC^\times,$ from which all characters take the form $x\mapsto\psi_0(ax)$ for some $a\in\FF_q.$
+
+Because $\widehat{\FF_q}\cong\FF_q$ as Pontryagin duals, our theory of Fourier transforms is reasonably well-behaved. We don't have to think too hard about the necessary Haar measure because $\FF_q$ is a discrete topological space, so it adopts the counting measure. The ``correct'' scale factor is as follows.
+\begin{definition}
+    We define the Fourier transform for $f:\FF_q\to\CC$ as
+    \[\hat f(y):=\int_{\FF_q}f(x)\psi_0(-xy)\,dx=\frac1{\sqrt q}\sum_{x\in\FF_q}f(x)\psi_0(-xy),\]
+    given a nontrivial character $\psi_0:\FF_q\to\CC^\times.$ We will usually fix $\psi_0(x):=e^{2\pi i\op{Trace}_{\FF_q/\FF_p}(x)/p}.$
+\end{definition}
+Observe that we don't have to worry about convergence issues because all sums are finite, which is much nicer than usual.
+
+While the $1/\sqrt q$ might appear annoying, it's the correct thing to do under the isomoprhism $\FF_q\cong\widehat{\FF_q}.$ While we're in the Fourier world, this scale factor is what makes things behave. Indeed, we have the following.
+\begin{proposition}
+    We have that $\hat{\hat f}(x)=f(-x).$
+\end{proposition}
+Technically we only have to check this for a single nonzero $f$ to make sure we got the $1/\sqrt q$ scale factor, but we will go through the entire thing. Anyways, this is a matter of pushing everything through. Observe that
+\[\hat{\hat f}(x)=\frac1{\sqrt q}\sum_{y\in\FF_q}\hat f(y)\psi_0(-xy)=\frac1q\sum_{y,z\in\FF_q}f(z)\psi_0(-xy)\psi_0(-zy).\]
+Rearranging the sum, we have
+\[\hat{\hat f}(x)=\frac1q\sum_{z\in\FF_q}f(z)\left(\sum_{y\in\FF_q}\psi_0(-(z+x)y)\right)\]
+because $\psi_0$ is an additive character. Now, $y\mapsto\psi_0(-(z+x)y)$ is just another character, which we will call $\psi.$ We have two cases.
+\begin{itemize}
+    \item If $z=-x,$ then $\psi(y)=1$ always, in which case, the inner sum $\sum_y\psi(y)$ is a full $q.$
+    \item If $z\ne-x,$ then $\psi$ is a nontrivial character with, say, $\psi(a)\ne1.$ (Such $a$ exists because $\psi_0$ is a nontrivial character with, say, $\psi_0(a_0)\ne1,$ so we can use $a:=-a_0(z+x)^{-1}.$) However, $a\ne0,$ so addition by $a$ bijects $\FF_q,$ implying
+    \[\psi(a)\sum_{y\in\FF_q}\psi(y)=\sum_{y\in\FF_q}\psi(a+y)=\sum_{y\in\FF_q}\psi(y).\]
+    This rearranges to $(\psi(a)-1)\sum_y\psi(y)=0,$ so $\sum_y\psi(y)=0.$
+\end{itemize}
+Looking at the casework, we only care about the $z=-x$ case, in which case we have
+\[\hat{\hat f}(x)=\frac1q\cdot f(-x)\cdot q=f(-x),\]
+which is what we wanted. $\blacksquare$
+
+While we're here, we pick up Parseval's identity, just to showcase how nice finite sums are.
+\begin{proposition}
+    Given a function $f:\FF_q\to\CC,$ we have that
+    \[\sum_{x\in\FF_q}|f(x)|^2=\sum_{y\in\FF_q}\left|\hat f(y)\right|^2.\]
+\end{proposition}
+There is some linear algebra going on in the background, as there usually is with Parseval's identity. Previously we proved that
+\[f(x)=\hat{\hat f}(-x)=\frac1{\sqrt q}\sum_{y\in\FF_q}\hat f(y)\psi(xy),\]
+which is our inverse Fourier transform; one can read this as saying the characters $x\mapsto\psi(ax)$ are a spanning set of vectors for the function $\FF_q\to\CC.$ If we use $\hat f(y)$ as coefficients, we can equip this space with an inner product and stuff, but we won't do so explicitly.
+
+More directly, for $f,g:\FF_q\to\CC,$
+\[\sum_{x\in\FF_q}f(x)\overline{g(x)}=\sum_{x\in\FF_q}\left(\frac1{\sqrt q}\sum_{y\in\FF_q}\hat f(y)\psi(xy)\right)\left(\frac1{\sqrt q}\sum_{z\in\FF_q}\overline{\hat g(z)}\overline{\psi(xz)}\right).\]
+This sum rearranges into
+\[\sum_{x\in\FF_q}f(x)\overline{g(x)}=\sum_{y,z\in\FF_q}\hat f(y)\overline{\hat g(z)}\left(\frac1q\sum_{x\in\FF_q}\psi(x(y-z))\right).\]
+Now, when $y\ne z,$ this inner sum vanishes, which we showed in the casework of the previous proposition because it is a sum over a nontrivial character. When $y=z,$ the inner sum is $\frac1q\cdot q=1,$ and we get
+\[\sum_{x\in\FF_q}f(x)\overline{g(x)}=\sum_{y\in\FF_q}\hat f(y)\overline{\hat g(y)}.\]
+Plugging in $g=f$ gives the desired. $\blacksquare$
+
+Just to say that I did, we wrote down
+\[\sum_{x\in\FF_q}f(x)\overline{g(x)},\]
+which is in fact the inner product described. Observe that orthogonality of characters is with respect to this inner product: if we fix $a,b\in\FF_1$ and consider the characters $x\mapsto\psi_0(ax)$ and $x\mapsto\psi_0(bx),$ then
+\[\sum_{x\in\FF_q}\psi_0(ax)\overline{\psi_0(bx)}=\sum_{x\in\FF_q}\psi((a-b)x)=q\cdot1_{a=b}.\]
+All of this is the usual theory with Fourier transforms or even representation of finite groups, but it's especially nice with our finite sums and well-behaved character groups.
 
 \subsubsection{April 29th}
 Today I learned the definition of the wedge product, from the \href{https://web.archive.org/web/20210218161419/https://venhance.github.io/napkin/Napkin.pdf}{Napkin}. The idea is to take two topological spaces and then ``attach'' them at a point. Here's the formal definition.

@@ -1,0 +1,1124 @@
+\subsection{June}
+
+
+
+
+
+
+
+\subsubsection{June 1st}
+Today I learned about the Mahler measure, from \href{https://web.archive.org/web/20210112151948/https://www.uni-due.de/~adg350u/Skripte/DioApp.pdf}{here}. Roughly speaking, the Mahler measure is supposed to measure the ``size'' of an algebraic number. Here's our definition.
+\begin{definition}
+    Fix $\alpha\in\overline\QQ$ an algebraic number with minimal polynomial $f(x)=\sum_{k=0}^da_kx^k\in\ZZ[x]$ with $\gcd(a_0,\ldots,a_d)=1.$ Then we define the Mahler measure as
+    \[M(\alpha):=|a_d|\prod_{\ell=1}^d\max\{1,\alpha_k\},\]
+    where $\{\alpha_k\}_{\ell=1}^d$ are the Galois conjugates of $\alpha.$
+\end{definition}
+Note that the polynomial $f(x)=a_d\prod_{\ell=1}^d(x-\alpha_\ell)$ is uniquely determined modulo multiplication by a unit: we merely need $a_d$ to be a least common multiple of the denominators of $\prod_{\ell=1}^d(x-\alpha_\ell),$ and no further is allowed to keep $f(x)$ primitive. Thus, $|a_d|$ and therefore $M(\alpha)$ is well-defined.
+
+There is little immediate reason to think that $M$ is the correct way to measure size of $\alpha\in\overline\QQ,$ but $M$ does have some nice properties. For example, because the polynomial is shared between all Galois conjugates, all Galois conjugates have the same Mahler measure. This is nice because we would like the Galois group to preserve $M.$
+
+Additionally, $M$ satisfies the basic and necessary property of a size: finite bounds.
+\begin{proposition}
+    For a fixed bounds $D$ and $N,$ there are only finitely many $\alpha\in\overline\QQ$ of degree less than or equal to $D$ which satisfy $M(\alpha)\le N.$
+\end{proposition}
+The basic idea is to bound the possible polynomials which an $\alpha$ could appear from; then the polynomials need to be in $\ZZ[x],$ so there are only finitely many of those. To bound the coefficients of a minimal polynomial $f(x)$ of some $\alpha\in\overline\QQ$ satisfying $M(\alpha)\le N,$ we use Vieta's formula. For clarity, let
+\[f(x):=\sum_{k=0}^da_kx^k=a_d\prod_{\ell=1}^d(x-\alpha_\ell)\]
+for $\{a_k\}_{k=0}^d\subseteq\ZZ$ coprime and $\{\alpha_\ell\}_{\ell=1}^d\subseteq\overline\QQ$ the Galois conjugates of $\alpha.$ Now, Vieta's formula asserts that we make a coefficient $a_k$ by choosing $k$ of the $x$s in the product and then $d-k$ of the $\alpha_\bullet$s. In other words, fixing some $k,$
+\[a_k=a_d\sum_{\substack{S\subseteq[1,d]\cap\ZZ\\|S|=d-k}}\left(\prod_{\ell\in S}-\alpha_\ell\right).\]
+Then the triangle inequality plus some rearranging asserts that
+\[|a_k|\le\sum_{\substack{S\subseteq[1,d]\cap\ZZ\\|S|=d-k}}\left(|a_d|\prod_{\ell\in S}|\alpha_\ell|\right)\le\sum_{S\subseteq[1,d]\cap\ZZ}M(\alpha)=2^dM(\alpha).\]
+This gives us a global bound for the size of the coefficients of polynomials $f(x)$ giving $M(\alpha)\le N,$ by $|a_k|\le 2^dM(\alpha)\le 2^DN.$
+
+To finish, we note that each $\alpha\in\overline\QQ$ with $M(\alpha)\le N$ can be associated with one of its minimal polynomials $f(x).$ Because each of these polynomials has degree bounded by $D$ and coefficients bounded (in absolute value) by $2^DN,$ we have at most
+\[\left(2^DN\right)^D\]
+such polynomials. (This is a very crude bound, but it will do.) Then each polynomial can be associated backwards with at most its $D$ roots, so there are at most
+\[D\left(2^DN\right)^D\]
+such $\alpha\in\overline\QQ.$ This finishes. $\blacksquare$
+
+We remark that the degree requirement is necessary: fix any $n\in\NN,$ and the root of unity $\zeta_n:=e^{2\pi i/n}$ is an algebraic integer (its minimial polynomial is the cyclotomic $\Phi_n(x)$), and its conjugates are all of the form $\zeta_n^k$ for some integer $k.$ Thus, all the Galois conjugates of $\zeta_n$ are of absolute value $1,$ implying $M(\zeta_n)=1.$
+
+As a final addendum, we note that one of the results from a few months ago has its proof nicely abbreviated by the introduction of the Mahler measure.
+\begin{proposition}
+    Roots of unity are the only nonzero algebraic integers with all Galois conjugates of absolute value less than or equal $1.$
+\end{proposition}
+Fix one such nonzero $\alpha\in\overline\ZZ\setminus\{0\}$ of degree $d$ with Galois conjugates $\{\alpha_\ell\}_{\ell=1}^d.$ What makes the Mahler measure tractable here is that $\alpha\overline\ZZ$ makes the leading coefficient of $\alpha$'s minimal polynomial equal to $1.$ Thus,
+\[M(\alpha)=\prod_{\ell=1}^d\max\{1,|\alpha_\ell|\}.\]
+However, we are told that $|\alpha_\ell|=1$ for each $\alpha_\ell,$ so in fact $M(\alpha)=1.$
+
+As before, the key step is to consider what happens to $\alpha^k$ for powers $k\in\NN.$ Well, $\overline\ZZ$ is a ring, so $\alpha^k$ still has leading coefficient $1.$ And considering the orbit of $\alpha^k$ under the Galois group of the Galois closure of $\QQ(\alpha)$ over $\QQ,$ the Galois conjugates of $\alpha^k$ are $\{\alpha_\ell^k\}_{\ell=1}^d.$ Thus,
+\[M\left(\alpha^k\right)=\prod_{\ell=1}^d\max\left\{1,|\alpha_\ell|^k\right\},\]
+which comes out to $1$ again because $|\alpha_\ell|^k\le1$ for each $\alpha_\ell.$
+
+To deal the killing blow, look at the sequence $\{\alpha^k\}_{k=1}^\infty.$ Every element lives in $\QQ(\alpha),$ so their degrees are bounded by the degree of $\alpha,$ and we have just established that their Mahler measures are uniformly bounded by $1.$ So there can only be finitely many distinct elements in this sequence, so the Pigeonhole principle requires repeats. So extract distinct $k_1$ and $k_2$ yielding
+\[\alpha^{k_1}=\alpha^{k_2}.\]
+Without loss of generality, we let $k_1>k_2.$ We required $\alpha\ne0$ in the hypothesis, so we get $\alpha^{k_1-k_2}=1,$ meaning that $\alpha$ is a root of unity. This finishes. $\blacksquare$
+
+As some commentary, the above proof establishes some of what's nice about the Mahler measure: it at least somewhat behaves in powers because the Galois conjugates behave in powers, and the finite bound property allows some kind of ``well-ordering''-type thinking. Regardless, I am unconvinced this is the best way to measure heights.
+
+\subsubsection{June 2nd}
+Today I learned a proof that $e^q$ is irrational for any $q\in\QQ\setminus\{0\},$ following Hermite. Note that we can write $q=n/m$ for $n$ a positive integer and $m$ an integer, and $e^{n/m}$ rational implies $\left(e^{n/m}\right)^m=e^n$ rational, so it suffices to show (by contraposition) that $e^n$ is irrational for positive integers $n.$
+\begin{theorem}
+    The value $e^n$ is irrational for positive integers $n.$
+\end{theorem}
+This proof is truly magical. Our result is going to come from bounding: we are going to create an arbitrarily small integral that the rationality of $e$ forces to be an integer, and that will yield contradiction. Of course, we have to use something about $e,$ so we are going to use the fact that
+\[\frac d{dx}e^{nx}=ne^{nx}.\]
+Note this is a defining property of $e,$ so we can be sure we are using its full power. We would like to use this to make a (small) integral, so we have to introduce a (small) auxiliary differentiable function $F:\RR\to\RR$ here: the product rule tells us that
+\[\frac d{dx}F(x)e^{nx}=F'(x)e^{nx}+nF(x)e^{nx}.\]
+We promised an integral, and indeed, our integral is going to be
+\[\int_0^1\left(F'(x)+nF(x)\right)e^{nx}\,dx=F(x)e^{nx}\bigg|_0^1=F(1)e^n-F(0).\]
+When we suppose that $e^n$ is rational (which we will postpone as long as possible), we might hope that $F(0)$ and $F(1)$ are integers so that the above integral can be made into an integer when multiplied by the supposed denominator of $e^n.$
+
+To proceed, we recognize we will need better control of $F'(x)+nF(x)$---after all, we have to make its integral arbitrarily small. So we define, for now, $f(x):=F'(x)+nF(x)$ and attempt to solve for $F$ in terms of $f.$ Well, we see
+\[F(x)=\frac1nf(x)-\frac1nF'(x).\]
+Of course, we don't know what $F'$ is directly, but we can solve for it by differentiating the above into $F'(x)=\frac1nf'(x)-\frac1nF''(x),$ so we see
+\[F(x)=\frac1nf(x)-\frac1{n^2}f'(x)+\frac1{n^2}F''(x).\]
+We can continue this process inductively and just write
+\[F(x)=\sum_{k=0}^\infty\frac{(-1)^k}{n^{k+1}}f^{(k)}(x),\]
+assuming everything converges properly. We can check that, assuming nice enough convergence (which we will have), this does indeed give $f(x)=F'(x)+nF(x).$
+
+We said above that it would be nice for $F(0)$ and $F(1)$ to be integers, which makes choosing an $f(x)$ to define $F(x)$ a bit annoying: after all, there's that infinite sum to deal with. Our way out is to make $f(x)$ a polynomial, thus making the sum finite, and then multiplying $f$ with a very large power of $n$ to accommodate for the given denominators.
+
+Now we introduce the star of our story. Choose $N$ very large, to be fixed later, making
+\[f_0(x):=\frac{x^N(1-x)^N}{N!}\]
+very small. Then we define $f(x):=n^{2N+1}f_0(x)$ to deal with the denominators so that
+\[F(x):=\sum_{k=0}^\infty\frac{(-1)^k}{n^{k+1}}f^{(k)}(x)=\sum_{k=0}^{2n}n^{2N-k}f_0^{(k)}(x).\]
+It might be totally obvious that $F(0)$ and $F(1)$ are integers, but they are: we can write
+\[f_0(x)=\sum_{k=N}^{2N}\binom N{2N-k}(-x)^k.\]
+Reading this off like a Taylor expansion, we see $k<N$ gives $f_0^{(k)}(0)=0,$ and for $k\ge N,$ we get $f^{(k)}(0)=(-1)^kk!\binom N{2N-k},$ and $k!$ does enough to cover the denominator of $N!.$ This shows the $f_0^{(k)}(0)$ are integers, so $F(0)$ is an integer. Further,
+\[f_0(x)=f_0(1-x),\]
+so $f_0^{(k)}(1)=(-1)^kf_0^{(k)}(0)$ is also an integer for any $k,$ meaning that $F(1)$ is an integer.
+
+Now surely $f(x)=F'(x)+nF(x)$ still holds from our work above, for we have the nicest converge, from a finite sum. We recall our integral as
+\[\int_0^1f(x)e^{nx}\,dx=F(x)e^{nx}\bigg|_0^1=F(1)e^n-F(0).\]
+However, we can bound the integral because $f(x)=n^{2N+1}f_0(x)<n^{2N+1}/N!$ for $x\in(0,1).$ (Our lower-bound is that the integral is positive.) Thus,
+\[0<\int_0^1f(x)e^{nx}\,dx<\frac{n^{2N+1}}{N!}\cdot e^n.\]
+This can be made arbitrarily small because $N!$ is faster than exponential, which is a problem because $F(1)e^n-F(0)$ has its denominator bounded by the denominator of $e^n.$
+
+To formalize, we finally suppose for the sake of contradiction that $e^n=p/q.$ Then
+\[q\int_0^1f(x)e^{nx}\,dx=pF(1)-qF(0)\]
+is an integer, but
+\[0<q\int_0^1f(x)e^{nx}\,dx<\frac{pn^{2N+1}}{N!}.\]
+Taking $N$ large enough, we can force $N!>pn^{2N+1},$ making the upper-bound less than $1.$ This gives us an integer between $0$ and $1,$ which is our contradiction. This finishes. $\blacksquare$
+
+To close off loose ends, we show that we can in fact make $\frac{n^{2N+1}}{N!}$ arbitrarily small as $N\to\infty.$
+\begin{lemma}
+    Given a fixed integer $n,$ we can choose $N$ large enough so that
+    \[\frac{n^{2N+1}}{N!}\]
+    can be made arbitrarily small.
+\end{lemma}
+For all $N,$ note that we can say
+\[\log N!=\sum_{k=1}^N\log k>\sum_{k=\ceil{N/2}}^N\log k>\frac N2\log\frac N2.\]
+There is a technical detail here that there are at least $N/2$ integers between $\ceil{N/2}$ and $N$ inclusive, but this is true. (If $N$ is even, there are $N/2+1$ integers; if $N$ is odd, there are $N/2+1/2$ integers.) Anyways, this implies that
+\[N!>(N/2)^{N/2}.\]
+If we let $N=2n^6k$ for some large positive integer $k,$ we see
+\[\frac{n^{2N+1}}{N!}\le\frac{n^{3N}}{(N/2)^{N/2}}=\frac{n^{6n^6k}}{n^{6n^3k}\cdot k^{n^6k}}=\frac1{k^{n^6k}}.\]
+This is less than $\frac1k,$ for example, so we can make the original quantity as small as we please, finishing. $\blacksquare$
+
+As commentary, I have tried my best to motivate this proof, but it is truly magical. There is a pretty large jump to the introduction of the $f_0,$ and from there everything comes together. I really don't know where this proof comes from.
+
+In other news, today was senior salute. It was a good day.
+
+\subsubsection{June 3rd}
+Today I learned an example of spectral graph theory doing something of number-theoretic interest, from THE BOOK. Here is the statement we are building towards.
+\begin{theorem}
+    Fix a prime $p.$ There are $p^2$ solutions $(x,y,z)\in\FF_p^3$ to $x^2+y^2+z^2\equiv0\pmod p.$
+\end{theorem}
+Note that $\FF_p^\times$ acts on the solutions $(x,y,z)$ by multiplication because $k\cdot(x,y,z)=(kx,ky,kz)$ still satisfies $(kx)^2+(ky)^2+(kz)^2\equiv k^2\left(x^2+y^2+z^2\right)$ will still $0$ out when $x^2+y^2+z^2\equiv0.$ We say because the orbit of $(0,0,0)$ has size $1$ ($(0k,0k,0k)=(0,0,0)$) the nonzero points $(x,y,z)$ have size $p-1$ (the nonzero coordinate has full image).
+
+So because the zero point is poorly behaved, we show that there are $p^2-1$ nonzero points satisfying $x^2+y^2+z^2\equiv0.$ In fact, we will want to leverage the linear algebra structure of $\FF_p^3$ later in life, so we will show that
+\[\frac{\{(x,y,z)\in\FF_p^3\setminus\{0\}:x^2+y^2+z^2\equiv0\}}{\FF_p^\times}\stackrel?=\frac{p^2-1}{p-1}=p+1.\]
+That is, we need to show there are $p+1$ orbits of the nonzero points on $x^2+y^2+z^2\equiv0.$ Noticing the linear algebra structure on $\FF_p^3,$ these orbits are really one-dimensional subspaces generated by a nonzero vector, say $v=(x,y,z),$ which looks
+\[\{kv:k\in\FF_p\}=\FF_p^\times v\cup\{0\}.\]
+So instead we are now counting the number of one-dimensional subspaces $L$ of $\FF_p^3$ whose representatives $(x,y,z)\in L$ satisfy $x^2+y^2+z^2\equiv0,$ and we need there to be $\frac{p^2-1}{p-1}=p+1$ of them because there are $p-1$ elements in each orbit.
+
+Now we bring in the spectral graph theory, and for this we need a graph $G_p.$ Our vertices will be the one-dimensional subspaces as represented by
+\[V(G_p)=\frac{\FF_p^3\setminus\{0\}}{\FF_p^\times}.\]
+We quickly remark that there are $\frac{p^3-1}{p-1}=p^2+p+1$ total vertices. We would like to rig our graph to detect $x^2+y^2+z^2\equiv0$ in some nice way, and the clever way to do this is to write
+\[E(G_p)=\big\{\{L_1,L_2\}\subseteq V(G_p):\langle v_1,v_2\rangle=0\text{ for all }v_1\in L_1,v_2\in L_2.\big\}.\]
+Here, $\langle(x_1,y_1,z_1),(x_2,y_2,z_2)\rangle:=x_1x_2+y_1y_2+z_1z_2$ is the usual dot product. (Despite using the notation, we are not calling $\langle,\rangle$ an inner product because it is not positive-definite.) We note that the edge connection is well-defined after picking up any representative $v\in L\setminus\{0\}.$ Indeed, if $\langle v_1,v_2\rangle=0$ for $v_1\in L_1\setminus\{0\}$ and $v_2\in L_2\setminus\{0\}$ and then we choose different representatives $k_1v_1\in L_1$ and $k_2v_2\in L_2,$ then still
+\[\langle k_1v_1,k_2v_2\rangle=k_1k_2\langle v_1,v_2\rangle=0.\]
+Anyways, the point of using the dot product for edge connections is to say
+\[x^2+y^2+z^2=\langle(x,y,z),(x,y,z)\rangle\]
+vanishes if and only if $(x,y,z)$ has a loop to itself. Letting $A_p$ be the adjacency matrix of $G_p,$ it suffices for the following.
+\begin{lemma}
+    Let $A_p$ be the adjacency matrix of the above graph $G_p.$ Then $\op{trace}A_p=p+1.$
+\end{lemma}
+We have now moved theoretically far away from the original statement, but we are only a single trick away from being done. Anyways, we are going to compute $\op{trace}A_p$ by computing its eigenvalues, cementing the statement we are doing spectral graph theory.
+
+The main idea, now, is that $A_p$ might be difficult to analyze, but $A_p^2$ is not. Indeed, given two one-dimensional subspaces $L_1,L_2\in V(G_p),$ the entry $\left(A_p^2\right)_{v_1,v_2}$ counts the number of the paths from $L_1$ to $L_2$ of length two. Fix any $v_1\in L_1\setminus\{0\}$ and $v_2\in L_2\setminus\{0\}.$
+
+Well by definition of our graph, we are counting the number of one-dimensional subpsaces $L$ satisfying
+\[\langle v,v_1\rangle=\langle v,v_2\rangle=0\]
+for some nonzero representative $v\in L\setminus\{0\}.$ (Recall that edge-connection is well-defined, so our choice of representative is irrelevant.) But now we might as well be asking for the number of $v$ satisfying
+\[\underbrace{\begin{bmatrix}
+    - & v_1 & - \\
+    - & v_2 & -
+\end{bmatrix}}_Mv=\begin{bmatrix}0 \\ 0\end{bmatrix}.\]
+So, roughly speaking, we want the dimension of $\ker M.$ We have two cases. Now, the set $L_1^\perp$ of vectors $v$ such that $\langle v,v_1\rangle=0$ is two-dimensional, for the map $v\mapsto\langle v,v_2\rangle$ has one-dimensoinal image. But now
+\[\dim\ker M=\dim(L_1^\perp\cap L_2^\perp)=\dim L_1^\perp+\dim L_2^\perp-\dim(L_1^\perp+L_2^\perp)=4-\dim(L_1^\perp+L_2^\perp).\]
+We have two cases.
+\begin{itemize}
+    \item If $L_1\ne L_2,$ then $L_1^\perp\ne L_2^\perp$ (recall $L^{\perp\perp}=L$ by, say, counting dimensions and building a basis). Thus, $L_2^\perp$ has a vector not in $L_1^\perp$ because they have the same size, so
+    \[L_1^\perp+L_2^\perp\supsetneq L_1^\perp.\]
+    Thus, $\dim(L_1^\perp+L_2^\perp)>\dim L_1^\perp=2,$ meaning that it must have dimension $3.$ So $\dim\ker M=1,$ and there is a single one-dimensional subspace to go around.
+    \item If $L_1=L_2,$ then $L_1^\perp=L_2^\perp,$ so $\dim(L_1^\perp+L_2^\perp)=2.$ Thus, $\dim\ker M=2,$ implying that it has $p^2-1$ nonzero points and $\frac{p^2-1}{p-1}=p+1$ one-dimensional subspaces.
+\end{itemize}
+We remark briefly that we are working with one-dimensional subspaces instead of points because the condition $L_1=L_2$ creates fewer complications than $\FF_p^\times v_1=\FF_p^\times v_2.$
+
+Anyways, it follows that the adjacency matrix looks like
+\[A_p^2=\begin{bmatrix}
+    p+1 & 1 & \cdots & 1 & 1 \\
+    1 & p+1 & \cdots & 1 & 1 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    1 & 1 & \cdots & p+1 & 1 \\
+    1 & 1 & \cdots & 1 & p+1
+\end{bmatrix}.\]
+All that remains is computation. We are interested in the eigenvalues of $A_p$ (to sum them), so we now ask for the eigenvalues of $A_p^2$ as above. Subtracting out $p$ times the identity, which will merely add $p$ to all eigenvalues, we want the eigenvalues of
+\[A_p^2-pI=\begin{bmatrix}
+    1 & \cdots & 1 \\
+    \vdots & \ddots & \vdots \\
+    1 & \cdots & 1
+\end{bmatrix}.\]
+Recalling that there are $\frac{p^3-1}{p-1}=p^2+p+1$ vertices, we need to find $p^2+p+1$ eigenvalues. Well, the image of this matrix lives in the one-dimensional subspace defined by $\langle1,\ldots,1\rangle$ and has a nonzero element (throw $\langle1,0,\ldots0\rangle$ in there), so the image does in fact have size $1.$
+
+On one hand, this means that the kernel has dimension $p^2+p+1-1=p^2+p,$ so there are $p^2+p$ eigenvectors with eigenvalue $0.$ On the other hand, the vector $\langle1,\ldots,1\rangle$ maps to
+\[\begin{bmatrix}
+    1 & \cdots & 1 \\
+    \vdots & \ddots & \vdots \\
+    1 & \cdots & 1
+\end{bmatrix}\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}=\begin{bmatrix}p^2+p+1 \\ \vdots \\ p^2+p+1\end{bmatrix}\]
+and so has eigenvalue $p^2+p+1.$ Because we can only have $p^2+p+1$ total eigenvectors, this must be our last eigenvector.
+
+Bringing this together, we see that $A_p^2$ has $p^2+p$ eigenvectors of eigenvalue $0+p=p$ and one eigenvector of eigenvalue $p^2+p+1+p=(p+1)^2.$ Taking the square-root ($A_p$ is diagonalizable because it has real entries and is symmetric because the graph is undirected), $A_p$ has one eigenvector of eigenvalue $\pm(p+1)$ and (say) $a$ eigenvectors of eigenvalue $\sqrt p$ and $b$ eigenvectors of eigenvalue $-p$ with $a+b=p^2+p.$ Thus,
+\[\op{trace}A_p=\pm(p+1)+a\sqrt p-b\sqrt p.\]
+Surely, $\op{trace}A$ is an integer, and $\sqrt p$ is irrational, so we must have $a=b$ to cover for this. So $\op{trace}A_p=\pm(p+1).$ But also surely $\op{trace}A_p$ is positive, so we must have $\op{trace}A_p=p+1.$ (In fact, $\langle1,\ldots,1\rangle$ has eigenvalue $p+1.$) This finishes. $\blacksquare$
+
+It is proofs like these that make me certain I will never be a mathematician. This is pure magic. If I had to guess, the number-theoretic statement came out of other graph-theory studies, but I have no idea where the graph construction came from. Anyways, I am under the impression that this method can be generalized.
+
+For example, we probably have the following.
+\begin{theorem}
+    Fix $p$ a prime and $d$ a positive odd integer. The number of $v\in\FF_p^d$ for which $\langle v,v\rangle=0$ is equal to $p^{d-1}.$
+\end{theorem}
+The structure for even dimension seems more difficult. For example, even with $d=2,$ are computing the number of $(x,y)\in\FF_p^2$ for which $x^2+y^2\equiv0.$ In particular, the existence of nonzero solutions is equivalent to the existence of a $\sqrt{-1}\in\FF_p$ after rearranging.
+
+\subsubsection{June 5th}
+Today I learned about the difficulty generalizing the result from yesterday to arbitrary dimensions. We are going to go done through the proof in an arbitrary dimension $d$ and see what problems we have; however, we will be less detailed. We are interested in computing
+\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}\]
+for prime-power $q.$ As before, we note that, given $k\in\FF_q^\times,$ we can take $v\mapsto kv$ and preserve the condition we're counting, and as long as $v\ne0,$ there are $q-1$ nonzero vectors in $\FF_qv.$ So we can instead count
+\[1+(q-1)\#\left\{L\in(\FF_q^d\setminus\{0\})/\FF_q^\times:\langle v,v\rangle=0\text{ for all }v\in L\right\}.\]
+Note that if any $v\in L$ has $\langle v,v\rangle,$ then all $v'\in L$ do because $v'=kv$ for some $k\in\FF_q,$ and $\langle v',v'\rangle=k^2\langle v,v\rangle=0.$ This is to say that we don't have to keep very careful track of the condition. Very quickly, we note that the analysis above says that there are
+\[\#\left((\FF_q^d\setminus\{0\})/\FF_q^\times\right)=\frac{q^d-1}{q-1}\]
+total such one-dimensional subspaces of $\FF_q^d.$
+
+As before, we count this by introducing an an auxiliary graph. Define $G_q$ with vertices labeled by each one-dimensional subspace in $(\FF_q^d\setminus\{0\})/\FF_q^\times.$ Then for $L_1,L_2\in V(G_p),$ we place an edge between $L_1$ and $L_2$ if and only if
+\[\langle v_1,v_2\rangle=0\text{ for all }v_1\in L_1,v_2\in L_2.\]
+Again, note that it suffices for $\langle v_1,v_2\rangle$ for a single $v_1\in L_1\setminus\{0\}$ and $v_2\in L_2\setminus\{0\}.$ Indeed, then for any other $v_1'\in L_1$ and $v_2'\in L_2,$ we can write $v_1'=k_1v_1$ and $v_2'=k_2v_2$ because $L_1,L_2$ are one-dimensional. Then we have
+\[\langle v_1',v_2'\rangle=k_1k_2\langle v_1,v_2\rangle=0,\]
+so indeed $L_1$ and $L_2$ are adjacent.
+
+Now, we are interested in counting the number of one-dimensional subspaces $L\in(\FF_q^d\setminus\{0\})/\FF_q^\times$ such that $L$ is adjacent to itself: we want there to be a nonzero vector $v\in L\setminus\{0\}$ with $\langle v,v\rangle=0.$ So because we want to compute the number of loops in $G_q,$ we fix $A_q$ the adjacency matrix of $G_q$ so that we want to compute
+\[\op{trace}A_q=\#\left\{L\in V(G_q):\langle v,v\rangle=0\text{ for all }v\in L\right\}.\]
+But as before, the matrix $A_q$ is significantly more complicated than $A_q^2.$ We have the following.
+\begin{lemma}
+    The matrix $A_q^2$ is equal to $\frac{q^{d-2}-1}{q-1}J+q^{d-2}I,$ where $J$ is the all-ones matrix.
+\end{lemma}
+We compute the matrix coefficients of $A_q^2$ manually. By properties of the adjacency matrix, the coefficient of $A_q^2$ corresponding to the vertices $L_1$ and $L_2$ is the number of length-two paths between them. In other words, it is the number of vertices $L$ such that
+\[\langle v_1,v\rangle=\langle v,v_2\rangle=0\text{ for all }v_1\in L_1,v\in L,v_2\in L_2.\]
+To compute the number of one-dimensional subspaces $L,$ we'll compute the number of vectors $v$ for which $\langle v_1,v\rangle=\langle v,v_2\rangle=0$ for all $v_1\in L_1$ and $v_2\in L_2.$ This will be enough because the set of such vectors forms a subspace (it's $L_1^\perp\cap L_2^\perp$), so we can safely mod out by $\FF_q^\times$ later. So we are, roughly speaking, computing
+\[\dim\left(L_1^\perp\cap L_2^\perp\right)=\dim\left(L_1^\perp\right)+\dim\left(L_2^\perp\right)-\dim\left(L_1^\perp+L_2^\perp\right),\]
+where the dimensions are taken over $\FF_q.$ Note that $\dim L_\bullet^\perp=d-\dim L_\bullet=d-1$ by duality or something, so the hard part is computing $\dim\left(L_1^\perp+L_2^\perp\right).$ Now we have two cases.
+\begin{itemize}
+    \item If $L_1\ne L_2,$ then $L_1^\perp\ne L_2^\perp.$ But the dimension of both $L_\bullet^\perp$ has dimension $d-1,$ and $L_1^\perp+L_2^\perp$ must be strictly larger than $L_1^\perp$ or $L_2^\perp$ (one has a vector not in the other), meaning that $L_1^\perp+L_2^\perp$ has to have the largest possible dimension, $d.$
+    
+    Thus, $\dim\left(L_1^\perp\cap L_2^\perp\right)=d-2.$
+    \item If $L_1=L_2,$ then $L_1^\perp=L_2^\perp,$ so $L_1^\perp+L_2^\perp=L_1^\perp$ has dimension $d-1.$ Thus, $\dim\left(L_1^\perp\cap L_2^\perp\right)=d-1.$
+\end{itemize}
+Returning to both cases simultaneously, we let $d':=\dim\left(L_1^\perp\cap L_2^\perp\right)$ as computed above. Then the number of points in $L_1^\perp\cap L_2^\perp$ is $q^{d'}.$ For each vector $v,$ it generates a one-dimensional subspace $\FF_qv,$ and these orbits are disjoint except for the origin because intersecting orbits $k_1v_1=k_2v_2$ have $v_1=k_1^{-1}k_2v_2$ and $v_2=k_2^{-1}k_1v_1$ create the same orbit.
+
+Thus, the number of one-dimensional subspaces adjacent to both $L_1$ and $L_2$ is
+\[\frac{q^{d'}-1}{q-1}.\]
+This lets write out $A_q^2$ explicitly as
+\[A_q^2=\frac1{q-1}\begin{bmatrix}
+    q^{\color{red}d-1}-1 & q^{d-2}-1 & \cdots & q^{d-2} - 1 & q^{d-2}-1 \\
+    q^{d-2}-1 & q^{\color{red}d-1}-1 & \cdots & q^{d-2} - 1 & q^{d-2}-1 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    q^{d-2}-1 & q^{d-2}-1 & \cdots & q^{\color{red}d-1} - 1 & q^{d-2}-1 \\
+    q^{d-2}-1 & q^{d-2}-1 & \cdots & q^{d-2} - 1 & q^{\color{red}d-1}-1
+\end{bmatrix}.\]
+With $J$ as the all-ones matrix, we can collapse this into
+\[A_q^2=\frac{q^{d-2}-1}{q-1}J+\frac{q^{d-1}-q^{d-2}}{q-1}I.\]
+This rearranges into the desired, so we call it quits. $\blacksquare$
+
+And now we can somewhat safely compute the eigenvalues of $A_q.$
+\begin{lemma}
+    The matrix $A_q$ has one eigenvalue of $\frac{q^{d-1}-1}{q-1}$ and $\frac{q^d-1}{q-1}-1$ eigenvalues of $\pm\sqrt{q^{d-2}}.$
+\end{lemma}
+Observe that $A_q,$ as the adjacency matrix of a undirected graph, is real and symmetric and therefore diagonalizable. Thus, we are guaranteed all $\frac{q^d-1}{q-1}$ eigenvalues.
+
+We leverage what we know about $A_q^2$ because its eigenvalues are the square of the eigenvalues of $A_q.$ The matrix $J$ has one-dimensional image (all of its columns are $\langle1,\ldots,1\rangle,$ after all), so it has kernel of dimension $\frac{q^d-1}{q-1}-1.$ In other words, $J$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of $0.$ It follows that $A_q^2$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of
+\[0+q^{d-2}.\]
+Thus, $A_q$ has $\frac{q^d-1}{q-1}-1$ eigenvalues of $\pm\sqrt{q^{d-2}}.$
+
+It remains to find our last eigenvalue of $A_q.$ Well, it should come from the eigenvector of nonzero eigenvalue from $J,$ which is $\langle1,\ldots,1\rangle.$ Note that we immediately know this eigenvector is different from our others because the other eigenvectors are from the kernel of $J.$ Anyways, we need to compute
+\[A_q\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}.\]
+Well, each component will end up being the number of adjacencies to a given vertex of $G_q,$ by properties of he adjacency matrix. (Just look at the multiplication work.) In other words, fixing a one-dimensional subspace $L\in V(G_p),$ we want the number of one-dimensional subspaces in $L^\perp.$ Well, we actually computed this in the previous lemma as
+\[\frac{q^{d-1}-1}{q-1},\]
+mostly because $\dim L^\perp=d-1.$ Because this is invariant of our choise of $L,$ we note
+\[A_q\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix}=\frac{q^{d-1}-1}{q-1}\begin{bmatrix}1 \\ \vdots \\ 1\end{bmatrix},\]
+and so we have found our last eigenvalue. $\blacksquare$
+
+We quickly remark that we could have found the last eigenvalue, up to sign, by noting the eigenvalue of $\langle1,\ldots,1\rangle$ is $\frac{q^d-1}{q-1}$ in $J$ (this is $J$'s width), adding in the $q^{d-2}$ to get the corresponding eigenvalue for $A_q^2,$ and finish by taking the square-root. However, we'd have to do the above computation anyways to get the sign.
+
+Anyways, we, as before, let $a$ be the number of eigenvectors with eigenvalue $+\sqrt{q^{d-2}}$ and $b$ be the number of eigenvectors with eigenvalue $-\sqrt{q^{d-2}}.$ Then we know
+\[\op{trace}A_q=\frac{q^{d-1}-1}{q-1}+(a-b)\sqrt{q^{d-2}}\]
+by summing the eigenvalues. Returning to the original problem, we see that
+\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=1+(q-1)\left(\frac{q^{d-1}-1}{q-1}+(a-b)\sqrt{q^{d-2}}\right),\]
+which simplifies to
+\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}.\]
+As an example of what this can do, we immediately have the following.
+\begin{proposition}
+    Fix $q$ a non-square prime-power and $d$ an odd dimension. Then
+    \[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}.\]
+\end{proposition}
+Starting from our last equation, we note that $q^{d-2}$ is a non-square raised to an odd power and is therefore odd. It follows $\sqrt{q^{d-2}}$ is irrational, but
+\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}\]
+needs to be an integer, so we had better have $a-b=0.$ This finishes. $\blacksquare$
+
+Or we can take a slightly different approach to say the following.
+\begin{proposition}
+    Fix $q$ a prime-power and $d$ a dimension. If either $q$ is square or $d$ even, then
+    \[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}\equiv0\pmod{\sqrt{q^{d-2}}}.\]
+\end{proposition}
+Note that the condition $q$ square or $d$ even is meant to ensure $q^{d-2}$ is itself a square so that $\sqrt{q^{d-2}}$ is integral. Then we note the equation
+\[\#\left\{v\in\FF_q^d:\langle v,v\rangle=0\right\}=q^{d-1}+(q-1)(a-b)\sqrt{q^{d-2}}\]
+immediately gives the desired upon taking$\pmod{\sqrt{q^{d-2}}}.$ There is perhaps a technicality to note $q^{(d-2)/2}\mid q^{d-1},$ but this is equivalent to $2(d-1)\ge d-2,$ or $d\ge0,$ so we don't have anything to worry about. $\blacksquare$
+
+Very quickly, we remark that the above result does guarantee that there are a nonzero number o nonzero solutions, for being divisible by $\sqrt{q^{d-2}}$ means that the number of nonzero solutions is $-1\pmod{q^{d-2}}.$ However, this divisibility condition isn't great for size because we expect there to be about $q^{d-1}$ total solutions anyways (as in the other case).
+
+This last result is not really very impressive, but it is cute. As alluded, the problem with square $q$ or even $d$ is that $\sqrt{q^{d-2}}$ is actually an integer, so we can't blatantly ignore it as in the other case. And indeed, the distinction is not a mere limitation to the technique but actually representative of a deeper problem.
+\begin{example}
+    Fix $d=2$ and $q=p$ an odd prime. Then note $\langle v,v\rangle=0$ for $v=(x,y)\in\FF_p^2$ is equivalent to
+    \[x^2\equiv-y^2\pmod p.\]
+    If $x=0,$ we had better have $y=0,$ so we always at least have that solution. Otherwise, nonzero solutions require $(x/y)^2\equiv-1\pmod p$ and so require a square-root of $-1.$ So the number of desired $v\in\FF_p62$ is dependent on $\left(\frac{-1}p\right),$ or equivalently on $p\pmod4.$
+\end{example}
+We can actually complete this example. We have two cases
+\begin{itemize}
+    \item If $p\equiv3\pmod4$ so that $\left(\frac{-1}p\right)=-1,$ then there will be no nonzero solutions because, as discussed, nonzero $v=(x,y)$ satisfying gives $(x/y)\equiv-1.$ So we have only $\boxed1$ solution here.
+    \item Else, $p\equiv1\pmod4$ so that $\left(\frac{-1}p\right)=1$; fix $k:=\sqrt{-1}$ to be a square-root of $-1.$ As above, any nonzero solution $v=(x,y)$ gives
+    \[(x/y)^2\equiv-1\pmod p.\]
+    In particular, $x/y$ is equal to $k$ or $-k,$ so $x\equiv\pm ky.$ Note $k$ is nonzero, so as $y$ varies across its $p-1$ nonzero options, we get two different nonzero values of $x$ for each. So the total number of solutions is $1+(p-1)\cdot2=\boxed{2p-1}.$
+\end{itemize}
+In all cases, we do see that the number of solutions is (sadly) divisible by $\sqrt{p^{2-2}}=1.$
+
+\subsubsection{June 6th}
+Today I learned that a number of geometric concepts can be defined purely formally from an arbitrary distance metric, from the ARML Power Round. As a fair warning, I am under the impression that this is highly nonstandard. For starters, we will permit distances that need not be positive reals and take the following definition.
+\begin{definition}
+    Fix a field $F$ of characteristic not $2.$ Then for $a,b,c\in F$ with $bc\ne0,$ we define
+    \[\cos([a,b,c]):=\frac{b^2+c^2-a^2}{2bc}.\]
+    This is to be thought of as the cosine of the angle opposite the side of length $a$ in a triangle of side lengths $a,b,c.$
+\end{definition}
+Here, the elements of $F$ are acting like the distances in a triangle. Notably, we are forcing some Euclidean structure onto our geometry, even though it might not fit nicely. For example, even with just $a,b,c\in\RR,$ we can have
+\[\cos[10,1,1]=\frac{1^2+1^2-10^2}{2\cdot1\cdot1}=-49,\]
+which is quite strange. The reason this went bad is, of course, that our $[a,b,c]$ is not required to satisfy the triangle inequality. I think there is a way to recover the triangle inequality if we add in a valuation, but it seems painful.
+
+Even so, we might expect some of the definitions to interact in a purely formal way, if we just define them purely formally as well. So here is squared area, using Heron's formula.
+\begin{definition}
+    Again fix a field $F$ of characteristic not $2.$ Then for $a,b,c\in F,$ we define the squared area of $[a,b,c]$ as
+    \[\op{sqarea}([a,b,c]):=s(s-a)(s-b)(s-c),\]
+    where $s=\frac{a+b+c}2$ is the (formal) semiperimeter.
+\end{definition}
+Note that this definition is symmetric, so we don't have to worry about the order of $[a,b,c]$ here. Also of note is that we would like to take the square-root of the squared area to get normal area, but we are not guaranteed that square-roots exist or even are well-defined in $F.$
+
+As an example of these definitions interacting in a purely formal way, we recall the area formula
+\[K\stackrel?=\frac12bc\sin\angle A,\]
+where $\angle A=[a,b,c]$ is the angle. However, we don't have a $\sin,$ nor do we have a non-squared area, so we solve both problems simultaneously by squaring both sides and then using the Pythagorean identity. This looks like
+\[K^2\stackrel?=\frac14b^2c^2\sin^2([a,b,c])=\frac14b^2c^2\left(1-\cos^2([a,b,c])\right).\]
+Of course, we do not define the area to behave in this way, so this is something that needs proof.
+\begin{proposition}
+    Fix $F$ a field of characteristic not $2.$ Given $a,b,c\in F$ with $bc\ne0,$ we have
+    \[\op{sqarea}([a,b,c])=\frac14b^2c^2\left(1-\cos^2([a,b,c])\right).\]
+\end{proposition}
+This manipulation is roughly the end of the proof of Heron's formula. Starting from the right-hand side, we note that
+\[1-\cos^2([a,b,c])=1-\left(\frac{b^2+c^2-a^2}{2bc}\right)^2,\]
+so
+\[\frac14b^2c^2\left(1-\cos^2([a,b,c])\right)=\frac1{16}\left((2bc)^2-\left(b^2+c^2-a^2\right)^2\right).\]
+Factoring by difference of squares, this looks like
+\[\frac1{16}\left(2bc+\left(b^2+c^2-a^2\right)\right)\left(2bc-\left(b^2+c^2-a^2\right)\right)=\frac1{16}\left((b+c)^2-a^2\right)\left(a^2-(b-c)^2\right).\]
+Using difference of squares again, this is
+\[\frac1{16}(a+b+c)(-a+b+c)(a-b+c)(a+b-c).\]
+Factoring in the $16,$ we can write this all as
+\[\frac{a+b+c}2\left(\frac{a+b+c}2-a\right)\left(\frac{a+b+c}2-b\right)\left(\frac{a+b+c}2-c\right).\]
+This is what we wanted. $\blacksquare$
+
+As a bonus, we get the law of sines for free now. (The law of cosines is built into our definition of cosine.) We would like to write
+\[\frac{\sin([a,b,c])}a\stackrel?=\frac{\sin([b,c,a])}b,\]
+but again $\sin$ is somewhat meaningless. Squaring and using the Pythagorean identity, we want the following.
+\begin{proposition}
+    Fix $F$ a field of characteristic not $2.$ Given $a,b,c\in F$ with $abc\ne0,$ we have
+    \[\frac{1-\cos^2([a,b,c])}{a^2}=\frac{1-\cos^2([b,c,a])}{b^2}.\]
+\end{proposition}
+We are allowed to not care about division by $0$ with $a,b,c$ because they are nonzero. So we multiply both sides by $\frac14a^2b^2c^2$ so that it suffices to show
+\[\frac14b^2c^2\left(1-\cos^2([a,b,c])\right)\stackrel?=\frac14c^2a^2\left(1-\cos^2([b,c,a])\right).\]
+However, the left-hand side is $\op{sqarea}([a,b,c]),$ and the right-hand side is $\op{sqarea}([b,c,a]).$ But we already remarked that the definition of $\op{sqarea}$ is symmetric in its arguments, so these are equal, as desired. $\blacksquare$
+
+Of course, the above proof is just rewriting the proof of the law of sines from writing
+\[\frac12bc\sin\angle A=\frac12ca\sin\angle B\]
+directly implying $\sin\angle A/a=\sin\angle B/b.$ What is remarkable here is that we managed to codify this intuition into a purely formal manipulation of our algebraic definitions.
+
+\subsubsection{June 6th}
+Today I learned the classification of primes in polynomial rings over principal ideal domains, from Undergraduate Commutative Algebra. Before continuing, we collect some facts that should be written down somewhere. We begin with the equivalence of prime and irreducible in unique factorization domains.
+\begin{lemma}
+    Suppose $p$ is a non-unit prime in the integral domain $\mathcal O_K.$ Then $p$ is irreducible.
+\end{lemma}
+Indeed, suppose $p=ab$ for some $a,b\in\mathcal O_K.$ We need to show that one of $a$ or $b$ is a unit. Well, $p=ab$ means that $p\mid ab,$ so $p\mid a$ or $p\mid b$ by definition of prime. Without loss of generality, we say $p\mid a,$ so let $a=pk.$ Thus we see that
+\[p=(pk)b.\]
+Because $p$ is prime, it is nonzero, so the fact $\mathcal O_K$ is an integral domain lets us cancel this to $bk=1.$ Thus, $b\mid1,$ so $b\in\mathcal O_K^\times$ is a unit.
+
+Technically, we also need to know that $a$ is not a unit for $p$ to be irreducible. Well, if $a$ is also a unit, then $p=ab$ is a unit as well, and we supposed that $p$ is not a unit as a hypothesis. $\blacksquare$
+
+\begin{lemma}
+    Suppose $q$ is an irreducible in the unique factorization domain $\mathcal O_K.$ Then $q$ is a prime.
+\end{lemma}
+Suppose $q\mid ab$ with $a,b\in\mathcal O_K.$ To use the unique factorization condition, we note that
+\[\frac{ab}q=u\prod_{p\text{ irred.}}p^{\nu_p(ab/q)},\]
+where all but finitely many of the $\nu_p(ab)$ are zero. In particular, we note that
+\[ab=u\left(q\prod_{p\text{ irred.}}p_k\right)\]
+is a perfectly valid factorization into irreducibles of $ab.$ However, we can also write
+\[a=u_a\prod_{p\text{ irred.}}p^{\nu_p(a)}\quad\text{and}\quad b=u_b\prod_{p\text{ irred.}}p^{\nu_p(b)}\]
+where again all but finitely many of the $\nu_p(a)$ and $\nu_p(b)$ are zero. This means that
+\[ab=u_au_b\prod_{p\text{ irred.}}p^{\nu_p(a)+\nu_p(b)}\]
+is another valid factorization into irreducibles of $ab.$ Comparing our two factorizations, we see that $q$ must be conjugate to some irreducible $p$ in the second factorization, and that irreducible $p$ needs to have $\nu_p(a)+\nu_p(b)$ positive because it is positive in the first factorization. But if
+\[\nu_p(a)+\nu_p(b)>0,\]
+then at least one of $\nu_p(a)$ or $\nu_p(b)$ must be positive. Without loss of generality, we assert $\nu_p(a)>0,$ but then $p\mid a,$ and because $q$ is conjugate to $p,$ we also have $q\mid a.$ This completes the proof. $\blacksquare$
+
+We will also need to know that primes are maximal in principal ideal domains. Note that maximal ideals are integral domains because the corresponding quotient is a field and hence an integral domain.
+\begin{lemma}
+    Suppose $(p)$ is a prime ideal in the principal ideal domain $\mathcal O_K.$ Then $(p)$ is also maximal.
+\end{lemma}
+We show this directly. Find an ideal between $(p)$ and $\mathcal O_K,$ and name it $(a)$ because it must be principal. Namely, we know that $(p)\subseteq(a)\subseteq\mathcal O_K$ and would like to show $(a)=(p)$ or $(a)=\mathcal O_K.$
+
+Well, $p\in(a)$ implies that $p=ab$ for some $b\in\mathcal O_K.$ However, $p$ prime implies $p$ irreducible, so $p=ab$ requires either $a$ or $b$ to be a unit. We take these cases one at a time.
+\begin{itemize}
+    \item If $a$ is a unit, then $(a)=\mathcal O_K.$ Using more words, $a\mid1$ requires some $k$ with $1=ak,$ so $1\in(a),$ so $\mathcal O_K=(1)\subseteq(a).$
+    \item If $b$ is a unit, then $(a)=(p).$ Indeed, $a=pb^{-1},$ so $a\in(p),$ so $(a)\subseteq(p),$ but we supposed that $(p)\subseteq(a)$ already.
+\end{itemize}
+Having dealt with all cases, we are done here. $\blacksquare$
+
+Now, in what follows, we fix $\mathcal O_K$ a principal ideal domain and $K$ its field of fractions. We know $\mathcal O_K$ is a unique factorization domain, so $\mathcal O_K[x]$ is a unique factorization domain as well. We are interested in classifying the primes/irreducibles in $\mathcal O_K[x].$ So fix $\mf p$ a prime ideal.
+
+Getting rid of the easy cases, we begin by taking $\mf p=(\pi)$ principal with $\pi\in\mathcal O_K[x].$ We can always have $\mf p=(0),$ but if $\pi$ is a nonzero non-unit prime of the unique factorization domain $\mathcal O_K[x],$ then this is equivalent to $\pi$ being irreducible. So
+\[(\pi)\text{ prime}\iff\pi=0\text{ or }\pi\text{ prime/irreducible}.\]
+It can be checked manually that $\mathcal O_K[x]/(\pi)$ is an integral domain, but we don't have to.
+
+It remains to deal with the case where $\mf p$ is a prime ideal but not principal. The intuition for this case is to take $\mathcal O_K=\CC[y]$ so that the maximal ideals in $\mathcal O_K[x]=\CC[x,y]$ all look like $(x-\alpha,y-\beta)$ with $\alpha,\beta\in\CC.$ What does this mean? Well,
+\[(x-\alpha,y-\beta)\]
+looks like the expansion of the maximal ideal $(y-\beta)\subseteq\mathcal O_K,$ so we would like to show that $\mf p$ looks like this: some kind of expansion of a maximal ideal in $\mathcal O_K.$
+
+For this, we pick up the following lemma.
+\begin{lemma}
+    Fix $\mathcal O_K$ a principal ideal domain. Suppose that $\mf p$ is a non-principal ideal of $\mathcal O_K[x].$ Then $\mf p\cap(\mathcal O_K\setminus\{0\})$ is nonempty.
+\end{lemma}
+Fix $K$ the field of fractions of $\mathcal O_K[x].$ As a general approach, what we want to do is say that $\mf p$ non-principal means that it has elements $f_1$ and $f_2$ which are coprime in a $\mathcal O_K[x]$ sort of way, so we can reduce them to elements coprime in a $K[x]$ sort of way, and then Bezout's lemma says there are $c_1,c_2\in K[x]$ such that
+\[c_1f_1+c_2f_2=1\]
+because $K[x]$ is a principal ideal domain. Clearing fractions to push everything into $\mathcal O_K[x]$ gives us our element of $\mathcal O_K[x]\setminus\{0\}$ in $\mf p.$
+
+We begin by looking for those elements $f_1$ and $f_2$ of $\mf p$ which share no non-unit common factor of $\mathcal O_K[x].$ This is surprisingly annoying, so if the reader would like to skip this, we denote where the proof of this begins and ends.
+\begin{lemma}
+    Using everything as defined above, we can find $f_1$ and $f_2$ in $\mf p$ which share no non-unit common factors.
+\end{lemma}
+Pick up any nonzero $f_1\in\mf p$ and look at its decomposition into irreducibles. (Note $\mf p\ne\{0\}$ because $\mf p$ is not principal.) One of those irreducibles needs to be in $\mf p$ because $\mf p$ is a prime (after all, the entire product $f_1\in\mf p$), so say $p_1\in\mf p$ is one such irreducible.
+
+Now, $\mf p$ is not principal, so $\mf p\setminus(p_1)$ must be nonempty. So find some $f_2\in\mf p\setminus(\pi_1)$ and play the same trick: surely $f_2$ is nonzero because $0\in(p_1),$ so we can look at the factorization of $f_2$ into irreducibles. This factorization is just a glorified product, so one of the irreducible factors---say, $p_2$---lives in $\mf p.$
+
+Thus, we have two irreducibles $p_1$ and $p_2$ in $\mf p,$ where $p_2\in\mf p\setminus(p_1).$ We claim that $p_1$ and $p_2$ have no non-unit common factors. Indeed, if we find $g\in\mathcal O_K[x]$ satisfying $g\mid p_1$ and $g\mid p_2,$ then dissolving everything into its prime factorization means that
+\[\nu_p(g)\le\min\{\nu_p(p_1),\nu_p(p_2)\}\]
+for each irreducible $p$ of $\mathcal O_K[x].$ However, $p_1=p_1$ is a valid factorization into irreducibles for $p_1,$ so $\nu_p(g)=\nu_p(p_1)=0$ for any $p$ not conjugate to $p_1.$ Similarly, $\nu_p(g)=0$ for any prime not conjugate to $p_2.$ But if $p$ is conjugate to both $p_1$ and $p_2,$ then $p_1=u_1p$ and $p_2=u_2p$ with $u_1,u_2\in\mathcal O_K[x]^\times,$ implying
+\[p_2=u_2p=u_2u_1^{-1}p_1\in(p_1),\]
+which is false by construction. So no prime is conjugate to both $p_1$ and $p_2,$ implying $\nu_p(g)=0$ for all irreducibles $p.$ It follows the factorization of $g$ into irreducibles features no irreducibles, so $g$ is a unit. $\blacksquare$
+
+As our promised next step, we lift the condition that $f_1$ and $f_2$ share no non-unit common factors in $\mathcal O_K[x]$ to sharing no non-unit common factors in $K[x].$ This lifting sounds like a job for Gauss's lemma, so indeed we will use Gauss's lemma.
+
+Suppose $g\in K[x]$ is a common factor of $f_1$ and $f_2$ in $K[x],$ and we would like to show $\deg g=0$ so that $g$ is a unit of $K.$ We need to move this argument into $\mathcal O_K[x]$ to use our hypothesis on $f_1$ and $f_2,$ so we write $f_1=gg_1$ and $f_2=gg_2$ and use our lemma from a few days ago to say
+\[g=ag',\quad g_1=a_1g_1',\quad g_2=a_2g_2'\]
+where $a,a_1,a_2\in K^\times$ and $g',g_1',g_2'\in\mathcal O_K[x]$ are primitive. We claim that $g'$ is a common factor of $f_1$ and $f_2$ in $\mathcal O_K[x],$ which will finish because it requires that $g'$ is a unit of $\mathcal O_K[x],$ so $g=ag'\in K$ is a unit of $K[x].$ Indeed, we'll show $g'\mid f_1,$ from which $g'\mid f_2$ will follow similarly. We write
+\[f_1=gg_1=(aa_1)(g'g_1').\]
+Now, $g'g_1'$ is primitive by Gauss's lemma (here is here we used it). To finish here, we need to know $aa_1\in\mathcal O_K.$ A quick way to see this is that, for any prime $p$ of $\mathcal O_K,$ we know that the minimum of $\nu_p$ across the coefficients of $f_1$ and $(aa_1)(g'g_1')$ are equal. Well, $f_1\in\mathcal O_K[x],$ so the minimum is nonnegative, and $g'g_1'$ is primitive, so the minimum is $0.$ Thus, $\nu_p(aa_1)\ge0$ for each $p,$ so $aa_1\in\mathcal O_K.$
+
+And as our promised final step, we note that $f_1$ and $f_2$ sharing no non-unit common factors in $K[x]$ means that the ideal $(f_1,f_2)=K[x]$ in $K[x].$ In particular, we can find $c_1,c_2\in K[x]$ such that
+\[c_1f_1+c_2f_2=1.\]
+Multiplying together all the denominators of $c_1$ and $c_2$ gives us a giant nonzero constant $C\in\mathcal O_K$ such that $Cc_1\in\mathcal O_K[x]$ and $Cc_2\in\mathcal O_K[x],$ so
+\[(Cc_1)f_1+(Cc_2)f_2=C\]
+lives in $(f_1,f_2)$ in $\mathcal O_K[x]$ and therefore lives in $\mf p.$ This finishes the proof. $\blacksquare$
+
+We can now do some analysis on what $\mf p$ looks like. We can get to the following with some small coercion.
+\begin{lemma}
+    Fix $\mathcal O_K$ a principal ideal domain and $\mf p$ a non-principal prime ideal. We can find some prime element $p\in\mathcal O_K\cap\mf p$ and polynomial $\pi\in\mathcal O_K[x]$ such that $\overline\pi\in\mathcal O_K/(p)[x]$ is irreducible.
+\end{lemma}
+It is nonzero by the lemma we worked so hard for, and it is also a prime $\mathcal O_K$-ideal. That it is an ideal follows because $\mf p$ is an $\mathcal O_K[x]$-ideal and $\mathcal O_K$ a ring. It is not all of $\mathcal O_K$ because then $1\in\mf p,$ which is problematic. And it is prime is also inherited: if $a,b\in\mathcal O_K$ have
+\[ab\in\mf p\cap\mathcal O_K,\]
+then $ab\in\mf p$ requires $a\in\mf p$ or $b\in\mf p.$ We already know $a,b\in\mathcal O_K,$ so $a\in\mf p\cap\mathcal O_K$ or $b\in\mf p\cap\mathcal O_K.$ Anyways, the point of all of this is to say that
+\[\mf p\cap\mathcal O_K=(p)\]
+for some prime $p$ of $\mathcal O_K$ because $\mathcal O_K$ is a principal ideal domain. This gives the first part of the desired.
+
+Continuing, we note $\mf p$ is not itself principal, so we can find some $f\in\mf p\setminus(p).$ We might be tempted to pick up an irreducible $\pi$ from the factorization of $f\in\mathcal O_K[x]$ and analyze $(p,\pi).$ However, $(p,\pi)$ need not even be prime in this construction: choosing $\mathcal O_K$ with $p=2$ and $\pi=x^2+1,$ we see
+\[(x+1)^2\in\left(2,x^2+1\right)\subseteq\ZZ[x],\]
+but of course $x+1\not\in\left(2,x^2+1\right).$
+
+The correct thing to do is to note that $(p)$ is prime in a principal ideal domain $\mathcal O_K$ and hence maximal, so $\mathcal O_K/(p)[x]$ is a unique factorization domain (a polynomial ring of a field). Instead of picking up any irreducible dividing $f,$ we will pick up an irreducible dividing its equivalence class $\overline f\in\mathcal O_K/(p)[x].$ We quickly establish $\deg\overline f>0$: write
+\[f(x)=\sum_{k=0}^da_kx^k\in\mathcal O_K[x],\]
+If all $a_k$ for $k>0$ live in $(p),$ then $a_0=f(x)-p\sum_{k=1}^d(a_k/p)x^k\in(p)$ as well, meaning $f\in(p).$ We chose $f\not\in(p),$ so there is some $k>0$ with $a_k\not\in(p),$ meaning $\deg\overline f\ge k>0.$ So we are allowed to write
+\[\overline f=\prod_{k=1}^n\overline\pi_k\]
+for a positive number of irreducible polynomials $\{\overline\pi_k\}_{k=1}^n\subseteq\mathcal O_K/(p)[x].$ We would like one of the $\pi_\bullet$ to live into $\mf p.$ Well, the above equality lets us find some $q\in(p)$ with
+\[\prod_{k=1}^n\pi_k=f-pq\in\mf p,\]
+so $\mf p$ prime lets us find some $\pi$ in the product such that $\pi\in\mf p.$ This gives the second part of the desired. $\blacksquare$
+
+It turns out that the above lemma the $p$ and $\pi$ of the above lemma actually generate $\mf p.$ We have the following.
+\begin{lemma}
+    Using everything as defined in the previous lemma, we have $\mf p=(p,\pi).$
+\end{lemma}
+Indeed, we claim that $(p,\pi)$ is maximal, so $(p,\pi)\subseteq\mf p\subsetneq\mathcal O_K$ ($\mathcal O_K$ is not a prime ideal), from what it follows $\mf p=(p,\pi).$ To show the claim, we simply note
+\[\frac{\mathcal O_K[x]}{(p,\pi)}\cong\frac{\mathcal O_K/(p)[x]}{(\overline\pi)}\cong\mathcal O_K/(p)[\alpha],\]
+where $\alpha$ is a root of $\overline\pi\in\mathcal O_K/(p)[x].$ With more words, $p$ prime in $\mathcal O_K$ means $(p)$ is maximal, so $\mathcal O_K/(p)$ is a field. Adjoining the transcendental $x$ and then modding out by $\overline\pi$ is equivalent to adjoining a root $\overline\pi$ to the field $\mathcal O_K/(p),$ remaining a field. Thus, $(p,\pi)$ is maximal. $\blacksquare$
+
+Putting this all together, we have the following theorem.
+\begin{theorem}
+    Fix $\mathcal O_K$ a principal ideal domain. All prime ideals $\mf p$ of $\mathcal O_K[x]$ fall into exactly one of the following categories.
+    \begin{itemize}
+        \item $\mf p$ is principal and looks like $(0)$ or $(f)$ for some prime/irreducible $f\in\mathcal O_K[x].$
+        \item $\mf p$ is maximal and looks like $(p,\pi)$ where $p\in\mathcal O_K$ is prime, and $\pi$ reduces$\pmod p$ to some irreducible $\overline\pi\in\mathcal O_K/(p)[x].$
+    \end{itemize}
+\end{theorem}
+This follows from the above discussion, by doing casework on if $\mf p$ is principal or not. The first part of the theorem comes from our discussion of the principal case, and the above lemma covers the second part of the theorem for when $\mf p$ is non-principal.
+
+Further, note that all the principal primes are not maximal: if $\mf p=(p)$ with $\deg p=0,$ then $p\in\mathcal O_K,$ so $p$ is prime, and then $(p,x)$ is a strictly larger proper ideal. Indeed, $x\in\mathcal O_K[x]\setminus(p)$ while $1+p\in\mathcal O_K[x]\setminus(p,x).$
+
+Similarly, if $\mf p=(f)$ with $\deg f>0,$ then we can pick up a prime $p\in\mathcal O_K,$ and $(p,f)$ is a strictly larger proper ideal. Indeed, $(f)$ has no nonzero elements in $\mathcal O_K,$ so $p\in\mathcal O_K[x]\setminus(f).$ And further, $1+p$ is not in $(p,f)$ either: note $1+p=ap+bf$ needs $b=0$ because $\deg(1+p)=0,$ but $1+p=ap$ means $p$ is a unit.
+
+The point of the above is to say that our cases really are disjoint: being non-principal and prime is really the same as being maximal. The previous discussion gives the forward direction, and the above two paragraphs give the reverse direction. $\blacksquare$
+
+What's nice about the above abstraction is that we get to leverage both geometric intuition from $\mathcal O_K=\CC[y]$ and more number-theoretic intuition from $\mathcal O_K=\ZZ.$ To be more explicit, we get a nice picture of $\op{Spec}\CC[y,x]$ as consisting of the maximal ideals
+\[(y-\beta,x-\alpha)\]
+because $\CC$ is algebraically closed. These can be associated with the points $(\beta,\alpha)\in\CC^2,$ so we can picture our maximal ideals as points. Then the principal ideals $(f)$ with $f\in\CC[y,x]$ prime/irreducible more or consist of ``curves'' in the plane that cannot be reduced into components.
+
+Meanwhile we also get a nice number-theoretic statement about what the primes of $\ZZ[x]$ or $\ZZ[i][x]$ look like, which is nice. I'm not sure how much I care about these primes, and it disturbs me a bit that this much work was needed to classify them, but it is nice to have it and in this generality.
+
+\subsubsection{June 7th}
+Today I learned a truly clever proof to the Spectal theorem, from THE BOOK of course. As a brief outline, we will translate diagonalization by orthogonal matrices into the minimization of some function and then minimize that function by a compactness argument. Here are the definitions of our main characters.
+\begin{definition}
+    A matrix $M\in F^{n\times n}$ is said to be symmetric if and only if its coefficients satisfy $M_{k,\ell}=M_{\ell,k}$ for each valid $k,\ell.$
+\end{definition}
+Our main claim is that we can diagonalize real symmetric matrices by orthogonal ones, so we need to pick up the definition of orthogonal.
+\begin{definition}
+    A matrix $Q\in F^{n\times n}$ is said to be orthogonal if and only if $Q^\intercal=Q^{-1}.$ We will denote the set of orthogonal matrices in $\RR^{n\times n}$ by $O(n).$
+\end{definition}
+We remark that $Q\in O(n)$ is equivalent to $Q^\intercal Q=I.$ If we write out the matrix multiplication using column vectors, we see
+\[Q^\intercal Q=\begin{bmatrix}
+    - & v_1 & - \\
+    & \vdots & \\
+    - & v_n & -
+\end{bmatrix}\begin{bmatrix}
+    | & & | \\
+    v_1 & \cdots & v_n \\
+    | & & |
+\end{bmatrix}=\begin{bmatrix}
+    \langle v_1,v_1\rangle & \cdots & \langle v_n,v_1\rangle \\
+    \vdots & \ddots & \vdots \\
+    \langle v_1,v_n\rangle & \cdots & \langle v_n,v_n\rangle
+\end{bmatrix},\]
+where $\langle,\rangle$ is the usual inner product. This expansion gives the following statement.
+\begin{proposition}
+    A matrix $Q\in\RR^{n\times n}$ is orthogonal if and only if its column vectors form an orthonormal basis.
+\end{proposition}
+Indeed, from the above expansion of $Q^\intercal Q,$ we see that $Q^\intercal Q=I$ if and only if $\langle v_k,v_\ell\rangle=1_{k=\ell},$ which is exactly what is required for the column vectors to be orthonormal.
+
+That they form a basis follows from the fact that mutually orthogonal nonzero vectors are all linearly independent: dot any relation of mutually orthogonal nonzero vectors $\{v_1\}_{k=1}^m$
+\[a_1v_1+\cdots+a_mv_m=0\]
+by $v_k$ to get all terms to vanish except $a_k\langle v_k,v_k\rangle=0,$ yielding $a_k=0,$ for any $k.$ Further, the columns of $Q$ have a full $n$ linearly independent vectors, so they must be a basis. $\blacksquare$
+
+Indeed, given a real symmetric matrix $A\in\RR^{n\times n},$ we define
+\[\op{od}(A):=\sum_{1\le k\ne\ell\le n}A_{k,\ell}^2\]
+to be the sum of the squares of the off-diagonal entries. Roughly speaking, $\op{od}$ is trying to measure how far $A$ is from diagonal: $\op{od}(A)=0$ if and only if $A$ is diagonal. To measure diagonalization, we define the function
+\[\op{attempt}_Q(A):=\op{od}\left(QAQ^\intercal\right)\]
+for all matrices $Q\in\RR^{n\times n}.$ For orthogonal matrices $Q,$ we know $Q^\intercal=Q^{-1},$ so the above really is an attempt at diagonalization: if $\op{attempt}_Q(QAQ^{-1})=0$ then $QAQ^{-1}$ is diagonalized. We use $Q^\intercal$ instead of $Q^{-1}$ directly because we will want $\op{attempt}_\bullet(A)$ to be defined over all $\RR^{n\times n}$ for our compactness argument.
+
+For a compactness argument to achieve a minimum, we need a ``do-better'' lemma. This is the meat of the argument.
+\begin{lemma}
+    Fix a real symmetric matrix $A\in\RR^{n\times n}$ with $\op{od}(A)>0.$ We can construct an orthogonal matrix $Q\in O(n)$ with $\op{attempt}_Q(A)<\op{od}(A).$
+\end{lemma}
+The fact that $\op{od}(A)>0$ means that we can find a nonzero entry $A_{K,L}$ with $K<L.$ (We can find $A_{K,L}\ne0$ with $K\ne L$; if $K>L,$ then note $A_{L,K}=A_{K,L}.$) The main idea is to apply a ``rotation matrix'' to make $A_{K,L}$ smaller while incrementing the elements on the diagonal. That is, we take some angle $\theta$ to be chosen later and let
+\[Q:=\left[\begin{array}{*{20}c}
+    1 \\
+    & \ddots \\
+    & & 1 \\
+    & & & \cos\theta & & & & -\sin\theta \\
+    & & & & 1 \\
+    & & & & & \ddots \\
+    & & & & & & 1 \\
+    & & & \sin\theta & & & & \cos\theta \\
+    & & & & & & & & 1 \\
+    & & & & & & & & & \ddots & \\
+    & & & & & & & & & & 1 \\
+\end{array}\right],\]
+where the entries of interest are $Q_{K,K}=\cos\theta,$ $Q_{K,L}=-\sin\theta,$ $Q_{L,K}=\sin\theta,$ and $Q_{L,L}=\cos\theta.$ Otherwise, $Q_{k,\ell}=1_{k=\ell}$ when $\{k,\ell\}\not\subseteq\{K,L\}.$ Very quickly, we show that $Q$ is orthogonal. Indeed,
+\[\left(Q^\intercal Q\right)_{k,m}=\sum_{\ell=1}^n\left(Q^\intercal\right)_{k,\ell}Q_{\ell,m}=\sum_{\ell=1}^nQ_{\ell,k}Q_{\ell,m}.\]
+We have the following cases.
+\begin{itemize}
+    \item If $k\not\in\{K,L\},$ then $Q_{\ell,k}=1_{k=\ell}$ always. So the only term of the sum we have to worry about is $Q_{k,k}Q_{k,m}=1\cdot 1_{k,m}=1_{k=m},$ as required.
+    \item If $m\not\in\{K,L\},$ then again $Q_{\ell,m}=1_{\ell=m}$ always. So the only term of the sum we have to worry about is $Q_{m,k}Q_{m,m}=1_{m=k}\cdot1=1_{k=m},$ as required.
+    \item If both $k,m\in\{K,L\},$ then we still know $Q_{k,\ell}=0$ when $\ell\not\in\{K,L\}.$ So the only terms of the sum we care about are
+    \[Q_{K,k}Q_{K,m}+Q_{L,k}Q_{L,m}.\]
+    When $k=m=K,$ this reads $\cos^2\theta+\sin^2\theta=1.$ When $k=m=L,$ this reads $(-\sin\theta)^2+\cos^2\theta=1.$ And when $k\ne m,$ this reads $\cos\theta\sin\theta-\sin\theta\cos\theta=0.$ In all cases, we still have $1_{k=m}.$
+\end{itemize}
+It follows that $Q^\intercal Q=I,$ so $Q$ is indeed orthogonal.
+
+It remains to compare $\op{attempt}_Q(A)=\op{od}(QAQ^\intercal)$ with $\op{od}(A).$ Well, note that
+\[\left(QAQ^\intercal\right)_{j,m}=\sum_{k,\ell}Q_{j,k}A_{k,\ell}\left(Q^\intercal\right)_{\ell,m}=\sum_{k,\ell}Q_{j,k}A_{k,\ell}Q_{m,\ell}.\]
+Also, observe that $Q^\intercal AQ$ is symmetric: $\left(Q^\intercal AQ\right)^\intercal=Q^\intercal A^\intercal Q^{\intercal\intercal}=Q^\intercal AQ,$ so we only have to compute half of these entries. We proceed, as expected, with more casework.
+\begin{itemize}
+    \item If both $j,m\not\in\{K,L\},$ then $Q_{j,k}=1_{j=k}$ and $Q_{m,\ell}=1_{m=\ell}$ for any $k$ or $\ell,$ so the only term of the sum we care about is $Q_{j,j}A_{j,m}Q_{m,m}=A_{j,m}.$ So the contribution to $\op{od}$ is the same.
+    \item If $j=K$ but $m\not\in\{K,L\},$ then we care about $k\in\{K,L\}$ but require $\ell=m.$ So the sum looks like
+    \[Q_{K,K}A_{K,m}+Q_{K,L}A_{L,m}=A_{K,m}\cos\theta-A_{L,m}\sin\theta.\]
+    \item If $j=L$ but $m\not\in\{K,L\},$ then we care about $k\in\{K,L\}$ but require $\ell=m.$ So the sum looks like
+    \[Q_{L,K}A_{K,m}+Q_{L,L}A_{L,m}=A_{K,m}\sin\theta+A_{L,m}\cos\theta.\]
+\end{itemize}
+We take a brief interlude to notice that the above two cases accumulate to
+\[(A_{K,m}\cos\theta-A_{L,m}\sin\theta)^2+(A_{K,m}\sin\theta+A_{L,m}\cos\theta)^2,\]
+which expands into $A_{K,m}^2\left(\cos^2\theta+\sin^2\theta\right)+A_{L,m}^2\left(\cos^2\theta+\sin^2\theta\right),$ which is just $A_{K,m}^2+A_{L,m}^2.$ So the terms with $j\in\{K,L\}$ but $m\not\in\{K,L\}$ still contribute the same amount to $\op{od}.$ We observe that by symmetry, we can swap $j$ and $m$ to say the same for $m\in\{K,L\}$ but $j\not\in\{K,L\}.$
+
+It follows that any change to $\op{od}$ will come from when both $j,m\in\{K,L\}.$ Of course, $\op{od}$ doesn't care about when $j=m,$ so we only have to deal with $j=K$ and $m=L$ or $j=L$ and $m=K.$ But by symmetry, these entries are the same, so we only have one computation left.
+
+In this case, we still only care about $k,\ell\in\{K,L\},$ which is
+\[Q_{K,K}A_{K,K}Q_{L,K}+Q_{K,K}A_{K,L}Q_{L,L}+Q_{K,L}A_{L,K}Q_{L,K}+Q_{K,L}A_{L,L}Q_{L,L}.\]
+Using what we know about these quantities, this turns into
+\[A_{K,K}\cos\theta\sin\theta-A_{L,L}\cos\theta\sin\theta+A_{K,L}\left(\cos^2\theta-\sin^2\theta\right),\]
+which is
+\[\frac12(A_{K,K}-A_{L,L})\sin2\theta+A_{K,L}\cos2\theta.\]
+We need this term to have a smaller contribution than $A_{K,L}^2,$ so we will choose $\theta$ to achieve this. Well, at $\theta=0,$ this term is $A_{K,L}\ne0,$ and when $\theta=\frac\pi2,$ this term is $-A_{K,L}<0,$ so there is some $\theta$ in between which causes this term to vanish completely.
+
+For this chosen $\theta,$ we see that $\op{od}\left(QAQ^\intercal\right)$ is equal to $\op{od}(A)$ with the exception of the $A_{K,L}$ and $A_{L,K}$ terms, where $\op{od}(A)+A_{K,L}^2+A_{L,K}^2=\op{od}\left(QAQ^\intercal\right).$ This finishes the proof of the lemma. $\blacksquare$
+
+With our ``do-better'' lemma in hand, we proceed with the compactness argument. We need something to be compact, and because we hope to only care about the orthogonal matrices $O(n),$ this will be our compact set.
+\begin{lemma}
+    The set of orthogonal matrices $O(n)$ is compact in $\RR^{n\times n}.$
+\end{lemma}
+We have to be a bit precise about what we mean by this. For clarity, we imagine vector-izing the matrices in $O(n)$ by reading down each row and turning the matrix from $\RR^{n\times n}$ to $\RR^{n^2},$ and we know what our topology in $\RR^{n^2}$ looks like. Equivalently, we could define the metric
+\[d(A,B)=\sum_{1\le k,\ell\le n}(A_{k,\ell}-B_{k,\ell})^2\]
+for matrices $A,B\in\RR^{n\times n}$ to induce the topology on $\RR^{n\times n}.$ This is the same as the topology from vector-izing because the vectorizing process essentially takes $A$ to $v$ with $v_{n(k-1)+\ell}=A_{k,\ell},$ so the metric topologies match.
+
+Anyways, to show that $O(n)$ is compact it suffices to show that it is closed and bounded. For bounded, given $Q\in O(n),$ we remarked above that the column vectors of $Q$ form an orthonormal basis, so in particular they all have length $1.$ Thus,
+\[d(Q,0)=\sum_{\ell=1}^n\underbrace{\sum_{k=1}^nQ_{k,\ell}^2}_{\text{column vec.}}=\sum_{\ell=1}^n1=n\]
+is bounded. And as for closed, we note that we can write the condition $Q^\intercal Q=I$ for $Q\in O(n)$ as
+\[\left(Q^\intercal Q\right)_{k,m}=\sum_{\ell=1}\left(Q^\intercal\right)_{k,\ell}Q_{\ell,m}=\sum_{\ell=1}Q_{\ell,k}Q_{\ell,m}=1_{k=m}\]
+for any pair of indices $k,m.$ Looking in $\RR^{n^2}$ (say), this is just an intersection of $n^2$ equations, which we can show to be closed. A single one of these equations traces out a closed subset of $\RR^{n^2}$ because the function, for fixed $k$ and $m,$
+\[Q\mapsto\sum_{\ell=1}Q_{\ell,k}Q_{\ell,m}\]
+from $\RR^{n^2}\to\RR$ is just some large polynomial and hence continuous. Indeed, the preimage of the open set $\RR\setminus\{1_{k=m}\}$ is open, so the preimage of the complement closed set $\{1_{k=m}\}$ must also be closed.
+
+Thus, each equation traces out some closed set, and the intersection of all of $n^2$ them will remain closed. Thus, $O(n)$ is closed and bounded and hence compact. $\blacksquare$
+
+We are almost ready to finish. We quickly pick up a point-set lemma.
+\begin{lemma}
+    Fix topological spaces $X$ and $Y$ with a continuous map $f:X\to Y.$ The image $f(C)$ of a compact set $C$ is still compact.
+\end{lemma}
+We show this directly. Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $f(C).$ Because $f$ is continuous, we note that each $f^{-1}(U_\alpha)$ is still open, so
+\[C\subseteq f^{-1}(f(C))\subseteq f^{-1}\left(\bigcup_{\alpha\in\lambda}U_\alpha\right)=\bigcup_{\alpha\in\lambda}f^{-1}(U_\alpha).\]
+Thus, the $f^{-1}(U_\alpha)$ give an open cover of $C.$ Because $C$ is compact, we may extract some finite subcover $\left\{f^{-1}(U_k)\right\}_{k=1}^n\subseteq\left\{f^{-1}(U_\alpha)\right\}_{\alpha\in\lambda}$ around $C.$ Pushing this though $f,$ we see that $\left\{f\left(f^{-1}(U_\alpha)\right)\right\}_{k=1}^n=\left\{U_\alpha\right\}_{k=1}^n$ is a finite subcover of $f(C),$ so we are done here. $\blacksquare$
+
+To finish, we fix $A$ some real symmetric matrix. Observe that the composite function $\op{attempt}_\bullet(A)$ can be thought of as
+\[Q\longmapsto QAQ^\intercal\stackrel{\op{od}}\longmapsto\sum_{j\ne m}\left(QAQ^\intercal\right)_{j,m}^2=\sum_{j\ne m}\left(\sum_{k,\ell}Q_{j,k}A_{k,\ell}Q_{m,\ell}\right)^2_{j,m}.\]
+This is just some large polynomial in the entries of $Q\in\RR^{n\times n}$ or $\RR^{n^2}$ into $\RR_{\ge0}$ and is therefore a continuous function. In particular, the image of the compact set $O(n)$ remains compact in $\RR_{\ge0},$ so the image is closed and both has and achieves a minimum. (Note $0$ is a lower bound, and then the greatest lower bound is a limit point: an open neightborhood around a lower bound not intersecting the closed set gives a greater lower bound.)
+
+We need to show that the image of $\op{attempt}_\bullet(A)$ contains $0$ to diagonalize, which is where the ``do-better'' lemma comes in. Indeed, the minimum of the image of $O(n)$ must be a $0$: call the minimum $m,$ and certainly $m\in\RR_{\ge0}$ is at least $0.$
+
+On the other hand, for any bound $m_0>0,$ we can find the $Q\in O(n)$ giving $\op{od}(QAQ^\intercal)=m_0>0.$ But $A':=QAQ^\intercal$ is itself symmetric (shown earlier), so the ``do-better'' lemma provides a $Q'\in O(n)$ with
+\[\op{od}\left((Q'Q)A(Q'Q)^\intercal\right)=\op{od}\left(Q'(QAQ^\intercal)(Q')^\intercal\right)<\op{od}(QAQ^\intercal)=m,\]
+so we can do better than any bound $m_0>0.$ It follows that the minimum $m$ is no greater than $0,$ so we must have $m=0.$
+
+Thus, we can find a $Q\in O(n)$ for which $\op{od}(QAQ^\intercal)=0,$ meaning that $QAQ^\intercal$ is diagonal. This gives the following.
+\begin{theorem}
+    For any real symmetric matrix $A\in\RR^{n\times n},$ we can find an orthogonal matrix $Q\in O(n)$ such that $QAQ^\intercal$ is diagonal.
+\end{theorem}
+This follows from the above discussion. $\blacksquare$
+
+We end with a few remarks. The above proof is truly remarkable: the only heavy comptuation we had to do was in the ``do-better'' lemma, and then a quick compactness argument was enough to finish. The clever observation is that the ``do-better'' lemma is even enough to get the result we need, as well as a fairly modern perspective of viewing matrix groups like $O(n)$ topologically.
+
+Indeed, I'm not even convinced that repeated applications of the ``do-better'' lemma will actually approach a diagonal matrix: it's entirely possible that repeated applications will simply approach some small but nonzero number. However, that's fine because compactness has our back.
+
+As an aside, I'll remark that there really isn't an easy way to use the more natural $\op{attempt}_Q(A):=\op{od}\left(QAQ^{-1}\right),$ defined over $Q\in\op{GL}_n(\RR).$ Indeed, $\op{GL}_n(\RR)\subseteq\RR^{n\times n}$ is an open subset because it is defined by the equation
+\[M\in\op{GL}_n(\RR)\iff\det M\ne0,\]
+and $\det M$ is just some large polynomial and hence continuous. So the compactness of $O(n)\subseteq\RR^{n\times n}$ doesn't easily carry into $\op{GL}_n(\RR).$ This is one roadblock to generalizing this proof past symmetric matrices.
+
+\subsubsection{June 8th}
+Today I learned about the semi-failure of function extensionality for polynomials. I think this entry is going to be more story-based than usual. The ``inciting incident'' here is Fermat's little theorem, which asserts that
+\[x^p\equiv x\pmod p.\]
+More generally, we have that
+\[x^q=x\text{ in }\FF_q,\]
+for any finite field $\FF_q.$ This is potentially problematic because the literal polynomials $x^q\in\FF_q[x]$ and $x\in\FF_q[x]$ have the exact same behavior over $\FF_q,$ but they are of course different polynomials. In other words, they are the same function (according to function extensionality) while different polynomials.
+
+The resolution to this problem, of course, is to expand the size of the field. Even though $x^p=x$ in $\FF_p,$ if we move up into $\FF_{p^2},$ then for some $a\in\FF_p$ not a quadratic residue, we have
+\[\left(\sqrt a\right)^p=a^{(p-1)/2}\sqrt a=\left(\frac ap\right)\sqrt a=-\sqrt a,\]
+so we no longer have $x^p=x$ as functions. However, even in this larger field, we still have $x\mapsto x^{p^2}$ equal to the identity map. The only way to resolve these continually popping up problems is to move into the algebraic closure
+\[\bigcup_{k>0}\FF_{p^k},\]
+where such problems no longer occur. One can try to explain this by saying that being in the algebraic closure implies that all polynomials fully factor, so they have the same set of roots, so they are already pretty much equal.
+
+However, one can make an even simpler argument.
+\begin{lemma}
+    Fix $K$ a field and two polynomials $a(x),b(x)\in K[x].$ If $a(x)\ne b(x)$ is a nonzero polynomial, then $a(x)$ and $b(x)$ agree on at most $\deg(a-b)(x)$ points.
+\end{lemma}
+This is an application of Lagrange's theorem on polynomials. The condition that $a(x)\ne b(x)$ is really saying that $(a-b)(x)\ne0$ so that $\deg(a-b)(x)$ is a well-defined nonnegative integer. Now, asserting that $a(x)$ and $b(x)$ agree on $d$ points is saying that
+\[a(k)=b(k)\]
+for $d$ distinct values of $k\in K.$ This means that $(a-b)(x)$ has a root on each of the $d$ distinct values of $k\in K,$ so Lagrange's theorem on polynomials asserts that the degree of $(a-b)(x)$ must be at least $d.$ This finishes. $\blacksquare$
+
+Looking at our inciting incident $x^q\equiv x$ in $\FF_q,$ we see that this is exactly the equality case of the above: the breaking of function extensionality is saying that $x^q\ne x$ as polynomials while $x^q=x$ for all $x\in\FF_q,$ or equivalently, that these two polynomials agree on $q$ points. The above proposition says that this requires
+\[\deg\left(x^q-x\right)\ge q,\]
+which is of course true: it is in fact exactly degree $q.$ This kind of thinking lets us reconcile function extensoinality.
+\begin{proposition}
+    Fix $K$ an infinite field and two polynomials $a(x),b(x)\in K[x].$ If $a(x)=b(x)$ on all elements of $x\in K,$ then we know $a(x)=b(x)$ as polynomials.
+\end{proposition}
+This is a direct application of the lemma. We show the contrapositive: if $a(x)\ne b(x),$ then $a(x)$ and $b(x)$ must disagree on some value of $x\in K.$ Well, the lemma says that $a(x)$ and $b(x)$ are allowed to agree on at most
+\[\deg(a-b)(x)<\infty\]
+points of $K,$ so on $K$ minus this finite set of points we have that $a(x)$ and $b(x)$ must disagree. Because $K$ is infinite, we know that $K$ minus this finite set of points is nonempty, so we are done. $\blacksquare$
+
+This helps explain why moving to the algebraic closure of $\FF_p$ earlier fixed the problem: the algebraic closure has infinitely many elements, so we retain function extensionality for polynomials, even when it broke for any component finite fields.
+
+Additionally, we know for free that function extensionality for polynomials over characteristic-$0$ fields will hold because a characteristic-$0$ field must have the infinite field $\QQ$ as a subfield, so the above proposition kicks in immediately.
+
+Of course, the best we can say for finite fields is that $a(x)=b(x)$ on all elements of $x\in\FF_q$ implies that $\deg(a-b)(x)\ge q,$ but if we are careful about the equality case $x^q\equiv x,$ then we can do a little better.
+\begin{proposition}
+    Fix $K=\FF_q$ a finite field for prime-power $q.$ Then given polynomials $a(x)$ and $b(x)$ which agree on all elements of $\FF_q,$ then $a(x)\equiv b(x)\pmod{x^q-x}.$
+\end{proposition}
+One way to show this is to use the lemma again. Observe that a full reduction of a polynomial$\pmod{x^q-x}$ will yield a polynomial of degree strictly less than $q.$ Indeed, if we want to reduce
+\[a(x)=\sum_{k=0}^\infty a_kx^k\]
+where all but finitely many of the $\{a_k\}_{k=0}^\infty$ are nonzero, then we note $x^d\equiv x^{d\pmod q}\pmod{x^q-x}$ (by, say, induction), so we can say
+\[a(x)\equiv\sum_{r=1}^{q-1}\left(\sum_{k\equiv r\pmod q}a_k\right)x^r\pmod{x^q-x}.\]
+Now, the point of saying this is to note that the two polynomials are still equal on all elements of $\FF_q$ because $x^q-x=0$ for all elements $x\in\FF_q.$
+
+So, after reducing $a(x)$ and $b(x)$ as in the proposition, we note that the lemma implies that $a(x)$ and $b(x)$ agreeing on all $q$ elements of $\FF_q$ requires $a(x)=b(x)$ or $\deg(a-b)(x)\ge q.$ Well, $\deg a,\deg b,$ if defined, are bounded strictly above $q,$ so $\deg(a-b)$ is as well. So we must instead have $a(x)=b(x),$ finishing. $\blacksquare$
+
+An alternate way to view the above proposition is to note that $\FF_q$ is pretty much made of the $x$ such that $x^q-x=0.$ This means that polynomials which are equivalent$\pmod{x^q-x}$ should have the same behavior on $\FF_q$ (and conversely!) because this is rigged by the structure of $\FF_q$ itself.
+
+Anyways, I think that's the furthest we can salvage polynomial functional extensionality. Essentially, the only exceptions are the ones generated by the inciting incident and friends, so we have managed to contain the problem as much as we reasonably can.
+
+\subsubsection{June 9th}
+Today I learned a little about group homology and chain complexes, from \href{https://web.archive.org/web/20210506095754/https://venhance.github.io/napkin/Napkin.pdf}{Napkin}. Here is our main definition.
+\begin{definition}
+    A chain complex is a sequence of (usually abelian) groups $\{A_k\}_{k\in\NN}$ with maps $\varphi_n:A_{n+1}\to A_n$ for which the chain
+    \[\cdots\stackrel{\varphi_{n+1}}\longrightarrow A_{n+1}\stackrel{\varphi_n}\longrightarrow A_n\stackrel{\varphi_{n-1}}\longrightarrow A_{n-1}\to\cdots\]
+    gives $\varphi_n\circ\varphi_{n+1}$ as the trivial group homomorphism.
+\end{definition}
+The geometric way to view this is to take $\{A_k\}$ equal to $k$-chains of a topological space $X$ with $\varphi_\bullet$ equal to the boundary operator $\del.$ Then we can say things like ``an $n$-cycle is an element of the kernel of $\del_A:A_n\to A_{n-1}$'' and ``an $n$-boundary is an element of the image of $\del_A:A_{n+1}\to A_n.$'' This perspective leads us to the definition of homology groups.
+\begin{definition}
+    Given a chain complex $A_\bullet,$ we define the $n$th homology group $H_n(A)$ as the set of $n$-cycles modulo the $n$-boundaries. That is,
+    \[H_n(A_\bullet):=\op{ker}\left(A_n\to A_{n-1}\right)/\op{im}\left(A_{n+1}\to A_n\right).\]
+\end{definition}
+
+As a more algebraic way to justify homology groups, observe that we can take a long exact sequence
+\[\cdots\stackrel{\varphi_{n+1}}\longrightarrow A_{n+1}\stackrel{\varphi_n}\longrightarrow A_n\stackrel{\varphi_{n-1}}\longrightarrow A_{n-1}\to\cdots\]
+satisfying $\op{im}(\varphi_{n+1})=\op{ker}(\varphi_n)$ and split this up into a bunch of connected short exact sequences of the form
+\[0\to\op{coker}(\varphi_{n+2})\stackrel{\varphi_{n+1}}\to A_{n+1}\stackrel{\varphi_n}\to\op{im}(\varphi_n)\to0.\]
+The right half of this sequence is exact because $\varphi_n$ is of course surjective onto $\op{im}(\varphi_n).$ However, the main point is that
+\[\op{coker}(\varphi_{n+2}):=A_{n+2}/\op{im}(\varphi_{n+2}).\]
+We are not immediately guaranteed that $\varphi_{n+1}:A_{n+2}\to A_{n+1}$ is well-defined over $A_{n+2}/\op{im}(\varphi_{n+2}),$ but it is exactly because $\op{im}(\varphi_{n+2})=\op{ker}(\varphi_{n+1}).$ More explicitly, a coset $a_{n+2}+\op{im}(\varphi_{n+2})$ can simply be taken to $\varphi_{n+1}(a_{n+2})$ because $\varphi_{n+1}(\op{im}(\varphi_{n+2}))=\{e\}.$
+
+To finish, we note that the left half of the sequence is exact because $\varphi_{n+1}$ is injective on $A_{n+2}/\op{im}(\varphi_{n+2})=A_{n+2}/\op{ker}(\varphi_{n+1})$ because it has trivial kernel after modding out by its old kernel. And the image of $\varphi_{n+1}$ doesn't change---we are still more or less pushing all $A_{n+2}$ through---so $\varphi_{n+1}$ continues to surject onto the kernel of $\varphi_n,$ finishing the required exactness.
+
+All of this is to say that long exact sequences are nice: we can study them in terms of short exact sequences, which are simpler because they are shorter. However, our chain complex as defined above does not necessarily have $\op{im}(\varphi_{n+1})=\op{ker}(\varphi_n)$ but merely $\op{im}(\varphi_{n+1})\subseteq\op{ker}(\varphi_n).$ So we define
+\[H_n(A_\bullet):=\op{ker}(\varphi_{n-1})/\op{im}(\varphi_n)\]
+to measure how badly we failed around $A_n.$
+
+While we're here, we note that we can turn the set of chain complexes into a category. Here are our morphisms.
+\begin{definition}
+    Given a chain complexes $A_\bullet$ and $B_\bullet,$ we define a morphism $f_\bullet:A_\bullet\to B_\bullet$ to be a set of morphisms $\{f_k\}_{k\in\NN}$ that make the following (infinite) diagram commute.
+    \begin{center}
+        \begin{tikzcd}
+            \cdots \arrow[r, "\varphi_{n+1}"] & A_{n+1} \arrow[r, "\varphi_n"] \arrow[d, "f_{n+1}"] & A_n \arrow[r, "\varphi_{n-1}"] \arrow[d, "f_n"] & A_{n-1} \arrow[r] \arrow[d, "f_{n-1}"] & \cdots \\
+            \cdots \arrow[r, "\gamma_{n+1}"]  & B_{n+1} \arrow[r, "\gamma_n"]                       & B_n \arrow[r, "\gamma_{n-1}"]                   & B_{n-1} \arrow[r]                      & \cdots
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+While natural, the following convinces us that we really do have the correct definition.
+\begin{lemma}
+    Given a morphism of chain complexes $f_\bullet:A_\bullet\to B_\bullet,$ we have an induced $H_n(f_\bullet):H_n(A_\bullet)\to H_n(B_\bullet).$
+\end{lemma}
+The point is that everything commutes, so the kernels and images behave. Starting from the top, note that we have
+\[f_n:A_n\to B_n.\]
+Now, surely $\op{ker}(\varphi_{n-1})\subseteq\op{ker}(f_{n-1}\circ\varphi_{n-1})$ as well, but $f_{n-1}\circ\varphi_{n-1}=\gamma_{n-1}\circ f_n,$ so we see the downward arrow $f_n$ induces a map from $\op{ker}(\varphi_n)$ to $\op{ker}(\gamma_n)$: $\varphi_{n-1}(a)=e$ implies $f_{n-1}(\varphi_{n-1}(a))=e$ implies $\gamma_{n-1}(f_n(a))=e.$
+
+Similarly,
+\[f_n:A_n\to B_n\]
+induces a map $f_n:\op{im}(\varphi_n)\to B_n$ by restriction. However, $f_n\circ\varphi_n=\gamma_n\circ\varphi_{n+1},$ so the image of $A_{n+1}\to\op{im}(\varphi_n)\to B_n$ is a subset of $\op{im}(\gamma_n),$ so in fact we may restrict this to a map $f_n:\op{im}(\varphi_n)\to\op{im}(\gamma_n).$
+
+Putting this all together, we saw that $f_n:A_n\to B_n$ restricts to a map
+\[f_n:\op{ker}(\varphi_{n-1})\to\op{ker}(\gamma_{n-1}).\]
+We still have $\op{im}(\gamma_n)\subseteq\op{ker}(\gamma_{n-1}),$ so we may safely mod out the domain here by $\op{im}(\gamma_n),$ giving an induced map
+\[\op{ker}(\varphi_{n-1})\to H_n(B_\bullet).\]
+We know that $f_n$ takes elements of $\op{im}(\varphi_n)$ to elements of $\op{im}(\gamma_n),$ so they are all going to the kernel of the above induced map. Thus, we may safely mod out by them in the codomain, giving our desired map $H_n(A_\bullet)\to H_n(B_\bullet).$ This finishes. $\blacksquare$
+
+\subsubsection{June 10th}
+Today I learned a proof to Sperner's theorem, from THE BOOK. For background, the problem is to take the subsets of $[n]:=\{1,\ldots,n\}$ for $n\in\NN$ and turn them into a poset with relation $\subseteq.$ Then the question we ask is for the largest possible antichain in the poset, or the largest number of incomparable elements in a single family.
+
+Observe that if all the subsets have the same size, then we are an antichain for free: if $|A|=|B|$ while $A\subseteq B,$ then $A=B,$ so distinct elements must be incomparable. Fixing a size $k,$ the most subsets we can get from this construction is $\binom nk.$ To maximize $\binom nk$ over $k,$ we note that
+\[\binom nk=\frac{n!}{k!(n-k)!}=\frac{k+1}{n-k}\cdot\frac{n!}{(k+1)!(n-k-1)!}=\frac{k+1}{n-k}\binom n{k+1}.\]
+In particular, $\binom nk$ is increasing as long as $k+1\le n-k,$ or equivalently $k\le(n-1)/2,$ and decreasing as long as $k+1\ge n-k,$ or equivalently $k\ge(n-1)/2.$ The point is that we are maximized at the middle, so $\binom n{\floor{n/2}}$ is the best we can do.
+
+Sperner's theorem says that this is in fact maximal, which is perhaps surprising.
+\begin{theorem}
+    The largest antichain in the poset of subsets of $[n]$ ordered by $\subseteq$ has size $\binom n{\floor{n/2}}.$
+\end{theorem}
+The key idea in this proof is that two subsets $A$ and $B$ can belong to an antichain if and only if $A$ and $B$ themselves do not belong to any chain. The way to turn this into combinatorics is to consider the set of chains
+\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_n=[n]\]
+where $\#A_k=k.$ Call such chain an ``incremental'' chain. As outline for what's about to happen, we will count the number of chains containing each individual subset in an antichain, and all these chains must be distinct because the subsets are in antichain, so we can bound the total number of chains containing any subset in the antichain without tears.
+
+Suppose we require $S\subseteq[n]$ with to live in the chain; we count the number of incremental chains containing $S.$ We claim the following.
+\begin{lemma}
+    Given a finite set $S,$ there are $(\#S)!$ incremental chains to $S,$ which look like
+    \[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{\#S}=S.\]
+\end{lemma}
+Observe that the only place for $S$ is at $A_{\#S}$ if the size is to match. On one hand, the number of inrecemental chains
+\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{\#S}=S\]
+can be bijected with the one-element distinct subsets of $S$ by
+\[A_1\setminus A_0,\,A_2\setminus A_1,\,\ldots,\,A_{\#S}\setminus A_{\#S-1}.\]
+More specifically, we see that $\sigma(k)\in A_k\setminus A_{k-1}$ (unique because $\#(A_k\setminus A_{k-1})=1$) forms a bijection $\sigma:[\#S]\to S$ because the domain and codomain have the same size, and $\sigma$ is injective because distinct $k+1$ and $\ell+1$ gives $k<\ell$ without loss of generality, implying $A_{k+1}\subseteq A_\ell,$ so $A_{k+1}\setminus A_k\ne A_{\ell+1}\subseteq A_\ell.$
+
+This correspondence between chains to $S$ and bijections $\sigma:[\#S]\to S$ is in fact a one-to-one correspondence, with inverse map
+\[A_k=\bigcup_{\ell=1}^k\sigma(\ell).\]
+This is actually a chain because because $A_{k+1}=A_k\subseteq\sigma(k+1),$ and it has the right form because $A_{\#S}=\sigma([\#S])=S,$ and $\#A_k=\#\sigma([k])=k.$ We won't be rigorous showing that the forward and backward maps are actually inverses, but we will say that
+\[\bigcup_{\ell=1}^k(A_\ell\setminus A_{\ell-1})=A_k\setminus A_0=A_k\]
+shows that the forward composed with backward map is the identity, and
+\[\{\sigma(k)\}=\bigcup_{\ell=1}^k\sigma(\ell)\bigg\backslash\bigcup_{\ell=1}^{k-1}\sigma(\ell).\]
+shows the other direction. All of this to say that there are $(\#S)!$ total incremental chains to $S$ because this is the number of bijections. $\blacksquare$
+
+Continuing, it remains to count the number of incremental chains from $S$ to $[n].$ However, we can biject such chains with incremental chains
+\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_{n-\#S}=[n]\setminus S.\]
+Indeed, unioning each individual chain with $S$: the difference in size between consecutive elements remains $1,$ we start at $S,$ and we end at $[n].$ We won't be as formal as above showing that this is a bijection, but it is. This implies the number of incremental chains from $S$ to $[n]$ is $(n-\#S)!.$
+
+Thus, for any particular subset $S,$ there are $(\#S)!\cdot(n-\#S)!$ total incremental chains through $S.$ Given an antichain $\mathcal F,$ we note that distinct $S$ and $T$ cannot share any incremental chains. Indeed, if both $S$ and $T$ live in an incremental chain
+\[\emp=A_0\subseteq A_1\subseteq\cdots\subseteq A_n=[n],\]
+either $S\subseteq T$ or $T\subseteq S$ because this is a chain, implying that $S=T$ because $S$ and $T$ are in the antichain $\mathcal F.$ So the total number of incremental chains through any element of $\mathcal F$ is
+\[\sum_{S\in\mathcal F}(\#S)!(n-\#S)!.\]
+That was the key step, where we turned the antichain condition into actual numbers. Anyways, to finish, we let $s_k$ be the number of subsets in $\mathcal F$ of size $k$ so that we can write the above as
+\[\sum_{k=0}^ns_k\cdot k!(n-k)!.\]
+Now, we can bound the number of incremental chains through $\mathcal F$ above by the total number of incremental chains in $[n],$ which is $n!$ by lemma. Doing some rearranging, we see that
+\[\sum_{k=0}^n\frac{s_k}{\binom nk}\le1.\]
+The theorem statement makes us think that we should only have to care about the $k=\floor{n/2}$ and $k=\ceil{n/2}$ terms, so we may safely note that $\binom nk\le\binom n{\floor{n/2}}$ to get a lower bound
+\[\sum_{k=0}^n\frac{s_k}{\binom n{\floor n/2}}\le1.\]
+In particular, $\#\mathcal F=\sum_{k=0}^ns_k\le\binom n{\floor{n/2}},$ which is exactly what we wanted. $\blacksquare$
+
+This proof is exceedingly clever. The way to translate the antichain condition into something countable is quite remarkable, and even the inequality manipulation at the end pays very careful attention to the equality case to make sure we get what we need. This is quite nice.
+
+As an aside, we note that the statement of Sperner's theorem doesn't actually tell us what the optimal cases are. Writing everything down, the inequalities we used are
+\[\sum_{k=0}^n\frac{s_k}{\binom n{\floor n/2}}\le\sum_{k=0}^n\frac{s_k}{\binom nk}\le1.\]
+The second inequality has equality case when our $\mathcal F$ actually uses all incremental chains. But the former inequality will only hold if all the $s_k=0$ except for $s_{\floor{n/2}}$ and $s_{\ceil{n/2}}.$ So we get the following immediately.
+\begin{proposition}
+    The largest antichain in the poset of subsets of $[n]$ ordered by $\subseteq$ is exactly all the subsets of size $n/2$ for $n$ even.
+\end{proposition}
+Indeed, in this case, $\floor{n/2}=\ceil{n/2},$ so continuing from the above discussion, all terms except for $k=n/2$ give $s_k=0,$ so $\#\mathcal F=s_{n/2}=\binom n{n/2},$ which is what we wanted. $\blacksquare$
+
+As for $n$ odd, the most we can immediately say is that $s_{\floor{n/2}}+s_{\ceil{n/2}}=n,$ but I am fairly confident that the equality cases are indeed either the set of all subsets of size $\floor{n/2}$ or the set of all subsets of size $\ceil{n/2}.$ This proof is somewhat involved, but intuitively, having a subset of size $\ceil{n/2}$ prevents $\ceil{n/2}$ subsets of size $\floor{n/2}$ from appearing in the antichain, which is a heavy cost. \href{https://www.whitman.edu/mathematics/cgt_online/book/section01.07.html}{Here} is a more complete proof, which I haven't read.
+
+\subsubsection{June 11th}
+Today I learned about the P\'olya-Vinogradov inequality, from \href{http://jonismathnotes.blogspot.com/2014/10/character-sums-and-polya-vinogradov.html}{Joni} and \href{https://terrytao.wordpress.com/2009/08/18/the-least-quadratic-nonresidue-and-the-square-root-barrier/#more-2664}{Tao}. Here is our statement.
+\begin{theorem}
+    Fix $p$ a prime and $\chi$ a nontrivial character$\pmod p.$ Then
+    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\sqrt p\log p.\]
+\end{theorem}
+There are two steps to this proof: Fourier analysis and bash. Observe that we have a somewhat trivial bound
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le p\]
+simply because $\chi$ is periodic, and $\sum_{n=0}^{p-1}\chi(n)=0$ by orthogonality of characters. The way we are going to improve upon this bound is to find that, in fact, the Fourier coefficients of $\chi$ are reasonably small, and then bashing will yield the result.
+
+With that said, here is our Fourier analysis step, finding the (discrete) Fourier coefficients. \begin{lemma}
+    Given a nontrivial character $\chi\pmod p$ for $p$ prime and integer $n,$ we have
+    \[\chi(n)G(\overline\chi)=\sum_{x\in\FF_p^\times}\overline{\chi(x)}\zeta_p^{nx}.\]
+\end{lemma}
+This is pretty normal Gauss sums theory. Note that if $p\mid n,$ then $\chi(n)=0,$ and the sum on the right-hand side is
+\[\sum_{x\in\FF_p^\times}\overline\chi(x)\cdot1=0\]
+by orthogonality of characters. Otherwise, we take $p\nmid n,$ and note that
+\[\chi(n)G(\overline\chi)=\chi(n)\sum_{x\in\FF_p^\times}\overline\chi(x)\zeta_p^x=\sum_{x\in\FF_p^\times}\chi(x/n)\zeta_p^x.\]
+Now, taking $x\mapsto x/n,$ which is a legal bijection because $n^{-1}\in\FF_p^\times,$ we see that
+\[\chi(n)G(\overline\chi)=\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^{nx},\]
+which is exactly what we wanted. This finishes. $\blacksquare$
+
+We would like to divide both sides of the above computation by $G(\overline\chi),$ but we need to know that $G(\overline\chi)\ne0$ for this. In fact, we can do better; we have the following.
+\begin{lemma}
+    Given a nontrivial character $\chi\pmod p$ for $p$ prime, we define the Gauss sum
+    \[G(\chi):=\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^x.\]
+    Then $|G(\chi)|=\sqrt p.$
+\end{lemma}
+We evaluate $G(\chi)^2.$ Proceeding by brute force, this is
+\[G(\chi)^2=\left(\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^x\right)\left(\sum_{y\in\FF_p^\times}\chi(y)\zeta_p^y\right).\]
+Distributing, this turns into
+\[G(\chi)^2=\sum_{x,y\in\FF_p^\times}\chi(xy)\zeta_p^{x+y}\]
+because $\chi$ is a multiplicative character. At this point we reparamterize the sum to be a sum over $x$ and a sum over $t:=1xy.$ Observe that for fixed $x\in\FF_p^\times,$ $y$ ranging over $\FF_p^\times$ is equivalent to $t=xy$ ranging over $\FF_p^\times$ (because $\FF_p^\times$ is a group), so we can safely write rearrange as
+\[G(\chi)^2=\sum_{t\in\FF_p^\times}\chi(t)\sum_{x\in\FF_p^\times}\zeta_p^{x+xt^{-1}},\]
+where $t^{-1}$ is taken$\pmod p.$ It will make the argument clearer if we now add in $\sum_t\chi(t)=0$ to the entire right-hand sum, which doesn't change the quantity, but it lets us write
+\[G(\chi)^2=\sum_{t\in\FF_p^\times}\chi(t)\left(\sum_{k=0}^{p-1}\left(\zeta_p^{1+t^{-1}}\right)^k\right).\]
+Now, whenever $t\ne-1,$ we have that $1+t^{-1}\ne0,$ so the inner sum is a sum of roots of unity around a circle and will vanish. (We can see this directly by summing as a geometric sequence.) Then at $t=-1,$ the summands are all $1,$ so we get out $p.$ This means that
+\[G(\chi)^2=\chi(-1)\cdot p.\]
+It follows that $|G(\chi)|^2=1p=p,$ and taking square-roots finishes. $\blacksquare$
+
+The above lemma says that the Fourier coefficients of $\chi,$ which look like $\overline\chi/G(\overline\chi),$ are on the order of $1/\sqrt p.$ This is quite small, and we will be able to convert this smallness into the desired inequality. So now we brute force. Using our Fourier step, we see
+\[\sum_{M\le n\le N}\chi(n)=\sum_{M\le n\le N}\left(\frac1{G(\overline\chi)}\sum_{x\in\FF_p^\times}\overline\chi(x)\zeta_p^{nx}\right).\]
+Rearranging the order of summation and abusing the triangle inequality, we see
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{x\in\FF_p^\times}\left(|\overline\chi(x)|\cdot\left|\sum_{M\le n\le N}\zeta_p^{nx}\right|\right).\]
+This is the most egregious inequality we will use in this proof. Indeed, we lose a lot of cancellation by separating out the character $\overline\chi$ from the sum of $\overline\chi\zeta_p^\bullet,$ but there isn't an easy way to use this, and hey, maybe we can actually configure $M$ and $N$ to make this all align. Anyways, this collapses into
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{x\in\FF_p^\times}\left|\zeta_p^M\cdot\frac{\zeta_p^{N-M+1}-1}{\zeta_p^x-1}\right|.\]
+We can't really optimize the numerator of this fraction because maybe it really is $2,$ so we will bound the numerator by $2.$ As for the denominator, we evaluate its magnitude by writing
+\[\zeta_p^x-1=e^{2\pi ix/p}-1=2ie^{\pi ix/p}\left(\frac{e^{\pi ix/p}-e^{-\pi ix/p}}{2i}\right),\]
+so the magnitude is $2\sin(\pi x/p).$ Thus,
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}.\]
+It remains to bound this sum. Observe that nothing we did above really involves number theory in any crucial way, and by now, we can't even see the character $\chi$ anymore, so there will definitely not be any more number theory in what follows.
+
+We start with a heuristic argument to get the inequality.
+\begin{lemma}
+    Fix $p$ a positive odd integer. We have that
+    \[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}=p\log p+O(1).\]
+\end{lemma}
+Observe that $\sin(\pi x)\ge2x$ over $x\in(0,1/2),$ which is true because $\sin(\pi x)$ is concave down in this range, and $2x$ is a secant line from $x=0$ to $x=1/2.$ Thus, we may write
+\[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}=2\sum_{k=1}^{(p-1)/2}\frac1{\sin(\pi k/p)}\le2\sum_{k=1}^{(p-1)/2}\frac1{2k/p}.\]
+So we can bound the sum by
+\[p\sum_{k=1}^{(p-1)/2}\frac1k,\]
+and we know the sum is $\log\frac{p-1}2+O(1)=\log p+O(1).$ Thus, the entire sum is $p\log p+O(p),$ which is what we wanted. $\blacksquare$
+
+The above is a quick argument to show that the inequality we want is roughly on the right track, but it turns out that $\sin(\pi k/p)\ge 2k/p$ is pretty expensive in the sum. But now that we understand the type of argument we're looking for, we can skip the harmonic numbers by noticing that the bound comes from an integral, so we can try to directly turn out sum into an integral. In particular,
+\[\frac1p\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\]
+looks a lot like a Riemann sum for $\int_0^1\frac1{\sin(x)}\,dx,$ but this integral diverges, so we have to be more careful. We pick up the following.
+\begin{lemma}
+    Fix $y\in(0,\pi)$ and a small positive $\varepsilon<\min\{y,\pi-y\}$ so that $(y-\varepsilon,y+\varepsilon)\subseteq(0,\pi).$ We have that
+    \[\frac1{\sin(y)}\le\frac1{2\varepsilon}\int_{y-\varepsilon}^{y+\varepsilon}\frac1{\sin(x)}\,dx.\]
+\end{lemma}
+This follows because $1/\sin(x)$ is concave up on $(0,\pi).$ Indeed, let $f(x)=1/\sin(x),$ and we see that $f'(x)=-(\sin x)^{-2}\cos(x)=\frac{-\cos(x)}{\sin^2(x)},$ which gives
+\[f''(x)=\frac{\sin^2(x)\cdot\sin(x)+\cos(x)\cdot2\sin(x)\cos(x)}{\left(\sin^2(x))\right)^2},\]
+where are all the terms are positive when $x\in(0,\pi).$
+
+Now we prove Jensen's inequality that for any $x\in(0,\pi)$ and any $\varepsilon\ge0$ with $(x-\varepsilon,x+\varepsilon)\subseteq(0,\pi),$ we have
+\[\frac{f(x+\varepsilon)+f(x-\varepsilon)}2\ge f(x).\]
+This statement is true for $\varepsilon=0,$ so it suffices to show that the function on the left is increasing with respect to $\varepsilon.$ Its derivative is
+\[f'(x+\varepsilon)-f'(x-\varepsilon).\]
+We need to show this is nonnegative, but $f''(x)>0$ in this region implies that $f'$ is increasing, so $f'(x+\varepsilon)\ge f'(x-\varepsilon),$ which is exactly what we needed.
+
+We are now ready to prove the lemma. Fix $y$ and $\varepsilon$ as needed. From the above we know that, for any large $N,$
+\[\sum_{k=-N}^Nf\left(y+\varepsilon\frac kN\right)=f(y)+\sum_{k=1}^N\left(f\left(y+\varepsilon\frac kN\right)+f\left(y-\varepsilon\frac kN\right)\right)\ge(2N+1)f(y).\]
+This rearranges into
+\[f(y)\le\frac N{2N+1}\cdot\frac1N\sum_{k=-N}^Nf\left(y+\varepsilon\frac kN\right).\]
+Sending $N\to\infty$ reveals the right-hand side as a Riemann sum, giving
+\[f(y)\le\frac12\int_{-1}^1f(y+\varepsilon x)\,dx=\frac1{2\varepsilon}\int_{y-\varepsilon}^{y+\varepsilon}f(x)\,dx.\]
+This is what we wanted, so we are done here. $\blacksquare$
+
+We will use the above lemma with $\varepsilon=\pi/(2p)$ to get
+\[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\sum_{k=1}^{p-1}\frac1{2\cdot\pi/(2p)}\int_{\pi k/p-\pi/(2p)}^{\pi k/p+\pi/(2p)}\frac1{\sin(x)}\,dx=\frac p\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\,dx.\]
+This turns out to be very sharp. If we want to bee-line to the P\'olya-Vinogradov inequality, Joni has this trick where right now we can write
+\[\frac p\pi\int_{\pi/2p}^{\pi(1-1/(2p))}\frac1{\sin(x)}\,dx=p\int_{1/(2p)}^{1-1/(2p)}\frac1{\sin(\pi x)}\,dx=2p\int_{1/(2p)}^{1/2}\frac1{\sin(\pi x)}\,dx\]
+and use concavity to note $\sin(\pi x)\ge2x$ over $x\in(0,1/2),$ which gives
+\[2p\int_{1/(2p)}^{1/2}\frac1{2x}\,dx=p\left(\log\frac12-\log\frac1{2p}\right)=p\log p.\]
+Putting this all together, we see
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\frac1{\sqrt p}\cdot p\log p,\]
+which rearranges to $\sqrt p\log p.$ This is the P\'olya-Vinogradov inequality, so we are done. $\blacksquare$
+
+Of course, we can do a little better than the given if we actually contend with $\int1/\sin(x)\,dx.$ To ground ourselves, we quickly start with the following lemma.
+\begin{lemma}
+    For $\chi\pmod p$ a nontrivial character, we get
+    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac{\sqrt p}\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\,dx.\]
+\end{lemma}
+This follows from stringing the inequalities established above all together. Explicitly, we see
+\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\frac1{\sqrt p}\cdot\frac p\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x),}\]
+which rearranges into what we wanted. $\blacksquare$
+
+It remains to deal with the integral. We have the indefinite integral
+\[\int\frac1{\sin(x)}\,dx=\log\left|\frac{\sin(x)}{1+\cos(x)}\right|,\]
+which can be verified manually. This gives
+\[\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}=\log\left|\frac{\sin\left(\pi-\frac\pi{2p}\right)}{1+\cos\left(\pi-\frac\pi{2p}\right)}\cdot\frac{1+\cos\left(\frac\pi{2p}\right)}{\sin\left(\frac\pi{2p}\right)}\right|.\]
+The $\sin$ terms cancel by symmetry, and $\cos\left(\pi-\frac\pi{2p}\right)=-\cos\left(\frac\pi{2p}\right).$ Re-expanding this out, we get
+\[\log\left(1+\cos\left(\frac\pi{2p}\right)\right)-\log\left(1-\cos\left(\frac\pi{2p}\right)\right).\]
+As $p\to\infty,$ we see $\cos\left(\frac\pi{2p}\right)\to1$ from below, so I have no qualms bounding the positive term directly by $\log2.$ Using the Taylor expansion of $\cos,$ we see $\cos(x)\le1-\frac12x^2+\frac1{24}x^4,$ so we can bound this above by
+\[\log2-\log\left(\frac12\left(\frac\pi{2p}\right)^2-\frac1{24}\left(\frac\pi{2p}\right)^4\right).\]
+(We wanted to bound $\cos$ above because $-\log(1-x)$ is increasing.) Rearranging a bit, our main term is $2\log p$ from the right $\log,$ leaving behind
+\[2\log p+\log2-\log\left(\frac{\pi^2}{2\cdot2^2}-\frac{\pi^4}{24\cdot16p^2}\right).\]
+As $p\to\infty,$ the right-hand term will approach its own main term, and we could deal with this, but I don't want to bother. As $p\to\infty,$ the long $\log$ term increases and subtracts more, meaning that to maximize, we take $p=2.$ Now, we see that
+\[\frac{\pi^2}{2\cdot2^2}-\frac{\pi^4}{24\cdot16\cdot2^2}\le\frac98-\frac{10^2}{24\cdot16\cdot4}\le\frac98-\frac{192}{24\cdot16\cdot4}=1,\]
+so the $\log$ term subtracts at least $\log1=0.$ That is, we may ignore it. Plugging in our estimate of the integral, we get the following.
+\begin{proposition}
+    For $\chi\pmod p$ a nontrivial character, we get
+    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac2\pi\sqrt p\log p+\frac{\log2}\pi\sqrt p.\]
+\end{proposition}
+The discussion above established
+\[\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\le2\log p+\log2,\]
+which is enough upon plugging into the above lemma. So we are done here. $\blacksquare$
+
+The above improvement isn't drastic, but the constant $\frac2\pi$ is a much better approximation for the constant we get out of the sum $\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}.$ I do like the simplicity of the $\sqrt p\log p$ bound for P\'olya-Vinogradov, but I wanted to make the point that we have some more optimizable space.
+
+While we're here, we pick up the following cute result which falls out of our work.
+\begin{proposition}
+    Give $p$ a prime. The least non-quadratic residue is at most $1+\sqrt p\log p.$
+\end{proposition}
+Use $\chi=\left(\frac\bullet p\right),$ which is the Legendre symbol. If we let $n_p$ be the least non-quadratic residue$\pmod p,$ then
+\[\sum_{k=1}^{n_p-1}\left(\frac kp\right)=n_p-1.\]
+However, this character sum is bounded by $\sqrt p\log p,$ so we see $n_p\le1+\sqrt p\log p.$ This is what we wanted. $\blacksquare$
+
+Of course, we probably expect that quadratic and non-quadratic residues should be roughly evenly distributed, so this bound isn't great, but it is still cute. We also remark that we can do a little better than this if we use the multiplicativity of our character $\chi.$ Indeed, if $n_p$ is the least non-quadratic residue, then any $n_p-1$-smooth integer is also a quadratic residue, making for a large character sum. We won't do this here.
+
+\subsubsection{June 12th}
+Today I learned about representing numbers as sums of distinct squares, from a bunch of places. We start with a relatively standard result, which comes from \href{https://math.stackexchange.com/a/4021787/869257}{here}.
+\begin{proposition}
+    Every positive integer $n$ greater than $128$ can be written as the sum of distinct squares.
+\end{proposition}
+There are a few ways to approach this, but it feels best motivated to just be greedy and pay for the consequences later. The idea is to continually pick up the largest square we can, and these squares should be distinct if the square is on the same scale as what we're subtracting it from. Here's our exact extraction.
+\begin{lemma}
+    Fix $n$ a positive integer at least $298=13^2+129.$ Then there exists a positive integer $k$ with $n-129\ge k^2>n/2.$
+\end{lemma}
+Take $k=\floor{\sqrt{n-129}}>0$ as large as possible. Then we note $k^2\le n-129<(k+1)^2$ by construction, so we see
+\[\frac n2<\frac{(k+1)^2+129}2.\]
+It suffices to show that $k^2$ is greater than or equal to this, which is an inequality only involving $k$ and therefore solvable. Rearranging, we need
+\[129\le2k^2-(k+1)^2=k^2-2k-1.\]
+So what we need is then equivalent to $(k-1)^2\ge131,$ or $k\ge1+\sqrt{131},$ for which $k\ge13$ is enough. However, our bound $13^2+129$ safely guarantees exactly $\floor{\sqrt{n-129}}\ge13.$ This finishes. $\blacksquare$
+
+So our greedy algorithm is to continually pick the largest square we can but keeping the current total above $128.$ Then eventually we will hit some value below $298,$ but we can just check all numbers manually between $129$ and $297<298.$ For this second justification, a computer program verifies this for us; \href{https://replit.com/@NirElber/Distinct-Squares#main.py}{here} is my code.
+
+Anyways, to rigorize our greedy algorithm, we use a strong induction. Our base cases are the positive integers $n$ from $129$ to $297.$ Now, suppose $n\ge298$ and every positive integer smaller than $n$ but at least $129$ can be written as the sum of distinct squares. The lemma gives us a $k$ such that
+\[n>n-k^2>129,\]
+so $n-k^2$ can be written as the sum of distinct squares, say $n-k^2=\sum_{\ell=1}^ma_\ell^2.$ However, we now claim that $k^2$ cannot be found among the $\left\{a_\ell^2\right\}_{\ell=1}^m$: indeed, one of those squares $a_\bullet^2$ satisfies
+\[a_\bullet^2\le\sum_{\ell=1}^ma_\ell^2=n-k^2<\frac n2\]
+because $k^2>n/2$ from the lemma. However, $k^2>n/2,$ so we must have $a_\bullet\ne k^2.$ Thus,
+\[n=k^2+\sum_{\ell=1}^ma_\ell^2\]
+is a valid decomposition of $n$ into distinct squares. $\blacksquare$
+
+Some remarks in order. First off, it might feel unsatisfying that we have to check the cases from $129$ to $298,$ but I don't really see a way around this. At least this elementary method more or less requires some brute force computation; in other words, I don't think we can push this to ``sufficiently large $n$'' and avoid the casework.
+
+Secondly, the interesting questions are not really about what we can do if given arbitrarily many squares. Indeed, the main trick in the above proof with the greedy algorithm is only possible because we can continually add on more squares to get larger numbers. There is no hope for this approach if we limit the number of squares.
+
+Thirdly, the proof actually gives us a somewhat explicit bound on the number of distinct squares we need to represent $n,$ though it isn't close to sharp. We begin by refining the lemma.
+\begin{lemma}
+    Fixing an arbitrarily small $\varepsilon>0,$ there exists a large constant $N$ such that for any $n\ge N,$ there exists a positive integer $k$ with $n-129\ge k^2>(1-\varepsilon)n.$
+\end{lemma}
+The proof of this is identical to the previous lemma. Take $k=\floor{\sqrt{n-129}}$ so that $k^2\le n-129<(k+1)^2.$ It follows
+\[(1-\varepsilon)n<(1-\varepsilon)\left((k+1)^2+129\right).\]
+To be assured that $k^2>(1-\varepsilon)n,$ it suffices for $k^2$ to exceed the right-hand side here. That is, we want
+\[(1-\varepsilon)\left(k^2+2k+130\right)\le k^2,\]
+which rearranges into
+\[130(1-\varepsilon)\le\varepsilon k^2-(1-\varepsilon)\cdot 2k.\]
+The right-hand side will eventually grow arbitrarily large because the $\varepsilon k^2$ term dominates, we so can be sure that this holds for sufficiently large $k.$ But $k=\floor{\sqrt{n-129}}$ means that this will also hold for sufficiently large $n$ giving sufficiently large $k.$ This finishes $\blacksquare$
+
+Observe that the proof above used $\varepsilon=1/2,$ but we had no good reason to prefer this constant other than that it made the proof actually function by having $n-k^2\le n/2.$ Using a smaller $\varepsilon$ will also work just fine, though it increases the number of needed base cases.
+\begin{proposition}
+    Fixing a small $\varepsilon\in(0,1/2],$ there exists a constant $C$ so that every positive integer $n$ greater than $128$ can be written as the sum of at most $-\log_\varepsilon(n)+C$ distinct squares.
+\end{proposition}
+Fix some small $\varepsilon>0$ to use with the previous lemma, and extract our $N.$ We essentially do the same greedy algorithm from before but keep track of the number of squares in the induction.
+
+For our base cases, the computer program from earlier can verify that the largest number of distinct squares needed to represent any integer from $129$ to $N$ is some finite number, say $M.$ Setting $C=M+\log_\varepsilon N,$ for example, guarantees the bound holds for our base cases.
+
+The inductive step is also pretty much the same. Fix $m>N$ and suppose that all positive integers $n$ below $m$ but above $129$ can be written as the sum of $-\log_\varepsilon(n)+C$ squares. Again, we can use the lemma to extract some $k$ for which
+\[(1-\varepsilon)m<k^2\le m-129.\]
+In particular, the number $m-k^2\ge129$ can be written as the sum of at most $-\log_\varepsilon\left(m-k^2\right)+C\le-\log_\varepsilon(\varepsilon m)+C=-\log_\varepsilon(m)+C-1$ distinct squares.
+
+All of these squares are bounded above $m-k^2\le\varepsilon m\le m/2,$ which $k^2$ exceeds, so indeed $k^2$ is distinct from any square in this representation, and we may safely add it back in while keeping all squares distinct. This totals to at most $\log_\varepsilon(m)-C-1+1=\log_\varepsilon(m)+C$ total squares. $\blacksquare$
+
+The statement of the previous proposition is written to be easier to prove, but we can just remark that $-\log_\varepsilon(n)=\frac1{-\log\varepsilon}\cdot\log n.$ As $\varepsilon\to0,$ we have $\log\varepsilon\to-\infty,$ so $\frac1{-\log\varepsilon}\to0,$ so we can refine our statement to the following.
+\begin{proposition}
+    Fixing a sufficiently small $\varepsilon>0,$ there exists a constant $C$ so that every positive integer $n$ greater than $128$ can be written as the sum of at most $\varepsilon\log(n)+C$ distinct squares.
+\end{proposition}
+The given $\varepsilon$ can be used to solve for some $\delta$ such that $\frac1{-\log\delta}=\varepsilon.$ Explicitly, we have $\delta:=\exp\left(-\varepsilon^{-1}\right).$ Now, for sufficiently small $\varepsilon,$ we can guarantee $\delta\in(0,1/2]$ because $\varepsilon\to0^+$ sends $\delta\to0^+.$ In this case the previous proposition applies to $\delta,$ and we get the conclusion. $\blacksquare$
+
+Thus, we get that the number of distinct squares required to decompose is something like $o(\log n)$ without having to do any really fancy number theory; after all, the hard part was combinatorics. However, I am obligated to mention that the Hardy-Littlewood circle method can show that five distinct squares is enough to get all but finitely many positive integers. I do not know this proof.
+
+\subsubsection{June 13th}
+Today I learned a few ways to evaluate $\zeta$ at even integers, from THE BOOK, as well as some consequences.
+\begin{lemma}
+    We have that
+    \[\pi\cot(\pi x)=\lim_{N\to\infty}\sum_{k=-N}^N\frac1{x+k}.\]
+\end{lemma}
+There are a variety of proofs of this, but we will not do this here because I do not know any proof that is not its worth own entry. For completeness, we outline the proof from THE BOOK, which uses the amazingly clever Herglotz trick. Define
+\[f(x)=\pi\cot(\pi x)-\lim_{N\to\infty}\sum_{k=-N}^N\frac1{x+k}.\]
+Then one can show that $f(x)$ is periodic with period $1$ and continuous at any point in $\RR\setminus\ZZ$ as well as that $f(x)\to0$ as $x\to0.$
+
+Now, the Herglotz trick consists of showing that $f(x)$ satisfies the functional equation
+\[f\left(\frac x2\right)+f\left(\frac{x+1}2\right)=2f(x)\]
+and then using this to show that $f$ must be constantly $0.$ Indeed, $|f|$ has a maximum value because it is periodic and continuous and so attains a maximum on the compact set $(0,1),$ which is enough. Say that $|f(x_0)|=M$ is maximal. The trick is to note that applying the triangle inequality to
+\[f\left(\frac{x_0}2\right)+f\left(\frac{x_0+1}2\right)=2M\]
+requires that $\left|f\left(\frac{x_0}2\right)\right|=M$ achieves the maximum also. So $x_0$ achieving maximum magnitude implies $x_0/2$ does as well, which forms a sequence approaching $0$ giving absolute value $M.$ But we know $f(x)\to0$ as $x\to0,$ so $M=0,$ finishing. $\blacksquare$
+
+Anyways, we use this to derive values of $\zeta$ at positive even integers. The main character of our story will be
+\[x\cot(x).\]
+We will derive a Taylor expansion for this function in two ways and derive the desired result in a generating functions sort of way. We can rearrange the lemma into
+\[\pi x\cot(\pi x)=\lim_{N\to\infty}\sum_{k=-N}^N\frac x{x+k}=1+\sum_{k=1}^\infty\left(\frac x{x-k}+\frac x{x+k}\right).\]
+This gives
+\[\pi x\cot(\pi x)=1+\sum_{k=1}^\infty\frac{2x^2}{x^2-k^2}.\]
+The idea now is that we want to expand out $\frac{2x^2}{x^2-k^2}$ as a geometric series to hopefully pick up a series with $\frac1{k^n}$ in it. Because we want $k$ in the denominator later in life, we write
+\[\pi x\cot(\pi x)=1-2\sum_{k=1}^\infty\frac{(x/k)^2}{1-(x/k)^2}.\]
+Now, for $|x|<1,$ we have $|x/k|<1$ always, so we may expand the inner sum as an infinite geometric series as
+\[\pi x\cot(\pi x)=1-2\sum_{k=1}^\infty\sum_{n=1}^\infty\left(\frac xk\right)^{2s}.\]
+We know that this converges for $|x|<1,$ and all terms are positive, so in fact it is absolutely converging. Thus, we may swap the order of summation and factor out a $x^{2n}$ to get
+\[\pi x\cot(\pi x)=1-2\sum_{n=1}^\infty\left(x^{2n}\sum_{k=1}^\infty\frac1{k^{2n}}\right).\]
+That inner sum is $\zeta(2n),$ so we have the following.
+\begin{lemma}
+    For $|x|<1,$ we have that
+    \[\pi x\cot(\pi x)=1-2\sum_{n=1}^\infty\zeta(2n)x^{2n}.\]
+\end{lemma}
+This follows from the above discussion. $\blacksquare$
+
+It remains to actually evaluate the Taylor expansion of $\pi x\cot(\pi x)$ in a second way. We will not be using the theory developed above. The main hope is that $\exp$ is relatively well-studied, so we write
+\[\cot x=\frac{\cos x}{\sin x}=\frac{\left(e^{ix}+e^{-ix}\right)/2}{\left(e^{ix}-e^{-ix}\right)/2i}=i\cdot\frac{e^{2ix}+1}{e^{2ix}-1}.\]
+At this point we can almost the Bernoulli numbers appearing, so we introduce their definition.
+\begin{definition}
+    The Bernoulli numbers $\{B_k\}_{k=0}^\infty$ are defined by the generating function
+    \[\frac x{e^x-1}=\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!},\]
+    which has radius convergence $2\pi.$
+\end{definition}
+One important fact about Bernoulli numbers is that they are rational, which we will outline quickly. We can prove this induction by noting $x\to0$ gives $B_0=1$ as our base case, and then
+\[x=\left(e^x-1\right)\left(\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!}\right)=\left(\sum_{\ell=1}^{\infty}\frac{x^\ell}{\ell!}\right)\left(\sum_{k=0}^\infty B_k\cdot\frac{x^k}{k!}\right).\]
+Expanding this equation out gives a series of systems of equations, all of whose terms are rational, and solving this system must preserve being rational, so we conclude the $B_\bullet$ are rational. To be explicit, equating the coefficient for $x^n$ with $n>0,$ we see
+\[\sum_{\ell=1}^n\frac{B_{n-\ell}}{\ell!(n-\ell)!}=1_{n=1},\]
+which is our equation. Solving for $B_{n-1}$ gives
+\[B_{n-1}=(n-1)!\left(1_{n=1}-\sum_{\ell=2}^n\frac{B_{n-\ell}}{\ell!(n-\ell)!}\right)\]
+is our explicit recursion, and indeed, it only requires field operations. This is not terribly important, but it's a nice property.
+
+Anyways, we return to talking about $\cot.$ Rearranging what we have to try to employ this definition, we write
+\[\cot x=i+\frac{2i}{e^{2ix}-1}.\]
+Now, we multiply by $x$ to plug in the definition of Bernoulli numbers with $x\mapsto2ix,$ as
+\[x\cot x=ix+\frac{(2ix)}{e^{(2ix)}-1}=ix+\sum_{k=0}^\infty B_k\cdot\frac{(2ix)^k}{k!}.\]
+This gives us our other Taylor expansion of $\pi x\cot(\pi x).$
+\begin{lemma}
+    We have that
+    \[\pi x\cot(\pi x)=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k.\]
+\end{lemma}
+This follows from taking $x\mapsto\pi x$ in the above formula. $\blacksquare$
+
+Now, comparing coefficients between our two expansions of $\pi x\cot(\pi x),$ we get a number of nice properties. Indeed, the work above shows that
+\[1+\sum_{n=1}^\infty(-2\zeta(2n))x^{2n}=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k.\]
+These functions define the same function over, say, $|x|\le\min\{1,2\pi\},$ so these must actually be the same power series. To start off, here is our main attraction: an explicit formula for $\zeta(2n),$ showing that it is a rational multiple of $\pi^{2n}.$
+\begin{theorem}
+    For positive integers $n,$ we have that
+    \[\zeta(2n)=\frac{(-1)^{n+1}B_{2n}}{2(2n)!}\cdot(2\pi)^{2n}.\]
+\end{theorem}
+Comparing the coefficients of $x^{2n}$ and $x^k$ gives
+\[-2\zeta(2n)=\frac{B_{2n}(2\pi i)^{2n}}{(2n)!}.\]
+This simplifies into
+\[\zeta(2n)=(-1)^{n}\cdot\frac{B_{2n}(2\pi)^{2n}}{-2(2n)!},\]
+which rearranges into the desired. $\blacksquare$
+
+However, we even get some other properties of the Bernoulli numbers based off of properties of the left-hand side. For example, we have the following.
+\begin{proposition}
+    We have that $B_1=-1$ and $B_{2n+1}=0$ for positive integers $n.$
+\end{proposition}
+Indeed, there is no odd power in the right-hand side of the equality
+\[1+\sum_{n=1}^\infty(-2\zeta(2n))x^{2n}=\pi ix+\sum_{k=0}^\infty\frac{B_k(2\pi i)^k}{k!}x^k,\]
+so we conclude that odd powers must vanish for the right-hand side as well. At $k=1,$ the coefficient is
+\[0=\pi i+\frac{B_1(2\pi i)^1}{1!},\]
+which implies that $B_1=-\frac12.$ Continuing, when $k=2n+1,$ we have
+\[0=\frac{B_{2n+1}(2\pi i)^{2n+1}}{(2n+1)!},\]
+from which $B_{2n+1}=0$ immediately follows. $\blacksquare$
+
+Of course, there are more direct proofs of the above fact; for example, $\frac x{e^x-1}+\frac12x=\frac x2\cdot\frac{e^x+1}{e^x-1}$ is the product of two odd functions and is therefore even, implying that its power series must have $B_1=-1$ and $B_{2n+1}=0$ for $n>0.$ However, the fact that we are able to get this result quickly from the theory is remarkable.
+
+We can even talk intelligently about $B_{2n}$ using properties of $\zeta,$ if we're careful.
+\begin{proposition}
+    We have that $B_{2n}\sim(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}.$
+\end{proposition}
+For this we recall that
+\[\zeta(2n)=\frac{(-1)^{n+1}B_{2n}}{2(2n)!}\cdot(2\pi)^{2n}\]
+and read this backwards to get
+\[B_{2n}=(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}\cdot\frac1{\zeta(2n)}.\]
+Now, as $n\to\infty,$ we see that
+\[1\le\sum_{k=1}^\infty\frac1{k^{2n}}<1+\int_1^\infty\frac1{x^{2n}}\,dx=1+\frac1{2n-1}\]
+will cause $\zeta(2n)\to1.$ Thus, we may ignore this term in the limit to conclude
+\[B_{2n}\sim(-1)^{n+1}\cdot\frac{2(2n)!}{(2\pi)^{2n}}.\]
+This is what we wanted. $\blacksquare$
+
+We could use the Stirling formula approximation to get an estimate which is easier to handle, but the Stirling approximation scares me, so I'll avoid it. Nevertheless, this result, using properties of $\zeta$ to talk about the growth rate of Bernoulli numbers, is cute enough to call it quits here.

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 9th
+					</h2>
+					<p>
+						Today I learned some properties of the type $S^1.$ Here's our definition; note that this is a higher inductive type.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							The type $S^1$ is defined as containing a point $\op{base}:S^1$ and a path $\op{loop}:\op{base}=_{S^1}\op{base}$ as well.
+						</p>
+					</div>
+					<p>
+						We very quickly note that, yes, $\op{loop}$ has two types: it is of type $\op{base}=_{S^1}\op{base}$ while also living in $S^1.$ Nothing in the theory prevents objects from having multiple types, so this isn't technically a problem, but we will in general not think about $\op{loop}$ in this way.
+					</p>
+					<p>
+						The benefit we gain from the multi-typing is that it makes our recursion and induction easier to write down. Our recursor, given type $C:\UU,$ needs to be told where we send $\op{base},$ say $b:C,$ as well as where we send $\op{loop}$ (after all, $\op{loop}:S^1$ too), say $\ell:b=b,$ satisfying the equations\[\begin{cases}    \op{rec}_{S^1}(C,b,\ell)(\op{base}):\equiv b, \\    \op{rec}_{S^1}(C,b,\ell)(\op{loop})=\ell.\end{cases}\]Note that the cost of having $\op{loop}:S^1$ is that the typing of $\op{rec}(C,b,\ell)$ is a bit awkward. Because $\ell$ does not need to have type $C,$ our output type for $\op{rec}(C,b,\ell)$ cannot actually be $C$ but rather some type containing both the elements of $C$ and its paths. We will not concern ourselves with the exact formality but will say we should have\[\op{rec}_{S^1}(C,b,\ell)(p)=\op{ap}_{\op{rec}_{S^1}(C,b,\ell)}(p)\]just because it makes the world a better place.
+					</p>
+					<p>
+						As an example of something we can do with this, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose that $S^1$ exists and $\op{loop}=\op{refl}_{\op{base}}$ in $\op{base}=\op{base}.$ Then every type is a set.
+						</p>
+					</div>
+					<p>
+						Fix an arbitrary type $A:\UU,$ which we will show is a set. That is, we have to show that for any $x,y:A$ and $p,q:x=_Ay,$ we have $p=_{x=y}q.$ Well, it suffices to show that $p\cdot q^{-1}=q\cdot q^{-1}$ because we can later concatenate by $q$ again, so it suffices to show that\[p\cdot q^{-1}=\op{refl}_x.\]But here $p$ and $q$ are arbitrary, so we might as well show that $p=\op{refl}_x$ for any $p:x=x.$
+					</p>
+					<p>
+						Now we bring in $S^1.$ Using our recursion principle, there exists map taking $\op{base}$ to our fixed basepoint $b:A$ and $\op{loop}$ to somewhere equal to $p.$ However, by hypothesis, we know that\[\op{loop}=\op{refl}_{\op{base}}.\]Applying $\op{rec}_{S^1}(A,x,p)$ both sides of this gives (something equal to) $p$ on the left-hand side, but the construction of $\op{ap}_f$ takes $\op{refl}_a$ to $\op{refl}_{f(a)},$ so we see that\[p=\op{rec}_{S^1}(A,x,p)(\op{loop})=\op{rec}_{S^1}(A,x,p)(\op{refl}_{\op{base}})=\op{ap}_{\op{rec}_{S^1}(A,x,p)}(\op{refl}_{\op{base}})=\op{refl}_x.\]This is what we wanted, so we are done here. $\blacksquare$
+					</p>
+					<p>
+						Of course, not every type is a set under the univalence axiom, so it follows that we must have $\op{loop}\ne\op{refl}_{\op{base}}.$ We have chosen the above phrasing because it emphasizes that the existence of an (reasonable) $S^1$ communicates something about the universe we live in (that not every type is a set), in the same way that the existence of the an interval type implies function extensionality.
+					</p>
+					<p>
+						We now define induction on $S^1.$ Fix a type family $C:S^1\to\UU.$ We need to be told where to send $\op{base},$ say some $b:C(\op{base}),$ and we also need to know where to send $\op{loop}.$ However, $\op{loop}$ is a path, and we are defining a dependent function, so it is not obvious how to do this. Well, we use $\op{apd}$ so that\[\op{apd}_{\op{ind}_{S^1}(C,b,\ell)}(\op{loop})=\ell,\]for a given path $\ell:\op{transport}^C(\op{loop})(b)=b.$ Observe that even though all our types end up in $b=b,$ we still need to use $\op{apd}$ and transport the first input because, say, $\op{transport}^C(\op{loop})$ might not be the identity. After all, $\op{loop}\ne\op{refl}_{\op{base}}.$
+					</p>
+					<p>
+						Here is an application.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We can exhibit    \[\prod_{\left(x:S^1\right)}(x=_{S^1}x)\]    that is not the usual $x\mapsto\op{refl}_x.$
+						</p>
+					</div>
+					<p>
+						We use induction on $S^1.$ Our type family is $C(x)\equiv x=_{S^1}x.$ Because $S^1$ is so small, it suffices we want to take $\op{base}:S^1$ to $\op{loop}:\op{base}=\op{base}\equiv C(\op{base}).$ However, we now have to ask where $\op{loop}$ should go, which comes down to finding something in\[\ell:\op{transport}^{x\mapsto(x=x)}(\op{loop})(\op{loop})=\op{loop}.\]Thus, we have to prove that these two objects are equal. We bring in the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given a type $A:\UU$ with $a,b:A$ and paths $p:a=b$ and $q:a=a,$ we see    \[\op{transport}^{x\mapsto(x=x)}(p)(q)=p^{-1}\cdot q\cdot p.\]
+						</p>
+					</div>
+					<p>
+						Very quickly, we remark that this statement type-checks because transporting along $p:a=b$ should take elements from $(a=a)$ to $(b=b)$ because our type family is $x\mapsto(x=x).$ Anyways, this is by path induction: write what we want to prove as\[\prod_{(a,b:A)}\prod_{(p:a=b)}\left(\prod_{(q:a=a)}\op{transport}^{x\mapsto(x=x)}(p)(q)=p^{-1}\cdot q\cdot p\right)\]so that we can safely do path induction on $p.$ Here, $a\equiv b$ and $p\equiv\op{refl}_a,$ implying $\op{transport}^{x\mapsto(x=x)}(p)\equiv\op{id}_{a=a}.$ Thus, it suffices to prove that\[\op{id}_{(a=a)}(q)=\op{refl}_a^{-1}\cdot q\cdot\op{refl}_a,\]which is true by our various identity laws. $\blacksquare$
+					</p>
+					<p>
+						Thus, we should have our induction on $S^1$ send $\op{loop}$ directly to\[\op{transport}^{x\mapsto(x=x)}(\op{loop})(\op{loop})=\op{loop}^{-1}\cdot\op{loop}\cdot\op{loop}=\op{loop}.\]Anyways, this finishes our induction, so it remains to show that this function is not $x\mapsto\op{refl}_x.$ Well, the function we constructed above takes $\op{base}$ to $\op{loop},$ and $\op{loop}\ne\op{refl}_{\op{base}},$ so we are done. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

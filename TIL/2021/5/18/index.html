@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to May)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						May 18th
+					</h2>
+					<p>
+						Today I learned about the chromatic polynomial of a graph, from
+						<a href="https://web.archive.org/web/20201112023302/http://math.sfsu.edu/beck/papers/crt.pdf">
+							Combinatorial Reciprocity Theorems
+						</a>
+						. We begin by using a somewhat formal definition of "graph coloring.''
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A graph coloring of a finite graph $G$ is a function $\varphi:V(G)\to[n]$ for some nonnegative integer $n$ such that $v_1,v_2\in V(G)$ adjacent implies $\varphi(v_1)\ne\varphi(v_2).$ We say that $\varphi$ colors $G$ with $n$ colors even though $\varphi$ need not be surjective.
+						</p>
+					</div>
+					<p>
+						In what follows, we will be pretty liberal interchanging $G$ with $V(G),$ mostly for convenience. For example, we might say that $\varphi:G\to[n]$ is a coloring.
+					</p>
+					<p>
+						We remark that it doesn't matter if $G$ is directed or undirected. Because $\varphi(v_1)=\varphi(v_2)$ is a symmetric relation, it doesn't matter if this implication comes from $(v_1,v_2)\in E$ or $(v_2,v_1)\in E.$ So in what follows, we will just have $G$ undirected.
+					</p>
+					<p>
+						The chromatic polynomial interests itself with the number of colorings.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Given a finite graph $G,$ the chromatic polynomial $\chi_G(n)$ is the number of colorings of $G$ with $n$ colors.
+						</p>
+					</div>
+					<p>
+						Very quickly, we note that if $G$ has any loops so that there is a $v\in G$ with edge $\{v,v\}\in E(G)$ will never have any colorings, for surely $\varphi(v)=\varphi(v).$
+					</p>
+					<p>
+						Anyways, we have called $\chi_G$ the chromatic polynomial of $G$ but have not actually showed that it is chromatic. We do this now, in roughly the same spirit as when we showed the number of order preserving maps from a poset $(X,\le)$ to $[n].$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Given a finite graph $G,$ the chromatic polynomial $\chi_G$ is actually a polynomial.
+						</p>
+					</div>
+					<p>
+						The idea is to count the number of ways to color $G$ using exactly $k$ colors and then sum over all $k\in[1,n].$ Indeed, we claim that we can biject colorings $\varphi:G\to[n]$ fixing $k:=\#\varphi(G)$ with pairs of maps a surjective coloring $\varphi_1:G\to[k]$ a surjective coloring and injective order-preserving $\varphi_2:[k]\to[n].$
+					</p>
+					<p>
+						For this, we bring back the fact there is a unique order-preserving bijection between finite total orders of the same size; we will say $\iota_{X,Y}$ is the map from $(X,\le)$ to $(Y,\le).$ So given $\varphi:G\to[n],$ we can define\[\begin{cases}    \varphi_1:=\iota_{\varphi(G),[k]}\circ\varphi, \\    \varphi_2:=\iota_{\varphi(G),[k]}^{-1}.\end{cases}\]To show that $\varphi_1$ and $\varphi_2$ have the claimed properties, we have to show that $\varphi_1$ is a surjective coloring and $\varphi_2$ is injective. Well, $\varphi$ surjects onto $\phi(G),$ and then $\iota_{\varphi(G),[k]}$ surjects onto $[k],$ so $\varphi_1$ is surjective. And $\iota_{\varphi(G),[k]}^{-1}$ is a bijection into $\varphi(G)\subseteq[n],$ so $\varphi_2$ is injective. Also, $\varphi_2$ is order-preserving by constrution of $\iota.$
+					</p>
+					<p>
+						And lastly, the fact that $\varphi_1$ is a coloring is inherited from $\varphi$: the condition $\varphi(v_1)=\varphi(v_2)$ is equivalent to\[\varphi_1(v_1)=\iota_{\varphi(G),[k]}\big(\varphi(v_1)\big)=\iota_{\varphi(G),[k]}\big(\varphi(v_2)\big)=\varphi_1(v_2)\]because $\iota_{\varphi(G),[k]}$ is a bijection. So, $\{v_1,v_2\}\in E(G)$ implies $\varphi(v_1)\ne\varphi(v_2)$ implies $\varphi_1(v_1)\ne\varphi_1(v_2),$ so $\varphi_1$ is a coloring.
+					</p>
+					<p>
+						It remains to show that the correspondence $\varphi\mapsto(\varphi_1,\varphi_2)$ is injective and surjective. Well, we note that $\varphi=\varphi_2\circ\varphi_1$ by construction, so injectivity follows: if both $\varphi$ and $\varphi'$ both give the same $(\varphi_1,\varphi_2),$ then $\varphi=\varphi_2\circ\varphi_1=\varphi'.$
+					</p>
+					<p>
+						So surjectivity remains. Suppose we have a surjective coloring $\varphi_1:G\to[k]$ and an injective order-preserving map $\varphi_2:[k]\to[n].$ Then we claim that $\varphi_1$ and $\varphi_2$ are mapped to by $\varphi=\varphi_2\circ\varphi_1.$ Quickly, $\varphi$ is a coloring because $\{v_1,v_2\}\in E(G)$ implies $\varphi_1(v_1)\ne\varphi(v_2)$ implies\[\varphi(v_1)=\varphi_2\big(\varphi_1(v_1)\big)\ne\varphi_2\big(\varphi_1(v_2)\big)=\varphi(v_2)\]because $\varphi_2$ is injective. And lastly, we show that $\varphi$ goes to $(\varphi_1,\varphi_2).$ Well, $\varphi(G)=\varphi_2([k])$ because $\varphi_1$ is surjective, so $\varphi_2$ is really a bijection from $[k]$ into $\varphi(G).$ Because $\varphi_2$ is also order-preserving, it has only one option, from which it follows\[\varphi_2=\iota^{-1}_{\varphi(G),[k]}.\]And now, we see\[\iota_{\varphi(G),[k]}\circ\varphi=\iota_{\varphi(G),[k]}\circ\iota^{-1}_{\varphi(G),[k]}=\varphi_1,\]so indeed, $\varphi$ goes to the pair $(\varphi_1,\varphi_2).$
+					</p>
+					<p>
+						Only now we do count pairs $(\varphi_1,\varphi_2).$ Well, the number of $\varphi_1$ is going to some fixed integer not dependent on $n,$ so we'll call it $a_k$ because it might depend on $k.$ But $\varphi_2$ is counting the number of injective order-preserving maps $[k]\to[n],$ which is uniquely determined by the image $\varphi_2([k])$ because the order-preserving bijection from $[k]$ to $\varphi_2([k])$ is unique. So there are $\binom nk$ of these, making $a_k\binom nk$ pairs.
+					</p>
+					<p>
+						Summing over possible $k,$ we note that we have to use some nonnegative number of colors, and there is no way to use all of more than $\#G$ colors because there are only $\#G$ vertices. So, we sum from $k=0$ to $k=\#G,$ giving\[\chi_G(n)=\sum_{k=0}^{\#G}a_k\binom nk.\]This is indeed a polynomial, so we are done here. $\blacksquare$
+					</p>
+					<p>
+						We remark that the above proof actually tells us something about $\chi_G$ as well. For example, the number of colorings using exactly $\#G$ is simply $(\#G)!$ because we can place the colors however we want. Thus, $a_{\#G}=(\#G)!,$ so the leading term of $\chi_G(n)$ comes from\[a_{\#G}\binom n{\#G}=(\#G)!\binom n{\#G}=\prod_{\ell=0}^{\#G-1}(n-\ell).\]In particular, $\chi_G$ is monic of degree $\#G.$
+					</p>
+					<p>
+						There is an alternate proof that $\chi_G$ is a polynomial, which is a bit less explicit in formula, but it is important because it establishes the following functional equation.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a finite graph and $e\in E(G)$ an edge. Then $\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.$
+						</p>
+					</div>
+					<p>
+						Here, $G/e$ means the graph $G$ "modded out'' by the edge $e$: the graph $G/e$ takes the endpoints of $e=\{v_1,v_2\}$ and identifies them. Formally, we have a mapping $\iota_e:G\to G/e$ which just identifies the endpoints of $e$: it bijects everyone except for the ends of $e,$ and edges move with their vertices.
+					</p>
+					<p>
+						To make the statement more combinatorially receptive, we write the desired equations without minus signs as\[\chi_{G\setminus\{e\}}=\chi_G+\chi_{G/e}.\]This suggests casework, and indeed we claim that each coloring of $G\setminus\{e\}$ can be bijected with exactly one coloring of either $G$ or $G/e.$ Indeed, we write $e=\{v_1,v_2\}$ and then do casework on if $\varphi:G\setminus\{e\}\to[n]$ has $\varphi(v_1)=\varphi(v_2).$ This equality makes our cases disjoint.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $\varphi(v_1)\ne\varphi(v_2),$ then this can be turned extended into a coloring on $G$ with no changes. Indeed, the only added edge going from $G\setminus\{e\}$ to $G$ is $e$ itself, and we have guaranteed $\varphi(v_1)\ne\varphi(v_2).$
+							</p>
+							<p>
+								And conversely, any coloring on $G$ induces a coloring on $G\setminus\{e\}$ by restriction, and this coloring "happens'' to satisfy $\varphi(v_1)\ne\varphi(v_2).$ Extension and restriction are inverses, so this is a bijection.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $\varphi(v_1)=\varphi(v_2),$ then we can turn this into a coloring of $G/e$ by identifying the endpoints of $e.$ Formally, we can take $\varphi$ to $\varphi\circ\iota_e^{-1},$ which is only defined because $\varphi$ has $\varphi(v_1)=\varphi(v_2).$
+							</p>
+							<p>
+								Being informal, this is a coloring because we haven't introduced any problematic edges: if $\{w_1,w_2\}\in E(G/e),$ then either $w_1,w_2$ are separate from $v_1$ and $v_2,$ and $\varphi$ feels no effect, or one of $w_1$ or $w_2$ is $v_1$ or $v_2,$ but even here, $v_1$ and $v_2$ have the same color, so we don't violate the coloring requirement.
+							</p>
+							<p>
+								And conversely, any coloring on $G/e$ can be brought back to a coloring on $G\setminus\{e\}$ by composing with $\iota_{e},$ but this coloring will happen to have $\varphi(v_1)=\varphi(v_2)$ because $\iota_e(v_1)=\iota_e(v_2).$ Composing with $\iota_e$ and $\iota_e^{-1}$ are inverse operations, so this is indeed a bijection.
+							</p>
+						</li>
+					</ul>
+					<p>
+						The above casework shows that $\chi_{G\setminus\{e\}}(n)=\chi_G(n)+\chi_{G/e}$ for any integer $n,$ so we are done here. $\blacksquare$
+					</p>
+					<p>
+						The above functional equation provides another way to prove that $\chi_G$ is a polynomial.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Given a finite graph $G,$ the chromatic polynomial $\chi_G$ is actually a polynomial.
+						</p>
+					</div>
+					<p>
+						We prove this by induction on the number of edges of $G.$ If $G$ has no edges, then the number of colorings $G\to[n]$ for a given nonnegative integer $n$ is simply $n^{\#G}$ because each of the $\#G$ vertices can have whatever color they want.
+					</p>
+					<p>
+						For the inductive step, a graph $G$ with an edge $e\in E(G)$ has chromatic polynomial\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]But each of $G\setminus\{e\}$ and $G/e$ has at least one fewer edge than $G$ does, so both $\chi_{G\setminus\{e\}}$ and $\chi_{G/e}$ are polynomials by a strong induction hypothesis. It follows $\chi_G$ is a polynomial as well. $\blacksquare$
+					</p>
+					<p>
+						I think the above proof can show that $\chi_G$ is monic of degree $\#G$ as well, but it requires a bit more work. For example, we can do this by induction, for $G$ with no edges satisfies both of these properties, and then for $G$ with an edge $e,$\[\chi_G=\chi_{G\setminus\{e\}}-\chi_{G/e}.\]The polynomial $\chi_{G\setminus\{e\}}$ is still monic of degree $\#G$ by inductive hypothesis, but $\chi_{G/e}$ is monic of degree $\#G-1,$ so it does not interfere with the leading term. So we are done by induction.
+					</p>
+					<p>
+						As motivational remark, I will say that the proof that $\chi_G$ is a polynomial by functional equation is probably easier, but I wanted to establish the result from somewhere we already came from, which was posets. And honestly, I can convince myself to care about posets easier than graphs.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

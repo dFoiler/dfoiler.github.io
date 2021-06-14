@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -95,7 +100,61 @@
 						May 1st
 					</h2>
 					<p>
-						Today I learned that there are no global differential forms on (say) the Riemann sphere. \todo{}
+						Today I learned that a heuristic for the fact there are no global holomorphic $1$-forms on (say) the Riemann sphere. We promised this would be a heuristic, and indeed, it's going to be quite hand-wavy because I don't think I have all the background to make this fully rigorous. Anyways, we will be talking about sheaves on $\CP^1.$
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							We will define $\CP^1$ as the set of all lines in $\CC^2.$ In particular, it is    \[\CP^1=\{[x:y]:x,y\in\CC,x\ne0\text{ or }y\ne0\}/\sim,\]    where $\sim$ says $[x:y]\sim[kx:ky]$ for any $k\in\CC^\times.$
+						</p>
+					</div>
+					<p>
+						A lot of what we're going to say can be done over a general field instead of over $\CC$ specifically, but we won't dwell on this too much. We will say that we can define a projective space, but we will not do so.
+					</p>
+					<p>
+						We begin by talking about the sheaf of holomorphic functions $\CP^1\to\CC$; fix $F$ an element. Ignoring the point at infinity, which is $[1:0],$ we remark that we can project all points $[x:y]$ with $y\ne0$ to some $[x:1],$ and we'll have the geometry here be isomorphic to $\CC$ by $[x:1]\mapsto x.$ In particular, we can restrict our $F:\CP^1\to\CC$ to a function\[\CP^1\setminus\{\infty\}\cong\CC\to\CC.\]However, complex analysis gives us a lot of tools to talk about holomorphic functions. For example, holomorphic functions on any open set $U$ behave like a power series. So when we try to define an element of the sheaf of holomorphic functions, this comes down to defining a family of\[p_U(x)\in\CC[[x]]\]for each open set $U\subseteq p_U(x)$ such that the restriction maps behave nicely. However, if two holomorphic power series $p_U(x)=\sum_{k=0}^\infty a_kx^k$ on $U$ and $p_V(x)=\sum_{k=0}^\infty b_kx^k$ on $V$ agree on $U\cap V\ne\emp$ (which they must because we are on a sheaf), then we can find some disk $D(z_0,r)\subseteq U\cap V$ with $r \gt 0,$ meaning\[a_n=\oint_{\del D(z_0,r)}\frac{p_U^{(n)}(z)}{z-z_0}\,dz=\oint_{\del D(z_0,r)}\frac{p_V^{(n)}(z)}{z-z_0}\,dz=b_n.\]Thus, requiring our family of $\{p_U\}_{U\subseteq\CC}$ to behave nicely with restriction means that all of these $p_U(x)$ must all be shadows of the same power series/holomorphic function. Indeed, run the above argument with $V=\CC$ to see that all the $p_U$ are actually $p_\CC$ in disguise. (This is just analytic continuation.) So $F$ is $p_\CC(x)$ on $[x:1].$
+					</p>
+					<p>
+						However, we can play almost the same game with the points $[1:x],$ for the set of points $[1:x]$ in $\CP^1$ (which is $\CP^1\setminus\{0\}$) should be isomorphic to $\CC$ by $[1:x]\mapsto x.$ So again, we can restrict our $F:\CP^1\to\CC$ to a function\[\CP^1\setminus\{0\}\cong\CC\to\CC.\]Now the above argument works verbatim, and we get that our element of the sheaf of holomorphic functions $\CP^1\to\CC$ all look like restrictions of\[q_\CC(x)\in\CC[[x]]\]for some global $q_\CC$ that we restrict to the individual open sets of $\CC.$ So $F$ is $q_\CC(x)$ on $[1:x].$
+					</p>
+					<p>
+						Now, here's the punchline: we need the $p_\CC$ and $q_\CC$ defined above to cohere in $\CP^1,$ again because we're in a sheaf and things need to restrict properly. However, $p_\CC(x)$ is defined over elements of the form $[x:1]\in\CP^1$ while $q_\CC(x)$ is defined over elements of the form $[1:x]\in\CP^1.$ So, to cohere, we need that\[p_\CC(x)=F([x:1])=F([1:1/x])=q_\CC(1/x)\]for any $x\in\CC\setminus\{0\}.$ However, this is impossible if $p_\CC$ and $q_\CC$ are not both constants; for example, if $p_\CC$ is nonconstant as $|x|\to\infty,$ we must have $\sup|p_\CC(x)|\to\infty$ while $|q_\CC(x)|\to|q(0)|.$ Sending $|1/x|\to\infty$ (i.e., $x\to0$) implies that $q_\CC$ is constant as well. This gives the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							The only globally defined holomorphic functions in $\CP^1\to\CC$ are constants.
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. To summarize, if $F:\CP^1\to\CC$ is a global holomorphic function, it needs to behave like a power series in $\CC[[x]]$ on points of the form $[x:1]$ and a perhaps different power series in $\CC[[x]]$ on points of the form $[1:x],$ but to make these equal on all points, we must have $F$ a constant. Of course, constants are holomorphic functions $\CP^1\to\CC,$ so these work. $\blacksquare$
+					</p>
+					<p>
+						With the above argument as our template, we now go on to discuss the sheaf of holomorphic $1$-forms. These look like $d\omega$ which can be integrated reasonably over curves in $\CP^1.$ Doing the same thing as we did above, we first restrict our global $1$-form to points $[x:1]\in\CP^1,$ which is isomorphic to $\CC$ by $[x:1]\to x.$ Then if we can integrate\[d\omega|_{\CP^1\setminus\{\infty\}}\]over lines in $\CC$ to yield holomorphic functions. Namely, if we assert that\[F(z)=\int_0^zd\omega|_{\CP^1\setminus\{\infty\}}\]is a holomorphic function over $z\in\CC,$ then we can take the derivative to say that $d\omega/dz=F(z)$ is a holomorphic function on $z,$ meaning that $F(z)$ is just a power series here. I'm not being very rigorous here because I don't know what I'm talking about, but the main point is that the holomorphic $1$-forms of $\CC$ look like\[d\omega|_{\CP^1\setminus\{\infty\}}=p_\CC([x:1])\,d[x:1]\]for some holomorphic $p_\CC(x)\in\CC[[x]].$
+					</p>
+					<p>
+						Continuing, we can say the same thing when we restrict our global holomorphic $1$-form $d\omega$ to points of the form $[1:x]\in\CP^1,$ which is again isomorphic to $\CC$ by $[1:x]\mapsto x.$ So again we have a holomorphic $1$-form on $\CC,$ so we conclude\[d\omega|_{\CP^1\setminus\{0\}}=q_\CC([1:x])\,d[1:x]\]for some holomorphic $q_\CC(x)\in\CC[[x]].$
+					</p>
+					<p>
+						And, as before, we now attempt to glue these two restrictions of $d\omega$ together. When we restrict to $\CP^1\setminus\{0,\infty\}$ over which both of our definitions restrict, we see\[p_\CC([x:1])\,d[x:1]=q_\CC([1:1/x])\,d[1:1/x]\]because $[x:1]=[1:1/x]$ for $x\in\CC^\times.$ However, $d(1/x)=x^{-2}\,dx,$ so we can abuse notation a bit and write\[p_\CC(x)\,dx=-x^{-2}q_\CC(1/x)\,dx.\]Using the same trick as before to extract the non-differential part, we can note that\[\int_1^zp_\CC(x)\,dx=\int_1^z-x^{-2}q_\CC(1/x)\,dx\]need to both be holomorphic functions in $z\in\CC^\times,$ and differentiating this holomorphic function implies $p_\CC(x)=x^{-2}q_\CC(1/x).$ However, this is impossible because $p_\CC(x)$ has no poles, but $-x^{-2}q_\CC(1/x)$ must have a pole at $x=0.$ So we get the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							There are no globally defined holomorphic $1$-forms on $\CP^1.$
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. We won't summarize this time. $\blacksquare$
+					</p>
+					<p>
+						As some final commentary, the only property of the differential that we used here was that $dt^{-1}=-t^{-2}\,dt.$ Sure, we used a lot of the geometry of $\CC$ in the above discussion, but the exact argument for differential forms essentially boiled down to the fact $-x^{-2}q_\CC(x)$ had negative degree. This is to say that I think these ideas can be generalized much further.
 					</p>
 				</div>
 			</div>

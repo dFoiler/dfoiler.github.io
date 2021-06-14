@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -104,7 +109,7 @@
 						To continue, we study the unramified condition a bit closer. Write $\mf p\mathcal O_L=\mf qI$ for comfort. Playing around with maximality tells us that $\mathcal O_M=\mathcal O_L+\mf u$ and $\mathcal O_L=I+\mf q$ (details omitted), which implies\[\mathcal O_M=I+\mf u.\]Intuitively, this is telling us that $I$ and $\mf u$ are relatively prime. To formalize this, we show that every other prime in $\mathcal O_M$ over $\mf p$ contains $I.$ Indeed, fixing $\mf u'\ne\mf u$ dividing $\mf p\mathcal O_M,$ we see that $\mf u'_E\ne\mf u_E=\mf q$ because $\mf u$ is totally ramified over $\mf u_E,$ so $\mf u'_E$ must instead divide into $I.$ (It's a prime dividing $\mf p\mathcal O_L=\mf qI.$) This is what we wanted.
 					</p>
 					<p>
-						Now, accessing the different requires some thoughts on the trace. Because $\mf q\mid\diff(\mathcal O_L/\mathcal O_K),$ we see that $\mf q^{-1}\subseteq\mathcal O_L^*,$ from which\[\op T_K^L(\mf q^{-1}\mathcal O_L)\subseteq\mathcal O_K\]follows. The previous paragraph gave us information about $I,$ so we focus there. In particular, we know $I=\mf q^{-1}(\mf p\mathcal O_L),$ which roughly implies that\[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and\[\sigma(I)\subseteq\mf u.\]So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\not\in D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$
+						Now, accessing the different requires some thoughts on the trace. Because $\mf q\mid\diff(\mathcal O_L/\mathcal O_K),$ we see that $\mf q^{-1}\subseteq\mathcal O_L^*,$ from which\[\op T_K^L(\mf q^{-1}\mathcal O_L)\subseteq\mathcal O_K\]follows. The previous paragraph gave us information about $I,$ so we focus there. In particular, we know $I=\mf q^{-1}(\mf p\mathcal O_L),$ which roughly implies that\[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and\[\sigma(I)\subseteq\mf u.\]So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\notin D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$
 					</p>
 					<p>
 						To finish, the last trick is to look$\pmod{\mf u}.$ Namely, each $\sigma\in D\cap\op{Emb}(L/K)$ induces an automorphism $\overline\sigma$ of $\mathcal O_M/\mf u,$ so taking mods tells us that in fact\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\overline\sigma\equiv0\pmod{\mf u}.\]However, we can show that these $\overline\sigma$ are distinct automorphisms of $\mathcal O_M/\mf u$ and therefore must be linearly independent, which is our final contradiction.

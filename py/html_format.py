@@ -24,7 +24,7 @@ header = '''<!DOCTYPE html>
 	</head>\n'''
 
 # Dirty hack to get the month
-months = ['January','February','March','April','May','April','June'
+months = ['January','February','March','April','May','June',
 	'July','August','September','October','November','December']
 
 # Generating the archive

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 11th
+					</h2>
+					<p>
+						Today I learned about the P\'olya-Vinogradov inequality, from
+						<a href="http://jonismathnotes.blogspot.com/2014/10/character-sums-and-polya-vinogradov.html">
+							Joni
+						</a>
+						and
+						<a href="https://terrytao.wordpress.com/2009/08/18/the-least-quadratic-nonresidue-and-the-square-root-barrier/#more-2664">
+							Tao
+						</a>
+						. Here is our statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $p$ a prime and $\chi$ a nontrivial character$\pmod p.$ Then    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\sqrt p\log p.\]
+						</p>
+					</div>
+					<p>
+						There are two steps to this proof: Fourier analysis and bash. Observe that we have a somewhat trivial bound\[\left|\sum_{M\le n\le N}\chi(n)\right|\le p\]simply because $\chi$ is periodic, and $\sum_{n=0}^{p-1}\chi(n)=0$ by orthogonality of characters. The way we are going to improve upon this bound is to find that, in fact, the Fourier coefficients of $\chi$ are reasonably small, and then bashing will yield the result.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given a nontrivial character $\chi\pmod p$ for $p$ prime and integer $n,$ we have    \[\chi(n)G(\overline\chi)=\sum_{x\in\FF_p^\times}\overline{\chi(x)}\zeta_p^{nx}.\]
+						</p>
+					</div>
+					<p>
+						This is pretty normal Gauss sums theory. Note that if $p\mid n,$ then $\chi(n)=0,$ and the sum on the right-hand side is\[\sum_{x\in\FF_p^\times}\overline\chi(x)\cdot1=0\]by orthogonality of characters. Otherwise, we take $p\nmid n,$ and note that\[\chi(n)G(\overline\chi)=\chi(n)\sum_{x\in\FF_p^\times}\overline\chi(x)\zeta_p^x=\sum_{x\in\FF_p^\times}\chi(x/n)\zeta_p^x.\]Now, taking $x\mapsto x/n,$ which is a legal bijection because $n^{-1}\in\FF_p^\times,$ we see that\[\chi(n)G(\overline\chi)=\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^{nx},\]which is exactly what we wanted. This finishes. $\blacksquare$
+					</p>
+					<p>
+						We would like to divide both sides of the above computation by $G(\overline\chi),$ but we need to know that $G(\overline\chi)\ne0$ for this. In fact, we can do better; we have the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Given a nontrivial character $\chi\pmod p$ for $p$ prime, we define the Gauss sum    \[G(\chi):=\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^x.\]    Then $|G(\chi)|=\sqrt p.$
+						</p>
+					</div>
+					<p>
+						We evaluate $G(\chi)^2.$ Proceeding by brute force, this is\[G(\chi)^2=\left(\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^x\right)\left(\sum_{y\in\FF_p^\times}\chi(y)\zeta_p^y\right).\]Distributing, this turns into\[G(\chi)^2=\sum_{x,y\in\FF_p^\times}\chi(xy)\zeta_p^{x+y}\]because $\chi$ is a multiplicative character. At this point we reparamterize the sum to be a sum over $x$ and a sum over $t:=1xy.$ Observe that for fixed $x\in\FF_p^\times,$ $y$ ranging over $\FF_p^\times$ is equivalent to $t=xy$ ranging over $\FF_p^\times$ (because $\FF_p^\times$ is a group), so we can safely write rearrange as\[G(\chi)^2=\sum_{t\in\FF_p^\times}\chi(t)\sum_{x\in\FF_p^\times}\zeta_p^{x+xt^{-1}},\]where $t^{-1}$ is taken$\pmod p.$ It will make the argument clearer if we now add in $\sum_t\chi(t)=0$ to the entire right-hand sum, which doesn't change the quantity, but it lets us write\[G(\chi)^2=\sum_{t\in\FF_p^\times}\chi(t)\left(\sum_{k=0}^{p-1}\left(\zeta_p^{1+t^{-1}}\right)^k\right).\]Now, whenever $t\ne-1,$ we have that $1+t^{-1}\ne0,$ so the inner sum is a sum of roots of unity around a circle and will vanish. (We can see this directly by summing as a geometric sequence.) Then at $t=-1,$ the summands are all $1,$ so we get out $p.$ This means that\[G(\chi)^2=\chi(-1)\cdot p.\]It follows that $|G(\chi)|^2=1p=p,$ and taking square-roots finishes. $\blacksquare$
+					</p>
+					<p>
+						The above lemma says that the Fourier coefficients of $\chi,$ which look like $\overline\chi/G(\overline\chi),$ are on the order of $1/\sqrt p.$ This is quite small, and we will be able to convert this smallness into the desired inequality. So now we brute force. Using our Fourier step, we see\[\sum_{M\le n\le N}\chi(n)=\sum_{M\le n\le N}\left(\frac1{G(\overline\chi)}\sum_{x\in\FF_p^\times}\overline\chi(x)\zeta_p^{nx}\right).\]Rearranging the order of summation and abusing the triangle inequality, we see\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{x\in\FF_p^\times}\left(|\overline\chi(x)|\cdot\left|\sum_{M\le n\le N}\zeta_p^{nx}\right|\right).\]This is the most egregious inequality we will use in this proof. Indeed, we lose a lot of cancellation by separating out the character $\overline\chi$ from the sum of $\overline\chi\zeta_p^\bullet,$ but there isn't an easy way to use this, and hey, maybe we can actually configure $M$ and $N$ to make this all align. Anyways, this collapses into\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{x\in\FF_p^\times}\left|\zeta_p^M\cdot\frac{\zeta_p^{N-M+1}-1}{\zeta_p^x-1}\right|.\]We can't really optimize the numerator of this fraction because maybe it really is $2,$ so we will bound the numerator by $2.$ As for the denominator, we evaluate its magnitude by writing\[\zeta_p^x-1=e^{2\pi ix/p}-1=2ie^{\pi ix/p}\left(\frac{e^{\pi ix/p}-e^{-\pi ix/p}}{2i}\right),\]so the magnitude is $2\sin(\pi x/p).$ Thus,\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}.\]It remains to bound this sum. Observe that nothing we did above really involves number theory in any crucial way, and by now, we can't even see the character $\chi$ anymore, so there will definitely not be any more number theory in what follows.
+					</p>
+					<p>
+						We start with a heuristic argument to get the inequality.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $p$ a positive odd integer. We have that    \[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}=p\log p+O(1).\]
+						</p>
+					</div>
+					<p>
+						Observe that $\sin(\pi x)\ge2x$ over $x\in(0,1/2),$ which is true because $\sin(\pi x)$ is concave down in this range, and $2x$ is a secant line from $x=0$ to $x=1/2.$ Thus, we may write\[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}=2\sum_{k=1}^{(p-1)/2}\frac1{\sin(\pi k/p)}\le2\sum_{k=1}^{(p-1)/2}\frac1{2k/p}.\]So we can bound the sum by\[p\sum_{k=1}^{(p-1)/2}\frac1k,\]and we know the sum is $\log\frac{p-1}2+O(1)=\log p+O(1).$ Thus, the entire sum is $p\log p+O(p),$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						The above is a quick argument to show that the inequality we want is roughly on the right track, but it turns out that $\sin(\pi k/p)\ge 2k/p$ is pretty expensive in the sum. But now that we understand the type of argument we're looking for, we can skip the harmonic numbers by noticing that the bound comes from an integral, so we can try to directly turn out sum into an integral. In particular,\[\frac1p\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\]looks a lot like a Riemann sum for $\int_0^1\frac1{\sin(x)}\,dx,$ but this integral diverges, so we have to be more careful. We pick up the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $y\in(0,\pi)$ and a small positive $\varepsilon \lt \min\{y,\pi-y\}$ so that $(y-\varepsilon,y+\varepsilon)\subseteq(0,\pi).$ We have that    \[\frac1{\sin(y)}\le\frac1{2\varepsilon}\int_{y-\varepsilon}^{y+\varepsilon}\frac1{\sin(x)}\,dx.\]
+						</p>
+					</div>
+					<p>
+						This follows because $1/\sin(x)$ is concave up on $(0,\pi).$ Indeed, let $f(x)=1/\sin(x),$ and we see that $f'(x)=-(\sin x)^{-2}\cos(x)=\frac{-\cos(x)}{\sin^2(x)},$ which gives\[f''(x)=\frac{\sin^2(x)\cdot\sin(x)+\cos(x)\cdot2\sin(x)\cos(x)}{\left(\sin^2(x))\right)^2},\]where are all the terms are positive when $x\in(0,\pi).$
+					</p>
+					<p>
+						Now we prove Jensen's inequality that for any $x\in(0,\pi)$ and any $\varepsilon\ge0$ with $(x-\varepsilon,x+\varepsilon)\subseteq(0,\pi),$ we have\[\frac{f(x+\varepsilon)+f(x-\varepsilon)}2\ge f(x).\]This statement is true for $\varepsilon=0,$ so it suffices to show that the function on the left is increasing with respect to $\varepsilon.$ Its derivative is\[f'(x+\varepsilon)-f'(x-\varepsilon).\]We need to show this is nonnegative, but $f''(x) \gt 0$ in this region implies that $f'$ is increasing, so $f'(x+\varepsilon)\ge f'(x-\varepsilon),$ which is exactly what we needed.
+					</p>
+					<p>
+						We are now ready to prove the lemma. Fix $y$ and $\varepsilon$ as needed. From the above we know that, for any large $N,$\[\sum_{k=-N}^Nf\left(y+\varepsilon\frac kN\right)=f(y)+\sum_{k=1}^N\left(f\left(y+\varepsilon\frac kN\right)+f\left(y-\varepsilon\frac kN\right)\right)\ge(2N+1)f(y).\]This rearranges into\[f(y)\le\frac N{2N+1}\cdot\frac1N\sum_{k=-N}^Nf\left(y+\varepsilon\frac kN\right).\]Sending $N\to\infty$ reveals the right-hand side as a Riemann sum, giving\[f(y)\le\frac12\int_{-1}^1f(y+\varepsilon x)\,dx=\frac1{2\varepsilon}\int_{y-\varepsilon}^{y+\varepsilon}f(x)\,dx.\]This is what we wanted, so we are done here. $\blacksquare$
+					</p>
+					<p>
+						We will use the above lemma with $\varepsilon=\pi/(2p)$ to get\[\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\sum_{k=1}^{p-1}\frac1{2\cdot\pi/(2p)}\int_{\pi k/p-\pi/(2p)}^{\pi k/p+\pi/(2p)}\frac1{\sin(x)}\,dx=\frac p\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\,dx.\]This turns out to be very sharp. If we want to bee-line to the P\'olya-Vinogradov inequality, Joni has this trick where right now we can write\[\frac p\pi\int_{\pi/2p}^{\pi(1-1/(2p))}\frac1{\sin(x)}\,dx=p\int_{1/(2p)}^{1-1/(2p)}\frac1{\sin(\pi x)}\,dx=2p\int_{1/(2p)}^{1/2}\frac1{\sin(\pi x)}\,dx\]and use concavity to note $\sin(\pi x)\ge2x$ over $x\in(0,1/2),$ which gives\[2p\int_{1/(2p)}^{1/2}\frac1{2x}\,dx=p\left(\log\frac12-\log\frac1{2p}\right)=p\log p.\]Putting this all together, we see\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\frac1{\sqrt p}\cdot p\log p,\]which rearranges to $\sqrt p\log p.$ This is the P\'olya-Vinogradov inequality, so we are done. $\blacksquare$
+					</p>
+					<p>
+						Of course, we can do a little better than the given if we actually contend with $\int1/\sin(x)\,dx.$ To ground ourselves, we quickly start with the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For $\chi\pmod p$ a nontrivial character, we get    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac{\sqrt p}\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\,dx.\]
+						</p>
+					</div>
+					<p>
+						This follows from stringing the inequalities established above all together. Explicitly, we see\[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac1{\sqrt p}\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}\le\frac1{\sqrt p}\cdot\frac p\pi\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x),}\]which rearranges into what we wanted. $\blacksquare$
+					</p>
+					<p>
+						It remains to deal with the integral. We have the indefinite integral\[\int\frac1{\sin(x)}\,dx=\log\left|\frac{\sin(x)}{1+\cos(x)}\right|,\]which can be verified manually. This gives\[\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}=\log\left|\frac{\sin\left(\pi-\frac\pi{2p}\right)}{1+\cos\left(\pi-\frac\pi{2p}\right)}\cdot\frac{1+\cos\left(\frac\pi{2p}\right)}{\sin\left(\frac\pi{2p}\right)}\right|.\]The $\sin$ terms cancel by symmetry, and $\cos\left(\pi-\frac\pi{2p}\right)=-\cos\left(\frac\pi{2p}\right).$ Re-expanding this out, we get\[\log\left(1+\cos\left(\frac\pi{2p}\right)\right)-\log\left(1-\cos\left(\frac\pi{2p}\right)\right).\]As $p\to\infty,$ we see $\cos\left(\frac\pi{2p}\right)\to1$ from below, so I have no qualms bounding the positive term directly by $\log2.$ Using the Taylor expansion of $\cos,$ we see $\cos(x)\le1-\frac12x^2+\frac1{24}x^4,$ so we can bound this above by\[\log2-\log\left(\frac12\left(\frac\pi{2p}\right)^2-\frac1{24}\left(\frac\pi{2p}\right)^4\right).\](We wanted to bound $\cos$ above because $-\log(1-x)$ is increasing.) Rearranging a bit, our main term is $2\log p$ from the right $\log,$ leaving behind\[2\log p+\log2-\log\left(\frac{\pi^2}{2\cdot2^2}-\frac{\pi^4}{24\cdot16p^2}\right).\]As $p\to\infty,$ the right-hand term will approach its own main term, and we could deal with this, but I don't want to bother. As $p\to\infty,$ the long $\log$ term increases and subtracts more, meaning that to maximize, we take $p=2.$ Now, we see that\[\frac{\pi^2}{2\cdot2^2}-\frac{\pi^4}{24\cdot16\cdot2^2}\le\frac98-\frac{10^2}{24\cdot16\cdot4}\le\frac98-\frac{192}{24\cdot16\cdot4}=1,\]so the $\log$ term subtracts at least $\log1=0.$ That is, we may ignore it. Plugging in our estimate of the integral, we get the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							For $\chi\pmod p$ a nontrivial character, we get    \[\left|\sum_{M\le n\le N}\chi(n)\right|\le\frac2\pi\sqrt p\log p+\frac{\log2}\pi\sqrt p.\]
+						</p>
+					</div>
+					<p>
+						The discussion above established\[\int_{\pi/(2p)}^{\pi-\pi/(2p)}\frac1{\sin(x)}\le2\log p+\log2,\]which is enough upon plugging into the above lemma. So we are done here. $\blacksquare$
+					</p>
+					<p>
+						The above improvement isn't drastic, but the constant $\frac2\pi$ is a much better approximation for the constant we get out of the sum $\sum_{k=1}^{p-1}\frac1{\sin(\pi k/p)}.$ I do like the simplicity of the $\sqrt p\log p$ bound for P\'olya-Vinogradov, but I wanted to make the point that we have some more optimizable space.
+					</p>
+					<p>
+						While we're here, we pick up the following cute result which falls out of our work.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Give $p$ a prime. The least non-quadratic residue is at most $1+\sqrt p\log p.$
+						</p>
+					</div>
+					<p>
+						Use $\chi=\left(\frac\bullet p\right),$ which is the Legendre symbol. If we let $n_p$ be the least non-quadratic residue$\pmod p,$ then\[\sum_{k=1}^{n_p-1}\left(\frac kp\right)=n_p-1.\]However, this character sum is bounded by $\sqrt p\log p,$ so we see $n_p\le1+\sqrt p\log p.$ This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Of course, we probably expect that quadratic and non-quadratic residues should be roughly evenly distributed, so this bound isn't great, but it is still cute. We also remark that we can do a little better than this if we use the multiplicativity of our character $\chi.$ Indeed, if $n_p$ is the least non-quadratic residue, then any $n_p-1$-smooth integer is also a quadratic residue, making for a large character sum. We won't do this here.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

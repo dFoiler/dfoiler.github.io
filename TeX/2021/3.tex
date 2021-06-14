@@ -61,7 +61,7 @@ We are forcing $1\in U$ so that $a=0$ works. We note that if $\psi$ is trivial, 
 \[K=\{k\in G:|k|\le|x|/r\}.\]
 The visual here is that $a\in F$ is permitted as long as $aK$ doesn't ``blow up'' too much to hit $x.$ Anyways, we show this works; fix $a\in F,$ and we show the contrapositive that
 \[|a|\ge r\implies aK\not\subseteq\psi^{-1}(U).\]
-We see $|x/a|\le|x|/r,$ so $x/a\in K,$ implying that $x\in aK.$ However, $\psi(x)\not\in U,$ so $x$ witnesses $aK\not\subseteq\psi^{-1}(U).$ This completes the proof that $\Psi$ is a homeomorphism onto its image. $\blacksquare$
+We see $|x/a|\le|x|/r,$ so $x/a\in K,$ implying that $x\in aK.$ However, $\psi(x)\notin U,$ so $x$ witnesses $aK\not\subseteq\psi^{-1}(U).$ This completes the proof that $\Psi$ is a homeomorphism onto its image. $\blacksquare$
 
 We are now almost ready to show that $\Psi$ is surjective. To do this cleanly, we pick up some theory about the ``annihilator.'' In a general locally compact abelian group $G,$ we fix a subgroup $H\subseteq G.$ Then the annihilator $H$ denoted $H^\perp\subseteq\widehat G$ is defined as
 \[H^\perp:=\big\{\chi\in\widehat G:\chi(H)=\{1\}\big\}.\]
@@ -297,7 +297,7 @@ For $x\in F,$ denote $B_x$ an open ball (inside an open neighborhood) around $x$
 \[\op{supp}f\subseteq\bigcup_{x\in\op{supp}f}B_x,\]
 so we have an open cover of $\op{supp}f.$ So we are allowed to extract a finite subcover named $\{B_{x_k}\}_{k=1}^N.$ Because $F$ is non-Archimedean, these balls are either disjoint or contain each other, so we can refine our cover to consist of disjoint balls. From this we claim
 \[f=\sum_{k=1}^Nf(x_k)\cdot1_{B_{x_k}}.\]
-Note that this will finish the proof of the proposition. Indeed, for $x\in F,$ if $x$ is in no open ball $B_{x_\bullet},$ then $x\not\in\op{supp}f,$ so $f(x)=0$ anyways. But if $x\in B_{x_\bullet}$ for some $x_\bullet,$ then $x_\bullet$ is in exactly one such ball by disjointness. Further, $f$ is constant on $B_{x_\bullet},$ so $f(x)=f(x_\bullet),$ and our claim is finished. $\blacksquare$
+Note that this will finish the proof of the proposition. Indeed, for $x\in F,$ if $x$ is in no open ball $B_{x_\bullet},$ then $x\notin\op{supp}f,$ so $f(x)=0$ anyways. But if $x\in B_{x_\bullet}$ for some $x_\bullet,$ then $x_\bullet$ is in exactly one such ball by disjointness. Further, $f$ is constant on $B_{x_\bullet},$ so $f(x)=f(x_\bullet),$ and our claim is finished. $\blacksquare$
 
 \subsubsection{March 4th}
 Today I learned some examples of $p$-adic geometry being horrible, from \href{https://scholar.rose-hulman.edu/rhumj/vol8/iss1/2/}{this undergraduate paper}. For example, we have the following.
@@ -346,7 +346,7 @@ We would like to force our nonzero points in $\ZZ_p\setminus p\ZZ_p,$ so we writ
 so multiplying all points by some constant $c$ will not change being equidistant either. Thus, we reorder our sequence to put $\nu_1=\nu$ and then multiply through by $p^{-\nu}.$ Relabeling our sequence, we now have $0,a_1,\ldots,a_{n-1}$ where $a_1\in\ZZ_p\setminus p\ZZ_p$ and each $a_\bullet\in\ZZ_p$ for each $\bullet>0.$
 
 Now we finish. Note that $|a_1-0|_p=1$ because $a_1\in\ZZ_p\setminus p\ZZ_p,$ implying that all points must be a distance of $1$ from each other because they're equidistant. In other words, for any two points $a_k$ and $a_\ell,$ we must have $\nu_p(a_k-a_\ell)=0,$ or
-\[a_k-a_\ell\not\in p\ZZ_p.\]
+\[a_k-a_\ell\notin p\ZZ_p.\]
 However, this forces all $n$ points to be in different cosets of $\ZZ_p/p\ZZ_p,$ of which there are only $p.$ Thus, the pigeonhole principle forces $n\le p,$ and we are done. $\blacksquare$
 
 The proposition is written as an ``at most'' statement, but I find it remarkable that the equality case exists at all. The fact that we can embed the complete graph $K_p$ in $\QQ_p$ (and with ease!) makes its geometry feel super weird. For comparison, $\RR$ can only do $2,$ and $\CC$ can only do $3$; and typically, I think this many equidistant points is visualized as a $p$-simplex in $\RR^p,$ which $\QQ_p$ feels very different from.
@@ -913,7 +913,7 @@ Observed that the continuity condition only mattered at the end when checking gl
 \subsubsection{March 14th}
 Today I learned about one-point compactification, from \href{https://ncatlab.org/nlab/show/one-point+compactification}{the nlab page} for example. Roughly speaking, the idea is to take topological space $X$ and add a point $\infty$ (along with lots of open sets) to make $X\cup\{\infty\}$ feel smaller and, in particular, compact. Anyways, we take the following definition.
 \begin{definition}
-    Given a topological space $X,$ the one-point compactification of $X$ is a topological space $X^*$ with underlying set $X\cup\{\infty\}$ for an added point $\infty\not\in X.$ Its open sets are
+    Given a topological space $X,$ the one-point compactification of $X$ is a topological space $X^*$ with underlying set $X\cup\{\infty\}$ for an added point $\infty\notin X.$ Its open sets are
     \begin{itemize}
         \item open sets of $X,$
         \item $(X\setminus C)\cup\{\infty\}$ for some closed and compact subset $C\subseteq X.$
@@ -1075,7 +1075,8 @@ Finally, to show that $\op{rec}(f)(a)=f(a)$ for each $a:A,$ we note that this eq
 Anyways, the point of all this discussion is that type theory does permit us to do ``real,'' traditional logic by just making everything a truncated type. We can take a law of the excluded middle, without fear of breaking anything or losing (too much) power in our mathematics.
 
 \subsubsection{March 17th}
-Today I learned about using lattice-attacks to solve the small inverse problem.\todo{}
+Today I learned about using lattice-attacks to solve the small inverse problem, directly from the \href{https://web.archive.org/web/20210614021727/https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.40.2636&rep=rep1&type=pdf}{Boneh and Durfee paper}. \todo{}
+% https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.40.2636&rep=rep1&type=pdf
 
 \subsubsection{March 18th}
 Today I learned a cute combinatorial proof from the AIME II. Here's the main statement.
@@ -1119,7 +1120,7 @@ Today I learned a different framing of the (weak) approximation theorem for $\AA
 \end{theorem}
 At a high level, because we don't have to worry about infinite primes, this more or less amounts to the Chinese remainder theorem over the finite primes. Fix some $a\in\AA_K$ so that we need to find $k\in K$ with $a-k\in\AA_{K,\mf m}.$
 
-For all but finitely many finite places $\mf p,$ we already have $a_\mf p\in\mathcal O_\mf p,$ so let $S$ be the set of problematic finite places with $a_\mf p\not\in\mathcal O_\mf p.$ Roughly, we would like to fix $k\in K$ to have
+For all but finitely many finite places $\mf p,$ we already have $a_\mf p\in\mathcal O_\mf p,$ so let $S$ be the set of problematic finite places with $a_\mf p\notin\mathcal O_\mf p.$ Roughly, we would like to fix $k\in K$ to have
 \[k\stackrel?\equiv a_\mf p\pmod{\mf p^{\nu_\mf p((a_\mf p))}}\]
 for each $\mf p\in S$ by the Chinese remainder theorem, but we would rather not deal with the ideal $\mf p^{\nu_\mf p(a_\mf p)}$ because of its negative exponent. However, we can find nonzero
 \[m\in\prod_{\mf p\in S}\mf p^{-\nu_\mf p(a_\mf p)}\]
@@ -1127,7 +1128,7 @@ so that $ma\in\AA_{K,\mf m}.$ Now we fix $\ell\in\mathcal O_K$ satisfying
 \[\ell\equiv ma_\mf p\pmod{\mf p^{\nu_\mf p((ma_\mf p))}}\]
 for each $\mf p\in S$ by the Chinese remainder theorem. It follows that
 \[a-\ell/m=\frac{ma-\ell}m,\]
-which is in $\mathcal O_\mf p$ for $\mf p\in S$ by construction and for $\mf p\not\in S$ because $\ell/m\in\mathcal O_K\subseteq\mathcal O_\mf p.$ Fixing $k:=\ell/m$ finishes. $\blacksquare$
+which is in $\mathcal O_\mf p$ for $\mf p\in S$ by construction and for $\mf p\notin S$ because $\ell/m\in\mathcal O_K\subseteq\mathcal O_\mf p.$ Fixing $k:=\ell/m$ finishes. $\blacksquare$
 
 We remark that this is similar to (but distinct from) saying $K$ has fundamental domain $\AA_{K,\mf m}.$ In particular, we're merely showing that we can cover $\AA_K,$ not that we have covered it uniquely, which is very false; for example, $K\cap\AA_{K,\mf m}=\mathcal O_K$ by watching contributions of each finite prime. However, this suggests that $K$ could have a fundamental domain.
 
@@ -1150,7 +1151,7 @@ For this, we exhibit a compact fundamental domain for $\AA_\QQ/\QQ$ as
 It is quick to see that $D$ is compact, but we can't appeal to Tychonoff because $\AA_\QQ$ isn't equipped with the product topology. There might be a way to do this because each nonarchimedean projection of $D$ is in $\ZZ_p,$ which is compact, but this trick is unnecessary.
 
 Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $D$; there is at least one open set, say $U_\beta,$ and its projections to $\QQ_p$ are $\ZZ_p$ for all but finitely many $\nu.$ That is, there exists a finite set $S$ of (say, nonarchimedean) places such that
-\[\prod_{p\not\in S}\ZZ_p\subseteq U_\beta.\]
+\[\prod_{p\notin S}\ZZ_p\subseteq U_\beta.\]
 Note we are being somewhat sloppy with our notation because the left-hand side does not technically have all of the coordinates of $\AA_\QQ,$ but we also don't care about them yet. Indeed, this single $U_\beta$ covers most of $D$ already; it remains to cover
 \[[-1/2,1/2]\times\prod_{p\in S}\ZZ_p.\]
 However, each of these sets is compact, and our open cover $\{U_\alpha\}_{\alpha\in\lambda}$ must cover them. Extracting the corresponding open cover for each of the (finitely many) above components and directly unioning them with $U_\beta$ gives us our finite subcover of $D.$
@@ -1347,19 +1348,19 @@ Today I learned a cute application of a generalized Eisenstein's criterion. With
 \begin{theorem}
     Fix $D$ an integral domain and $\mf p\subseteq D$ a prime. Suppose $a\in D[x]$ looks like
     \[a(x)=\sum_{n=0}^{\deg a}a_nx^n.\]
-    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n<\deg a,$ and $a_{\deg a}\not\in\mf p,$ then the polynomial $a$ is irreducible.
+    If $a_0\in\mf p\setminus\mf p^2,$ $a_n\in\mf p$ for $n<\deg a,$ and $a_{\deg a}\notin\mf p,$ then the polynomial $a$ is irreducible.
 \end{theorem}
 We essentially repeat the proof from $\ZZ[x].$ We remark that the condition that $D$ be an integral domain essentially makes our prime $\mf p$ behave. Anyways, we proceed by contraposition, showing that if $a=bc$ for nonconstant $b$ and $c,$ then $a_{\deg a}\in\mf p,$ provided the other conditions on the coefficients of $a.$
 
 Write
 \[b(x)=\sum_{k=0}^{\deg b}b_kx^k\quad\text{and}\quad c(x)=\sum_{\ell=0}^{\deg c}c_\ell x^\ell.\]
-Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\not\in\mf p.$
+Noting that the constant term of $a=bc$ is $a_0=b_0c_0,$ which is in $\mf p\setminus\mf p^2,$ we see that at least one of $b_0$ or $c_0$ is in $\mf p$ because $\mf p$ is prime. However, we cannot have both $b_0,c_0\in\mf p,$ for this would imply $a_0\in\mf p^2.$ So without loss of generality, $b_0\in\mf p$ while $c_0\notin\mf p.$
 
 Now we claim that $b\in\mf pD[x].$ We show this by (strong) induction on the coefficients on $b.$ The above immediately gives $b_0\in\mf p,$ so suppose that $b_k\in\mf p$ for each $k<n\le\deg b<\deg a$ so that we want to show $b_n\in\mf p.$ Well, we note that
 \[b(x)c(x)=\left(\sum_{k=0}^{\deg b}b_kx^k\right)\left(\sum_{\ell=0}^{\deg c}c_\ell x^\ell\right)=\sum_{\substack{k\in[0,\deg b]\\\ell\in[0,\deg c]}}b_kc_\ell x^{k+\ell}=\sum_{d=0}^{\deg a}\left(\sum_{k+\ell=d}b_kc_\ell\right)x^d.\]
 (Yes, I am running out of letters.) It follows that the $x^n$ coefficient of $a=bc$ is
 \[a_nx^n=\left(\sum_{k=0}^nb_kc_{k-\ell}\right)x^n.\]
-However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\not\in\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
+However, $a_n\in\mf p,$ so the sum must be in $\mf p$ as well. Most of the terms are already in $\mf p$ because most of the $b_\bullet$ are in $\mf p,$ which is all with the exception of the $b_nc_0$ term. Subtracting, we see $b_nc_0\in\mf p,$ so because $c_0\notin\mf p,$ we conclude $b_n\in\mf p$ because $\mf p$ is prime. This finishes the induction.
 
 We are pretty much done now. Because $b\in\mf pD[x],$ we see $a=bc\in\mf pD[x]$ as well, from which it follows that all of the coefficients of $a$ are in $\mf p.$ In particular, $a_{\deg a}\in\mf p,$ which is what we wanted. $\blacksquare$
 
@@ -1780,7 +1781,7 @@ We can talk somewhat indirectly about what $\{z_k\}_{k=1}^m$ looks like.
 \begin{lemma}
     Suppose $\{a_k\}_{k=1}^M$ is a decreasing sequence for which
     \[n=\sum_{k=1}^MF_{a_k}.\]
-    If any of the $\{a_k\}_{k=1}^M$ are consecutive, then $\{a_k\}_{k=1}^M\not\in S.$
+    If any of the $\{a_k\}_{k=1}^M$ are consecutive, then $\{a_k\}_{k=1}^M\notin S.$
 \end{lemma}
 The idea here is that if we have consecutive Fibonacci numbers $F_{a+1}$ and $F_a,$ then we can combine these into a single Fibonacci number $F_{a+2},$ making the sequence of indices have fewer elements. So the sequence won't be in $S.$
 

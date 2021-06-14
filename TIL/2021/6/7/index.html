@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 7th
+					</h2>
+					<p>
+						Today I learned a truly clever proof to the Spectal theorem, from THE BOOK of course. As a brief outline, we will translate diagonalization by orthogonal matrices into the minimization of some function and then minimize that function by a compactness argument. Here are the definitions of our main characters.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A matrix $M\in F^{n\times n}$ is said to be symmetric if and only if its coefficients satisfy $M_{k,\ell}=M_{\ell,k}$ for each valid $k,\ell.$
+						</p>
+					</div>
+					<p>
+						Our main claim is that we can diagonalize real symmetric matrices by orthogonal ones, so we need to pick up the definition of orthogonal.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A matrix $Q\in F^{n\times n}$ is said to be orthogonal if and only if $Q^\intercal=Q^{-1}.$ We will denote the set of orthogonal matrices in $\RR^{n\times n}$ by $O(n).$
+						</p>
+					</div>
+					<p>
+						We remark that $Q\in O(n)$ is equivalent to $Q^\intercal Q=I.$ If we write out the matrix multiplication using column vectors, we see\[Q^\intercal Q=\begin{bmatrix}    - & v_1 & - \\    & \vdots & \\    - & v_n & -\end{bmatrix}\begin{bmatrix}    | & & | \\    v_1 & \cdots & v_n \\    | & & |\end{bmatrix}=\begin{bmatrix}    \langle v_1,v_1\rangle & \cdots & \langle v_n,v_1\rangle \\    \vdots & \ddots & \vdots \\    \langle v_1,v_n\rangle & \cdots & \langle v_n,v_n\rangle\end{bmatrix},\]where $\langle,\rangle$ is the usual inner product. This expansion gives the following statement.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							A matrix $Q\in\RR^{n\times n}$ is orthogonal if and only if its column vectors form an orthonormal basis.
+						</p>
+					</div>
+					<p>
+						Indeed, from the above expansion of $Q^\intercal Q,$ we see that $Q^\intercal Q=I$ if and only if $\langle v_k,v_\ell\rangle=1_{k=\ell},$ which is exactly what is required for the column vectors to be orthonormal.
+					</p>
+					<p>
+						That they form a basis follows from the fact that mutually orthogonal nonzero vectors are all linearly independent: dot any relation of mutually orthogonal nonzero vectors $\{v_1\}_{k=1}^m$\[a_1v_1+\cdots+a_mv_m=0\]by $v_k$ to get all terms to vanish except $a_k\langle v_k,v_k\rangle=0,$ yielding $a_k=0,$ for any $k.$ Further, the columns of $Q$ have a full $n$ linearly independent vectors, so they must be a basis. $\blacksquare$
+					</p>
+					<p>
+						Indeed, given a real symmetric matrix $A\in\RR^{n\times n},$ we define\[\op{od}(A):=\sum_{1\le k\ne\ell\le n}A_{k,\ell}^2\]to be the sum of the squares of the off-diagonal entries. Roughly speaking, $\op{od}$ is trying to measure how far $A$ is from diagonal: $\op{od}(A)=0$ if and only if $A$ is diagonal. To measure diagonalization, we define the function\[\op{attempt}_Q(A):=\op{od}\left(QAQ^\intercal\right)\]for all matrices $Q\in\RR^{n\times n}.$ For orthogonal matrices $Q,$ we know $Q^\intercal=Q^{-1},$ so the above really is an attempt at diagonalization: if $\op{attempt}_Q(QAQ^{-1})=0$ then $QAQ^{-1}$ is diagonalized. We use $Q^\intercal$ instead of $Q^{-1}$ directly because we will want $\op{attempt}_\bullet(A)$ to be defined over all $\RR^{n\times n}$ for our compactness argument.
+					</p>
+					<p>
+						For a compactness argument to achieve a minimum, we need a "do-better'' lemma. This is the meat of the argument.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix a real symmetric matrix $A\in\RR^{n\times n}$ with $\op{od}(A) \gt 0.$ We can construct an orthogonal matrix $Q\in O(n)$ with $\op{attempt}_Q(A) \lt \op{od}(A).$
+						</p>
+					</div>
+					<p>
+						The fact that $\op{od}(A) \gt 0$ means that we can find a nonzero entry $A_{K,L}$ with $K \lt L.$ (We can find $A_{K,L}\ne0$ with $K\ne L$; if $K \gt L,$ then note $A_{L,K}=A_{K,L}.$) The main idea is to apply a "rotation matrix'' to make $A_{K,L}$ smaller while incrementing the elements on the diagonal. That is, we take some angle $\theta$ to be chosen later and let\[Q:=\left[\begin{array}{*{20}c}    1 \\    & \ddots \\    & & 1 \\    & & & \cos\theta & & & & -\sin\theta \\    & & & & 1 \\    & & & & & \ddots \\    & & & & & & 1 \\    & & & \sin\theta & & & & \cos\theta \\    & & & & & & & & 1 \\    & & & & & & & & & \ddots & \\    & & & & & & & & & & 1 \\\end{array}\right],\]where the entries of interest are $Q_{K,K}=\cos\theta,$ $Q_{K,L}=-\sin\theta,$ $Q_{L,K}=\sin\theta,$ and $Q_{L,L}=\cos\theta.$ Otherwise, $Q_{k,\ell}=1_{k=\ell}$ when $\{k,\ell\}\not\subseteq\{K,L\}.$ Very quickly, we show that $Q$ is orthogonal. Indeed,\[\left(Q^\intercal Q\right)_{k,m}=\sum_{\ell=1}^n\left(Q^\intercal\right)_{k,\ell}Q_{\ell,m}=\sum_{\ell=1}^nQ_{\ell,k}Q_{\ell,m}.\]We have the following cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $k\not\in\{K,L\},$ then $Q_{\ell,k}=1_{k=\ell}$ always. So the only term of the sum we have to worry about is $Q_{k,k}Q_{k,m}=1\cdot 1_{k,m}=1_{k=m},$ as required.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $m\not\in\{K,L\},$ then again $Q_{\ell,m}=1_{\ell=m}$ always. So the only term of the sum we have to worry about is $Q_{m,k}Q_{m,m}=1_{m=k}\cdot1=1_{k=m},$ as required.
+							</p>
+						</li>
+						<li>
+							<p>
+								If both $k,m\in\{K,L\},$ then we still know $Q_{k,\ell}=0$ when $\ell\not\in\{K,L\}.$ So the only terms of the sum we care about are    \[Q_{K,k}Q_{K,m}+Q_{L,k}Q_{L,m}.\]    When $k=m=K,$ this reads $\cos^2\theta+\sin^2\theta=1.$ When $k=m=L,$ this reads $(-\sin\theta)^2+\cos^2\theta=1.$ And when $k\ne m,$ this reads $\cos\theta\sin\theta-\sin\theta\cos\theta=0.$ In all cases, we still have $1_{k=m}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						It follows that $Q^\intercal Q=I,$ so $Q$ is indeed orthogonal.
+					</p>
+					<p>
+						It remains to compare $\op{attempt}_Q(A)=\op{od}(QAQ^\intercal)$ with $\op{od}(A).$ Well, note that\[\left(QAQ^\intercal\right)_{j,m}=\sum_{k,\ell}Q_{j,k}A_{k,\ell}\left(Q^\intercal\right)_{\ell,m}=\sum_{k,\ell}Q_{j,k}A_{k,\ell}Q_{m,\ell}.\]Also, observe that $Q^\intercal AQ$ is symmetric: $\left(Q^\intercal AQ\right)^\intercal=Q^\intercal A^\intercal Q^{\intercal\intercal}=Q^\intercal AQ,$ so we only have to compute half of these entries. We proceed, as expected, with more casework.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If both $j,m\not\in\{K,L\},$ then $Q_{j,k}=1_{j=k}$ and $Q_{m,\ell}=1_{m=\ell}$ for any $k$ or $\ell,$ so the only term of the sum we care about is $Q_{j,j}A_{j,m}Q_{m,m}=A_{j,m}.$ So the contribution to $\op{od}$ is the same.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $j=K$ but $m\not\in\{K,L\},$ then we care about $k\in\{K,L\}$ but require $\ell=m.$ So the sum looks like    \[Q_{K,K}A_{K,m}+Q_{K,L}A_{L,m}=A_{K,m}\cos\theta-A_{L,m}\sin\theta.\]
+							</p>
+						</li>
+						<li>
+							<p>
+								If $j=L$ but $m\not\in\{K,L\},$ then we care about $k\in\{K,L\}$ but require $\ell=m.$ So the sum looks like    \[Q_{L,K}A_{K,m}+Q_{L,L}A_{L,m}=A_{K,m}\sin\theta+A_{L,m}\cos\theta.\]
+							</p>
+						</li>
+					</ul>
+					<p>
+						We take a brief interlude to notice that the above two cases accumulate to\[(A_{K,m}\cos\theta-A_{L,m}\sin\theta)^2+(A_{K,m}\sin\theta+A_{L,m}\cos\theta)^2,\]which expands into $A_{K,m}^2\left(\cos^2\theta+\sin^2\theta\right)+A_{L,m}^2\left(\cos^2\theta+\sin^2\theta\right),$ which is just $A_{K,m}^2+A_{L,m}^2.$ So the terms with $j\in\{K,L\}$ but $m\not\in\{K,L\}$ still contribute the same amount to $\op{od}.$ We observe that by symmetry, we can swap $j$ and $m$ to say the same for $m\in\{K,L\}$ but $j\not\in\{K,L\}.$
+					</p>
+					<p>
+						It follows that any change to $\op{od}$ will come from when both $j,m\in\{K,L\}.$ Of course, $\op{od}$ doesn't care about when $j=m,$ so we only have to deal with $j=K$ and $m=L$ or $j=L$ and $m=K.$ But by symmetry, these entries are the same, so we only have one computation left.
+					</p>
+					<p>
+						In this case, we still only care about $k,\ell\in\{K,L\},$ which is\[Q_{K,K}A_{K,K}Q_{L,K}+Q_{K,K}A_{K,L}Q_{L,L}+Q_{K,L}A_{L,K}Q_{L,K}+Q_{K,L}A_{L,L}Q_{L,L}.\]Using what we know about these quantities, this turns into\[A_{K,K}\cos\theta\sin\theta-A_{L,L}\cos\theta\sin\theta+A_{K,L}\left(\cos^2\theta-\sin^2\theta\right),\]which is\[\frac12(A_{K,K}-A_{L,L})\sin2\theta+A_{K,L}\cos2\theta.\]We need this term to have a smaller contribution than $A_{K,L}^2,$ so we will choose $\theta$ to achieve this. Well, at $\theta=0,$ this term is $A_{K,L}\ne0,$ and when $\theta=\frac\pi2,$ this term is $-A_{K,L} \lt 0,$ so there is some $\theta$ in between which causes this term to vanish completely.
+					</p>
+					<p>
+						For this chosen $\theta,$ we see that $\op{od}\left(QAQ^\intercal\right)$ is equal to $\op{od}(A)$ with the exception of the $A_{K,L}$ and $A_{L,K}$ terms, where $\op{od}(A)+A_{K,L}^2+A_{L,K}^2=\op{od}\left(QAQ^\intercal\right).$ This finishes the proof of the lemma. $\blacksquare$
+					</p>
+					<p>
+						With our "do-better'' lemma in hand, we proceed with the compactness argument. We need something to be compact, and because we hope to only care about the orthogonal matrices $O(n),$ this will be our compact set.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The set of orthogonal matrices $O(n)$ is compact in $\RR^{n\times n}.$
+						</p>
+					</div>
+					<p>
+						We have to be a bit precise about what we mean by this. For clarity, we imagine vector-izing the matrices in $O(n)$ by reading down each row and turning the matrix from $\RR^{n\times n}$ to $\RR^{n^2},$ and we know what our topology in $\RR^{n^2}$ looks like. Equivalently, we could define the metric\[d(A,B)=\sum_{1\le k,\ell\le n}(A_{k,\ell}-B_{k,\ell})^2\]for matrices $A,B\in\RR^{n\times n}$ to induce the topology on $\RR^{n\times n}.$ This is the same as the topology from vector-izing because the vectorizing process essentially takes $A$ to $v$ with $v_{n(k-1)+\ell}=A_{k,\ell},$ so the metric topologies match.
+					</p>
+					<p>
+						Anyways, to show that $O(n)$ is compact it suffices to show that it is closed and bounded. For bounded, given $Q\in O(n),$ we remarked above that the column vectors of $Q$ form an orthonormal basis, so in particular they all have length $1.$ Thus,\[d(Q,0)=\sum_{\ell=1}^n\underbrace{\sum_{k=1}^nQ_{k,\ell}^2}_{\text{column vec.}}=\sum_{\ell=1}^n1=n\]is bounded. And as for closed, we note that we can write the condition $Q^\intercal Q=I$ for $Q\in O(n)$ as\[\left(Q^\intercal Q\right)_{k,m}=\sum_{\ell=1}\left(Q^\intercal\right)_{k,\ell}Q_{\ell,m}=\sum_{\ell=1}Q_{\ell,k}Q_{\ell,m}=1_{k=m}\]for any pair of indices $k,m.$ Looking in $\RR^{n^2}$ (say), this is just an intersection of $n^2$ equations, which we can show to be closed. A single one of these equations traces out a closed subset of $\RR^{n^2}$ because the function, for fixed $k$ and $m,$\[Q\mapsto\sum_{\ell=1}Q_{\ell,k}Q_{\ell,m}\]from $\RR^{n^2}\to\RR$ is just some large polynomial and hence continuous. Indeed, the preimage of the open set $\RR\setminus\{1_{k=m}\}$ is open, so the preimage of the complement closed set $\{1_{k=m}\}$ must also be closed.
+					</p>
+					<p>
+						Thus, each equation traces out some closed set, and the intersection of all of $n^2$ them will remain closed. Thus, $O(n)$ is closed and bounded and hence compact. $\blacksquare$
+					</p>
+					<p>
+						We are almost ready to finish. We quickly pick up a point-set lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix topological spaces $X$ and $Y$ with a continuous map $f:X\to Y.$ The image $f(C)$ of a compact set $C$ is still compact.
+						</p>
+					</div>
+					<p>
+						We show this directly. Fix $\{U_\alpha\}_{\alpha\in\lambda}$ an open cover of $f(C).$ Because $f$ is continuous, we note that each $f^{-1}(U_\alpha)$ is still open, so\[C\subseteq f^{-1}(f(C))\subseteq f^{-1}\left(\bigcup_{\alpha\in\lambda}U_\alpha\right)=\bigcup_{\alpha\in\lambda}f^{-1}(U_\alpha).\]Thus, the $f^{-1}(U_\alpha)$ give an open cover of $C.$ Because $C$ is compact, we may extract some finite subcover $\left\{f^{-1}(U_k)\right\}_{k=1}^n\subseteq\left\{f^{-1}(U_\alpha)\right\}_{\alpha\in\lambda}$ around $C.$ Pushing this though $f,$ we see that $\left\{f\left(f^{-1}(U_\alpha)\right)\right\}_{k=1}^n=\left\{U_\alpha\right\}_{k=1}^n$ is a finite subcover of $f(C),$ so we are done here. $\blacksquare$
+					</p>
+					<p>
+						To finish, we fix $A$ some real symmetric matrix. Observe that the composite function $\op{attempt}_\bullet(A)$ can be thought of as\[Q\longmapsto QAQ^\intercal\stackrel{\op{od}}\longmapsto\sum_{j\ne m}\left(QAQ^\intercal\right)_{j,m}^2=\sum_{j\ne m}\left(\sum_{k,\ell}Q_{j,k}A_{k,\ell}Q_{m,\ell}\right)^2_{j,m}.\]This is just some large polynomial in the entries of $Q\in\RR^{n\times n}$ or $\RR^{n^2}$ into $\RR_{\ge0}$ and is therefore a continuous function. In particular, the image of the compact set $O(n)$ remains compact in $\RR_{\ge0},$ so the image is closed and both has and achieves a minimum. (Note $0$ is a lower bound, and then the greatest lower bound is a limit point: an open neightborhood around a lower bound not intersecting the closed set gives a greater lower bound.)
+					</p>
+					<p>
+						We need to show that the image of $\op{attempt}_\bullet(A)$ contains $0$ to diagonalize, which is where the "do-better'' lemma comes in. Indeed, the minimum of the image of $O(n)$ must be a $0$: call the minimum $m,$ and certainly $m\in\RR_{\ge0}$ is at least $0.$
+					</p>
+					<p>
+						On the other hand, for any bound $m_0 \gt 0,$ we can find the $Q\in O(n)$ giving $\op{od}(QAQ^\intercal)=m_0 \gt 0.$ But $A':=QAQ^\intercal$ is itself symmetric (shown earlier), so the "do-better'' lemma provides a $Q'\in O(n)$ with\[\op{od}\left((Q'Q)A(Q'Q)^\intercal\right)=\op{od}\left(Q'(QAQ^\intercal)(Q')^\intercal\right) \lt \op{od}(QAQ^\intercal)=m,\]so we can do better than any bound $m_0 \gt 0.$ It follows that the minimum $m$ is no greater than $0,$ so we must have $m=0.$
+					</p>
+					<p>
+						Thus, we can find a $Q\in O(n)$ for which $\op{od}(QAQ^\intercal)=0,$ meaning that $QAQ^\intercal$ is diagonal. This gives the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							For any real symmetric matrix $A\in\RR^{n\times n},$ we can find an orthogonal matrix $Q\in O(n)$ such that $QAQ^\intercal$ is diagonal.
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. $\blacksquare$
+					</p>
+					<p>
+						We end with a few remarks. The above proof is truly remarkable: the only heavy comptuation we had to do was in the "do-better'' lemma, and then a quick compactness argument was enough to finish. The clever observation is that the "do-better'' lemma is even enough to get the result we need, as well as a fairly modern perspective of viewing matrix groups like $O(n)$ topologically.
+					</p>
+					<p>
+						Indeed, I'm not even convinced that repeated applications of the "do-better'' lemma will actually approach a diagonal matrix: it's entirely possible that repeated applications will simply approach some small but nonzero number. However, that's fine because compactness has our back.
+					</p>
+					<p>
+						As an aside, I'll remark that there really isn't an easy way to use the more natural $\op{attempt}_Q(A):=\op{od}\left(QAQ^{-1}\right),$ defined over $Q\in\op{GL}_n(\RR).$ Indeed, $\op{GL}_n(\RR)\subseteq\RR^{n\times n}$ is an open subset because it is defined by the equation\[M\in\op{GL}_n(\RR)\iff\det M\ne0,\]and $\det M$ is just some large polynomial and hence continuous. So the compactness of $O(n)\subseteq\RR^{n\times n}$ doesn't easily carry into $\op{GL}_n(\RR).$ This is one roadblock to generalizing this proof past symmetric matrices.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

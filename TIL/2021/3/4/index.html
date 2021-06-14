@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -140,7 +145,7 @@
 						We would like to force our nonzero points in $\ZZ_p\setminus p\ZZ_p,$ so we write $a_\bullet=b_\bullet p^{\nu_\bullet}$ with $b_\bullet\in\ZZ_p\setminus p\ZZ_p$ for $\bullet \gt 0.$ We want to get rid of the $p^{\nu_\bullet},$ so we fix let $\nu$ be the minimum of the $\nu_\bullet$s and get ready to divide by $p^\nu.$ Namely, we see\[|c|_p\cdot|a-b|_p=|ac-bc|_p,\]so multiplying all points by some constant $c$ will not change being equidistant either. Thus, we reorder our sequence to put $\nu_1=\nu$ and then multiply through by $p^{-\nu}.$ Relabeling our sequence, we now have $0,a_1,\ldots,a_{n-1}$ where $a_1\in\ZZ_p\setminus p\ZZ_p$ and each $a_\bullet\in\ZZ_p$ for each $\bullet \gt 0.$
 					</p>
 					<p>
-						Now we finish. Note that $|a_1-0|_p=1$ because $a_1\in\ZZ_p\setminus p\ZZ_p,$ implying that all points must be a distance of $1$ from each other because they're equidistant. In other words, for any two points $a_k$ and $a_\ell,$ we must have $\nu_p(a_k-a_\ell)=0,$ or\[a_k-a_\ell\not\in p\ZZ_p.\]However, this forces all $n$ points to be in different cosets of $\ZZ_p/p\ZZ_p,$ of which there are only $p.$ Thus, the pigeonhole principle forces $n\le p,$ and we are done. $\blacksquare$
+						Now we finish. Note that $|a_1-0|_p=1$ because $a_1\in\ZZ_p\setminus p\ZZ_p,$ implying that all points must be a distance of $1$ from each other because they're equidistant. In other words, for any two points $a_k$ and $a_\ell,$ we must have $\nu_p(a_k-a_\ell)=0,$ or\[a_k-a_\ell\notin p\ZZ_p.\]However, this forces all $n$ points to be in different cosets of $\ZZ_p/p\ZZ_p,$ of which there are only $p.$ Thus, the pigeonhole principle forces $n\le p,$ and we are done. $\blacksquare$
 					</p>
 					<p>
 						The proposition is written as an "at most'' statement, but I find it remarkable that the equality case exists at all. The fact that we can embed the complete graph $K_p$ in $\QQ_p$ (and with ease!) makes its geometry feel super weird. For comparison, $\RR$ can only do $2,$ and $\CC$ can only do $3$; and typically, I think this many equidistant points is visualized as a $p$-simplex in $\RR^p,$ which $\QQ_p$ feels very different from.

@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -95,7 +100,11 @@
 						April 27th
 					</h2>
 					<p>
-						Today I learned that some self-contained calculus can be done over the $p$-adics. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p \lt \infty$ prime like $\RR$ and doing the analysis.
+						Today I learned that some self-contained calculus can be done over the $p$-adics, from
+						<a href="http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf">
+							here
+						</a>
+						. Of course, Tate's thesis is all about doing volume integrals over local fields (and by extension, the adeles), but here we're talking about trying to treat $\QQ_p$ for $p \lt \infty$ prime like $\RR$ and doing the analysis.
 					</p>
 					<p>
 						We define the formal derivative of a power series instead of the normal derivative.
@@ -151,10 +160,16 @@
 						</p>
 					</div>
 					<p>
-						We remark that the limit is done with respect to $|\bullet|_p,$ as it should be. Anyways, this proof is roughly the same proof done for
+						We remark that the limit is done with respect to $|\bullet|_p,$ as it should be; we will write $|\bullet|$ for $|\bullet|_p$ in what follows, for brevity. Anyways, this proof is roughly the same proof done for polynomials. Let $f(x)=\sum_{k=0}^\infty a_kx^k.$ Very quickly, note that for $h$ sufficiently small, we have $|h| \lt |x|,$ so\[\left|a_k\left(x+h\right)^k\right|=|a_k|\cdot\left|x+k\right|^k=|a_k|\cdot|x|^k=\left|a_kx^k\right|.\]In particular, this goes to $0$ as $k\to\infty$ where $f(x)$ converges. The point of saying this is so that we have $f(x+h)$ converges where $f(x)$ converges, for $h$ sufficiently small.
 					</p>
 					<p>
-						http://swc-alpha.math.arizona.edu/video/2021/2021BellLecture5Notes.pdf \todo{}
+						Now we begin the computation. Observe that\[f(x+h)-f(x)=\left(\sum_{k=0}^\infty a_k(x+h)^k\right)-\left(\sum_{k=0}^\infty a_kx^k\right)=\sum_{k=0}^\infty a_k\left((x+h)^k-x^k\right).\]The sum still converges because $\left|(x+h)^k-x^k\right|\le\max\left\{\left|(x+h)^k\right|,\left|-x^k\right|\right\}=|x|^k$ for sufficiently small $h.$ Anyways, we use the binomial theorem now to conclude\[f(x+h)-f(x)=\sum_{k=0}^\infty\left(\sum_{\ell=1}^k\binom k\ell h^\ell x^{k-\ell}\right)a_k.\]Dividing by $h$ and rearranging, we see\[\frac{f(x+h)-f(x)}h=\underbrace{\sum_{k=1}^\infty ka_kx^{k-1}}_{f'(x)}+\underbrace{\sum_{k=2}^\infty\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-1}x^{k-\ell}\right)a_k}_{\text{error}}.\]We already know that $f'(x)$ converges.
+					</p>
+					<p>
+						It remains to talk about the error sum, which we must show converges to $0$ as $h\to0.$ Factoring out an $h,$ it suffices to show that\[\sum_{k=2}^\infty\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-2}x^{k-\ell}\right)a_k\]converges at all, for we are interested in what happens as $h\to0.$ So we need to know that the summands above go to $0.$ Fixing a $k,$ we note that the summand is bounded by\[\left|\left(\sum_{\ell=2}^k\binom k\ell h^{\ell-2}x^{k-\ell}\right)a_k\right|\le|a_k|\max_{2\le\ell\le k}\left|\binom k\ell h^{\ell-2}x^{k-\ell}\right|\le|a_k|\max_{2\le\ell\le k}\left|h^{\ell-2}x^{k-\ell}\right|.\]So for sufficiently small $h,$ say $|h|\le|x|,$ we can bound the term above by $|a_k|\cdot\left|x^{k-2}\right|.$ Now, $f(x)$ converges, so $\left|a_kx^k\right|$ goes to $0,$ so for $x\ne0$ ($x=0$ gives convergence for free), we may divide by $x^2$ to conclude $\left|a_kx^{k-2}\right|$ goes to $0$ as well. This finishes. $\blacksquare$
+					</p>
+					<p>
+						I find this statement at least amusing because it reconnects what are typically purely formal derivatives with the usual geometric view. I suppose this is the natural way to define differentiability in $\QQ_p$ and then for power series in $\QQ_p[[x]],$ but the fact it all works properly is nice.
 					</p>
 				</div>
 			</div>

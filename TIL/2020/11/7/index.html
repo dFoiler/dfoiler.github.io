@@ -82,6 +82,11 @@
 							May 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -95,7 +100,7 @@
 						November 7th
 					</h2>
 					<p>
-						Today I learned an explicit example where the naive approach of multiplying integral bases in a field composite does not necessarily yield an integral basis. Explicitly, take $K=\QQ(i)$ and $L=\QQ(\sqrt2)$ so that $KL=\QQ(\sqrt2,i)=\QQ(\zeta_8).$ Now, $\mathcal O_K=\ZZ[i]$ and $\mathcal O_L=\ZZ[\sqrt2],$ but $\mathcal O_{KL}=\ZZ[\zeta_8].$ So we see we have that\[\zeta_8=\frac{\sqrt2}2+\frac{\sqrt2}2i\not\in\ZZ[i,\sqrt2].\]This shows that $\mathcal O_{KL}\ne\mathcal O_K\mathcal O_L,$ though this is true if $\op{disc}(\mathcal O_K)$ and $\op{disc}(\mathcal O_L)$ are coprime. Here they are not; e.g., $2$ ramifies in both.
+						Today I learned an explicit example where the naive approach of multiplying integral bases in a field composite does not necessarily yield an integral basis. Explicitly, take $K=\QQ(i)$ and $L=\QQ(\sqrt2)$ so that $KL=\QQ(\sqrt2,i)=\QQ(\zeta_8).$ Now, $\mathcal O_K=\ZZ[i]$ and $\mathcal O_L=\ZZ[\sqrt2],$ but $\mathcal O_{KL}=\ZZ[\zeta_8].$ So we see we have that\[\zeta_8=\frac{\sqrt2}2+\frac{\sqrt2}2i\notin\ZZ[i,\sqrt2].\]This shows that $\mathcal O_{KL}\ne\mathcal O_K\mathcal O_L,$ though this is true if $\op{disc}(\mathcal O_K)$ and $\op{disc}(\mathcal O_L)$ are coprime. Here they are not; e.g., $2$ ramifies in both.
 					</p>
 					<p>
 						In fact, $\zeta_8$ is not achievable no matter what integral basis for $\ZZ[i]$ and $\ZZ[\sqrt2]$ we choose. Simply put, there is no way to get the $\frac12$ no matter how we multiply elements of $\ZZ[i]$ and $\ZZ[\sqrt2].$
