@@ -1059,8 +1059,8 @@ We check this with the Gaussian $g_\RR(x)=e^{-\pi x^2}.$ Our standard character 
 I steal the evaluation of this from \href{https://math.stackexchange.com/a/270580/869257}{this post}: take the derivative under the integral sign so that
 \[\frac{\widehat{g_\RR}(y)}{dy}=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi ix)\,dx.\]
 Now, $\frac d{dx}e^{-\pi x^2}=-2\pi xe^{-\pi x^2},$ so we may integrate by parts to get
-\[\frac{\widehat{g_\RR}(y)}{dy}=\underbrace{ie^{-\pi x^2}e^{-2\pi ixy}\bigg|_{-\infty}^\infty}_0-\underbrace{\int_\RR ie^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi iy)\,dx}_{2\pi g_\RR(y)}.\]
-So we have an ordinary differential equation $\frac{\widehat{g_\RR}(y)}{dy}=-2\pi g_\RR(y),$ which we can solve to get solutions $\widehat{g_\RR}(y)=ce^{-\pi y^2}.$ We can evaluate $\widehat{g_\RR}(0)$ directly as $\int_\RR e^{-\pi x^2}\,dx=1,$ so we conclude $\widehat{g_{\RR}}=g_\RR.$ It follows that $g_\RR$ gives $\hat{\hat f}(x)=f(-x)$ because $g_\RR$ is also even. This finishes. $\blacksquare$
+\[\frac{\widehat{g_\RR}(y)}{dy}=\underbrace{ie^{-\pi x^2}e^{-2\pi ixy}\bigg|_{-\infty}^\infty}_0-\underbrace{\int_\RR ie^{-\pi x^2}e^{-2\pi ixy}\cdot(-2\pi iy)\,dx}_{2\pi yg_\RR(y)}.\]
+So we have an ordinary differential equation $\frac{\widehat{g_\RR}(y)}{dy}=-2\pi yg_\RR(y),$ which we can solve to get solutions $\widehat{g_\RR}(y)=ce^{-\pi y^2}.$ We can evaluate $\widehat{g_\RR}(0)$ directly as $\int_\RR e^{-\pi x^2}\,dx=1,$ so we conclude $\widehat{g_{\RR}}=g_\RR.$ It follows that $g_\RR$ gives $\hat{\hat f}(x)=f(-x)$ because $g_\RR$ is also even. This finishes. $\blacksquare$
 
 \begin{lemma}
     The self-dual measure $dz$ on $K_\nu$ for complex $\nu$ is twice the standard Lebesgue measure.

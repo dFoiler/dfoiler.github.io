@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 24th
+					</h2>
+					<p>
+						Today I learned about the Wronskian. To not bury the lead, here is the definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Suppose the functions $f_0,\ldots,f_{n-1}$ have $n-1$st derivatives over a domain $D.$ Then we define the Wronskian by    \[W(f_0,\ldots,f_{n-1}):=\det\begin{bmatrix}        f_0^{(0)} & \cdots & f_{n-1}^{(0)} \\        \vdots & \ddots & \vdots \\        f_0^{(n-1)} & \cdots & f_{n-1}^{(n-1)}    \end{bmatrix}.\]
+						</p>
+					</div>
+					<p>
+						The idea here is to detect linear independence of some functions $f_0,\ldots,f_{n-1}.$ For the sake of concreteness, we will make $f_\bullet:D\to\RR$ for fixed $D\subseteq\RR,$ though this is not entirely necessary for the discussion. Observe that if the $f_\bullet$ are linearly dependent, then we may resurrect constants $\{c_k\}_{k=0}^{n-1}$ not all zero so that\[c_0f_0(t)+\cdots+c_{n-1}f_{n-1}(t)=0\]for any suitable $t\in D.$
+					</p>
+					<p>
+						Now, supposing that the $f_\bullet$ have $n-1$ derivatives on the domain $D,$ the key observation is that we may take the $k$th derivative of both sides with respect to $t,$ for $k\le n-1.$ So in fact we get a full system of equations\[c_0f_0^{(k)}(t)+\cdots+c_{n-1}f_{n-1}^{(k)}(t)=0\]for any $t\in D.$ Collecting all of these equations for $0\le k\le n-1$ into a matrix, we get\[\begin{bmatrix}    f_0^{(0)}(t) & \cdots & f_{n-1}^{(0)}(t) \\    \vdots & \ddots & \vdots \\    f_0^{(n-1)}(t) & \cdots & f_{n-1}^{(n-1)}(t) \\\end{bmatrix}\begin{bmatrix}c_0 \\ \vdots \\ c_{n-1}\end{bmatrix}=\begin{bmatrix}0 \\ \vdots \\ 0\end{bmatrix},\]still for any $t\in D.$ Because the $c_\bullet$ are not all $0,$ we see that this provides a nontrivial vector in the null space, implying that\[W(f_0,\ldots,f_{n-1})=\det\begin{bmatrix}    f_0^{(0)}(t) & \cdots & f_{n-1}^{(0)}(t) \\    \vdots & \ddots & \vdots \\    f_0^{(n-1)}(t) & \cdots & f_{n-1}^{(n-1)}(t) \\\end{bmatrix}=0\]because now the matrix is singular. Writing these ideas down, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose the functions $f_0,\ldots,f_{n-1}:D\to\RR$ for some $D\subseteq\RR$ have $n-1$st derivatives on $D.$ If they are linearly dependent, then    \[W(f_0,\ldots,f_{n-1})=0\]    over all $D.$
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. $\blacksquare$
+					</p>
+					<p>
+						The converse of the above statement is not necessarily true. The classic example is as follows.
+					</p>
+					<div class="example">
+						<p>
+							<b>
+								Example.
+							</b>
+							Take $f_0(x)=x^2$ and $f_1(x)=x|x|.$ Then we only care about first derivatives, which both of these functions have as $f_0'(x)=2x$ and $f_1'(x)=x\op{sgn}(x)+|x|=2|x|.$ Then    \[W\left(x^2,x|x|\right)=\det\begin{bmatrix}        x^2 & x|x| \\        2x & 2|x|    \end{bmatrix}=2x^2|x|-2x^2|x|=0.\]
+						</p>
+					</div>
+					<p>
+						However, for any domain $D$ containing a neighborhood around $0,$ the functions $f_0$ and $f_1$ are not linearly dependent. Indeed, we have\[\begin{cases}    f_0(t) + f_1(t) = 0 & t\le0, \\    f_0(t) - f_1(t) = 0 & t\ge0,\end{cases}\]and these cannot be stitched together to a single equation for all $t.$ Explicitly, if $t\in D$ is negative, then $c_0f_0(t)+c_1f_1(t)=0$ with $c_0\ne0$ (without loss of generality) implies\[\frac{c_1}{c_0}=-\frac{f_0(t)}{f_1(t)}=-\frac{t^2}{-t^2}=1,\]so $c_1=c_0.$ However, if $t\in D$ is positive, then $c_0f_0(t)+c_1f_1(t)=c_0t^2$ is nonzero. So it is impossible to give constants $c_0$ and $c_1$ such that\[c_0f_0+c_1f_1=0\]that holds for the entire domain $D.$
+					</p>
+					<p>
+						It is not clear exactly what the problem is. Speaking in more generality, having\[W(f_0,\ldots,f_{n-1})=\det\begin{bmatrix}    f_0^{(0)} & \cdots & f_{n-1}^{(0)}\\    \vdots & \ddots & \vdots \\    f_0^{(n-1)} & \cdots & f_{n-1}^{(n-1)}\end{bmatrix}=0\]over a domain $D$ does not immediately give a vector $\langle c_0,\ldots,c_{n-1}\rangle$ such that\[\begin{bmatrix}    f_0^{(0)} & \cdots & f_{n-1}^{(0)}\\    \vdots & \ddots & \vdots \\    f_0^{(n-1)} & \cdots & f_{n-1}^{(n-1)}\end{bmatrix}\begin{bmatrix} c_0 \\ \vdots \\ c_{n-1} \end{bmatrix}=\begin{bmatrix} 0 \\ \vdots \\ 0\end{bmatrix}\]still over the entire domain $D.$ The most immediate block here is that functions with $n-1$ derivatives over $D$ are not a field, so we cannot do the Gaussian elimination we would like. This is to say that the obvious the most obvious argument for the converse fails.
+					</p>
+					<p>
+						One way to view this block is via quantifiers. One possible fix is to take a particular $t_0\in D$ and then\[\begin{bmatrix}    f_0^{(0)}(t_0) & \cdots & f_{n-1}^{(0)}(t_0)\\    \vdots & \ddots & \vdots \\    f_0^{(n-1)}(t_0) & \cdots & f_{n-1}^{(n-1)}(t_0)\end{bmatrix}\begin{bmatrix} c_0 \\ \vdots \\ c_{n-1} \end{bmatrix}=\begin{bmatrix} 0 \\ \vdots \\ 0\end{bmatrix}\]does indeed have a solution vector. However, as $t_0$ varies, our vector span might change, as is seen in the given example when $t$ cross over $0.$
+					</p>
+					<p>
+						Here is a clean way to lift the vector from a singele $t_0$ to all of the domain $D,$ taken from
+						<a href="https://math.stackexchange.com/a/1680662/869257">
+							here
+						</a>
+						.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose the functions $f_0,\ldots,f_{n-1}:D\to\RR$ for some open interval $D\subseteq\RR$ have $n-1$st derivatives on $D.$ Further add the condition that the $f_\bullet$ are solutions to the differential equation    \[y^{(n)}(t)+\sum_{k=0}^{n-1}p_k(t)y^{(k)}=0\]    for continuous functions $p_\bullet.$ Then if the Wronskian $W(f_0,\ldots,f_{(n-1)})=0$ for any particular $t_0\in D,$ then the $f_\bullet$ are linearly dependent. In particular, $W(f_0,\ldots,f_{n-1})=0$ for all $t\in D.$
+						</p>
+					</div>
+					<p>
+						The idea is to use uniqueness of solutions to the differential equation under initial conditions. As alluded to above, we note $W(f_0,\ldots,f_{(n-1)})=0$ at $t_0$ at a provides a nonzero vector $\langle c_0,\ldots,c_{n-1}\rangle$ such that\[\begin{bmatrix}    f_0^{(0)}(t_0) & \cdots & f_{n-1}^{(0)}(t_0)\\    \vdots & \ddots & \vdots \\    f_0^{(n-1)}(t_0) & \cdots & f_{n-1}^{(n-1)}(t_0)\end{bmatrix}\begin{bmatrix} c_0 \\ \vdots \\ c_{n-1} \end{bmatrix}=\begin{bmatrix} 0 \\ \vdots \\ 0\end{bmatrix}.\]Working backwards from our intuition for the Wronskian, we get constants $c_\bullet$ not all zero such that\[c_0f_0^{(k)}(t_0)+\cdots+c_{n-1}f_{n-1}^{(k)}(t_0)=0\]for $k\le n-1.$ We hope that this is enough information to force $c_0f_0+\cdots c_{n-1}f_{n-1}=0$ over all $D.$
+					</p>
+					<p>
+						The way to use the differential equation is to note that its solutions form a vector space: the derivative is a linear operator as is multiplying by a continuous function, so we are essentially asking for the kernel of some linear operator over the space of functions with $n-1$ derivatives on $D.$ Thus,\[f(t):=c_0f_0(t)+\cdots+c_{n-1}f_{n-1}(t)\]is also a solution to the given differential equation. The information from the Wronskian tells us\[f(t_0)=f'(t_0)=\cdots=f^{(n-1)}(t_0)=0.\]Viewing this as an initial-value problem for the differential equation, this $f$ is unique the solution to the differential equation with these derivatives vanishing. However, the zero function is one such function that satisfies the linear equation and has all of its first $n-1$ derivatives equal to $0,$ so we conclude $f\equiv 0.$
+					</p>
+					<p>
+						Thus,\[c_0f_0+\cdots+c_{n-1}f_{n-1}=0\]over all of $D,$ so we do indeed have linear dependence. Now, the previous proposition implies $W(f_0,\ldots,f_{n-1})=0$ over all $D,$ completing the proof. $\blacksquare$
+					</p>
+					<p>
+						Amusingly, we can read this proposition backwards to conclude that $f_0(t)=t^2$ and $f_1(t)=t|t|$ are not solutions to any single second-order linear differential equation on any $D$ containing an open neighborhood around $0,$ for their Wronskian vanishes despite their linear independence.
+					</p>
+					<p>
+						There is actually a cleverer to retrieve the end of the above proposition, via Abel's identity. We do this for second-order differential equations, though a similar statement holds in an arbitrary orders.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose the functions $f_0,f_1:D\to\RR$ for some open interval $D\subseteq\RR$ have second derivatives. Further, add the condition that $f_1$ and $f_2$ are solutions to the differential equation    \[y''+p(t)y'+q(t)y=0\]    for continuous functions $p,q:D\to\RR.$ Then, for any fixed $t_0\in D,$ we have    \[W(f_0,f_1)(t)=W(f_0,f_1)(t_0)\exp\left(-\int_{t_0}^tp(t)\,dt\right).\]
+						</p>
+					</div>
+					<p>
+						The idea is to create a differential equation that $W:=W(f_0,f_1)=f_0f_1'-f_0'f_1$ satisfies. To this end, observe\[W'=\frac d{dt}(f_0f_1'-f_0'f_1)=(f_0f_1''+f_0'f_1')-(f_0'f_1'+f_0''f_1)=f_0f_1''-f_0''f_1.\]Now, we know $f_0''=-pf_0'-qf_0$ and $f_1''=-pf_1'-qf_1,$ so we can write this as\[W'=f_0(-pf_1'-qf_1)-(-pf_0'-qf_0)f_1=-pf_0f_1'+pf_0'f_1.\]So, magically, we have that $W'=-pW.$
+					</p>
+					<p>
+						Fix the $t_0\in D$ as promised. We could solve $y'=-py$ by separation of variables, but we have potential problems if $W$ vanishes somewhere. Instead, we claim by uniqueness that\[W(t)\stackrel?=f(t):=W(t_0)\exp\left(-\int_{t_0}^tp(t)\,dt\right).\]Indeed, this gives $f(t_0)=W(t_0)\exp(-0)=f(t_0)$ as our first condition. Further, $f'$ is\[W(t_0)\exp\left(-\int_{t_0}^tp(t)\,dt\right)\cdot-\frac d{dt}\int_{t_0}^tp(t)\,dt=-p(t)W(t_0)\exp\left(-\int_{t_0}^tp(t)\,dt\right),\]which is indeed $f'=-pf.$ Thus, $f$ does indeed satisfy the differential equation $y'=-py,$ and we see $f'(t_0)=-p(t_0)f(t_0)=-p(t_0)W(t_0)=W'(t_0).$ So $f$ and $W$ both satisfy the same differential equation and have the same initial conditions, so we conclude $W\equiv f.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						What we see from this is that if $W(f_0,f_1)(t_0)\ne0$ for some particular $t_0\in D,$ then in fact $W(f_0,f_1)(t)\ne0$ for all $t\in D.$ Of course, vanishing Wronskian on the entire interval is still not enough to conclude linear independence, as seen by our example. However, Abel's identity is nice because we can compute the Wronskian without really computing the determinant in full generality.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

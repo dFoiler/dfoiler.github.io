@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 15th
+					</h2>
+					<p>
+						Today I learned the start of some group cohomology. Instead of describing what group cohomology is supposed to do, which is the morally correct path, we're going to describe how to make these groups. So as fair warning, I am well-aware that this will potentially be very boring.
+					</p>
+					<p>
+						We quickly give the definition of a $G$-module, for completeness.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix a finite (but not necessarily abelian!) group $G.$ A $G$-module $M$ is an abelian group equipped with a left action. That is, we have a homomorphism $\sigma_\bullet:G\to\op{Aut}(M),$ meaning that $\sigma_e=\op{id},$ and for each $g\in G$ gives    \[\sigma_g(a+b)=\sigma_ga+\sigma_gb,\]    and $\sigma_{gh}=\sigma_g\sigma_h.$ We will suppress the $\sigma$ as much as possible.
+						</p>
+					</div>
+					<p>
+						As a quick example, when $G=\langle e\rangle$ is the trivial group, $G$ can act on any, arbitrary abelian group $M$ because the action of $G$ is trivial.
+					</p>
+					<p>
+						Now that we have defined our algebraic object, we are of course interested in its maps.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix a finite group $G.$ Given $G$-modules $M$ and $N,$ a $G$-module homomorphism $\varphi:M\to N$ is a homomorphism of the underlying abelian groups which preserves the group action. In other words, $\varphi$ is a group homomorphism $M\to N$ which also satisfies    \[g\varphi(m)=\varphi(gm)\]    for any $g\in G$ and $m\in M.$ (Note $g\varphi(m)$ has $G$ acting on $N.$) We will denote these homomorphisms as $\op{Hom}_G(M,N).$
+						</p>
+					</div>
+					<p>
+						I am under the impression that, typically, checking that our group homomorphism preserves the group structure is not going to be too bad of a road block, but it must be done.
+					</p>
+					<p>
+						Anyways, continuing with our trivial example $G=\langle e\rangle,$ any group homomorphism $\varphi:M\to N$ of abelian groups is a $G$-module homomorphism, for\[e\varphi(m)=\varphi(m)=\varphi(em)\]because $G$ acts trivially. So in our trivial case, it's enough to have a group homomorphism.
+					</p>
+					<p>
+						To define cohomology, we are interested in injective resolutions; namely, quotients of images modulo kernels in injective resolutions will exactly be our group cohomology. But to define an injective resolution, we first have to define an injective $G$-module.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A $G$-module $M$ is injective if and only if for any inclusion $A\subseteq B$ of $G$-modules, then $G$-module homomorphisms $\varphi_A:A\to M$ can always be extended out to maps $\varphi_B:B\to M.$ To be explicit, $\varphi_B(a)=\varphi_A(a)$ for any $a\in A.$
+						</p>
+					</div>
+					<p>
+						What this means is that $M$ is somehow "big enough'' to allow arbitrary refining of $G$-module homomorphisms into it. For our trivial case $G=\langle e\rangle,$ we can actually classify injective $G$-modules.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $G=\langle e\rangle$ the trivial group. Then a $G$-module $M$ is injective if and only if it is "divisible,'' meaning that the exponential maps $x\mapsto nx$ for any $n\in\ZZ\setminus\{0\}$ are all surjective.
+						</p>
+					</div>
+					<p>
+						In one direction, suppose that $M$ is injective; we want to show $M$ is injective. That is, for any $m\in M$ and $n\in\ZZ\setminus\{0\},$ there exists some $m_0\in M$ such that $nm_0=m.$
+					</p>
+					<p>
+						Now, the intuition give above says that we should be thinking about injectivity as permitting refinements, so we let $A=n\ZZ$ and $B=\ZZ$ in the definition of injectivity. The $G$-module homomorphism $A\to M$&mdash;which is really just a group homomorphism&mdash;has to send $n\in n\ZZ$ somewhere, and we get to choose, so we fix\[\varphi_A(nk):=km\]for any $nk\in n\ZZ.$ This is indeed a homomorphism of abelian groups (say, $\varphi(n(k+\ell))=(k+\ell)n,$ but we're really saying that abelian groups are a $(\ZZ,+,\times)$-module), so it is a valid $G$-module homomorphism. But now we need to be able to refine $\varphi_A$ to $\varphi_B:\ZZ\to B.$ This implies that\[n\varphi_B(1)=\varphi_B(\underbrace{1+\cdots+1}_n)=\varphi_B(n)=\varphi_A(n)=m\]because $\varphi_B$ is a group homomorphism refining $\varphi_A.$ In particular, we see $m_0:=\varphi_B(1)$ gives $nm_0=m,$ finishing the proof of divisibility.
+					</p>
+					<p>
+						In the other direction, suppose $M$ is a divisible abelian group, and we need to show that $M$ is an injective $G$-module. So fix an inclusion of $G$-modules (abelian groups) $A\subseteq B$ as well as a $G$-module homomorphism (group homomorphism) $\varphi_A:A\to M.$ We need to expand $\varphi_A$ to $\varphi_B:B\to M.$
+					</p>
+					<p>
+						This expansion is potentially troubling because we can have, say, $A=\ZZ$ and $B=\RR,$ making an explicit expansion quite difficult due to $\RR$'s transcendentals and the way $\QQ\subseteq\RR$ needs to interact with $\ZZ.$ So we kill this with Zorn's lemma.
+					</p>
+					<p>
+						Our partially ordered set will consist of pairs $(C,\varphi_C),$ where $C$ is an abelian group $A\subseteq C\subseteq B$ between $A$ and $B,$ and $\varphi_C:C\to M$ is a group homomorphism which restricts to $\varphi_A$ on $A.$ We will compare two pairs as\[(C_1,\varphi_{C_1})\preceq(C_1,\varphi_{C_2})\]if and only if $C_1$ is a subgroup of $C_2$ and $\varphi_{C_2}$ restricts to $\varphi_{C_1}$ on $C_1$: $\varphi_{C_2}(c_1)=\varphi_{C_1}(c_1)$ for any $c_1\in C_1.$
+					</p>
+					<p>
+						Verification of the chain condition is a bit annoying, so we relegate it to a lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The poset defined above satisfies the chain condition.
+						</p>
+					</div>
+					<p>
+						Showing the chain condition is not that bad. Suppose $\{(C_\alpha,\varphi_{C_\alpha})\}_{\alpha\in\lambda}$ is an ascending chain. We claim that we can define $\varphi_C$ on\[C:=\bigcup_{\alpha\in\lambda}C_\alpha\]to be our maximal element. Observe any $c_\alpha\in C$ lives in some $c_\alpha\in C_\alpha,$ so in fact $c\in B.$ Thus, $C\subseteq B.$ Showing that $C$ is actually a subgroup comes down to checking the subgroup test, which we do for completeness.
+					</p>
+					<ul>
+						<li>
+							<p>
+								For any $c_\alpha,c_\beta\in C,$ we can situate $c_\alpha\in C_\alpha$ and $c_\beta\in C_\beta.$ The chain condition means $C_\alpha\subseteq C_\beta$ (without loss of generality), so $c_\alpha c_\beta\in C_\beta$ is well-defined in the subgroup $C_\beta\subseteq B,$ and therefore we have $c_\alpha c_\beta\in C.$
+							</p>
+						</li>
+						<li>
+							<p>
+								For any $c_\alpha\in C,$ we can again situate $c_\alpha\in C_\alpha.$ Here, $C_\alpha$ is already a subgroup of $B,$ so $c_\alpha^{-1}\in C_\alpha\subseteq C.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						We now define $\varphi_C:C\to M.$ Well, for any $c\in C,$ we can find it in some $c\in C_\alpha,$ so we send $\varphi_C(c):=\varphi_{C_\alpha}(c).$ This is well-defined because if we find $c$ in two $c\in C_\alpha$ and $c\in C_\beta,$ then the chain condition asserts $C_\alpha\subseteq C_\beta$ (without loss of generality), giving\[\varphi_{C_\alpha}(c)=\varphi_{C_\beta}(c)\]because of the definition of our poset. To verify that $\varphi_C$ is a group homomorphism, we fix $c_\alpha,c_\beta\in C$ and find $c_\alpha\in C_\alpha$ and $c_\beta\in C_\beta.$ Then the chain condition implies $C_\alpha\subseteq C_\beta$ (without loss of generality), so\[\varphi_C(\underbrace{c_\alpha+c_\beta}_{\in C_\beta})=\varphi_{C_\beta}(c_\alpha+c_\beta)=\varphi_{C_\beta}(c_\alpha)+\varphi_{C_\beta}(c_\beta)=\varphi_C(c_\alpha)+\varphi_C(c_\beta).\]Finally, to verify that $(C,\varphi_C)$ is indeed maximal to this chain, we note $C_\alpha\subseteq C$ for any $C_\alpha$ because of the way we defined $C$&mdash;its group operation restricts to $C_\alpha$ by construction. And we defined $\varphi_C$ exactly to restrict to any of the $\varphi_{C_\alpha}$ (and so also to $\varphi_A$). This finishes. $\blacksquare$
+					</p>
+					<p>
+						Having satisfied the chain condition, Zorn's lemma lets us pick up a maximal element. It remains to show that we must have $B$ in this maximal element. Notice that we haven't used the divisibility of $M$ yet, so it had better come up now.
+					</p>
+					<p>
+						Well, now fix any pair $(C,\varphi_C)$ such that $B\ne C,$ and we claim that this pair is not maximal. Indeed, pick up $g\in B\setminus C,$ and we will extend $(C,\varphi_C)$ to $C+\langle g\rangle,$ which is strictly bigger than $C.$ (This sum is well-defined because $C\subseteq B$ is a subgroup, so we can define the arithmetic over $B.$) We still have $A\subseteq C+\langle g\rangle\subseteq B,$ so the task is to extend $\varphi_C$ to some $\varphi_{C+\langle g\rangle}.$
+					</p>
+					<p>
+						To extend, let $\langle g\rangle\cap C=\langle ng\rangle$ for some $n\in\NN,$ possibly $n=0.$ (Such an $n$ exists as either $n=0$ or the least positive $n$ for which $ng\in C.$) To exhibit our homomorphism, we must say where $g$ goes. If $n=0,$ we set its image to be $m:=0\in M.$ If $n \gt 0,$ then we know where $\varphi(ng)=n\varphi(g)\in M$ goes, so we pick up $m$ using the surjectivity of $x\mapsto nx.$ (Here we used divisibility!) So we set\[\varphi_{C+\langle g\rangle}(c+kg)=\varphi_C(c)+km\]for any $c\in C$ and $kg\in\langle g\rangle.$ This is well-defined because $c+kg=c'+k'g$ implies $c'=c+(k-k')g$ as well as $(k-k')g\in C,$ so $(k-k')\in\langle ng\rangle$ and $n\mid k-k'.$ It follows\[\varphi_C(c')+k'm=\varphi_C(c+(k-k')g)+k'm=\varphi_C(c)+\varphi_C\left(\frac{k-k'}n\cdot ng\right)+k'm=\varphi_C(c)+km.\]This definition of $\varphi_{C+\langle g\rangle}$ is also a group homomorphism because\[\varphi_{C+\langle g\rangle}(c+kg+c'+k'g)=\varphi_C(c+c')+(k+k')g=\varphi_C(c+kg)+\varphi_C(c+k'g).\]And lastly, $\varphi_{C+\langle g\rangle}$ does indeed restrict to $\varphi_C$ (and therefore $\varphi_A$) by setting $k=0$ in its definition. This completes the construction of $(C+\langle g\rangle,\varphi_{C+\langle g\rangle}).$
+					</p>
+					<p>
+						It follows that any pair $(C,\varphi_C)$ with $C\ne B$ is not maximal, so the maximal element given by Zorn's lemma must be a pair $(B,\varphi_B)$ with $\varphi_B$ restricting to $\varphi_A.$ This completes the proof that the module $M$ is injective. $\blacksquare$
+					</p>
+					<p>
+						That was a lot of work, but with a classification in hand, we can intelligently talk about embedding modules into injective ones.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G=\langle e\rangle$ the trivial group. Then any $G$-module $M$ can be embedded into an injective $G$-module.
+						</p>
+					</div>
+					<p>
+						Translating the statement for our trivial case, this means we need to embed an arbitrary abelian group $M$ into a divisible abelian group. Well, we claim that\[\QQ[M]:=\left\{\{a_m\}_{m\in M}\subseteq\QQ:\text{all but finitely many }m\text{ give }a_m=0\right\}\]will do the trick. This is an abelian group, where our operation is pointwise summation; two elements $\{a_m\}_{m\in M}$ and $\{b_m\}_{m\in M}$ are equal if and only if $a_m-b_m\in\ZZ$ for all $m\in M$ and\[\sum_{m\in M}(a_m-b_m)m=0,\]where this sum is taken over $M.$ (This sum is finite because all but finitely many of the $\{a_m\}_{m\in M}$ and $\{b_m\}_{m\in M}$ are $0.$) Our embedding (call it $\iota$) takes $m\in M$ to $1m\in\QQ[M],$ meaning $a_m=1$ while $a_{m'}=0$ for $m'\ne m.$ This is a group homomorphism because\[\iota(m+n)-\iota(m)-\iota(n)\]is the sequence $\{a_k\}_{k\in M}$ where $a_{m+n}=1,a_m=-1,a_n=-1,$ which is equal to $0\in\QQ[M]$ because it evaluates to $1(m+n)-1m-1n=0\in M.$
+					</p>
+					<p>
+						It remains to show that $\QQ[M]$ is divisible. Well, fix any $n\in\ZZ\setminus\{0\}$ so that we need to show that the map $x\mapsto nx$ is surjective. This means that, given $\{a_m\}_{m\in M}\subseteq\QQ$ where all but finitely many are $0,$ we need to find an element $\{b_m\}_{m\in M}\subseteq\QQ$ with all but finitely many are $0$ satisfying\[n\{b_m\}_{m\in M}=\{a_m\}_{m\in M}.\]With this in mind, we take $b_m=a_m/n$ (note $n\ne0$). Then $\{b_m\}_{m\in M}$ is nonzero only where $\{a_m\}_{m\in M}$ is, so $\{b_m\}_{m\in M}$ is nonzero finitely often. Further, the group operation of pointwise addition implies that $n\{b_m\}_{m\in M}$ is pointwise equal to $\{a_m\}_{m\in M}$ and hence actually equal because $\{a_m\}_{m\in M}-\{b_m\}_{m\in M}$ is identically $0.$ This finishes. $\blacksquare$
+					</p>
+					<p>
+						It turns out that any $G$-module $M$ (for an arbitrary group $G$) can always be embedded into some injective $G$-module. I do not currently know the full proof of this statement, so we will take it on faith for the time being. The point of all of this is to be able to provide injective resolutions.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix a finite group $G$ and $M$ a $G$-module. An injective resolution of $M$ is a sequence of injective $G$-modules $\left\{I^k\right\}_{k\in\NN}$ and $G$-module homomorphisms $\del^k:I^k\to I^{k+1}$ such that    \[0\to M\to I^0\stackrel{\del^0}\to I^1\stackrel{\del^1}\to I^2\stackrel{\del^2}\to\cdots\]    is an exact sequence.
+						</p>
+					</div>
+					<p>
+						The work we did above (and assumed) tells us that every $G$-module has an injective resolution.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a finite group. Then every $G$-module $M$ has an injective resolution.
+						</p>
+					</div>
+					<p>
+						Define $I^0$ to be the injective $G$-module containing $I^{-1}:=M,$ and then after that recursively define $I^{k+1}$ as an injective $G$-module containing $I^k/I^{k-1}.$ Explicitly, for $k\ge0,$ we make $\del^k:I^k\to I^{k+1}$ mod out by $I^{k-1}$ and then embed the new object $I^k/I^{k-1}$ into $I^{k+1}$ so that\[\op{im}\del^{k-1}=\ker\del^k,\]where $\del^{-1}:M\to I^0$ is the embedding. Indeed, $\del^k:I^k\to I^{k+1}$ takes $I^k$ to a copy of $I^k/I^{k-1}$ inside of $I^{k+1},$ meaning that the kernel comes exactly from the elements of $I^{k-1}$ that found there way into $I^k$ through $\del^{k-1}.$ This gives the exactness.
+					</p>
+					<p>
+						We do technically have to check that the $\del^k:I^k\to I^{k+1}$ are $G$-module homomorphisms, which is annoying but not hard. We do this inductively. At $k=-1,$ this is true by hypothesis on our embedding $M\to I^0.$ Now suppose $\del^k$ is a $G$-module homomorphism so that we want to show $\del^{k+1}$ is.
+					</p>
+					<p>
+						Note $\del^{k+1}:I^{k+1}\to I^{k+2},$ as described, mods out by the image $\del^k\left(I^k\right)$ and then embeds into an injective $G$-module; we show that these two maps are individually $G$-module homomorphisms. The embedding we automatically know is a $G$-module homomorphism because of its construction.
+					</p>
+					<p>
+						As for the modding, we note that the image of $\del^k$ is itself a $G$-module, inherited from $I^{k+1}.$ This inheritance gives subgroup structure because $\del^k$ is a group homomorphism, and the group action comes from $I^{k+1},$ which $\del^k\left(I^k\right)$ is closed under because, for any $g\in G$ and $a\in I^k,$\[g\left(\del^k(a)\right):=\del^k(ag),\]where we have used the inductive hypothesis that $\del^k$ is a $G$-module homomorphism. This means $I^{k+1}/\del^k\left(I^k\right)$ is a $G$-module, where our action is\[g\left(a+\del^k\left(I^k\right)\right)=ga+\del^k\left(I^k\right),\]for any $g\in G$ and $a\in I^{k+1}.$ This is well-defined because $a+\del^k\left(I^k\right)=b+\del^k\left(I^k\right)$ implies $a-b\in\del^k\left(I^k\right)$ implies $ga-gb\in\del^k\left(I^k\right)$ implies $ga+\del^k\left(I^k\right)=gb+\del^k\left(I^k\right).$
+					</p>
+					<p>
+						Now, the modding out $I^{k+1}\to I^{k+1}/\del^k\left(I^k\right)$ is already a group homomorphism, so we have to check this is well-defined as a $G$-module homomorphism. It is already a group homomorphism, so we merely have to show $a\in I^{k+1}$ and $g\in G$ give $g\left(a+\del^k\left(I^k\right)\right)=ga+\del^k\left(I^k\right),$ which is true by definition. So we are done here. $\blacksquare$
+					</p>
+					<p>
+						We've come all this way, so we will spend a little more time defining group cohomology to make it worthwhile. The following is our motivation.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $G$ a finite group. We define the fixed-point functor $(-)^G$ as taking $G$-modules $M$ to the set of fixed points $M^G=\{x\in M:gx=x\text{ for any }g\in G\}.$
+						</p>
+					</div>
+					<p>
+						What's interesting about this functor is that it takes short exact sequences to left exact sequences.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $G$ a finite group and $G$-modules $A,B,C$ such that    \[0\to A\to B\to C\to 0\]    is an exact sequence. Then we have the left exact sequence    \[0\to A^G\to B^G\to C^G.\]
+						</p>
+					</div>
+					<p>
+						Let $\varphi:A\to B$ and $\psi:B\to C$ be the middle maps. We have to show that $\varphi$ restricts to an injective function $A^G\to B^G$ (making $0\to A^G\to B^G$ exact) whose image is the kernel of $\psi$ (making $A^G\to B^G\to C^G$ exact), and we have to show $\psi$ also restricts to a function $B^G\to C^G.$
+					</p>
+					<p>
+						We already know that $\varphi$ is injective, so we really just have to show that $a\in A^G$ implies $\varphi(a)\in B^G.$ Well, picking up any $g\in G,$ we see\[g(\varphi(a))=\varphi(ga)=\varphi(a)\]because $\varphi$ is a $G$-module homomorphism and so preserves the group action. The same argument, replacing $\varphi$ with $\psi$ and taking $A$ to $B$ and $B$ to $C,$ shows that $\psi$ also restricts to a function $B^G\to C^G.$
+					</p>
+					<p>
+						Lastly, we already know that the image of $\varphi$ is the kernel of $\psi$ from the original short exact sequence, and this property does not change on restriction; the image of $\varphi$ got smaller, but it was still contained in the domain (and hence kernel) of $\psi.$ So we are done. $\blacksquare$
+					</p>
+					<p>
+						What we did not show was surjectivity of $\psi:B^G\to C^G,$ and indeed it is possible for surjectivity to fail. This failure gives rise to group cohomology.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $G$ a finite group. Take our injective resolution for a $G$-module $M$    \[0\to M\to I^0\stackrel{\del^0}\to I^1\stackrel{\del^1}\to I^2\stackrel{\del^2}\to\cdots,\]    we can apply the fixed-point functor to each element. Because the embedding mappings $\del^k$ are still $G$-module homomorphisms, they will restrict to maps $\left(I^k\right)^G\to\left(I^{k+1}\right)^G.$ The fact that these are restrictions means that the $\op{im}\del^k\subseteq\ker\del^{k+1}$ still, but we lose assurance of equality. We define, then    \[H^k(G,M):=\ker\del^k/\op{im}\del^{k-1}.\]
+						</p>
+					</div>
+					<p>
+						We remark that this definition appears to depend on the injective resolution, but it turns out not to. We will not show this here because I do not know how.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

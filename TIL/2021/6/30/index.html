@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 30th
+					</h2>
+					<p>
+						Today I learned more formally about integral elements and closures. Here is the definition we are focusing on today.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra, which means that $\mathcal O_L$ is a ring with a homomorphism $\varphi:\mathcal O_K\to\mathcal O_L$ inducing an $\mathcal O_K$-action on $\mathcal O_L.$ Then an element $y\in\mathcal O_L$ is integral if and only if $y$ is the root of a monic polynomial in $\varphi(\mathcal O_K)[x].$
+						</p>
+					</div>
+					<p>
+						Very quickly, we explicitly say that the $\mathcal O_K$-action on $\mathcal O_L$ granted by $\varphi:\mathcal O_K\to\mathcal O_K$ is given by\[a\cdot b:=\varphi(a)b\]for $a\in\mathcal O_K$ and $b\in\mathcal O_L.$ In this way we can think of $\mathcal O_L$ as basically a $\mathcal O_K$-module with a multiplication.
+					</p>
+					<p>
+						There is some subtlety going on here because, importantly, $\mathcal O_L$ does not have all roots of all monic polynomials over $\mathcal O_K.$ Instead, an element is integral in $\mathcal O_L$ when it already lives in $\mathcal O_L$ and happens to be the root of a monic polynomial. Elements are not integral over $A\mathcal O_K$ in isolation: they have to come from a particular $\mathcal O_K$-algebra $\mathcal O_L.$
+					</p>
+					<p>
+						Anyways, the intuition here is to generalize the situation of $\ZZ$ living inside of $\QQ$ in a purely algebraic way. A first approximation of this would be to take a ring $R$ living inside of its field of fractions $K$; then we can try to imitate $\ZZ\subseteq\QQ$ by picking up all the elements with no denominator.
+					</p>
+					<p>
+						For a variety of reasons, this is not actually what we want to do. For example, the field of fractions of $\ZZ[\sqrt{-3}]$ is $\QQ(\zeta_3),$ but the situation of $\ZZ[\sqrt{-3}]\subseteq\QQ(\zeta_3)$ is not similar to $\ZZ$: we don't have unique prime factorization of prime ideals here, for example.
+					</p>
+					<p>
+						It turns out that being integral is the correct algebraic generalization of $\ZZ\subseteq\QQ.$ It is true that the elements of $\QQ$ that are integral over $\ZZ$ make up exactly $\ZZ.$ Here is the general fact.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $\mathcal O_K$ a unique factorization domain with field of fractions $K$ and interpret $K$ as a $\mathcal O_K$-algebra with the canonical $\varphi:\mathcal O_K\hookrightarrow K.$ Then $\mathcal O_K$ is exactly the elements of $K$ integral over $\mathcal O_K.$
+						</p>
+					</div>
+					<p>
+						For one of these inclusions, note that any $a\in\mathcal O_K$ is the root of the monic polynomial $x-a\in\mathcal O_K[x].$ It follows that all elements of $\mathcal O_K$ are integral over $\mathcal O_K.$
+					</p>
+					<p>
+						It remains to show that these are the only elements of $K$ integral over $\mathcal O_K.$ For the purpose of the proof, it is useful to read $\mathcal O_K=\ZZ$ and $K=\QQ,$ but of course we will work in generality Fix $a/b\in K$ with $a,b\in\mathcal O_K$ and $b\ne0$ such that $a/b$ is the root of a monic polynomial in $\mathcal O_K[x]$ which looks like\[x^n+\sum_{k=0}^{n-1}c_kx^k\]for some $\{c_k\}_{k=1}^{n-1}\subseteq\mathcal O_K.$ Without much better to do, we plug in $a/b$ and get\[a^n+\sum_{k=0}c_ka^kb^{n-k}=0\]after clearing fractions by multiplying by $b^n.$
+					</p>
+					<p>
+						Now, we want to show that $a/b\in\mathcal O_K,$ so it suffices to show that $b\mid a.$ Because we live in a unique factorization domain, we show that $\nu_p(a)\ge\nu_p(b)$ for any fixed irreducible $p.$ Because $p^\bullet\mid x,y$ implies $p^\bullet x+y$ for any $x,y\in\mathcal O_K,$ we see $\nu_p(x+y)\ge\min\{\nu_p(x),\nu_p(y)\}.$ In particular,\[\nu_p\left(a^n\right)=\nu_p\left(-\sum_{k=0}^{n-1}c_ka^kb^{n-k}\right)\ge\min_{0\le k\le n-1}\left\{\nu_p\left(-c_ka^kb^{n-k}\right)\right\}.\]To continue, we note that $\nu_p(xy)=\nu_p(x)+\nu_p(y)$ by expanding the prime factorization of $xy$ and of $x\cdot y.$ It follows that\[\nu_p\left(c_ka^kb^{n-k}\right)=\nu_p(c_k)+k\nu_p(a)+(n-k)\nu_p(b)\ge k\nu_p(a)+(n-k)\nu_p(b),\]where we have intentionally killed the $c_\bullet$ term. At this point, we are forgetting that the polynomial ever existed. To review, we know that\[n\nu_p(a)\ge\min_{0\le k\le n-1}\{k\nu_p(a)+(n-k)\nu_p(b)\}\]and need to show $\nu_p(a)\ge\nu_p(b).$
+					</p>
+					<p>
+						Well, when $\nu_p(a) \lt \nu_p(b),$ we have that\[k\nu_p(a)+(n-k)\nu_p(b) \gt n\nu_p(a)\]for any $k,$ so the minimum over all $k$ of $k\nu_p(a)+(n-k)\nu_p(a)$ is also greater than $n\nu_p(a).$ This is the exact opposite of what we know, so we conclude that we must have $\nu_p(a)\ge\nu_p(b)$ by contraposition or contradiction. So indeed, $b\mid a,$ and $a/b\in\mathcal O_K,$ completing the proof. $\blacksquare$
+					</p>
+					<p>
+						As a quick side remark, the notation of $\mathcal O_K$ we are using is intended to be reminiscent of algebraic number theory with number fields, but the above proof shows that the elements of $k(t)$ integral over $k[t]$ are exactly $k[t]$ as well, where things are potentially harder to think directly about. This is the benefit we get from working in generality.
+					</p>
+					<p>
+						Our main attraction today will be showing that the integral closure is integrally closed, but we have to build some theory to get there. We say now that this will be similar to the proof that the set of algebraic numbers is algebraically closed, but we could also say that that proof is similar to this one.
+					</p>
+					<p>
+						We start with a more abstract definition of integral; the purpose of a more abstract definition in terms of extensions is that it becomes easier to show that products and sums of integral elements are integral because extensions are.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ An element $y\in\mathcal O_L$ is integral over $\mathcal O_K$ if and only if $\varphi(\mathcal O_K)[y]\subseteq\mathcal O_L$ is finitely generated (as a module) over $\mathcal O_K.$
+						</p>
+					</div>
+					<p>
+						In one direction, suppose $y\in\mathcal O_L$ is integral over $\mathcal O_K,$ and we want to show $\varphi(\mathcal O_K)[y]$ is a finitely generated $\mathcal O_K$-module. We won't show that $\varphi(\mathcal O_K)[y]$ is a commutative ring (we would have to show closure under $+$ and $\times$ from $\mathcal O_L$). It is a $\mathcal O_K$-submodule of $\mathcal O_L$ because, for any $a\in\mathcal O_K$ and $\sum_k\varphi(a_k)y^k\in\varphi(\mathcal O_K)[y],$\[a\cdot\sum_{k=0}^n\varphi(a_k)y^k=\sum_{k=0}^n\varphi(aa_k)y^k\in\varphi(\mathcal O_K)[y]\]gives closure under the action.
+					</p>
+					<p>
+						The interesting part is showing that this is finitely generated. Taking inspiration from field theory, we use a "power basis'' of $\left\{1,y,y^2,\ldots\right\}.$ To be explicit, $y$ being integral over $\mathcal O_K$ gives us a monic polynomial in $\varphi(\mathcal O_K)[x]$ making $y$ vanish. Giving this polynomial a name, we see\[y^d+\sum_{k=0}^{d-1}\varphi(c_k)y^k=0.\]The important part is this $d.$ We claim that $\left\{1,y,y^2,\ldots,y^d\right\}$ generates $\varphi(\mathcal O_K)[y].$ For this, we proceed by induction on the degree $n$ of an arbitrary element\[\sum_{k=0}^n\varphi(a_k)y^k\]in $\varphi(\mathcal O_K)[y].$ When $n\le d,$ then the above counts as a representation with our power basis.
+					</p>
+					<p>
+						For the inductive step, we suppose everything with degree $n$ is achievable, and we show degree $n+1.$ Well,\[y^{n+1}=y^{n+1-d}\cdot y^d=-\sum_{k=0}^{d-1}\varphi(c_k)y^{n+1-d+k}.\]Thus, for any element with degree $n+1,$ we can write\[\sum_{k=0}^{n+1}\varphi(a_k)y^k=-\varphi(a_{n+1})\sum_{k=0}^{d-1}\varphi(c_k)y^{n+1-d+k}+\sum_{k=0}^n\varphi(a_k)y^k.\]All powers of $y$ are now bounded by $n+1-d+d-1=n,$ so this element is representable under our power basis by hypothesis. This completes the inductive step and therefore this direction.
+					</p>
+					<p>
+						As for the other direction, suppose that $\varphi(\mathcal O_K)[y]$ is a finitely generated $\mathcal O_K$-module, and we need to make $y$ the root of some monic polynomial in $\varphi(\mathcal O_K)[x].$ Well, fix its generators $\{p_1(y),\ldots,p_n(y)\}\subseteq\varphi(\mathcal O_K)[y]$ where each $p_\bullet$ comes from $\varphi(\mathcal O_K)[x].$ (Explicitly, each generator can be pulled back from $\varphi(\mathcal O_K)[y]$ into $\varphi(\mathcal O_K)[x]$ by $y^\bullet\mapsto x^\bullet.$)
+					</p>
+					<p>
+						The idea is that $\mathcal O_K$-lienar combinations of the $p_\bullet$ can only have so large a degree. Namely, each $p_\bullet\in\varphi(\mathcal O_K)[x]$ has some finite degree, and because there are finitely many $p_\bullet,$ we can let $d$ be the largest of these degrees. But now there must be some way to represent $y^{d+1}\in\varphi(\mathcal O_K)[y]$ from these generators, namely\[y^{d+1}=\sum_{k=1}^n\varphi(a_k)p_k(y).\]for some $a_\bullet$ in $\mathcal O_K.$ By construction of $d,$ the largest power of $y$ on the right-hand side is less than $d+1,$ so fully expanding\[x^{d+1}-\sum_{k=1}\varphi(a_k)p_k(x)\]gives a monic polynomial in $\varphi(\mathcal O_K)[x]$ (of degree $d+1$) causing $y$ to vanish. Thus, $y$ is indeed integral over $\mathcal O_K,$ completing this direction. $\blacksquare$
+					</p>
+					<p>
+						We will actually need a slightly more versatile condition than "$\varphi(\mathcal O_K)[y]$ is finitely generated'' for some of where we are going. This is as follows.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ An element $y\in\mathcal O_L$ is integral if and only if there exists an intermediate $\mathcal O_K$-subalgebra $M\subseteq\mathcal O_L$ containing $\varphi(\mathcal O_K)[y]$ and is finitely generated as an $\mathcal O_K$-module.
+						</p>
+					</div>
+					<p>
+						In the forward direction, note that $y$ integral gives $\varphi(\mathcal O_K)[y]$ finitely generated as a $\mathcal O_K$-module. It is also a submodule of $\mathcal O_L$ and hence a subalgebra (i.e., it's closed under the $\mathcal O_K$-action), so $M:=\varphi(\mathcal O_K)[y]$ will do the trick.
+					</p>
+					<p>
+						The backwards direction is trickier. Essentially all we have is a finitely generated module $M$ which we know contains what the action from $\mathcal O_K$ and $y$ requires. Somehow this needs to turn into a monic linear combination of the $y^\bullet.$ The key idea is to use the determinant trick, whose one job is to generate monic relations among endomorphisms.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $R$ a ring and $M$ an $R$-module, where $M$ is generated by $n\in\NN$ elements. Now suppose $\varphi:M\to M$ is an $R$-module homomorphism such that $\varphi(M)\subseteq IM$ for an ideal $I\subseteq R.$ Then we can write    \[\varphi^n+\sum_{k=0}^{n-1}\mu_{r_k}\varphi^k=0,\]    where $r_k\in I.$
+						</p>
+					</div>
+					<p>
+						We showed this a while ago. It is the determinant trick. $\blacksquare$
+					</p>
+					<p>
+						Now, because $M$ actually has some ring structure (it's an $\mathcal O_K$-algebra), $\mu_y:m\mapsto ym$ is an $\mathcal O_K$-module endomorphism of $M.$ Indeed, for $a_1,a_2\in\mathcal O_K$ and $m_1,m_2\in M,$ we have\[\mu_y(\varphi(a_1)m_1+\varphi(a_2)m_2)=y\varphi(a_1)m_1+y\varphi(a_2)m_2=a_1\mu_y(m_1)+a_2\mu_y(m_2)\]because of our ring structure. Thus, $\mu_y$ is a valid $\mathcal O_K$-linear endomoprhism, and we can use the determinant trick on it, with $I=\mathcal O_K.$ Letting $n$ be the number of generators, we get\[\mu_y^n+\sum_{k=0}^{n-1}\mu_{\varphi(a_k)}\mu_y^k=0\]for some $a_\bullet\in\mathcal O_K.$ Now we note that $\mu_a\mu_b=\mu_{ab}$ because both send $m$ to $abm,$ so applying this multiplicativity to the above gives\[y^n+\sum_{k=0}^{n-1}\varphi(a_k)y^k=0\]upon plugging in $1$ to the relation of endomorphisms. This gives our monic polynomial in $\varphi(\mathcal O_K)[x]$ causing $y$ to vanish, which proves $y$ integral. This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						It might feel a bit unclear what we gained from the above redefinition of integral. What's nice is that we want to say something like "all elements of $\varphi(\mathcal O_K)[y]$ are integral when $y$ is because the generated extension is finite,'' but this does not immediately follow. After all, $y^2\in\varphi(\mathcal O_K)[y]$ potentially gives a different extension $\varphi(\mathcal O_K)\left[y^2\right],$ which we don't immediately know is finite. But\[\varphi(\mathcal O_K)\left[y^2\right]\subseteq\varphi(\mathcal O_K)[y],\]and the latter is finite, so the above redefinition tells us that we do actually get $y^2$ integral.
+					</p>
+					<p>
+						Now, to prove that the integral closure is integrally closed, we need to define what it means for rings to be integrally closed.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $\mathcal O_L$ a $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ If $y\in\mathcal O_L$ integral over $\mathcal O_K$ implies $y\in\varphi(\mathcal O_K),$ then $\mathcal O_K$ is integrally closed under $\mathcal O_L.$
+						</p>
+					</div>
+					<p>
+						As an example, we showed above that $\mathcal O_K$ is integrally closed under its field of fractions when $\mathcal O_K$ is a unique factorization domain.
+					</p>
+					<p>
+						This is also inherently a finiteness condition. Namely, suppose $\mathcal O_K$ is integrally closed under $\mathcal O_L,$ and if we pick up $y\in\mathcal O_L$ such that $\varphi(\mathcal O_K)[y]$ is finite, then $y$ is integral, so we had $\varphi(\mathcal O_K)[y]=\varphi(\mathcal O_K)$ all along. I think we can modify this a bit to say that $\varphi(\mathcal O_K)$ has no finite extensions.
+					</p>
+					<p>
+						To not bury the lead, we go ahead and define the integral closure now.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ We define the integral closure of $\mathcal O_K$ as    \[\overline{\mathcal O_K}:=\{y\in\mathcal O_L:y\text{ is integral over }\mathcal O_K\}.\]
+						</p>
+					</div>
+					<p>
+						In light of what we said earlier, to show that $\overline{\mathcal O_K}$ is integrally closed over $\mathcal O_K,$ we have to carefully control our finite extensions.
+					</p>
+					<p>
+						With this in mind, the following is the main step towards our goal.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ Further, pick up $\{y_k\}_{k=1}^m$ elements of $\mathcal O_L$ integral over $\mathcal O_K.$ Then the giant ring    \[\varphi(\mathcal O_K)[y_1,\ldots,y_m]\]    is still finitely generated as a $\mathcal O_K$-module.
+						</p>
+					</div>
+					<p>
+						This is by induction on $m.$ When $m=1,$ this is asserting that $\varphi(\mathcal O_K)[y_1]$ is finitely generated when $y_1$ is integral, which we know to be true by one of the equivalent properties of integral.
+					</p>
+					<p>
+						Now we can assume the statement is true for $m$ and show $m+1.$ That is, we are given $\{y_k\}_{k=1}^{m+1}$ elements of $\mathcal O_L$ integral over $\mathcal O_K$ and need to show $\varphi(\mathcal O_K)[y_1,\ldots,y_{m+1}]$ is a finitely generated $\mathcal O_K$-module. Well, we already know\[\varphi(\mathcal O_K)[y_1,\ldots,y_m]\]is finitely generated as a $\mathcal O_K$-module. Because our action is induced by $\varphi,$ we are saying that $\varphi(\mathcal O_K)[y_1,\ldots,y_m]$ is finitely generated over the ring $\varphi(\mathcal O_K).$
+					</p>
+					<p>
+						Additionally, $y_{m+1}$ being integral over $\mathcal O_K$ means that there is a monic polyomial in $\varphi(\mathcal O_K)[x]$ for which $y_{m+1}$ vanishes. But we can lift this polynomial to $\varphi(\mathcal O_K)[y_1,\ldots,y_m][x],$ meaning that $y_{m+1}$ is also integral over $\varphi(\mathcal O_K)[y_1,\ldots,y_m],$ which $\mathcal O_L$ is an algebra over by embedding. The point is that\[\varphi(\mathcal O_K)[y_1,\ldots,y_m,y_{m+1}]\]is finitely generated as a ring over $\varphi(\mathcal O_K)[y_1,\ldots,y_m].$
+					</p>
+					<p>
+						Thus, the situation is that we have the chain of rings\[\varphi(\mathcal O_K)\subseteq\varphi(\mathcal O_K)[y_1,\ldots,y_m]\subseteq\varphi(\mathcal O_K)[y_1,\ldots,y_{m+1}],\]where each step is finite generation as rings. Our end goal is to show that $\varphi(\mathcal O_K)[y_1,\ldots,y_{m+1}]$ is finitely generated over $\varphi(\mathcal O_K),$ which is covered by the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $R\subseteq S\subseteq T$ are rings such that $T$ is finitely generated over $S$ and $S$ is finitely generated over $R.$ Then $T$ is finitely generated over $T.$
+						</p>
+					</div>
+					<p>
+						This is the same proof as for field extensions. Let $\{s_k\}_{k=1}^n\subseteq R$ generate $S$ over $R$ and $\{t_\ell\}_{\ell=1}^m$ generate $T$ over $S.$ We claim that the set of products $s_kt_\ell$ generate $T$ over $R.$ Indeed, any $t\in T$ can be written as\[t=\sum_{\ell=1}^ma_\ell t_\ell\]for $a_\ell\in S$ because the $t_\bullet$ generate $T$ over $S.$ Now, each coefficient $a_\ell$ can be further expanded as\[a_\ell=\sum_{k=1}^na_{\ell,k}s_k\]for $a_{\ell,k}\in R$ because the $s_\bullet$ generate $S$ over $R.$ Thus,\[t=\sum_{\ell=1}^m\left(\sum_{k=1}^na_{\ell,k}s_k\right)t_{\ell}=\sum_{\ell=1}^m\sum_{k=1}^na_{\ell,k}(s_kt_\ell).\]So indeed, the $s_kt_\ell$ generate $T$ over $R.$ $\blacksquare$
+					</p>
+					<p>
+						Setting $R=\varphi(\mathcal O_K),$ $S=\varphi(\mathcal O_K)[y_1,\ldots,y_m],$ and $T=\varphi(\mathcal O_K)[y_1,\ldots,y_{m+1}]$ and plugging into the above lemma finishes the inductive step and hence the proof. $\blacksquare$
+					</p>
+					<p>
+						This proposition will serve a dual purpose. To start off, we quickly get the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ Then the integral closure $\overline{\mathcal O_K}$ is a subalgebra of $\mathcal O_L.$
+						</p>
+					</div>
+					<p>
+						Most of the work is showing $\overline{\mathcal O_K}$ is a subring. Note that $\varphi(\mathcal O_K)\subseteq\overline{\mathcal O_K}$ because any $\varphi(a)\in\varphi(\mathcal O_K)$ is the root of the monic polynomial $x-\varphi(a).$ So $\overline{\mathcal O_K}$ does have $0$ and $1.$
+					</p>
+					<p>
+						To show that $\overline{\mathcal O_K}$ is a subring, it now suffices to show it is closed under $\pm$ and $\times.$ Well, picking up any $y,z\in\overline{\mathcal O_K},$ we note that $y\pm z$ and $yz$ all live in\[\varphi(\mathcal O_K)[y,z],\]which is finitely generated over $\varphi(\mathcal O_K)$ by the above proposition. We know that this is a subring of $\mathcal O_L$ and contains $\varphi(\mathcal O_K),$ so it is also a subalgebra of $\mathcal O_L,$ where we are closed under the action because we are closed under multiplication.
+					</p>
+					<p>
+						So we see that $\varphi(\mathcal O_K)[y,z]$ is a finitely generated intermediate sub-algebra of $\mathcal O_L$ containing $\varphi(\mathcal O_K)[y\pm z]$ and $\varphi(\mathcal O_K)[yz].$ Using our more versatile definition of integral, it follows that $y\pm z$ and $yz$ are all integral, so they still live in $\overline{\mathcal O_K}.$
+					</p>
+					<p>
+						To finish showing that $\overline{\mathcal O_K}$ is a subalgebra of $\mathcal O_L,$ we have to show that it is closed under the action. Well, the action is multiplication by elements of $\varphi(\mathcal O_K),$ which $\overline{\mathcal O_K}$ contains, so $\overline{\mathcal O_K}$ is indeed closed under the action because it is a subring. $\blacksquare$
+					</p>
+					<p>
+						And lastly, we finally arrive at the main attraction.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $\mathcal O_L$ an $\mathcal O_K$-algebra with $\varphi:\mathcal O_K\to\mathcal O_L.$ Then the integral closure $\overline{\mathcal O_K}$ is a subalgebra and integrally closed in $\mathcal O_L.$
+						</p>
+					</div>
+					<p>
+						We have already showed that $\overline{\mathcal O_K}$ is a subalgebra, so our work will be to show that it is integrally closed. Pick up some $y\in\mathcal O_L$ integral over $\overline{\mathcal O_K},$ and we need to show $y\in\overline{\mathcal O_K},$ or equivalently, $y$ is integral over $\mathcal O_K.$ Being integral gives us a vanishing monic polynomial\[y^n+\sum_{k=0}^{n-1}c_ky^k=0\]for $c_\bullet\in\overline{\mathcal O_K}.$
+					</p>
+					<p>
+						To show that $y$ is integral over $\mathcal O_K,$ we reuse the trick from the previous lemma. Namely, we know that\[\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}]\]is finitely generated over $\varphi(\mathcal O_K)$ because the $c_\bullet$ are integral over $\mathcal O_K.$ And the given monic polynomial for $y$ has coefficients in $\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}],$ so we know $y$ is integral over $\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}],$ meaning that\[\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1},y]\]is finitely generated over $\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}].$
+					</p>
+					<p>
+						To finish, we note that we have a chain of rings\[\varphi(\mathcal O_K)\subseteq\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}]\subseteq\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1},y],\]where each ring is finitely generated over the previous. It follows that $\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}][y]$ is finitely generated over $\varphi(\mathcal O_K).$ So $\varphi(\mathcal O_K)[c_0,\ldots,c_{n-1}][y]$ is a finitely generated $\mathcal O_K$-algebra (it's closed under the action because it contains $\varphi(\mathcal O_K)$) containing $\varphi(\mathcal O_K)[y].$ This means $y$ is integral over $\mathcal O_K,$ or $y\in\overline{\mathcal O_K},$ finishing the proof. $\blacksquare$
+					</p>
+					<p>
+						This was the main attraction, so I think that's enough for today.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

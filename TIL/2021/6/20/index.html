@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 20th
+					</h2>
+					<p>
+						Today I learned some stuff around the Cauchy-Schwartz inequality, from THE BOOK. We begin with a particularly simple proof of the Cauchy-Schwartz inequality.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $V$ a real vector space with $\langle\bullet,\bullet\rangle$ the usual inner product. Then for any $v,w\in V,$ we have $\lVert v\rVert\cdot\lVert w\rVert\ge\langle v,w\rangle,$ with equality if and only if $v$ and $w$ are linearly dependent.
+						</p>
+					</div>
+					<p>
+						If $v=0,$ then the equality reads $0\ge0,$ so inequality holds, and indeed, $w$ and $0=0w$ are linearly dependent. Otherwise, $v$ and $w$ linearly dependent guarantees $\lambda\in\RR$ such that $w=\lambda v.$ In this case, the inequality reads\[\lVert v\rVert\cdot\lVert\lambda w\rVert\ge\langle v,\lambda v\rangle.\]Factoring out the $\lambda$ gives this equivalent to $\lambda\lVert v\rVert^2=\lambda\langle v,v\rangle,$ which is in fact an inequality.
+					</p>
+					<p>
+						It remains to show the inequality for $v$ and $w$ not linearly dependent. Let $x\in\RR$ be a real number. The main character in our story is\[\lVert xv+w\rVert^2=\langle xv+w,xv+w\rangle=\langle xv,xv\rangle+\langle xv,w\rangle+\langle w,xv\rangle+\langle w,\rangle.\]This collapses to $x^2\lVert v\rVert^2+\lVert w\rVert^2+2x\langle v,w\rangle.$ Now, as $x$ varies, the linear independence of $v$ and $w$ requires $\lVert xv+w\rVert \gt 0$ always (!), so the discriminant of the created quadratic is negative. That is,\[(2\langle v,w\rangle)^2-4\cdot\lVert v\rVert^2\cdot\lVert w\rVert^2 \lt 0.\]This rearranges into the desired inequality. $\blacksquare$
+					</p>
+					<p>
+						In particular, we will be using a particular case of the Cauchy-Schwartz, which is Titu's lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $\{x_k\}_{k=1}^n$ a sequence of real numbers. Then    \[\left(\sum_{k=1}^nx_k\right)^2\le n\sum_{k=1}^nx_k^2,\]    with equality if and only if all the $x_\bullet$ are equal.
+						</p>
+					</div>
+					<p>
+						Apply the Cauchy-Schwartz to $v=\langle x_1,\ldots,x_n\rangle$ and $w=\langle 1,\ldots,1\rangle.$ In particular, note that $w\mapsto-w$ in the inequality $\lVert v\rVert\cdot\lVert w\rVert\ge\langle v,w\rangle$ flips the sign of the dot product while not changing the left-hand side. Thus,\[|\langle v,w\rangle|=\max\{\langle v,w\rangle,-\langle v,w\rangle\}\le\lVert v\rVert\cdot\lVert w\rVert.\]Squaring, we see that $\langle v,w\rangle^2\le\lVert v\rVert^2\cdot\lVert w\rVert^2.$ Plugging in for $v$ and $w$ gives\[\left(\sum_{k=1}^nx_k\cdot1\right)^2\le\left(\sum_{k=1}^nx_k^2\right)\left(\sum_{k=1}^n1^2\right).\]This rearranges into the desired inequality.
+					</p>
+					<p>
+						As for the equality case, we know Cauchy-Schwartz has equality if and only if $v$ and $w$ are linearly independent, but here $w\ne0,$ so equality holds if and only if $v=\lambda w$ for some real $\lambda.$ But this means\[\langle x_1,\ldots,x_n\rangle=v=\lambda\langle1,\ldots,1\rangle=\langle\lambda,\ldots,\lambda\rangle.\]Such a $\lambda$ exists if and only if all the $x_\bullet$ are equal, in which case $\lambda=x_1$ will do. $\blacksquare$
+					</p>
+					<p>
+						Anyways, here is our main attraction.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $f(x)=x^n+\sum_{k=0}^{n-1}a_kx^k$ is a polynomial with real coefficients and exclusively real roots. Then all the roots are contained in the interval with endpoints    \[-\frac{a_{n-1}}n\pm\frac{n-1}n\sqrt{a_{n-1}^2-\frac{2n}{n-1}a_{n-2}}.\]
+						</p>
+					</div>
+					<p>
+						This statement comes out of applying Titu's lemma to Vieta's formulae. Let the roots of the polynomial be $r_1,\ldots,r_n,$ and we will show that $r_n$ lives in the desired interval. Relabeling the roots shows that all of them will live in the desired interval because the endpoints of the interval are independent of the $r_\bullet.$
+					</p>
+					<p>
+						By Vieta's formulae, we have that\[-a_{n-1}=\sum_{k=1}^nr_k\qquad\text{and}\qquad a_{n-2}=\sum_{1\le k \lt \ell\le n}r_kr_\ell.\]In order to make Titu's lemma more viable, as well as to relate these two equations, we square the first to get\[a_{n-1}^2=\sum_{k,\ell=1}^nr_kr_\ell=\left(\sum_{k=1}^nr_k^2\right)+2\left(\sum_{1\le k,\ell\le n}r_kr_\ell\right)=\left(\sum_{k=1}^nr_k^2\right)+2a_{n-2}.\]We have a sum of squares, so we now anticipate an application of Titu's lemma. However, to isolate $r_n,$ we remove it from the sum and note\[\sum_{k=1}^{n-1}r_k^2\ge\frac1{n-1}\left(\sum_{k=1}^{n-1}r_k\right)^2.\]The work above shows that the left-hand side is $a_{n-1}^2-2a_{n-2}-r_n^2,$ and the right-hand side is $\frac1{n-1}(-a_{n-1}-r_n)^2$ by Vieta's formulae.
+					</p>
+					<p>
+						Thus, we have the quadratic inequality\[a_{n-1}^2-2a_{n-2}-r_n^2\ge\frac1{n-1}(a_{n-1}+y_n)^2.\]This will give the desired statement after a computation. Alias $r=r_n.$ Multiplying by $n-1$ and moving everything to the right, we see\[0\ge nr^2+2a_{n-1}r-(n-1)\left(a_{n-1}^2-2a_{n-2}\right)+a_{n-1}^2.\]Completing the square, we see\[0\ge n\left(r+\frac{a_{n-1}}n\right)^2-n\cdot\frac{a_{n-1}^2}{n^2}-(n-1)a_{n-1}^2+2(n-1)a_{n-2}+a_{n-1}^2,\]which is\[\left(r+\frac{a_{n-1}}n\right)^2\le\frac{a_{n-1}^2+n(n-2)a_{n-1}^2}{n^2}-\frac{2n(n-1)a_{n-2}}{n^2}.\]Quickly, note that $1+n(n-2)=(n-1)^2.$ Anyways, taking the square root, we see\[\left|r+\frac{a_{n-1}}n\right|\le\sqrt{\frac{(n-1)^2}{n^2}a_{n-1}^2-\frac{2n(n-1)^2}{n^2(n-1)}a_{n-2}}.\]After factoring out $n/(n-1),$ we see that $r$ does indeed live in the desired interval. $\blacksquare$
+					</p>
+					<p>
+						As an aside, our application of Titu's lemma means that equality here holds if and only if all roots except for the one being examined are equal. So, for example, equality holds for any quadratic or if all roots are equal. However, this isn't sharp. For example, $f(x)=x^3+x^2-x-1=(x-1)(x+1)^2$ gives the interval\[\left|r+\frac13\right|\le\frac23\sqrt{1^2-\frac62\cdot-1}=\frac23\cdot2=\frac43,\]for which the $r=1$ provides the equality case. This is legal because the Titu's lemma application when examining $r=1$ does have all the other roots, which are $-1$ and $-1,$ equal.
+					</p>
+					<p>
+						What amuses me most about this statement is that it can act like a detector for when a polynomial with real coefficients must have a non-real root. For example, here is a quick application.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							A polynomial of the form $f(x)=x^n+\sum_{k=0}^{n-3}a_kx^k\in\RR[x]$ (note the $n-3$) has exclusively real roots if and only if $f(x)=x^n.$
+						</p>
+					</div>
+					<p>
+						In one direction, $f(x)=x^n$ has all of its roots real because $x^n=0$ if and only if $x=0.$
+					</p>
+					<p>
+						The other direction is harder. Fix $f(x)$ of the desired form with exclusively real roots. The point is that we have the coefficients $a_{n-1}x^{n-1}=0x^{n-1}$ and $a_{n-2}x^{n-2}=0x^{n-2}.$ So plugging in $a_{n-1}=a_{n-2}=0$ into the interval given above, we see that our roots live in the interval with endpoints\[-\frac0n\pm\frac{n-1}n\sqrt{0^2-\frac{2n}{n-1}\cdot0}=0\pm0.\]In other words, all roots of $f(x)$ must be $0,$ which means $f(x)$ has the root $0$ with multiplicity $n,$ or $f(x)=x^n.$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						As an example, we see that $x^n-10x+1$ has a non-real root for any $n\ge4,$ immediately. I guess the way to read the above statement is that $a_{n-1}=a_{n-2}=0$ forces $f(x)$ to grow "too much'' like $x^n,$ and if there are deviations, then there's no way to introduce enough ripples into the graph of $f(x)$ to give $n$ real roots.
+					</p>
+					<p>
+						Here is another application.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							A polynomial of the form $f(x)=x^n+\sum_{k=0}^{n-1}a_kx^k\in\RR[x]$ with exclusively real roots must have    \[2na_{n-2}\le(n-1)a_{n-1}^2,\]    with equality if and only if all the roots of $f(x)$ are equal.
+						</p>
+					</div>
+					<p>
+						The trick here is to examine\[xf(x)=x^{n+1}+\sum_{k=1}^{n-1}a_{k-1}x^k.\]The point is that now $0$ a root because the constant term has vanished, and $xf(x)$ still has exclusively real roots. Thus, we may plug in $0$ to the interval for $xf(x),$ we see that\[\left|0+\frac{a_{n-1}}{n+1}\right|\le\frac n{n+1}\sqrt{a_{n-1}^2-\frac{2n+2}na_{n-2}}.\]Working backwards a bit, we can make this criterion a bit more palatable. For example, squaring gives\[\frac{a_{n-1}^2}{(n+1)^2}\le\frac{n^2}{(n+1)^2}a_{n-1}^2-\frac{2n}{n+1}a_{n-2}.\]This rearranges into\[2n(n+1)a_{n-2}\le\left(n^2-1\right)a_{n-1}^2,\]or $2na_{n-2}\le(n+1)a_{n-1}^2.$ This is exactly the equality case what we wanted.
+					</p>
+					<p>
+						Our equality case comes from the equality case of the applied theorem. Indeed, equality holds if and only if all roots of $xf(x)$ other than the chosen $0$ are equal, which is equivalent to all roots of $f(x)$ being equal. $\blacksquare$
+					</p>
+					<p>
+						We remark that we could have looked at the proof of the theorem statement and simply used Titu's lemma directly. Indeed, if we let the roots be $r_1,\ldots,r_n,$ then Vieta's formulae implies that the given inequality is equivalent to\[2n\sum_{1\le k \lt \ell\le n}r_kr_\ell\le(n-1)\left(\sum_{k=1}^nr_k\right)^2.\]To make the left side more palatable, we note as we did in the proof that it is $n\left(\left(\sum_kr_k\right)^2-\sum_kr_k^2\right).$ Everything rearranges into\[\left(\sum_{k=1}^nr_k\right)^2\le n\sum_{k=1}^nr_k^2,\]which is exactly Titu's lemma. And now it is more apparent that the equality case is when all roots are equal, as this is the equality case for Titu's lemma. However, it is impressive that our theorem was powerful enough to retrieve this result without requiring another appeal to Titu's lemma.
+					</p>
+					<p>
+						Anyways, it's kind of magic to see the above proposition work.
+					</p>
+					<div class="example">
+						<p>
+							<b>
+								Example.
+							</b>
+							Take $f(x)=(x+1)(x+2)(x+3)=x^3+6x^2+11x+6,$ which yields    \[2\cdot3\cdot11\le2\cdot6^2,\]    which is $66\le72.$ So indeed, all is well in the world.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

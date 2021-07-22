@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 27th
+					</h2>
+					<p>
+						Today I learned about Artinian rings. These are rings which satisfy the "descending chain condition''; here is our definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							A ring $R$ is called Artinian if and only if, for any sequence of ideals $\{I_k\}_{k=0}^\infty$ satisfying    \[I_0\supseteq I_1\supseteq I_2\supseteq\cdots,\]    there exists a nonnegative $N$ for which $I_k=I_N$ for each $k\ge N.$ Such a sequence of ideals is called a descending chian.
+						</p>
+					</div>
+					<p>
+						In general, I feel like the Artinian condition makes rings very small. More precisely, the Artinian condition forces us to have some bottom bound on our ideals, making our ring feel inherently "discrete,'' where we imagine our ideals as a topology.
+					</p>
+					<p>
+						To solidify the intuition that Artinian rings are small, or at least discrete, we note that $\ZZ$ itself is not even Artinian despite being essentially the smallest characteristic-$0$ ring. Namely, we see\[\left(2^0\right)\supseteq\left(2^1\right)\supseteq\left(2^2\right)\supseteq\cdots\]is a descending chain of ideals, but for each nonnnegative integer $N,$ we have $\left(2^N\right)\supsetneq\left(2^{N+1}\right).$ Indeed, $2^N$ is not in $\left(2^{N+1}\right)$ by unique prime factorization. Thus, this descending chain has no bottom, so $\ZZ$ is not Artinian.
+					</p>
+					<p>
+						This construction leads to the following statement.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Any Artinian integral domain is a field.
+						</p>
+					</div>
+					<p>
+						Fix $R$ an Artinian integral domain. We already have the necessary ring structure, so we have to show that all nonzero elements of $R$ are units. Well, fix $r\in R,$ and the main idea is to use the above construction. In particular, let $I_k:=\left(r^k\right)$ so that\[\left(r^0\right)\supseteq\left(r^1\right)\supseteq\left(r^2\right)\supseteq\left(r^3\right)\supseteq\cdots.\]Formally, we see $I_k\supseteq I_{k+1}$ because $r^{k+1}=r\cdot r^k\in\left(r^k\right),$ implying $\left(r^{k+1}\right)\subseteq\left(r^k\right).$
+					</p>
+					<p>
+						The punchline is that, because $R$ is Artinian, this descending chain of ideals must bottom out. So extract our $N$ for which $I_k=I_N$ for any $k\ge N,$ and then we see\[\left(r^N\right)=\left(r^{N+1}\right).\]The interesting side of this is that $r^N\in\left(r^{N+1}\right),$ so $r^N=ar^{N+1}$ for some $a\in R.$ This rearranges into\[r^N\left(1-ar\right)=0.\]Using the fact we live in an integral domain, we see that either $r^N=0$ or $1-ar=0.$ In the former case, we can write the product out as $r\cdot r\cdot\ldots\cdot r=0$ and use the integral domain condition to force $r=0.$ In the latter case, we see $ar=1,$ so $r$ is a unit. Thus, all elements of $R$ are either $0$ or a unit, which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We are a bit obligated to say that $\ZZ$ is in fact not Artinian for multiple compelling reasons. For example, we don't even have to mess with powers and can just write\[(2)\supseteq(2\cdot3)\supseteq(2\cdot3\cdot5)\supseteq(2\cdot3\cdot5\cdot7)\supseteq\cdots.\]Namely, we define $I_k=(p_1p_2\cdots p_{k+1})$ to be generated by the product of the first $k+1$ primes. We won't bother formally seeing that this is an infinite descending chain of ideals, but it is.
+					</p>
+					<p>
+						Ultimately, the barrier here is that we have "too many'' maximal ideals to choose from. Artinian rings cannot have this.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Any Artinian ring has finitely many maximal ideals.
+						</p>
+					</div>
+					<p>
+						It is more natural to show the contrapositive (though we could do this more directly if we wanted). Fix $R$ a commutative ring with infinitely many maximal ideals, and we will show that it fails the descending chain condition.
+					</p>
+					<p>
+						Well, pick up some countable sequence of pairwise distinct maximal ideals $\{m_k\}_{k=0}^\infty.$ The correct way to generalize the above construction with $\ZZ$ is to write\[m_0\supseteq m_0\cap m_1\supseteq m_0\cap m_1\cap m_2\supseteq\cdots.\]We won't bother to show that the intersection of two ideals is an ideal, but it is. So explicitly, we choose\[I_k=\bigcup_{\ell\le k}m_\ell\]for each $k\in\NN.$ Because $I_{k+1}=I_k\cap m_{k+1},$ we do indeed have $I_{k+1}\subseteq I_k.$ In fact, this chain is strictly decreasing, which holds by the Chinese remainder theorem, roughly speaking.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $I$ and $J$ are proper $R$-ideals such that $I+J=R$ (i.e., relatively prime). Then there exists $a\in R$ such that $a\equiv0\pmod I$ and $a\equiv1\pmod J.$
+						</p>
+					</div>
+					<p>
+						The fact that $I+J=R$ means we get $a\in I$ and $b\in J$ such that $a+b=1.$ We claim that $a\in I$ is the element we are looking for. Indeed, if $a\in J$ as well, then $a+b=1\in J,$ implying that $(1)=R\subseteq J,$ forcing $J$ to be non-proper. So by contrapositive, forcing $J$ to be a proper ideal forces $a\not\in J.$ $\blacksquare$
+					</p>
+					<p>
+						The point of picking up this lemma is the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Suppose $\{I_k\}_{k=1}^n$ is a sequence of pairwise relatively prime proper $R$-ideals. Then there exists $a\in R$ such that $a\equiv0\pmod{I_k}$ for $k \lt n$ and $a\equiv1\pmod{I_n}.$
+						</p>
+					</div>
+					<p>
+						This is by induction on $n.$ The case of $n=2$ is settled by the above lemma. Now we suppose the statement is true for all sequences of $n$ pairwise relatively prime proper $R$-ideals, and we will show it for $\{I_k\}_{k=1}^{n+1}.$ The key trick is to extract auxiliary $a_\ell\in R$ which satisfy\[\begin{cases}    a_\ell\equiv1\pmod{I_{n+1}}, \\    a_\ell\equiv0\pmod{I_k} & k\ne\ell,\end{cases}\]for each $\ell\le n.$ Indeed, this is legal because $\{I_k\}_{k=1,k\ne\ell}^{n+1}$ is a sequence of $n$ pairwise relatively prime proper $R$-ideals by hypothesis on $\{I_k\}_{k=1}^{n+1}.$ But now modular arithmetic tells us that\[\prod_{\ell=1}^na_\ell\equiv\begin{cases}    1\pmod{I_{n+1}}, \\    0\pmod{I_k} & k\le n.\end{cases}\]This finishes the inductive step and therefore the proof. $\blacksquare$
+					</p>
+					<p>
+						Thus, it suffices to note that maximal ideals are always relatively prime proper ideals: if $m$ and $m'$ are distinct and maximal, then the ideal $m+m'$ is strictly larger than at least one of the two by distinctness, forcing $m+m'=R$ by maximality. Fixing $k\in\NN,$ the above lemmas let us pick up $a\in R$ such that\[a\equiv\begin{cases}    1\pmod{m_{k+1}}, \\    0\pmod{m_\ell} & \ell\le k.\end{cases}\]Namely, $a\in I_k$ by the bottom condition, but $a\not\in m_{k+1}$ by the top condition, implying that $a\not\in I_{k+1},$ so $I_{k+1}\subsetneq I_k.$ Thus, our $\{I_k\}_{k=0}^\infty$ is indeed a strictly decreasing chain of ideals, implying that $R$ is not Artinian. $\blacksquare$
+					</p>
+					<p>
+						The above two results establish some basic "smallness'' of Artinian rings. We take a moment to acknowledge that this inituition is not foolproof, however. For example, Noetherian is another "smallness'' condition, but these definitions are somewaht compatible.
+					</p>
+					<p>
+						Namely, it turns out that all Artinian rings (we are assuming commutative anyways) are in fact Noetherian, but this need not be the case of modules. We already showed $\ZZ$ is not Artinian (even though it is Noetherian), and we also have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							There exists Artinian modules $M$ which are not Notherian.
+						</p>
+					</div>
+					<p>
+						The construction we choose is $\ZZ[1/p]/\ZZ$ for some prime $p,$ which we view as a $\ZZ$-module (i.e., a commutative ring without unity). (The primality here is for convenience and isn't totally necessary.) We quickly note that our submodules are ideals, so we are still looking at ascending and descending chains of ideals here.
+					</p>
+					<p>
+						Showing that this is non-Noetherian is not difficult: we have the ascending chain of ideals\[\left(1/p^0\right)\subseteq\left(1/p^1\right)\subseteq\left(1/p^2\right)\subseteq\left(1/p^3\right)\subseteq\cdots.\]Explicitly, we set $I_k:=\left(1/p^k\right),$ and we note $1/p^k=p/p^{k+1}\in\left(1/p^{k+1}\right),$ so $I_k\subseteq I_{k+1}.$ Furthermore, $1/p^{k+1}$ is not in $\left(1/p^k\right)$ because this is equivalent to there being some $a\in\ZZ$ such that\[\frac1{p^{k+1}}\equiv\frac a{p^k}\pmod\ZZ.\]However, this requires $ap\equiv1\pmod{p^{k+1}\ZZ},$ which is impossible after reducing$\pmod p.$ Thus, $I_{k+1}$ is in fact strictly larger than $I_k,$ so the give ascending chain of ideals never stabilizers.
+					</p>
+					<p>
+						It remains to show that $\ZZ[1/p]/\ZZ$ is Artinian. The main claim is as follows.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							All ideals are either finite (and of the form $\left(1/p^\bullet\right)$) or all of $\ZZ[1/p]/\ZZ.$
+						</p>
+					</div>
+					<p>
+						Fix an ideal $I,$ and look at\[N=\{-\nu_p(a):a\in I\setminus\{0\}\}.\]In other words, $N$ is made of the set of powers in the denominator of the elements $a/p^\nu\in I.$ We have two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $N$ is unbounded, then for any representative $a/p^\nu\in\ZZ[1/p]/\ZZ$ with $p\nmid a,$ there exists some integer larger than $\nu$ in $N.$ We will show $I$ is everything; pick up any $a/p^\nu\in\ZZ[1/p]/\ZZ\setminus\{0\}.$
+							</p>
+							<p>
+								Because $N$ is unbounded, we have some $a_0/p^{\nu_0}$ where $\nu_0 \gt \nu$ and $p\nmid a_0.$ We claim that $a/p^\nu\in\left(a_0/p^{\nu_0}\right)\subseteq I.$ Indeed, after some rearranging, this is equivalent to requiring    \[ap^{\nu_0-\nu}\equiv ka_0\pmod{p^{\nu_0}\ZZ}\]    for some $k\in\ZZ.$ Well, $p\nmid a_0,$ so $a_0^{-1}\pmod{p^{\nu_0}}$ exists, so we can solve for $k$ in the above expression. It follows that $\ZZ[1/p]/\ZZ\subseteq I,$ which finishes this case.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $N$ is bounded, then there exists some largest element $n\in N$ by well-order. We claim that $I=\left(1/p^n\right).$ By similar argument to above, we are given $a/p^n\in I$ with $p\nmid a.$ Then for any $b/p^n\in\left(1/p^n\right),$ we claim $b/p^n\subseteq\left(a/p^n\right)\subseteq I.$ Indeed, this is equivalent to requiring    \[b\equiv ak\pmod{p^n\ZZ}\]    for some $k\in\ZZ.$ But again, $p\nmid a$ means that we can solve for $k$ here. Thus, $\left(1/p^n\right)\subseteq I.$
+							</p>
+							<p>
+								It remains to show that $I\subseteq\left(1/p^n\right).$ Well, for any $a_0/p^{\nu_0}\in I\setminus\{0\}$ chosen with $p\nmid a_0,$ we know that $\nu_0\le n$ by maximality of $n.$ Thus,    \[\frac{a_0}{p^{\nu_0}}=\frac{a_0p^{n-n_0}}{p^n}\in\left(\frac1{p^n}\right).\]    Thus, $I\subseteq\left(1/p^n\right),$ finishing the proof that $I=\left(1/p^n\right).$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Thus, we have shown that all ideals are either everything or of the form $\left(1/p^n\right)$ for some positive integer $n.$ We close the proof of the main claim by saying $\left(1/p^n\right)$ only has finitely many elements because any $a/p^n\in\left(1/p^n\right)$ can be represented as\[\frac a{p^n}\equiv\frac{a\pmod{p^n}}{p^n}\pmod\ZZ,\]and there are only finitely many options of $a\pmod{p^n}.$ $\blacksquare$
+					</p>
+					<p>
+						We now use the main claim to show that $\ZZ[1/p]/\ZZ$ is an Artinian $\ZZ$-module. Suppose we have a descending chain of ideals\[I_0\supseteq I_1\supseteq I_2\supseteq\cdots.\]If $I_k=\ZZ[1/p]/\ZZ$ for arbitrarily large $k,$ then for any particular $\ell,$ there is a larger $k$ such that\[I_\ell\supseteq I_k=\ZZ[1/p]/\ZZ.\]Thus, the entire sequence is $\ZZ[1/p]/\ZZ,$ and this stabilizes for free.
+					</p>
+					<p>
+						Otherwise, there exists a bound $N$ for which $k\ge N$ implies $I_k\ne\ZZ[1/p]/\ZZ.$ By the above lemma, we know that $I_k=\left(1/p^{a_k}\right)$ for some positive integer $a_k.$ We claim the $a_\bullet$ are decreasing. Indeed, we note that $I_k\supseteq I_{k+1}$ requires $1/p^{a_{k+1}}\in\left(1/p^{a_k}\right),$ which is equivalent to\[\frac a{p^{a_k}}\equiv\frac1{p^{a_{k+1}}}\pmod\ZZ\]for some $a\in\ZZ.$ This condition is equivalent to $a\equiv p^{a_k-a_{k+1}}\pmod{p^{a_k}},$ and as both sides of this had better be integral, we see $a_{k+1}\le a_k.$
+					</p>
+					<p>
+						However, by well-order, the decreasing sequence of positive integers $a_\bullet$ must stabilize. That is, we are granted a positive integer $M$ such that $a_k=a_M$ for any $k \gt M.$ Translating back to the ideal world, this tells us\[I_k=\left(\frac1{p^{a_k}}\right)=\left(\frac1{p^{a_M}}\right)=I_M\]for any $k \gt M.$ In other words, the descending sequence $I_\bullet$ does indeed stabilize. $\blacksquare$
+					</p>
+					<p>
+						I am under the impression that $\ZZ[1/p]/\ZZ$ being Artinian is more or less the dual of $\ZZ$ being Noetherian. Namely, the reason why ascending chains of ideals in $\ZZ$ stabilize is, ultimately, because of the well-order on $\ZZ,$ which is the same property (albeit in exponents) that forces descending chains in $\ZZ[1/p]/\ZZ$ to stabilize.
+					</p>
+					<p>
+						The last thing we will say about Artinian rings today is a property of Artinian local rings.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $R$ is an Artinian local ring with maximal ideal $m.$ Then the ideal $m$ is nilpotent: there exists an integer $k$ such that $m^k=0.$
+						</p>
+					</div>
+					<p>
+						We are interested in powers, so without much better to do, we write out the descending sequence\[m^0\supseteq m^1\supseteq m^2\supseteq\cdots.\]Because $R$ is Artinian, this must stabilizer eventually, so pick up a positive integer $N$ such that $m^k=m^N$ for any $k\ge N.$ In particular, $m^{N+1}=m^N.$ We hope that $m^N=0$; for example, certainly if $m^N=0,$ then we have stabilized.
+					</p>
+					<p>
+						The trick to finish the proof is quite clever. Suppose for the sake of contradiction that $m^N\ne0,$ and to measure how far we are from $0,$ extract an ideal $I$ minimal to the condition that\[Im^N\ne0.\]We can do this by Zorn's lemma, or we can simply say that a lack of such minimal ideals would allow us to build an infinite descending chain, violating the Artinian condition on $R.$
+					</p>
+					<p>
+						To put this funny step into perspective, we will say that we hope to use Nakayma's lemma in the near future. To begin, we claim that $I$ is principal. Indeed, $Im^N\ne0$ implies that there is some product of $r\in I$ and $m_0\in m^N$ such that $rm_0\ne0,$ implying $rm^N\ne0.$ But then $rm_0\in(r)m^N$ as well, so\[(r)m^N\ne0.\]The minimality of $I$ thus requires $I\subseteq(r),$ but with $r\in I$ implying $(r)\subseteq I$ already, we conclude $I=(r)$ is principal.
+					</p>
+					<p>
+						We now directly go after Nakayama's lemma. We show that $(r)m=(r).$ The motivation for what follows is that $(r)m\subseteq(r)$ already, but we might be able to use the minimality of $(r)$ to save us. Indeed, we can check that\[\big((r)m\big)m^N=(r)m^{N+1}=(r)m^N,\]where the last equality holds because $m^{N+1}=m^N.$ However, $(r)m^N$ is nonzero by construction of $(r),$ so indeed, $\big((r)m\big)m^N\ne0,$ and we get $(r)\subseteq (r)m$ by minimality.
+					</p>
+					<p>
+						Thus, $(r)m=(r),$ and Nakayama's lemma kicks in to tell us $(r)=0.$ However, this means $(r)m^N=0,$ which is a contradiction to the construction of $(r).$ This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						We remark that a fake proof of the above statement would apply Nakayama's lemma directly to $m^Nm=m^N.$ This doesn't work because we don't know if $m^N$ is finitely generated, which is a crucial condition here. Instead, we have to go through all those gymnastics with $Im^N\ne0.$
+					</p>
+					<p>
+						The contradiction in the above proof is somewhat subtle, and I am not convinced it is easy to remove it. This is one of the very few instances of a contradiction proof where we have used the assumption we are contradicting in a nontrivial way that cannot be separated from the rest of the logic. Anyways, it is clever.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

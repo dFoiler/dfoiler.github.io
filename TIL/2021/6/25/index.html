@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 25th
+					</h2>
+					<p>
+						Today I learned a little more about polynomial statistics over finite fields. I did two things with these today. For the first, we recall the following result which we proved a while ago.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $f(x)\in\ZZ[x]$ an irreducible polynomial. As $p$ varies over all primes, the expected number of roots of $f(x)\pmod p$ is $1.$ In other words,    \[1=\lim_{N\to\infty}\frac1{\pi(N)}\sum_{p\le N}\#\{k\in\FF_p:f(k)\equiv0\pmod p\}.\]
+						</p>
+					</div>
+					<p>
+						This is an application of Chebotarev's theorem. As an outline, apply Dedekind-Kummer to turn factorization of $f(x)\pmod p$ into factorization of $(p)$ in $\QQ(\alpha)$ where $\alpha$ is a root of $f.$ Then we extend $\QQ(\alpha)$ to a Galois closure $M$ and provide $p$ a Frobenius $\varphi_p,$ where $\varphi_p$ is equidistributed by Chebotarev. Investigating roots of $f(x)\pmod p$ turns into counting certain double cosets in $\op{Gal}(M/\QQ),$ which is an algebra problem. $\blacksquare$
+					</p>
+					<p>
+						It is a valid question to ask what happens if, instead of fixing $f(x)$ and letting $p$ vary, we fix $p$ and let $f(x)$ vary. This will be one of our motivating questions. We still cannot look at all polynomials at once, so we have to bound the degree to $d$ and send $d\to\infty$ later.
+					</p>
+					<p>
+						Additionally, some care must be taken because there are still infinitely many polynomials in $\ZZ[x]$ of bounded degree, so we count polynomials in $\FF_p[x]$ instead. And if we're in $\FF_p,$ we might as well be in $\FF_q$ for some prime-power $q.$ So the well-defined version of our question is asking for\[\lim_{d\to\infty}\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le d}}\#\{k\in\FF_q:f(k)=0\}\Bigg/\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le D}}1.\]We let the denominator here be $N_d,$ the number of polynomials in $\FF_q[x]$ of degree less than or equal to $d.$ We can compute $N_d$ without too much effort, but we won't actually need to; we place this computation in a lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix everything as above. Then $N_d=q^{d+1}.$
+						</p>
+					</div>
+					<p>
+						Note that a $f(x)\in\FF_q[x]$ of degree less than or equal to $d$ takes the form\[f(x)=\sum_{k=0}^da_kx^k,\]where each of the coordinates $a_\bullet\in\FF_q$ has $q$ options, with no restrictions. So the total number of possible polynomials is $q^{d+1}.$ $\blacksquare$
+					</p>
+					<p>
+						For the purposes of the computation, we will fix a degree $d\in\NN.$ Taking a second to verify that the limit is really what we want, we note\[\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le d}}\#\{k\in\FF_q:f(k)=0\}\cdot\frac1{N_d}\]is asking for the expected value of $\#\{k\in\FF_q:f(k)=0\}$ as $f(x)$ is chosen with probability $1/N_d$ from all $N_d$ options. So yes, we really are computing an expected value $\mathbb E_f(\#\{k\in\FF_q:f(k)=0\}).$
+					</p>
+					<p>
+						The key step to compute this expected value is linearity of expectation. The earlier proposition does not get to use linearity of expectation because looping over all the various $\FF_p$ is somewhat poorly behaved. But now we get to say\[\mathbb E_f[\#\{k\in\FF_q:f(k)=0\}]=\sum_{k\in\FF_q}\mathbb E_f\left[1_{f(k)=0}\right].\]Indeed, for a fixed $f,$ we have that\[\#\{k\in\FF_q:f(k)=0\}=\sum_{k\in\FF_q}1_{f(k)=0},\]so linearity of expectation lets us slap a $\mathbb E_f$ on both sides.
+					</p>
+					<p>
+						However, we can compute $\mathbb E_f\left[1_{f(k)=0}\right]$ for any $k\in\FF_q$ without too much effort.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix everything as above and some $k\in\FF_q.$ Then $\mathbb E_f\left[1_{f(k)=0}\right]=\mathbb E_f\left[1_{f(0)=0}\right].$
+						</p>
+					</div>
+					<p>
+						The idea here is to apply a shift in coordinates. Let $S_d$ be the set of polynomials in $\FF_q[x]$ with degree bounded by $d.$ We claim that $f(x)\mapsto f(x+k)$ provides a bijection of $S_d.$
+					</p>
+					<p>
+						Technically this is a purely symbolic bijection, but we will merely assert that this is injective because $f(x+k)=g(x+k)$ under $x\mapsto x-k$ implies\[f((x-k)+k)=g((x-k)+k).\]Then this is a bijection because it is a map of finite sets $S_d\to S_d,$ so injectivity is enough.
+					</p>
+					<p>
+						The point of this is that, for fixed $k\in\FF_p,$\[\mathbb E_f\left[1_{f(k)=0}\right]=\sum_{f(x)\in S_d}1_{f(k)=0}\cdot\frac1{N_d}=\frac{\#\{f(x)\in S_d:f(k)=0\}}{N_d}.\]However, if we shift coordinates by setting $g(x):=f(x+k),$ then $f(k)=0$ if and only if $g(0)=0.$ Because the map $f\mapsto g$ is a bijection as given above, it suffices to loop over $g$ instead of $f$ so that\[\mathbb E_f\left[1_{f(k)=0}\right]=\frac{\#\{g(x)\in S_d:g(0)=0\}}{N_d}.\]This right-hand side is $\mathbb E_f\left[1_{f(0)=0}\right]$ by running this argument with $k=0.$ Thus, $\mathbb E_f\left[1_{f(k)=0}\right]=\mathbb E_f\left[1_{f(0)=0}\right],$ as desired. $\blacksquare$
+					</p>
+					<p>
+						Continuing with our computation, we see\[\mathbb E_f[\#\{k\in\FF_q:f(k)=0\}]=\sum_{k\in\FF_q}\mathbb E_f\left[1_{f(k)=0}\right]=q\cdot\mathbb E_f\left[1_{f(0)=0}\right].\]We now finish by computing $\mathbb E_f\left[1_{f(0)=0}\right].$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix everything as above. Then $\mathbb E_f\left[1_{f(0)=0}\right]=1/q.$
+						</p>
+					</div>
+					<p>
+						The idea is that $f(0)=0$ if and only if its constant coefficient is $0.$ Indeed, again letting $S_d$ be the set of polynomials in $\FF_q[x]$ of degree less than or equal to $d,$ we have that\[\mathbb E_f\left[1_{f(k)=0}\right]=\frac{\#\{f(x)\in S_d:f(0)=0\}}{N_d}.\]Now, any polynomial $f(x)\in S_d$ takes the form\[f(x)=\sum_{k=0}^da_kx^k.\]Here, $f(0)=a_0,$ so $f(0)=0$ if and only if $a_0=0.$ To compute the desired ratio, we split up the task of fixing a sequence of coefficients $\{a_k\}_{k=0}^d$ into choosing $\{a_k\}_{k=1}^d$ and then choosing $a_0.$
+					</p>
+					<p>
+						To make an element of $S_d,$ there are some nonzero number of ways, say $n_d$ ways, to choose $\{a_k\}_{k=1}^d,$ and then $q$ ways to choose to $a_0.$ However, to make an element $f(x)\in S_d$ with $f(0)=0,$ there are $n_d$ ways to choose $\{a_k\}_{k=1}^d$ and then only one way to choose $a_0=0.$ Thus,\[\mathbb E_f\left[1_{f(k)=0}\right]=\frac{\#\{f(x)\in S_d:f(0)=0\}}{N_d}=\frac{n_d\cdot1}{n_d\cdot q}=\frac1q.\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						It follows that\[\mathbb E_f[\#\{k\in\FF_q\}]=q\cdot\mathbb E_f\left[1_{f(0)=0}\right]=q\cdot\frac1q=1.\]This gives the following statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $q$ a prime power. Then, as $f(x)\in\FF_q[x]$ varies, the expected number of roots of $f(x)$ in $\FF_q$ is $1.$ In other words,    \[1=\lim_{d\to\infty}\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le d}}\#\{k\in\FF_q:f(k)=0\}\Bigg/\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le D}}1.\]
+						</p>
+					</div>
+					<p>
+						We just showed that, for any fixed degree $d\in\NN,$ we know\[\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le d}}\#\{k\in\FF_q:f(k)=0\}\Bigg/\sum_{\substack{f(x)\in\FF_q[x]\\\deg f\le D}}1\]is equal to $q\mathbb E\left[1_{f(0)=0}\right]=1.$ So the limit is actually\[\lim_{d\to\infty}1=1.\]This competes the proof. $\blacksquare$
+					</p>
+					<p>
+						I find it somewhat amusing that either fixing the prime $p$ or fixing the polynomial $f(x)$ both give out $1$ as our answer. I still don't really feel like I understand these results, as much as I do like their proofs. The various conversion steps feel too deep to be natural, I suppose.
+					</p>
+					<p>
+						Anyways, while looking for this result, I ran across a combinatorial way to compute the number of sqaurefree polynomials of fixed degree in $\FF_q[x],$ from
+						<a href="https://math.uchicago.edu/~may/REU2015/REUPapers/AlegreJuarezPajela.pdf">
+							here
+						</a>
+						. For this we define the $\zeta$ generating function\[\zeta_q(T):=\sum_{\text{monic }f\in\FF_q[x]}T^{\deg f}.\]Perhaps the morally correct way to view this function is to take $T\mapsto q^{-s}$ to make this the Dedekind $\zeta$ function for finite fields: indeed, in $K=\FF_q(t),$ any ideal $I$ of $\mathcal O_K=\FF_q[x]$ is principal and hence generated by a monic $f(x)\in\FF_q[x].$ Its norm comes out to $q^{\deg f},$ so\[\zeta_{\mathcal O_K}(s)=\sum_{I\subseteq\FF_q[x]}\frac1{\op{Norm}(I)}.\]We will not be interfacing directly with this Dedekind $\zeta$ function because the generating function will be suitable for our purposes.
+					</p>
+					<p>
+						We begin with a few basic results about $\zeta_q(T).$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that $\zeta_q(T)=\frac1{1-qT}.$
+						</p>
+					</div>
+					<p>
+						We proceed the same way we proceeded with the Dedekind $\zeta$ function for $\FF_q[x].$ Indeed, splice the sum for $\zeta_q(T)$ up by degree $d\in\NN$ so that\[\zeta_q(T)=\sum_{d=0}^\infty\#\{\text{monic }f(x)\in\FF_q[x]:\deg f=d\}T^{\deg f}.\]To compute the number of monic $f(x)\in\FF_q$ of fixed degree $d\in\NN,$ we as usual note that every such $f(x)$ takes the form\[f(x)=\sum_{k=0}^da_kx^k\]where $a_d=1.$ Now, there are $q$ options for each $a_k$ with $k \lt d,$ which totals to $q^d$ polynomials. Thus,\[\zeta_q(T)=\sum_{d=0}^\infty q^dT^d=\frac1{1-qT}\]by the geometric series formula. This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						The above is more or less our rationality result for the Dedekind $\zeta$ function for $\FF_q[x].$ We also have an Euler product.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\zeta_q(T)=\prod_{(\pi)\text{ irred.}}\frac1{1-T^{\deg\pi}}.\]
+						</p>
+					</div>
+					<p>
+						We use unique prime factorization into irreducible polynomials. Namely,\[\zeta_q(T)=\sum_{\text{monic }f(x)\in\FF_q[x]}T^{\deg f}=\sum_{\text{monic }f(x)\in\FF_q[x]}\prod_{(\pi)\text{ irred.}}T^{\nu_\pi(f)\deg\pi}.\]Here we have used the fact that $\deg(fg)=\deg f+\deg g.$ Now each, monic polynomial $f(x)\in\FF_q[x]$ has a unique infinite tuple $\{\nu_\pi(f)\}_{(\pi)\text{ irred.}}$ of nonnegative integers by unique prime factorization where all but finitely many are zero, and the reverse is true by direct multiplication. So we can sum over these sequences instead of over monic polynomials, giving\[\zeta_q(T)=\sum_{\{\nu_\pi\}_{(\pi)\text{ irred.}}}\prod_{(\pi)\text{ irred.}}T^{\nu_\pi\deg\pi}.\]We can now undistribute this massive sum (formally!) into\[\zeta_q(T)=\prod_{(\pi)\text{ irred.}}\sum_{\nu_\pi=0}^\infty T^{\nu_\pi\deg\pi}.\]There is some technicality here because we only want to consider tuples $\{\nu_\pi\}_{(\pi)\text{ irred.}}$ where all but finitely many are zero, but if infinitely many are nonzero, then the power of $T$ is an infinite sum of positive integers, which is infinite, and so it doesn't appear in the generating function.
+					</p>
+					<p>
+						Anyways, using the geometric series formula, we do indeed get\[\zeta_q(T)=\prod_{(\pi)\text{ irred.}}\frac1{1-T^{\deg\pi}},\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We now turn to squarefree polynomials. Our exposition will reasonably closely follow showing that the proportion of squarefree integers is $\zeta(2)^{-1}.$ We start off as we did with $\zeta_q(T)$ by noting\[\sum_{\substack{\text{monic }f(x)\in\FF_q[x]\\f(x)\text{ squarefree}}}T^{\deg f}=\sum_{d=0}^\infty\#\{\text{monic }f(x)\in\FF_q[x]:\deg f\le d,f(x)\text{ squarefree}\}T^{\deg f}.\]For brevity, we will let this coefficient by $s_d$ and this function $S_q(T).$ The way we are going to use the squarefree condition is by an Euler product. Namely, we can again factor\[\sum_{\substack{\text{monic }f(x)\in\FF_q[x]\\f(x)\text{ squarefree}}}T^{\deg f}=\sum_{\substack{\text{monic }f(x)\in\FF_q[x]\\f(x)\text{ squarefree}}}\prod_{(\pi)\text{ irred.}}T^{\nu_\pi(f)\deg\pi}\]using unique prime factorization. However, now when we biject monic polynomials $f(x)\in\FF_q[x]$ to infinite tuples $\{\nu_\pi\}_{(\pi)\text{ irred.}},$ we have $\nu_\pi\in\{0,1\}$ because squarefree is equivalent to $\nu_\pi(f)\in\{0,1\}$ for each $\pi.$
+					</p>
+					<p>
+						So, summing over all infinite tuples $\{\nu_\pi\}_{(\pi)\text{ irred.}}$ where all but finitely many are zero and the rest are one, we see\[S_q(T)=\sum_{\{\nu_\pi\}_{(\pi)\text{ irred.}}}\prod_{(\pi)\text{ irred.}}T^{\nu_\pi(f)\deg\pi}\]Again, we remark that we can actually drop the condition that all but finitely many of the $\nu_\pi$ are zero because if infinitely many of the $\nu_\pi$ are $1,$ we get a term of whose degree is an infinite sum of $1$s, which won't show up in the generating function. Thus, we may safely allow $\{\nu_\pi\}_{(\pi)\text{ irred.}}$ to merely require $\nu_\pi\in\{0,1\}$ and undistribute as\[S_q(T)=\prod_{(\pi)\text{ irred.}}\sum_{\nu_\pi\in\{0,1\}}T^{\nu_\pi(f)\deg\pi}.\]This is our Euler product.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[S_q(T)=\prod_{(\pi)\text{ irred.}}1+T^{\deg\pi}.\]
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. $\blacksquare$
+					</p>
+					<p>
+						Now, we simplify this Euler product into something usable. The key idea is that $1+T=\frac{1-T^2}{1-T},$ so\[S_q(T)=\prod_{(\pi)\text{ irred.}}\frac{1-(T^2)^{\deg\pi}}{1-T^{\deg\pi}}.\]Then this is\[S_q(T)=\prod_{(\pi)\text{ irred.}}\frac1{1-T^{\deg\pi}}\Bigg/\prod_{(\pi)\text{ irred.}}\frac1{1-(T^2)^{\deg\pi}}=\frac{\zeta_q(T)}{\zeta_q\left(T^2\right)}.\]Now we can use the fact $\zeta_q(T)=\frac1{1-qT}$ to collapse this completely into\[S_q(T)=\frac{1-qT^2}{1-qT}.\]To actually extract the coefficients, we expand $\frac1{1-qT}$ out to get\[S_q(T)=\left(1-qT^2\right)\sum_{d=0}^\infty q^dT^d,\]which after shifting indices is\[S_q(T)=\sum_{d=0}^\infty q^dT^d-\sum_{d=2}^\infty q^{d-1}T^d=1+qT+\sum_{d=2}^\infty\left(q^d-q^{d-1}\right)T^d.\]This gives the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Let $s_d$ be the number of monic, squarefree polynomials in $\FF_q[x]$ of degree $d.$ Then $s_d=q^d$ if $d \lt 2$ and $s_d=q^d-q^{d-1}$ if $d\ge2.$
+						</p>
+					</div>
+					<p>
+						This follows from comparing the coefficients of\[\sum_{d=0}^\infty s_dT^d=S_q(T)=1+qT+\sum_{d=2}^\infty\left(q^d-q^{d-1}\right)T^d.\]This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						I suppose I am not too surprised that this generating functions approach is good enough to compute this, but I am somewhat surprised that it came out so nicely. Comparing this with the case in $\ZZ,$ we essentially just proved the analog of\[\sum_{n\text{ squarefree}}\frac1{n^s}=\frac{\zeta(s)}{\zeta(2s)},\]which can be seen by taking $T=q^{-s}$ in the above proofs. If we squint really hard and pretend we have Dirichlet density over $\ZZ,$ then we feel justified in writing\[\sum_{n\text{ squarefree}}\frac1{n^s}\Bigg/\sum_{n=1}^\infty\frac1{n^s}=\frac1{\zeta(2s)},\]and we can send $s\to1^+$ to get the desired $\zeta(2)^{-1}$ ratio for squarefree integers. This heuristic computation works over both $\QQ$ and $\FF_q(t)$ as seen above, but getting the actual final answer requires more care, care which is different in both cases.
+					</p>
+					<p>
+						Indeed, if we must be formal about the computation of the proportion of squarefree monic polynomials in $\FF_q[x],$ then note the number of monic polynomials of degree less than or equal to $D \gt 2$ is\[\sum_{d=0}^Dq^d=\frac{q^{D+1}-1}{q-1},\]and the number of squarefree monic polynomials of degree less than or equal to $D$ is\[1+q+\sum_{d=2}^D\left(q^d-q^{d-1}\right)\]from the above. However, this sum telescopes into $q^D-q,$ so our answer here is $q^D+1.$ Thus, the proportion of monic polynomials of degree bounded by $D$ which are squarefree is\[\frac{q^D+1}{\frac{q^{D+1}-1}{q-1}}=\frac{(q-1)\left(q^D+1\right)}{q^{D+1}-1}=\left(1-\frac1q\right)\left(1+\frac1{q^D}\right)\left(1-\frac1{q^{D+1}}\right)^{-1}.\]Taking $D\to\infty$ gives the following statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							A randomly chosen monic polynomial in $\FF_q[x]$ has probability $1-\frac1q$ of being squarefree. More precisely,    \[\lim_{D\to\infty}\frac{\#\{\text{monic }f(x)\in\FF_q[x]:\deg f\le D,f(x)\text{ squarefree}\}}{\#\{\text{monic }f(x)\in\FF_q[x]:\deg f\le D\}}\]    is equal to $1-\frac1q.$
+						</p>
+					</div>
+					<p>
+						This follows from the above discussion. $\blacksquare$
+					</p>
+					<p>
+						And just to verify that we aren't crazy, we see that\[\zeta_{\FF_q[x]}(2)^{-1}=\zeta_q\left(q^{-2}\right)^{-1}=\left(\frac1{1-qq^{-2}}\right)^{-1}=1-\frac1q,\]just as we expected.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

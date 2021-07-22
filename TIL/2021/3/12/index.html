@@ -87,6 +87,11 @@
 							June 2021
 						</a>
 					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -100,7 +105,333 @@
 						March 12th
 					</h2>
 					<p>
-						Today I learned the finish to the proof of the local $\zeta$ functional equation.\todo{}
+						Today I learned the details of the proof of the local $\zeta$ functional equation. As fair warning, this is going to be quite involved. We would like to begin by defining our local $L$-factors, but for this, we have to talk about classifiaction of characters. A few days ago we showed the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fixing $F$ a local field, any character $\chi:F^\times\to\CC^\times$ can be separated into $\chi(x)=\eta(x)|x|^s$ for some unitary character $\eta$ and $s\in\CC.$
+						</p>
+					</div>
+					<p>
+						We outline this. The idea is to write $\chi=\frac{\chi}{|\chi|}\cdot|\chi|.$ The first character is unitary (it outputs into $S^1$ for free). The second character $|\chi|$ is unramified (showing this is the hard part), so it has the form $x\mapsto|x|^s$ for some $s\in\CC.$ $\blacksquare$
+					</p>
+					<p>
+						We can quickly use this result to classify our multiplicative characters of $\RR$ and $\CC.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							A character $\chi:\RR^\times\to\CC^\times$ takes the form $x\mapsto x^{-a}|x|^s$ for some $a\in\{0,1\}$ and $s\in\CC.$
+						</p>
+					</div>
+					<p>
+						Recall that a character $\chi$ is unramified if and only if it vanishes on the norm-$1$ elements of $\RR^\times,$ which here are only $\pm1.$ Because $\chi(1)=1$ surely, and $\chi(-1)^2=\chi(1)=1,$ we see $\chi(-1)=\pm1.$ This gives two cases.
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $\chi(-1)=1,$ then $\chi$ is trivial on the norm-$1$ elements already, so $\chi$ is unramified, so we may take $a=0.$
+							</p>
+						</li>
+						<li>
+							<p>
+								If $\chi(-1)=-1,$ then $x\mapsto x\chi(x)$ is a character trivial on the norm-$1$ elements, so we write $x\chi(x)=|x|^s$ for some $s\in\CC,$ and here $a=1.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having dealt with all cases, we are done here. $\blacksquare$
+					</p>
+					<p>
+						Before talking about $\CC,$ we mention that we will write $\lVert z\rVert=|z|^s$ to be the natural (but unusual) square of the normal absolute value. (The reason $\lVert\bullet\rVert$ is natural is because it is the norm induced by scaling space, but this is unimportant.)
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							A character $\chi:\CC^\times\to\CC^\times$ takes the form $z\mapsto z^{-a}\overline z^{-b}\lVert z\rVert^s$ where $a,b\in\NN$ but $\min\{a,b\}=0$ and $s\in\CC.$
+						</p>
+					</div>
+					<p>
+						As above, we focus on $\chi$'s behavior over norm-$1$ elements. Fix $\eta:=\chi|_{S^1}$ a multiplicative character on $S^1.$ Because $S^1$ is compact, $\eta$ is unitary automatically, so $\eta:S^1\to S^1.$
+					</p>
+					<p>
+						Now, $(S^1,\times)\cong(\RR/\ZZ,+)$ by sending $e^{2\pi i\theta}\mapsto\theta.$ (We are not going to be rigorous about this.) Thus, $\eta$ through this isomorphism induces a continuous homomorphism $\varphi:\RR/\ZZ\to S^1.$ By extending $\varphi$ periodically/pulling $\varphi$ back from $\RR/\ZZ,$ we get a continuous map $\varphi:\RR\to S^1.$ By our classification of characters on local fields, then, we get some $\alpha\in\RR$ for which\[\varphi(x):=e^{2\pi i\alpha x}.\]Because $\varphi$ needs to act trivially on $\ZZ$ to factor through $\RR/\ZZ,$ we know $\varphi(1)=e^{2\pi i\alpha}=1,$ so it follows $\alpha$ is an integer. Thus, $\varphi(x)=e^{2\pi inx}$ for some integer $n.$ Pulling back to $\eta,$ we know that\[\eta\left(e^{2\pi i\theta}\right)=\varphi(\theta)=e^{2\pi in\theta},\]so $\eta:z\mapsto z^n$ for the same integer $n.$
+					</p>
+					<p>
+						Having studied $\chi|_{S^1},$ we now expand back out to $\chi.$ Extend $\eta$ from $S^1$ to all of $\CC^\times$ by defining $\eta(z)=z^n$ for all $z\in\CC^\times.$ Then $\chi/\eta$ is well-defined, and furthermore,\[(\chi/\eta)\left(e^{i\theta}\right)=\frac{\chi\left(e^{i\theta}\right)}{\chi|_{S^1}\left(e^{i\theta}\right)}=1,\]so $\chi/\eta$ is trivial on $S^1$ and therefore unramified. So we can fix $\chi(z)=z^n\lVert z\rVert^s$ for some $s\in\CC.$
+					</p>
+					<p>
+						To convert this to the desired form, note that we just have $-a=n$ if $n$ is a nonpositive integer. Otherwise, $n$ is nonnegative, and we note that $z\overline z=\lVert z\rVert,$ so\[z^n\lVert z\rVert^s=\overline z^{-n}\cdot\overline z^nz^n\lVert z\rVert^s=\overline z^{-n}\lVert z\rVert^s,\]so we may take $b=n$ to finish. Having covered all cases of $n,$ we are done here. $\blacksquare$
+					</p>
+					<p>
+						We take a second to realize that the above classifications are really giving the components of the space of characters. Indeed, a decomposition $\chi(x)=\eta(x)|x|^s$ means that we can parameterize a component of characters with the same $\eta$ by the variable $s\in\CC,$ so we can talk about being holomorphic with respect to $s$ and similar. Each of the above classes give a different $\eta.$
+					</p>
+					<ul>
+						<li>
+							<p>
+								With $F=\RR,$ we note that $a=0$ has $\eta=1,$ and $a=1$ has $\eta(x)=x^{-1}|x|=\op{sgn},$ which are indeed distinct.
+							</p>
+						</li>
+						<li>
+							<p>
+								With $F=\CC,$ we note that $a=b=0$ has $\eta=1,$ $a \gt 0$ has $\eta(z)=z^{-a}\lVert z\rVert^{a/2},$ and $b \gt 0$ has $\eta(z)=\overline z^{-b}\lVert z\rVert^{b/2}.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						We mention this now because we will refer to the above classifications later on even though it is arguably more natural to refer to the components by their $\eta.$
+					</p>
+					<p>
+						We are now ready to define our local $L$-factors. They are as follows.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $F$ a local field. If $F\cong\RR,$ then the local $L$-factor is    \[L\left(x\mapsto x^a|x|^s\right)=\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2).\]    If $F\cong\CC,$ then the local $L$-factor is    \[L\left(x\mapsto z^a\overline z^b\lVert z\rVert^s\right)=\Gamma_\CC(s)=2(2\pi)^{-s}\Gamma(s).\]    If $F$ is nonarchimedean, then the local $L$-factor is    \[L(\chi)=\begin{cases}        \frac1{1-\chi(\varpi)} & \chi\text{ unramified}, \\        1 & \text{else},    \end{cases}\]    where $\varpi$ is a uniformizer of $F.$
+						</p>
+					</div>
+					<p>
+						These more or less correspond to the various parts of the completed Riemann $\xi_\QQ$ function, where we had a real $\Gamma_\RR$ $L$-factor from the archimedean completion and then a $\frac1{1-p^{-s}}$ for each $p,$ which corresponds to $L$-factors from the nonarchimedean completions.
+					</p>
+					<p>
+						Now, our statement for the local $\zeta$ functional equation is going to look like\[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon(\chi,\psi,dx)\frac{\zeta(f,\chi)}{L(\chi)}\]for any Shwartz-Bruhat $f,$ a multiplicative character $\chi,$ and some function $\varepsilon$ which depends on the character $\chi,$ our choice of standard character $\psi$ (for Fourier transforms), and choice of Haar measure $dx$ on our local field. Notably, $\varepsilon$ does not depend on our choice of multiplicative measure $d^\times x=c\cdot dx/|x|$ because this $c$ will cancel as it appears in both $\zeta$ factors.
+					</p>
+					<p>
+						Last time we showed that, after fixing a character $\chi,$ for Shwartz-Bruhat functions $f$ and $g,$ we have\[\zeta(f,\chi)\zeta(\hat g,\chi^\vee)=\zeta(\hat f,\chi^\vee)\zeta(g,\chi)\]by expanding everything out into a triple integral and creating symmetry. Thus, if we can exhibit a single $f$ for each $\chi$ for which the functional equation\[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon_f(\chi,\psi,dx)\frac{\zeta(f,\chi)}{L(\chi)},\]then we would like to rearrange this to\[\frac{\zeta(\hat g,\chi^\vee)}{L(\chi^\vee)}=\frac{\zeta(\hat g,\chi^\vee)}{\zeta(\hat f,\chi^\vee)}\cdot\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\frac{\zeta(g,\chi)}{\zeta(f,\chi)}\cdot\varepsilon\frac{\zeta(f,\chi)}{L(\chi)}=\varepsilon\frac{\zeta(g,\chi)}{L(\chi)}.\]This manipulation works as long as $\zeta(f,\chi)$ and $\zeta(\hat f,\chi)$ are nonzero, and because we will be primarily interested in the region where $\chi(x)=\eta(x)|x|^s$ with $\op{Re}(s)\in(0,1),$ we need these to be nonzero there.
+					</p>
+					<p>
+						The point now is that it suffices to show the functional equation for a single function $f$ for each character $\chi.$ This is still a bit of a daunting task, but it is made manageable because $\chi$ can be decomposed into $\chi(x)=\eta(x)|x|^s,$ and we will do a long casework on $\eta.$
+					</p>
+					<p>
+						Before continuing, we are going to do a lot of computations, so we remark that we are allowed to fix $\psi$ and $dx$ however we please, and though this will change $\varepsilon,$ it only changes things by a constant, maintaining the underlying result. Indeed, if we choose a different $\psi_a:x\mapsto\psi(ax)$ or different $c\cdot dx,$ then our Fourier transform changes to\[\hat f_{a,c}(y)=\int_Ff(x)\psi_a(xy)\,cdx=c\int_Ff(x)\psi(x(ay))\,dx=c\hat f(ay),\]so\[\zeta(\hat f_{a,c},\chi^\vee)=\int_{F^\times}\hat f_{a,c}(x)\chi^\vee(x)\,d^\times x=c\int_{F^\times}\hat f(ax)\chi^\vee(x)\,dx,\]which is\[\zeta(\hat f_{a,c},\chi^\vee)=\frac c{\chi^\vee(a)}\int_{F^\times}\hat f(ax)\chi^\vee(x)\,d^\times x=\frac c{\chi^\vee(a)}\zeta(\hat f,\chi^\vee)\]by taking $x\mapsto x/a.$ The point is that the functional equation\[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon(\chi,\psi,dx)\frac{\zeta(f,\chi)}{L(\chi)}\]will still hold with $\varepsilon(\chi,\psi_a,cdx)=\frac c{\chi^\vee(a)}\varepsilon(\chi,\psi,dx).$ Indeed, $\zeta(\hat f,\chi^\vee)$ is the only term affected by altering $\psi$ and $dx$ (changing $dx$ multiplies both $d^\times x$ factors in the $\zeta$s by the same factor), and our $\varepsilon$ has only needed to be multiplied by a nonzero factor to account for this. So we are allowed to choose our $\psi$ and $dx$ conveniently.
+					</p>
+					<p>
+						With that said, we begin with $F=\RR.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $F=\RR$ a local field and $\chi:\RR^\times\to\CC^\times.$ For any character $\chi,$ we can exhibit an $f$ and constant $\varepsilon\ne0$ such that    \[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon\frac{\zeta(f,\chi)}{L(\chi)}\]    holds where the $\zeta$s are defined, and the $\zeta$s are nonzero there.
+						</p>
+					</div>
+					<p>
+						We make $dx$ the Lebesgue measure and $\psi(x)=e^{-2\pi ix}$ so that $g_\RR(x):=e^{-\pi x^2}$ satisfies $\widehat{g_\RR}=g_\RR,$ which we won't prove here;
+						<a href="https://math.stackexchange.com/a/270580/869257">
+							here
+						</a>
+						is a reference. (The point is that the measure is chosen to make this function self-dual.) Additionally, we use $d^\times x=dx/|x|$ for convenience. Now, fix $\chi:x\mapsto x^{-a}|x|^s$ as described in our classification.
+					</p>
+					<p>
+						We want to make our choice of $f$ as close to self-dual as possible, in order to minimize headaches, but we also want to make the integral $\zeta(f,\chi)$ relatively unpainful. The solution is to let $f(x)=x^ae^{-\pi x^2}$ in order to offset the $x^{-a}$ introduced by $\chi.$ This gives\[\zeta(f,\chi)=\int_{\RR^\times}f(x)\chi(x)\,d^\times x=\int_{\RR^\times}x^ae^{-\pi x^2}\cdot x^{-a}|x|^s\,d^\times x.\]Here, the $x^a$ and $x^{-a}$ do indeed cancel. We would like to make this look like $L(\chi)=\Gamma_\RR(s)=\pi^{-s/2}\Gamma(s/2),$ so we will need to make $\Gamma(s)=\int_0^\infty e^{-t}t^s\,d^\times t$ sometime soon. So we message the above into\[\zeta(f,\chi)=2\int_0^\infty e^{-\pi x^2}x^s\,d^\times x\]and then substitute $t:=\pi x^2$ so that $dt/t=2\pi x/\left(\pi x^2\right)=2d^\times x,$ giving\[\zeta(f,\chi)=\int_0^\infty e^{-t}\left(\frac t\pi\right)^{s/2}\,d^\times t,\]which does indeed equal $\pi^{-s/2}\Gamma(s/2)=L(\chi),$ giving $\zeta(f,\chi)/L(\chi)=1.$ We also quickly note that $\zeta(f,\chi)$ is nonzero because $\Gamma(s)$ has no zeroes.
+					</p>
+					<p>
+						It remains to deal with $\hat f,$ for which some care is required. We do casework on $a.$
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $a=0,$ then $f:=g_\RR$ is self-dual. Thus $\zeta(\hat f,\chi^\vee)=\zeta(f,\chi^\vee)=L(\chi^\vee)$ from the work above. So $\zeta(\hat f,\chi^\vee)$ is still nonzero, and we can simply use $\varepsilon=1$ here.
+							</p>
+						</li>
+						<li>
+							<p>
+								If $a=1,$ then $f(x)=xe^{-\pi x^2}.$ To compute this Fourier transform, we start by noting we already have    \[e^{-\pi y^2}=g_\RR(y)=\widehat{g_\RR}(y)=\int_\RR e^{-\pi x^2}e^{-2\pi ixy}\,dx.\]    The key trick is to take $\del/\del y$ by differentiating under the integral, giving    \[-2\pi ye^{-\pi y^2}=-2\pi i\int_\RR xe^{-\pi x^2}e^{-2\pi ixy}\,dx.\]    The left-hand side is $-2\pi f(y),$ and the right-hand side is $-2\pi i\hat f(y),$ so we see $\hat f(y)=-if(y).$ Because $\chi^\vee(x)=\chi(x)^{-1}|x|=x|x|^{-s+1}=x^{-1}|x|^{3-s}$ has the same form as $\chi$ (is in the same component), our earlier argument still gives    \[\zeta(\hat f,\chi^\vee)=\zeta(-if,\chi^\vee)=-i\zeta(f,\chi^\vee)=-iL(\chi^\vee),\]    where the second equality holds because constants can move through the $\zeta$ integral. In particular, it follows that $\zeta(\hat f,\chi^\vee)/L(\chi^\vee)=-i,$ so $\varepsilon=-i$ will work. And $\zeta(\hat f,\chi^\vee)$ is still nonzero because $\zeta(f,\chi^\vee)$ is.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Having dealt with all cases, having exhibited our $\varepsilon$ and shown that the $\zeta$ terms are nonzero in the area of interest, we are done. $\blacksquare$
+					</p>
+					<p>
+						Next we do $F=\CC.$ The statement we prove is pretty much identical.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $F=\CC$ a local field and $\chi:\CC^\times\to\CC^\times.$ For any character $\chi,$ we can exhibit an $f$ and constant $\varepsilon\ne0$ such that    \[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon\frac{\zeta(f,\chi)}{L(\chi)}\]    holds where the $\zeta$ are defined, and the $\zeta$s are nonzero there.
+						</p>
+					</div>
+					<p>
+						We make $dz$ twice (!) the Lebesgue measure and $\psi(z)=e^{-2\pi i(z+\overline z)}$ so that $g_\CC(x):=e^{-2\pi z\overline z}$ is self-dual; again, we won't show this here. We also take $d^\times z=dz/\lVert z\rVert$ for convenience.
+					</p>
+					<p>
+						Fix $\chi(z)=z^{-a}\overline z^{-b}\lVert z\rVert^s$ as described above. Here, we have one of $a=0$ or $b=0,$ but because $z\mapsto\overline z$ is an automorphism, we can just take $b=0$ without loss of generality because writing $z\mapsto\overline z$ in the below argument won't change anything.
+					</p>
+					<p>
+						Again, we want our $f$ to be almost self-dual while making the $\zeta(f,\chi)$ not too painful, so we do the same trick we had in the previous proposition by taking $f(z)=z^ag_\CC(z).$ Now the computation begins. We have\[\zeta(f,\chi)=\int_{\CC^\times}f(z)\chi(z)\,d^\times z=\int_{\CC^\times}z^ae^{-2\pi z\overline z}\cdot z^{-a}\lVert z\rVert^s\,d^\times z.\]Here the $z^a$ and $z^{-a}$ will cancel. Moving this into an integral over $\RR,$ we let $z=x+yi$ so that $dz=2dxdy.$ This gives\[\zeta(f,\chi)=\int_{\RR^2}e^{-2\pi\left(x^2+y^2\right)}\left(x^2+y^2\right)^s\cdot\frac{2dxdy}{x^2+y^2}.\]We quickly explicitly observe that $z\mapsto\overline z$ taking $x+yi\mapsto x-yi$ will not change this integral at all, so our without loss of generality above is justified. In fact, this is entirely a function $x^2+y^2,$ so we transfer this integral into polar, giving\[\zeta(f,\chi)=\int_0^{2\pi}\int_0^\infty e^{-2\pi r^2}r^{2s}\cdot\frac{2rdrd\theta}{r^2}.\]We can move the $d\theta$ integral outside to give a factor of $2\pi$ in the front. Like with $\RR,$ we would again like to make $\Gamma(s)=\int_0^\infty e^{-t}t^s\,d^\times t$ appear, so we let $t=2\pi r^2$ so that $d^\times t=dt/t=4\pi rdr/\left(2\pi r^2\right)=2dr/r.$ This gives\[\zeta(f,\chi)=2\pi\int_0^\infty e^{-t}\left(\frac t{2\pi}\right)^s\,d^\times t,\]which collapses into $2\pi(2\pi)^{-s}\Gamma(s)=\pi\Gamma_\CC(s)=\pi L(\chi).$ Again, this $\zeta(f,\chi)$ because $\Gamma$ has no zeroes.
+					</p>
+					<p>
+						Next we compute the Fourier transform of $f_a(z):=z^ae^{-2\pi z\overline z}.$ This is a bit involved and out-of-the-way, so we put it in its own lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $f_a(z):=z^ae^{-2\pi z\overline z}.$ We have that    \[\widehat{f_a}(z)=(-i)^a\overline z^ae^{-2\pi z\overline z},\]    where we use the $dx$ and $\psi$ as fixed earlier to define our Fourier transform.
+						</p>
+					</div>
+					<p>
+						This is mostly a computational bash, but Tate has a trick to make this not too painful. We proceed by induction. For $a=0,$ this is simply asserting that $f_0=g_\CC$ is self-dual, which we continue to assert without proof. (It comes down to a full expansion into integrals in $\RR$ and then using self-duality of $g_\RR.$)
+					</p>
+					<p>
+						For the inductive step, we suppose the statement for $f_a$ and will compute the Fourier transform of $f_{a+1}.$ We begin by writing\[\widehat{f_a}(t)=\int_\CC f_a(z)e^{-2\pi(zt+\overline{zt})}\,dz=\int_\CC z^ae^{-2\pi z\overline z}\cdot e^{-2\pi(zt+\overline{zt})}\,dz.\]We don't understand integrals in $\CC$ very well, especially with our funny measure $dz,$ so we dissolve this into an integral over real variables by writing $z=x+yi$ and $t=u+vi.$ Then we note $zt+\overline{zt}=2\op{Re}(zt)=2(ux-vy),$ which gives\[\widehat{f_a}(u+vi)=\int_{\RR^2}(x+yi)^ae^{-2\pi\left(x^+y^2\right)}e^{-2\pi(ux-vy)}\,2dxdy.\]The idea that Tate has is to generalize the trick we used earlier of differentiating under the integral sign, but now we need to make $(x+yi)^a$ into $(x+yi)^{a+1}$ for the induction, and we also have two variables to deal with. To start, we write\begin{align*}    \frac{\del\widehat{f_a}(u+vi)}{\del u} &= -2\pi\int_{\RR^2}x(x+yi)^ae^{-2\pi\left(x^+y^2\right)}e^{-2\pi(ux-vy)}\,2dxdy, \\    \frac{\del\widehat{f_a}(u+vi)}{\del v} &= +2\pi\int_{\RR^2}y(x+yi)^ae^{-2\pi\left(x^+y^2\right)}e^{-2\pi(ux-vy)}\,2dxdy.\end{align*}Thus, we see that\[\left(\frac\del{\del u}-i\frac\del{\del v}\right)\widehat{f_a}(u+vi)=-2\pi\widehat{f_{a+1}}(u+vi)\]because the integrals will accumulate an extra $x+yi$ term. However, we can use this statement to evaluate $\widehat{f_{a+1}}$ directly. Indeed, we see $\del\widehat{f_a}/\del u$ and $\del\widehat{f_a}/\del v$ are\begin{align*}    \frac\del{\del u}(-i)^a(u-vi)^ae^{-2\pi\left(u^2+v^2\right)}= &+(-i)^aa(u-vi)^{a-1}e^{-2\pi\left(u^2+v^2\right)} \\    &+(-i)^a(u-vi)^a\cdot-2\pi ue^{-2\pi\left(u^2+v^2\right)}, \\    \frac\del{\del v}(-i)^a(u-vi)^ae^{-2\pi\left(u^2+v^2\right)}= &-i(-i)^aa(u-vi)^{a-1}e^{-2\pi\left(u^2+v^2\right)} \\    &+(-i)^a(u-vi)^a\cdot-2\pi ve^{-2\pi\left(u^2+v^2\right)}.\end{align*}by using the product rule. The first terms of both will cancel when computing $\frac\del{\del u}-i\frac\del{\del v}$ because $(-i)^2=-1.$ Then the second terms will combine into\[\left(\frac\del{\del u}-i\frac\del{\del v}\right)\widehat{f_a}(u+vi)=-2\pi(u-vi)\cdot(-i)^a(u-vi)^ae^{-2\pi\left(u^2+v^2\right)}.\]Cancelling the $-2\pi$ with its appearance in $-2\pi\widehat{f_{a+1}}(u+vi),$ we do indeed get\[\widehat{f_{a+1}}(u+vi)=(-i)^a(u-vi)^{a+1}e^{-2\pi\left(u^2+v^2\right)}.\]Setting $z=u+vi$ again, this is exactly we wanted, completing our inductive step. $\blacksquare$
+					</p>
+					<p>
+						The work we showed earlier gave us that $\zeta(f,\chi)=\pi L(\chi)$ for $f(z)=z^ae^{-2\pi z\overline z}$ and $\chi(z)=z^{-a}\lVert z\rVert^s,$ and we remarked that the same argument implies this for $f(z)=\overline z^be^{-2\pi z\overline z}$ and $\chi(z)=\overline z^{-b}\lVert z\rVert^s.$ Thus, $\hat f(z)=(-i)^a\overline z^ae^{-2\pi z\overline z}$ with $\chi^\vee=z^a\lVert z\rVert^{-s}\lVert z\rVert=\overline z^{-a}\lVert z\rVert^{a-s+1}$ match and give\[\zeta(\hat f,\chi^\vee)=(-i)^a\cdot\pi L(\chi),\]and again this is nonzero because $L(\chi)$ is made up of $\Gamma$ and itself nonzero. It follows that we are done with $\varepsilon=(-i)^a.$ $\blacksquare$
+					</p>
+					<p>
+						We now move on to nonarchimedean $F$; let $\mathcal O$ be its ring of integers and $\mf p$ its maximal ideal. While we're here, we also set $\varpi$ a uniformizer and $q:=[\mathcal O:\mf p]$ the size of the residue field, though we won't use them yet. In what follows, we will not use the standard measures but rather convenient ones: we use $dx$ which gives $\int_\mathcal Odx=1$ and $d^\times x=dx/|x|.$
+					</p>
+					<p>
+						We need to pick up a technical lemma, so we will do it now to take a bit of a break. We have the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $F$ a nonarchimedean field as above. Then given a multiplicative character $\omega:\mathcal O^\times\to S^1$ an additive character $\psi:\mathcal O\to S^1,$ we define the "Gauss sum''    \[g(\omega,\psi):=\int_{\mathcal O^\times}\omega(x)\psi(x)\,d^\times x.\]
+						</p>
+					</div>
+					<p>
+						To compare, the usual Gauss sum is done over $\FF_p$ and looks like\[g(\chi):=\sum_{x\in\FF_p^\times}\chi(x)\zeta_p^x,\]where $\chi:\FF_p^\times\to S^1$ is a multiplicative character. The above is the generalization from $\FF_p$ to the nonarchimedean case: here $\chi$ becomes $\omega$ and $x\mapsto\zeta_p^x$ is $\psi.$ As some pretentious commentary, we can technically make this definition work with the archimedean case, and indeed\[\Gamma(s)=\frac12\int_{\RR^\times}t^se^{-t}\,d^\times t\]matches the format pretty much exactly. So indeed, a lot of the work we've been doing is thinly veiled under studying the interaction (under integration) of additive and multiplicative characters.
+					</p>
+					<p>
+						Anyways, in the same way that we can talk about $|g(\chi)|^2$ in the finite field case, we can talk about $|g(\omega,\psi)|^2$ in the general nonarchimedean case.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							In a nonarchimedean field $F$ as above, fix a multiplicative character $\omega:\mathcal O^\times\to S^1$ and an additive character $\psi:\omega\to S^1.$ Additionally, let $1+\mf p^n$ be the conductor of $\omega$ and $\mf p^m$ be the conductor of $\psi.$ Then    \[|g(\omega,\psi)|^2=\begin{cases}        q^{-m} & m=n, \\        0 & m\ne n,    \end{cases}\]    where $q=[\mathcal O:\mf p]$ is the size of the residue field.
+						</p>
+					</div>
+					<p>
+						The conductor is the largest ideal such that each character acts trivially. Namely, $\omega|_{1+\mf p^n}=1$ and $\psi|_{\mf p^m}=1,$ but no smaller $n$ or $m$ (i.e., no larger $1+\mf p^n$ or $\mf p^m$) will do.
+					</p>
+					<p>
+						We remark that the $|g(\omega,\psi)|^2$ in the statement is not using the squared absolute value but the usual one. Indeed, we have\[|g(\omega,\psi)|^2=g(\omega,\psi)\overline{g(\omega,\psi)}=\int_{\mathcal O^\times}\omega(x)\psi(x)\,d^\times x\cdot\overline{\int_{\mathcal O^\times}\omega(y)\psi(y)\,d^\times y}.\]Everything here absolutely converges (these are characters being integrated over a bounded subset of $F,$ so it converges), so we may freely write this as\[|g(\omega,\psi)|^2=\iint_{\left(\mathcal O^\times\right)^2}\omega(x)\overline{\omega}(y)\cdot\psi(x)\overline\psi(y)\,d^\times yd^\times x.\]Using the additivity/multiplicativity of our characters, the integrand is $\omega(x/y)\psi(x-y).$ Now, our measure is multiplicative, so it will be easiest to fix $t:=x/y$ with $d^\times t=d^\times x$ to simplify things. Additionally, $\mathcal O^\times$ is a multiplicative group, so this transformation does not change the domain, and we see\[|g(\omega,\psi)|^2=\iint_{\left(\mathcal O^\times\right)^2}\omega(t)\psi(yt-y)\,d^\times yd^\times x,\]which is\[|g(\omega,\psi)|^2=\int_{\mathcal O^\times}\omega(t)\left(\int_{\mathcal O^\times}\psi((t-1)y)\,d^\times y\right)d^\times t.\]Now that we have extricated one of our characters from the integral, it remains to investigate the inner integral.
+					</p>
+					<p>
+						Note that $y\mapsto\psi((t-1)y)$ is just another additive character, and to make life easier, we would like to make everything additive: note $d^\times y=dy/|y|=dy$ because $|y|=1$ currently, and then\[\int_{\mathcal O^\times}\psi((t-1)y)\,dy=\int_{\mathcal O}\psi((t-1)y)\,dy-\int_{\mf p}\psi((t-1)y)\,dy.\]Continuing with the observation that $y\mapsto\psi((t-1)y)$ is just another additive character, we note that it is trivial exactly on $\mf p^\bullet$ if and only if $(1-t)\mf p^\bullet\subseteq\mf p^m$ because $\mf p^m$ is the conductor of $\psi.$ This is equivalent to $t\in1+\mf p^{m-\bullet},$ so the integral collapses into\[1_{t\in1+\mf p^m}\int_{\mathcal O}dy-1_{t\in1+\mf p^{m-1}}\int_{\mf p}dy=1_{t\in1+\mf p^m}-1_{t\in1+\mf p^{m-1}}\frac1q.\]We note $\int_{\mf p}dy=1/q$ because $\mf p$ is one of $[\mathcal O:\mf p]=q$ cosets whose measure sum to $\int_{\mathcal O}dy=1.$
+					</p>
+					<p>
+						Returning to $|g(\omega,\psi)|^2,$ we see we only care about the $t$ with $t\in1+\mf p^m$ or $t\in1+\mf p^{m-1}.$ Namely, we have\[|g(\omega,\psi)|^2=\int_{1+\mf p^m}\omega(t)\,d^\times t-\frac1q\int_{1+\mf p^{m-1}}\omega(t)\,d^\times t.\]Only now do we do casework on $m$ and $n.$
+					</p>
+					<ul>
+						<li>
+							<p>
+								If $m \gt n,$ then $1+\mf p^n$ is a superset of both $1+\mf p^{m-1}$ and $1+\mf p^n,$ so $\omega$ is trivial in both integrals. However, we can then evaluate these integrals directly, for $d^\times t=dt/|t|=dt$ here, giving    \[\int_{1+\mf p^\bullet}d^\times t=\int_{1+\mf p^\bullet}dt=\left[\mathcal O:\mf p^\bullet\right]^{-1}=q^{-\bullet}\]    because $1+\mf p^\bullet$ is just one of $\left[\mathcal O:\mf p^\bullet\right]$ cosets. Thus, the expression for $|g(\omega,\psi)|^2$ turns into $q^{-m}-q^{-1}\cdot q^{-(m-1)}=0.$
+							</p>
+						</li>
+						<li>
+							<p>
+								If $m=n,$ then $1+\mf p^n$ contains $1+\mf p^m$ but not $1+\mf p^{m-1},$ so the first integral is trivial and gives $q^{-m}$ while the second integral vanishes because $\omega$ is a nontrivial character. So we get $q^{-m}.$
+							</p>
+						</li>
+						<li>
+							<p>
+								If $m \lt n,$ then $1+\mf p^n$ is contained in both $1+\mf p^m$ and $1+\mf p^{m-1},$ so $\omega$ is a nontrivial character in both integrals, implying that they both vanish to $0.$
+							</p>
+						</li>
+					</ul>
+					<p>
+						Combining all cases, we see that $|g(\omega,\psi)|^2$ is $q^{-m}$ when $m=n$ and $0$ otherwise, which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We now return to talking about $\zeta$ integrals. For this, we need to fix a $\psi$ for our Fourier transforms, and again, instead of choosing the standard, we choose convenient and force $\psi$ to have conductor $\mf p^0=\mathcal O.$ We can find such a $\psi$ by starting with any nontrivial character $\psi_0$ of conductor $\mf p^\bullet$ and then setting $\psi(x):=\psi_0\left(\varpi^\bullet x\right).$
+					</p>
+					<p>
+						Instead of dealing with all characters at once in a single proposition, we split up the work a bit. Fix $\chi:F^\times\to\CC^\times$ our character, and we can again decompose $\chi(x):=\eta(x)|x|^s$ for some $\eta$ and $s\in\CC.$ Explicitly, set $\eta:=\chi|_{\mathcal O^\times}$ and then extended to $F^\times$ by $\chi(\varpi)=1$; then $\chi/\eta$ is unramified and equals $|\bullet|^s$ for some $s\in\CC.$
+					</p>
+					<p>
+						I quickly remark that I think $\eta$ is unitary because $\chi|_{\mathcal O^\times}$ is a character on the compact group $\mathcal O^\times$ and therefore unitary free. Then extending $\eta$ by $\eta(\varpi)=1$ gives $|\eta(x)|=1$ for any $x\in F^\times.$ However, we will not need to know that $\eta$ is unitary anywhere.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $F$ a nonarchimedean local field and $\chi(x)=\eta(x)|x|^s$ as above. If $\eta$ has conductor $1+\mf p^0,$ we can exhibit an $f$ such that    \[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\frac{\zeta(f,\chi)}{L(\chi)}\]    holds where the $\zeta$ are defined, and the $\zeta$s are nonzero there. In other words, $\varepsilon=1$ works.
+						</p>
+					</div>
+					<p>
+						This is a straight computation; it doesn't even use the Gauss sums we built. Set our usual Gaussian $f:=1_{\mathcal O}.$ Then\[\zeta(f,\chi)=\int_{F^\times}f(x)\chi(x)\,d^\times x=\int_{\mathcal O\setminus\{0\}}\eta(x)|x|^s\,d^\times x.\]Now, $\eta$ has conductor $1+\mf p^0,$ so it is trivial on all $\mathcal O\setminus\{0\}.$ Thus, this is really an integral over $|x|^s,$ which turns into a geometric series as usual. We see\[\zeta(f,\chi)=\sum_{k=0}^\infty\int_{|x|=q^{-k}}|x|^s\,d^\times x=\sum_{k=0}^\infty q^{-ks}\int_{|x|=q^{-k}}d^\times x.\]The multiplicative measure lets us multiply the inner integral by a uniformizer $\varpi$ until we are integrating over $|x|=1,$ where $d^\times x=dx/|x|=dx.$ Then this all collapses to\[\zeta(f,\chi)=\left(\sum_{k=0}^\infty q^{-ks}\right)\int_{\mathcal O^\times}dx=\frac1{1-q^{-s}}\int_{\mathcal O^\times}dx.\]We could evaluate $\int_{\mathcal O^\times}dx=\frac{q-1}q$ as consisting of $q-1$ of the $q=[\mathcal O:\mf p]$ cosets, but it doesn't really matter. To compare, $\chi(\varpi)=\eta(\varpi)|\varpi|^{-s}=q^{-s},$ so $L(\chi)=\frac1{1-\chi(\varpi)}=\frac1{1-q^{-s}}.$ Thus,\[\frac{\zeta(f,\chi)}{L(\chi)}=\int_{\mathcal O^\times}dx\]is just some constant. Further, $\zeta(f,\chi)$ is nonzero throughout here because $\int_{\mathcal O^\times}dx\ne0,$ and $L(\chi)$ has no zeroes.
+					</p>
+					<p>
+						As usual, our next step is to compute the Fourier transform of $f=1_{\mathcal O}.$ We have\[\hat f(y)=\int_Ff(x)\psi(xy)\,dx=\int_{\mathcal O}\psi(xy)\,dx.\]Note that $x\mapsto\psi(xy)$ is a trivial character if and only if $\mathcal Oy\subseteq\mathcal O$ because $\mathcal O$ is the conductor of $\psi.$ (Here we see the convenience of our $\psi.$) Certainly $y\in\mathcal O$ implies $\mathcal Oy\subseteq\mathcal O,$ but $y\not\in\mathcal O$ implies $1y\in\mathcal Oy\not\subseteq\mathcal O,$ so this condition is indicating $y\in\mathcal O.$ The point is that\[\hat f(y)=1_{y\in\mathcal O}\int_{\mathcal O}dx=1_{y\in\mathcal O}\]by orthogonality of characters. In particular, our $f$ is self-dual!
+					</p>
+					<p>
+						Thus, noting that $\chi^\vee(x)=\eta^{-1}(x)|x|^{1-s}$ also gives its $\eta$ part of conductor $\mf p^0,$ we see that the same argument given above establishes\[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\int_{\mathcal O^\times}dx.\]Thus, we have the equality claimed in the proposition, and $\zeta(\hat f,\chi^\vee)$ doesn't vanish for the same reasons that $\zeta(f,\chi)$ didn't vanish. So we are done. $\blacksquare$
+					</p>
+					<p>
+						The harder case is when the conductor of $\eta$ is smaller. We have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $F$ a nonarchimedean local field and $\chi(x)=\eta(x)|x|^s$ as above. If $\eta$ has conductor $1+\mf p^n$ with $n \gt 0,$ we can exhibit an $f$ and constant $\varepsilon\ne0$ such that    \[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon\frac{\zeta(f,\chi)}{L(\chi)}\]    holds where the $\zeta$ are defined, and the $\zeta$s are nonzero there.
+						</p>
+					</div>
+					<p>
+						This computation is a bit more involved. This time we set $f=1_{1+\mf p^n}$ to make the $\zeta$ integral easier. Indeed, we have\[\zeta(f,\chi)=\int_{F^\times}f(x)\chi(x)\,d^\times x=\int_{1+\mf p^n}\eta(x)|x|^s\,d^\times x.\]By hypothesis, $\eta$ is trivial on $1+\mf p^n,$ so this integral is just over $|x|^s.$ Because $|x|=1$ over $1+\mf p^n,$ we see $|x|^s=1$ and $d^\times x=dx/|x|=dx,$ so\[\zeta(f,\chi)=\int_{1+\mf p^n}dx=q^{-n}\]because, as discussed earlier, $1+\mf p^n$ is just one of $\left[\mathcal O:\mf p^n\right]=q^n$ cosets whose measures sum to $1.$ We see that this is indeed nonzero for any $\chi.$
+					</p>
+					<p>
+						We now have to compute the Fourier transform of $f.$ We find\[\hat f(y)=\int_Ff(x)\psi(xy)\,dx=\int_{1+\mf p^n}\psi(xy)\,dx.\]We can shift this integral by taking $x\mapsto x-1$ to be over $\mf p^n.$ Then the integrand is $\psi((x+1)y)=\psi(xy+y)=\psi(y)\psi(xy)$ because $\psi$ is an additive character. Thus, this is\[\hat f(y)=\psi(y)\int_{\mf p^n}\psi(xy)\,dx.\]Now we emulate the argument from the previous case to evaluate this integral. If $y\in\mf p^{-n},$ then $xy\in\mathcal O$ always, trivializing the integral. But if $y\not\in\mf p^{-n},$ then $y\varpi^n\not\in\mathcal O,$ meaning that the we are integrating a nontrivial character, causing it to vanish. Thus, this is\[\hat f(y)=\psi(y)\int_{\mf p^n}dx\cdot1_{y\in\mf p^{-n}}=\frac{\psi(y)}{q^n}\cdot1_{y\in\mf p^{-n}}.\]This is good enough for our Fourier transform.
+					</p>
+					<p>
+						With $\hat f$ in hand, we turn to $\zeta(\hat f,\chi^\vee).$ This time we actually have to do some computation, and only now will Gauss sums appear. Note $\chi^\vee(x)=\eta(x)^{-1}|x|^{1-s},$ so\[\zeta(\hat f,\chi^\vee)=\int_{F^\times}\hat f(x)\chi^\vee(x)\,d^\times x=q^{-n}\int_{\mf p^{-n}\setminus\{0\}}\psi(x)\eta(x)^{-1}|x|^{1-s}\,d^\times x.\]We promised Gauss sums would appear, so we would like to make this integral more like a Gauss sum. To start, we need to be integrating over a multipicative subgroup, so we partition the integral by\[\zeta(\hat f,\chi^\vee)=q^{-n}\sum_{k=-n}^\infty\int_{|x|=q^{-k}}\psi(x)\eta(x)^{-1}|x|^{1-s}\,d^\times x.\]At this point, we use our multiplicative measure to shift the integrals to be over $\mathcal O^\times.$ This amounts to taking $x$ with $|x|=q^{-k}$ to $x\varpi^{-k}.$ Note that $\eta(\varpi)=1,$ so the $\eta$ term remains intact, and $|x|^{1-s}=q^{-k(1-s)}$ we may just factor out, collapsing everything to\[\zeta(\hat f,\chi^\vee)=q^{-n}\sum_{k=-n}^\infty q^{-k(1-s)}\int_{\mathcal O^\times}\eta(x)^{-1}\psi\left(\varpi^kx\right)\,d^\times x.\]And finally, this integral is the Gauss sum $g\left(\eta^{-1},x\mapsto\psi\left(\varpi^kx\right)\right).$ Our multiplicative character $\eta^{-1}$ still has conductor $1+\mf p^n,$ and our additive character has conductor $\varpi^{-k}\mf p^0=\mf p^{-k}.$ Using our lemma on Gauss sums, then, this term vanishes except for when $k=-n$ causes the conductors to match. When the dust settles, we have\[\zeta(\hat f,\chi^\vee)=q^{-n}\cdot q^{-n(1-s)}\cdot g\left(\eta^{-1},x\mapsto\psi\left(\varpi^{-n}x\right)\right).\]Each term of this product is always nonzero&mdash;the Gauss sum has magnitude $q^{-n}$ and is therefore nonzero&mdash;so indeed, $\zeta(\hat f,\chi^\vee)$ is again nonzero. It only remains to compute $\varepsilon,$ which comes out to  be\[\frac{\zeta(\hat f,\chi^\vee)}{\zeta(f,\chi)}=q^{-n(1-s)}g\left(\eta^{-1},x\mapsto\psi\left(\varpi^{-n}x\right)\right)\]because $\chi$ being ramified implies $L(\chi)=L(\chi^\vee)=1.$ This finishes the proof of the proposition. $\blacksquare$
+					</p>
+					<p>
+						We are now ready for payoff. Recall that for Shwartz-Bruhat functions $f,$ we know $\zeta(f,\chi)$ converges for $\chi$ of positive exponent $\sigma.$ This means that $\chi^\vee$ has exponent $1-\sigma,$ so $\zeta(f,\chi^\vee)$ will converge for exponents $\sigma \lt 1.$ This motivates the following statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $F$ a local field and $g$ any Shwartz-Bruhat function. Then the functional equation    \[\frac{\zeta(\hat g,\chi^\vee)}{L(\chi^\vee)}=\varepsilon(\chi,\psi,dx)\frac{\zeta(g,\chi)}{L(\chi)}\]    holds for $\chi$ where $|\chi|:x\mapsto|x|^s$ with $\op{Re}(s)\in(0,1).$
+						</p>
+					</div>
+					<p>
+						For this we simply have to do the manipulation suggested at the beginning. Our character $\chi$ has some unitary part $\eta,$ and the above long casework lets us pick out some $f$ for which\[\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\varepsilon(\chi,\psi,dx)\frac{\zeta(f,\chi)}{L(\chi)}\]always holds, and the $\zeta$ integrals are always nonzero. Well, both $\zeta$ integrals are defined over $\op{Re}(s)\in(0,1),$ so the functional equation holds there. To convert this to $g,$ we do as suggested and write\[\frac{\zeta(\hat g,\chi^\vee)}{L(\chi^\vee)}=\frac{\zeta(\hat g,\chi^\vee)}{\zeta(\hat f,\chi^\vee)}\cdot\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}=\frac{\zeta(g,\chi)}{\zeta(f,\chi)}\cdot\varepsilon\frac{\zeta(f,\chi)}{L(\chi)}=\varepsilon\frac{\zeta(g,\chi)}{L(\chi)},\]which finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						And this lets provide an analytic continuation for the $\zeta$ integrals.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $F$ a local field and $f$ any Shwartz-Bruhat function. Then there is a meromorphic continuation of $\zeta(f,\chi)$ to all $\chi.$ Here, we mean analytically continued with respect to $s$ in $|\chi|:x\mapsto|x|^s.$
+						</p>
+					</div>
+					<p>
+						Indeed, for $\op{Re}(s) \gt 0,$ we already have convergence of $\zeta(f,\chi).$ Then for $\op{Re}(s) \lt 1,$ we define\[\zeta(f,\chi):=L(\chi)\cdot\varepsilon(\chi,\psi,dx)\frac{\zeta(\hat f,\chi^\vee)}{L(\chi^\vee)}\]provides a funtional equation to extend. Indeed, the regions of our definition for $\op{Re}(s) \gt 0$ and $\op{Re}(s) \lt 1$ agree on the open set $\op{Re}(s)\in(0,1),$ so in fact their meromorphic continuations must agree everywhere. This establishes what we wanted. $\blacksquare$
+					</p>
+					<p>
+						As an end remark, we note that our $\varepsilon$s tended to be well-behaved. Most of the time $\varepsilon$ didn't even depend on $s,$ with the exception of the ramified characters in nonarchimedean fields. Nevertheless, in all cases are $\varepsilon$ at least looks like $ae^{bs}$ for some $a,b\in\CC.$ For example, in the last case, $b=n\log q,$ I think.
+					</p>
+					<p>
+						Nevertheless, there will turn out to be few cases of the last case: if we fix a global (say, number) field $K,$ then we note that for all unramified primes $\mf p,$ the different $\mathcal D_\mf p$ vanishes, so the stated measure and $\psi$ are accurate are the standard ones. And our characters will be trivial over all but finitely many $\mf p,$ defaulting us to the easy nonarchimedean case. So that case isn't too worrisome.
 					</p>
 				</div>
 			</div>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 16th
+					</h2>
+					<p>
+						Today I learned finish to the proof that any $G$-module can be embedded into an injective $G$-module. This turns out to be somewhat involved. We recall from yesterday that any abelian group can be embedded into a divisible abelian group, which is the same thing as an injective $\langle e\rangle$-module. Here is the main attraction for today.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $G$ a finite group. Then any $G$-module $M$ can be embedded into an injective $G$-module.
+						</p>
+					</div>
+					<p>
+						The key construction is to use the above lemma to embed the abelian group $M$ into a divisible group, which we will call $N,$ and then fix $\op{Hom}_\ZZ(\ZZ[G],N),$ which consist of the group homomorphisms $\ZZ[G]\to N.$ The $\ZZ$ in the subscript means that we require $\varphi:\ZZ[G]\to N$ to be $\ZZ$-linear, meaning that\[\varphi(ng)=n\varphi(g)\]for $n\in\ZZ$ and $g\in\ZZ[G].$ However, this follows by, say, induction on the fact $\varphi$ is a group homomorphism already, so the $\ZZ$ is mostly redundant to point out that we are not trying to be $G$-linear.
+					</p>
+					<p>
+						Anyways, to turn $\op{Hom}_\ZZ(\ZZ[G],N)$ into a right (!) $G$-module, we first note that $\ZZ[G]$ is a $G$-module, where $g$ acts on $\sum_{h\in G}a_hh$ by taking it to $\sum_{h\in G}a_h(hg).$ Indeed, $\times g$ is a group homomorphism because\[\left(\sum_{h\in G}(a_h+b_h)h\right)g=\sum_{h\in G}(a_h+b_h)(hg)=\sum_{h\in G}a_h(hg)+\sum_{h\in G}b_h(hg).\]This action is $G$-compatible because\[\left(\sum_{h\in G}a_h\right)(gg')=\sum_{h\in G}a_hh(gg')=\left(\left(\sum_{h\in H}a_hh\right)g\right)g'.\]Now, given $\varphi:\ZZ[G]\to N$ and $g\in G,$ we define the action (note the multiplication on the right!)\[(g\varphi)(a):=\varphi(ag),\]which works because $\times g$ is a group homomorphism, and the composition of group homomorphisms is still a group homomorphism. The inversion here makes this $G$-compatible: $(gh)\varphi(a)=\varphi\left(a(gh)\right)=\varphi\left((ag)h\right)=g(h\varphi)(a).$ The simplicity of this (not requiring any inversion) is why we made $\ZZ[G]$ a right $G$-module, though of course it is also a left $G$-module.
+					</p>
+					<p>
+						Anyways, to finish showing that $\op{Hom}_\ZZ(\ZZ[G],N)$ is a $G$-module, we need to know the action is linear, but we can fix $\varphi,\varphi':\ZZ[G]\to N$ and $g\in G$ so that\[(g(\varphi+\varphi'))(r)=(\varphi+\varphi')(rg)=\varphi(rg)+\varphi'(rg)=(g\varphi+g\varphi')(r).\]So indeed, $\op{Hom}_\ZZ(\ZZ[G],N)$ is a $G$-module. Note that the proof of this only required knowing that $\ZZ[G]$ was a right $G$-module.
+					</p>
+					<p>
+						We divide the rest of the proof of the proposition into steps. The first part will focus on $M$ because we need to embed $M$ into $\op{Hom}_\ZZ(\ZZ[G],N).$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fixing everything as above, there is a injective $G$-module homomorphism $M\to\op{Hom}_\ZZ(\ZZ[G],N).$
+						</p>
+					</div>
+					<p>
+						We begin by describing our embedding $M\to\op{Hom}_\ZZ(\ZZ[G],N).$ Write $\iota_N:M\to N$ for the embedding of $M$ in $N,$ and then we send $m\in M$ to\[\varphi_m\left(\sum_{g\in G}a_gg\right):=\sum_{g\in G}a_g\cdot\iota_N(gm),\]where the final sum is evaluate in $N.$ Of note $gm$ is the group action of $G$ on $M.$ This $\varphi_m$ is a group homorphism because\[\varphi_m\left(\sum_{g\in G}(a_g+b_g)g\right)=\sum_{g\in G}(a_g+b_g)\cdot\iota_N(gm)=\sum_{g\in G}a_g\cdot\iota_N(gm)+\sum_{g\in G}b_g\cdot\iota_N(gm),\]which collapses back into $\varphi_m\left(\sum_{g\in G}a_gg\right)+\varphi_m\left(\sum_{g\in G}b_gg\right).$
+					</p>
+					<p>
+						We have left to show that the map $m\mapsto\varphi_m$ is an injective $G$-module homomorphism. It is a group homomorphism because\[\varphi_{m+n}\left(\sum_{g\in G}a_gg\right)=\sum_{g\in G}a_g\cdot\iota_N(g(m+n))=\sum_{g\in G}a_g\cdot\iota_N(gm)+\sum_{g\in G}a_g\cdot\iota_N(gn)\]by using the fact $G$ is an action and $\iota_N$ a group homomorphism. This collapses to $\varphi_m+\varphi_n,$ so we are safe. To finish showing that the embedding is a $G$-module homomorphism, we have to show that it preserves the group action, which means we need $\varphi_{gm}=g\varphi_m,$ for which we note\[(g\varphi_m)\left(\sum_{h\in G}a_hh\right)=\sum_{h\in G}a_h\iota_N((hg)m)=\varphi_{gm}\left(\sum_{h\in G}a_hh\right).\]So we have established that our map $M\to\op{Hom}_\ZZ(\ZZ[G],N)$ is a $G$-module homomorphism. Our final promise is that it is an embedding, but note\[\varphi_m(1e)=1\iota_N(em)=\iota_N(m),\]so the input $1e$ detects $m.$ Explicitly, if $\varphi_m=\varphi_n,$ then plugging in $1e$ means $\iota_N(m)=\iota_N(n),$ from which $m=n$ follows because $\iota_N$ is an embedding. $\blacksquare$
+					</p>
+					<p>
+						At this point we can throw out the $G$-module $M.$ Indeed, the second part of the proof will be showing that $\op{Hom}_\ZZ(\ZZ[G],N)$ is an injective $G$-module.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fixing everything as above, we have that $\op{Hom}_\ZZ(\ZZ[G],N)$ is an injective $G$-module.
+						</p>
+					</div>
+					<p>
+						The main idea in the proof is currying. Indeed, fix $G$-modules $A\subseteq B$ with a map $\varphi_A:A\to\op{Hom}_\ZZ(\ZZ[G],N)$ so that we need to extend $\varphi_A$ out to $\varphi_B:B\to\op{Hom}_\ZZ(\ZZ[G],N).$ Because $N$ is divisible, we know group homomorphisms into $N$ can be extended, so we try to message such a group homomorphism.
+					</p>
+					<p>
+						If we ignore all the structure present, then the way to turn a map of the form $A\to\op{Hom}_\ZZ(\ZZ[G],N)$ into a map into $N$ is to think about this like $A\to(\ZZ[G]\to N)$ and then un-curry into $A\times\ZZ[G]\to N.$ However, this will not let us preserve our group structure, for\[\begin{cases}    \varphi_A(a_1+a_2)(r_1)=\varphi_A(a_1)(r_1)+\varphi_A(a_2)(r_1), \\    \varphi_A(a_1)(r_1+r_2)=\varphi_A(a_1)(r_1)+\varphi_A(a_1)(r_2),\end{cases}\]for any $a_1,a_2\in A$ and $r_1,r_2\in\ZZ[G].$ The point is that our map $A\times\ZZ[G]\to N$ needs to be linear in both arguments.
+					</p>
+					<p>
+						To keep track of this algebraic structure, the key observation is to push it into the domain! Namely, we need the tensor product. Simply being linear in both arguments gives $A\otimes_\ZZ\ZZ[G],$ but we note that we also have\[\varphi_A(ga)(r)=(g\varphi_A(a))(r)=\varphi_A(a)(rg)\]by definition of the action on $\op{Hom}_\ZZ(\ZZ[G],N),$ so we also want linearity in $G.$
+					</p>
+					<p>
+						Thus, we define the following object. Define $A\otimes_G\ZZ[G]$ as\[A\otimes_G\ZZ[G]=(A\times\ZZ[G])/\sim,\]which is the group generated $\ZZ$-linearly by pairs in $A\times\ZZ[G]$ modulo $\sim$ defined to give all of the following relations: given $a,a_1,a_2\in A$ and $r,r_1,r_2\in\ZZ[G]$ with $g\in G,$
+					</p>
+					<ol>
+						<li>
+							<p>
+								$(a,r_1+r_2)\sim(a,r_1)+(a,r_2),$
+							</p>
+						</li>
+						<li>
+							<p>
+								$(a_1+a_2,r)\sim(a_1,r)+(a_2,r),$
+							</p>
+						</li>
+						<li>
+							<p>
+								$(ga,r)\sim(a,rg).$
+							</p>
+						</li>
+					</ol>
+					<p>
+						We will denote the equivalence classes of the pair $(a,r)$ under $\sim$ by $a\otimes r$ for $a\in A$ and $r\in\ZZ[G].$ The definition we gave technically defines this group as elements of the form\[\sum_{a\in A,r\in\ZZ[G]}k_{a,r}(a\otimes r)\]where all but finitely many of the $k_{a,r}$ are zero. Defining addition pointwise on the coordinates $a\otimes r,$ we need to check that the addition is well-defined and that it creates a group.
+					</p>
+					<p>
+						Checking that this forms a group is done in the same way as checking $\ZZ[G]$ is a group. Checking that addition is well-defined is annoying, but we will say that if two $\sum_{a,r}k_{a,r}(a\otimes r)$ and $\sum_{a,r}k_{a,r}'(a\otimes r)$ are equal, then there is a finite sequence of steps (a), (b), and (c) proving their equality. So if $\sum_{a,r}\ell_{a,r}(a\otimes r)=\sum_{a,r}\ell_{a,r}'(a\otimes r)$ are also equal by some sequence of steps,\[\sum_{a,r}(k_{a,r}+\ell_{a,r})(a\otimes r)=\sum_{a,r}(k_{a,r}'+\ell_{a,r}')(a\otimes r)\]can be established by doing the sequence for $\sum k=\sum k'$ and $\sum\ell=\sum\ell'$ one after the other. We won't dwell on this point.
+					</p>
+					<p>
+						Anyways, with this construction in hand, we have the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a finite group and $A$ a $G$-module with $N$ an arbitrary abelian group. A $G$-module homomorphism $\varphi_A:A\to\op{Hom}_\ZZ(\ZZ[G],N)$ contains the same data as a group homomorphism $\psi_A:A\otimes_G\ZZ[G]\to N.$ Namely, having one induces the other.
+						</p>
+					</div>
+					<p>
+						For the forwards direction, suppose we have a $G$-module homomorphism $\varphi_A:A\to\op{Hom}_\ZZ(\ZZ[G],N)$ and want to induce a group homomorphism $\psi_A:A\otimes_G\ZZ[G]\to N.$ We claim that extending\[\psi_A(a\otimes r):=\varphi_A(a)(r)\]linearly will work. Most of our time is going to be spent showing that this is a well-defined map. It suffices to show that this definition $\psi_A$ respects the equivalence relation $\sim.$ (If two elements in $A\otimes_G\ZZ[G]$ are equal with $\sim,$ then there should be a finite number of moves of the type given above showing the equality. So respecting the individual moves is enough by, say, induction.) Fix $a,a_1,a_2\in A$ and $r,r_1,r_2\in\ZZ[G]$ with $g\in G,$
+					</p>
+					<ol>
+						<li>
+							<p>
+								Note $\varphi_A(a)(r_1+r_2)=\varphi_A(a)(r_1)+\varphi_A(a)(r_2)$ because $\varphi_A(a)$ is a group homomorphism. This gives $\psi_A(a\otimes(r_1+r_2))=\psi_A(a\otimes r_2)+\psi_A(a\otimes r_2).$
+							</p>
+						</li>
+						<li>
+							<p>
+								Note $\varphi_A(a_1+a_2)(r)=\varphi_A(a_1)(r)+\varphi_A(a_2)(r)$ because $\varphi_A$ is itself a group homomorphism. This gives $\psi_A((a_1+a_2)\otimes r)=\psi_A(a_1\otimes r)+\psi_A(a_2\otimes r).$
+							</p>
+						</li>
+						<li>
+							<p>
+								Note $\varphi_A(ga)(r)=\big(g\varphi_A(a)\big)(r)=\varphi_A(a)(rg)$ because $\varphi_A$ is a $G$-module homomorphism. This gives $\psi_A(ga\otimes r)=\psi_A(a\otimes rg).$
+							</p>
+						</li>
+					</ol>
+					<p>
+						Having shown all the individual components of $\sim,$ we can be comforted that $\psi_A$ is well-defined. It remains to show that $\psi_A$ is a group homomorphism. Well, we defined $\psi_A$ to extend linearly, which gives this for free. (I am growing tired of being rigorous.) This finishes this direction.
+					</p>
+					<p>
+						For the backwards direction, suppose we have a $\psi_A:A\otimes_G\ZZ[G]\to N$ and want to induce $\varphi_A:A\to\op{Hom}_\ZZ(\ZZ[G],N).$ Then we simply set\[\varphi_A(a)(r):=\psi_A(a\otimes r).\]This time around this is a perfectly good function. We might be afraid of collisions, but at least this function is surely well-defined. To start, this $\varphi_A$ does indeed give homomorphisms $\op{Hom}_\ZZ(\ZZ[G],N)$ because, fixing $a\in A$ and picking up $r_1,r_2\in\ZZ[G],$ we see\[\varphi_A(a)(r_1+r_2)=\psi_A(a\otimes(r_1+r_2))=\psi_A(a\otimes r_1+a\otimes r_2)=\psi_A(a\otimes r_1)+\psi_A(a\otimes r_2),\]which is indeed $\varphi_A(a)(r_1)+\varphi(a)(r_2).$ Secondly, $\varphi_A$ is itself a group homomorphism because, picking up $a_1,a_2\in A$ and arbitrary $r\in\ZZ[G],$\[\varphi_A(a_1+a_2)(r)=\psi_A((a_1+a_2)\otimes r)=\psi_A(a_1\otimes r+a_2\otimes r)=\psi_A(a_1\otimes r)+\psi_A(a_2\otimes r),\]which again correctly comes out to $\varphi_A(a_1)(r)+\varphi(a_2)(r).$ Lastly, $\varphi_A$ is a $G$-module homomorphism because, fixing $a\in A,$ $r\in\ZZ[G]$ and now $g\in G,$ we have\[\big(g\varphi_A(a)\big)(r)=\varphi_A(a)(rg)=\psi_A(a\otimes rg)=\psi_A(ga\otimes r)=\varphi_A(ga)(r).\]This finishes this direction and so the proof of the lemma. $\blacksquare$
+					</p>
+					<p>
+						With the above lemma in hand, we can quickly get the result. Note that the give $\varphi_A$ induces a group homomorphism $\psi_A:A\otimes_G\ZZ[G]\to N.$ Now, the divisibility of $N$ (we finally use the divisibility!) implies that we can pull this $\psi_A$ back to a $\psi_B:B\otimes_G\ZZ[G]$ because\[A\otimes_G\ZZ[G]\subseteq B\otimes_G\ZZ[G].\](There are literally more pairs in the second.) But then the $\psi_B$ induces a homomorphism of $G$-modules $\varphi_B:B\to\op{Hom}(\ZZ[G],N).$ This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						As some final commentary, I am amused by the trick of encoding algebraic information about maps into the structures themselves. From the outset, it is quite reasonable to expect that $G$-module homomorphisms $A\to\op{Hom}_\ZZ(\ZZ[G],N)$ to be harder to talk about than group homomorphisms, but if we make the groups sufficient complicated, it turns out to be the same data!
+					</p>
+					<p>
+						Anyways, we remark that we have somewhat explicitly given a way to get an injective resolution, with the exception of the use of the Zorn's lemma to retrieve the injectivity maps for a divisible abelian group. Regardless, we do know that we can embed an arbitrary $G$-module $M$ into\[M\hookrightarrow\op{Hom}_\ZZ(\ZZ[G],\QQ[M]).\]Now we can write the injective resolution from yesterday as having $I^{-2}=0$ and $I^{-1}=M$ as base cases and then\[I^{k+2}=\op{Hom}_\ZZ\left(\ZZ[G],\QQ[I^{k+1}/\del^k(I^k)]\right),\]where $\del^{-2}:0\to M$ and the rest are defined recursively by the composition of\[I^{k+1}\to I^{k+1}/\del^k\left(I^k\right)\hookrightarrow I^{k+2}.\]Granted, this construction isn't pretty, but it is still a construction, and we can be guaranteed that it always works.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

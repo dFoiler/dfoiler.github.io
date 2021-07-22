@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to July)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						July 1st
+					</h2>
+					<p>
+						Today I learned that the Zeckendorf decomposition actually defines the Fibonacci sequence. To set out indexing properly, we fix our definition of the Fibonacci numbers.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							The Fibonacci numbers $\{F_k\}_{k=0}^\infty$ are defined with $F_0=1,$ $F_1=2,$ and
+						</p>
+					</div>
+					<p>
+						This choice of indexing assures that all terms are indices are positive integers, and the sequence is strictly increasing. Anyways, the following is the Zeckendorf decomposition.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Every nonnegative integer $n$ can be written in exactly one way as the sum of distinct, non-consecutive Fibonacci numbers.
+						</p>
+					</div>
+					<p>
+						We proved this a while ago. The idea behind existence is that the greedy algorithm (take the largest Fiboancci number less or equal to $n$) works. The idea behind uniqueness is that for any set of indices $S$ and $T$ with\[\sum_{k\in S}F_k=\sum_{\ell\in T}F_\ell\]must share their largest element because of some bounding; this lets us inductively show $S=T.$ $\blacksquare$
+					</p>
+					<p>
+						For the sake of analogy, we also have the following similar for powers of $2.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Every nonnegative integer $n$ can be written in exactly one way as the sum of distinct powers of $2.$
+						</p>
+					</div>
+					<p>
+						This is, of course, the binary expansion of $2.$ We take this in two parts.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Every nonnegative integer $n$ can be written in at least one way as the sum of distinct powers of $2.$
+						</p>
+					</div>
+					<p>
+						Like Zeckendorf, we can prove existence by the greedy algorithm. Formally, we do this by strong induction. Our base case is $n=0,$ where no powers of $2$ is one such representation.
+					</p>
+					<p>
+						Now suppose that all positive integers less than $n \gt 0$ have a binary expansion into distinct powers of $2.$ Because $n\ge1=2^0$ and powers of $2$ grow arbitrarily large, we can find an index $K$ such that\[2^K\le n \lt 2^{K+1}.\](Formally, $K=\floor{\log_2n}.$) Then we use the inductive hypothesis on $n-2^K$ to get a set $S$ so that\[n-2^K=\sum_{k\in S}2^k\implies n=2^K+\sum_{k\in S}2^k.\]All terms on the right-hand side are powers of $2,$ so it remains to show that they are all distinct. Well, all elements in $S$ are distinct from each other by hypothesis, so it suffices to show that $K$ is distinct from all elements in $S.$ Well, for any $k\in S,$\[2^k\le n-2^K \lt 2^{K+1}-2^K=2^K\]by just stringing our inequalities together. Thus, $K$ is larger than any element in $S,$ implying distinctness. $\blacksquare$
+					</p>
+					<p>
+						It remains to show uniqueness now. This means that, if $S$ and $T$ are both sets of indices which give decompositions of $n,$ then we must have $S=T.$ In other words, we need\[\sum_{k\in S}2^k=\sum_{\ell\in T}2^\ell\]to imply $S=T.$ For this, we have the following lemma which imitates the Zeckendorf case.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Let $N$ be the largest index in either $S$ or $T.$ Then $N$ must appear in both $S$ and $T.$
+						</p>
+					</div>
+					<p>
+						This comes down to bounding; in some sense, $2^N$ is simply "too large'' for either $S$ or $T$ to avoid it. Without loss of generality, we'll place $N$ in $S.$ If $N$ is already in $T,$ then we're done. Otherwise, suppose for the sake of contradiction that $N$ isn't in $T.$
+					</p>
+					<p>
+						Now we bound. Note $T$ is the largest of all indices, so all indices in $T$ are smaller than $N.$ In other words,\[T\subseteq\{0,2,\ldots,N-1\}.\]But then\[\sum_{\ell\in T}2^\ell\le\sum_{\ell=0}^{N-1}2^\ell.\]Using the geometric sequence sum formula, this is $2^N-1.$ However, $N$ lives in $S,$ so\[\sum_{k\in S}2^K\ge 2^N \gt 2^N-1\ge\sum_{\ell\in T}2^\ell.\]This violates the assumption that $S$ and $T$ are both decompositions of the same positive integer! So we have our contradiction. $\blacksquare$
+					</p>
+					<p>
+						We can now show by induction $\#S$ that we must have $S=T.$ If $\#S=0,$ then we have a sum of $0,$ meaning that $T=\emp$ as well for any elements means positive. Otherwise, suppose the statement is true for $\#S=k,$ and we show $\#S=k+1.$
+					</p>
+					<p>
+						Well, pick up $S$ and $T$ representing the same positive integer where $\#S=k+1.$ Because $k\ge0,$ there is some element of $S,$ meaning that there is a largest element $N$ among $S$ and $T,$ which by lemma lives in both $S$ and $T.$ This means\[\sum_{k\in S\setminus\{N\}}2^k=-2^N+\sum_{k\in S}2^k=-2^N+\sum_{\ell\in T}2^\ell=\sum_{\ell\in T\setminus\{N\}}2^\ell.\]Now, $S\setminus\{N\}$ has size $k$ now, so $S\setminus\{N\}=T\setminus\{N\}.$ Adding $N$ back in, we see $S=T.$ This completes the proof of uniqueness and therefore of the the proposition. $\blacksquare$
+					</p>
+					<p>
+						The idea here is that powers of $2$ are more or less like playing with the Zeckendorf decomposition "on easy mode,'' and it's not unreasonable to hope that statements of this flavor which are true for powers of $2$ can be proven in at least a similar way as for Zeckendorf. With that mind, we show the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The first $n$ powers of $2$ can represent exactly the first $2^n$ nonnegative integers.
+						</p>
+					</div>
+					<p>
+						This lemma is essentially saying that there are no "holes'' in the binary expansion. We can show this quickly after having existence and uniqueness of binary expansions. Namely, any subset $S$ containing only indices for the first $n$ powers of $2$ has $S\subseteq\{0,\ldots,n-1\},$ so\[\sum_{k\in S}2^k\le\sum_{k=0}^{n-1}2^k=2^n-1\]because of the geometric sequence sum formula. Thus, binary expansion provides a map\[S\subseteq\{0,\ldots,n-1\}\longmapsto\sum_{k\in S}2^k\in\left[0,2^n-1\right].\]Because of uniqueness of representation, this mapping is injective. However, both sides have size $2^n$&mdash;the left-hand side is the power set of $\{0,\ldots,n-1\}$ after all&mdash;so this mapping must in fact be bijective. The surjective property is the desired statement. $\blacksquare$
+					</p>
+					<p>
+						The above statement might feel reasonably clear just from looking in binary, but having a formal proof means that we can hope to move it over to the Zeckendorf decomposition as well.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The first $n$ Fibonacci numbers can represent exactly the first $F_n$ nonnegative integers by Zeckendorf decomposition.
+						</p>
+					</div>
+					<p>
+						We proceed the same way as before but with a bit more care. To start, the largest integer we can represent by Zeckendorf decomposition is\[F_{n-1}+F_{n-3}+F_{n-5}+\cdots.\]Indeed, if $S\subseteq\{0,\ldots,n-1\}$ has nonconsecutive terms, then the $k$th largest element of $S$ is no more than $n+1-2k,$ which we can show inductively. (Note $k=1$ is free; then the $k+1$st largest number is at least two less than the $k$th largest.) This gives the above sum.
+					</p>
+					<p>
+						However, we can actually evaluate this, again inductively. We claim that\[F_n-1\stackrel?=F_{n-1}+F_{n-3}+F_{n-5}+\cdots=\sum_{k=0}^{\floor{(n-1)/2}}F_{n-1-2k}.\]When $n=0,$ this reads $F_1-1=1-1=0.$ When $n=1,$ this reads $F_2-1=2-1=1=F_1.$ Then for our inductive step, we suppose $n$ and prove $n+2.$ Indeed,\[F_{n+2}-1=F_{n+1}+(F_n-1)=F_{n+1}+\sum_{k=0}^{\floor{(n-1)/2}}F_{n-1-2k}=\sum_{k=0}^{\floor{(n+1)/2}}F_{n+1-2k}\]after shifting indices $k\mapsto k+1.$ This completes the inductive step here.
+					</p>
+					<p>
+						Thus, we have a map\[S\subseteq\{0,\ldots,n-1\}\longmapsto\sum_{k\in S}F_k\in[0,F_n-1].\]Note the domain here is over subsets $S$ with nonconsecutive terms. We know that this mapping is injective, so to show that it is surjective, it suffices to show that the cardinalities of the sets on either side are equal.
+					</p>
+					<p>
+						Well, the right-hand side is the first $F_n$ nonnegative integers, so we need to show there are $F_n$ subsets of $\{0,\ldots,n-1\}$ with nonconsecutive terms. Well, let $F'_n$ be this number of subsets. We do this by induction. Note that $F'_0=1$ (only the empty set) and $F'_1=2$ ($\{0\}$ and $\emp$).
+					</p>
+					<p>
+						Then for the inductive step, we fix $n\ge2$ and note that a subset of $\{0,\ldots,n-1\}$ containing nonconsecutive terms either contains $n-1$ or does not. If it contains $n-1,$ then it remains to choose a subset of $\{0,\ldots,n-3\}$ with nonconsecutive terms. If it doesn't contain $n-1,$ then it remains to choose a subset of $\{0,\ldots,n-2\}$ with nonconsecutive terms. Thus,\[F'_n=F'_{n-1}+F'_{n-2}.\]Thus, $F'_\bullet$ satisfies the Fibonacci initial conditions and recurrence, so we must have $F'_\bullet=F_\bullet.$ This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						That Fibonacci bounding and dealing with nonconsecutive terms is exactly what makes the Zeckendorf decomposition "hard mode'' here, but the overall outline is still intact. Anyways, our lemma quickly gives us the following: the unique decomposition property implies power of two.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Suppose $\{a_k\}_{k=0}^\infty$ is an increasing sequence of positive integers for which every nonnegative integer $n$ has a unique subset $S\subseteq\NN$ such that    \[\sum_{k\in S}a_k=n.\]    Then $a_k=2^k$ for each $k\in\NN.$
+						</p>
+					</div>
+					<p>
+						We do this by induction. Note that $n=0$ has $S=\emp,$ but $n=1$ needs to have some nonempty subset $S_1.$ This means that\[a_0\le\sum_{k\in S_1}a_k=1.\]Because $a_0$ is a positive integer, we know $a_0\ge1,$ so we conclude $a_0=1=2^0.$ This is our base case.
+					</p>
+					<p>
+						Now assume that each $k \lt n$ has $a_k=2^k.$ We show that $a_n=2^n$ for our inductive step. Well by lemma, the first $n$ terms $a_0,\ldots,a_{n-1}$ (which are powers of $2$) represent exactly the first $2^n$ nonnegative integers. We will get what we want by asking how to represent $2^n.$ Let $S$ represent $2^n.$
+					</p>
+					<p>
+						Note that $S$ cannot be a subset of $\{0,\ldots,n-1\},$ for subsets of these indices represent the nonnegative integers less than $2^n.$ So, letting $m\in S$ have $m\ge n,$ we see that\[a_n\le a_m\le\sum_{k\in S}a_k=2^n.\]On the other hand, every nonnegative integer less than $2^n$ already has a representation by indices $\{0,\ldots,n-1\},$ so we must have $a_n\ge2^n$ due to uniqueness&mdash;otherwise "$a_n$'' is a valid decomposition. It follows that $a_n=2^n.$ This competes the proof. $\blacksquare$
+					</p>
+					<p>
+						Of course, we wouldn't have given this proof if it did not also carry over to the Zeckendorf case.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Suppose $\{a_k\}_{k=0}^\infty$ is an increasing sequence of positive integers for which every nonnegative integer $n$ has a unique subset $S\subseteq\NN$ with nonconsecutive terms such that    \[\sum_{k\in S}a_k=n.\]    Then $a_k=F_k$ for each $k\in\NN.$
+						</p>
+					</div>
+					<p>
+						Again, we induct. As before, $n=0$ has $S=\emp,$ but $n=1$ needs to be represented by a nonempty subset $S_1.$ Then\[a_0\le\sum_{k\in S}a_k=1.\]Because $a_0$ needs to be positive, we conclude $a_0=1=F_0.$
+					</p>
+					<p>
+						Now we assume that each $k \lt n$ has $a_k=F_k$ and will show $a_n=F_n.$ Our lemma this time says that the first $n$ terms $a_0,\ldots,a_{n-1}$ represent exactly the nonnegative integers less than $F_n,$ so we ask how to represent $F_n.$ Let $S$ be the indices for $F_n.$
+					</p>
+					<p>
+						As before, we can lower-bound $a_n$ by $F_n$ because all positive integers less than $F_n$ all have Zeckendorf decompositions: having $a_n \lt F_n$ would give $a_n$ two decompositions as the one we had before as well as "$a_n$.'' To upper-bound, we note $S$ representing $F_n$ needs an index at least $n$ because\[S\subseteq\{0,\ldots,n-1\}\implies\sum_{k\in S}F_k \lt F_n.\]Thus,\[a_n\le a_m\le\sum_{k\in S}a_k=F_n.\]Combining inequalities, we conclude $a_n=F_n,$ which completes the induction and so the theorem. $\blacksquare$
+					</p>
+					<p>
+						This is sufficiently cute, so we call it here. As some end commentary, my entries here are about to becomes much shorter because PROMYS is starting up, and this is no longer my full-time project.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

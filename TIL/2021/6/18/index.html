@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 18th
+					</h2>
+					<p>
+						Today I learned an algebraic proof of the Cayley-Hamilton theorem. Here is statement.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $R$ a commutative ring and $M=(m_{k,\ell})_{k,\ell=1}^n$ of a $n\times n$ matrix. Define the characteristic polynomial $p_M(x)\in R[x]$ by $x\mapsto\det(xI_n-M).$ Then plugging in $p_M(M)$ gives the $0$ matrix.
+						</p>
+					</div>
+					<p>
+						The main idea in this proof is to coerce $N$ to live on the same level as normal elements of $R.$ The way we do this is by bringing $N$ down to an endomorphism of $R^n$ and bringing elements of $R$ up to endomorphisms of $R,$ and when everything is an endomorphism, we can interact with them easier.
+					</p>
+					<p>
+						With this in mind, we note the following bijection does this translation for us.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $R$ a commutative ring and $n$ a positive integer. Endomorphisms $\mu:R^n\to R^n$ are in bijection with matrices $M=(m_{k,\ell})_{k,\ell=1}^n.$
+						</p>
+					</div>
+					<p>
+						We define the bijection by picking up a matrix $M=(m_{k,\ell})_{k,\ell=1}^n$ and defining $\varphi_M(v):=Mv$ for any vector $v\in R^n.$ To be explicit, this extends linearly to the mapping $\varphi:R^n\to R^n$ which looks like\[\varphi_M\left(\begin{bmatrix}r_1 \\ \vdots \\ r_n\end{bmatrix}\right):=\begin{bmatrix}    m_{1,1} & \cdots & m_{1,n} \\    \vdots & \ddots & \vdots \\    m_{n,1} & \cdots & m_{n,n}\end{bmatrix}\begin{bmatrix}r_1 \\ \vdots \\ r_n\end{bmatrix}=\begin{bmatrix}    m_{1,1}r_1 + \cdots + m_{1,n}r_n \\    \vdots \\    m_{n,1}r_1 + \cdots + m_{n,n}r_n\end{bmatrix}.\]For $a,b\in R$ and vectors $v,w\in R^n,$ we do have\[\varphi_M(av+bw)=M(av+bw)=M(av)+M(bw)=aMv+bMw=a\varphi_M(v)+b\varphi_M(w),\]so indeed, $\varphi_M\in\op{End}_R\left(R^n\right).$ This follows because of the linearity of the matrix $M,$ which we will not check explicitly here because it is the same proof verbatim as for vector spaces and merely amounts to writing out the arithmetic.
+					</p>
+					<p>
+						It remains to show that the correspondence $\varphi_\bullet$ is injective and surjective. For injectivity, fix $M=(m_{k,\ell})_{k,\ell=1}^n$ and $N=(n_{k,\ell})_{k,\ell=1}^n$ giving $\varphi_M=\varphi_N.$ Then, for any basis vector $e_\ell,$ we see\[\begin{bmatrix}m_{1,\ell} \\ \vdots \\ m_{n,\ell}\end{bmatrix}=Me_\ell=\varphi_M(e_\ell)=\varphi_N(e_\ell)=Ne_\ell=\begin{bmatrix}n_{1,\ell} \\ \vdots \\ n_{n,\ell}\end{bmatrix}.\]Thus, for any $k$ and $\ell,$ we see $m_{k,\ell}=n_{k,\ell}$ by checking the $k$th entry in the above computation. So we do have $M=N,$ establishing injectivity.
+					</p>
+					<p>
+						Lastly, we show surjectivity. Fix $\varphi:R^n\to R^n$ any $R$-linear endomorphism, and we define the entries $(m_{k,\ell})_{k,\ell=1}^n$ by\[\begin{bmatrix}m_{1,\ell} \\ \vdots \\ m_{n,\ell}\end{bmatrix}:=\varphi(e_\ell)\]for any basis vector $e_\ell.$ These entries do cover all cases $1\le k,\ell\le n,$ so they give us a matrix $M\in R^{n\times n}.$ It remains to show $\varphi(v)=Mv$ for all vectors $v$ so that $\varphi=\varphi_M.$ Well, any $v\in R^n$ can be written as\[v=\begin{bmatrix}r_1 \\ \vdots \\ r_n\end{bmatrix}=\sum_{\ell=1}^nr_\ell e_\ell.\]Thus, the $R$-linearity of $\varphi$ tells us\[\varphi(v)=\sum_{\ell=1}^nr_\ell\varphi(e_\ell),\]Now, $\varphi(e_\ell)=Me_\ell$ by our row construction, so we get to translate as\[\varphi(v)=\sum_{\ell=1}^nr_\ell Me_\ell=M\left(\sum_{\ell=1}^nr_\ell e_\ell\right)=Mv\]using the linearity of matrix-vector multiplication. This completes the verification that $\varphi_\bullet$ is surjective and thus the proof. $\blacksquare$
+					</p>
+					<p>
+						With the above correspondence in mind, we let $\varphi\in\op{End}_R\left(R^n\right)$ correspond to the matrix $M.$ As promised, next we want lift the elements of $R$ to endomorphisms. Well, we have the $R$-linear endomorphism $(r,v)\mapsto rv$ as just scalar-vector multiplication, and this will do.
+					</p>
+					<p>
+						To avoid abuse of notation, we let $r\in R$ be the element and $\mu_r$ be the endomorphism. We have the following general statement about $\mu_\bullet.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $R$ a commutative ring and $M$ an $R$-module. Then multiplication by $r\in R$ is an $R$-linear endomorphism, and the corresponding map $r\mapsto\mu_r$ is a homomorphism of commutative rings.
+						</p>
+					</div>
+					<p>
+						The idea is that this follows from the ring action of $R$ on $M.$ We begin by showing that $\mu_\bullet(R)$ is itself a commutative subring of $\op{End}_R(M).$ Here, addition is pointwise and multiplication is composition.
+					</p>
+					<p>
+						To start, we have to actually show $\mu_r\in\op{End}_R(M)$ for any $r\in R.$ Well, it suffices to pick up any $r_1,r_2\in R$ and $m_1,m_2\in M$ and note that\[\mu_r(r_1m_1+r_2m_2)=r(r_1m_1+r_2m_2)=rr_1m_1+rr_2m_2=r_1rm_1+r_2rm_2=r_1\mu_r(m_1)+r_2\mu_r(m_2)\]by repeatedly using properties of the ring action. Next we show closure of $\mu_\bullet(R)$ under $+$ and $\circ.$ For any two $\mu_r,\mu_s\in\mu_\bullet(R)$ and $m\in M,$ we note\[(\mu_r+\mu_s)(m)=\mu_r(m)+\mu_s(m)=rm+sm=(r+s)m=\mu_{r+s}(m),\]so we get closure under addition and a homomorphism of abelian groups both at once. Continuing,\[(\mu_r\circ\mu_s)(m)=\mu_r\big(\mu_s(m)\big)=\mu_r(sm)=r(sm)=(rs)m=\mu_{rs}(m),\]so we get closuder under $\circ$ and a homomorphism of rings. As for commutativity, we note\[(\mu_r\circ\mu_s)=(rs)m=(sr)m=(\mu_s\circ\mu_s)(m),\]which finishes showing that this is a commutative ring. Thus, we are done. $\blacksquare$
+					</p>
+					<p>
+						The point of doing that is to make the lemma less painful to prove.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix a commutative ring $R$ and $\varphi\in\op{End}_R\left(R^n\right).$ The ring $\mu_\bullet(R)[\varphi]$ is a commutative subring of $\op{End}\left(R^n\right).$
+						</p>
+					</div>
+					<p>
+						Addition is done pointwise as with morphisms as usual, and multiplication is composition. To show that this is a subring, we starting by noting that any element $\sum_{k=1}^m\mu_{r_k}\varphi^k$ is still an endomorphism because $\op{End}_R\left(R^n\right)$ is itself a ring.
+					</p>
+					<p>
+						To finish showing this is a subring, we have to show that $\mu_\bullet(R)[\varphi]$ is closed under these operations, and indeed, this is essentially a polynomial ring in $\varphi$ with coefficients in $\mu_\bullet.$ So the polynomial addition\[\sum_{k=1}^\infty\mu_{r_k}\varphi^k+\sum_{k=1}^\infty\mu_{s_k}\varphi^k=\sum_{k=1}^\infty\underbrace{(\mu_{r_k}+\mu_{s_k})}_{\in\mu_\bullet(R)}\varphi^k\]verifies closure under addition, where all but finitely many of the $\mu_{r_\bullet}$ and $\mu_{s_\bullet}$ are zero. For closure under multiplication, we do a similar computation to find\[\left(\sum_{k=1}^\infty\mu_{r_k}\varphi^k\right)\left(\sum_{\ell=1}^\infty\mu_{s_\ell}\varphi^\ell\right)=\sum_{m=1}^\infty\underbrace{\left(\sum_{k+\ell=m}\mu_{r_k}\mu_{s_\ell}\right)}_{\in\mu_\bullet(R)}\varphi^m\]verifies closure under multiplication, where all but finitely many of the $\mu_{r_\bullet}$ and $\mu_{s_\bullet}$ are zero.
+					</p>
+					<p>
+						Finally, the commutativity of multiplication comes from writing\[\sum_{m=1}^\infty\left(\sum_{k+\ell=m}\mu_{r_k}\mu_{s_\ell}\right)\varphi^m=\sum_{m=1}^\infty\left(\sum_{k+\ell=m}\mu_{s_\ell}\mu_{r_k}\right)\varphi^m,\]which holds because of the commutativity of multiplication in $R.$ Thus,\[\left(\sum_{k=1}^\infty\mu_{r_k}\varphi^k\right)\left(\sum_{\ell=1}^\infty\mu_{s_\ell}\varphi^\ell\right)=\left(\sum_{\ell=1}^\infty\mu_{s_\ell}\varphi^\ell\right)\left(\sum_{k=1}^\infty\mu_{r_k}\varphi^k\right).\]This completes the proof. $\blacksquare$
+					</p>
+					<p>
+						Our next goal will be to create an actual matrix which can interpret $p_M(M)$ more like a determinant, so we aim to create something like $M\cdot I_n-M.$ With our correspondence, we create $\varphi I_n-M.$ So we let $\Delta$ have coefficients\[(\Delta)_{k,\ell=1}^n=\varphi1_{k=\ell}-\mu_{m_{k,\ell}},\]where everything here is an element of $\op{End}_R\left(R^n\right).$ Namely, $1_{k=\ell}$ is the identity morphism when $k=\ell$ and the zero morphism otherwise so that $I_n:=(1_{k=\ell})_{k,\ell=1}^n\in\left(\mu_\bullet(R)[\varphi]\right)^{n\times n}.$ Similarly, we let $\mu_\bullet(M)\in\left(\mu_\bullet(R)[\varphi]\right)^{n\times n}$ by the matrix with entries $(\mu_{m_{k,\ell}})_{k,\ell=1}^n.$ So the above definition translate into\[\Delta=\varphi I_n-\mu_\bullet(M)\in\left(\mu_\bullet(R)[\varphi]\right)^{n\times n},\]which is close enough to what we want $M\cdot I_n-M.$
+					</p>
+					<p>
+						It remains to compute the determinant. The key translator is note we have a ring homomorphism $R[x]\to\mu_\bullet(R)[\varphi)$ defined by taking $r\mapsto\mu_r$ and $x\mapsto\varphi.$ Indeed, we already showed $R\to\mu_\bullet(R)$ is a ring homomorphism, so $R[x]\to\mu_\bullet(R)[x]$ is a ring homomorphism, and we get to $\mu_\bullet(R)[\varphi]$ by evaluating.
+					</p>
+					<p>
+						The reason this is helpful is because we can apply this homomorphism before or after applying $\det$ to the matrix $xI_n-M$ defining $p_M(x).$ Because we have a homomorphism of rings, and determinants only require a large number of additions and multiplications to evaluate, we will get the same answer out. More explicitly,\[\det\left(\begin{bmatrix}    x-m_{1,1} & -m_{1,2} & \cdots & -m_{1,n} \\    -m_{2,1} & x-m_{2,2} & \cdots & -m_{2,n} \\    \vdots & \vdots & \ddots & \vdots \\    -m_{n,1} & -m_{n,2} & \cdots & x-m_{n,n}\end{bmatrix}\right)\mapsto\det\left(\begin{bmatrix}    \varphi-\mu_{m_{1,1}} & -\mu_{m_{1,2}} & \cdots & -\mu_{m_{1,n}} \\    -\mu_{m_{2,1}} & \varphi-\mu_{m_{2,2}} & \cdots & -\mu_{m_{2,n}} \\    \vdots & \vdots & \ddots & \vdots \\    -\mu_{m_{n,1}} & -\mu_{m_{n,2}} & \cdots & \varphi-\mu_{m_{n,n}}\end{bmatrix}\right),\]and we see the right-hand side is $\det\Delta.$ The point is that $\mu_\bullet(p_M)(\varphi)=\det\Delta$ (here $\mu_\bullet(p_M)$ is an abuse of notation with $\mu_\bullet:x\mapsto x$), and it will suffice to show $\det\Delta=0\in\mu_\bullet(R)[\varphi].$ The punchline is the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix everything as above. Then $\det\Delta=0$ as an element of $\mu_\bullet(R)[\varphi]\subseteq\op{End}_R\left(R^n\right)$ if and only if $p_M(M)=0$ as an $n\times n$ matrix.
+						</p>
+					</div>
+					<p>
+						Working backwards a bit, we note that $p_M(M)$ is the $0$ matrix if and only if $p_M(M)$ evaluates to $0$ on every vector, for this would correspond to the zero endomorphism, and the bijection between matrices and endomorphisms would force $p_M(M)=0.$
+					</p>
+					<p>
+						Anyways, suppose we can write out the characteristic polynomial as\[p_M(x)=\sum_{k=0}^na_kx^k\]Then plugging in $M$ gives\[p_M(M)=\sum_{k=0}^na_kM^k.\]Plugging in an arbitrary vector $v,$ we use the fact $\varphi(v)=Mv$ to note\[p_M(M)(v)=\left(\sum_{k=0}^na_kM^k\right)v=\sum_{k=0}^n\left(a_kM^k\right)(v)=\sum_{k=0}^n\left(\mu_{a_k}\varphi^k\right)v\]by making everything into an endomorphism. The point is that the right-hand side is $p_M(x)$ under the homomorphism $R[x]\to\mu_\bullet(R)[\varphi]$ discussed above, which we called $\mu_\bullet(p_M)(\varphi)$ by abuse of notation.
+					</p>
+					<p>
+						Continuing, the corresponding movement of matrices $xI_n-M\mapsto\varphi I_n-\mu_\bullet(M)=\Delta$ we found in the discussion gave $\mu_\bullet(p_M)(\varphi)=\det\Delta.$ So $p_M(M)(v)=0$ for arbitrary vectors $v$ if and only if $(\det\Delta)(v)=0$ for arbitrary vectors $v,$ which is equivalent to $\det\Delta$ being the $0$ endomorphism. $\blacksquare$
+					</p>
+					<p>
+						It remains to compute $\det\Delta.$ We start by picking up some evidence that this should be $0.$ Well, pick up any basis vector $e_\ell\in R^n,$ and we see\[\varphi e_\ell=Me_\ell=\begin{bmatrix}m_{1,\ell} \\ \vdots \\ m_{n,\ell}\end{bmatrix}=\sum_{k=1}^nm_{k,\ell}e_k.\]Attempting to move everything to one side, we write $m_{k,\ell}e_k=\mu_{m_{k,\ell}}e_k$ and $\varphi e_\ell=\sum_{k=1}^n\varphi1_{k=\ell}e_k$ so that this rearranges to\[\sum_{k=1}^n(\varphi1_{k=\ell}-\mu_{m_{k,\ell}})e_k=0.\]The inner entry is $\Delta_{k,\ell},$ so our evidence that $\det\Delta=0$ will really be\[\sum_{k=1}^n\Delta_{k,\ell}e_k=0\]for any $\ell.$ Of course, it's not yet obvious how to convert this, but this is really the only relation we have, so we hope that it is enough. To finish the conversion, we introduce the adjugate matrix.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $R$ a commutative ring and $M\in R^{n\times n}$ a matrix. We define the adjugate matrix $\op{adj}M$ as the transpose of the cofactor matrix. To be explicit,    \[\op{adj}M:=\begin{bmatrix}        (-1)^{1+1}\overline M_{1,1} & \cdots & (-1)^{1+n}\overline M_{1,n} \\        \vdots & \ddots & \vdots \\        (-1)^{n+1}\overline M_{n,1} & \cdots & (-1)^{n+n}\overline M_{n,n}    \end{bmatrix}^\intercal,\]    where $\overline M_{k,\ell}$ is the determinant of the matrix $M$ with the $k$th row and $\ell$th column removed.
+						</p>
+					</div>
+					<p>
+						The reason we care about the adjugate matrix is the following property.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $R$ a commutatieve ring and $M=(m_{k,\ell})_{k,\ell=1}^n\in R^{n\times n}$ a matrix. Then we have    \[M\cdot(\op{adj}M)=\det M\cdot I_n.\]
+						</p>
+					</div>
+					<p>
+						This more or less reduces to computing the determinant by expansion by minors. Fixing indices $j$ and $\ell,$ we see that\[(M\cdot\op{adj}M)_{j,\ell}=\sum_{k=1}^nm_{j,k}(\op{adj}M)_{k,\ell}=\sum_{k=1}^n(-1)^{k+\ell}m_{j,k}\cdot\overline M_{\ell,k}.\]Note $(\op{adj}M)_{\ell,k}$ became $(-1)^{\ell+k}\overline M_{\ell,k}$ because $\op{adj}M$ is the transpose of the cofactor matrix. Anyways, this sum is exactly computing the determinant of\[\begin{bmatrix}    m_{1,1} & m_{1,2} & \cdots & m_{1,n} \\    \vdots & \vdots & \ddots & \vdots \\    m_{\ell-1,1} & m_{\ell-1,2} & \cdots & m_{\ell-1,n} \\    m_{j,1} & m_{j,2} & \cdots & m_{j,n} \\    m_{\ell+1,1} & m_{\ell+1,2} & \cdots & m_{\ell+1,n} \\    \vdots & \vdots & \ddots & \vdots \\    m_{n,1} & m_{n,2} & \cdots & m_{n,n}\end{bmatrix}\]by expanding along the $\ell$th row, a rule which works in arbitrary commutative rings roughly because it is a purely symbolic fact. Formally, we cold define this matrix with indices and whatnot, but we aren't going to be rigorous about the expansion by minors either, so we won't bother.
+					</p>
+					<p>
+						If $j\ne\ell,$ then two rows are equal, so the entire determinant vanishes; this is also true in arbitrary commutative rings again roughly because it is a purely symbolic fact. When $j=k,$ this is the matrix $M$ exactly, so we get $\det M.$ Thus,\[(M\cdot\op{adj}M)_{j,\ell}=\det M\cdot1_{j=\ell}.\]Removing the indices, this gives $M\cdot\op{adj}M=\det M\cdot I_n,$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						From here, converting our evidence to proof that $\det\Delta=0$ is not terribly hard. Observing that our evidence already almost looks the start of a matrix multiplication, we fix an index $j$ and sum over $\ell$ so that\[0=\sum_{\ell=1}^n\left((\op{adj}\Delta)_{\ell,j}\sum_{k=1}^n\Delta_{k,\ell}e_k\right)=\sum_{k=1}^n\left(\sum_{\ell=1}^n\Delta_{k,\ell}(\op{adj}\Delta)_{\ell,j}\right)e_k.\]Now the inner sum is $(\Delta\cdot\op{adj}\Delta)_{k,j}=\det\Delta1_{k=j}$ from the above proposition. Thus, summing over $k,$ all terms vanish except for $(\det\Delta)e_j=0.$ Because $j$ was arbitrary, we see that $\det\Delta$ vanishes on all basis vectors.
+					</p>
+					<p>
+						To turn this into having $\det\Delta$ vanishing on all vectors, fix any vector $v=(v_1,\ldots,v_n)=\sum_{k=1}^nv_ke_k\in R^n$ so that\[(\det\Delta)v=(\det\Delta)\left(\sum_{k=1}^nv_ke_k\right)=\sum_{k=1}^nv_k(\det\Delta)(e_k)=0,\]so indeed, $\det\Delta$ is the zero endomorphism. As promised, this completes the proof. $\blacksquare$
+					</p>
+					<p>
+						As a final remark, I do know another proof of the Cayley-Hamilton theorem by arguing in $\CC$ and then moving into arbitrary commutative rings, but I like this proof due to its directness and almost blatantness. It is not correct to directly evaluate $p_M(M)$ by writing $\det(MI_n-M)$ because we need to evaluate $MI_n$ as a matrix with matrix coefficients. Thus, the object we really need is a matrix with endomorphism entries, and the rest is conversion.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

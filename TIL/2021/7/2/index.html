@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to July)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						July 2nd
+					</h2>
+					<p>
+						Today I learned that integrals with $\pi(x)$ can actually have closed forms, from
+						<a href="https://math.stackexchange.com/a/2270227/869257">
+							here
+						</a>
+						. Namely, I'm used to being forced to using $\pi(x)\sim\frac x{\log x}$ or Abel summation to get reasonable bounds. Here is the integral of interest.\[I:=\int_0^\infty\frac{\pi(x)}{x\left(x^s-1\right)}\,dx=\int_2^\infty\frac{\pi(x)}{x\left(x^s-1\right)}\,dx.\]Very quickly, showing that this converges is not difficult.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The integral $I$ converges for $\op{Re}(s) \gt 1.$
+						</p>
+					</div>
+					<p>
+						We bound stupidly. Note $\pi(x)\le x$ gives\[|I|\le\left|\int_2^\infty\frac x{x\left(x^s-1\right)}\,dx\right|=\left|\int_2^\infty\frac1{x^s-1}\,dx\right|.\]Using the triangle inequality, $\left|x^s-1\right|\le\left|x^s\right|-1,$ so we can bound\[|I|\le\int_2^\infty\frac1{x^{\op{Re}(s)}-1}\,dx,\]where $\left|x^s\right|=x^{\op{Re}(s)}$ for real $x \gt 0.$ To bound this cleanly, we note that $\op{Re}s \gt 1$ gives $x^{\op{Re}s}\ge2^{\op{Re}s} \gt 2$ over this interval, so\[\frac1{x^{\op{Re}s}-1}\le\frac2{x^{\op{Re}s}}\]after some rearranging. Thus,\[|I|\le\int_2^\infty\frac2{x^{\op{Re}s}}\,dx=\frac{2x^{1-\op{Re}s}}{1-\op{Re}s}\bigg|_2^\infty=\frac{2\cdot2^{1-\op{Re}s}}{\op{Re}s-1}.\]This is indeed finite, so we are done. $\blacksquare$
+					</p>
+					<p>
+						I think it's helpful to watch the evaluation expecting certain things to come together, s   o we will go ahead and give away the answer now.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We can evaluate, for $\op{Re}s \gt 1,$    \[I=\frac1s\log\zeta(s).\]
+						</p>
+					</div>
+					<p>
+						Before going into the evaluation, we say at the outset that what makes this integral tick is that\[\frac d{dx}\log\left(1-\frac1{x^s}\right)=\frac1{1-\frac1{x^s}}\cdot\frac{-s}{x^{s+1}}=\frac{-s}{x\left(x^s-1\right)}.\]This will come into play shortly.
+					</p>
+					<p>
+						Because we are actually trying to evaluate $I,$ the cleanest thing to do is split up by primes so that $\pi(x)$ is well-behaved. Because we already know that the integral converges, it suffices to evaluate the integral on a subsequence of upper bounds. We write\[I=\int_2^\infty\frac{\pi(x)}{x\left(x^s-1\right)}\,dx=\sum_{k=1}^\infty\int_{p_k}^{p_{k+1}}\frac k{x\left(x^s-1\right)}\,dx,\]where $p_k$ is the $k$th prime. (To be clear, the subsequence of upper bounds we are using are the $p_\bullet.$) Now $k$ is a constant, so we can use the derivative we found earlier to see that the inner integral evaluates as\[I=\sum_{k=1}^\infty k\cdot-\frac1s\cdot\log\left(1-\frac1{x^s}\right)\bigg|_{p_k}^{p_{k+1}}.\]Simplyifying slightly, we have\[sI=-\sum_{k=1}^\infty k\left[\log\left(1-\frac1{p_k^s}\right)-\log\left(1-\frac1{p_{k+1}^s}\right)\right].\]At this point, we can see that we are going to get $\zeta$ from the Euler product. We would like this sum to telescope to hopefully rid of the $k$ on the outside, and even though it is possible to manipulate the infinite sums directly, we will go ahead fix a $N$ as the upper bound and manipulate like that. This looks like\[(sI)_N=-\sum_{k=1}^Nk\log\left(1-\frac1{p_k^s}\right)+\sum_{k=1}^Nk\left(1-\frac1{p_{k+1}^s}\right).\]In the second sum, we can shift $k\mapsto k-1$ to telescope. Note that we are allowed to keep the lower index as $k=1$ because we end up multiplying the term by $(k-1),$ which vanishes. This is\[(sI)_N=-\sum_{k=1}^Nk\log\left(1-\frac1{p_k^s}\right)+\sum_{k=1}^{N+1}(k-1)\log\left(1-\frac1{p_k^s}\right).\]Now we see the telescoping, giving\[(sI)_N=-\sum_{k=1}^N\log\left(1-\frac1{p_k^s}\right)+N\log\left(1-\frac1{p_{N+1}^s}\right).\]We hope that the remainder term will vanish as $N\to\infty,$ but let's focus on the main term right now. Moving the logarithm out into a product, we see it is\[-\sum_{k=1}^N\log\left(1-\frac1{p_k^s}\right)=\log\prod_{k=1}^N\frac1{1-p_k^{-s}}.\]We see that $N\to\infty$ makes this the Euler product for $\zeta(s).$ Thus, the main term is indeed giving the desired evaluation.
+					</p>
+					<p>
+						So indeed, it remains to show that $N\log\left(1-p_{N+1}^{-s}\right)$ actually vanishes as $N\to\infty.$
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For $\op{Re}s \gt 1,$ we have that $N\log\left(1-p_{N+1}^{-s}\right)\to0$ as $N\to\infty.$
+						</p>
+					</div>
+					<p>
+						Being careful with the $s\in\CC,$ we expand the logarithm directly as\[\log\left(1-\frac1{p_{N+1}^s}\right)=-\sum_{k=1}^\infty\frac1{kp_{N+1}^{ks}}.\]This means that\[\left|\log\left(1-\frac1{p_{N+1}^s}\right)\right|\le\sum_{k=1}^\infty\frac1{kp_{N+1}^{k\op{Re}s}}=-\log\left(1-\frac1{p_{N+1}^{\op{Re}s}}\right).\]So we let $\sigma:=\op{Re}s \gt 1$ and forget about $s.$ Now, because $N \lt p_{N+1},$ we see\[\left|N\log\left(1-\frac1{p_{N+1}^\sigma}\right)\right| \lt \left|p_{N+1}\log\left(1-\frac1{p_{N+1}^\sigma}\right)\right|.\]So let $x:=p_{N+1}^{-1}$ and investigate $x^{-1}\log\left(1-x^\sigma\right)$ as $x\to0.$ From here, L'H\^opital's Rule can finish by writing\[\lim_{x\to 0}\frac{\log\left(1-x^\sigma\right)}x.\]As $x\to0,$ both the numerator and denominator approach $0,$ so we will apply L'H\^opital's. The derivative of the numerator is $\left(1-x^\sigma\right)^{-1}\cdot\sigma x^{\sigma-1},$ so this limit is\[\lim_{x\to0}\left(1-x^\sigma\right)^{-1}\cdot\sigma x^{\sigma-1}=(1-0)^{-1}\cdot\sigma0^{\sigma-1}=0.\](Here is where $\sigma \gt 1$ matters!) This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						Combining everything we've done, we see that\[(sI)_N=-\sum_{k=1}^N\log\left(1-\frac1{p_k^s}\right)+N\log\left(1-\frac1{p_{N+1}^s}\right).\]As $N\to\infty,$ the sum becomes $\log\zeta(s),$ and the remainder term vanishes, so we do get\[sI=\log\zeta(s).\]This rearranges into the desired result. $\blacksquare$
+					</p>
+					<p>
+						What I like about this result is that it almost feels like it could be rederivable directly from trying to use\[\int\frac{-s}{x\left(x^s-1\right)}\,dx=\log\left(1-\frac1{x^s}\right)+C.\]Namely, summing this over all primes will give us $\log\zeta(s)$ on the right-hand side if we deal with $C$ properly, and it feels like the telescoping is done entirely to make this $C$ dealt with.
+					</p>
+					<p>
+						Granted, the telescoping part feels a bit unmotivated, but I can't shake the feeling that it's really just integration by parts/summation by parts with $\pi(x).$ I haven't been able to formalize this intuition, but I would not be surprised if a simplification of this form were possible.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

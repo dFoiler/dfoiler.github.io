@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 14th
+					</h2>
+					<p>
+						Today I learned more formally about the association between points in $k^n$ and maximal ideals of $k[x_1,\ldots,x_n],$ from Undergraduate Commutative Algebra. We begin with the following motivating statement and proof.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $K$ a field and $\alpha=(\alpha_1,\ldots,\alpha_n)\in K^n.$ Then the ideal $(x_1-\alpha_1,\ldots,x_n-\alpha_n)$ is maximal in $K[x_1,\ldots,x_n].$
+						</p>
+					</div>
+					<p>
+						The main character in this proof is the evaluation mapping $\op{ev}_\alpha:K[x_1,\ldots,x_n]\to k,$ taking $f\in K[x_1,\ldots,x_n]$ to\[\op{ev}_\alpha(f)=f(\alpha)=f(\alpha_1,\ldots,\alpha_n).\]It is a fact that $(f+g)(\alpha)=f(\alpha)+g(\alpha)$ and $(fg)(\alpha)=f(\alpha)g(\alpha),$ so this map preserves structure. We also have $\op{ev}_\alpha(1)=1$ because $1$ is a constant, so the identity is send to the identity. So $\op{ev}_\alpha$ is indeed a ring homomorphism.
+					</p>
+					<p>
+						We are going to the desired maximality by investigating the isomorphism induced by $\op{ev}_\alpha,$ so we need to compute the kernel and image of $\op{ev}_\alpha.$ Quickly, note that taking $f=k$ a constant function for $k\in K$ guarantees that $\op{ev}_\alpha$ has full image, regardless of $\alpha.$
+					</p>
+					<p>
+						It remains to compute the kernel of $\op{ev}_\alpha.$ This is somewhat involved, so we separate it out.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Take everything as defined above. We claim that $\ker(\op{ev}_\alpha)=(x_1-\alpha_1,\ldots,x_n-\alpha_n).$
+						</p>
+					</div>
+					<p>
+						We begin by working in the case where $\alpha=(0,\ldots,0).$ Quickly let\[f(x)=\sum_{\{d_k\}_{k=1}^n\in\NN^n}a_{d_1,\ldots,d_n}\left(x_1^{d_1}\cdots x_n^{d_n}\right),\]where all but finitely many of the $a_{d_1,\ldots,d_n}$ are zero. Then $f\in\op{ker}(\op{ev}_\alpha)$ in the case that $\alpha=(0,\ldots,0)$ is equivalent to having\[0=f(\alpha)=a_{0,\ldots,0}\]because $a_{d_1,\ldots,d_n}\left(x_1^{d_1}\cdots x_n^{d_n}\right)$ vanishes if any of the $d_\bullet$ are nonzero, implying that we only have to worry about $a_{0,\ldots,0}.$ In other words, $f\in\ker(\op{ev}_{(0,\ldots,0)})$ if and only if $f$ has constant term $0.$
+					</p>
+					<p>
+						Anyways, we claim that this is the ideal $(x_1,\ldots,x_n).$ Indeed, every element of $(x_1,\ldots,x_n)$ looks like\[\sum_{k=1}^nf_kx_k\]for some sequence of $f_\bullet\in K[x_1,\ldots,x_n],$ and this will expand out to have no constant term because each of the summands has no constant term. (Alternatively, plugging in $\alpha=(0,\ldots,0)$ causes the sum to vanish.) On the other hand, if the constant term of $a_{0,\ldots,0}=0,$ then every nonzero term of the sum\[f(x)=\sum_{\{d_k\}_{k=1}^n\in\NN^n}a_{d_1,\ldots,d_n}\left(x_1^{d_1}\cdots x_n^{d_n}\right)\]has some nonzero exponent of a $x_\bullet,$ implying that all terms live in $(x_1,\ldots,x_n),$ so $f(x)\in(x_1,\ldots,x_n).$ This finishes the claim.
+					</p>
+					<p>
+						Working in the general case of $\alpha=(\alpha_1,\ldots,\alpha_n),$ we note that $f\in\op{ker}(\op{ev}_\alpha)$ if and only if\[g(x_1,\ldots,x_n):=f(x_1+\alpha_1,\ldots,x_n+\alpha_n)\]vanishes at $(x_1,\ldots,x_n)=(0,\ldots,0).$ In other words, $f$ lives in the kernel if and only if\[f(x_1+\alpha_1,\ldots,x_n+\alpha_n)\in(x_1,\ldots,x_n).\]Shifting coordinates by taking $x_\bullet\mapsto x_\bullet-\alpha_\bullet$ (alternatively, fix $y_\bullet=x_\bullet-\alpha_\bullet$ and proceed), we get this equivalent to\[f(x_1,\ldots,x_n)\in(x_1-\alpha_1,\ldots,x_n-\alpha_n).\]So indeed, $\ker(\op{ev}_\alpha)=(x_1-\alpha_1,\ldots,x_n-\alpha_n),$ which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Thus, we see that $\op{ev}_\alpha$ is a ring homomorphism with image all of $K$ and kernel exactly $(x_1-\alpha_1,\ldots,x_n-\alpha_n).$ This gives us the isomorphism\[\frac{K[x_1,\ldots,x_n]}{(x_1-\alpha_1,\ldots,x_n-\alpha_n)}\cong K.\]But now we're done! The quotient ring of $(x_1-\alpha_1,\ldots,x_n-\alpha_n)$ is a field, so this ideal must be maximal, finishing. $\blacksquare$
+					</p>
+					<p>
+						This proof has a few potential avenues of generalization. For example, the only part of the proof where we used the fact that $K$ is a field is at the very end where we need $K$ a field to give maximal. However, we can weaken $K$ field to $\mathcal O_K$ an integral domain to remain prime.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $\mathcal O_K$ an integral domain and $\alpha:=(\alpha_1,\ldots,\alpha_n)\in(\mathcal O_K)^n.$ Then the ideal $(x_1-\alpha_1,\ldots,x_n-\alpha_n)$ is prime in $K[x_1,\ldots,x_n].$
+						</p>
+					</div>
+					<p>
+						The first proof works practically verbatim while replacing $K$ with $\mathcal O_K,$ using the same $\op{ev}_\alpha,$ etc., so we will not repeat it here. However, the very end must change, for now we see\[\frac{\mathcal O_K[x_1,\ldots,x_n]}{(x_1-\alpha_1,\ldots,x_n-\alpha_n)}\cong\mathcal O_K.\]Thus, the quotient ring of $(x_1-\alpha_1,\ldots,x_n-\alpha_n)$ is an integral domain, so this ideal must be prime. This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Of course, we can see this result more directly once we know that $\ker(\op{ev}_\alpha)=(x_1-\alpha_1,\ldots,x_n-\alpha_n).$ Indeed, if a product $fg\in\ker(\op{ev}_\alpha),$ then $(fg)(\alpha),$ so\[f(\alpha)g(\alpha)=0.\]It follows that $f(\alpha)=0$ or $g(\alpha)=0$ because we are working in an integral domain, so one of $f$ or $g$ lives in $(x_1-\alpha_1,\ldots,x_n-\alpha_n),$ verifying our primality. (And this ideal is not all ideals because it does not have constants.) However, the given proof didn't even have to touch elements once establishing facts about $\op{ev}_\alpha,$ which is nice.
+					</p>
+					<p>
+						As an aside on this statement, we note that we have somehow created an exact way to detect if a ring $R$ is an integral domain or a field. Indeed, if the ideals $(x-\alpha)$ for $\alpha\in R$ is prime but not maximal in $R[x],$ then $R$ is an integral domain but not a field. Of course, this is just a more elaborate way of saying that $R$ is a field if and only if it has exactly two ideals, but this felt amusing anyways.
+					</p>
+					<p>
+						Another way to generalize the original proposition is to let $(\alpha_1,\ldots,\alpha_n)$ live in algebraic extension of $K.$ This turns out to work in the best possible way.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $L/K$ an algebraic extension of fields with $\alpha=(\alpha_1,\ldots,\alpha_n)\in L^n.$ Then the ideal $(x_1-\alpha_1,\ldots,x_n-\alpha_n)\cap K[x_1,\ldots,x_n]$ is maximal in $K[x_1,\ldots,x_n].$
+						</p>
+					</div>
+					<p>
+						Slightly more care is needed for this because neither the image nor kernel are immediately well-behaved. However, we will still be more terse than in our first proof. We still use the original $\op{ev}_\alpha,$ though now $\op{ev}_\alpha:K[x_1,\ldots,x_n]\to L.$
+					</p>
+					<p>
+						The kernel turns out to be easier to handle. Indeed, fixing $f\in\ker(\op{ev}_\alpha),$ we can imagine embedding $f\in L[x_1,\ldots,x_n]$ in the obvious way, extending $\op{ev}_\alpha$ to domain $L[x_1,\ldots,x_n].$ In $L[x_1,\ldots,x_n],$ the work from earlier shows that our kernel is $(x_1-\alpha_1,\ldots,x_n-\alpha_n),$ so\[f\in\ker(\op{ev}_\alpha)\iff f\in(x_1-\alpha_1,\ldots,x_n-\alpha_n).\]However, this equivalence does not give an equality because we fixed $f\in K[x_1,\ldots,x_n]$ as a condition to start. Moving this condition into the equivalence, we get\[f\in\ker(\op{ev}_\alpha)\iff f\in(x_1-\alpha_1,\ldots,x_n-\alpha_n)\cap K[x_1,\ldots,x_n].\]Indeed, if $f\in\ker(\op{ev}_\alpha),$ then the argument above gives $f\in(x_1-\alpha_1,\ldots,x_n-\alpha_n),$ and we are in $K[x_1,\ldots,x_n]$ for free. And in the other direction, if $f$ is in $(x_1-\alpha_1,\ldots,x_n-\alpha_n),$ then $f(\alpha)=0,$ and to be in the kernel, we merely need to know $f\in K[x_1,\ldots,x_n]$ as well.
+					</p>
+					<p>
+						We now deal with the image. We claim that it is $K[\alpha_1,\ldots,\alpha_n].$ Indeed, this comes from moving our definitions around: $K[\alpha_1,\ldots,\alpha_n]$ can be defined as the set of elements of the form\[\sum_{\{d_k\}_{k=1}^n\in\NN^n}a_{d_1,\ldots,d_n}\left(\alpha_1^{d_1}\cdots\alpha_n^{d_n}\right),\]which is just $f(\alpha_1,\ldots,\alpha_n)$ where\[f(x_1,\ldots,x_n)=\sum_{\{d_k\}_{k=1}^n\in\NN^n}a_{d_1,\ldots,d_n}\left(x_1^{d_1}\cdots x_n^{d_n}\right).\]The annoying part of dealing with the kernel is to have that $K[\alpha_1,\ldots,\alpha_n]$ is actually a field. We show this in somewhat painstaking detail because I can't remember having done this before. Also, in it we read the above trick backwards, which is a bit amusing.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix an algebraic extension of fields $L/K$ and elements $\alpha_1,\ldots,\alpha_n\in L.$ Then $K[\alpha_1,\ldots,\alpha_n]$ is a field.
+						</p>
+					</div>
+					<p>
+						We are not going to be too formal about $K[\alpha_1,\ldots,\alpha_n],$ but we will assert that we can write $K[\alpha_1,\ldots,\alpha_n]=K[\alpha_1,\ldots,\alpha_{n-1}][\alpha_n].$ This can more or less be seen from the definition above by collecting terms with the same $\alpha_n^{d_n}$ term to  view these as polynomials with coefficients in $K[\alpha_1,\ldots,\alpha_{n-1}].$
+					</p>
+					<p>
+						The point of saying this is so that we can do an induction. Our base case is $n=0,$ for which there is nothing to prove. For the inductive step, We let $K_n:=K[\alpha_1,\ldots,\alpha_n]$ with $\alpha_{n+1}$ algebraic over $K$ (and therefore algebraic over $K_n$). We know that $K_n$ is a field and need to show that $K_n[\alpha_{n+1}]$ is a field.
+					</p>
+					<p>
+						Well, doing the above trick backwards, observe that we have a ring homomorphism $K_n[x]\to K_n[\alpha_{n+1}]$ by evaluating at $\alpha_{n+1}.$ If we let $\pi(x)$ be the minimal polynomial of $\alpha_{n+1},$ then $(\pi)$ is the kernel of this evaluation mapping. Indeed, certainly $p\in\ker$ if and only if $p(\alpha_{n+1})=0,$ for which the division algorithm dictates\[p(x)=\pi(x)q(x)+r(x).\]Evaluating at $\alpha_{n+1}$ requires that $r(\alpha_{n+1})=0,$ but this remainder must be zero or of smaller degree than $\pi$; the latter violates the minimality of $\pi,$ so $r=0,$ giving $\pi\mid p.$ And surely $p\in(\pi)$ gives $0=\pi(\alpha_{n=1})\mid p(\alpha_{n+1}).$ So we know that\[K_n[\alpha_{n+1}]\cong K_n[x]/(\pi).\]However, $(\pi)$ is also irreducible, for if $\pi=pq$ for polynomials $p,q\in K_n[x],$ then $p(\alpha_{n+1})q(\alpha_{n+1})=0$ implies $p(\alpha_{n+1})=0$ or $q(\alpha_{n+1})=0,$ so $\pi\mid p$ or $q,$ giving the irreducibility. (Without loss of generality, let $p=\pi p',$ which means $\pi=\pi p'q,$ giving $p'q=1,$ so $q$ is a unit.)
+					</p>
+					<p>
+						So because $K[x]$ is a unique factorization domain, it follows $(\pi)$ is prime, and because $K[x]$ is a principal ideal domain, it follows $(\pi)$ is maximal, so $K[x]/(\pi)$ is a field. Thus, $K_n[\alpha_{n+1}]$ is a field, completing our inductive step. $\blacksquare$
+					</p>
+					<p>
+						Returning to the proposition, we now note that our induced isomorphism is\[\frac{K[x_1,\ldots,x_n]}{(x_1-\alpha_1,\ldots,x_n-\alpha_n)\cap K[x_1,\ldots,x_n]}\cong K[\alpha_1,\ldots,\alpha_n].\]However, the right-hand side is of a field, so it follows $(x_1-\alpha_1,\ldots,x_n-\alpha_n)\cap K[x_1,\ldots,x_n]$ is maximal. This finishes. $\blacksquare$
+					</p>
+					<p>
+						We are obligated to remark that we can play the same game as earlier by replacing $K$ with an integral domain $\mathcal O_K$ while keeping $K$ the field of fractions of $\mathcal O_K.$ We won't write out the actual statement because it's not too remarkable, and we've already repeated ourselves enough today.
+					</p>
+					<p>
+						Anyways, the moral of the story is that individual points $(\alpha_1,\ldots,\alpha_n)$ induce maximal ideals in $K[x_1,\ldots,x_n]$ by being the kernel of the evaluation mapping. It is a bit concerning that we are not guaranteed all maximal ideals in the above propositions, and perhaps this is not surprising.
+					</p>
+					<p>
+						Indeed, the first proposition seems to generate "lots'' of maximal ideals&mdash;one for each point&mdash;but when $K$ is not algebraically closed, then the final proposition gives us even more points to play with and therefore more maximal ideals. We don't really have any good reason to believe that we've found all the maximal ideals yet.
+					</p>
+					<p>
+						As some evidence that maybe we have found all the maximal ideals, observe that we have at least covered all maximal ideals when $n=1.$ Indeed, $K[x]$ is a principal ideal domain with primes induced by irreducible polynomials (which we won't prove here). Thus, for any maximal ideal $(\pi)$ with $\pi$ irreducible, we can take $L=K[\alpha]$ in our final proposition to retrieve $(\pi)$ as the ideal $(x-\alpha)\cap K[x]$ because $\pi$ is the minimal polynomial of $\alpha.$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

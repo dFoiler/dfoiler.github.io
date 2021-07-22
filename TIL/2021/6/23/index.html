@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/9/">
+							September 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/10/">
+							October 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/11/">
+							November 2020
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2020/12/">
+							December 2020
+						</a>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/1/">
+							January 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/2/">
+							February 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/3/">
+							March 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/4/">
+							April 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/5/">
+							May 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/6/">
+							June 2021
+						</a>
+					</li>
+					<li>
+						<a href="https://dfoiler.github.io/TIL/2021/7/">
+							July 2021
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to June)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						June 23rd
+					</h2>
+					<p>
+						Today I learned (and reviewed) some proofs of the Sylow theorems that I like. These all come from group actions, and many from the $p$-group fixed-point theorem. To not be too bogged down in details (as I usually am), we often won't show that these group actions are actually actions. That kind of rigor is not the point today.
+					</p>
+					<p>
+						To avoid digressions in what follows, we review the necessary theory at the start, knowingly sacrificing motivation. Here is the orbit-stabilizer theorem.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Let $G$ be a group acting on a set $S.$ Given $s\in S,$ elements of the orbit $Gs$ are in bijection with cosets in $G/\op{Stab}(s),$ where $\op{Stab}(s)$ is the stabilizer.
+						</p>
+					</div>
+					<p>
+						We send a coset $g\op{Stab}(s)$ to the element $gs$ in the orbit. This mapping is well-defined because $g\op{Stab}(s)=h\op{Stab}(s)$ if and only if $h^{-1}g\in\op{Stab}(s)$ if and only if $\left(h^{-1}g\right)(s)=s$ if and only if $gs=hs.$
+					</p>
+					<p>
+						To show the bijection, we note the map is surjective because we can hit $gs\in Gs$ with the coset $g\op{Stab}(s).$ And the map is injective because we showed $gs=hs$ if and only if $g\op{Stab}(s)=h\op{Stab}(s)$ above. This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						This gives us the $p$-group fixed-point theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Let $G$ be a $p$-group acting on a set $S.$ Then the number of fixed points $\op{Fix}(S)$ satisfies    \[\#\op{Fix}(S)\equiv\#S\pmod p.\]
+						</p>
+					</div>
+					<p>
+						This is done by writing down the class equation. Note that orbits partition our set $S$ because being in the same orbit is an equivalence relation. This lets us write\[\#S=\sum_{Gs\text{ orbit}}\#(Gs).\]If the size of the orbit is $1,$ then $Gs=\{s\}$ is a fixed point, so we can remove all these points and write\[\#S=\op{Fix}(S)+\sum_{\substack{Gs\text{ orbit}\\\#(Gs) \gt 1}}\#(Gs).\]It remains to show that the sum on the right-hand side is divisible by $p$; we show that all terms in the sum are divisible by $p.$
+					</p>
+					<p>
+						Indeed, the size of the orbit $Gs$ is equal to the number of cosets in $G/\op{Stab}(s),$ which is equal to $[G:\op{Stab}(s)] \gt 1.$ This index divides the size of the total group $G,$ so it is a power of $p.$ Powers of $p$ larger than $1$ are divisible by $p,$ so we are done. $\blacksquare$
+					</p>
+					<p>
+						A few of our group actions will make the normalizer of a subgroup appear, so it is probably safest to define it at the outset so that we aren't surprised when it comes up.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Fix $G$ a group and $H$ a subgroup. We define the normalizer $N(H)$ as    \[N(H):=\left\{g\in G:gHg^{-1}=H\right\}\]
+						</p>
+					</div>
+					<p>
+						It is not difficult to show that $N(H)$ is in fact a subgroup. Indeed, it is closed under inversion because $gHg^{-1}=H$ impies $H=g^{-1}Hg,$ and it is closed under multiplication because $g_1Hg_1^{-1}=g_2Hg_2^{-1}=H$ implies\[(g_1g_2)H(g_1g_2)^{-1}=g_1g_2Hg_2^{-1}g_1^{-1}=g_1Hg_1^{-1}=H.\]Anyways, what we like about the normalizer is that $H$ is a subgroup of $N(H)$ ($H$ is closed), and in fact a normal subgroup. Indeed, for any $g\in N(H),$ we see $gHg^{-1}=H,$ which is what we need for $H$ to be normal in $N(H).$
+					</p>
+					<p>
+						Before we continue with the proofs of the Sylow theorems, we codify the following intuition.
+					</p>
+					<div class="idea">
+						<p>
+							<b>
+								Idea.
+							</b>
+							Our purely group-theoretic actions are mostly one of the following. (I.e., these are the "best'' ways for a group to act in group theory.)
+						</p>
+						<ul>
+							<li>
+								<p>
+									A group or subgroup acting by multiplication on cosets.
+								</p>
+							</li>
+							<li>
+								<p>
+									A group or subgroup acting by conjugation on some subgroups.
+								</p>
+							</li>
+							<li>
+								<p>
+									A group or subgroup acting naturally on a more exotic set (such as tuples) by multiplication.
+								</p>
+							</li>
+						</ul>
+						<p>
+							We say explicitly that we don't typically have a group or subgroup acting naturally on exotic sets by conjugation because this tends to make our action useless for abelian groups.
+						</p>
+					</div>
+					<p>
+						We are now ready to talk about the Sylow theorems. We will prove them in sequence; here is the first Sylow theorem, which asserts existence.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Let $G$ be a finite group and $p$ a prime so that $\#G=p^\nu m$ with $p\nmid m.$ Then $G$ has a subgroup of order $p^\nu.$ Such a subgroup is called a Sylow $p$-subgroup.
+						</p>
+					</div>
+					<p>
+						It is not easy, but it is possible, to prove this directly using group actions. We will start with a relatively unmotivated approach and then return to prove this in a more motivated way. It might be productive to not read this proof at all.
+					</p>
+					<p>
+						Let $S$ be the set of all subsets of $G$ of order $p^\nu.$ The idea here is that we would like to use a group action to "detect'' a subgroup out of $S.$ That is not exactly what is about to happen, but it explains why we might consider such a thing. Because this set $S$ is somewhat exotic, we will have $G$ act on it by left multiplication.
+					</p>
+					<p>
+						Very quickly, this action is well-defined because multiplication by $g\in G$ is a bijection. Namely, we need to know $\#gA=\#A$ for $A\in S$ to have $gA\in S,$ and indeed, the maps $a\mapsto ga$ and $a\mapsto g^{-1}a$ are inverses of each other and therefore each bijections. We will not say more than this.
+					</p>
+					<p>
+						Our action is not by a $p$-group, so we cannot use the $p$-group fixed-point theorem, but we can say something similar. Note that\[\#S=\binom{p^\nu m}{p^\nu}\equiv\binom m1=m\not\equiv0\pmod p\]by Lucas's theorem on binomial coefficients; see
+						<a href="https://en.wikipedia.org/wiki/Lucas's_theorem">
+							here
+						</a>
+						or even
+						<a href="https://dfoiler.github.io/TIL/2020/9/17/">
+							here
+						</a>
+						for a reference, but we won't prove it now because it would take us too far afield. The point of saying is that when we partition $S$ into orbits\[\#S=\sum_{Gs\text{ orbit}}\#(Gs),\]we cannot have all of the orbits have size divisible by $p.$ So in a style akin to the $p$-group fixed-point theorem, we get to pick up a set $A\in S$ whose orbit $G\cdot A$ has size not divisible by $p.$
+					</p>
+					<p>
+						We said above that we would like to detect a Sylow $p$-subgroup directly from our action, but we cannot quite do that because $A$ might, for example, be the coset of a Sylow $p$-subgroup by merely living in the orbit of a bona fide Sylow $p$-subgroup. There are coarse ways of dealing with this, but to use $p\nmid\#(G\cdot A),$ we note\[\#(G\cdot A)\cdot\#\op{Stab}(A)=\#G=p^\nu m\]by the orbit-stabilizer theorem. Because $\#A$ has lots of $p$s, it is reasonable (a la Lagrange) to expect $\#(G\cdot A)$ to have few $p$s, and indeed it has no $p$s by construction of $A.$ This forces $\op{Stab}(A)$ to have lots of $p$s, in fact all of them, so $p^\nu\mid\#\op{Stab}(A).$ This indicates that we want to show $\op{Stab}(A)$ is Sylow $p$-subgroup!
+					</p>
+					<p>
+						So far we have used the size of the group $G$ as well as some number theory to show that $\#\op{Stab}(A)$ is divisible by $p^\nu.$ To show that $\#\op{Stab}(A)$ is actually equal to $p^\nu,$ it remains to use the group action in a meaningful way. We only know what $\op{Stab}(A)$ does on $A,$ namely it will take any $a\in A$ somewhere else in $A.$ This tells us\[\op{Stab}(A)\cdot a\subseteq A\]for a given $a\in A.$ We would like to say that this means $\#\op{Stab}(A)\le\#A,$ and indeed, if $g,h\in\op{Stab}(A)$ with $ga=ha,$ then right multiplication by $a^{-1}$ implies $g=h.$ So the multiplication by $\op{Stab}(A)$ sends $a$ to a different element each time, so we get\[\#\op{Stab}(A)=\#\big(\op{Stab}(A)\cdot a\big)\le\#A=p^\nu.\]Because $p^\nu\mid\#\op{Stab}(A)$ already, it follows $\op{Stab}(A)$ has size $p^\nu$ and is our Sylow $p$-subgroup. $\blacksquare$
+					</p>
+					<p>
+						Above we said around the middle that a barrier to showing $A$ is the desired Sylow $p$-subgroup is that $A$ might be a coset of a Sylow $p$-subgroup. We say now that the end of our proof shows that this is exactly the barrier: we showed\[\op{Stab}(A)\cdot a\subseteq A,\]and because we established both sides have size $p^\nu,$ it follows $\op{Stab}(A)\cdot a=A.$ Because $\op{Stab}(A)$ was our Sylow $p$-subgroup, we see that, indeed, $A$ was a (right) coset of a Sylow $p$-subgroup all along.
+					</p>
+					<p>
+						The above proof was overly clever, and though I like it, it is not using any of the more standard group actions I am trying to get used to. So we present a second proof, which proves the result through the following lemma.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Let $G$ be a finite group and $p$ a prime so that $\#G=p^\nu$ with $p\nmid m.$ If $H$ is a $p$-subgroup with $\#H=p^\alpha$ and $\alpha \lt \nu,$ then $H$ is a subgroup of a larger $p$-subgroup $H'\subseteq G$ of order $p^{\alpha+1}.$
+						</p>
+					</div>
+					<p>
+						This time we want to use the $p$-group fixed-point theorem, and the only $p$-group immediately at our disposal is $H.$ It needs to act on something, and for this proof, it will act by multiplication on its cosets $G/H.$ Now, the $p$-group fixed-point theorem gives\[\#\op{Fix}(G/H)\equiv[G:H]\pmod p.\]The next step is to talk about what it means to be a fixed point under this action. Well, a coset $gH$ is a fixed point under multiplication by $H$ if and only if\[hgH=gH\]for any $h\in H.$ This is equivalent to $g^{-1}hgH=H,$ or $g^{-1}hg\in H.$ But this simply means that $g^{-1}Hg\subseteq H,$ and because $x\mapsto g^{-1}x\mapsto g^{-1}xg$ is a composite of bijections, we see $\#\left(g^{-1}Hg\right)=\#H,$ so in fact this is equivalent to\[g^{-1}Hg=H.\](Of course $g^{-1}Hg=H$ implies $g^{-1}Hg\subseteq H.$) So this is equivalent to $g^{-1}\in N(H)$ and $g\in N(H).$ (Here is our normalizer, as promised.)
+					</p>
+					<p>
+						This classifies our fixed points. Namely, our fixed points are cosets $gH$ where $g\in N(H),$ which is just the cosets in $N(H)/H.$ So the fixed-point theorem actually asserts\[\#(N(H)/H)\equiv0\pmod p.\]Because $N(H)/H$ has order divisible by $p,$ we may pick up a coset $gH$ of order $p$ by Cauchy's theorem. (We will prove Cauchy's theorem after this, but we will not pause to do so.)
+					</p>
+					<p>
+						It remains to construct the needed $H'.$ We take $H$ and simply extend it by $g$ to get $\langle g\rangle H$; this can be viewed set-theoretically or as a union of cosets. We get $H\subseteq H'$ for free. Further, $H'$ is a subgroup because, for any $g^ah_1,g^bh_2\in H,$ we see\[g^ah_1\cdot\left(g^bh_2\right)^{-1}\in g^aHg^{-b}=g^{a-b}H\subseteq H',\]where $g^bHg^{-b}=H$ because $g^b\in N(H).$ (This is a manifestation of $H$ being normal in $N(H).$) Lastly, $H'$ has the desired order because all the cosets $g^\bullet H$ are disjoint, and there are $p$ of them by construction of $g,$ implying $\#H'=p\cdot\#H.$ This finishes the proof. $\blacksquare$
+					</p>
+					<p>
+						We promised to show Cauchy's theorem, so we quickly do that now. We present a group actions proof, which aligns somewhat with our intuition.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $G$ a finite group and $p$ a prime so that $p\nmid\#G.$ Then the number of elements of $G$ of order $p$ is $-1\pmod p.$ In particular, it is nonzero.
+						</p>
+					</div>
+					<p>
+						The equivalence in the statement makes us want to use the $p$-group fixed-point theorem. The action, which comes pretty much out of nowhere, is to have $\ZZ/p\ZZ$ act on the tuples\[S:=\left\{(g_k)_{k=0}^{p-1}\in G^p:g_0\cdot\ldots\cdot g_{p-1}=e\right\}\]by cycling. Namely, we define\[k\cdot(g_0,\ldots,g_{p-1}):=(g_k,\ldots,g_{p-1+k}),\]where indices are taken$\pmod p.$ (Our intuition said that we should act by multiplication in a natural way, and this is close to that.) Now that we have this action, the proof follows quickly.
+					</p>
+					<p>
+						The $p$-group fixed-point theorem gives\[\#\op{Fix}(S)\equiv\#S=(\#G)^p\equiv0\pmod p.\]The next step, as before, is to talk about what a fixed point under this action is. Well, such a tuple $(g_0,\ldots,g_{p-1})$ must have, for any $k\in\ZZ/p\ZZ,$\[(g_0,\ldots,g_{p-1})=k\cdot(g_0,\ldots,g_{p-1})=(g_k,\ldots,g_{p-1+k}),\]so all entries are equal to $g_0.$ And indeed, if all entries are equal, then, $g_\ell=g_{\ell+k}$ for any $k$ or $\ell,$ implying the above holds, and we have a fixed point. Noting the condition on $S,$ we see that we have a fixed point $(g,\ldots,g)$ if and only if\[g^p=e.\]Taking a pause for a second, we see that\[\#\left\{g\in G:g^p=e\right\}\equiv0\pmod p\]from the work we've done so far. Now, a $g$ lives in the left-hand set if and only if its order divides $p,$ which means that the order is either $1$ or $p.$ Order $1$ only occurs for $g=e,$ so the remaining elements all have order $p.$ Subtracting the $g=e$ case from both sides of the above gives the desired statement. $\blacksquare$
+					</p>
+					<p>
+						Anyways, we now use the lemma to prove the first Sylow theorem.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Let $G$ be a finite group and $p$ a prime so that $\#G=p^\nu m$ with $p\nmid m.$ Then $G$ has a subgroup of order $p^\nu.$
+						</p>
+					</div>
+					<p>
+						We show this by induction, where the lemma is the inductive step. Intuitively, the lemma lets us start with the $p$-subgroup $H=\langle e\rangle,$ apply the given algorithm $\nu$ times, and end up with a subgroup of the needed order $p^\nu.$
+					</p>
+					<p>
+						To codify this, we show that we can construct a $p$-subgroup of every order $p^\alpha$ from $\alpha=0$ to $\alpha=\nu,$ by induction. For $\alpha=0,$ we choose $H=\langle e\rangle$ as our base case. For the inductive step, we may assume that we have a $p$-subgroup $H$ of order $p^\alpha$ with $\alpha+1\le\nu,$ and we want to construct $H'$ of order $p^{\alpha+1}.$ But this is exactly what the lemma does, so we are done. $\blacksquare$
+					</p>
+					<p>
+						While we are here, we remark that the lemma can actually show that Sylow $p$-subgroups are maximal, which is nice.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Let $G$ be a finite group and $p$ a prime so that $\#G=p^\nu m$ with $p\nmid m.$ Then any $p$-subgroup $H$ is contained in a Sylow $p$-subgroup.
+						</p>
+					</div>
+					<p>
+						Again, we do induction, where the intuition is that the lemma lets us successively build up a Sylow $p$-subgroup from any $p$-subgroup base. Letting $\#H=p^{\nu-k},$ we prove this by induction on this $k$ as long as $k\le\nu.$ Our base case is $k=0,$ for which $H$ is immediately a Sylow $p$-subgroup.
+					</p>
+					<p>
+						As for the inductive step, we suppose that all $p$-subgroups of order $p^{\nu-k}$ are contained in a Sylow $p$-subgroup, and we show that all subgroups of order $p^{\nu-(k+1)}$ are contained in a Sylow $p$-subgroup, given $k+1\le\nu.$ Indeed, pick up any $H$ with $\#H=p^{\nu-(k+1)},$ and the lemma provides a $p$-subgroup $H'$ with $H\subseteq H'$ and\[\#H'=p^{\nu-(k+1)+1}=p^{\nu-k}.\]Now, $H'$ is contained in a Sylow $p$-subgroup by the inductive hypothesis, so $H$ is also. This completes the induction $\blacksquare$
+					</p>
+					<p>
+						With a vaguely more standard proof of the first Sylow theorem in hand, we now turn to the second and third Sylow theorems. Here is the second.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							Fix $G$ a finite group and $p$ a prime. Then all Sylow $p$-subgroups of $G$ are conjugate.
+						</p>
+					</div>
+					<p>
+						It might be tempting to let $G$ act on the Sylow $p$-subgroups by conjugation, but that will be an action helpful later. For now, we are still attached to the $p$-group fixed-point theorem, so we want a $p$-group to act.
+					</p>
+					<p>
+						Instead, our action will be one of the other named ones. We recall from the proof of the lemma that having a subgroup $H$ acting on cosets of $H$ made the condition $g^{-1}Hg=H$ appear as our fixed point condition, which is similar to what we want here: it shows two subgroups are conjugate (though $H$ and $H$ are conjugate trivially, of course).
+					</p>
+					<p>
+						Regardless, we charge ahead. Pick up two Sylow $p$-subgroups of $G$ named $P$ and $Q,$ and we will have $P$ act on the cosets $G/Q$ by multiplication. Now, $P$ is a $p$-group, so the $p$-group fixed-point theorem asserts\[\#\op{Fix}(G/Q)\equiv[G:Q]\pmod p.\]Because $[G:Q]=|G|/|Q|$ is not divisible by $p$ ($Q$ is Sylow), the above equivalence gives us a fixed point. As we saw in Cauchy's theorem, this is a more common use of the $p$-group fixed-point theorem: nonzero$\pmod p$ implies nonzero.
+					</p>
+					<p>
+						Anyways, we let $gQ$ be the fixed point under the action of $P.$ Arguing as we did in the lemma, this means that\[pgQ=gQ\]for any $p\in P,$ which is equivalent to $g^{-1}pg\in Q$ for any $p\in P,$ which is equivalent to $g^{-1}Pg\subseteq Q.$ But again, $x\mapsto g^{-1}xg$ is a bijection, so $g^{-1}Pg$ has the same size as $P,$ which has the same size as $Q$ because all Sylow $p$-subgroups have the same size. So in fact\[g^{-1}Pg=Q.\]It follows $P=gQg^{-1},$ so $P$ and $Q$ are indeed conjugate. This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						We can see the second Sylow theorem as a "power-up'' for our group actions. In particular, it is now much more meaningful to have a group or subgroup act on the group's Sylow $p$-subgroups by conjugation. Not only is this well-defined, but when the full group does it, this action is transitive by the second Sylow.
+					</p>
+					<p>
+						Anyways, this thinking suggests two kinds of actions we might use.
+					</p>
+					<ul>
+						<li>
+							<p>
+								We let a $p$-subgroup (more specifically, a Sylow $p$-subgroup) act on the Sylow $p$-subgroups by conjugations and hope to use the $p$-group fixed-point theorem.
+							</p>
+						</li>
+						<li>
+							<p>
+								We have all $G$ act on the Sylow $p$-subgroups by conjugation and hope to use the transitivity.
+							</p>
+						</li>
+					</ul>
+					<p>
+						Each of these will give a part of the third Sylow theorem. We take these in sequence.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $G$ a finite group and $p$ a prime, and let $n_p$ be the number of Sylow $p$-subgroups. Then $n_p\equiv1\pmod p.$
+						</p>
+					</div>
+					<p>
+						The$\pmod p$ in the statement suggests we want to use the $p$-group fixed-point theorem, so we hope to use the first of the suggested actions. Pick up a Sylow $p$-subgroup $P$ and have it act on the set of Sylow $p$-subgroups $S_p$ by conjugation. We established in the proof of the second Sylow theorem that conjugation does not change the size of the subgroup, so this action is safe.
+					</p>
+					<p>
+						Now, the $p$-group fixed-point theorem gives\[\#\op{Fix}(S_p)\equiv\#S_p=n_p\pmod p.\]Thus, it remains to show that $\#\op{Fix}(S_p)\equiv1\pmod p$; in fact, we show that $\#\op{Fix}(S_p)=1.$ As usual, our next step is to examine the fixed points.
+					</p>
+					<p>
+						For this, we have to examine what it means for a particular Sylow $p$-subgroup $Q\in S_p$ to be a fixed point. Our action is conjugation, which means that\[pQp^{-1}=Q\]for all $p\in P.$ This is equivalent to having $p\in N(Q)$ for each $p\in P,$ or simply $P\subseteq N(Q).$ Of course, $P\subseteq N(P),$ so $P$ is one option for a fixed point, so we now have to show that $P$ is the only option.
+					</p>
+					<p>
+						This requires some cleverness. Note that $\#N(Q)\mid\#G$ by Lagrange's theorem, so the largest power of $p$ dividing $N(Q)$ is upper-bounded by the largest power of $p$ dividing $G.$ But $Q\subseteq N(Q)$ provides a lower bound as the largest power of $p$ dividing $G,$ so in fact $Q$ is a Sylow $p$-subgroup of $N(Q),$ and in fact so is $P\subseteq N(Q).$
+					</p>
+					<p>
+						The kicker is that $Q$ is normal in $N(Q),$ and by the second Sylow theorem, all Sylow $p$-subgroups are conjugate, so $P$ is conjugate to $Q,$ giving $P=Q.$ Thus, $P$ is the only fixed point of our action, and we are done. $\blacksquare$
+					</p>
+					<p>
+						And the other action is featured as follows.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $G$ a finite group and $p$ a prime so that $G=p^\nu m$ with $p\nmid m.$ Further, let $n_p$ be the number of Sylow $p$-subgroups. Then $n=[G:N(P)]$ for any Sylow $p$-subgroup $P,$ and $n_p\mid m.$
+						</p>
+					</div>
+					<p>
+						This time around we let $G$ act on the set $S_p$ of all Sylow $p$-subgroups by conjugation. Again, this is well-defined because conjugation does not change order.
+					</p>
+					<p>
+						This action is transitive by the second Sylow theorem. Indeed, if $P$ and $Q$ are Sylow $p$-subgroups, then $P=gQg^{-1}$ for some $g\in G$ because $P$ and $Q$ are conjugate. This means that the orbit of $Q$ includes $P,$ giving our transitivity.
+					</p>
+					<p>
+						Now, we don't have access to the $p$-group fixed-point theorem because $G$ isn't a $p$-group, so we instead use the orbit-stabilizer theorem for our counting. Fix a Sylow $p$-subgroup $P,$ and we know\[\#(G\cdot P)=[G:\op{Stab}(P)].\]We just established that the action is transitive, so $\#(G\cdot P)=\#S_p=n_p.$ As for $\op{Stab}(P),$ this is the set of $g$ such that\[gPg^{-1}=P,\]which is exactly what we need for $g\in N(P).$ Thus, $\op{Stab}(P)=N(P),$ and we do indeed have $n_p=[G:N(P)].$
+					</p>
+					<p>
+						It remains to show that $n_p\mid m.$ Well, $P\subseteq N(P),$ so $\#P\mid\#N(P),$ and dividing from $\#G$ gives\[n_p=[G:N(P)]\mid[G:P].\]But now $[G:P]=|G|/|P|=p^\nu m/p^\nu=m.$ This gives $n_p\mid m,$ completing the proof. $\blacksquare$
+					</p>
+					<p>
+						We quickly remark that a lot of the above proof doesn't need to be about Sylow $p$-subgroups. If we fix $P$ as any subgroup and then let $S_p$ be the set of $P$'s conjugate subgroups, then we still get $\#S_p=[G:N(P)]$ following the same logic. We will not flesh this out here.
+					</p>
+					<p>
+						The above two propositions together make the third Sylow theorem, so we have proved all three Sylow theorems. I think that's enough for today.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>
