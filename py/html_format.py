@@ -17,7 +17,7 @@ header = '''<!DOCTYPE html>
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
-		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<link rel=icon href="https://dfoiler.github.io/favicon.ico">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
