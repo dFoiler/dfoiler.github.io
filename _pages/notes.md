@@ -1,5 +1,5 @@
 ---
-permalink: /notes/
+permalink: /notes-page/
 title: "Notes"
 author_profile: false
 ---

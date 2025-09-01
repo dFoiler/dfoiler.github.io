@@ -157,6 +157,7 @@ analytics:
   google:
     tracking_id          :
 
+google-analytics: G-JQ21B5PPYN
 
 # Reading Files
 include:
