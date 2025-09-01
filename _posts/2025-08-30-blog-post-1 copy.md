@@ -9,7 +9,7 @@ tags:
   - units
 ---
 
-This post provides an amusing argument which classifying the units in polynomial rings.
+We classify the units in polynomial rings.
 
 > <b>Proposition.</b>
 Let \\(R\\) be a commutative ring, and let \\(f\in R[x]\\) be a polynomial. Expand
