@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Nir Elber"
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
@@ -9,4 +9,4 @@ redirect_from:
 
 Hi!
 
-I am a first-year graduate student at MIT, intending to study number theory. Before that, I was an undergraduate student at the University of California, Berkeley, where I was advised by Professor Yunqing Tang.
+I am a first-year graduate student in the mathematics department at MIT, intending to study number theory. Before that, I was an undergraduate student at the University of California, Berkeley, where I was advised by Professor Yunqing Tang.
