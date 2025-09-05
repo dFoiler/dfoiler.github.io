@@ -4,6 +4,13 @@ title: "Notes"
 author_profile: false
 ---
 
+Graduate Courses
+-
+Current
+* [18.757](https://dfoiler.github.io/notes/757/notes.pdf): Representation Theory of Lie Groups
+* [18.787](https://dfoiler.github.io/notes/787/notes.pdf): Selmer Groups and Euler Systems
+* [18.906](https://dfoiler.github.io/notes/906/notes.pdf): Algebraic Topology II, Homotopy Theory
+
 Undergraduate Courses
 -
 
