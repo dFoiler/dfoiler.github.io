@@ -1,6 +1,6 @@
 ---
 title: "Multiquadratic Extensions"
-date: 2025-1-20
+date: 2026-1-20
 author_profile: false
 permalink: /posts/2026/1/multiquadratic/
 tags:
