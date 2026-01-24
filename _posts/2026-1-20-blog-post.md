@@ -30,7 +30,7 @@ As such, \\(\operatorname{Gal}(\overline Q/K)\\) equals \\(\ker\chi\\). Thus, \\
 \\[\chi\colon\operatorname{Gal}(K/\mathbb Q)\to\\{\pm1\\}^{\\#S}.\\]
 To prove the theorem, it is enough to show that \\(\chi\\) is a bijection, which is a group theory problem.
 
-0. We turn the theorem into a linear algebra problem: we claim that it is enough to check that the characters \\(\\{\chi_p\\}_{p\in S}\\) are linearly independent in the \\(\mathbb F_2\\)-vector space \\(\operatorname{Hom}_{\mathrm{cts}}(G,\\{\pm1\\})\\).
+0. We turn the theorem into a linear algebra problem: we claim that it is enough to check that the characters \\(\\{\chi\_p\\}\_{p\in S}\\) are linearly independent in the \\(\mathbb F\_2\\)-vector space \\(\operatorname{Hom}\_{\mathrm{cts}}(G,\\{\pm1\\})\\).
 
     We proceed by contraposition. If \\(\chi\\) fails to be bijective, then it fails to be surjective, so its image lives in some hyperplane of \\(\\{\pm1\\}^{\\#S}\\). Such a hyperplane is cut out by an equation, which yields some equation
     \\[\prod_{p\in S}\chi_p^{a_p}=1,\\]
