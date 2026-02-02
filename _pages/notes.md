@@ -6,9 +6,20 @@ author_profile: false
 
 Graduate Courses
 -
-Current
+Starred courses are current.
+
+Algebra
+* [18.706](https://dfoiler.github.io/notes/706/notes.pdf)*: Noncommutative Algebra
+* [18.708](https://dfoiler.github.io/notes/708/notes.pdf)*: Topics in Algebra
+* [18.755](https://dfoiler.github.io/notes/755/notes.pdf)*: Representation Theory of Compact Lie Groups
 * [18.757](https://dfoiler.github.io/notes/757/notes.pdf): Representation Theory of Lie Groups
+
+Number Theory
+* [18.786](https://dfoiler.github.io/notes/786/notes.pdf)*: Introduction to Automorphic Forms
 * [18.787](https://dfoiler.github.io/notes/787/notes.pdf): Selmer Groups and Euler Systems
+
+Algebraic Topology
+* [18.917](https://dfoiler.github.io/notes/917/notes.pdf)*: The Chromatic Splitting Conjecture
 * [18.906](https://dfoiler.github.io/notes/906/notes.pdf): Algebraic Topology II, Homotopy Theory
 
 Undergraduate Courses
