@@ -6,7 +6,7 @@ author_profile: false
 
 Graduate Courses
 -
-Starred courses are current.
+Starred courses* are current.
 
 Algebra
 * [18.706](https://dfoiler.github.io/notes/706/notes.pdf)*: Noncommutative Algebra
