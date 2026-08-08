@@ -66,7 +66,7 @@ The easier term is \\(m(G/B)\\): recall \\(G/B\\) is a projective (flag) variety
 
 We now turn to \\(m(B)\\). Let \\(U\subseteq B\\) be the unipotent radical, and let \\(T\subseteq B\\) be a maximal torus so that \\(B/U=T\\). Thus,
 \\[m(B)=m(U)+m(T).\\]
-On one hand, that \\(U\\) is a unipotent group, so \\(U(\mathbb C)\\) is diffeomorphic to affine space, so \\(m(U)=0\\). On the other hand, we see \\(T(\mathbb C)\cong\mathbb G\_m(\mathbb C)^{\dim T/2}\\), and \\(m(\mathbb G\_m)=1\\), so the Künneth formula implies \\(m(T)=\dim T\\). Thus, \\(m(B)=\dim T\\).
+On one hand, that \\(U\\) is a unipotent group, so \\(U(\mathbb C)\\) is diffeomorphic to affine space, so \\(m(U)=0\\). On the other hand, we see \\(T(\mathbb C)\cong\mathbb G\_m(\mathbb C)^{\dim T}\\), and \\(m(\mathbb G\_m)=1\\), so the Künneth formula implies \\(m(T)=\dim T\\). Thus, \\(m(B)=\dim T\\).
 
 Collecting everything, we find that
 \\[m(G)=2\dim G-2\dim B+\dim T.\\]
