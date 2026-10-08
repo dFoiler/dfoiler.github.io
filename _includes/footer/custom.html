@@ -16,4 +16,47 @@
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
 
+<!-- kinda ugly hack for dynamic labeling, due to ChatGPT -->
+<script>
+  // run after page is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    // labels stores all the used labels
+    const labels = new Map();
+
+    // looks for class=statement-label to collect labels
+    document.querySelectorAll(".statement-label[id]").forEach((element, index) => {
+      // record the environment, label, and author
+      const env = element.dataset.env || "Theorem";
+      // the text we will rewrite
+      const label = `${env} ${index + 1}`;
+      labels.set(element.id, label);
+      const author = (
+        element.dataset.author || ""
+      ).trim();
+
+      // adjust the content of the element
+      // it's title + author + period
+      const title = document.createElement("strong");
+      title.textContent = label;
+      element.replaceChildren(title);
+      if (author) {
+        element.append(document.createTextNode(` (${author})`));
+      }
+      const period = document.createElement("strong");
+      period.textContent = ".";
+      element.append(period);
+    });
+
+    // looks for class=statement-ref to fix references
+    document.querySelectorAll('a.statement-ref[href^="#"]').forEach(link => {
+      // remove # to extract the label
+      const id = link.getAttribute("href").slice(1);
+      // change the content if the label is present
+      if (labels.has(id)) {
+        link.textContent = labels.get(id);
+      }
+    });
+  });
+</script>
+
 <!-- end custom footer snippets -->
