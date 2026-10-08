@@ -19,12 +19,15 @@
 <!-- kinda ugly hack for dynamic labeling, due to ChatGPT -->
 <script>
   // run after page is loaded
+  console.log(1);
   document.addEventListener("DOMContentLoaded", () => {
+    console.log(2);
     // labels stores all the used labels
     const labels = new Map();
 
     // looks for class=statement-label to collect labels
     document.querySelectorAll(".statement-label[id]").forEach((element, index) => {
+      console.log(3, element);
       // record the environment, label, and author
       const env = element.dataset.env || "Theorem";
       // the text we will rewrite
@@ -49,6 +52,7 @@
 
     // looks for class=statement-ref to fix references
     document.querySelectorAll('a.statement-ref[href^="#"]').forEach(link => {
+      console.log(4, link)
       // remove # to extract the label
       const id = link.getAttribute("href").slice(1);
       // change the content if the label is present
