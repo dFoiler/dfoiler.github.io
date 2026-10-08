@@ -52,7 +52,7 @@
 
     /* looks for class=statement-ref to fix references */
     document.querySelectorAll('a.statement-ref[href^="#"]').forEach(link => {
-      console.log(4, link)
+      console.log(4, link);
       /* remove # to extract the label */
       const id = link.getAttribute("href").slice(1);
       /* change the content if the label is present */
