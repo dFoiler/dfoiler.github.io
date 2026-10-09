@@ -12,7 +12,7 @@ We explain how to construct a morphism to \\(\mathbb P^n_{\mathbb Z}\\).
 For this entire blog post, we fix a nonnegative integer \\(n\\). We are interested in the following theorem.
 
 > **Theorem 1.**
-There is a natural isomorphism between the set of morphisms from a scheme \\(X\\) to \\(\mathbb P^n_{\mathbb Z}\\) and the set of isomorphism classes of line bundles \\(\mathcal L\\) equipped with \\(n+1\\) global sections \\(\\{s\_0,\ldots,s\_{n+1}\\}\\) which have no common zero.
+There is a natural isomorphism between the set of morphisms from a scheme \\(X\\) to \\(\mathbb P^n_{\mathbb Z}\\) and the set of isomorphism classes of line bundles \\(\mathcal L\\) equipped with \\(n+1\\) global sections \\(\\{s\_0,\ldots,s\_{n}\\}\\) which have no common zero.
 
 This theorem confused me for a long time because I did not understand where these sections and line bundles should come from. In my opinion, many classical texts on the subject do not provide satisfactory explanations as to why a line bundle \\(\mathcal L\\) is necessary (instead of merely working with global sections of \\(\mathcal O\_X\\)). (It is not hard to explain the presence of the \\(n+1\\) sections: this is just a fancy way of asking for a surjective map \\(\mathcal O\_X^{n+1}\to\mathcal L\\).)
 
@@ -26,7 +26,7 @@ A First Approximation
 Intuitively, we expect \\(\mathbb P^n\\) to classify lines in \\((n+1)\\)-affine space. For technical reasons (see Remark 3), we will instead view this data as classifying one-dimensional quotients of \\((n+1)\\)-affine space.
 
 > **Example 2.**
-Fix a field \\(k\\). Then a morphism \\(\operatorname{Spec}k\to\mathbb P^n_{\mathbb Z}\\) is basically a closed point in \\(\mathbb P^n(k)\\), which amounts to the data of \\(n+1\\) scalars \\(\\{a\_0,\ldots,a\_{n+1}\\}\\) which do not all vanish, up to multiplication by \\(k^\times\\). This is equivalent to the data of a row matrix \\(k^{n+1}\to k\\) of full rank, up to scalar, which is equivalent to the data of a quotient \\(k^{n+1}\to k\\) up to isomorphism of \\(k\\).
+Fix a field \\(k\\). Then a morphism \\(\operatorname{Spec}k\to\mathbb P^n_{\mathbb Z}\\) is basically a closed point in \\(\mathbb P^n(k)\\), which amounts to the data of \\(n+1\\) scalars \\(\\{a\_0,\ldots,a\_{n}\\}\\) which do not all vanish, up to multiplication by \\(k^\times\\). This is equivalent to the data of a row matrix \\(k^{n+1}\to k\\) of full rank, up to scalar, which is equivalent to the data of a quotient \\(k^{n+1}\to k\\) up to isomorphism of \\(k\\).
 
 Thus, as a first approximation, we may expect that a morphism \\(\operatorname{Spec}A\to\mathbb P^n_{\mathbb Z}\\) has equivalent data to a quotient map \\(A^{n+1}\to A\\), up to isomorphism.
 
@@ -406,7 +406,7 @@ The sheaf \\(\mathcal P\\) is representable.
 *Proof.*
 Recall that \\(\mathcal P\\) is a sheaf by Proposition 30 or Lemma 33. Thus, by Theorem 43, it is enough to show that \\(\mathcal P\\) admits an open cover by representable (open) subsheaves.
 
-To this end, fix an index \\(i\in\\{0,1,\ldots,n+1\\}\\) for now, and define the presheaf \\(\mathcal P\_i\\) to take a scheme \\(X\\) to the set of surjections \\(\pi\in\mathcal P(X)\\) such that the composite
+To this end, fix an index \\(i\in\\{0,1,\ldots,n\\}\\) for now, and define the presheaf \\(\mathcal P\_i\\) to take a scheme \\(X\\) to the set of surjections \\(\pi\in\mathcal P(X)\\) such that the composite
 \\[\mathcal O\_X\stackrel{\iota\_i}\hookrightarrow\mathcal O\_X^{n+1}\stackrel\pi\to\mathcal L\\]
 is surjective, where the left map is the inclusion into the \\(i\\)th coordinate. Note that the \\(i\\)th coordinate being surjective is preserved by pullback, so \\(\mathcal P\_i\\) is in fact a sub-presheaf.
 
@@ -446,7 +446,7 @@ Of course, this is not an honest proof because \\(\mathbb P^n\_{\mathbb Z}\\) ad
 
 *Proof of Theorem 1.*
 Let \\(X\\) be the scheme constructed from Proposition 46, which we would like to show is isomorphic to \\(\mathbb P^n\_{\mathbb Z}\\). We will use Theorem 43 to describe \\(X\\) explicitly by gluing.
-- For each \\(i\in\\{0,1,\ldots,n+1\\}\\), we have an open subscheme \\(U\_i\subseteq X\\) isomorphic to \\(\mathbb A^n\_{\mathbb Z}\\). We write \\(U\_i\\) as \\(\operatorname{Spec}\mathbb Z[x\_{0/i},\ldots,x\_{n/i}]\\) for psychological reasons, where \\(x\_{i/i}\\) is understood to be \\(1\\). By unwinding the proof of representability in Proposition 46, we find that the map \\(U\_i\to X\\) corresponds to the surjection
+- For each \\(i\in\\{0,1,\ldots,n\\}\\), we have an open subscheme \\(U\_i\subseteq X\\) isomorphic to \\(\mathbb A^n\_{\mathbb Z}\\). We write \\(U\_i\\) as \\(\operatorname{Spec}\mathbb Z[x\_{0/i},\ldots,x\_{n/i}]\\) for psychological reasons, where \\(x\_{i/i}\\) is understood to be \\(1\\). By unwinding the proof of representability in Proposition 46, we find that the map \\(U\_i\to X\\) corresponds to the surjection
 \\[(x\_{0/i},\ldots,x\_{n/i})\colon\mathcal O\_{U\_i}^{n+1}\to\mathcal O\_{U\_i},\\]
 where we recall \\(x\_{i/i}=1\\).
 
